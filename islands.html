@@ -36,18 +36,18 @@
   <div class="lab">
     <div><canvas id="map" class="map" aria-label="臺灣離島分布與成因示意圖"></canvas>
       <div class="legend"><span><i style="background:#c08a3e"></i>大陸島</span><span><i style="background:#c0482e"></i>火山島</span><span><i style="background:#2ba3a0"></i>珊瑚礁島</span></div>
-      <p class="small">東沙島、南沙太平島也是珊瑚礁島，位在南海，超出這張圖的範圍。</p>
+      <p class="small">東沙島、太平島（南沙群島）也是珊瑚礁島，位在南海，距離臺灣很遠，所以畫在左下角的小框裡（位置為示意，不按比例）。</p>
     </div>
     <div>
       <div class="tscroll">
       <table class="t">
         <tr><th>類型</th><th>怎麼形成</th><th>臺灣的例子</th></tr>
-        <tr><td>大陸島</td><td>原本是大陸的一部分，海平面上升後被海水隔開</td><td>金門、馬祖；臺灣本島也是</td></tr>
+        <tr><td>大陸島</td><td>原本是大陸的一部分，海平面上升後被海水隔開</td><td>金門、馬祖列嶼；臺灣本島也是</td></tr>
         <tr><td>火山島</td><td>海底火山噴發，熔岩、火山碎屑堆積露出海面</td><td>澎湖群島、龜山島、綠島、蘭嶼、彭佳嶼</td></tr>
         <tr><td>珊瑚礁島</td><td>珊瑚礁堆積而成，有的再因地殼抬升露出海面</td><td>小琉球、東沙島、太平島</td></tr>
       </table>
       </div>
-      <div class="warn">金門、馬祖離中國大陸很近，是<b>大陸島</b>；澎湖雖然在臺灣海峽中間，卻是<b>火山島</b>（由玄武岩構成）。不要用「離哪裡近」來判斷，要看<b>形成原因</b>。</div>
+      <div class="warn">金門、馬祖列嶼離中國大陸很近，是<b>大陸島</b>；澎湖雖然在臺灣海峽中間，卻是<b>火山島</b>（由玄武岩構成）。不要用「離哪裡近」來判斷，要看<b>形成原因</b>。</div>
     </div>
   </div>
 
@@ -63,7 +63,7 @@ function noise(seed){const w=[];let s=seed;const r=()=>{s=(s*16807)%2147483647;r
   return (x,z)=>{let t=0;for(const q of w)t+=q[4]*Math.sin(x*q[2]+q[0])*Math.sin(z*q[3]+q[1]);return t/3.5;};}
 const n1=noise(11),n2=noise(29);
 const INFO={
- cont:{t:'大陸島',c:'#c08a3e',d:'<p><b>形成：</b>島嶼原本和大陸相連，是大陸的一部分。冰河時期海平面比現在低很多，淺海的大陸棚露出成為陸地；後來氣候變暖、<b>海平面上升</b>，低處被海水淹沒，高處就成了和大陸分開的島嶼。</p><p><b>特色：</b>岩層和附近的大陸相似，島和大陸之間的海通常不深。</p><p><b>例子：</b>金門、馬祖。<b>臺灣本島</b>也是大陸島。</p><p class="note">把滑桿往右拉，讓海平面下降，看看島和大陸怎麼連在一起。</p>'},
+ cont:{t:'大陸島',c:'#c08a3e',d:'<p><b>形成：</b>島嶼原本和大陸相連，是大陸的一部分。冰河時期海平面比現在低很多，淺海的大陸棚露出成為陸地；後來氣候變暖、<b>海平面上升</b>，低處被海水淹沒，高處就成了和大陸分開的島嶼。</p><p><b>特色：</b>岩層和附近的大陸相似，島和大陸之間的海通常不深。</p><p><b>例子：</b>金門、馬祖列嶼。<b>臺灣本島</b>也是大陸島。</p><p class="note">把滑桿往右拉，讓海平面下降，看看島和大陸怎麼連在一起。</p>'},
  volc:{t:'火山島',c:'#c0482e',d:'<p><b>形成：</b><b>海底火山噴發</b>，熔岩和火山碎屑一層層堆積，最後露出海面形成島嶼。</p><p><b>兩種樣子：</b></p><ul><li><b>火山錐</b>：火山噴發堆成錐狀的山，例如龜山島、綠島、蘭嶼、彭佳嶼。</li><li><b>玄武岩方山</b>：熔岩大面積流出、冷卻成玄武岩，形成頂部平坦的方山，例如<b>澎湖群島</b>，海邊常見<b>柱狀玄武岩</b>。</li></ul><p class="note">用上方按鈕切換兩種火山島，再拉動滑桿看形成過程。</p>'},
  coral:{t:'珊瑚礁島',c:'#2ba3a0',d:'<p><b>形成：</b>珊瑚生長在溫暖、清澈、較淺的海域，珊瑚的骨骼不斷堆積成珊瑚礁。珊瑚礁堆高露出海面，或因<b>地殼抬升</b>而露出，就形成珊瑚礁島。</p><p><b>兩種樣子：</b></p><ul><li><b>隆起珊瑚礁島</b>：珊瑚礁被抬升到海面上，例如<b>小琉球</b>，島上到處是珊瑚礁石灰岩。</li><li><b>環礁</b>：珊瑚礁圍成環狀，中間是潟湖，例如<b>東沙環礁</b>（東沙島位在環礁上）。</li></ul><p class="note">用上方按鈕切換兩種珊瑚礁島。</p>'}
 };
@@ -135,7 +135,7 @@ document.querySelectorAll('#types .btn').forEach(b=>b.onclick=()=>show(b.dataset
 
 /* 地圖 */
 const IS=[
- ['cont','金門',118.37,24.45,-1],['cont','馬祖',119.95,26.16,1],['cont','臺灣本島',120.85,23.75,1],
+ ['cont','金門',118.37,24.45,-1],['cont','馬祖列嶼',119.95,26.16,1],['cont','臺灣本島',120.85,23.75,1],
  ['volc','澎湖群島',119.58,23.57,-1],['volc','龜山島',121.95,24.84,1],['volc','綠島',121.49,22.66,1],['volc','蘭嶼',121.55,22.05,1],['volc','彭佳嶼',122.08,25.63,1],
  ['coral','小琉球',120.37,22.34,-1]];
 const COL={cont:'#c08a3e',volc:'#c0482e',coral:'#2ba3a0'};
@@ -144,6 +144,15 @@ const M=G3.TwMap(document.getElementById('map'),{bbox:[117.9,122.4,21.8,26.45],m
   IS.forEach(([k,n,lon,lat,side])=>{const on=k===cur;m.dot(lon,lat,on?7:5.5,COL[k],'#fff',k);
     m.label(n,lon,lat,{size:on?13:12,bold:on,color:COL[k],align:side<0?'right':'left',dx:side<0?-9:9});});
   m.label('臺灣海峽',119.2,23.0,{size:12,color:'#2d6f9e',dx:0});
+  /* 南海小框：東沙島、太平島距離太遠，用小框示意（不按比例） */
+  const c=m.ctx,a=m.P(117.98,24.08),b=m.P(118.72,21.9),on=cur==='coral';
+  c.fillStyle='#e8f1f8';c.fillRect(a[0],a[1],b[0]-a[0],b[1]-a[1]);
+  c.strokeStyle='#8fa3b3';c.lineWidth=1;c.strokeRect(a[0],a[1],b[0]-a[0],b[1]-a[1]);
+  m.label('南海',118.35,23.95,{size:12,color:'#5d6b60',align:'center',dx:0});
+  [['東沙島',118.35,23.45],['太平島',118.2,22.3]].forEach(([n,lon,lat])=>{
+    m.dot(lon,lat,on?7:5.5,'#fff',COL.coral,'coral');m.dot(lon,lat,on?3.5:2.8,COL.coral,null);
+    m.label(n,lon,lat,{size:on?13:12,bold:true,color:COL.coral,align:'center',dx:0,dy:18});});
+  m.label('（南沙群島）',118.35,22.85,{size:11,color:'#7a857d',align:'center',dx:0});
 },onPick:k=>show(k)});
 show('cont');
 })();
