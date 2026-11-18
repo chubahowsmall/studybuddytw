@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3-3 臺灣地形的特徵與分布｜地理 3D 教室</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Cpath d=%22M2 26 L12 10 L18 18 L22 13 L30 26Z%22 fill=%22%233f7a4f%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/three.min.js"></script>
+<script src="assets/geo.js"></script>
+<script src="assets/common.js"></script>
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap">
+  <span class="kicker">3-3 臺灣地形的特徵與分布</span>
+  <h1>臺灣地形：中間高、東西低，山地偏東</h1>
+  <p class="lead">先看地圖認識五大山脈、平原、盆地和臺地的位置，再用 3D 剖面從臺灣海峽一路「走」到太平洋，感受西部和東部地勢的差別。</p>
+
+  <h2>一、地形分布圖</h2>
+  <div class="chips" id="layers">
+    <button class="chip on" data-l="all">全部</button>
+    <button class="chip" data-l="mt">山脈與高峰</button>
+    <button class="chip" data-l="pl">平原與縱谷</button>
+    <button class="chip" data-l="ba">盆地</button>
+    <button class="chip" data-l="ta">臺地與丘陵</button>
+  </div>
+  <div class="lab">
+    <div><canvas id="map" class="map" aria-label="臺灣地形分布示意圖"></canvas>
+      <div class="legend">
+        <span><i style="background:#8a5a32"></i>山脈（示意）</span><span><i style="background:#79b56a"></i>平原、縱谷</span>
+        <span><i style="background:#5aa0a8"></i>盆地</span><span><i style="background:#d9a03a"></i>臺地</span><span><i style="background:#c7b25b"></i>丘陵</span>
+        <span><i style="background:#d62f2f"></i>下方 3D 剖面的位置</span>
+      </div>
+      <p class="small">位置與範圍為示意，不是精確的地形界線。點地圖上的名稱可看說明。</p>
+    </div>
+    <div>
+      <div class="card" id="info"><h3>點選地圖上的地形</h3><p class="note">點地圖上的山脈、平原、盆地或臺地，這裡會顯示它的特色。</p></div>
+      <div class="card tight">
+        <h3>五大山脈（由東到西大致是）</h3>
+        <ul>
+          <li><b>海岸山脈</b>：在花東縱谷東側，緊鄰太平洋。</li>
+          <li><b>中央山脈</b>：縱貫南北、最長，是臺灣<b>主要的分水嶺</b>。</li>
+          <li><b>雪山山脈</b>：在中央山脈西北側，主峰<b>雪山</b>（3,886 公尺）。</li>
+          <li><b>玉山山脈</b>：主峰<b>玉山</b>（3,952 公尺），是臺灣最高峰。</li>
+          <li><b>阿里山山脈</b>：在玉山山脈西側，是最西邊的山脈。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2>二、3D 東西剖面（約北緯 23.5 度）</h2>
+  <p>這條剖面大約從嘉義外海出發，經過嘉南平原、阿里山、玉山，到花蓮的花東縱谷和海岸山脈，最後進入太平洋。正面的切面就是地形剖面圖。</p>
+  <div class="lab">
+    <div>
+      <div class="bar">
+        <button class="btn on" id="vA">斜看</button>
+        <button class="btn" id="vF">正面看剖面</button>
+        <button class="btn on" id="bLab">名稱：開</button>
+      </div>
+      <div class="view" id="v"></div>
+      <p class="note" id="veNote"></p>
+    </div>
+    <div>
+      <div class="card tight">
+        <h3>從剖面看出的三個特色</h3>
+        <ol>
+          <li><b>中間高、東西兩側低</b>：高山集中在中部，往東西兩側降低。</li>
+          <li><b>山地偏東</b>：最高的山脈靠近東部，所以<b>東側坡陡</b>、<b>西側坡緩</b>。</li>
+          <li><b>西部平原廣大、東部平原狹小</b>：西部有寬廣的嘉南平原；東部只有夾在山脈間的花東縱谷平原。</li>
+        </ol>
+      </div>
+      <div class="key">連結生活：西部地勢平緩、平原廣大，適合農業、交通與都市發展，<b>人口大多集中在西部</b>。</div>
+    </div>
+  </div>
+
+  <h2>三、五種地形怎麼分辨</h2>
+  <div class="tscroll">
+  <table class="t">
+    <tr><th>地形</th><th>特徵</th><th>臺灣的例子</th></tr>
+    <tr><td>山地</td><td>海拔高、起伏大、坡度陡</td><td>五大山脈</td></tr>
+    <tr><td>丘陵</td><td>海拔比山地低，起伏和緩</td><td>竹苗丘陵</td></tr>
+    <tr><td>臺地</td><td><b>頂部平坦</b>、四周有<b>陡崖</b>，比周圍的平原高</td><td>林口臺地、桃園臺地、大肚臺地、八卦臺地</td></tr>
+    <tr><td>盆地</td><td><b>四周高、中間低</b>，被山地或丘陵圍繞</td><td>臺北盆地、臺中盆地、埔里盆地</td></tr>
+    <tr><td>平原</td><td>地勢<b>低平</b>、起伏小，多由河流堆積而成</td><td>嘉南平原（最大）、屏東平原、蘭陽平原、花東縱谷平原</td></tr>
+  </table>
+  </div>
+  <p class="small">各種地形的海拔分界，請以課本的定義為準。</p>
+
+  <div id="pager"></div>
+</main>
+<footer id="site-foot"></footer>
+
+<script>
+(function(){
+/* ---------- 地圖資料（示意） ---------- */
+const MT=[
+ {id:'hai',n:'海岸山脈',c:[[23.98,121.6],[23.6,121.47],[23.2,121.35],[22.78,121.17]],d:'位在花東縱谷東側、緊鄰太平洋。位在菲律賓海板塊上，由板塊擠壓隆起而成，海拔比中央山脈低。'},
+ {id:'zhong',n:'中央山脈',c:[[24.6,121.78],[24.3,121.45],[23.95,121.27],[23.5,121.07],[23.0,120.93],[22.5,120.82],[22.0,120.8]],d:'北起宜蘭蘇澳附近，南到屏東鵝鑾鼻，縱貫臺灣南北，是最長的山脈。山脊是臺灣主要的<b>分水嶺</b>，雨水從這裡分別向東、向西流。'},
+ {id:'xue',n:'雪山山脈',c:[[25.0,121.92],[24.75,121.58],[24.38,121.23],[24.1,121.02],[23.86,120.9]],d:'位在中央山脈西北側，北起三貂角附近，南到濁水溪北岸。主峰<b>雪山</b>海拔 3,886 公尺，是臺灣第二高峰。'},
+ {id:'yu',n:'玉山山脈',c:[[23.78,120.96],[23.47,120.957],[23.2,120.85],[22.95,120.7]],d:'位在中央山脈西側、阿里山山脈東側。主峰<b>玉山</b>海拔 3,952 公尺，是臺灣最高峰。'},
+ {id:'ali',n:'阿里山山脈',c:[[23.82,120.78],[23.5,120.8],[23.2,120.65],[22.92,120.5]],d:'五大山脈中最西邊的一條，位在玉山山脈西側，往西逐漸降為丘陵和平原。'}
+];
+const PK=[{n:'玉山 3,952 m',lat:23.47,lon:120.957,d:'玉山是臺灣最高峰，海拔 3,952 公尺，屬於玉山山脈。'},{n:'雪山 3,886 m',lat:24.383,lon:121.232,d:'雪山是雪山山脈的主峰，海拔 3,886 公尺，是臺灣第二高峰。'}];
+const PL=[
+ {n:'嘉南平原',lat:23.15,lon:120.3,rx:0.16,ry:0.42,d:'臺灣面積<b>最大</b>的平原，主要由濁水溪等河流的沖積物堆積而成，是重要的農業區。'},
+ {n:'屏東平原',lat:22.62,lon:120.55,rx:0.1,ry:0.2,d:'由高屏溪等河流堆積而成，位在南部。'},
+ {n:'蘭陽平原',lat:24.7,lon:121.76,rx:0.07,ry:0.1,d:'位在宜蘭，由蘭陽溪堆積而成，形狀像三角形。'},
+ {n:'花東縱谷平原',line:[[23.92,121.53],[23.5,121.37],[23.1,121.24],[22.82,121.14]],lat:23.4,lon:121.32,d:'夾在中央山脈和海岸山脈之間的狹長平原，是東部最主要的平原。'}
+];
+const BA=[
+ {n:'臺北盆地',lat:25.05,lon:121.52,d:'四周被山地、丘陵和臺地環繞，中間低平，是臺灣人口最密集的地區之一。'},
+ {n:'臺中盆地',lat:24.15,lon:120.68,d:'位在中部，西邊是大肚臺地與八卦臺地，東邊是丘陵和山地。'},
+ {n:'埔里盆地',lat:23.97,lon:120.96,d:'位在臺灣中部山區，由多個小盆地組成（埔里盆地群），是臺灣地理中心附近。'}
+];
+const TA=[
+ {n:'林口臺地',lat:25.08,lon:121.36,t:'ta',d:'位在新北市與桃園市交界，頂部平坦、四周有陡崖。'},
+ {n:'桃園臺地',lat:24.9,lon:121.18,t:'ta',d:'臺灣面積較大的臺地，地表平坦。因為缺水，過去開挖了許多埤塘儲水。'},
+ {n:'大肚臺地',lat:24.2,lon:120.56,t:'ta',d:'位在臺中盆地西側，與八卦臺地隔著大肚溪（烏溪）相望。'},
+ {n:'八卦臺地',lat:23.95,lon:120.56,t:'ta',d:'位在彰化，大肚臺地南側。'},
+ {n:'竹苗丘陵',lat:24.62,lon:120.95,t:'hi',d:'位在新竹、苗栗一帶，地勢起伏和緩，介於山地與平原之間。'}
+];
+let layer='all',sel=null;
+const show=l=>layer==='all'||layer===l;
+const M=G3.TwMap(document.getElementById('map'),{maxH:720,draw:m=>{
+  /* 剖面線 */
+  m.line([[120.0,23.5],[121.68,23.5]],'#d62f2f',2,[6,4]);
+  m.label('3D 剖面',120.02,23.56,{color:'#d62f2f',size:11,dx:0});
+  if(show('pl'))PL.forEach(p=>{
+    if(p.line){m.line(p.line.map(c=>[c[1],c[0]]),sel===p?'#3f8f3a':'#79b56a',9);}
+    else{const P=m.P(p.lon,p.lat),Q=m.P(p.lon+p.rx,p.lat-p.ry);m.ctx.beginPath();m.ctx.ellipse(P[0],P[1],Math.abs(Q[0]-P[0]),Math.abs(Q[1]-P[1]),0,0,7);m.ctx.fillStyle=sel===p?'rgba(63,143,58,.7)':'rgba(121,181,106,.6)';m.ctx.fill();}
+    m.dot(p.lon,p.lat,4,'#2f6b2a',null,p);m.label(p.n,p.lon,p.lat,{size:12,bold:sel===p,color:'#24521f'});});
+  if(show('mt')){MT.forEach(r=>{const pts=r.c.map(c=>[c[1],c[0]]);m.line(pts,sel===r?'#5b3415':'#8a5a32',sel===r?7:5);
+      const L={hai:[22.98,121.3,10,4],zhong:[24.05,121.33,10,0],xue:[24.62,121.48,10,0],yu:[23.78,120.96,6,-12],ali:[23.82,120.78,-6,-12]}[r.id];
+      r.c.forEach(c=>m.dot(c[1],c[0],1,'rgba(0,0,0,0)',null,r));m.dot(L[1],L[0],4,'#8a5a32',null,r);
+      m.label(r.n,L[1],L[0],{size:12.5,bold:true,color:'#5b3415',dx:L[2],dy:L[3],align:L[2]<0?'right':'left'});});
+    PK.forEach(p=>{const P=m.P(p.lon,p.lat),c=m.ctx;c.beginPath();c.moveTo(P[0],P[1]-8);c.lineTo(P[0]+7,P[1]+5);c.lineTo(P[0]-7,P[1]+5);c.closePath();c.fillStyle='#fff';c.fill();c.strokeStyle='#5b3415';c.lineWidth=1.6;c.stroke();
+      m.dot(p.lon,p.lat,1,'rgba(0,0,0,0)',null,p);m.label(p.n,p.lon,p.lat,{size:11,dx:-10,dy:p.n[0]==='玉'?12:-12,align:'right',color:'#5b3415'});});}
+  if(show('ba'))BA.forEach(p=>{m.dot(p.lon,p.lat,7,sel===p?'#2c7680':'#5aa0a8','#fff',p);m.label(p.n,p.lon,p.lat,{size:12,dx:10,color:'#1f5960',bold:sel===p});});
+  if(show('ta'))TA.forEach(p=>{const P=m.P(p.lon,p.lat);m.ctx.fillStyle=p.t==='ta'?'#d9a03a':'#c7b25b';m.ctx.fillRect(P[0]-6,P[1]-6,12,12);m.ctx.strokeStyle='#fff';m.ctx.strokeRect(P[0]-6,P[1]-6,12,12);
+    m.dot(p.lon,p.lat,1,'rgba(0,0,0,0)',null,p);m.label(p.n,p.lon,p.lat,{size:12,dx:-10,align:'right',color:'#7a4f10',bold:sel===p});});
+  m.label('臺灣海峽',119.95,22.9,{size:13,color:'#2d6f9e',dx:0});m.label('太平洋',121.75,23.1,{size:13,color:'#2d6f9e',dx:0});
+},onPick:d=>{sel=d;document.getElementById('info').innerHTML='<h3>'+d.n+'</h3><p>'+d.d+'</p>';M.draw();}});
+document.querySelectorAll('#layers .chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('#layers .chip').forEach(x=>x.classList.toggle('on',x===b));layer=b.dataset.l;M.draw();});
+
+/* ---------- 3D 東西剖面 ---------- */
+const CP=[[119.9,-90],[120.0,-60],[120.1,-15],[120.13,0],[120.16,5],[120.3,20],[120.42,45],[120.5,100],[120.58,300],[120.66,700],[120.73,1700],[120.8,2500],[120.87,1300],[120.957,3952],[121.0,2800],[121.06,3825],[121.12,2900],[121.2,1700],[121.27,500],[121.31,200],[121.35,180],[121.39,450],[121.43,1300],[121.47,800],[121.5,200],[121.53,0],[121.56,-500],[121.62,-1500],[121.7,-2600]];
+function prof(lon){if(lon<=CP[0][0])return CP[0][1];for(let i=1;i<CP.length;i++){if(lon<=CP[i][0]){const a=CP[i-1],b=CP[i],t=(lon-a[0])/(b[0]-a[0]),s=t*t*(3-2*t);return a[1]+(b[1]-a[1])*s;}}return CP[CP.length-1][1];}
+const SX=3.4,SZ=0.7,L0=119.92,L1=121.68;
+const toLon=x=>L0+(x+SX/2)/SX*(L1-L0);
+const kmPerUnit=(L1-L0)*102/SX; /* 北緯 23.5 度約每經度 102 公里 */
+const YS=0.00014;
+const V=G3.View(document.getElementById('v'),{az:0.3,el:0.4,dist:4.6,target:[0,0.15,0],maxDist:8});
+const T=G3.Terrain({sx:SX,sz:SZ,n:340,nz:50,ys:YS,sides:true,base:-0.42,sideTop:'#a07c55',sideBot:'#5b4632',
+  color:h=>G3.bandColor(h,[[-1e9,'#3d6f99'],[-1000,'#5b8fbb'],[-100,'#8dbbd9'],[0,'#9ccc8f'],[100,'#b9d68e'],[500,'#dcd790'],[1000,'#dcbf82'],[2000,'#c39565'],[3000,'#9c7350'],[3600,'#ece6dc']])});
+T.set((x,z)=>{const lon=toLon(x+0.025*Math.sin(z*6));let h=prof(lon);if(h>0)h*=1+0.07*Math.sin(z*11+x*9)+0.04*Math.sin(z*23-x*17);return h;});
+V.scene.add(T.group);
+V.scene.add(G3.Water(SX,SZ,0.001,{opacity:0.42,base:-0.42}));
+const xOf=lon=>(lon-L0)/(L1-L0)*SX-SX/2;
+const tags=[];
+[['臺灣海峽',120.0,0,'sea'],['嘉南平原',120.32,0],['丘陵',120.6,0],['阿里山山脈',120.76,0],['玉山 3,952 m',120.957,0,'big'],['中央山脈',121.14,0],['花東縱谷',121.33,0],['海岸山脈',121.43,0],['太平洋',121.62,0,'sea']].forEach(([t,lon,_,c])=>{
+  const h=Math.max(0,prof(lon));tags.push(V.tag(t,xOf(lon),h*YS+(c==='big'?0.1:0.03),0.2,c));});
+const ew=[V.tag('← 西',-SX/2+0.05,0.5,SZ/2,'hot'),V.tag('東 →',SX/2-0.05,0.5,SZ/2,'hot')];
+const ve=Math.round(YS/(1/(kmPerUnit*1000)));
+document.getElementById('veNote').textContent='剖面東西長約 '+Math.round(SX*kmPerUnit)+' 公里；為了看清楚起伏，高度放大了約 '+ve+' 倍（垂直誇大）。地形為示意，非實測資料。';
+G3.radio([vA,vF],b=>{if(b.id==='vF')V.view(0,0.05,4.3);else V.view(0.3,0.4,4.6);});
+let on=true;bLab.onclick=()=>{on=!on;bLab.classList.toggle('on',on);bLab.textContent='名稱：'+(on?'開':'關');tags.forEach(t=>t.show=on);};
+})();
+</script>
+</body>
+</html>

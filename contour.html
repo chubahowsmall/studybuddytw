@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3-2 等高線與地形剖面圖｜地理 3D 教室</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Cpath d=%22M2 26 L12 10 L18 18 L22 13 L30 26Z%22 fill=%22%233f7a4f%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/three.min.js"></script>
+<script src="assets/common.js"></script>
+<style>
+#map{touch-action:none;cursor:crosshair;background:#fff}
+#prof{width:100%;height:220px;display:block;background:#fff;border:1px solid var(--line);border-radius:var(--r)}
+.qa{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+.qa .opt{font:inherit;font-size:14px;padding:4px 12px;border-radius:999px;border:1px solid var(--line-2);background:#fff;cursor:pointer}
+.qa .opt.right{background:var(--moss-bg);border-color:var(--moss);font-weight:700}
+.qa .opt.wrong{background:var(--rose-bg);border-color:var(--rose)}
+.fb{font-size:14.5px;margin:6px 0 0;display:none}
+.fb.show{display:block}
+ol.ch>li{margin-bottom:14px}
+</style>
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap">
+  <span class="kicker">3-2 常見的地形表示方法</span>
+  <h1>等高線：把一座山「一層一層切開、壓扁」畫在紙上</h1>
+  <p class="lead">同一座山，可以用立體模型、等高線圖、分層設色圖、地形剖面圖來表示。先在 3D 模型上切換「立體」與「從正上方看」，再到下方的等高線圖上拉一條線，畫出自己的地形剖面圖。</p>
+
+  <h2>一、立體模型 ↔ 等高線圖</h2>
+  <div class="lab">
+    <div>
+      <div class="bar">
+        <button class="btn on" id="v3d">立體圖</button>
+        <button class="btn" id="vTop">從正上方看（等高線圖）</button>
+        <button class="btn on" id="bTint">分層設色：開</button>
+        <button class="btn on" id="bLab">地形名稱：開</button>
+      </div>
+      <div class="view" id="v"></div>
+      <p class="note">等高距 100 公尺；每 500 公尺一條較粗、較深的線（計曲線）。紅線是下方剖面圖所選的剖面線。</p>
+    </div>
+    <div>
+      <div class="card tight">
+        <h3>等高線的規則</h3>
+        <ul>
+          <li>同一條等高線上，每一點的<b>高度都相同</b>。</li>
+          <li>等高線<b>密集</b>→ 坡度<b>陡</b>；<b>稀疏</b>→ 坡度<b>緩</b>。</li>
+          <li>一圈圈封閉的等高線，數字往內變大 → <b>山頂</b>。</li>
+          <li>等高線<b>凸向低處</b> → <b>山脊</b>（稜線）。</li>
+          <li>等高線<b>凸向高處</b> → <b>山谷</b>（溪流常在這裡）。</li>
+          <li>兩個山頂之間的低處，形狀像馬鞍 → <b>鞍部</b>。</li>
+          <li>等高線<b>不會交叉</b>（垂直的懸崖例外，可能重疊）。</li>
+        </ul>
+      </div>
+      <div class="warn">山脊、山谷最容易搞混。記法：看等高線彎曲的「尖端」指向哪裡。尖端指向<b>數字小</b>（低處）的是山脊，指向<b>數字大</b>（高處）的是山谷。</div>
+    </div>
+  </div>
+
+  <h2>二、自己畫地形剖面圖</h2>
+  <p>在左邊的等高線圖上<b>按住並拖曳</b>，就會從起點 A 拉一條線到終點 B；右邊會立刻畫出沿著這條線的地形剖面圖，3D 模型上也會出現同一條紅線。</p>
+  <div class="bar">
+    <button class="btn" id="p1">範例 1：穿過兩座山頂</button>
+    <button class="btn" id="p2">範例 2：橫切山脊與山谷</button>
+    <button class="btn" id="p3">範例 3：比較陡坡與緩坡</button>
+  </div>
+  <div class="lab">
+    <div><canvas id="map" class="map" aria-label="等高線圖，可拖曳畫出剖面線"></canvas>
+      <div class="legend" id="leg"></div></div>
+    <div>
+      <canvas id="prof" aria-label="地形剖面圖"></canvas>
+      <p class="note" id="profNote">剖面圖的橫軸是沿剖面線的水平距離，縱軸是高度。縱軸刻度比橫軸放大很多（垂直誇大），所以坡度看起來比實際陡。</p>
+      <div class="card tight">
+        <h3>剖面圖怎麼畫？</h3>
+        <ol>
+          <li>在等高線圖上畫出剖面線 A–B。</li>
+          <li>找出剖面線和每一條等高線的<b>交點</b>，記下高度。</li>
+          <li>把每個交點「往下投影」到剖面圖上對應的高度。</li>
+          <li>用平滑的曲線把點連起來。</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <h2>三、判讀挑戰</h2>
+  <p>看上面等高線圖上的<b>甲、乙、丙、丁、戊、己</b>六個點回答，選完立刻顯示解析。可以把 3D 模型轉到俯視、再轉回立體來驗證。</p>
+  <ol class="ch" id="ch"></ol>
+
+  <div id="pager"></div>
+</main>
+<footer id="site-foot"></footer>
+
+<script>
+(function(){
+/* 地形：x、z 介於 -1～1（約 4 公里見方），傳回高度（公尺） */
+function hgt(x,z){
+  const A=1000*Math.exp(-((x+0.35)**2+z*z)/0.05);
+  const B=700*Math.exp(-((x-0.4)**2+z*z)/0.16);
+  const R=380*Math.exp(-((x+0.35)**2)/0.015)*Math.exp(-((z-0.32)**2)/0.06);
+  const Vy=110*Math.exp(-((x-0.06)**2)/0.012)*G3.smooth(0.12,0.4,z);
+  return Math.max(0,A+B+R-Vy+80);
+}
+const KM=2; /* 1 個單位 = 2 公里 */
+const PTS={甲:[-0.35,0.0],乙:[0.02,0.0],丙:[-0.35,0.52],丁:[0.06,0.55],戊:[-0.56,-0.16],己:[0.86,-0.18]};
+const LEVELS=[];for(let m=100;m<=1100;m+=100)LEVELS.push(m);
+
+/* ---- 3D ---- */
+const V=G3.View(document.getElementById('v'),{az:0.55,el:0.6,dist:3.3,target:[0,0.12,0]});
+const tint=h=>G3.bandColor(h,[[-1,'#9ccc8f'],[100,'#b5d690'],[200,'#cfe093'],[300,'#e4e59a'],[400,'#efdf98'],[500,'#ecd08a'],[600,'#e2bd7a'],[700,'#d6a86b'],[800,'#c8935e'],[900,'#b88054'],[1000,'#a06c48']]);
+const plain=()=>'#dedbd0';
+const T=G3.Terrain({size:2,n:160,ys:0.0006,color:tint});
+T.set(hgt);V.scene.add(T.group);
+V.scene.add(G3.Contours(T,LEVELS,{index:L=>L%500===0}));
+const tags=[];
+[['山頂',-0.35,0],['山頂',0.4,0],['鞍部',0.02,0],['山脊',-0.35,0.6],['山谷',0.06,0.6],['陡坡',-0.66,-0.05],['緩坡',0.86,-0.05]].forEach(([t,x,z])=>{
+  const h=hgt(x,z);tags.push(V.tag(t+(t==='山頂'?' '+Math.round(h/10)*10+' m':''),x,h*0.0006+0.02,z));});
+let secLine=null,secTags=[];
+function draw3dSection(a,b){
+  if(secLine){V.scene.remove(secLine);secLine.geometry.dispose();}
+  const p=[];for(let i=0;i<=120;i++){const t=i/120,x=a[0]+(b[0]-a[0])*t,z=a[1]+(b[1]-a[1])*t;p.push(x,hgt(x,z)*0.0006+0.01,z);}
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(p,3));
+  secLine=new THREE.Line(g,new THREE.LineBasicMaterial({color:0xd62f2f}));V.scene.add(secLine);
+  secTags.forEach(t=>t.el.remove());
+  secTags=[V.tag('A',a[0],hgt(a[0],a[1])*0.0006+0.02,a[1],'hot'),V.tag('B',b[0],hgt(b[0],b[1])*0.0006+0.02,b[1],'hot')];
+}
+G3.radio([v3d,vTop],b=>{if(b.id==='vTop')V.view(0,1.555,3.0);else V.view(0.55,0.6,3.3);});
+let tOn=true,lOn=true;
+bTint.onclick=()=>{tOn=!tOn;bTint.classList.toggle('on',tOn);bTint.textContent='分層設色：'+(tOn?'開':'關');T.paint(tOn?tint:plain);};
+bLab.onclick=()=>{lOn=!lOn;bLab.classList.toggle('on',lOn);bLab.textContent='地形名稱：'+(lOn?'開':'關');tags.forEach(t=>t.show=lOn);};
+
+/* ---- 2D 等高線圖 ---- */
+const cv=document.getElementById('map'),ctx=cv.getContext('2d');
+const pc=document.getElementById('prof'),pctx=pc.getContext('2d');
+let S=400,dpr=1,img=null;
+let A=[-0.85,0.0],B=[0.95,0.0];
+function grid(){const n=160,g=[];for(let j=0;j<=n;j++){g[j]=[];for(let i=0;i<=n;i++)g[j][i]=hgt(-1+2*i/n,-1+2*j/n);}return {n,g};}
+const GR=grid();
+function toPx(x,z){return [(x+1)/2*S,(z+1)/2*S];}
+function toW(px,py){return [px/S*2-1,py/S*2-1];}
+function render(){
+  dpr=Math.min(window.devicePixelRatio||1,2);S=cv.clientWidth;cv.style.height=S+'px';cv.width=S*dpr;cv.height=S*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+  const W=Math.round(S*dpr);const id=ctx.createImageData(W,W);const c=new THREE.Color();
+  for(let py=0;py<W;py++)for(let px=0;px<W;px++){const h=hgt(px/W*2-1,py/W*2-1);c.set(tOn?tint(h):'#ffffff');const k=(py*W+px)*4;id.data[k]=c.r*255;id.data[k+1]=c.g*255;id.data[k+2]=c.b*255;id.data[k+3]=255;}
+  img=id;paint();
+}
+function paint(){
+  ctx.setTransform(1,0,0,1,0,0);ctx.putImageData(img,0,0);ctx.setTransform(dpr,0,0,dpr,0,0);
+  const {n,g}=GR,cell=S/n;
+  for(const L of LEVELS){ctx.beginPath();
+    for(let j=0;j<n;j++)for(let i=0;i<n;i++){const c=[[i,j],[i+1,j],[i+1,j+1],[i,j+1]],cr=[];
+      for(let e=0;e<4;e++){const a=c[e],b=c[(e+1)%4],va=g[a[1]][a[0]],vb=g[b[1]][b[0]];
+        if((va-L)*(vb-L)<0){const t=(L-va)/(vb-va);cr.push([(a[0]+t*(b[0]-a[0]))*cell,(a[1]+t*(b[1]-a[1]))*cell]);}}
+      for(let m=0;m+1<cr.length;m+=2){ctx.moveTo(cr[m][0],cr[m][1]);ctx.lineTo(cr[m+1][0],cr[m+1][1]);}}
+    ctx.strokeStyle=L%500===0?'#2b1d10':'#6b5640';ctx.lineWidth=L%500===0?1.8:0.9;ctx.stroke();}
+  /* 高度註記 */
+  const font=getComputedStyle(document.body).fontFamily;
+  ctx.font='600 11px '+font;ctx.textAlign='center';ctx.textBaseline='middle';
+  [[100,-0.7,-0.55],[500,-0.35,-0.3],[1000,-0.35,-0.1],[200,0.6,-0.7],[400,0.45,-0.42],[600,0.42,-0.2]].forEach(([m,x,z])=>{
+    let best=null,bd=1e9;for(let t=-0.25;t<=0.25;t+=0.002){const zz=z+t,d=Math.abs(hgt(x,zz)-m);if(d<bd){bd=d;best=zz;}}
+    const p=toPx(x,best);ctx.lineWidth=3;ctx.strokeStyle='rgba(255,255,255,.95)';ctx.strokeText(m,p[0],p[1]);ctx.fillStyle='#2b1d10';ctx.fillText(m,p[0],p[1]);});
+  /* 甲～己 */
+  ctx.font='700 14px '+font;
+  for(const k in PTS){const p=toPx(...PTS[k]);ctx.beginPath();ctx.arc(p[0],p[1],3.5,0,7);ctx.fillStyle='#1f2a24';ctx.fill();
+    ctx.lineWidth=3.5;ctx.strokeStyle='#fff';ctx.strokeText(k,p[0]+11,p[1]-9);ctx.fillStyle='#1f2a24';ctx.fillText(k,p[0]+11,p[1]-9);}
+  /* 比例尺、指北 */
+  const km=S/2/KM;ctx.fillStyle='#1f2a24';ctx.fillRect(12,S-18,km,4);ctx.font='12px '+font;ctx.textAlign='left';ctx.lineWidth=3;ctx.strokeStyle='#fff';
+  ctx.strokeText('0　　1 公里',12,S-28);ctx.fillText('0　　1 公里',12,S-28);
+  ctx.textAlign='center';ctx.font='700 13px '+font;ctx.strokeText('北 ↑',S-24,16);ctx.fillText('北 ↑',S-24,16);
+  /* 剖面線 */
+  const a=toPx(...A),b=toPx(...B);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.strokeStyle='#d62f2f';ctx.lineWidth=2.5;ctx.stroke();
+  [['A',a],['B',b]].forEach(([t,p])=>{ctx.beginPath();ctx.arc(p[0],p[1],5,0,7);ctx.fillStyle='#d62f2f';ctx.fill();ctx.font='700 13px '+font;ctx.strokeStyle='#fff';ctx.lineWidth=3;ctx.strokeText(t,p[0],p[1]-12);ctx.fillStyle='#d62f2f';ctx.fillText(t,p[0],p[1]-12);});
+  profile();draw3dSection(A,B);
+}
+function profile(){
+  const w=pc.clientWidth,h=pc.clientHeight;pc.width=w*dpr;pc.height=h*dpr;pctx.setTransform(dpr,0,0,dpr,0,0);
+  pctx.clearRect(0,0,w,h);const font=getComputedStyle(document.body).fontFamily;
+  const L=Math.hypot(B[0]-A[0],B[1]-A[1])*KM; /* km */
+  const l=46,r=14,t=14,bt=34,gw=w-l-r,gh=h-t-bt,top=1200;
+  pctx.strokeStyle='#e3dfd3';pctx.fillStyle='#4d5a52';pctx.font='11px '+font;pctx.textAlign='right';pctx.textBaseline='middle';
+  for(let m=0;m<=top;m+=200){const y=t+gh-m/top*gh;pctx.beginPath();pctx.moveTo(l,y);pctx.lineTo(l+gw,y);pctx.stroke();pctx.fillText(m,l-6,y);}
+  pctx.save();pctx.translate(12,t+gh/2);pctx.rotate(-Math.PI/2);pctx.textAlign='center';pctx.fillText('高度（公尺）',0,0);pctx.restore();
+  pctx.textAlign='center';pctx.textBaseline='top';
+  const step=L>3?1:0.5;for(let d=0;d<=L+1e-6;d+=step){const x=l+d/L*gw;pctx.fillText(d.toFixed(step<1?1:0),x,t+gh+5);}
+  pctx.fillText('水平距離（公里）',l+gw/2,t+gh+19);
+  pctx.beginPath();const N=240;
+  for(let i=0;i<=N;i++){const s=i/N,x=A[0]+(B[0]-A[0])*s,z=A[1]+(B[1]-A[1])*s,hh=hgt(x,z);const X=l+s*gw,Y=t+gh-hh/top*gh;i?pctx.lineTo(X,Y):pctx.moveTo(X,Y);}
+  pctx.lineTo(l+gw,t+gh);pctx.lineTo(l,t+gh);pctx.closePath();pctx.fillStyle='#e9d9b8';pctx.fill();
+  pctx.beginPath();for(let i=0;i<=N;i++){const s=i/N,x=A[0]+(B[0]-A[0])*s,z=A[1]+(B[1]-A[1])*s,hh=hgt(x,z);const X=l+s*gw,Y=t+gh-hh/top*gh;i?pctx.lineTo(X,Y):pctx.moveTo(X,Y);}
+  pctx.strokeStyle='#7a4f2a';pctx.lineWidth=2;pctx.stroke();
+  /* 與等高線的交點 */
+  pctx.fillStyle='#d62f2f';let prev=null;
+  for(let i=0;i<=N;i++){const s=i/N,hh=hgt(A[0]+(B[0]-A[0])*s,A[1]+(B[1]-A[1])*s);
+    if(prev){for(const Lv of LEVELS){if((prev.h-Lv)*(hh-Lv)<0){const ss=prev.s+(s-prev.s)*(Lv-prev.h)/(hh-prev.h);pctx.beginPath();pctx.arc(l+ss*gw,t+gh-Lv/top*gh,2.6,0,7);pctx.fill();}}}
+    prev={s,h:hh};}
+  pctx.font='700 13px '+font;pctx.fillStyle='#d62f2f';pctx.textBaseline='bottom';pctx.textAlign='left';pctx.fillText('A',l+2,t+12);pctx.textAlign='right';pctx.fillText('B',l+gw-2,t+12);
+  const ve=Math.round((gh/top)/(gw/(L*1000)));
+  document.getElementById('profNote').innerHTML='剖面線長約 <b>'+L.toFixed(1)+' 公里</b>。紅點是剖面線與等高線的交點。縱軸刻度約放大了 <b>'+ve+' 倍</b>（垂直誇大），所以坡度看起來比實際陡。';
+}
+let dragging=false;
+function wp(e){const r=cv.getBoundingClientRect();return toW(Math.max(0,Math.min(S,e.clientX-r.left)),Math.max(0,Math.min(S,e.clientY-r.top)));}
+cv.addEventListener('pointerdown',e=>{dragging=true;cv.setPointerCapture(e.pointerId);A=wp(e);B=A.slice();paint();});
+cv.addEventListener('pointermove',e=>{if(!dragging)return;B=wp(e);paint();});
+cv.addEventListener('pointerup',()=>{dragging=false;if(Math.hypot(B[0]-A[0],B[1]-A[1])<0.05){B=[Math.min(0.98,A[0]+0.6),A[1]];paint();}});
+p1.onclick=()=>{A=[-0.85,0.0];B=[0.95,0.0];paint();};
+p2.onclick=()=>{A=[-0.75,0.55];B=[0.6,0.55];paint();};
+p3.onclick=()=>{A=[-0.95,-0.16];B=[0.97,-0.16];paint();};
+bTint.addEventListener('click',render);
+document.getElementById('leg').innerHTML=[[0,'0–100'],[300,'300'],[500,'500'],[700,'700'],[900,'900'],[1000,'1000 公尺以上']].map(([m,t])=>'<span><i style="background:'+tint(m+1)+'"></i>'+t+'</span>').join('');
+let lw=0;new ResizeObserver(()=>{if(cv.clientWidth!==lw){lw=cv.clientWidth;render();}}).observe(cv);
+
+/* ---- 判讀挑戰 ---- */
+const QS=[
+ ['甲～己之中，哪一點的海拔最高？',['甲','乙','丙','己'],0,'甲位在一圈圈封閉等高線的中心，數字往內愈來愈大，是這張圖上最高的山頂。'],
+ ['乙點位於兩座山頂之間的低處。這種地形稱為什麼？',['山谷','鞍部','山脊','盆地'],1,'兩個山頂之間、形狀像馬鞍的低處叫「鞍部」。登山時常從鞍部翻越山嶺。'],
+ ['丙點附近的等高線向南（數字較小的方向）凸出。丙點位在什麼地形上？',['山脊','山谷','鞍部','平原'],0,'等高線凸向低處（數字小的一側）是山脊。可以在 3D 圖上看到丙是一條向南延伸、比兩側高的稜線。'],
+ ['下大雨時，雨水最可能沿著哪一點附近匯集成溪流？',['丙','丁','甲','乙'],1,'丁點附近的等高線凸向高處（北方），是山谷。水往低處流，雨水會往山谷匯集，所以溪流常沿著山谷發育。'],
+ ['戊和己兩點附近，哪裡的坡度比較陡？',['戊，因為等高線比較密','己，因為等高線比較密','戊，因為海拔比較低','一樣陡，因為都在山坡上'],0,'戊附近的等高線間隔很小（密集），表示在很短的水平距離內高度變化很大，所以坡度陡；己附近的等高線稀疏，坡度緩。可以用「範例 3」的剖面圖驗證。']
+];
+const ol=document.getElementById('ch');
+QS.forEach((q,qi)=>{const li=document.createElement('li');
+  li.innerHTML='<div>'+q[0]+'</div><div class="qa">'+q[1].map((o,i)=>'<button class="opt" data-i="'+i+'">'+o+'</button>').join('')+'</div><div class="fb"></div>';
+  const fb=li.querySelector('.fb');
+  li.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const ok=+b.dataset.i===q[2];
+    li.querySelectorAll('.opt').forEach(x=>{x.classList.remove('right','wrong');if(+x.dataset.i===q[2]&&ok)x.classList.add('right');});
+    b.classList.add(ok?'right':'wrong');fb.innerHTML=(ok?'<b style="color:var(--moss)">答對了。</b>':'<b style="color:var(--rose)">再想想看。</b>')+(ok?q[3]:'提示：回到等高線圖，看這個點附近等高線的形狀和疏密。');fb.classList.add('show');});
+  ol.appendChild(li);});
+})();
+</script>
+</body>
+</html>

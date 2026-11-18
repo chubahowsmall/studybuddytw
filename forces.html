@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3-1 內營力與外營力｜地理 3D 教室</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Cpath d=%22M2 26 L12 10 L18 18 L22 13 L30 26Z%22 fill=%22%233f7a4f%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/three.min.js"></script>
+<script src="assets/common.js"></script>
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap">
+  <span class="kicker">3-1 地形如何被形塑</span>
+  <h1>內營力讓地表「變崎嶇」，外營力讓地表「變平緩」</h1>
+  <p class="lead">地形是兩種力量拉鋸的結果。按下面的按鈕，自己當一次「造山的人」和「磨平山的人」，觀察高低差怎麼變化。</p>
+
+  <div class="lab">
+    <div>
+      <div class="bar">
+        <button class="btn warm" id="bUp">內營力：板塊擠壓（造山）</button>
+        <button class="btn warm" id="bVol">內營力：火山噴發</button>
+        <button class="btn cool" id="bEro">外營力：侵蝕、搬運、堆積</button>
+        <button class="btn" id="bReset">重來</button>
+      </div>
+      <div class="view" id="v"></div>
+      <div class="meter">
+        <div>最高點<b id="mMax">–</b></div>
+        <div>最低點<b id="mMin">–</b></div>
+        <div>高低差（地表起伏）<b id="mRel">–</b></div>
+      </div>
+      <p class="note" id="status">先按「板塊擠壓」讓山脈隆起，再按幾次「侵蝕、搬運、堆積」看看山怎麼被磨低、低處怎麼被填高。</p>
+    </div>
+    <div>
+      <div class="card tight">
+        <h3>一句話記住</h3>
+        <div class="key"><b>內營力</b>：來自地球<b>內部</b>的能量，使地表<b>高低起伏變大</b>。</div>
+        <div class="warn" style="border-color:var(--sea);background:var(--sea-bg)"><b>外營力</b>：來自地球<b>外部</b>（太陽能、重力），使地表<b>趨向平緩</b>。</div>
+        <p class="note">兩種力量同時存在、持續作用，今天看到的地形是它們「目前的比數」。</p>
+      </div>
+      <div class="card tight">
+        <h3>觀察重點</h3>
+        <ul>
+          <li>按「造山」或「火山」：最高點上升，<b>高低差變大</b>。</li>
+          <li>按「侵蝕、搬運、堆積」：山頂被削低，低處被填高，<b>高低差變小</b>。</li>
+          <li>從側面看切面，可以看到土石從山上被搬到山腳。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2>內營力與外營力比較</h2>
+  <div class="tscroll">
+  <table class="t">
+    <tr><th></th><th>內營力</th><th>外營力</th></tr>
+    <tr><td>能量來源</td><td>地球內部（地熱、板塊運動）</td><td>地球外部（太陽能），加上重力</td></tr>
+    <tr><td>主要作用</td><td>地殼抬升或下陷、褶曲、斷層、火山、地震</td><td>風化、侵蝕、搬運、堆積</td></tr>
+    <tr><td>對地表的影響</td><td>高處更高、低處更低，起伏<b>變大</b></td><td>高處被削低、低處被填高，起伏<b>變小</b></td></tr>
+    <tr><td>例子</td><td>臺灣的山脈隆起、龜山島等火山島形成</td><td>河流切出山谷、河口堆積出平原、海浪侵蝕出海蝕地形</td></tr>
+  </table>
+  </div>
+
+  <h2>外營力的四個步驟</h2>
+  <div class="grid2">
+    <div class="card tight"><h3>1. 風化</h3><p>岩石受溫度變化、雨水、生物等影響，在<b>原地</b>崩解、碎裂。</p></div>
+    <div class="card tight"><h3>2. 侵蝕</h3><p>流水、風、波浪、冰河把地表物質<b>刮下來、帶走</b>，地面被削低。</p></div>
+    <div class="card tight"><h3>3. 搬運</h3><p>被侵蝕下來的土石，由流水、風等<b>運送</b>到別的地方。</p></div>
+    <div class="card tight"><h3>4. 堆積</h3><p>水流或風力變弱時，土石<b>沉積</b>下來，在低處形成平原、沙洲等。</p></div>
+  </div>
+  <p>外營力的「工具」包括<b>流水、風、波浪、冰河</b>。臺灣雨量多、河川多，<b>流水</b>是塑造臺灣地形最主要的外營力；海岸則以<b>波浪</b>的作用最明顯（4-1 會學到）。</p>
+
+  <h2>臺灣為什麼會有高山？</h2>
+  <div class="grid2">
+    <div class="card tight">
+      <svg viewBox="0 0 360 200" role="img" aria-label="臺灣位於歐亞板塊與菲律賓海板塊交界的示意圖" style="width:100%;height:auto">
+        <rect x="0" y="0" width="360" height="200" fill="#dcebf5"/>
+        <path d="M0,0 L170,0 L150,200 L0,200Z" fill="#efe6cf"/>
+        <path d="M170,0 L360,0 L360,200 L150,200Z" fill="#d9e6d2"/>
+        <path d="M170,0 L150,200" stroke="#a33a4a" stroke-width="3" stroke-dasharray="7 5"/>
+        <path d="M160,40 C175,60 178,120 158,170 C150,150 148,80 160,40Z" fill="#8a6a45" stroke="#5a4630"/>
+        <text x="70" y="100" text-anchor="middle" font-size="15" fill="#5a4630" font-weight="700">歐亞板塊</text>
+        <text x="270" y="100" text-anchor="middle" font-size="15" fill="#2e5a37" font-weight="700">菲律賓海板塊</text>
+        <path d="M300,150 L215,95" stroke="#2e5a37" stroke-width="4" marker-end="url(#ah)"/>
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#2e5a37"/></marker></defs>
+        <text x="296" y="174" text-anchor="middle" font-size="12" fill="#2e5a37">向西北擠壓</text>
+        <text x="186" y="34" font-size="12" fill="#1f2a24">臺灣</text>
+        <text x="8" y="192" font-size="11" fill="#7a857e">示意圖，非實際比例</text>
+      </svg>
+    </div>
+    <div class="card tight">
+      <p>臺灣位在<b>歐亞板塊</b>和<b>菲律賓海板塊</b>的交界處。菲律賓海板塊持續向西北擠壓，地殼被推擠抬升，形成高聳的山脈，這就是<b>內營力</b>。</p>
+      <p>板塊擠壓也讓臺灣<b>地震頻繁</b>。同時，臺灣雨量多、河流侵蝕力強，<b>外營力</b>也一直在削低山地、把土石搬到西部堆積成平原。</p>
+      <div class="warn">常見錯誤：以為「地震、火山」是外營力。只要能量來自<b>地球內部</b>，就是內營力。</div>
+    </div>
+  </div>
+
+  <div id="pager"></div>
+</main>
+<footer id="site-foot"></footer>
+
+<script>
+(function(){
+const SX=2.4,SZ=1.6,N=120,NZ=80;
+const V=G3.View(document.getElementById('v'),{az:0.5,el:0.5,dist:3.6,target:[0,0.05,0]});
+const T=G3.Terrain({sx:SX,sz:SZ,n:N,nz:NZ,ys:0.00042,sides:true,base:-0.16,
+  color:(h)=>G3.bandColor(h,[[-1e9,'#9fc58a'],[150,'#b5cf8c'],[300,'#d7d993'],[600,'#dcc283'],[1000,'#c99e68'],[1600,'#a97d55'],[2300,'#8a6748'],[3000,'#e9e4da']])});
+V.scene.add(T.group);
+let seed=1;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;};
+function noise(){const w=[];for(let k=0;k<6;k++)w.push([rnd()*6.28,rnd()*6.28,3+rnd()*9,3+rnd()*9,0.3+rnd()*0.7]);
+  return (x,z)=>{let s=0;for(const q of w)s+=q[4]*Math.sin(x*q[2]+q[0])*Math.sin(z*q[3]+q[1]);return s/3;};}
+const base0=noise();
+function reset(){T.set((x,z)=>120+40*base0(x,z));meter();say('回到一片低平的地面。');}
+const anim=[];
+V.onFrame(()=>{if(!anim.length)return;const a=anim[0];a.step();if(--a.left<=0){anim.shift();a.done&&a.done();}});
+function addField(f,frames,done){const add=new Float32Array(T.H.length);const pos=T.mesh.geometry.attributes.position;
+  for(let i=0;i<add.length;i++)add[i]=f(pos.getX(i),pos.getZ(i))/frames;
+  anim.push({left:frames,step(){for(let i=0;i<add.length;i++)T.H[i]+=add[i];T.apply();meter();},done});}
+document.getElementById('bUp').onclick=()=>{
+  const nz=noise(),x0=(rnd()-0.5)*0.9,w=0.22+rnd()*0.12,amp=900+rnd()*500;
+  addField((x,z)=>{const d=(x-x0)/w;return amp*Math.exp(-d*d)*(0.75+0.35*nz(x,z))*G3.smooth(-0.8,-0.5,z)*(1-G3.smooth(0.5,0.8,z));},45,
+    ()=>say('<b>內營力</b>：板塊擠壓使地殼抬升，山脈隆起，<b>高低差變大</b>。'));};
+document.getElementById('bVol').onclick=()=>{
+  const x0=(rnd()-0.5)*1.6,z0=(rnd()-0.5)*0.9;
+  addField((x,z)=>{const r=Math.hypot(x-x0,z-z0);return 900*Math.exp(-r/0.12)-350*Math.exp(-(r/0.025)*(r/0.025));},45,
+    ()=>say('<b>內營力</b>：岩漿從地底噴出，熔岩和火山灰堆積成火山，<b>高低差變大</b>。'));};
+document.getElementById('bEro').onclick=()=>{
+  const tmp=new Float32Array(T.H.length);let k=0;
+  anim.push({left:40,step(){
+    for(let r=0;r<6;r++){
+      for(let j=0;j<=NZ;j++)for(let i=0;i<=N;i++){const id=j*(N+1)+i,h=T.H[id];
+        const l=T.H[j*(N+1)+Math.max(0,i-1)],rr=T.H[j*(N+1)+Math.min(N,i+1)],u=T.H[Math.max(0,j-1)*(N+1)+i],d=T.H[Math.min(NZ,j+1)*(N+1)+i];
+        tmp[id]=h+0.2*(l+rr+u+d-4*h);}
+      T.H.set(tmp);}
+    T.apply();meter();},
+    done(){say('<b>外營力</b>：高處的岩石被風化、侵蝕，土石被搬運到低處堆積，<b>高低差變小</b>，地表趨向平緩。');}});};
+document.getElementById('bReset').onclick=()=>{anim.length=0;seed=1;reset();};
+function meter(){let mx=-1e9,mn=1e9;for(const h of T.H){if(h>mx)mx=h;if(h<mn)mn=h;}
+  document.getElementById('mMax').textContent=Math.round(mx)+' m';document.getElementById('mMin').textContent=Math.round(mn)+' m';
+  document.getElementById('mRel').textContent=Math.round(mx-mn)+' m';}
+function say(t){document.getElementById('status').innerHTML=t;}
+reset();say('先按「板塊擠壓」讓山脈隆起，再按幾次「侵蝕、搬運、堆積」看看山怎麼被磨低、低處怎麼被填高。');
+})();
+</script>
+</body>
+</html>
