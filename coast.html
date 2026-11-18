@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>4-1・4-2 海岸的類型與臺灣的海岸｜地理 3D 教室</title>
+<title>4-1・4-2 海岸的類型與臺灣的海岸｜3D 地理探索館</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Cpath d=%22M2 26 L12 10 L18 18 L22 13 L30 26Z%22 fill=%22%233f7a4f%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/three.min.js"></script>
@@ -75,7 +75,7 @@ const TXT={
   d:'<p><b>成因：</b>板塊擠壓產生<b>斷層</b>，高山緊鄰海洋，陸地陡降入深海。</p><p><b>特色：</b>海岸線<b>平直</b>、海岸<b>陡峭</b>，有高聳的斷崖；離岸不遠海水就很深；海岸平原狹小。</p><p><b>例子：</b>花蓮的清水斷崖。</p><p><b>利用：</b>缺乏天然港灣，道路開闢不易（如蘇花公路沿著斷崖修築）；壯觀的斷崖景觀發展觀光。</p>',
   s:'模型為示意，高度經垂直誇大。'},
  coral:{t:'南部・珊瑚礁海岸',c:'#2ba3a0',
-  d:'<p><b>成因：</b>恆春半島附近海水溫暖、清澈，適合<b>珊瑚</b>生長，珊瑚的骨骼堆積成珊瑚礁；地殼抬升後，部分珊瑚礁露出海面成為<b>隆起珊瑚礁</b>。</p><p><b>特色：</b>沿岸淺海圍繞著<b>裙礁</b>，陸地上可見隆起的珊瑚礁臺地和礁岩。</p><p><b>例子：</b>屏東墾丁。</p><p><b>利用：</b>發展觀光、潛水與生態旅遊，劃設墾丁國家公園保護；要注意汙染與珊瑚白化等問題。</p>',
+  d:'<p><b>成因：</b>恆春半島附近海水溫暖、清澈，適合<b>珊瑚</b>生長，珊瑚的骨骼堆積成珊瑚礁；地殼抬升後，部分珊瑚礁露出海面成為<b>隆起珊瑚礁</b>。</p><p><b>特色：</b>沿岸淺海圍繞著<b>裙礁</b>，陸地上可見隆起的珊瑚礁台地和礁岩。</p><p><b>例子：</b>屏東墾丁。</p><p><b>利用：</b>發展觀光、潛水與生態旅遊，劃設墾丁國家公園保護；要注意汙染與珊瑚白化等問題。</p>',
   s:'模型為示意，高度經垂直誇大。'}
 };
 function noise(seed){const w=[];let s=seed;const r=()=>{s=(s*16807)%2147483647;return s/2147483647;};
@@ -148,7 +148,7 @@ const M=G3.TwMap(document.getElementById('map'),{maxH:640,draw:m=>{
   for(let i=0;i<pts.length;i++){const a=pts[i],b=pts[(i+1)%pts.length];const k=kind((a[0]+b[0])/2,(a[1]+b[1])/2);
     const A=m.P(a[0],a[1]),B=m.P(b[0],b[1]);c.beginPath();c.moveTo(A[0],A[1]);c.lineTo(B[0],B[1]);c.strokeStyle=COL[k];c.lineWidth=k===cur?7:4.5;c.lineCap='round';c.stroke();}
   LAB.forEach(([k,t,lon,lat,al])=>{m.dot(lon,lat,0.1,'rgba(0,0,0,0)',null,k);m.label(t,lon,lat,{size:13,bold:k===cur,color:COL[k],align:al,dx:al==='right'?-4:4});});
-  m.label('蘭陽平原沿岸為沙岸',121.85,24.62,{size:11,color:'#8a6a12'});
+  m.label('宜蘭平原沿岸為沙岸',121.85,24.62,{size:11,color:'#8a6a12'});
 },onPick:k=>show(k)});
 show('sand');
 })();

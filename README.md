@@ -1,14 +1,15 @@
-# 地理 3D 教室（國七上・第二次段考）
+# 伴讀書僮（國中複習教材）
 
-國中七年級上學期地理（翰林版第一冊）第 3～4 章的互動 3D 複習網站。純靜態網頁，不需要任何建置步驟，可以直接放上 GitHub Pages。
+「伴讀書僮」是國中各科自編複習教材的入口網站。目前收錄「3D 地理探索館」：國中七年級上學期地理（翰林版第一冊）第 3～4 章的互動 3D 複習網站。純靜態網頁，不需要任何建置步驟，可以直接放上 GitHub Pages。
 
 ## 檔案結構
 
 ```
-index.html      首頁：段考範圍、單元入口、使用說明、考前進度
+index.html      伴讀書僮首頁（banner 圖＋各科教材入口）
+geography.html  3D 地理探索館首頁：段考範圍、單元入口、使用說明、考前進度
 forces.html     3-1 內營力與外營力（造山、火山、侵蝕堆積互動模型）
 contour.html    3-2 等高線與地形剖面圖（3D↔等高線切換、拖曳畫剖面、判讀挑戰）
-taiwan.html     3-3 臺灣地形（地形分布圖、北緯 23.5 度東西向 3D 剖面）
+taiwan.html     3-3 臺灣地形（地形分布圖、可自選位置的 3D 地形剖面）
 coast.html      4-1・4-2 海岸（沙岸、岬灣、斷層、珊瑚礁四種 3D 模型與分布圖）
 islands.html    4-3 離島成因（大陸島、火山島、珊瑚礁島，含滑桿形成過程）
 quiz.html       小測驗 25 題（自編題，作答後即時解析）
@@ -17,6 +18,10 @@ assets/
   common.js         共用程式（導覽列、3D 視窗、地形、等高線、臺灣地圖）
   three.min.js      three.js r149（MIT 授權，見 three.LICENSE.txt）
   geo.js            臺灣與鄰近海岸輪廓（Natural Earth 1:10m，公有領域）
+  taiwan-counties.js  縣市界線
+  dem-taiwan.js     臺灣高度資料（NASA SRTM 重新取樣，公有領域；海底為示意）
+  img/banner-bandu-*.jpg  首頁 banner（由 resources/ 的原圖縮小）
+resources/      原始圖檔
 .nojekyll       讓 GitHub Pages 不經 Jekyll 處理，原樣發布
 ```
 
