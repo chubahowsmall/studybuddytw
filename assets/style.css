@@ -20,6 +20,8 @@ li{margin:.15em 0}
 .site-head{background:#22352b;color:#f3efe3}
 .site-head .wrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
 .brand{font-weight:700;font-size:17px;color:#f3efe3;text-decoration:none;letter-spacing:.04em;white-space:nowrap}
+.site-head .home{color:#cfdccf;font-size:13px;text-decoration:none;padding:3px 10px;border:1px solid rgba(243,239,227,.35);border-radius:999px;white-space:nowrap}
+.site-head .home:hover{background:rgba(255,255,255,.12)}
 .brand small{font-weight:400;opacity:.75;margin-left:6px;font-size:13px}
 .nav{display:flex;flex-wrap:wrap;gap:4px}
 .nav a{color:#dfe8de;text-decoration:none;font-size:14px;padding:4px 10px;border-radius:999px}
@@ -109,3 +111,20 @@ canvas.map{width:100%;display:block;border-radius:var(--r);border:1px solid var(
 .pager a{text-decoration:none;font-size:15px;padding:8px 14px;border:1px solid var(--line-2);border-radius:999px;background:var(--card)}
 .small{font-size:13px;color:var(--ink-3)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* 伴讀書僮首頁 */
+.hub-banner{margin:0;background:#2a2219}
+.hub-banner img{display:block;width:100%;height:auto;max-height:520px;object-fit:cover;object-position:center 35%}
+.hub-title{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:4px}
+.hub-title h1{font-size:30px;margin:0;letter-spacing:.08em}
+.hub-title span{color:var(--ink-3);font-size:15px}
+.subjects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:14px 0}
+.subject{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s,box-shadow .15s}
+a.subject:hover{border-color:var(--moss);transform:translateY(-2px);box-shadow:0 6px 18px rgba(34,53,43,.08)}
+.subject .ic{flex:0 0 52px;height:52px;border-radius:12px;background:var(--moss-bg);display:grid;place-items:center}
+.subject .tt{font-size:18px;font-weight:700;margin:0 0 2px}
+.subject .tg{font-size:13px;font-weight:700;color:var(--moss)}
+.subject .ds{font-size:14.5px;color:var(--ink-2);margin:4px 0 0}
+.subject .go{display:inline-block;margin-top:8px;font-size:14px;font-weight:700;color:var(--moss)}
+.subject.soon{background:transparent;border-style:dashed;color:var(--ink-3)}
+.subject.soon .ic{background:#eeebe2}
