@@ -8,45 +8,190 @@
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/three.min.js"></script>
 <script src="assets/common.js"></script>
+<script src="assets/geo.js"></script>
 </head>
 <body>
 <header id="site-head"></header>
 <main class="wrap">
   <span class="kicker">3-1 地形如何被形塑</span>
   <h1>內營力讓地表「變崎嶇」，外營力讓地表「變平緩」</h1>
-  <p class="lead">地形是兩種力量拉鋸的結果。按下面的按鈕，自己當一次「造山的人」和「磨平山的人」，觀察高低差怎麼變化。</p>
+  <p class="lead">地形是兩種力量拉鋸的結果。先選「內營力」或「外營力」，再按下面的按鈕，自己當一次「造山的人」和「磨平山的人」，觀察高低差怎麼變化。</p>
+
+  <style>
+    .force-tabs{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 8px}
+    .force-tabs .tab{font-size:16px;font-weight:700;padding:8px 20px}
+    .force-tabs .sp{flex:1}
+    .force-tabs .lbl{font-size:14px;color:var(--ink-2)}
+    .sub{padding:8px 10px;border-radius:var(--r);margin:0 0 10px}
+    .sub[data-panel="in"]{background:var(--clay-bg)}
+    .sub[data-panel="out"]{background:var(--sea-bg)}
+    .sub .lbl{font-size:13.5px;color:var(--ink-2);align-self:center;margin-right:2px}
+    .co{position:absolute;top:0;left:0;padding:3px 10px 4px;border-radius:8px;background:rgba(255,255,255,.95);border:2px solid;font-size:14px;font-weight:700;line-height:1.25;white-space:nowrap;pointer-events:none;display:none;text-align:center}
+    .co small{display:block;font-size:11.5px;font-weight:500;color:var(--ink-2)}
+    .co.compact small{display:none}
+    .co-svg{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+    .viewsw{margin:-2px 0 8px}
+    .viewsw .lbl{font-size:13.5px;color:var(--ink-2);align-self:center}
+    .fcard svg{width:100%;height:auto;display:block;margin:4px 0 8px;border-radius:8px}
+    .fcard.in{border-color:var(--clay)}
+    .fcard.out{border-color:var(--sea)}
+    [hidden]{display:none!important}
+  </style>
 
   <div class="lab">
     <div>
-      <div class="bar">
-        <button class="btn warm" id="bUp">內營力：板塊擠壓（造山）</button>
-        <button class="btn warm" id="bVol">內營力：火山噴發</button>
-        <button class="btn cool" id="bEro">外營力：侵蝕、搬運、堆積</button>
+      <div class="force-tabs" role="tablist" aria-label="選擇作用力">
+        <span class="lbl">選擇作用力：</span>
+        <button class="btn warm tab on" role="tab" aria-selected="true" data-force="in">內營力</button>
+        <button class="btn cool tab" role="tab" aria-selected="false" data-force="out">外營力</button>
+        <span class="sp"></span>
         <button class="btn" id="bReset">重來</button>
       </div>
+      <div class="bar sub" data-panel="in" role="tabpanel">
+        <span class="lbl">內營力的作用：</span>
+        <button class="btn warm on" id="bUp">板塊擠壓（造山）</button>
+        <button class="btn warm" id="bVol">火山噴發</button>
+        <span class="lbl" style="margin-left:6px">（再按一次可以重複示範）</span>
+      </div>
+      <div class="bar sub" data-panel="out" role="tabpanel" hidden>
+        <span class="lbl">外營力的作用：</span>
+        <button class="btn cool" id="bEro">侵蝕、搬運、堆積</button>
+      </div>
+      <div class="bar viewsw" data-panel="in" data-sub="plate">
+        <span class="lbl">3D 畫面：</span>
+        <button class="chip on" id="vLocal">① 造山：臺灣東部剖面</button>
+        <button class="chip" id="vRegion">② 板塊位置與隱沒帶：臺灣周邊</button>
+      </div>
+      <div class="bar viewsw" data-panel="in" data-sub="plate" data-pview="region" hidden>
+        <span class="lbl">換個角度看切面：</span>
+        <button class="chip" id="vSouth">從南邊看：馬尼拉海溝</button>
+        <button class="chip" id="vEast">從東邊看：琉球海溝</button>
+        <button class="chip" id="vAll">回到全景</button>
+      </div>
       <div class="view" id="v"></div>
+      <div class="legend" data-panel="in" data-sub="plate" data-pview="local">
+        <span><i style="background:#d23b2b"></i>紅色箭頭：板塊運動方向</span>
+        <span><i style="background:transparent;border:2px dashed #d62f2f"></i>紅色虛線：板塊交界（花東縱谷）</span>
+        <span><i style="background:transparent;border:2px solid #d62f2f;border-radius:50%"></i>紅色波紋：地震</span>
+        <span><i style="background:#c98b5a"></i>歐亞板塊</span>
+        <span><i style="background:#5f9a8a"></i>菲律賓海板塊</span>
+      </div>
+      <div class="legend" data-panel="in" data-sub="plate" data-pview="region" hidden>
+        <span><i style="background:#c98b5a"></i>歐亞板塊</span>
+        <span><i style="background:#5f9a8a"></i>菲律賓海板塊</span>
+        <span><i style="background:#23365c"></i>海溝（隱沒帶的入口）</span>
+        <span><i style="background:transparent;border:2px dashed #d62f2f"></i>花東縱谷：陸上的板塊交界</span>
+        <span><i style="background:#7fae6a"></i>臺灣</span>
+        <span>半透明的板塊底下，就是隱沒下去的另一個板塊</span>
+      </div>
+      <div class="legend" data-panel="in" data-sub="volc" hidden>
+        <span><i style="background:#ff6a1f;border-radius:50%"></i>噴出的熔岩</span>
+        <span><i style="background:#8d8d8d;border-radius:50%"></i>火山灰</span>
+        <span><i style="background:#ff5a1f"></i>正在流動的熔岩</span>
+        <span><i style="background:#3d3330"></i>冷卻後的熔岩（玄武岩等火成岩）</span>
+      </div>
+      <div class="legend" data-panel="out" hidden>
+        <span><i style="background:#3b9be0;border-radius:50%"></i>雨水</span>
+        <span><i style="background:#6b4a2b;border-radius:50%"></i>被流水搬運的土石</span>
+        <span><i style="background:#8f8173"></i>被侵蝕、變低的地方</span>
+        <span><i style="background:#f2cf4f"></i>土石堆積、變高的地方</span>
+      </div>
       <div class="meter">
         <div>最高點<b id="mMax">–</b></div>
         <div>最低點<b id="mMin">–</b></div>
         <div>高低差（地表起伏）<b id="mRel">–</b></div>
       </div>
-      <p class="note" id="status">先按「板塊擠壓」讓山脈隆起，再按幾次「侵蝕、搬運、堆積」看看山怎麼被磨低、低處怎麼被填高。</p>
+      <p class="note" id="status">板塊擠壓中：菲律賓海板塊向<b>西北</b>推擠歐亞板塊……</p>
     </div>
     <div>
-      <div class="card tight">
-        <h3>一句話記住</h3>
-        <div class="key"><b>內營力</b>：來自地球<b>內部</b>的能量，使地表<b>高低起伏變大</b>。</div>
-        <div class="warn" style="border-color:var(--sea);background:var(--sea-bg)"><b>外營力</b>：來自地球<b>外部</b>（太陽能、重力），使地表<b>趨向平緩</b>。</div>
-        <p class="note">兩種力量同時存在、持續作用，今天看到的地形是它們「目前的比數」。</p>
-      </div>
-      <div class="card tight">
-        <h3>觀察重點</h3>
+      <div class="card tight fcard in" data-panel="in" data-sub="plate">
+        <h3>內營力①　板塊擠壓</h3>
+        <svg viewBox="0 0 320 192" role="img" aria-label="板塊擠壓示意圖：西邊的歐亞板塊與東邊的菲律賓海板塊互相擠壓，交界處地殼隆起成山並發生地震">
+          <rect width="320" height="192" fill="#f7efe6"/>
+          <path d="M0,112 L157,112 L157,150 L0,150Z" fill="#c98b5a"/>
+          <path d="M163,112 L320,112 L320,150 L163,150Z" fill="#5f9a8a"/>
+          <path d="M157,112 L163,112 L163,150 L157,150Z" fill="#7a3d1e"/>
+          <path d="M40,112 C70,112 85,62 112,48 C126,40 138,56 146,70 C152,82 154,96 160,104 C168,96 172,90 178,96 C186,104 196,112 230,112Z" fill="#a8572f" opacity=".9"/>
+          <path d="M160,44 L160,150" stroke="#d62f2f" stroke-width="2" stroke-dasharray="5 4"/>
+          <defs><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#d23b2b"/></marker></defs>
+          <path d="M10,162 L95,162" stroke="#d23b2b" stroke-width="6" marker-end="url(#ap)"/>
+          <path d="M310,162 L215,162" stroke="#d23b2b" stroke-width="6" marker-end="url(#ap)"/>
+          <circle cx="160" cy="128" r="6" fill="none" stroke="#d62f2f" stroke-width="2"/><circle cx="160" cy="128" r="12" fill="none" stroke="#d62f2f" stroke-width="1.5" opacity=".6"/>
+          <text x="74" y="135" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">歐亞板塊</text>
+          <text x="238" y="135" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">菲律賓海板塊</text>
+          <text x="96" y="42" text-anchor="middle" font-size="12" font-weight="700" fill="#5a2e17">中央山脈</text>
+          <text x="166" y="38" font-size="11.5" font-weight="700" fill="#d62f2f">花東縱谷（板塊交界）</text>
+          <text x="190" y="80" font-size="11" font-weight="700" fill="#5a2e17">海岸山脈</text>
+          <text x="262" y="186" text-anchor="middle" font-size="11" fill="#5a2e17">向西北，每年約 8 公分</text>
+          <text x="8" y="16" font-size="11" fill="#7a857e">西 ←　剖面示意　→ 東</text>
+        </svg>
+        <div class="key" style="border-color:var(--clay);background:var(--clay-bg)">臺灣位在<b>歐亞板塊</b>和<b>菲律賓海板塊</b>的交界，兩個板塊<b>互相擠壓</b>。</div>
         <ul>
-          <li>按「造山」或「火山」：最高點上升，<b>高低差變大</b>。</li>
-          <li>按「侵蝕、搬運、堆積」：山頂被削低，低處被填高，<b>高低差變小</b>。</li>
-          <li>從側面看切面，可以看到土石從山上被搬到山腳。</li>
+          <li><b>菲律賓海板塊</b>在東南方，向<b>西北</b>推擠，每年大約 <b>8 公分</b>。</li>
+          <li><b>歐亞板塊</b>在西北方，承受擠壓。臺灣西半部和中國大陸都在歐亞板塊上。</li>
+          <li>地殼被擠壓<b>抬升</b>，形成高聳的山脈；擠壓也讓臺灣<b>地震頻繁</b>。</li>
+          <li>兩個板塊在陸地上以<b>花東縱谷</b>為界：縱谷以西的中央山脈在歐亞板塊上，縱谷以東的<b>海岸山脈</b>在菲律賓海板塊上。</li>
+        </ul>
+        <h3 style="font-size:16px;margin-top:6px">補充：臺灣周邊的隱沒帶（3D 畫面②）</h3>
+        <ul>
+          <li>臺灣<b>東北方（琉球海溝）</b>：<b>菲律賓海板塊</b>向北隱沒到<b>歐亞板塊之下</b>。</li>
+          <li>臺灣<b>南方（馬尼拉海溝）</b>：<b>歐亞板塊</b>（南海的海洋地殼）向東隱沒到<b>菲律賓海板塊之下</b>。</li>
+          <li>臺灣本島夾在中間，兩個板塊在這裡<b>碰撞擠壓</b>，抬升成山。</li>
+        </ul>
+        <p class="note">課本常把兩個板塊畫成「相向擠壓」。以歐亞板塊為基準來看，是菲律賓海板塊往西北推過來。</p>
+      </div>
+      <div class="card tight fcard in" data-panel="in" data-sub="volc" hidden>
+        <h3>內營力②　火山噴發</h3>
+        <svg viewBox="0 0 320 180" role="img" aria-label="火山噴發剖面示意圖：地底岩漿庫的岩漿沿通道上升，從火山口噴出熔岩和火山灰，堆積成火山">
+          <rect width="320" height="180" fill="#eef1f3"/>
+          <rect x="0" y="118" width="320" height="62" fill="#b99877"/>
+          <path d="M60,118 L142,54 L152,60 L168,60 L178,54 L260,118Z" fill="#7d5a42"/>
+          <ellipse cx="160" cy="160" rx="54" ry="14" fill="#d6452b"/>
+          <path d="M155,148 L157,60 L163,60 L165,148Z" fill="#e2552a"/>
+          <path d="M178,56 C190,70 196,88 214,104 C220,110 226,114 236,116" stroke="#ff6a1f" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <g fill="#9a9a9a" opacity=".85"><circle cx="160" cy="40" r="12"/><circle cx="174" cy="30" r="14"/><circle cx="192" cy="22" r="12"/><circle cx="148" cy="28" r="10"/><circle cx="208" cy="16" r="10"/></g>
+          <g fill="#ff6a1f"><circle cx="150" cy="48" r="2.5"/><circle cx="168" cy="46" r="2.5"/><circle cx="158" cy="42" r="2"/><circle cx="174" cy="50" r="2"/></g>
+          <text x="160" y="164" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">岩漿庫</text>
+          <text x="112" y="140" text-anchor="end" font-size="11" fill="#fff">岩漿沿通道上升</text>
+          <path d="M114,137 L153,130" stroke="#fff" stroke-width="1"/>
+          <text x="120" y="68" text-anchor="end" font-size="12" font-weight="700" fill="#3d2a1e">火山口</text>
+          <text x="244" y="104" font-size="12" font-weight="700" fill="#b8401c">熔岩</text>
+          <text x="226" y="22" font-size="12" font-weight="700" fill="#555">火山灰</text>
+          <text x="8" y="16" font-size="11" fill="#7a857e">剖面示意</text>
+        </svg>
+        <div class="key" style="border-color:var(--clay);background:var(--clay-bg)">地底的<b>岩漿</b>上升、噴出地表，熔岩和火山灰<b>一層層堆積成火山</b>，使地表<b>高低起伏變大</b>。</div>
+        <ul>
+          <li>岩漿沿著地殼的裂縫上升，從<b>火山口</b>噴出。</li>
+          <li>流出的<b>熔岩</b>冷卻後變成岩石；<b>火山灰</b>和碎石落下堆積，慢慢堆成錐狀的火山。</li>
+          <li>能量來自地球內部，所以是<b>內營力</b>；火山地區也常有地震、溫泉。</li>
+          <li>臺灣本島的例子：北部的<b>大屯火山群</b>（活火山）、<b>基隆火山群</b>。更多臺灣的火山請看頁面最下方〈<a href="#islandVolc">臺灣的火山</a>〉。</li>
         </ul>
       </div>
+      <div class="card tight fcard out" data-panel="out" hidden>
+        <h3>外營力</h3>
+        <svg viewBox="0 0 320 170" role="img" aria-label="外營力示意圖：太陽與雨水作用，山上的土石被流水侵蝕、搬運，在低處堆積成平原">
+          <rect width="320" height="170" fill="#e8f1f7"/>
+          <circle cx="292" cy="26" r="13" fill="#e8b83a"/><text x="292" y="54" text-anchor="middle" font-size="11" fill="#7a857e">太陽</text>
+          <g stroke="#2d6f9e" stroke-width="2"><path d="M60,14 L54,28"/><path d="M76,14 L70,28"/><path d="M92,14 L86,28"/></g>
+          <path d="M0,150 L0,120 C30,118 50,62 82,52 C108,46 124,92 150,112 C175,130 230,134 320,136 L320,150Z" fill="#a97d55"/>
+          <path d="M150,112 C175,130 230,134 320,136 L320,150 L140,150Z" fill="#d7c48c"/>
+          <rect x="0" y="150" width="320" height="20" fill="#7d6247"/>
+          <path d="M84,60 C100,80 120,104 152,118 C190,130 240,134 300,134" stroke="#3f86bf" stroke-width="3" fill="none"/>
+          <defs><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#2d6f9e"/></marker></defs>
+          <path d="M112,78 C140,96 170,112 214,120" stroke="#2d6f9e" stroke-width="4" fill="none" stroke-dasharray="7 5" marker-end="url(#ao)"/>
+          <text x="58" y="44" font-size="12" font-weight="700" fill="#1e4f73">侵蝕</text>
+          <text x="150" y="92" font-size="12" font-weight="700" fill="#1e4f73">搬運</text>
+          <text x="230" y="128" font-size="12" font-weight="700" fill="#1e4f73">堆積成平原</text>
+          <text x="8" y="160" font-size="12" fill="#f3efe3">能量來自太陽能、重力</text>
+        </svg>
+        <div class="key" style="border-color:var(--sea);background:var(--sea-bg)">來自地球<b>外部</b>的能量（太陽能，加上重力），使地表<b>趨向平緩</b>。</div>
+        <ul>
+          <li>流水、風、波浪、冰河把高處的岩石<b>侵蝕</b>下來。</li>
+          <li>土石被<b>搬運</b>到低處，水流變慢時<b>堆積</b>成平原。</li>
+          <li>按按鈕後觀察：山頂被削低、低處被填高，<b>高低差變小</b>。</li>
+        </ul>
+      </div>
+      <p class="note">兩種力量其實同時存在、持續作用，今天看到的地形是它們「目前的比數」。</p>
     </div>
   </div>
 
@@ -71,28 +216,129 @@
   <p>外營力的「工具」包括<b>流水、風、波浪、冰河</b>。臺灣雨量多、河川多，<b>流水</b>是塑造臺灣地形最主要的外營力；海岸則以<b>波浪</b>的作用最明顯（4-1 會學到）。</p>
 
   <h2>臺灣為什麼會有高山？</h2>
-  <div class="grid2">
-    <div class="card tight">
-      <svg viewBox="0 0 360 200" role="img" aria-label="臺灣位於歐亞板塊與菲律賓海板塊交界的示意圖" style="width:100%;height:auto">
-        <rect x="0" y="0" width="360" height="200" fill="#dcebf5"/>
-        <path d="M0,0 L170,0 L150,200 L0,200Z" fill="#efe6cf"/>
-        <path d="M170,0 L360,0 L360,200 L150,200Z" fill="#d9e6d2"/>
-        <path d="M170,0 L150,200" stroke="#a33a4a" stroke-width="3" stroke-dasharray="7 5"/>
-        <path d="M160,40 C175,60 178,120 158,170 C150,150 148,80 160,40Z" fill="#8a6a45" stroke="#5a4630"/>
-        <text x="70" y="100" text-anchor="middle" font-size="15" fill="#5a4630" font-weight="700">歐亞板塊</text>
-        <text x="270" y="100" text-anchor="middle" font-size="15" fill="#2e5a37" font-weight="700">菲律賓海板塊</text>
-        <path d="M300,150 L215,95" stroke="#2e5a37" stroke-width="4" marker-end="url(#ah)"/>
-        <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#2e5a37"/></marker></defs>
-        <text x="296" y="174" text-anchor="middle" font-size="12" fill="#2e5a37">向西北擠壓</text>
-        <text x="186" y="34" font-size="12" fill="#1f2a24">臺灣</text>
-        <text x="8" y="192" font-size="11" fill="#7a857e">示意圖，非實際比例</text>
-      </svg>
+  <div>
+    <div class="card tight" style="max-width:640px;margin:0 auto 14px">
+      <svg viewBox="0 0 473 543" role="img" aria-label="臺灣板塊運動示意圖：臺灣位於歐亞板塊與菲律賓海板塊交界，菲律賓海板塊每年約8公分向西北推擠；陸上交界是花東縱谷，西邊是中央山脈、東邊是海岸山脈；東北方琉球海溝，菲律賓海板塊向北隱沒到歐亞板塊之下；南方馬尼拉海溝，歐亞板塊向東隱沒到菲律賓海板塊之下" style="width:100%;height:auto;display:block">
+<defs><marker id="pmA" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#d23b2b"/></marker><marker id="pmL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,1 L10,5 L0,9Z" fill="#5a4630"/></marker></defs>
+<rect width="473" height="543" fill="#d6e8f3"/>
+<path d="M101.4,579.6 L101.4,446.2 L169.0,423.2 L207.0,391.0 L219.7,331.2 L215.5,317.4 L238.3,253.0 L253.5,202.4 L283.1,239.2 L490.1,239.2 L490.1,579.6Z" fill="#5f9a8a" fill-opacity=".2"/>
+<path d="M-50.7,579.6 L101.4,579.6 L101.4,446.2 L169.0,423.2 L207.0,391.0 L219.7,331.2 L215.5,317.4 L238.3,253.0 L253.5,202.4 L283.1,239.2 L490.1,239.2 L490.1,-73.6 L-50.7,-73.6Z" fill="#c98b5a" fill-opacity=".14"/>
+<path d="M89.2,-14.4 L92.0,-12.6 L91.7,-11.2 L92.6,-10.8 L96.8,-11.7 L97.4,-15.9 L99.6,-16.0 L100.2,-18.2 L105.7,-17.8 L106.0,-16.4 L109.3,-14.6 L112.6,-15.7 L114.2,-15.1 L107.8,-10.5 L103.5,-11.9 L100.2,-8.9 L101.7,-8.3 L100.2,-8.0 L98.4,-8.9 L95.7,-7.8 L92.6,-7.6 L89.0,-6.7 L89.0,-4.5 L89.8,-2.9 L89.0,-1.6 L86.5,-0.2 L85.6,1.7 L83.7,3.0 L81.4,6.9 L77.7,12.4 L73.8,18.6 L70.7,20.1 L69.5,18.1 L67.9,17.2 L65.2,16.4 L61.6,13.9 L55.8,12.9 L52.1,9.1 L47.2,8.2 L43.9,5.9 L41.8,5.0 L43.6,7.1 L47.0,10.0 L50.3,10.4 L51.5,14.4 L54.0,17.8 L54.6,21.4 L58.8,22.4 L63.1,23.9 L68.5,22.9 L75.3,18.9 L76.1,17.5 L76.5,15.0 L80.7,14.3 L86.2,16.3 L90.7,16.4 L92.9,18.9 L92.9,20.9 L90.2,26.2 L88.0,27.4 L85.9,28.2 L83.1,29.8 L81.6,30.3 L82.9,33.0 L84.7,35.9 L85.3,37.5 L85.3,39.8 L86.2,40.5 L84.1,43.1 L83.7,46.6 L83.5,47.3 L82.9,47.8 L81.6,47.7 L78.9,45.4 L77.4,46.8 L74.9,47.2 L73.4,47.5 L71.6,47.2 L72.5,52.2 L74.6,52.8 L74.4,56.9 L77.4,59.2 L78.3,57.9 L80.1,58.2 L82.0,58.1 L82.9,56.7 L82.2,61.3 L83.5,62.4 L82.6,63.0 L82.9,63.5 L84.4,63.7 L82.9,64.8 L82.2,65.5 L84.7,65.2 L84.4,66.8 L86.5,67.3 L86.5,68.9 L85.9,70.2 L87.5,70.5 L88.3,74.2 L86.2,76.8 L88.3,77.2 L84.7,78.6 L83.1,77.9 L84.1,76.7 L83.5,73.4 L83.1,71.3 L83.7,70.0 L82.6,67.8 L82.0,67.5 L80.7,68.2 L80.1,68.3 L79.2,68.0 L78.9,70.5 L79.5,72.5 L81.0,73.1 L79.8,75.8 L76.5,76.1 L75.3,75.2 L76.1,72.0 L76.1,70.5 L75.3,69.8 L75.5,68.6 L76.5,66.9 L76.5,66.8 L72.5,67.5 L71.6,70.0 L70.4,68.2 L71.6,63.9 L64.6,62.6 L63.7,60.7 L66.2,56.0 L64.6,56.8 L63.7,56.7 L62.8,54.3 L59.4,54.8 L60.1,57.3 L56.7,59.2 L55.8,63.3 L53.1,66.8 L49.4,67.7 L47.6,69.1 L43.6,71.1 L43.0,73.0 L47.9,78.3 L48.5,80.4 L50.0,78.8 L51.0,77.5 L51.0,82.2 L49.1,83.8 L50.3,86.2 L52.1,85.6 L53.7,83.3 L54.2,79.9 L56.1,81.2 L57.3,79.9 L58.6,80.8 L58.6,81.2 L60.7,84.7 L62.2,85.4 L63.7,86.7 L61.3,88.5 L56.7,89.1 L57.6,93.9 L54.2,92.8 L51.8,93.3 L48.8,94.1 L46.6,91.3 L43.6,90.7 L42.7,93.7 L43.9,95.7 L44.9,96.7 L46.1,97.2 L46.4,98.3 L43.6,98.7 L41.8,98.0 L41.5,99.2 L41.8,99.8 L41.5,100.0 L40.0,97.1 L39.4,95.5 L37.5,97.2 L36.3,97.5 L38.8,93.3 L39.6,90.5 L36.6,89.4 L31.2,89.6 L33.9,87.1 L36.0,84.7 L26.9,86.0 L25.1,86.7 L22.3,89.4 L26.3,90.3 L26.3,92.4 L27.2,93.2 L29.3,92.2 L31.8,93.7 L29.9,96.4 L29.7,99.5 L29.0,100.5 L27.2,101.1 L24.2,100.6 L21.7,101.4 L21.1,103.6 L23.6,106.7 L28.4,108.4 L28.7,109.8 L31.2,109.9 L33.0,106.7 L34.2,105.7 L33.9,108.2 L32.7,110.2 L32.7,112.2 L34.8,114.3 L34.5,115.2 L31.8,116.5 L30.8,114.6 L26.3,114.7 L26.3,119.0 L31.2,119.7 L31.4,120.3 L31.2,121.0 L31.8,121.2 L29.7,122.4 L25.1,121.9 L22.6,120.5 L19.0,121.6 L17.2,120.7 L15.0,121.0 L13.8,123.5 L9.9,124.8 L8.4,124.1 L8.6,122.2 L10.5,121.2 L11.1,119.6 L9.0,116.7 L8.4,119.0 L7.4,120.1 L7.1,118.1 L7.1,116.7 L5.6,114.7 L3.8,117.4 L4.1,118.8 L6.2,120.8 L4.4,122.6 L-0.5,121.9 L1.0,123.6 L1.6,126.1 L1.6,128.2 L3.1,131.4 L3.8,130.5 L5.0,130.5 L7.4,129.5 L8.6,127.8 L9.9,128.9 L9.9,130.7 L10.7,131.6 L13.5,131.7 L13.8,133.2 L12.3,136.1 L10.1,137.4 L7.1,141.0 L5.6,139.7 L3.5,139.9 L2.9,142.9 L3.5,145.6 L5.3,146.1 L4.1,150.1 L-0.8,153.7 L-3.2,154.6 L-3.8,154.7 L-4.1,153.0 L-3.8,151.6 L-1.7,150.8 L-8.4,146.5 L-10.6,145.8 L-14.4,144.3 L-13.9,141.8 L-14.2,138.1 L-16.0,139.7 L-15.1,144.9" fill="none" stroke="#8d978c" stroke-width="1"/>
+<path d="M59.7,15.0 L67.7,18.8 L66.8,21.4 L65.2,21.1 L60.1,19.7 L58.2,18.9 L55.5,18.3 L54.6,15.9 L53.1,14.1 L51.5,9.3 L54.2,13.2 L56.7,14.5 L59.7,15.0" fill="none" stroke="#8d978c" stroke-width="1"/>
+<path d="M105.4,61.0 L102.9,60.3 L101.4,62.8 L104.8,66.3 L103.3,67.3 L98.9,68.9 L97.8,71.6 L97.8,73.1 L94.7,72.3 L92.3,70.2 L92.9,68.2 L93.8,67.3 L94.1,66.3 L93.8,65.5 L92.0,66.1 L90.2,65.5 L91.7,63.7 L97.2,64.1 L99.6,62.4 L95.1,62.1 L94.4,60.3 L95.3,56.0 L93.8,56.5 L92.3,55.8 L94.1,52.4 L96.8,50.8 L98.4,49.7 L99.6,50.4 L99.6,53.5 L101.7,54.2 L103.3,55.1 L102.9,57.1 L106.0,58.3 L106.6,60.1 L105.4,61.0" fill="none" stroke="#8d978c" stroke-width="1"/>
+<path d="M80.4,91.2 L81.6,91.6 L80.4,92.4 L80.1,94.6 L78.6,95.2 L77.1,93.7 L77.1,92.1 L75.5,91.9 L72.8,91.7 L71.3,89.2 L72.2,88.5 L73.4,87.2 L74.4,87.9 L75.3,88.2 L76.1,90.1 L78.0,91.3 L79.8,91.2 L80.4,91.2" fill="none" stroke="#8d978c" stroke-width="1"/>
+<path d="M63.1,58.2 L63.7,59.6 L62.8,63.0 L61.9,67.3 L62.2,70.2 L60.3,70.7 L58.8,71.6 L57.9,68.6 L57.6,66.0 L59.4,60.4 L60.1,59.9 L60.9,58.8 L62.8,57.6 L63.1,58.2" fill="none" stroke="#8d978c" stroke-width="1"/>
+<path d="M86.8,8.5 L88.3,11.1 L86.2,12.5 L80.7,9.6 L84.4,6.6 L86.8,8.5" fill="none" stroke="#8d978c" stroke-width="1"/>
+<path d="M279.3,115.1 L273.3,122.2 L272.3,123.7 L271.7,125.9 L271.2,128.2 L270.8,130.7 L271.2,133.1 L272.1,138.1 L272.1,139.3 L271.5,140.6 L271.7,143.2 L272.7,145.1 L274.8,146.5 L277.2,146.7 L277.2,147.4 L276.3,147.2 L275.4,147.4 L274.5,147.7 L273.9,148.1 L274.8,149.7 L275.1,151.7 L274.8,153.5 L273.0,154.7 L272.7,155.5 L273.0,156.4 L273.6,157.1 L273.9,158.1 L273.0,158.9 L270.8,160.0 L268.7,162.6 L268.7,163.6 L268.7,165.9 L268.4,166.6 L268.1,167.4 L267.8,168.4 L267.5,170.4 L267.5,171.0 L267.2,171.5 L266.9,171.8 L267.2,172.4 L267.5,172.7 L267.8,173.1 L268.1,173.6 L268.1,174.0 L267.5,174.7 L265.7,176.5 L263.9,179.2 L262.4,180.5 L261.7,181.1 L262.0,181.7 L261.7,182.2 L259.6,183.9 L258.6,184.6 L257.8,186.5 L256.9,190.4 L254.8,194.0 L254.1,195.4 L254.1,196.8 L254.8,198.4 L255.4,199.3 L255.6,199.5 L255.9,200.0 L255.9,200.9 L255.6,202.2 L254.4,204.1 L254.1,205.2 L254.1,207.2 L252.9,212.3 L251.0,217.9 L248.3,230.6 L246.8,233.8 L243.2,254.4 L241.9,262.8 L241.1,264.3 L238.9,267.4 L238.0,269.0 L237.4,271.0 L236.8,274.6 L236.8,277.8 L236.5,281.0 L235.0,284.3 L234.3,284.8 L232.8,285.9 L232.2,286.8 L231.9,287.5 L231.3,289.3 L229.7,292.0 L228.9,296.2 L228.0,298.3 L224.9,302.9 L224.3,303.8 L220.0,307.6 L218.8,308.8 L218.8,309.8 L218.8,311.7 L218.8,312.7 L218.5,313.6 L217.9,314.7 L216.4,316.7 L214.9,318.1 L209.7,321.7 L206.1,325.4 L205.2,325.9 L204.6,326.8 L203.0,331.2 L202.1,332.7 L199.3,336.0 L198.5,338.0 L197.8,341.9 L196.3,347.3 L193.2,352.7 L192.7,354.6 L192.4,359.7 L192.4,364.6 L192.7,381.3 L192.1,383.6 L191.1,385.6 L190.2,386.3 L189.0,387.5 L189.0,390.4 L189.4,393.3 L189.4,395.1 L187.8,393.0 L185.6,391.3 L183.3,390.2 L180.5,389.5 L180.5,391.6 L179.9,392.4 L178.7,392.2 L177.4,391.1 L177.4,390.4 L177.8,388.1 L175.9,385.0 L175.9,384.3 L175.9,383.6 L175.9,382.5 L175.9,379.1 L176.3,378.0 L177.2,377.0 L177.2,376.1 L170.8,359.3 L170.2,358.3 L168.3,356.1 L167.1,352.9 L166.5,352.0 L163.8,350.0 L162.8,349.3 L162.6,349.1 L162.0,349.0 L161.6,347.8 L161.6,347.3 L160.1,346.4 L157.1,344.8 L155.6,343.9 L154.0,342.5 L153.1,342.1 L152.2,341.6 L151.9,341.7 L151.3,341.9 L150.4,341.9 L146.4,338.7 L142.5,333.0 L146.4,338.0 L146.1,335.6 L145.3,334.4 L144.9,333.3 L143.1,331.3 L140.0,328.7 L139.2,327.2 L138.5,325.7 L139.2,324.3 L139.8,322.9 L139.2,321.1 L138.2,319.2 L136.7,316.7 L135.2,313.4 L134.9,312.1 L134.9,311.1 L135.4,309.9 L135.4,309.1 L135.2,308.8 L134.9,308.5 L134.6,308.0 L134.3,307.2 L133.3,305.7 L133.1,305.1 L132.4,300.7 L132.2,298.7 L131.6,297.4 L130.3,296.2 L131.8,295.1 L132.7,293.1 L132.4,291.5 L130.3,291.3 L130.0,291.8 L129.7,292.9 L129.1,293.8 L127.8,293.8 L127.6,292.9 L127.6,290.7 L127.3,290.0 L126.1,289.3 L125.5,290.0 L124.8,290.9 L124.0,291.3 L123.0,290.4 L122.7,289.2 L123.0,288.1 L123.3,287.3 L124.2,286.9 L125.5,286.8 L126.3,286.4 L126.7,285.5 L126.3,285.0 L123.3,284.3 L123.3,283.6 L125.7,283.6 L125.5,282.7 L124.2,281.6 L123.3,280.5 L123.6,279.3 L124.2,278.8 L125.1,278.5 L125.7,277.7 L125.5,276.3 L124.8,275.4 L125.1,274.4 L125.7,273.2 L126.3,272.4 L126.3,271.7 L126.3,270.8 L127.6,268.1 L127.8,267.4 L128.8,267.4 L127.6,266.5 L128.2,265.1 L129.4,265.1 L130.3,264.7 L130.9,264.9 L130.6,263.8 L130.0,264.2 L129.4,264.0 L128.5,264.0 L128.5,262.9 L129.4,261.3 L130.6,261.1 L132.2,261.1 L130.9,257.9 L129.7,255.2 L130.3,253.9 L130.3,253.4 L129.4,252.8 L129.4,252.4 L130.0,251.6 L130.3,250.9 L131.6,249.1 L128.8,249.3 L128.8,246.5 L130.3,244.9 L130.3,239.7 L130.3,235.8 L131.2,232.5 L132.7,230.0 L133.1,226.9 L133.9,224.1 L134.3,223.2 L136.4,220.5 L136.7,219.6 L136.7,219.1 L138.5,217.8 L139.2,216.8 L139.8,214.5 L140.0,213.5 L142.5,211.4 L143.1,210.5 L144.0,207.9 L145.3,205.4 L147.0,200.4 L148.0,199.0 L148.9,197.9 L149.8,197.4 L150.4,197.1 L151.0,196.6 L151.0,195.7 L151.3,194.8 L153.1,193.5 L153.4,192.6 L153.7,189.3 L154.0,188.4 L155.0,187.6 L158.6,183.4 L158.6,183.1 L158.9,182.0 L159.8,181.2 L160.7,179.0 L161.6,175.2 L164.7,170.0 L165.6,167.0 L166.5,165.0 L170.8,160.4 L173.2,158.0 L173.8,156.6 L174.1,154.6 L174.7,152.6 L176.5,149.4 L177.2,147.4 L177.8,146.6 L179.9,146.0 L180.5,145.2 L180.8,144.4 L181.1,143.6 L182.6,142.2 L184.1,141.1 L186.0,140.7 L188.1,141.1 L187.8,139.3 L188.7,138.2 L189.9,137.0 L190.5,135.1 L190.9,134.6 L192.1,134.0 L192.4,132.3 L194.2,128.7 L194.8,127.8 L195.1,127.1 L195.1,126.7 L194.8,126.1 L194.5,125.5 L195.1,124.6 L195.7,123.9 L196.0,123.2 L196.3,121.9 L196.6,121.0 L197.2,120.1 L198.1,119.4 L198.7,119.1 L198.7,118.8 L199.1,117.9 L199.7,115.8 L200.3,114.9 L203.3,110.4 L205.4,107.7 L207.9,105.7 L213.7,103.9 L215.2,102.9 L216.4,102.0 L217.6,101.2 L220.6,100.2 L227.0,99.1 L230.7,98.4 L232.2,97.8 L234.3,96.1 L234.6,95.8 L235.6,95.8 L236.5,95.8 L237.7,96.1 L238.3,96.9 L238.6,97.8 L239.2,98.3 L240.1,97.8 L239.2,96.1 L237.1,94.2 L236.2,93.7 L236.5,92.7 L237.1,92.2 L237.7,91.9 L238.0,91.6 L238.6,90.1 L239.5,88.2 L241.7,86.3 L245.0,84.7 L248.3,84.0 L252.0,84.3 L253.2,85.4 L256.5,89.9 L257.8,92.2 L258.1,92.1 L259.0,91.9 L259.9,91.7 L260.5,91.9 L260.5,92.2 L260.2,92.7 L259.9,93.2 L259.9,93.9 L260.2,94.2 L261.4,95.2 L261.7,95.5 L262.4,96.0 L263.5,96.4 L278.2,100.0 L279.3,100.6 L278.8,101.7 L278.8,102.7 L278.8,104.3 L279.7,107.2 L280.6,108.4 L281.2,108.7 L283.3,108.4 L284.5,108.4 L285.8,108.8 L287.0,109.5 L287.9,110.2 L281.2,113.5 L279.3,115.1Z" fill="#f2ecdc" stroke="#8d978c" stroke-width="0.8"/>
+<path d="M250.4,382.3 L252.0,383.5 L252.6,384.3 L252.6,385.0 L250.8,385.7 L248.3,384.7 L246.2,383.2 L245.0,382.0 L245.3,381.2 L245.3,380.2 L245.0,379.5 L244.4,378.9 L250.8,378.9 L250.8,379.5 L250.4,379.8 L250.2,380.5 L250.2,381.5 L250.4,382.3Z" fill="#f2ecdc" stroke="#8d978c" stroke-width="0.8"/>
+<path d="M-17.5,154.4 L-15.1,153.9 L-12.7,155.9 L-11.2,160.0 L-11.4,162.7 L-12.7,164.1 L-15.1,162.7 L-16.6,162.3 L-19.0,162.6 L-21.5,164.0 L-22.7,165.9 L-23.9,166.5 L-25.1,165.9 L-26.0,165.9 L-26.6,165.6 L-27.0,164.8 L-27.0,164.6 L-26.4,163.7 L-26.0,163.2 L-26.0,162.6 L-26.0,161.8 L-26.4,160.4 L-26.6,159.2 L-27.0,158.4 L-26.4,158.2 L-23.9,157.0 L-20.5,159.2 L-18.4,158.9 L-18.2,156.0 L-17.5,154.4Z" fill="#f2ecdc" stroke="#8d978c" stroke-width="0.8"/>
+<path d="M88.6,238.9 L90.2,241.7 L90.5,242.9 L90.2,243.9 L89.6,243.2 L89.0,242.8 L88.0,242.6 L86.8,243.2 L85.9,243.3 L85.3,243.7 L85.0,244.2 L84.7,245.4 L84.4,245.7 L82.9,246.7 L81.4,246.8 L79.8,246.4 L78.3,244.8 L78.6,243.9 L79.5,244.9 L81.0,245.3 L82.2,244.8 L83.5,243.9 L82.6,243.7 L82.0,243.2 L81.6,242.8 L81.0,242.0 L80.7,242.3 L80.7,242.4 L80.4,242.6 L80.4,241.4 L80.4,240.1 L81.0,240.1 L81.6,240.3 L84.1,238.7 L85.6,238.3 L85.3,239.7 L85.0,240.1 L86.2,239.7 L87.5,239.8 L88.0,239.8 L88.6,238.9Z" fill="#f2ecdc" stroke="#8d978c" stroke-width="0.8"/>
+<path d="M74.0,238.9 L75.3,235.6 L76.1,234.5 L77.4,235.8 L76.8,236.3 L76.1,237.4 L75.3,240.1 L75.3,240.8 L75.5,241.4 L75.3,241.9 L74.4,242.0 L73.8,242.0 L73.1,242.1 L72.8,242.3 L72.5,242.6 L71.3,242.6 L71.3,242.0 L71.9,241.5 L72.5,241.4 L73.1,241.4 L74.0,241.0 L74.0,240.4 L74.0,238.9Z" fill="#f2ecdc" stroke="#8d978c" stroke-width="0.8"/>
+<path d="M82.2,236.7 L82.0,235.6 L81.4,234.7 L79.8,233.3 L81.6,231.9 L82.9,232.5 L83.7,233.3 L84.1,234.4 L83.5,235.0 L83.7,236.3 L83.1,236.9 L82.6,237.2 L82.2,236.7Z" fill="#f2ecdc" stroke="#8d978c" stroke-width="0.8"/>
+<path d="M241.7,325.7 L241.3,324.5 L241.3,324.2 L244.7,324.0 L245.0,324.2 L245.3,324.8 L245.0,326.0 L244.7,326.7 L244.7,327.2 L244.7,327.6 L244.7,328.1 L244.4,327.9 L243.8,327.9 L243.4,327.9 L243.4,327.7 L242.6,327.4 L241.7,325.7Z" fill="#f2ecdc" stroke="#8d978c" stroke-width="0.8"/>
+<path d="M120.2,252.8 L124.5,248.4 L128.2,244.0 L128.8,243.7 L126.1,248.5 L124.5,249.9 L123.6,251.0 L122.4,252.3 L121.5,252.8 L120.0,254.1 L119.1,254.6 L120.2,252.8Z" fill="#f2ecdc" stroke="#8d978c" stroke-width="0.8"/>
+<path d="M263.6,145.4 L240.8,184.0 L221.4,230.0 L204.5,283.4 L194.3,335.8 L189.3,379.0" fill="none" stroke="#a97d55" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+<path d="M253.5,215.3 L244.2,248.4 L234.1,283.4 L222.2,311.0" fill="none" stroke="#a97d55" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity=".7"/>
+<path d="M249.3,204.2 L238.3,243.8 L227.3,280.6 L214.6,315.6" fill="none" stroke="#d62f2f" stroke-width="2.6" stroke-dasharray="6 4"/>
+<path d="M101.4,446.2 L169.0,423.2 L207.0,391.0 L219.7,331.2 L214.6,315.6" fill="none" stroke="#b05a5a" stroke-width="1.5" stroke-dasharray="4 4" opacity=".8"/>
+<path d="M253.5,202.4 L283.1,239.2" fill="none" stroke="#b05a5a" stroke-width="1.5" stroke-dasharray="4 4" opacity=".8"/>
+<path d="M101.4,542.8 L101.4,446.2" fill="none" stroke="#23365c" stroke-width="2.4"/>
+<path d="M101.4,538.7 L101.4,530.7 L108.4,534.7 Z" fill="#23365c"/>
+<path d="M101.4,522.6 L101.4,514.6 L108.4,518.6 Z" fill="#23365c"/>
+<path d="M101.4,506.5 L101.4,498.5 L108.4,502.5 Z" fill="#23365c"/>
+<path d="M101.4,490.4 L101.4,482.4 L108.4,486.4 Z" fill="#23365c"/>
+<path d="M101.4,474.3 L101.4,466.3 L108.4,470.3 Z" fill="#23365c"/>
+<path d="M101.4,458.2 L101.4,450.2 L108.4,454.2 Z" fill="#23365c"/>
+<path d="M283.1,239.2 L473.2,239.2" fill="none" stroke="#23365c" stroke-width="2.4"/>
+<path d="M287.7,239.2 L295.7,239.2 L291.7,232.2 Z" fill="#23365c"/>
+<path d="M305.0,239.2 L313.0,239.2 L309.0,232.2 Z" fill="#23365c"/>
+<path d="M322.3,239.2 L330.3,239.2 L326.3,232.2 Z" fill="#23365c"/>
+<path d="M339.6,239.2 L347.6,239.2 L343.6,232.2 Z" fill="#23365c"/>
+<path d="M356.8,239.2 L364.8,239.2 L360.8,232.2 Z" fill="#23365c"/>
+<path d="M374.1,239.2 L382.1,239.2 L378.1,232.2 Z" fill="#23365c"/>
+<path d="M391.4,239.2 L399.4,239.2 L395.4,232.2 Z" fill="#23365c"/>
+<path d="M408.7,239.2 L416.7,239.2 L412.7,232.2 Z" fill="#23365c"/>
+<path d="M426.0,239.2 L434.0,239.2 L430.0,232.2 Z" fill="#23365c"/>
+<path d="M443.3,239.2 L451.3,239.2 L447.3,232.2 Z" fill="#23365c"/>
+<path d="M460.5,239.2 L468.5,239.2 L464.5,232.2 Z" fill="#23365c"/>
+<circle cx="253.5" cy="200.6" r="4" fill="#d62f2f"/><circle cx="253.5" cy="200.6" r="9" fill="none" stroke="#d62f2f" stroke-width="1.6" opacity=".7"/><circle cx="253.5" cy="200.6" r="14" fill="none" stroke="#d62f2f" stroke-width="1.2" opacity=".35"/>
+<circle cx="238.3" cy="248.4" r="4" fill="#d62f2f"/><circle cx="238.3" cy="248.4" r="9" fill="none" stroke="#d62f2f" stroke-width="1.6" opacity=".7"/><circle cx="238.3" cy="248.4" r="14" fill="none" stroke="#d62f2f" stroke-width="1.2" opacity=".35"/>
+<circle cx="217.2" cy="307.3" r="4" fill="#d62f2f"/><circle cx="217.2" cy="307.3" r="9" fill="none" stroke="#d62f2f" stroke-width="1.6" opacity=".7"/><circle cx="217.2" cy="307.3" r="14" fill="none" stroke="#d62f2f" stroke-width="1.2" opacity=".35"/>
+<circle cx="291.5" cy="170.2" r="4" fill="#d62f2f"/><circle cx="291.5" cy="170.2" r="9" fill="none" stroke="#d62f2f" stroke-width="1.6" opacity=".7"/><circle cx="291.5" cy="170.2" r="14" fill="none" stroke="#d62f2f" stroke-width="1.2" opacity=".35"/>
+<path d="M29.6,96.6 L97.2,161.0" stroke="#d23b2b" stroke-width="14" stroke-linecap="butt" marker-end="url(#pmA)" opacity=".92"/>
+<path d="M435.2,455.4 L350.7,372.6" stroke="#d23b2b" stroke-width="14" stroke-linecap="butt" marker-end="url(#pmA)" opacity=".92"/>
+<text x="29.6" y="23.0" font-size="12.5" font-weight="500" fill="#5b6359" text-anchor="middle" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">中國大陸</text>
+<text x="54.9" y="289.8" font-size="17" font-weight="700" fill="#7a4a22" text-anchor="middle" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">歐亞板塊</text>
+<text x="54.9" y="305.8" font-size="11.5" font-weight="500" fill="#7a4a22" text-anchor="middle" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">（西北方）</text>
+<text x="376.0" y="513.4" font-size="17" font-weight="700" fill="#245a4c" text-anchor="middle" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">菲律賓海板塊</text>
+<text x="424.2" y="471.4" font-size="11.5" font-weight="700" fill="#a32a1e" text-anchor="end" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">向西北，每年約 8 公分</text>
+<text x="114.1" y="197.8" font-size="11.5" font-weight="500" fill="#4f7d9c" text-anchor="middle">臺灣海峽</text>
+<text x="201.1" y="239.2" font-size="12.5" font-weight="700" fill="#5a3a1e" text-anchor="middle" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">中央山脈</text>
+<text x="255.2" y="320.2" font-size="12.5" font-weight="700" fill="#5a3a1e" text-anchor="start" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">海岸山脈</text>
+<path d="M291.7,261.0 L238.9,259.4" stroke="#5a4630" stroke-width="1" marker-end="url(#pmL)"/>
+<text x="297.4" y="265.0" font-size="13" font-weight="700" fill="#c22a2a" text-anchor="start" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">花東縱谷</text>
+<text x="297.4" y="280.0" font-size="11" font-weight="500" fill="#c22a2a" text-anchor="start" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">（陸上的板塊交界）</text>
+<text x="371.8" y="201.2" font-size="13" font-weight="700" fill="#23365c" text-anchor="middle" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">琉球海溝</text>
+<text x="371.8" y="215.2" font-size="11" font-weight="500" fill="#23365c" text-anchor="middle" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">菲律賓海板塊向北隱沒</text>
+<text x="371.8" y="228.2" font-size="11" font-weight="500" fill="#23365c" text-anchor="middle" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">到歐亞板塊之下</text>
+<text x="116.6" y="473.8" font-size="13" font-weight="700" fill="#23365c" text-anchor="start" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">馬尼拉海溝</text>
+<text x="116.6" y="488.8" font-size="11" font-weight="500" fill="#23365c" text-anchor="start" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">歐亞板塊向東隱沒</text>
+<text x="116.6" y="502.8" font-size="11" font-weight="500" fill="#23365c" text-anchor="start" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">到菲律賓海板塊之下</text>
+<text x="308.4" y="151.8" font-size="12" font-weight="700" fill="#c22a2a" text-anchor="start" stroke="#fff" stroke-width="3.5" stroke-linejoin="round" paint-order="stroke">地震頻繁</text>
+<text x="465" y="535" font-size="10.5" fill="#5b6359" text-anchor="end">示意圖：山脈、海溝為大略位置；箭頭是板塊相對運動方向</text>
+</svg>
     </div>
-    <div class="card tight">
+    <div class="card tight" style="max-width:640px;margin:0 auto">
       <p>臺灣位在<b>歐亞板塊</b>和<b>菲律賓海板塊</b>的交界處。菲律賓海板塊持續向西北擠壓，地殼被推擠抬升，形成高聳的山脈，這就是<b>內營力</b>。</p>
       <p>板塊擠壓也讓臺灣<b>地震頻繁</b>。同時，臺灣雨量多、河流侵蝕力強，<b>外營力</b>也一直在削低山地、把土石搬到西部堆積成平原。</p>
+      <p class="note">看圖小提示：紅色虛線是<b>花東縱谷</b>，兩個板塊在陸地上的交界；深藍色帶鋸齒的線是<b>海溝</b>，鋸齒朝向的那一側，就是蓋在上面的板塊。</p>
       <div class="warn">常見錯誤：以為「地震、火山」是外營力。只要能量來自<b>地球內部</b>，就是內營力。</div>
     </div>
+  </div>
+
+  <h2 id="islandVolc">臺灣的火山：本島與周邊小島</h2>
+  <p>臺灣本島北部有好幾個火山群，周圍也有不少小島是<b>火山噴發形成的火山島</b>。目前確認的活火山只有兩個：本島的<b>大屯火山群</b>和小島中的<b>龜山島</b>，其他都已經沒有活動。</p>
+  <div class="grid2" style="align-items:start">
+    <div class="card tight">
+      <canvas class="map" id="volcMap" role="img" aria-label="臺灣火山分布示意圖：本島北部有大屯火山群（活火山）、基隆火山群、觀音山，東部有海岸山脈；東北外海有龜山島（活火山）、基隆嶼、北方三島；東南外海有綠島、蘭嶼；西邊有澎湖群島"></canvas>
+      <div class="legend" style="margin-top:6px">
+        <span><i style="background:#d6452b;clip-path:polygon(50% 0,100% 100%,0 100%);border-radius:0"></i>活火山（地底還有岩漿庫）</span>
+        <span><i style="background:#8a8278;clip-path:polygon(50% 0,100% 100%,0 100%);border-radius:0"></i>已沒有活動的火山（死火山）</span>
+      </div>
+      <p class="note" style="margin-bottom:0">地圖為示意。</p>
+    </div>
+    <div>
+      <h3 style="margin-top:0">臺灣本島的火山</h3>
+      <div class="tscroll">
+      <table class="t">
+        <tr><th>火山</th><th>位置</th><th>火山狀態</th><th>特色</th></tr>
+        <tr><td><b>大屯火山群</b></td><td>臺北市北邊（陽明山一帶）</td><td style="color:#b8341c;font-weight:700">活火山</td><td>20 多座火山，七星山 1,120 公尺最高；地底下有岩漿庫</td></tr>
+        <tr><td><b>基隆火山群</b></td><td>新北市瑞芳（基隆東邊）</td><td>死火山</td><td>基隆山、本山、武丹山、草山、雞母嶺五個火山體；岩石裡有石英</td></tr>
+        <tr><td><b>觀音山</b></td><td>新北市，淡水河西岸</td><td>死火山</td><td>以安山岩為主的複式火山，隔著淡水河和大屯火山群相望</td></tr>
+        <tr><td><b>海岸山脈</b></td><td>花蓮到臺東的東海岸</td><td>死火山<br><span class="small">（古代火山島弧）</span></td><td>原本是菲律賓海板塊上的火山島，和綠島、蘭嶼同一串，後來撞上臺灣變成山脈</td></tr>
+      </table>
+      </div>
+      <div class="key" style="margin-top:12px">
+        <b>考試重點</b>
+        <ul style="margin:.3em 0 0">
+          <li>臺灣的活火山：本島的<b>大屯火山群</b>，加上小島中的<b>龜山島</b>。</li>
+          <li>綠島、蘭嶼和海岸山脈原本是同一串火山島弧，會隨著菲律賓海板塊往臺灣本島靠近。</li>
+          <li>澎湖是熔岩流出後堆成的低平台地，外形和尖尖的火山錐不同（4-3 離島成因）。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <h3>臺灣周邊小島的火山</h3>
+  <div class="tscroll">
+  <table class="t">
+    <tr><th>島嶼</th><th>位置</th><th>火山狀態</th><th>特色</th></tr>
+    <tr><td><b>龜山島</b></td><td>宜蘭外海</td><td style="color:#b8341c;font-weight:700">活火山</td><td>以安山岩為主；地殼中部有岩漿庫，是臺灣唯一確認的活火山島</td></tr>
+    <tr><td><b>基隆嶼</b></td><td>基隆東北外海</td><td>死火山</td><td>石英安山岩，屬於臺灣北部的火山群</td></tr>
+    <tr><td><b>彭佳嶼、棉花嶼、花瓶嶼</b><span class="small">（北方三島）</span></td><td>基隆東北方遠海</td><td>死火山</td><td>主要由安山岩組成，和大屯火山、基隆嶼一樣，是臺灣北部較年輕的火山活動形成</td></tr>
+    <tr><td><b>綠島</b></td><td>臺東外海</td><td>死火山</td><td>安山岩質熔岩和集塊岩；屬於菲律賓海板塊上的火山島弧</td></tr>
+    <tr><td><b>蘭嶼</b></td><td>臺東東南外海</td><td>死火山</td><td>安山岩質的火山碎屑岩和熔岩流；屬於北呂宋島弧</td></tr>
+    <tr><td><b>澎湖群島</b></td><td>臺灣海峽</td><td>死火山</td><td>玄武岩熔岩構成，地勢低平，形成<b>玄武岩方山</b></td></tr>
+  </table>
   </div>
 
   <div id="pager"></div>
@@ -103,43 +349,516 @@
 (function(){
 const SX=2.4,SZ=1.6,N=120,NZ=80;
 const V=G3.View(document.getElementById('v'),{az:0.5,el:0.5,dist:3.6,target:[0,0.05,0]});
-const T=G3.Terrain({sx:SX,sz:SZ,n:N,nz:NZ,ys:0.00042,sides:true,base:-0.16,
-  color:(h)=>G3.bandColor(h,[[-1e9,'#9fc58a'],[150,'#b5cf8c'],[300,'#d7d993'],[600,'#dcc283'],[1000,'#c99e68'],[1600,'#a97d55'],[2300,'#8a6748'],[3000,'#e9e4da']])});
+const YS=0.00042;
+/* NET：外營力造成的累計高度變化（正＝堆積，負＝侵蝕），用來上色 */
+const NET=new Float32Array((N+1)*(NZ+1));
+/* HOT：正在流動的熔岩（發光），LAV：冷卻後的熔岩 */
+const HOT=new Float32Array(NET.length),LAV=new Float32Array(NET.length);
+const SAND=new THREE.Color('#f2cf4f'),ROCK=new THREE.Color('#8f8173'),GLOW=new THREE.Color('#ff5a1f'),BASALT=new THREE.Color('#3d3330'),cTmp=new THREE.Color();
+const band=h=>G3.bandColor(h,[[-1e9,'#9fc58a'],[150,'#b5cf8c'],[300,'#d7d993'],[600,'#dcc283'],[1000,'#c99e68'],[1600,'#a97d55'],[2300,'#8a6748'],[3000,'#e9e4da']]);
+const T=G3.Terrain({sx:SX,sz:SZ,n:N,nz:NZ,ys:YS,sides:true,base:-0.16,
+  color:(h,x,z)=>{
+    const k=Math.round((z+SZ/2)/SZ*NZ)*(N+1)+Math.round((x+SX/2)/SX*N),d=NET[k]||0,lv=LAV[k]||0,ht=HOT[k]||0;
+    if(Math.abs(d)<10&&lv<0.02&&ht<0.02)return band(h);
+    cTmp.set(band(h));
+    if(lv>0.02)cTmp.lerp(BASALT,Math.min(1,lv)*0.7);
+    if(ht>0.02)cTmp.lerp(GLOW,Math.min(1,ht)*0.9);
+    if(d>=10)cTmp.lerp(SAND,Math.min(1,(d-10)/40)*0.95);else if(d<=-10)cTmp.lerp(ROCK,Math.min(1,(-d-10)/120)*0.75);
+    return cTmp;}});
+/* 共用：任一點的地面高度（公尺）與格點座標 */
+function hAt(x,z){
+  const fx=Math.max(0,Math.min(N-1e-4,(x+SX/2)/SX*N)),fz=Math.max(0,Math.min(NZ-1e-4,(z+SZ/2)/SZ*NZ));
+  const i=fx|0,j=fz|0,a=fx-i,b=fz-j,k=j*(N+1)+i,H=T.H;
+  return (H[k]*(1-a)+H[k+1]*a)*(1-b)+(H[k+N+1]*(1-a)+H[k+N+2]*a)*b;}
+const XY=k=>[-SX/2+SX*(k%(N+1))/N,-SZ/2+SZ*Math.floor(k/(N+1))/NZ];
+const kAt=(x,z)=>Math.round(Math.max(0,Math.min(NZ,(z+SZ/2)/SZ*NZ)))*(N+1)+Math.round(Math.max(0,Math.min(N,(x+SX/2)/SX*N)));
+/* 板塊交界：大致呈北北東—南南西走向（畫面北方是 -z、東方是 +x） */
+const XB=0.38,SLANT=0.18,xbAt=z=>XB-SLANT*z;
 V.scene.add(T.group);
 let seed=1;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;};
 function noise(){const w=[];for(let k=0;k<6;k++)w.push([rnd()*6.28,rnd()*6.28,3+rnd()*9,3+rnd()*9,0.3+rnd()*0.7]);
   return (x,z)=>{let s=0;for(const q of w)s+=q[4]*Math.sin(x*q[2]+q[0])*Math.sin(z*q[3]+q[1]);return s/3;};}
 const base0=noise();
-function reset(){T.set((x,z)=>120+40*base0(x,z));meter();say('回到一片低平的地面。');}
+/* 內營力重新造山時，清掉外營力留下的侵蝕／堆積顏色，避免新山被誤認為堆積 */
+function clearTint(){NET.fill(0);ERO.stop();}
+/* 一開始就有一片丘陵（在西側），讓外營力也有東西可以侵蝕 */
+const hillN=noise();
+function hills(x,z){const a=(x+0.55)/0.32,b=z/0.55,c=(x+0.15)/0.18,d=(z+0.35)/0.22;
+  return 430*Math.exp(-a*a-b*b)*(0.8+0.35*hillN(x,z))+180*Math.exp(-c*c-d*d);}
+function reset(){NET.fill(0);HOT.fill(0);LAV.fill(0);ERO.stop();PLATE.quake(false);VOLC.stop();T.set((x,z)=>120+40*base0(x,z)+hills(x,z));meter();say('回到一開始的地形：西邊有一片<b>丘陵</b>。');}
 const anim=[];
-V.onFrame(()=>{if(!anim.length)return;const a=anim[0];a.step();if(--a.left<=0){anim.shift();a.done&&a.done();}});
-function addField(f,frames,done){const add=new Float32Array(T.H.length);const pos=T.mesh.geometry.attributes.position;
+V.onFrame(()=>{if(!anim.length)return;const a=anim[0];if(!a.started){a.started=1;a.start&&a.start();}a.step();if(--a.left<=0){anim.shift();a.done&&a.done();}});
+function addField(f,frames,done,start){const add=new Float32Array(T.H.length);const pos=T.mesh.geometry.attributes.position;
   for(let i=0;i<add.length;i++)add[i]=f(pos.getX(i),pos.getZ(i))/frames;
-  anim.push({left:frames,step(){for(let i=0;i<add.length;i++)T.H[i]+=add[i];T.apply();meter();},done});}
-document.getElementById('bUp').onclick=()=>{
-  const nz=noise(),x0=(rnd()-0.5)*0.9,w=0.22+rnd()*0.12,amp=900+rnd()*500;
-  addField((x,z)=>{const d=(x-x0)/w;return amp*Math.exp(-d*d)*(0.75+0.35*nz(x,z))*G3.smooth(-0.8,-0.5,z)*(1-G3.smooth(0.5,0.8,z));},45,
-    ()=>say('<b>內營力</b>：板塊擠壓使地殼抬升，山脈隆起，<b>高低差變大</b>。'));};
-document.getElementById('bVol').onclick=()=>{
-  const x0=(rnd()-0.5)*1.6,z0=(rnd()-0.5)*0.9;
-  addField((x,z)=>{const r=Math.hypot(x-x0,z-z0);return 900*Math.exp(-r/0.12)-350*Math.exp(-(r/0.025)*(r/0.025));},45,
-    ()=>say('<b>內營力</b>：岩漿從地底噴出，熔岩和火山灰堆積成火山，<b>高低差變大</b>。'));};
+  anim.push({left:frames,start,inner:true,step(){for(let i=0;i<add.length;i++)T.H[i]+=add[i];T.apply();meter();},
+    flush(){for(let i=0;i<add.length;i++)T.H[i]+=add[i]*this.left;this.left=0;T.apply();meter();},done});}
+/* 切到外營力時，還沒跑完的內營力動作（造山、火山）直接完成，避免山在外營力畫面裡繼續長高 */
+function flushInner(){while(anim.length&&anim[0].inner){const a=anim[0];if(!a.started){a.started=1;a.start&&a.start();}a.flush();anim.shift();a.done&&a.done();}}
+/* 造山的地形變化：中央山脈（交界西側）＋海岸山脈（交界東側），中間留下花東縱谷 */
+function upliftField(){
+  const nz=noise(),off=-0.25+(rnd()-0.5)*0.06,w=0.17+rnd()*0.05,amp=900+rnd()*500;
+  return (x,z)=>{const d=(x-xbAt(z)-off)/w,e=(x-xbAt(z)-0.13)/0.055,ends=G3.smooth(-0.8,-0.5,z)*(1-G3.smooth(0.5,0.8,z));
+    return (amp*Math.exp(-d*d)*(0.75+0.35*nz(x,z))+0.36*amp*Math.exp(-e*e)*(0.85+0.3*nz(x+1,z)))*ends;};}
+function uplift(field){
+  addField(field||upliftField(),100,
+    ()=>{PLATE.quake(false);say('<b>內營力</b>：菲律賓海板塊向西北推擠歐亞板塊，交界附近的地殼被擠壓<b>抬升</b>，山脈隆起，<b>高低差變大</b>；擠壓也造成<b>地震</b>。');},
+    ()=>{clearTint();PLATE.quake(true);say('板塊擠壓中：菲律賓海板塊向<b>西北</b>推擠歐亞板塊，交界附近的地殼被擠得隆起，同時發生<b>地震</b>……');});}
+document.getElementById('bUp').onclick=()=>{setSub('plate');setView('local');uplift();};
+document.getElementById('bVol').onclick=()=>{setSub('volc');
+  const x0=(rnd()-0.5)*1.5,z0=(rnd()-0.5)*0.8;
+  addField((x,z)=>{const r=Math.hypot(x-x0,z-z0);return 900*Math.exp(-r/0.12)-350*Math.exp(-(r/0.025)*(r/0.025));},150,
+    ()=>{VOLC.end();say('<b>內營力</b>：岩漿從地底上升、從<b>火山口</b>噴出，<b>熔岩</b>和<b>火山灰</b>一層層堆積成<b>火山</b>，<b>高低差變大</b>。熔岩冷卻後變成深色的岩石。');},
+    ()=>{clearTint();VOLC.start(x0,z0);say('火山噴發中：地底的岩漿沿著裂縫上升，從火山口噴出熔岩和火山灰……');});};
 document.getElementById('bEro').onclick=()=>{
-  const tmp=new Float32Array(T.H.length);let k=0;
-  anim.push({left:40,step(){
-    for(let r=0;r<6;r++){
-      for(let j=0;j<=NZ;j++)for(let i=0;i<=N;i++){const id=j*(N+1)+i,h=T.H[id];
-        const l=T.H[j*(N+1)+Math.max(0,i-1)],rr=T.H[j*(N+1)+Math.min(N,i+1)],u=T.H[Math.max(0,j-1)*(N+1)+i],d=T.H[Math.min(NZ,j+1)*(N+1)+i];
-        tmp[id]=h+0.2*(l+rr+u+d-4*h);}
-      T.H.set(tmp);}
-    T.apply();meter();},
-    done(){say('<b>外營力</b>：高處的岩石被風化、侵蝕，土石被搬運到低處堆積，<b>高低差變小</b>，地表趨向平緩。');}});};
-document.getElementById('bReset').onclick=()=>{anim.length=0;seed=1;reset();};
+  if(relief()<300&&!anim.length){say('現在地面很平坦，外營力沒有山可以削。先切到「<b>內營力</b>」造一座山，再回來試試。');return;}
+  pick('bEro');
+  const FR=300,tmp=new Float32Array(T.H.length),old=new Float32Array(T.H.length);let f=0;
+  anim.push({left:FR,step(){
+    if(f===0)ERO.start();
+    old.set(T.H);
+    for(let j=0;j<=NZ;j++)for(let i=0;i<=N;i++){const id=j*(N+1)+i,h=T.H[id];
+      const l=T.H[j*(N+1)+Math.max(0,i-1)],rr=T.H[j*(N+1)+Math.min(N,i+1)],u=T.H[Math.max(0,j-1)*(N+1)+i],d=T.H[Math.min(NZ,j+1)*(N+1)+i];
+      tmp[id]=h+0.16*(l+rr+u+d-4*h);}
+    T.H.set(tmp);
+    for(let i=0;i<NET.length;i++)NET[i]+=T.H[i]-old[i];
+    T.apply();meter();
+    if(f%15===0)ERO.place(f);
+    if(f===0)say('<b>① 侵蝕</b>：雨水落在山上，流水把山上的岩石和泥土刮下來（灰褐色是被削低的地方）。');
+    if(f===100){say('<b>② 搬運</b>：被刮下來的土石（褐色小點）跟著流水，順著山坡往低處移動（紅色箭頭是搬運的方向）。');ERO.place(f);}
+    if(f===200)say('<b>③ 堆積</b>：到了平緩的低地，水流變慢，土石停下來堆積（黃色是被填高的地方）。');
+    f++;},
+    done(){ERO.end();ERO.place();
+      say('<b>外營力</b>：山上的岩石被<b>侵蝕</b>，土石被流水<b>搬運</b>到低處<b>堆積</b>。山變低、低處變高，<b>高低差變小</b>，地表趨向平緩。可以再按一次，看山繼續被磨低。');}});};
+
+/* ---------- 外營力的 3D 動畫：雨滴、被搬運的土石、標籤 ---------- */
+const ERO=(function(){
+  const dotTex=(()=>{const c=document.createElement('canvas');c.width=c.height=32;const g=c.getContext('2d');
+    g.beginPath();g.arc(16,16,14,0,Math.PI*2);g.fillStyle='#fff';g.fill();return new THREE.CanvasTexture(c);})();
+  function points(n,color,size){
+    const p=new Float32Array(n*3).fill(1e4),g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(p,3));
+    const m=new THREE.PointsMaterial({color,size,map:dotTex,transparent:true,alphaTest:0.3,depthWrite:false});
+    const o=new THREE.Points(g,m);o.frustumCulled=false;o.renderOrder=3;V.scene.add(o);return {p,g,m,n};}
+  const SED=points(240,0x6b4a2b,0.05),RAIN=points(220,0x3b9be0,0.03);
+  const sx=new Float32Array(SED.n),sz=new Float32Array(SED.n),st=new Int16Array(SED.n),ry=new Float32Array(RAIN.n);
+  let src=[],active=false,tail=0;
+  /* 標示方式：文字放在畫面上方的空中，用箭號指到地形上的位置，不擋住動畫 */
+  const CO=(function(){
+    const el=V.el,NS='http://www.w3.org/2000/svg';
+    const items=[['e','① 侵蝕','山上的岩石被削低','#a8572f'],['t','② 搬運','土石順著山坡往下','#2d6f9e'],['d','③ 堆積','在平緩低地停下來','#9a7414']]
+      .map(([k,t,sub,c])=>{const d=document.createElement('div');d.className='co';d.style.borderColor=c;d.style.color=c;d.innerHTML=t+'<small>'+sub+'</small>';el.appendChild(d);
+        return {k,c,div:d,anchor:new THREE.Vector3(),cur:new THREE.Vector3(),show:false,fresh:true,path:null};});
+    const svg=document.createElementNS(NS,'svg');svg.setAttribute('class','co-svg');
+    svg.innerHTML='<defs>'+items.map(i=>'<marker id="coA'+i.k+'" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="'+i.c+'"/></marker>').join('')+'</defs>';
+    items.forEach(i=>{const p=document.createElementNS(NS,'path');p.setAttribute('fill','none');p.setAttribute('stroke',i.c);p.setAttribute('stroke-width','2.5');
+      p.setAttribute('marker-end','url(#coA'+i.k+')');p.style.display='none';svg.appendChild(p);i.path=p;
+      const dot=document.createElementNS(NS,'circle');dot.setAttribute('r','4');dot.setAttribute('fill',i.c);dot.setAttribute('stroke','#fff');dot.setAttribute('stroke-width','1.5');dot.style.display='none';svg.appendChild(dot);i.dot=dot;});
+    el.appendChild(svg);
+    const v=new THREE.Vector3();
+    V.onFrame(()=>{
+      const w=el.clientWidth,h=el.clientHeight,vis=[],compact=w<520;
+      items.forEach(i=>{
+        if(!i.show){i.div.style.display='none';i.path.style.display='none';i.dot.style.display='none';return;}
+        if(i.fresh){i.cur.copy(i.anchor);i.fresh=false;}else i.cur.lerp(i.anchor,0.12);
+        v.copy(i.cur).project(V.cam);
+        if(v.z>1){i.div.style.display='none';i.path.style.display='none';i.dot.style.display='none';return;}
+        i.div.style.display='block';i.div.classList.toggle('compact',compact);i.sx=(v.x+1)/2*w;i.sy=(1-v.y)/2*h;i.lw=i.div.offsetWidth;i.lh=i.div.offsetHeight;vis.push(i);});
+      /* 依照指向位置由左到右排在上方一列，彼此不重疊 */
+      vis.sort((a,b)=>a.sx-b.sx);
+      const gap=10,L=8,Rm=w-56;
+      vis.forEach((i,n)=>{i.lx=Math.max(i.sx-i.lw/2,n?vis[n-1].lx+vis[n-1].lw+gap:L);});
+      for(let n=vis.length-1;n>=0;n--){const i=vis[n],lim=n<vis.length-1?vis[n+1].lx-gap-i.lw:Rm-i.lw;i.lx=Math.max(L,Math.min(i.lx,lim));}
+      vis.forEach(i=>{const ly=10;i.div.style.transform='translate('+i.lx+'px,'+ly+'px)';
+        const x0=i.lx+i.lw/2,y0=ly+i.lh+2,x1=i.sx,y1=i.sy-7,my=(y0+y1)/2;
+        i.path.setAttribute('d','M'+x0+','+y0+' C'+x0+','+my+' '+x1+','+(my-10)+' '+x1+','+y1);i.path.style.display='';
+        i.dot.setAttribute('cx',x1);i.dot.setAttribute('cy',i.sy);i.dot.style.display='';});
+    });
+    return {set(k,x,y,z,show){const i=items.find(o=>o.k===k);if(show&&!i.show)i.fresh=true;i.anchor.set(x,y,z);i.show=show;},
+      hide(){items.forEach(i=>i.show=false);}};
+  })();
+  /* 搬運的方向：從山脊兩側沿著最陡的下坡畫紅色箭頭，箭頭會往下坡方向微微推進 */
+  const MOVE=(function(){
+    const G=new THREE.Group();G.visible=false;V.scene.add(G);
+    const mat=new THREE.MeshLambertMaterial({color:0xd23b2b,emissive:0x4a0000});
+    const shaftG=new THREE.CylinderGeometry(0.013,0.013,1,10),headG=new THREE.ConeGeometry(0.034,0.075,16);
+    const UP=new THREE.Vector3(0,1,0),dir=new THREE.Vector3(),q0=new THREE.Vector3(),q1=new THREE.Vector3();
+    const A=Array.from({length:8},()=>{const g=new THREE.Group(),s=new THREE.Mesh(shaftG,mat),h=new THREE.Mesh(headG,mat);g.add(s,h);G.add(g);
+      return {g,s,h,p0:new THREE.Vector3(),p1:new THREE.Vector3(),d:new THREE.Vector3(),on:false};});
+    function trace(x,z){let px=x,pz=z,len=0;const e=0.015;
+      for(let k=0;k<45;k++){const gx=(hAt(px+e,pz)-hAt(px-e,pz))/(2*e),gz=(hAt(px,pz+e)-hAt(px,pz-e))/(2*e),sl=Math.hypot(gx,gz);
+        if(sl<350)break;px-=gx/sl*0.008;pz-=gz/sl*0.008;len+=0.008;
+        if(len>0.27||Math.abs(px)>SX/2-0.06||Math.abs(pz)>SZ/2-0.06)break;}
+      return [px,pz,len];}
+    function layout(){let n=0;
+      for(const z of [-0.4,-0.13,0.14,0.4]){
+        let bx=0,bh=-1e9;for(let i=0;i<=N;i++){const x=-SX/2+SX*i/N,h=hAt(x,z);if(h>bh){bh=h;bx=x;}}
+        for(const side of [-1,1]){if(n>=A.length)break;
+          const sx=bx+side*0.07,[ex,ez,len]=trace(sx,z);if(len<0.1)continue;
+          const a=A[n++];a.p0.set(sx,hAt(sx,z)*YS+0.04,z);a.p1.set(ex,hAt(ex,ez)*YS+0.04,ez);
+          const mid=hAt((sx+ex)/2,(z+ez)/2)*YS+0.04,lift=Math.max(0,mid-(a.p0.y+a.p1.y)/2);a.p0.y+=lift;a.p1.y+=lift;
+          /* 朝著鏡頭或背對鏡頭的箭頭，在畫面上會縮成一點，看不出方向，就不畫 */
+          const W=V.el.clientWidth,H=V.el.clientHeight;q0.copy(a.p0).project(V.cam);q1.copy(a.p1).project(V.cam);
+          if(Math.hypot((q1.x-q0.x)*W/2,(q1.y-q0.y)*H/2)<28){n--;continue;}
+          a.d.subVectors(a.p1,a.p0);const L=a.d.length();a.d.normalize();
+          a.g.quaternion.setFromUnitVectors(UP,a.d);
+          a.s.scale.set(1,Math.max(0.01,L-0.07),1);a.s.position.set(0,(L-0.07)/2,0);a.h.position.set(0,L-0.037,0);
+          a.on=true;a.g.visible=true;}}
+      for(;n<A.length;n++){A[n].on=false;A[n].g.visible=false;}}
+    let t=0;
+    V.onFrame(()=>{if(!G.visible)return;t++;A.forEach(a=>{if(!a.on)return;const k=0.025*(0.5+0.5*Math.sin(t*0.12));a.g.position.copy(a.p0).addScaledVector(a.d,k);});});
+    return {show(b){if(b)layout();G.visible=b;}};
+  })();
+  function hide(P,i){P.p[i*3]=P.p[i*3+1]=P.p[i*3+2]=1e4;}
+  function spawn(i){const k=src[(Math.random()*src.length)|0],q=XY(k);
+    sx[i]=q[0]+(Math.random()-0.5)*0.03;sz[i]=q[1]+(Math.random()-0.5)*0.03;st[i]=0;}
+  function rain(i){const k=src[(Math.random()*src.length)|0],q=XY(k);
+    RAIN.p[i*3]=q[0]+(Math.random()-0.5)*0.25;RAIN.p[i*3+2]=q[1]+(Math.random()-0.5)*0.25;ry[i]=hAt(q[0],q[1])*YS+0.25+Math.random()*0.45;RAIN.p[i*3+1]=ry[i];}
+  V.onFrame(()=>{
+    if(!active&&tail<=0)return;
+    if(!active)tail--;
+    /* 雨滴：只在侵蝕進行時下 */
+    for(let i=0;i<RAIN.n;i++){
+      if(RAIN.p[i*3]>1e3){if(active&&Math.random()<0.15)rain(i);continue;}
+      ry[i]-=0.022;const g=hAt(RAIN.p[i*3],RAIN.p[i*3+2])*YS;
+      if(ry[i]<=g){if(active)rain(i);else hide(RAIN,i);}else RAIN.p[i*3+1]=ry[i];}
+    /* 土石：順著最陡的方向往下坡移動，坡度變緩就停下來 */
+    const e=0.015;
+    for(let i=0;i<SED.n;i++){
+      if(st[i]<0){if(active&&Math.random()<0.06)spawn(i);else continue;}
+      if(st[i]===0){
+        const gx=(hAt(sx[i]+e,sz[i])-hAt(sx[i]-e,sz[i]))/(2*e),gz=(hAt(sx[i],sz[i]+e)-hAt(sx[i],sz[i]-e))/(2*e),sl=Math.hypot(gx,gz);
+        if(sl<450||Math.abs(sx[i])>SX/2-0.02||Math.abs(sz[i])>SZ/2-0.02){st[i]=1;}
+        else{const v=0.0028+0.006*Math.min(1,sl/3000);sx[i]-=gx/sl*v;sz[i]-=gz/sl*v;}
+      }else if(++st[i]>(active?70:40)){st[i]=-1;hide(SED,i);continue;}
+      SED.p[i*3]=sx[i];SED.p[i*3+2]=sz[i];SED.p[i*3+1]=hAt(sx[i],sz[i])*YS+0.012;}
+    RAIN.g.attributes.position.needsUpdate=true;SED.g.attributes.position.needsUpdate=true;
+    if(!active&&tail<=0){for(let i=0;i<SED.n;i++)hide(SED,i);for(let i=0;i<RAIN.n;i++)hide(RAIN,i);
+      RAIN.g.attributes.position.needsUpdate=true;SED.g.attributes.position.needsUpdate=true;}
+  });
+  return {
+    start(){
+      let mx=-1e9,mn=1e9;for(const h of T.H){if(h>mx)mx=h;if(h<mn)mn=h;}
+      src=[];for(let k=0;k<T.H.length;k++)if(T.H[k]>mn+0.45*(mx-mn))src.push(k);
+      st.fill(-1);for(let i=0;i<SED.n;i++)hide(SED,i);active=true;tail=0;MOVE.show(false);},
+    end(){active=false;tail=120;},
+    stop(){active=false;tail=0;st.fill(-1);for(let i=0;i<SED.n;i++)hide(SED,i);for(let i=0;i<RAIN.n;i++)hide(RAIN,i);
+      SED.g.attributes.position.needsUpdate=true;RAIN.g.attributes.position.needsUpdate=true;CO.hide();MOVE.show(false);},
+    /* 箭號指的位置：侵蝕＝被削低的山頂，堆積＝面向鏡頭、填高最多的低地，搬運＝兩者之間的山坡 */
+    place(f){
+      let lo=0,mxD=0;for(let k=1;k<NET.length;k++){if(NET[k]<NET[lo])lo=k;if(NET[k]>mxD)mxD=NET[k];}
+      if(NET[lo]>-10){CO.hide();MOVE.show(false);return;}
+      let top=lo;for(let k=0;k<NET.length;k++)if(NET[k]<0.5*NET[lo]&&T.H[k]>T.H[top])top=k;
+      const a=XY(top);let hi=-1,best=0;
+      /* 堆積：找堆積（黃色）最集中的一片低地，指向它的中央；避開地塊邊緣，並稍微偏好面向鏡頭的一側 */
+      const cp=V.cam.position,cl=Math.hypot(cp.x,cp.z)||1,cx=cp.x/cl,cz=cp.z/cl,RB=12,MG=10;
+      for(let j=MG;j<=NZ-MG;j+=2)for(let i=MG;i<=N-MG;i+=2){
+        const k=j*(N+1)+i;if(NET[k]<10)continue;
+        const q=XY(k),dx=q[0]-a[0],dz=q[1]-a[1],dl=Math.hypot(dx,dz);if(dl<0.42)continue;
+        /* 算周圍有多大一片是黃色（堆積），找面積最大那片的中央 */
+        let sum=0;for(let dj=-RB;dj<=RB;dj+=2)for(let di=-RB;di<=RB;di+=2){const jj=j+dj,ii=i+di;if(jj<0||ii<0||jj>NZ||ii>N)continue;const v=NET[jj*(N+1)+ii];if(v>10)sum+=Math.min(v,30);}
+        const face=(dx*cx+dz*cz)/dl,sc=sum*(1+0.35*face);if(sc>best){best=sc;hi=k;}}
+      if(hi<0)hi=lo;
+      const b=XY(hi),m=[a[0]+(b[0]-a[0])*0.5,a[1]+(b[1]-a[1])*0.5];
+      const on=document.querySelector('.tab.on').dataset.force==='out';
+      const st=f==null?3:(f<100?1:f<200?2:3);
+      CO.set('e',a[0],hAt(a[0],a[1])*YS+0.01,a[1],on);
+      CO.set('t',m[0],hAt(m[0],m[1])*YS+0.01,m[1],on&&st>=2);
+      CO.set('d',b[0],hAt(b[0],b[1])*YS+0.01,b[1],on&&st>=3&&NET[hi]>10);
+      MOVE.show(on&&st>=2);},
+    tagsOff(){CO.hide();MOVE.show(false);}
+  };
+})();
+/* 「重來」＝回到開頁時的樣子：西邊丘陵＋中央山脈＋海岸山脈（FIRST、INIT 在頁面最後算好） */
+let FIRST=null,INIT=null;
+const REGION_MSG='<b>板塊位置與隱沒帶</b>：臺灣東北方的琉球海溝，<b>菲律賓海板塊</b>向北隱沒到歐亞板塊之下；臺灣南方的馬尼拉海溝，<b>歐亞板塊</b>向東隱沒到菲律賓海板塊之下。臺灣本島夾在中間，兩個板塊碰撞擠壓。拖曳旋轉，從側面切面看板塊往下插的樣子。';
+document.getElementById('bReset').onclick=()=>{
+  anim.length=0;seed=1;reset();
+  const region=force==='in'&&sub==='plate'&&pview==='region';
+  pick(force==='in'?(sub==='plate'?'bUp':'bVol'):null);
+  if(force==='in'&&sub==='plate'&&!region){uplift(FIRST);return;}   /* 重新示範一次開頁的造山 */
+  T.H.set(INIT);T.apply();meter();
+  if(region)say(REGION_MSG);
+  else if(force==='out')say('回到一開始的地形：西邊的<b>丘陵</b>，加上<b>中央山脈</b>和<b>海岸山脈</b>。按「侵蝕、搬運、堆積」再試一次。');
+  else say('回到一開始的地形。按「火山噴發」，看岩漿怎麼噴出地表、堆積成火山。');};
+/* ---------- 板塊擠壓的 3D：兩個板塊、運動方向箭頭、交界線、地震波紋 ---------- */
+const PLATE=(function(){
+  const g=new THREE.Group();V.scene.add(g);
+  const Y0=-0.36,TH=0.185,GAP=0.008;
+  function slab(pts,color){const sh=new THREE.Shape();pts.forEach((p,i)=>i?sh.lineTo(p[0],-p[1]):sh.moveTo(p[0],-p[1]));
+    const geo=new THREE.ExtrudeGeometry(sh,{depth:TH,bevelEnabled:false});geo.rotateX(-Math.PI/2);
+    const m=new THREE.Mesh(geo,new THREE.MeshLambertMaterial({color}));m.position.y=Y0;g.add(m);}
+  const n0=xbAt(-SZ/2),s0=xbAt(SZ/2);
+  slab([[-SX/2,-SZ/2],[n0-GAP,-SZ/2],[s0-GAP,SZ/2],[-SX/2,SZ/2]],0xc98b5a);
+  slab([[n0+GAP,-SZ/2],[SX/2,-SZ/2],[SX/2,SZ/2],[s0+GAP,SZ/2]],0x5f9a8a);
+  function arrow(){const a=new THREE.Group(),mat=new THREE.MeshLambertMaterial({color:0xd23b2b,emissive:0x3a0000});
+    const sh=new THREE.Mesh(new THREE.CylinderGeometry(0.03,0.03,0.36,16),mat);sh.rotation.z=-Math.PI/2;sh.position.x=-0.07;
+    const hd=new THREE.Mesh(new THREE.ConeGeometry(0.08,0.17,24),mat);hd.rotation.z=-Math.PI/2;hd.position.x=0.18;
+    a.add(sh,hd);g.add(a);return a;}
+  /* 歐亞板塊在西北方，箭頭指向東南；菲律賓海板塊在東南方，箭頭指向西北 */
+  const AR=[{a:arrow(),x:-0.78,z:-0.5,dx:1,dz:1},{a:arrow(),x:0.9,z:0.42,dx:-1,dz:-1}];
+  AR.forEach(o=>{const l=Math.hypot(o.dx,o.dz);o.dx/=l;o.dz/=l;o.a.rotation.y=Math.atan2(-o.dz,o.dx);o.y=0.3;});
+  const tEU=V.tag('歐亞板塊',AR[0].x-0.15,0.38,AR[0].z-0.15,'big'),
+        tPH=V.tag('菲律賓海板塊<br><span style="font-weight:400;font-size:12px">向西北，每年約 8 公分</span>',AR[1].x+0.12,0.4,AR[1].z+0.12,'big sea'),
+        tB=V.tag('花東縱谷（板塊交界）',0,0,0,'hot'),tQ=V.tag('地震',0,0,0,'hot big'),
+        tCR=V.tag('中央山脈',0,0,0,''),tCo=V.tag('海岸山脈',0,0,0,'');
+  const tags=[tEU,tPH,tB,tQ,tCR,tCo];
+  /* 交界線：沿著地表的紅色虛線 */
+  const ND=34,dashes=[],dm=new THREE.MeshBasicMaterial({color:0xd62f2f});
+  for(let i=0;i<ND;i++){const m=new THREE.Mesh(new THREE.BoxGeometry(0.014,0.012,1),dm);g.add(m);dashes.push(m);}
+  /* 地震波紋 */
+  const rings=[[-0.42,0],[0.05,40],[0.4,80]].map(([z,ph])=>{
+    const m=new THREE.Mesh(new THREE.RingGeometry(0.035,0.05,40),new THREE.MeshBasicMaterial({color:0xd62f2f,transparent:true,side:THREE.DoubleSide,depthWrite:false}));
+    m.rotation.x=-Math.PI/2;m.visible=false;g.add(m);return {m,z,ph};});
+  let quaking=false,t=0,on=true;
+  const p0=new THREE.Vector3(),p1=new THREE.Vector3();
+  V.onFrame(()=>{
+    if(!g.visible)return;t++;
+    const L=SZ/ND;
+    for(let i=0;i<ND;i++){const za=-SZ/2+L*i+L*0.15,zb=za+L*0.6,xa=xbAt(za),xb=xbAt(zb);
+      p0.set(xa,hAt(xa,za)*YS+0.012,za);p1.set(xb,hAt(xb,zb)*YS+0.012,zb);
+      const m=dashes[i];m.position.copy(p0).add(p1).multiplyScalar(0.5);m.scale.z=p0.distanceTo(p1);m.lookAt(p1);}
+    const zb=SZ/2-0.12;tB.pos.set(xbAt(zb),hAt(xbAt(zb),zb)*YS+0.03,zb);
+    const zc=-0.12,xc=xbAt(zc)-0.25,xo=xbAt(0.3)+0.13;
+    tCR.pos.set(xc,hAt(xc,zc)*YS+0.04,zc);tCo.pos.set(xo,hAt(xo,0.3)*YS+0.04,0.3);
+    tCR.show=on&&hAt(xc,zc)>700;tCo.show=on&&hAt(xo,0.3)>350;
+    AR.forEach(o=>{const k=quaking?0.05*Math.sin(t*0.18):0;o.a.position.set(o.x+o.dx*k,o.y,o.z+o.dz*k);});
+    rings.forEach(r=>{r.m.visible=quaking;if(!quaking)return;const ph=((t+r.ph)%60)/60,x=xbAt(r.z)-0.03;
+      r.m.position.set(x,hAt(x,r.z)*YS+0.015,r.z);r.m.scale.setScalar(1+ph*4);r.m.material.opacity=1-ph;});
+    tQ.show=on&&quaking;if(quaking){const x=xbAt(0.05)-0.03;tQ.pos.set(x,hAt(x,0.05)*YS+0.06,0.05);}
+  });
+  return {
+    show(b){on=b;g.visible=b;tEU.show=tPH.show=tB.show=b;tQ.show=b&&quaking;if(!b)tCR.show=tCo.show=false;},
+    quake(b){quaking=b;}
+  };
+})();
+
+/* ---------- 板塊位置與隱沒帶的 3D（臺灣周邊，示意圖，深度經誇大） ---------- */
+const REGION=(function(){
+  const g=new THREE.Group();g.visible=false;V.scene.add(g);
+  const L0=118.9,L1=124.1,B0=20.2,B1=25.8,KZ=0.42,KX=KZ*Math.cos(23*Math.PI/180);
+  const X=lon=>(lon-121.5)*KX,Z=lat=>-(lat-23)*KZ;
+  const X0=X(L0),X1=X(L1),Z0=Z(B1),Z1=Z(B0);           /* Z0：北邊（-z），Z1：南邊 */
+  const TH=0.12;
+  /* 菲律賓海板塊的範圍：沿馬尼拉海溝→恆春東南外海→花東縱谷→花蓮外海→琉球海溝 */
+  const BND=[[119.8,19.9],[119.8,21.35],[120.6,21.6],[121.05,21.95],[121.2,22.6],[121.15,22.75],[121.6,24.0],[121.95,23.6],[124.4,23.6]];
+  const PH=BND.concat([[124.4,19.9]]).map(([a,b])=>[X(a),Z(b)]);
+  function inPH(x,z){let c=false;for(let i=0,j=PH.length-1;i<PH.length;j=i++){const [xi,zi]=PH[i],[xj,zj]=PH[j];
+    if((zi>z)!==(zj>z)&&x<(xj-xi)*(z-zi)/(zj-zi)+xi)c=!c;}return c;}
+  const MAN=[[119.8,B0],[119.8,21.35]].map(([a,b])=>[X(a),Z(b)]);            /* 馬尼拉海溝（大致南北走向） */
+  const RYU=[[121.95,23.6],[L1,23.6]].map(([a,b])=>[X(a),Z(b)]);            /* 琉球海溝（臺灣附近大致東西走向） */
+  const MAN_N=Z(21.35),RYU_W=RYU[0][0];
+  const dMan=(x,z)=>x-MAN[0][0];                        /* 在馬尼拉海溝以東多遠 */
+  const dRyu=(x,z)=>RYU[0][1]-z;                        /* 在琉球海溝以北多遠 */
+  const inMan=(x,z)=>z>=MAN_N, inRyu=(x,z)=>x>=RYU_W;
+  const DMAX=0.72;
+  const slabTop=d=>-0.004-TH*Math.min(1,Math.max(0,d)/0.3)-0.8*Math.pow(Math.max(0,Math.min(d,DMAX)-0.3),1.15);
+  const taper=d=>-TH*Math.min(1,Math.max(0,d)/0.3);
+  /* 每個板塊：在某一點的上緣、下緣、是否存在、是否在另一板塊之上（半透明） */
+  function EU(x,z){
+    if(!inPH(x,z)){const over=inRyu(x,z)&&dRyu(x,z)>=0&&dRyu(x,z)<=DMAX;return {t:0,b:over?taper(dRyu(x,z)):-TH,on:true,over};}
+    if(inMan(x,z)){const d=dMan(x,z),t=slabTop(d);return {t,b:t-TH,on:d<=DMAX,over:false};}
+    return {t:0,b:-TH,on:false,over:false};}
+  function PHp(x,z){
+    if(inPH(x,z)){const over=inMan(x,z)&&dMan(x,z)>=0&&dMan(x,z)<=DMAX;return {t:0,b:over?taper(dMan(x,z)):-TH,on:true,over};}
+    if(inRyu(x,z)){const d=dRyu(x,z),t=slabTop(d);return {t,b:t-TH,on:d<=DMAX,over:false};}
+    return {t:0,b:-TH,on:false,over:false};}
+  /* 依格點建出有厚度的板塊（上面、下面、邊緣的牆） */
+  const NXr=104,NZr=116;
+  function build(F,topC,wallC){
+    const V2=[];for(let j=0;j<=NZr;j++)for(let i=0;i<=NXr;i++){const x=X0+(X1-X0)*i/NXr,z=Z0+(Z1-Z0)*j/NZr;V2.push(F(x,z));}
+    const C=[];for(let j=0;j<NZr;j++)for(let i=0;i<NXr;i++){const x=X0+(X1-X0)*(i+0.5)/NXr,z=Z0+(Z1-Z0)*(j+0.5)/NZr;C.push(F(x,z));}
+    const parts=[[],[]].map(()=>({top:[],wall:[]}));
+    const P=(i,j,k)=>{const v=V2[j*(NXr+1)+i];return [X0+(X1-X0)*i/NXr,k?v.b:v.t,Z0+(Z1-Z0)*j/NZr];};
+    const quad=(arr,a,b,c,d)=>arr.push(...a,...b,...c,...a,...c,...d);
+    const on=(i,j)=>i>=0&&j>=0&&i<NXr&&j<NZr&&C[j*NXr+i].on;
+    for(let j=0;j<NZr;j++)for(let i=0;i<NXr;i++){const c=C[j*NXr+i];if(!c.on)continue;const q=parts[c.over?1:0];
+      quad(q.top,P(i,j,0),P(i,j+1,0),P(i+1,j+1,0),P(i+1,j,0));
+      quad(q.top,P(i,j,1),P(i+1,j,1),P(i+1,j+1,1),P(i,j+1,1));
+      if(!on(i,j-1))quad(q.wall,P(i,j,0),P(i+1,j,0),P(i+1,j,1),P(i,j,1));
+      if(!on(i,j+1))quad(q.wall,P(i+1,j+1,0),P(i,j+1,0),P(i,j+1,1),P(i+1,j+1,1));
+      if(!on(i-1,j))quad(q.wall,P(i,j+1,0),P(i,j,0),P(i,j,1),P(i,j+1,1));
+      if(!on(i+1,j))quad(q.wall,P(i+1,j,0),P(i+1,j+1,0),P(i+1,j+1,1),P(i+1,j,1));}
+    parts.forEach((q,k)=>{[[q.top,topC],[q.wall,wallC]].forEach(([arr,col])=>{if(!arr.length)return;
+      const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(arr,3));geo.computeVertexNormals();
+      const m=new THREE.MeshLambertMaterial({color:col,side:THREE.DoubleSide,transparent:k===1,opacity:k===1?0.42:1,depthWrite:k!==1});
+      const mesh=new THREE.Mesh(geo,m);mesh.renderOrder=k?3:0;g.add(mesh);});});
+  }
+  build(EU,0xc98b5a,0x9c6a42);
+  build(PHp,0x5f9a8a,0x3f7466);
+  /* 海水（很淡）、臺灣與離島 */
+  const sea=new THREE.Mesh(new THREE.PlaneGeometry(X1-X0,Z1-Z0),new THREE.MeshLambertMaterial({color:0x5aa0d0,transparent:true,opacity:0.18,depthWrite:false}));
+  sea.rotation.x=-Math.PI/2;sea.position.set((X0+X1)/2,0.035,(Z0+Z1)/2);sea.renderOrder=4;g.add(sea);
+  if(window.GEO){Object.values(GEO.tw).forEach(poly=>{
+    const sh=new THREE.Shape();poly.forEach(([a,b],i)=>i?sh.lineTo(X(a),-Z(b)):sh.moveTo(X(a),-Z(b)));
+    const geo=new THREE.ExtrudeGeometry(sh,{depth:0.06,bevelEnabled:false});geo.rotateX(-Math.PI/2);
+    const m=new THREE.Mesh(geo,new THREE.MeshLambertMaterial({color:0x7fae6a}));m.position.y=0.001;g.add(m);});
+    const lm=new THREE.LineBasicMaterial({color:0x6b6b6b});
+    (GEO.cn||[]).forEach(l=>{const pts=l.filter(([a,b])=>a>=L0&&a<=L1&&b>=B0&&b<=B1).map(([a,b])=>new THREE.Vector3(X(a),0.004,Z(b)));
+      if(pts.length>1)g.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),lm));});}
+  /* 海溝：深藍色粗線 */
+  function chain(P,color,w,y,dash){const m=new THREE.MeshBasicMaterial({color});
+    for(let i=0;i+1<P.length;i++){const a=P[i],b=P[i+1],n=Math.max(1,Math.round(Math.hypot(b[0]-a[0],b[1]-a[1])/(dash?0.05:0.2)));
+      for(let k=0;k<n;k++){const u0=k/n,u1=(k+(dash?0.6:1))/n;
+        const p0=new THREE.Vector3(a[0]+(b[0]-a[0])*u0,y,a[1]+(b[1]-a[1])*u0),p1=new THREE.Vector3(a[0]+(b[0]-a[0])*u1,y,a[1]+(b[1]-a[1])*u1);
+        const bx=new THREE.Mesh(new THREE.BoxGeometry(w,0.01,p0.distanceTo(p1)),m);bx.position.copy(p0).add(p1).multiplyScalar(0.5);bx.lookAt(p1);g.add(bx);}}}
+  chain(MAN,0x23365c,0.03,0.006);chain(RYU,0x23365c,0.03,0.006);
+  chain([[121.15,22.75],[121.6,24.0]].map(([a,b])=>[X(a),Z(b)]),0xd62f2f,0.018,0.066,true);
+  /* 板塊運動方向 */
+  function arrow(x,y,z,dx,dz){const a=new THREE.Group(),mat=new THREE.MeshLambertMaterial({color:0xd23b2b,emissive:0x3a0000});
+    const sh=new THREE.Mesh(new THREE.CylinderGeometry(0.03,0.03,0.36,16),mat);sh.rotation.z=-Math.PI/2;sh.position.x=-0.07;
+    const hd=new THREE.Mesh(new THREE.ConeGeometry(0.08,0.17,24),mat);hd.rotation.z=-Math.PI/2;hd.position.x=0.18;
+    a.add(sh,hd);const l=Math.hypot(dx,dz);a.rotation.y=Math.atan2(-dz/l,dx/l);a.position.set(x,y,z);g.add(a);}
+  arrow(X(123.4),0.22,Z(21.6),-1,-1);arrow(X(119.6),0.22,Z(24.9),1,1);
+  /* 外框 */
+  const box=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(X1-X0,0.66,Z1-Z0)),new THREE.LineBasicMaterial({color:0xb9b3a3}));
+  box.position.set((X0+X1)/2,0.04-0.33,(Z0+Z1)/2);g.add(box);
+  const T2=[
+    V.tag('歐亞板塊',X(119.35),0.06,Z(22.6),'big'),
+    V.tag('菲律賓海板塊<br><span style="font-weight:400;font-size:12px">向西北，每年約 8 公分</span>',X(123.6),0.28,Z(21.15),'big sea'),
+    V.tag('臺灣',X(120.75),0.1,Z(23.75),'big'),
+    V.tag('花東縱谷（陸上的板塊交界）',X(121.45),0.1,Z(23.15),'hot'),
+    V.tag('琉球海溝',X(123.3),0.05,Z(23.6),''),
+    V.tag('馬尼拉海溝',X(119.8),0.05,Z(20.9),''),
+    V.tag('菲律賓海板塊向北<br>隱沒到歐亞板塊之下',X1,-0.3,Z(24.35),'sea'),
+    V.tag('歐亞板塊向東<br>隱沒到菲律賓海板塊之下',X(120.45),-0.3,Z1,''),
+    V.tag('中國大陸',X(119.25),0.06,Z(25.55),'')];
+  T2.forEach(t=>t.show=false);
+  return {show(b){g.visible=b;T2.forEach(t=>t.show=b);}};
+})();
+
+/* ---------- 火山噴發的 3D：噴出的熔岩、熔岩流、火山灰 ---------- */
+const VOLC=(function(){
+  const dotTex=(()=>{const c=document.createElement('canvas');c.width=c.height=32;const x=c.getContext('2d');
+    x.beginPath();x.arc(16,16,14,0,Math.PI*2);x.fillStyle='#fff';x.fill();return new THREE.CanvasTexture(c);})();
+  function points(n,color,size,op){
+    const p=new Float32Array(n*3).fill(1e4),geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.BufferAttribute(p,3));
+    const m=new THREE.PointsMaterial({color,size,map:dotTex,transparent:true,opacity:op||1,alphaTest:0.2,depthWrite:false});
+    const o=new THREE.Points(geo,m);o.frustumCulled=false;o.renderOrder=4;V.scene.add(o);return {p,geo,n};}
+  const LV=points(170,0xff6a1f,0.035),ASH=points(150,0x8d8d8d,0.085,0.75);
+  const vx=new Float32Array(LV.n),vy=new Float32Array(LV.n),vz=new Float32Array(LV.n);
+  const ay=new Float32Array(ASH.n);
+  const RUN=Array.from({length:10},()=>({x:0,z:0,live:false,steps:0}));
+  let cx=0,cz=0,erupting=false,tail=0,has=false,on=false,f=0,lowLava=null;
+  const tC=V.tag('火山口',0,0,0,'hot big'),tL=V.tag('熔岩',0,0,0,'hot'),tA=V.tag('火山灰',0,0,0,'big');
+  const tags=[tC,tL,tA];tags.forEach(x=>x.show=false);
+  const hide=(P,i)=>{P.p[i*3]=P.p[i*3+1]=P.p[i*3+2]=1e4;};
+  function burn(x,z,r){const k=kAt(x,z);for(let dj=-r;dj<=r;dj++)for(let di=-r;di<=r;di++){const q=k+dj*(N+1)+di;if(q>=0&&q<HOT.length){HOT[q]=1;LAV[q]=Math.min(1,LAV[q]+0.5);}}}
+  function craterY(){return hAt(cx,cz)*YS;}
+  V.onFrame(()=>{
+    if(!erupting&&tail<=0){if(has&&on)place();return;}
+    f++;if(!erupting)tail--;
+    const cy=craterY();
+    for(let i=0;i<LV.n;i++){
+      if(LV.p[i*3]>1e3){if(erupting&&Math.random()<0.25){const a=Math.random()*6.283,sp=0.002+Math.random()*0.006;
+          LV.p[i*3]=cx;LV.p[i*3+1]=cy+0.01;LV.p[i*3+2]=cz;vx[i]=Math.cos(a)*sp;vz[i]=Math.sin(a)*sp;vy[i]=0.018+Math.random()*0.02;}continue;}
+      LV.p[i*3]+=vx[i];LV.p[i*3+1]+=vy[i];LV.p[i*3+2]+=vz[i];vy[i]-=0.0011;
+      const gx=LV.p[i*3],gz=LV.p[i*3+2];
+      if(vy[i]<0&&LV.p[i*3+1]<=hAt(gx,gz)*YS){burn(gx,gz,0);hide(LV,i);}}
+    for(let i=0;i<ASH.n;i++){
+      if(ASH.p[i*3]>1e3){if(erupting&&Math.random()<0.12){ASH.p[i*3]=cx+(Math.random()-0.5)*0.04;ASH.p[i*3+2]=cz+(Math.random()-0.5)*0.04;ASH.p[i*3+1]=cy+0.02;ay[i]=0.004+Math.random()*0.005;}continue;}
+      ASH.p[i*3+1]+=ay[i];ASH.p[i*3]+=0.0012+(Math.random()-0.5)*0.002;ASH.p[i*3+2]+=(Math.random()-0.5)*0.002;
+      if(ASH.p[i*3+1]>cy+0.75)hide(ASH,i);}
+    /* 熔岩流：從火山口順著山坡往下流 */
+    const e=0.015;
+    RUN.forEach(r=>{
+      if(!r.live){if(erupting&&f>20&&Math.random()<0.03){const a=Math.random()*6.283;r.x=cx+Math.cos(a)*0.06;r.z=cz+Math.sin(a)*0.06;r.live=true;r.steps=0;}return;}
+      const gx=(hAt(r.x+e,r.z)-hAt(r.x-e,r.z))/(2*e),gz=(hAt(r.x,r.z+e)-hAt(r.x,r.z-e))/(2*e),sl=Math.hypot(gx,gz);
+      if(sl<300||++r.steps>140||Math.abs(r.x)>SX/2-0.03||Math.abs(r.z)>SZ/2-0.03){r.live=false;lowLava=[r.x,r.z];return;}
+      r.x-=gx/sl*0.004;r.z-=gz/sl*0.004;burn(r.x,r.z,1);});
+    let any=false;const dec=erupting?0.994:0.975;
+    for(let k=0;k<HOT.length;k++)if(HOT[k]>0.01){HOT[k]*=dec;any=true;}else HOT[k]=0;
+    if(any&&f%2===0)T.paint();
+    LV.geo.attributes.position.needsUpdate=true;ASH.geo.attributes.position.needsUpdate=true;
+    if(!erupting&&tail<=0){for(let i=0;i<LV.n;i++)hide(LV,i);for(let i=0;i<ASH.n;i++)hide(ASH,i);
+      LV.geo.attributes.position.needsUpdate=true;ASH.geo.attributes.position.needsUpdate=true;T.paint();}
+    if(f%6===0)place();
+  });
+  function place(){
+    const cy=craterY();
+    tC.pos.set(cx,cy+0.05,cz);
+    tA.pos.set(cx+0.12,cy+0.55,cz);
+    if(lowLava)tL.pos.set(lowLava[0],hAt(lowLava[0],lowLava[1])*YS+0.03,lowLava[1]);
+    tC.show=on&&has;tA.show=on&&erupting;tL.show=on&&has&&!!lowLava;}
+  return {
+    start(x,z){cx=x;cz=z;has=true;erupting=true;tail=0;f=0;lowLava=null;RUN.forEach(r=>r.live=false);},
+    end(){erupting=false;tail=180;},
+    stop(){erupting=false;tail=0;has=false;lowLava=null;for(let i=0;i<LV.n;i++)hide(LV,i);for(let i=0;i<ASH.n;i++)hide(ASH,i);
+      LV.geo.attributes.position.needsUpdate=true;ASH.geo.attributes.position.needsUpdate=true;tags.forEach(x=>x.show=false);},
+    show(b){on=b;if(b)place();else tags.forEach(x=>x.show=false);}
+  };
+})();
+
+/* 作用力切換：只顯示選到的那一種 */
+const tabs=[...document.querySelectorAll('.force-tabs .tab')];
+const subBtns=['bUp','bVol','bEro'].map(id=>document.getElementById(id));
+let force='in',sub='plate',pview='local';
+function panels(){
+  document.querySelectorAll('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==force||(!!p.dataset.sub&&p.dataset.sub!==sub)||(!!p.dataset.pview&&p.dataset.pview!==pview));
+  const reg=force==='in'&&sub==='plate'&&pview==='region';
+  T.group.visible=!reg;REGION.show(reg);
+  PLATE.show(force==='in'&&sub==='plate'&&!reg);VOLC.show(force==='in'&&sub==='volc');
+  if(reg)ERO.tagsOff();
+  document.querySelector('.meter').style.visibility=reg?'hidden':'';}
+/* 板塊擠壓的兩種 3D 畫面：①造山（臺灣東部剖面）②板塊位置與隱沒帶（臺灣周邊） */
+const LOCALD=document.getElementById('v').clientWidth<600?5.2:3.7;
+function setView(v){
+  if(pview===v)return;pview=v;
+  document.getElementById('vLocal').classList.toggle('on',v==='local');document.getElementById('vRegion').classList.toggle('on',v==='region');
+  panels();
+  if(v==='region'){V.target(0.05,-0.18,0.05);V.view(0.72,0.5,LOCALD*1.12);
+    say(REGION_MSG);}
+  else{V.target(0,0.05,0);V.view(-0.8,0.5,LOCALD);if(!anim.length&&force==='in')say('按「板塊擠壓」，看兩個板塊怎麼互相擠壓、讓山脈隆起。');}}
+document.getElementById('vLocal').onclick=()=>setView('local');
+document.getElementById('vRegion').onclick=()=>setView('region');
+document.getElementById('vSouth').onclick=()=>{V.view(0,0.3,LOCALD*1.05);say('<b>從南邊看（馬尼拉海溝）</b>：切面上可以看到<b>歐亞板塊</b>（橘褐色）往東插到<b>菲律賓海板塊</b>（綠色、半透明）的底下，這就是「歐亞板塊隱沒到菲律賓海板塊之下」。');};
+document.getElementById('vEast').onclick=()=>{V.view(Math.PI/2,0.3,LOCALD*1.05);say('<b>從東邊看（琉球海溝）</b>：切面上可以看到<b>菲律賓海板塊</b>（綠色）往北插到<b>歐亞板塊</b>（橘褐色、半透明）的底下，這就是「菲律賓海板塊隱沒到歐亞板塊之下」。');};
+document.getElementById('vAll').onclick=()=>{V.view(0.72,0.5,LOCALD*1.12);};
+/* 內營力的兩種作用分開顯示：板塊擠壓／火山噴發 */
+function setSub(s){if(s!=='plate'&&pview==='region')setView('local');const was=force==='in'&&sub==='plate';sub=s;pick(s==='plate'?'bUp':'bVol');panels();if(!was&&force==='in'&&s==='plate')V.view(-0.8,0.5);}
+function pick(id){subBtns.forEach(b=>b.classList.toggle('on',b.id===id));}
+function relief(){let mx=-1e9,mn=1e9;for(const h of T.H){if(h>mx)mx=h;if(h<mn)mn=h;}return mx-mn;}
+function setForce(f){
+  if(f!=='in'){flushInner();if(pview==='region')setView('local');}
+  const was=force==='in'&&sub==='plate';force=f;
+  tabs.forEach(t=>{const on=t.dataset.force===f;t.classList.toggle('on',on);t.setAttribute('aria-selected',on);});
+  panels();
+  pick(f==='in'?(sub==='plate'?'bUp':'bVol'):null);
+  if(!was&&f==='in'&&sub==='plate')V.view(-0.8,0.5);
+  if(f==='out')ERO.place();else ERO.tagsOff();
+  if(!anim.length)say(f==='in'
+    ?(sub==='plate'?'按「板塊擠壓」，看兩個板塊怎麼互相擠壓、讓山脈隆起。':'按「火山噴發」，看岩漿怎麼噴出地表、堆積成火山。')
+    :(relief()<300?'現在地面很平坦，先切到「<b>內營力</b>」造一座山，再回來試試外營力。':'按「侵蝕、搬運、堆積」幾次，看山怎麼被磨低、低處怎麼被填高。'));
+}
+tabs.forEach(t=>t.addEventListener('click',()=>setForce(t.dataset.force)));
 function meter(){let mx=-1e9,mn=1e9;for(const h of T.H){if(h>mx)mx=h;if(h<mn)mn=h;}
   document.getElementById('mMax').textContent=Math.round(mx)+' m';document.getElementById('mMin').textContent=Math.round(mn)+' m';
   document.getElementById('mRel').textContent=Math.round(mx-mn)+' m';}
 function say(t){document.getElementById('status').innerHTML=t;}
-reset();say('先按「板塊擠壓」讓山脈隆起，再按幾次「侵蝕、搬運、堆積」看看山怎麼被磨低、低處怎麼被填高。');
+reset();
+/* 預設：內營力（板塊擠壓），開頁自動示範一次造山 */
+/* 開頁的造山：先算好地形變化，INIT＝丘陵＋這次造山的結果，「重來」時用 */
+FIRST=upliftField();
+{const pos=T.mesh.geometry.attributes.position;INIT=Float32Array.from(T.H);for(let i=0;i<INIT.length;i++)INIT[i]+=FIRST(pos.getX(i),pos.getZ(i));}
+V.home(-0.8,0.5,LOCALD);setForce('in');setSub('plate');uplift(FIRST);
+/* 臺灣周邊小島的火山：分布地圖 */
+if(window.GEO)G3.TwMap(document.getElementById('volcMap'),{bbox:[119.2,122.75,21.8,25.75],maxH:460,draw(m){
+  const c=m.ctx,tri=(lon,lat,col,r)=>{r=r||7;const [x,y]=m.P(lon,lat);c.beginPath();c.moveTo(x,y-r-1);c.lineTo(x+r,y+r*0.7);c.lineTo(x-r,y+r*0.7);c.closePath();c.fillStyle=col;c.fill();c.strokeStyle='#fff';c.lineWidth=1.5;c.stroke();};
+  const ACT='#d6452b',OFF='#8a8278';
+  tri(121.95,24.84,ACT);m.label('龜山島',121.95,24.84,{dx:11,dy:3,bold:true,size:13,color:'#b8341c'});
+  tri(121.79,25.19,OFF,5);m.label('基隆嶼',121.79,25.19,{dx:0,dy:-13,align:'center',size:12});
+  /* 本島北部的兩個火山群（對照用） */
+  tri(121.55,25.17,ACT);m.label('大屯火山群',121.55,25.17,{dx:-6,dy:-13,align:'right',bold:true,size:12.5,color:'#b8341c'});
+  tri(121.43,25.14,OFF,5);m.label('觀音山',121.43,25.14,{dx:-9,dy:8,align:'right',size:12});
+  /* 海岸山脈：古代火山島弧（沿東海岸的灰色粗線） */
+  m.line([[121.24,22.8],[121.37,23.1],[121.48,23.45],[121.58,23.88]],'rgba(138,130,120,.85)',5);
+  m.label('海岸山脈',121.5,23.4,{dx:10,size:12});
+  tri(121.85,25.11,OFF,6);m.label('基隆火山群',121.85,25.11,{dx:9,dy:9,size:12});
+  tri(122.08,25.63,OFF,5);tri(122.10,25.48,OFF,5);tri(121.94,25.43,OFF,5);
+  m.label('北方三島',121.92,25.6,{dx:-10,dy:-4,align:'right',size:12.5});
+  m.label('彭佳嶼・棉花嶼・花瓶嶼',121.92,25.6,{dx:-10,dy:11,align:'right',size:10.5,color:'#4d5a52'});
+  tri(119.58,23.57,OFF);m.label('澎湖群島',119.58,23.57,{dx:-12,dy:-14,size:12.5});
+  tri(121.49,22.66,OFF);m.label('綠島',121.49,22.66,{dx:11,size:12.5});
+  tri(121.55,22.04,OFF);m.label('蘭嶼',121.55,22.04,{dx:11,size:12.5});
+  m.label('臺灣本島',120.85,23.6,{size:13,bold:true,align:'center',dx:0,color:'#5a6b5e',halo:false});}});
 })();
 </script>
 </body>

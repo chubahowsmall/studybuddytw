@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const head=document.getElementById('site-head');
   if(head){
     head.className='site-head';
-    head.innerHTML='<div class="wrap"><a class="brand" href="index.html">地理 3D 教室<small>國七上・第二次段考</small></a><nav class="nav">'+
+    head.innerHTML='<div class="wrap"><a class="brand" href="index.html">地理 3D 教室<small>國七上・第二次段考<span style="color:#f5c84c;font-weight:700">（翰林版）</span></small></a><nav class="nav">'+
       NAV.map(([h,t])=>'<a href="'+h+'"'+(h===here?' class="on" aria-current="page"':'')+'>'+t+'</a>').join('')+'</nav></div>';
   }
   const foot=document.getElementById('site-foot');
