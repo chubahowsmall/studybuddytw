@@ -15,7 +15,7 @@
 <main class="wrap">
   <span class="kicker">4-1 海岸的類型與特色・4-2 臺灣的海岸與利用</span>
   <h1>臺灣的四種海岸：北岬灣、東斷層、南珊瑚、西沙岸</h1>
-  <p class="lead">臺灣四周的海岸長得很不一樣。切換下面四個 3D 模型，比較海岸線是平直還是曲折、海岸是平緩還是陡峭，再對照地圖看它們分布在哪裡。</p>
+  <p class="lead"><b>海岸</b>是陸地與海洋交界的地帶。臺灣海岸線長約 <b>1,341 公里</b>，四周的海岸長得很不一樣。切換下面四個 3D 模型，比較海岸線是平直還是曲折、海岸是平緩還是陡峭，再對照地圖看它們分布在哪裡。</p>
 
   <div class="bar" id="types">
     <button class="btn on" data-k="sand">西部・沙岸</button>
@@ -33,26 +33,82 @@
     </div>
   </div>
 
-  <h2>臺灣海岸分布圖</h2>
+  <h2>4-1 依「構成物質」分類：沙岸、岩岸、珊瑚礁海岸</h2>
+  <div class="tscroll">
+  <table class="t">
+    <tr><th></th><th>沙岸</th><th>岩岸</th><th>珊瑚礁海岸</th></tr>
+    <tr><td style="white-space:nowrap"><b>怎麼形成</b></td><td>由海水、河川的<b>堆積</b>作用形成</td><td><b>山地、丘陵逼近海洋</b>所形成的岩石海岸</td><td>由死亡的<b>珊瑚蟲骨骼或貝殼</b>組成的礁岩海岸</td></tr>
+    <tr><td><b>特徵</b></td><td>海岸線<b>平直</b>；海岸平原較廣；沿岸海水<b>較淺</b>；多沙灘、<b>沙洲</b>、<b>潟湖</b></td><td>常見<b>岬角與海灣相間</b>；海岸平原較窄；沿岸海水<b>較深</b>；<b>多良港</b></td><td>出現在<b>海水乾淨、陽光充足的熱帶淺海</b>；海底生態豐富</td></tr>
+    <tr><td><b>發展</b></td><td><b>鹽業、養殖漁業</b>（魚塭、蚵架）；也常成為海水浴場和度假勝地</td><td><b>捕撈漁業與海運</b></td><td>常成為<b>旅遊勝地</b></td></tr>
+  </table>
+  </div>
+
+  <h3>岩岸常見的海蝕地形：海蝕洞 → 海蝕門 → 海蝕柱</h3>
+  <div class="card tight">
+<div class="tscroll"><div style="min-width:560px">
+<svg viewBox="0 0 720 250" role="img" aria-label="海蝕地形的變化：波浪先在岬角的岩壁侵蝕出海蝕洞，洞被打穿成為海蝕門，海蝕門頂部崩落後，留下孤立在海中的海蝕柱" style="width:100%;height:auto;display:block">
+  <defs><pattern id="sv" width="14" height="6" patternUnits="userSpaceOnUse"><path d="M0,3 q3.5,-3 7,0 t7,0" fill="none" stroke="#ffffff" stroke-opacity=".7" stroke-width="1.3"/></pattern></defs>
+  <g font-size="13" fill="#1f2a24" text-anchor="middle">
+  <!-- ① 海蝕洞 -->
+  <rect x="10" y="20" width="210" height="160" rx="8" fill="#e6f0f6"/>
+  <path d="M60,180 L60,70 Q66,48 92,44 L170,40 Q205,42 220,56 L220,180Z" fill="#9c8f7a" stroke="#6f6553" stroke-width="1.2"/>
+  <path d="M60,96 L220,92 M60,126 L220,122" stroke="#857963" stroke-width="1" fill="none"/>
+  <path d="M100,150 L100,128 Q118,104 136,128 L136,150Z" fill="#3b3a36"/>
+  <rect x="10" y="145" width="210" height="35" fill="#4f8fc0"/><rect x="10" y="145" width="210" height="35" fill="url(#sv)"/>
+  <path d="M28,138 q10,-8 20,0 M70,140 q8,-6 16,0" stroke="#2d6f9e" stroke-width="2" fill="none"/>
+  <path d="M40,132 L88,132" stroke="#d62f2f" stroke-width="2.5" marker-end="url(#svA)"/>
+  <text x="115" y="206" font-weight="700" font-size="15">① 海蝕洞</text>
+  <text x="115" y="226" font-size="12.5" fill="#4d5a52">波浪拍打岩壁較軟的地方，</text>
+  <text x="115" y="242" font-size="12.5" fill="#4d5a52">侵蝕出洞穴</text>
+  <!-- ② 海蝕門 -->
+  <rect x="255" y="20" width="210" height="160" rx="8" fill="#e6f0f6"/>
+  <path fill-rule="evenodd" d="M290,180 L290,72 Q296,52 322,48 L420,46 Q452,48 465,60 L465,180Z M330,150 L330,112 Q365,72 400,112 L400,150Z" fill="#9c8f7a" stroke="#6f6553" stroke-width="1.2"/>
+  <path d="M290,94 L330,94 M400,92 L465,92" stroke="#857963" stroke-width="1"/>
+  <rect x="255" y="145" width="210" height="35" fill="#4f8fc0"/><rect x="255" y="145" width="210" height="35" fill="url(#sv)"/>
+  <text x="365" y="206" font-weight="700" font-size="15">② 海蝕門</text>
+  <text x="365" y="226" font-size="12.5" fill="#4d5a52">洞穴被打穿，</text>
+  <text x="365" y="242" font-size="12.5" fill="#4d5a52">像一道拱門</text>
+  <!-- ③ 海蝕柱 -->
+  <rect x="500" y="20" width="210" height="160" rx="8" fill="#e6f0f6"/>
+  <path d="M520,180 L522,92 Q526,74 540,72 L556,74 Q566,80 566,96 L568,180Z" fill="#9c8f7a" stroke="#6f6553" stroke-width="1.2"/>
+  <path d="M620,180 L620,96 Q628,64 660,58 L700,56 Q708,58 710,64 L710,180Z" fill="#9c8f7a" stroke="#6f6553" stroke-width="1.2"/>
+  <path d="M574,150 l6,-6 l8,4 l7,-5 l9,6 l8,-3 l8,4" stroke="#6f6553" stroke-width="1.5" fill="none"/>
+  <rect x="500" y="145" width="210" height="35" fill="#4f8fc0"/><rect x="500" y="145" width="210" height="35" fill="url(#sv)"/>
+  <text x="544" y="62" font-size="12" font-weight="700" fill="#5b3415">海蝕柱</text>
+  <text x="605" y="206" font-weight="700" font-size="15">③ 海蝕柱</text>
+  <text x="605" y="226" font-size="12.5" fill="#4d5a52">拱門頂部崩落，留下</text>
+  <text x="605" y="242" font-size="12.5" fill="#4d5a52">孤立在海中的岩柱</text>
+  </g>
+  <defs><marker id="svA" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#d62f2f"/></marker></defs>
+  <g fill="#a8572f" font-size="11.5" text-anchor="middle"><path d="M225,100 L250,100" stroke="#a8572f" stroke-width="2.5" marker-end="url(#svB)"/><path d="M470,100 L495,100" stroke="#a8572f" stroke-width="2.5" marker-end="url(#svB)"/></g>
+  <defs><marker id="svB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#a8572f"/></marker></defs>
+  <text x="38" y="124" font-size="11" fill="#d62f2f" font-weight="700">波浪</text>
+</svg>
+</div></div>
+    <p class="note" style="margin-bottom:0">岬角突出在海中，受到波浪侵蝕最強。上面是從海上看岬角的示意圖（自繪）；3D 模型「北部・岬灣海岸」裡也可以找到海蝕崖、海蝕平臺和海蝕柱。</p>
+  </div>
+
+  <h2>4-2 臺灣海岸分布圖</h2>
   <div class="lab">
     <div><canvas id="map" class="map" aria-label="臺灣海岸類型分布示意圖"></canvas>
       <div class="legend">
         <span><i style="background:#e0b43c"></i>沙岸</span><span><i style="background:#7b5e9e"></i>岬灣海岸（岩岸）</span>
-        <span><i style="background:#c0482e"></i>斷層海岸</span><span><i style="background:#2ba3a0"></i>珊瑚礁海岸</span>
+        <span><i style="background:#c0482e"></i>斷層海岸（岩岸）</span><span><i style="background:#2ba3a0"></i>珊瑚礁海岸</span>
       </div>
-      <p class="small">海岸分段為示意。點地圖上的名稱，可以切換上方的 3D 模型。</p>
+      <p class="small">分段依課本「臺灣海岸類型分布圖」，以 × 標出分界點：淡水河口、三貂角、蘇澳、旭海、楓港。點地圖上的名稱，可以切換上方的 3D 模型。</p>
     </div>
     <div>
       <h3 style="margin-top:0">四種海岸比較</h3>
       <div class="tscroll">
       <table class="t">
         <tr><th>海岸</th><th>海岸特色</th><th>主要成因</th><th>代表地點</th></tr>
-        <tr><td>北部岬灣</td><td>曲折</td><td>波浪<b>侵蝕</b>，硬岩成岬角、軟岩成海灣</td><td>野柳、基隆</td></tr>
-        <tr><td>東部斷層</td><td>平直、陡峭</td><td><b>斷層</b>作用，山地直逼海岸</td><td>清水斷崖</td></tr>
-        <tr><td>南部珊瑚礁</td><td>有裙礁圍繞</td><td><b>珊瑚礁</b>生長、地殼抬升</td><td>墾丁</td></tr>
-        <tr><td>西部沙岸</td><td>平直</td><td>河川泥沙<b>堆積</b></td><td>外傘頂洲、七股潟湖</td></tr>
+        <tr><td>北部岬灣（岩岸）<br><span class="small">淡水河口～三貂角</span></td><td>岬角與海灣相間，曲折</td><td>波浪<b>侵蝕</b>，硬岩成岬角、軟岩成海灣</td><td>野柳、基隆港、八斗子漁港</td></tr>
+        <tr><td>東部斷層（岩岸）<br><span class="small">蘇澳～旭海</span></td><td>海岸線陡直，多懸崖峭壁</td><td>位在<b>板塊交界</b>，<b>斷層</b>作用，山地直逼海岸</td><td>清水斷崖</td></tr>
+        <tr><td>南部珊瑚礁<br><span class="small">旭海～楓港</span></td><td>地表崎嶇凹凸，岩塊造型奇特</td><td><b>珊瑚礁</b>生長、地殼抬升</td><td>墾丁國家公園</td></tr>
+        <tr><td>西部沙岸<br><span class="small">淡水河口～楓港</span></td><td>平直，海灘寬廣</td><td>河川泥沙或礫石<b>堆積</b></td><td>外傘頂洲、七股潟湖</td></tr>
       </table>
       </div>
+      <p class="small">另外，<b>三貂角～蘇澳</b>（宜蘭平原沿岸）是沙岸。</p>
       <div class="warn">東部和西部的海岸線都「平直」，但原因不同：東部是<b>斷層</b>造成的陡峭海岸，西部是泥沙<b>堆積</b>造成的平緩沙岸。考試常拿這點來考。</div>
     </div>
   </div>
@@ -66,34 +122,44 @@
 const SX=2.4,SZ=1.6;
 const TXT={
  sand:{t:'西部・沙岸',c:'#e0b43c',
-  d:'<p><b>成因：</b>西部河川從山地帶來大量泥沙，加上海底坡度平緩，泥沙在沿岸<b>堆積</b>。</p><p><b>特色：</b>海岸線<b>平直</b>，沙灘寬廣，海水淺。外海常有和海岸平行的<b>沙洲</b>，沙洲和陸地之間圍出<b>潟湖</b>。</p><p><b>例子：</b>雲林、嘉義外海的外傘頂洲；臺南的七股潟湖。</p><p><b>利用：</b>缺乏天然良港，大型港口多是人工修築（如臺中港）；潟湖可以養殖牡蠣；沿海也發展風力發電。</p>',
+  d:'<p><b>成因：</b>西部河川從山地帶來大量泥沙，加上海底坡度平緩，泥沙在沿岸<b>堆積</b>。</p><p><b>特色：</b>主要由泥沙或礫石堆積而成，海岸線<b>平直</b>，海灘寬廣、入海坡度緩，海水淺。外海常有和海岸平行的<b>沙洲</b>，沙洲和陸地之間圍出<b>潟湖</b>。</p><p><b>例子：</b>雲林、嘉義外海的外傘頂洲；臺南的七股潟湖。</p><p><b>利用：</b>沿海居民從事<b>養殖漁業</b>，<b>魚塭、蚵架</b>廣布；過去也有<b>鹽田</b>。缺乏天然深港，大型港口多是人工修築（如臺中港）；沿海也發展風力發電。</p>',
   s:'模型為示意，高度經垂直誇大。'},
  rock:{t:'北部・岬灣海岸（岩岸）',c:'#7b5e9e',
-  d:'<p><b>成因：</b>山地、丘陵延伸到海邊，岩石軟硬不同。波浪<b>侵蝕</b>時，堅硬的岩石留下來突出成<b>岬角</b>，較軟的岩石被侵蝕凹進去成<b>海灣</b>。</p><p><b>特色：</b>岬角與海灣交錯，海岸線<b>曲折</b>。岬角常見海蝕崖、海蝕平臺、海蝕洞、蕈狀岩等<b>海蝕地形</b>；海灣內波浪較弱，常有沙灘。</p><p><b>例子：</b>新北野柳（蕈狀岩、女王頭）。</p><p><b>利用：</b>海灣可以建港口和漁港（如基隆港）；海蝕地形吸引觀光（野柳地質公園）。</p>',
+  d:'<p><b>成因：</b>山地、丘陵延伸到海邊，岩石軟硬不同。波浪<b>侵蝕</b>時，堅硬的岩石留下來突出成<b>岬角</b>，較軟的岩石被侵蝕凹進去成<b>海灣</b>。</p><p><b>特色：</b>岬角與海灣交錯，海岸線<b>曲折</b>。岬角常見海蝕崖、海蝕平臺、海蝕洞、蕈狀岩等<b>海蝕地形</b>；海灣內波浪較弱，常有沙灘。</p><p><b>例子：</b>新北野柳（蕈狀岩、女王頭）。海風及海浪的風化與侵蝕作用，造出許多<b>奇岩怪石</b>；海中還可能留下<b>海蝕柱</b>。</p><p><b>利用：</b>天然良港多，利於<b>捕撈漁業、海運</b>（如<b>八斗子漁港、基隆港</b>）；奇岩怪石富觀光價值（野柳地質公園）。</p>',
   s:'模型為示意，高度經垂直誇大。'},
  fault:{t:'東部・斷層海岸',c:'#c0482e',
-  d:'<p><b>成因：</b>板塊擠壓產生<b>斷層</b>，高山緊鄰海洋，陸地陡降入深海。</p><p><b>特色：</b>海岸線<b>平直</b>、海岸<b>陡峭</b>，有高聳的斷崖；離岸不遠海水就很深；海岸平原狹小。</p><p><b>例子：</b>花蓮的清水斷崖。</p><p><b>利用：</b>缺乏天然港灣，道路開闢不易（如蘇花公路沿著斷崖修築）；壯觀的斷崖景觀發展觀光。</p>',
+  d:'<p><b>成因：</b>東部海岸面臨太平洋，位在<b>板塊交界</b>處，板塊擠壓產生<b>斷層</b>，高山緊鄰海洋，陸地陡降入深海。</p><p><b>特色：</b>除了宜蘭平原外，大多是氣勢雄偉的<b>懸崖峭壁</b>；海岸線<b>陡直</b>，離岸不遠海水就很深；海岸平原狹小。</p><p><b>例子：</b>花蓮的清水斷崖。</p><p><b>利用：</b>天然港灣較少，<b>不利於海運</b>；道路開闢不易（如蘇花公路沿著斷崖修築）；壯觀的斷崖景觀發展觀光。</p><p class="note">課本附有「斷層海岸」影片，可掃課本上的 QR code 觀看。</p>',
   s:'模型為示意，高度經垂直誇大。'},
  coral:{t:'南部・珊瑚礁海岸',c:'#2ba3a0',
-  d:'<p><b>成因：</b>恆春半島附近海水溫暖、清澈，適合<b>珊瑚</b>生長，珊瑚的骨骼堆積成珊瑚礁；地殼抬升後，部分珊瑚礁露出海面成為<b>隆起珊瑚礁</b>。</p><p><b>特色：</b>沿岸淺海圍繞著<b>裙礁</b>，陸地上可見隆起的珊瑚礁台地和礁岩。</p><p><b>例子：</b>屏東墾丁。</p><p><b>利用：</b>發展觀光、潛水與生態旅遊，劃設墾丁國家公園保護；要注意汙染與珊瑚白化等問題。</p>',
+  d:'<p><b>成因：</b>恆春半島附近海水溫暖、清澈，適合<b>珊瑚</b>生長，珊瑚的骨骼堆積成珊瑚礁；地殼抬升後，部分珊瑚礁露出海面成為<b>隆起珊瑚礁</b>。</p><p><b>特色：</b>沿岸淺海圍繞著<b>裙礁</b>，陸地上可見隆起的珊瑚礁台地和礁岩。</p><p><b>特色（課本）：</b>地表崎嶇凹凸，岩塊造型奇特。</p><p><b>例子：</b>屏東<b>墾丁國家公園</b>，有豐富的珊瑚礁地形與海底珊瑚。</p><p><b>利用：</b>發展觀光、潛水與生態旅遊，劃設墾丁國家公園保護；要注意汙染與珊瑚白化等問題。</p>',
   s:'模型為示意，高度經垂直誇大。'}
 };
 function noise(seed){const w=[];let s=seed;const r=()=>{s=(s*16807)%2147483647;return s/2147483647;};
   for(let k=0;k<7;k++)w.push([r()*6.28,r()*6.28,4+r()*14,4+r()*14,0.3+r()*0.7]);
   return (x,z)=>{let t=0;for(const q of w)t+=q[4]*Math.sin(x*q[2]+q[0])*Math.sin(z*q[3]+q[1]);return t/3.5;};}
 const n1=noise(7),n2=noise(19);
+/* 沙岸的土地利用：鹽田（西側，白色）、魚塭（東側，水色），以及潟湖中的蚵架 */
+function pond(x,z){
+  const inSalt=x>-1.12&&x<-0.5&&z>-0.34&&z<-0.04,inFish=x>0.42&&x<1.12&&z>-0.34&&z<-0.04;
+  if(!inSalt&&!inFish)return null;
+  const cw=inSalt?0.1:0.14,ch=0.1,fx=((x+2)%cw)/cw,fz=((z+2)%ch)/ch;
+  return (fx<0.12||fz<0.14)?'dike':'pond';}
+function oyster(x,z){return x>-0.92&&x<-0.38&&z>0.14&&z<0.33&&Math.abs(((z-0.14)%0.05)-0.025)<0.011&&((x+2)%0.06)<0.046;}
 const S=G3.smooth;
 /* z<海岸線為陸地（畫面後方），z>海岸線為海（畫面前方） */
 const SC={
  sand:{ys:0.003,
   h(x,z){const c=0.05,d=c-z;
     if(d>0){let h=1.5+d*55+4*n1(x,z)*S(0.05,0.3,d);
-      const rv=Math.abs(x+0.25+0.05*Math.sin(z*8));if(rv<0.035)h=Math.min(h,-0.8);return h;}
+      const rv=Math.abs(x+0.25+0.05*Math.sin(z*8));if(rv<0.035)h=Math.min(h,-0.8);
+      const pd=pond(x,z);if(pd)return pd==='dike'?3.2:1.6;
+      return h;}
     const sea=-0.6+d*14;
     const bar=Math.exp(-(((z-0.42)/0.03)**2))*S(-1.05,-0.95,x)*(1-S(0.25,0.35,x));const inLag=z<0.42&&x>-1.0&&x<0.3;
-    let h=inLag?Math.max(sea,-1.6):sea;h=Math.max(h,h+bar*(2.6-h));return h;},
-  col(h,x,z){if(h<-0.3)return z<0.42&&x>-1&&x<0.3?'#9bb9a8':G3.lerpColor('#d9c890','#4b86b3',S(0,-12,h));if(h<2.2)return '#efe0a8';return G3.bandColor(h,[[0,'#c8d98e'],[15,'#b4cf86'],[40,'#a3c27b'],[70,'#93b56f']]);},
-  tags:[['沙灘（海岸線平直）',0.6,0.06],['沙洲',-0.5,0.42],['潟湖',-0.4,0.25,'sea'],['河流帶來泥沙',-0.25,-0.3],['潮口（海水進出）',0.45,0.42,'sea']]},
+    let h=inLag?Math.max(sea,-1.6):sea;h=Math.max(h,h+bar*(2.6-h));
+    if(oyster(x,z))h=0.7;return h;},
+  col(h,x,z){const pd=pond(x,z);if(pd)return pd==='dike'?'#cdbf93':(x<0?'#eef0ee':'#5f9fae');if(oyster(x,z))return '#6b5a45';if(h<-0.3)return z<0.42&&x>-1&&x<0.3?'#9bb9a8':G3.lerpColor('#d9c890','#4b86b3',S(0,-12,h));if(h<2.2)return '#efe0a8';return G3.bandColor(h,[[0,'#c8d98e'],[15,'#b4cf86'],[40,'#a3c27b'],[70,'#93b56f']]);},
+  tags:[['沙灘（海岸線平直）',0.6,0.06],['沙洲',0.05,0.42],['潟湖',-0.15,0.2,'sea'],['河流帶來泥沙',-0.25,-0.42],['潮口（海水進出）',0.45,0.42,'sea'],['魚塭',0.78,-0.2],['鹽田',-0.8,-0.2],['蚵架（養蚵）',-0.66,0.22]]},
  rock:{ys:0.0022,
   h(x,z){const hd=(Math.sin(x*4.2+0.3)+1)/2,c=0.02+0.3*Math.sin(x*4.2+0.3),d=c-z;
     if(d>0){const cliff=3+60*hd*hd;return cliff+S(0,0.25,d)*(35+45*hd)+d*90+14*n1(x,z);}
@@ -101,9 +167,10 @@ const SC={
     const sea=-3+d*90*(0.6+0.4*hd)+3*n2(x,z);
     let h=Math.max(sea,plat);
     if(hd<0.25&&d>-0.05)h=Math.max(h,1.0+d*30);
+    const st=Math.hypot(x-0.62,(z-0.5)*1.2);if(st<0.045)h=Math.max(h,34*S(0.045,0.028,st)+2*n2(x*9,z*9));
     return h;},
-  col(h,x,z){const hd=(Math.sin(x*4.2+0.3)+1)/2;if(h<-0.4)return G3.lerpColor('#c9c2a0','#3e7aa8',S(0,-40,h));if(h<3&&hd<0.35)return '#ecdca5';if(h<4)return '#a49d8c';if(h<45&&hd>0.5)return '#8f8472';return G3.bandColor(h,[[0,'#8fae72'],[60,'#7ea567'],[120,'#6f985d']]);},
-  tags:[['岬角',0.3,0.0],['海蝕崖',0.08,0.2],['海蝕平臺',0.42,0.34],['海灣',-0.45,-0.1,'sea'],['灣內沙灘',-0.45,-0.3],['岬角',-1.0,-0.2],['海灣',1.05,-0.1,'sea']]},
+  col(h,x,z){const hd=(Math.sin(x*4.2+0.3)+1)/2;if(Math.hypot(x-0.62,(z-0.5)*1.2)<0.046&&h>2)return '#8f8472';if(h<-0.4)return G3.lerpColor('#c9c2a0','#3e7aa8',S(0,-40,h));if(h<3&&hd<0.35)return '#ecdca5';if(h<4)return '#a49d8c';if(h<45&&hd>0.5)return '#8f8472';return G3.bandColor(h,[[0,'#8fae72'],[60,'#7ea567'],[120,'#6f985d']]);},
+  tags:[['岬角',0.3,0.0],['海蝕崖',0.08,0.2],['海蝕平臺',0.38,0.36],['海蝕柱',0.62,0.5],['海灣',-0.45,-0.1,'sea'],['灣內沙灘',-0.45,-0.3],['岬角',-1.0,-0.2],['海灣',1.05,-0.1,'sea']]},
  fault:{ys:0.00026,
   h(x,z){const c=0.05+0.015*Math.sin(x*3),d=c-z;
     if(d>0)return 250*S(0,0.03,d)+1700*(1-Math.exp(-d/0.28))*(1+0.18*n1(x,z))+80*n2(x,z)*S(0,0.1,d);
@@ -134,11 +201,11 @@ function show(k){
 }
 document.querySelectorAll('#types .btn').forEach(b=>b.onclick=()=>show(b.dataset.k));
 
-/* 臺灣海岸分段（示意） */
+/* 臺灣海岸分段（依課本：淡水河口、三貂角、蘇澳、旭海、楓港為分界） */
 function kind(lon,lat){
-  if(lat<22.2)return 'coral';
-  if(lat>24.93&&lon>=121.4&&lon<121.97)return 'rock';
-  if(lat>24.35&&lat<24.88&&lon>121.68)return 'sand';
+  if(lat<22.195)return 'coral';                              /* 楓港～旭海 */
+  if(lat>24.98&&lon>=121.41&&lon<121.995)return 'rock';     /* 淡水河口～三貂角 */
+  if(lat>24.59&&lat<=25.02&&lon>121.68)return 'sand';       /* 三貂角～蘇澳（宜蘭平原沿岸） */
   if(lon>120.75+(lat-22.2)*0.3)return 'fault';
   return 'sand';}
 const COL={sand:'#e0b43c',rock:'#7b5e9e',fault:'#c0482e',coral:'#2ba3a0'};
@@ -148,7 +215,11 @@ const M=G3.TwMap(document.getElementById('map'),{maxH:640,draw:m=>{
   for(let i=0;i<pts.length;i++){const a=pts[i],b=pts[(i+1)%pts.length];const k=kind((a[0]+b[0])/2,(a[1]+b[1])/2);
     const A=m.P(a[0],a[1]),B=m.P(b[0],b[1]);c.beginPath();c.moveTo(A[0],A[1]);c.lineTo(B[0],B[1]);c.strokeStyle=COL[k];c.lineWidth=k===cur?7:4.5;c.lineCap='round';c.stroke();}
   LAB.forEach(([k,t,lon,lat,al])=>{m.dot(lon,lat,0.1,'rgba(0,0,0,0)',null,k);m.label(t,lon,lat,{size:13,bold:k===cur,color:COL[k],align:al,dx:al==='right'?-4:4});});
-  m.label('宜蘭平原沿岸為沙岸',121.85,24.62,{size:11,color:'#8a6a12'});
+  m.label('三貂角～蘇澳：沙岸',121.9,24.8,{size:11,color:'#8a6a12'});
+  /* 分界點 */
+  [['淡水河口',121.41,25.17,'right',-8,-8],['三貂角',122.0,25.01,'left',8,-8],['蘇澳',121.86,24.59,'left',8,6],['旭海',120.88,22.2,'left',8,0],['楓港',120.68,22.19,'right',-8,0]].forEach(([n,lon,lat,al,dx,dy])=>{
+    const p=m.P(lon,lat),c=m.ctx;c.strokeStyle='#1f2a24';c.lineWidth=2.2;c.beginPath();c.moveTo(p[0]-5,p[1]-5);c.lineTo(p[0]+5,p[1]+5);c.moveTo(p[0]+5,p[1]-5);c.lineTo(p[0]-5,p[1]+5);c.stroke();
+    m.label(n,lon,lat,{size:11.5,bold:true,align:al,dx,dy});});
 },onPick:k=>show(k)});
 show('sand');
 })();
