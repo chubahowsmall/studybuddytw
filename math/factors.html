@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2-1 因數與倍數｜數學互動教室</title>
+<meta name="description" content="國七上數學（康軒版第一冊）2-1 因數與倍數互動複習：成對找因數、倍數判別法與□填數字、質數篩、短除法與標準分解式、正因數頭尾配對與排長方形，附 18 題小測驗。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect x=%223%22 y=%223%22 width=%2226%22 height=%2226%22 rx=%225%22 fill=%22%232d6f9e%22/%3E%3Cpath d=%22M9 16h14M16 9v14%22 stroke=%22%23fff%22 stroke-width=%223%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="lib/math.css">
+<script src="lib/common.js"></script>
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap">
+  <span class="kicker m">2-1・康軒版第一冊第 2 章</span>
+  <h1>因數與倍數</h1>
+  <p class="lead">這一節是整個第二章的地基：後面的最大公因數、最小公倍數、約分，全部都要用到。每個重點都有可以自己輸入數字的小工具，先動手試，再看「易錯陷阱」，最後做小測驗。</p>
+  <nav class="toc" aria-label="本頁重點">
+    <a href="#s1">一、因數與倍數的意義</a>
+    <a href="#s2">二、倍數判別法</a>
+    <a href="#s3">三、質數與合數</a>
+    <a href="#s4">四、標準分解式</a>
+    <a href="#s5">五、正因數排列與排長方形</a>
+    <a href="#s6">小測驗 18 題</a>
+  </nav>
+
+  <!-- ================= 一 ================= -->
+  <section class="sec" id="s1">
+  <h2>一、因數與倍數的意義<span class="star">★★ 常考</span></h2>
+  <div class="key">
+    <ul>
+      <li>a、b 是整數，b≠0。如果 a＝b×c（c 也是整數），就說 <b>b 是 a 的因數</b>，<b>a 是 b 的倍數</b>。</li>
+      <li>因數有正有負：12＝3×4，所以 3 是 12 的因數；12＝(−3)×(−4)，所以 −3 也是 12 的因數。</li>
+      <li>1 是所有整數的因數。0 是所有不為 0 的整數的倍數（0＝5×0）。</li>
+      <li><span class="hot">⚠ 0 不能當除數，所以 0 不是任何數的因數。</span></li>
+      <li>「k÷n 的結果是整數」就是「n 是 k 的因數」。</li>
+    </ul>
+  </div>
+
+  <div class="tool" id="pairTool">
+    <h3>動手做：成對找正因數</h3>
+    <div class="chips" id="pMode" role="group" aria-label="練習方式">
+      <button class="chip on" data-m="quiz">我出題，你來寫</button>
+      <button class="chip" data-m="demo">自己輸入 N，看怎麼找</button>
+    </div>
+    <div id="pQuiz">
+      <p class="note">按「出一題」會出一個 2～100 的數。從 1 開始一個一個試，每找到一對就寫上去；全部找齊後，填「共有幾個正因數」，再按「對答案」。</p>
+      <div class="inrow">
+        <button class="btn on" id="pzNew">出一題</button>
+        <span class="big-ans" id="pzQ" style="margin:0"></span>
+        <span class="small" id="pzScore"></span>
+      </div>
+      <div id="pzWork" hidden>
+        <div class="inrow">
+          <input class="num sm" id="pzA" inputmode="numeric" aria-label="小的因數"><span>×</span><input class="num sm" id="pzB" inputmode="numeric" aria-label="配對的大因數"><span>＝ <b class="pzN"></b></span>
+          <button class="btn" id="pzAdd">寫上去</button>
+          <button class="btn" id="pzHint">提示</button>
+        </div>
+        <div class="msg" id="pzMsg" aria-live="polite"></div>
+        <div class="tries" id="pzPairs"></div>
+        <div class="inrow">
+          <label for="pzCnt"><b class="pzN"></b> 共有</label><input class="num sm" id="pzCnt" inputmode="numeric" aria-label="正因數的個數"><span>個正因數</span>
+          <button class="btn on" id="pzCheck">對答案</button>
+        </div>
+        <div class="out" id="pzOut"></div>
+      </div>
+    </div>
+    <div id="pDemo" hidden>
+      <p class="note">從 1 開始一個一個試。試出一個小因數，就馬上寫出跟它配對的大因數。試到「自己乘自己已經超過 N」就可以停了。</p>
+      <div class="inrow">
+        <label for="pN">N＝</label><input class="num" id="pN" inputmode="numeric" value="36" aria-label="要找因數的正整數 N">
+        <button class="btn" id="pStep">試下一個</button>
+        <button class="btn on" id="pAll">全部試完</button>
+        <button class="btn" id="pReset">重來</button>
+        <label><input type="checkbox" id="pNeg"> 也列出負因數</label>
+      </div>
+      <div class="msg" id="pMsg"></div>
+      <div class="tries" id="pTries"></div>
+      <div class="out" id="pOut"></div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>題目問「整數 n 有幾個」要算負因數；寫「正因數」「n 是正整數」才只算正的。<b>先圈出題目裡的「正」字。</b></li>
+      <li>平方數（例如 36＝6×6）中間的 6 只算一次，所以 36 有 9 個正因數，不是 10 個。</li>
+      <li>分組、排隊題有「每組至少幾人、至多幾人」時，要把範圍外的因數刪掉。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 二 ================= -->
+  <section class="sec" id="s2">
+  <h2>二、倍數判別法與「□ 填數字」<span class="star">★★★ 幾乎每卷必考</span></h2>
+  <div class="tscroll">
+  <table class="t">
+    <tr><th>判斷</th><th>看哪裡</th><th>例子</th></tr>
+    <tr><td>2 的倍數</td><td>個位數字是 0、2、4、6、8</td><td>3576 ✔</td></tr>
+    <tr><td>5 的倍數</td><td>個位數字是 0 或 5</td><td>2385 ✔</td></tr>
+    <tr><td>4 的倍數</td><td>末兩位數是 4 的倍數</td><td>7316：16 是 4 的倍數 ✔</td></tr>
+    <tr><td>8 的倍數</td><td>末三位數是 8 的倍數（課本補充）</td><td>5136：136＝8×17 ✔</td></tr>
+    <tr><td>3 的倍數</td><td>各位數字和是 3 的倍數</td><td>4521：4＋5＋2＋1＝12 ✔</td></tr>
+    <tr><td>9 的倍數</td><td>各位數字和是 9 的倍數</td><td>6831：6＋8＋3＋1＝18 ✔</td></tr>
+    <tr><td>11 的倍數</td><td>從個位數起，<b>奇數位數字和</b>與<b>偶數位數字和</b>的差是 11 的倍數（差是 0 也可以）</td><td>3542：奇數位 2＋5＝7，偶數位 4＋3＝7，差 0 ✔</td></tr>
+    <tr><td>6 的倍數</td><td>同時是 2 和 3 的倍數</td><td>1734 ✔</td></tr>
+    <tr><td>12 的倍數</td><td>同時是 <b>3 和 4</b> 的倍數（不能用 2 和 6）</td><td>5172 ✔</td></tr>
+  </table>
+  </div>
+
+  <div class="tool" id="divTool">
+    <h3>動手做：倍數判別器</h3>
+    <div class="inrow">
+      <label for="dN">輸入一個正整數：</label><input class="num wide" id="dN" inputmode="numeric" value="358721" maxlength="15" aria-label="要判別的正整數">
+    </div>
+    <div class="msg" id="dMsg"></div>
+    <div id="dDigits"></div>
+    <p class="small">從個位數往左數：<span style="color:var(--sea);font-weight:700">藍色是奇數位</span>（第 1、3、5…位），<span style="color:var(--clay);font-weight:700">橘色是偶數位</span>（第 2、4、6…位）。</p>
+    <div class="tscroll"><table class="t" id="dTable"></table></div>
+  </div>
+
+  <div class="tool" id="fillTool">
+    <h3>動手做：「□ 填數字」逐一檢查</h3>
+    <p class="note">輸入有一個 □ 的數（也可以用 ? 代替 □），選要判斷的倍數，可以複選（例如「同時是 3 和 11 的倍數」）。下面會把 □＝0～9 一個一個代進去檢查。</p>
+    <div class="inrow">
+      <input class="num wide" id="fN" value="3□1452" maxlength="13" aria-label="含一個□的數">
+      <button class="btn" id="fBox" title="插入 □">插入 □</button>
+    </div>
+    <div class="chips" id="fDiv" role="group" aria-label="要判斷的倍數">
+      <button class="chip" data-d="2">2</button><button class="chip" data-d="3">3</button><button class="chip" data-d="4">4</button><button class="chip" data-d="5">5</button><button class="chip" data-d="6">6</button><button class="chip" data-d="8">8</button><button class="chip" data-d="9">9</button><button class="chip on" data-d="11">11</button><button class="chip" data-d="12">12</button>
+      <span class="pick-hint"><span class="arr" aria-hidden="true">⬅</span>選擇你要練習的倍數</span>
+    </div>
+    <div class="msg" id="fMsg"></div>
+    <div id="fWhy" class="out"></div>
+    <div class="fillgrid" id="fGrid"></div>
+    <div class="big-ans" id="fAns"></div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>拆成兩個數判斷時，兩個數要<b>互質</b>：6 → 2 和 3；12 → 3 和 4；15 → 3 和 5；36 → 4 和 9。用 2 和 6 判斷 12 的倍數會錯，例如 18 是 2 和 6 的倍數，卻不是 12 的倍數。</li>
+      <li>只有一個 □ 時：3 的倍數常常有好幾個答案（每差 3 一個），要全部列出；9 的倍數最多兩個（□＝0 和 □＝9 可能都對）；11 的倍數最多一個。</li>
+      <li>題目有「三個相異數字」「最小的四位數」等條件時，找到答案後要回頭逐一檢查。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 三 ================= -->
+  <section class="sec" id="s3">
+  <h2>三、質數與合數<span class="star">★★★ 幾乎每卷必考</span></h2>
+  <div class="key">
+    <ul>
+      <li><b>質數</b>：大於 1，而且正因數只有 1 和自己。<b>合數</b>：大於 1，而且正因數超過 2 個。</li>
+      <li><b>1 既不是質數，也不是合數。</b>2 是唯一的偶質數；最小的合數是 4。</li>
+      <li>1～100 有 <b>25 個質數</b>，所以 1～100 有 100－1－25＝<b>74 個合數</b>。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>想一想：1 是不是質數？</h3>
+    <p><b>不是。1 既不是質數，也不是合數。</b></p>
+    <ul>
+      <li><b>原因：</b>質數要「大於 1」，而且正因數只有 1 和自己，也就是<b>剛好 2 個正因數</b>。1 的正因數只有 1，<b>只有 1 個</b>，不符合質數的條件。</li>
+      <li>合數要「大於 1」，而且正因數超過 2 個。1 也不符合，所以 1 也不是合數。</li>
+      <li class="note">補充：如果把 1 算成質數，標準分解式就不只一種寫法，例如 6＝2×3＝1×2×3＝1×1×2×3……，所以數學上規定 1 不是質數。</li>
+    </ul>
+  </div>
+
+  <div class="tool" id="sieveTool">
+    <h3>動手做：把 1～100 的合數篩掉</h3>
+    <p class="note">古希臘數學家埃拉托斯特尼的方法：圈起一個質數，就把它的倍數全部劃掉。</p>
+    <div class="bar">
+      <button class="btn on" id="sStep">下一步</button>
+      <button class="btn" id="sReset">重來</button>
+      <button class="btn warm" id="sTrap">標出長得像質數的合數</button>
+    </div>
+    <div class="key" id="sMsg" style="margin-top:0">按「下一步」開始。</div>
+    <div class="meter"><div>已劃掉（含 1）<b id="sX">0</b></div><div>確定是質數<b id="sP">0</b></div></div>
+    <div class="sieve" id="sieve" aria-label="1 到 100 的數字表"></div>
+  </div>
+
+  <div class="tool" id="primeTool">
+    <h3>動手做：這個數是質數嗎？</h3>
+    <p class="note">只要用<span class="hot">「自己乘自己不超過 N」的質數</span>去試除。例如 N＝221：13×13＝169 不超過 221，17×17＝289 超過 221，所以只要試 2、3、5、7、11、13。</p>
+    <div class="inrow">
+      <label for="qN">N＝</label><input class="num" id="qN" inputmode="numeric" value="221" aria-label="要判斷的正整數">
+    </div>
+    <div class="msg" id="qMsg"></div>
+    <div class="tries" id="qTries"></div>
+    <div class="big-ans" id="qAns"></div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>長得像質數的合數：<b>51＝3×17、57＝3×19、87＝3×29、91＝7×13</b>。</li>
+      <li>「任兩個質數的和是偶數」錯：2＋3＝5。「所有偶數都是合數」錯：2 是質數。</li>
+      <li>「互質的兩個數都是質數」錯：8 和 9 互質，但都不是質數（互質在 2-2 會學）。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 四 ================= -->
+  <section class="sec" id="s4">
+  <h2>四、質因數分解與標準分解式<span class="star">★★★ 幾乎每卷必考</span></h2>
+  <div class="key">
+    <ul>
+      <li>一個數的因數如果是質數，就叫做這個數的<b>質因數</b>。例如 12 的質因數是 2 和 3。</li>
+      <li><b>標準分解式</b>：把數寫成質因數的乘積，<b>質因數由小到大排</b>，相同的質因數<b>用指數</b>寫。例：360＝2<sup>3</sup>×3<sup>2</sup>×5。</li>
+      <li>用<b>短除法</b>一個質數一個質數除，最不容易錯；一直除到商是質數為止。</li>
+    </ul>
+  </div>
+
+  <div class="tool" id="ladderTool">
+    <h3>動手做：短除法</h3>
+    <div class="inrow">
+      <label for="lN">N＝</label><input class="num" id="lN" inputmode="numeric" value="360" aria-label="要分解的正整數">
+      <button class="btn" id="lStep">除一次</button>
+      <button class="btn on" id="lAll">全部除完</button>
+      <button class="btn" id="lReset">重來</button>
+    </div>
+    <div class="msg" id="lMsg"></div>
+    <div class="note" id="lHint"></div>
+    <div class="ladder" id="ladder"></div>
+    <div class="out" id="lOut"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>常考：密碼題</h3>
+      <p>小安的密碼 abcd 藏在 2520 的標準分解式 2<sup>a</sup>×3<sup>b</sup>×c×d 裡（c＜d），密碼是多少？</p>
+      <details><summary>看解法</summary>
+        <p>先寫出標準分解式：2520＝2<sup>3</sup>×3<sup>2</sup>×5×7。<br>一個一個對位置：a＝3、b＝2、c＝5、d＝7，密碼是 <b>3257</b>。</p>
+        <p class="note">指數是 1 時不用寫，但密碼題要記得它代表 1。</p>
+      </details>
+    </div>
+    <div class="card">
+      <h3>常考：已經是乘積的算式</h3>
+      <p>若 4×9×10×12＝2<sup>a</sup>×3<sup>b</sup>×5<sup>c</sup>，則 a＋b＋c＝？</p>
+      <details><summary>看解法</summary>
+        <p>每個數先拆成質數：4＝2<sup>2</sup>、9＝3<sup>2</sup>、10＝2×5、12＝2<sup>2</sup>×3。<br>2 的指數 2＋1＋2＝5，3 的指數 2＋1＝3，5 的指數 1。<br>所以 2<sup>5</sup>×3<sup>3</sup>×5，a＋b＋c＝5＋3＋1＝<b>9</b>。</p>
+      </details>
+    </div>
+  </div>
+
+  <div class="tool" id="sqTool">
+    <h3>動手做：乘上最小的數，變成平方數</h3>
+    <p class="note">一個整數的平方（例如 36＝6<sup>2</sup>），標準分解式裡<b>每個指數都是偶數</b>。所以把指數是奇數的質因數各補一個上去就好。</p>
+    <div class="inrow">
+      <label for="sqN">N＝</label><input class="num" id="sqN" inputmode="numeric" value="540" aria-label="正整數 N">
+    </div>
+    <div class="msg" id="sqMsg"></div>
+    <div class="out" id="sqOut"></div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>4×9×5 不是標準分解式（4、9 不是質數）；2×3<sup>2</sup>×2<sup>2</sup> 也不是（相同的要合併、由小到大）。</li>
+      <li>短除法先用 4、6、9 這類合數去除，最後忘了拆成質數，標準分解式就會寫錯。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 五 ================= -->
+  <section class="sec" id="s5">
+  <h2>五、正因數由小到大排列、排長方形<span class="star">★★ 常考</span></h2>
+  <div class="key">
+    <ul>
+      <li>N 的正因數由小到大排好，<b>頭尾配對的乘積都等於 N</b>：第 2 小×第 2 大＝N，第 3 小×第 3 大＝N……</li>
+      <li>N＞1 時，<b>第 2 小的正因數就是 N 最小的質因數</b>。</li>
+      <li>用 N 個小正方形拼成長方形（全部用完）：長×寬＝N，就是找 N 的正因數配對。長寬越接近，周長越短。</li>
+    </ul>
+  </div>
+
+  <div class="tool" id="arcTool">
+    <h3>動手做：頭尾配對與拼長方形</h3>
+    <div class="inrow">
+      <label for="aN">N＝</label><input class="num" id="aN" inputmode="numeric" value="36" aria-label="正整數 N">
+      <span class="small">（2～2000）</span>
+    </div>
+    <div class="msg" id="aMsg"></div>
+    <div class="arcs" id="arcs"></div>
+    <div class="out" id="aOut"></div>
+    <div class="rects" id="rects"></div>
+  </div>
+
+  <div class="card">
+    <h3>常考：從排列反推 N</h3>
+    <p>正整數 N 的所有正因數由小到大排列為：1、2、a、5、b、c、20、N。求 N、a、b、c。</p>
+    <details><summary>看解法</summary>
+      <p>頭尾配對：2×20＝N，所以 N＝40。<br>40 的正因數：1、2、4、5、8、10、20、40，對照位置：a＝4、b＝8、c＝10。</p>
+      <p class="note">找到 N 之後，一定要把所有正因數寫出來對一次位置。</p>
+    </details>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>拼長方形時，長和寬交換算同一種；正方形也算長方形的一種。</li>
+      <li>「可以拼出幾種長方形」不是「有幾個正因數」：36 有 9 個正因數，只能拼出 5 種長方形。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 小測驗 ================= -->
+  <section class="sec" id="s6">
+  <h2>小測驗（18 題）</h2>
+  <p class="note">每題只有一個正確答案，選了就會顯示解析（第一次選的答案才計分）。題目都是自編題，不是學校或出版社的考題。</p>
+  <div class="score"><span class="big" id="qzScore">0 / 18</span><span class="small" id="qzDone">已作答 0 題</span><button class="btn" id="qzReset">重新作答</button></div>
+  <div class="chips" id="qzFlt">
+    <button class="chip on" data-u="all">全部</button>
+    <button class="chip" data-u="1">一、因數與倍數</button>
+    <button class="chip" data-u="2">二、倍數判別</button>
+    <button class="chip" data-u="3">三、質數與合數</button>
+    <button class="chip" data-u="4">四、標準分解式</button>
+    <button class="chip" data-u="5">五、排列與長方形</button>
+  </div>
+  <div id="qz"></div>
+  </section>
+
+  <div id="pager"></div>
+</main>
+<footer id="site-foot"></footer>
+
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const M=window.M;
+const fmt=n=>String(n);
+
+/* ========== 一、成對找正因數 ========== */
+(function(){
+  let N=36,d=0,done=false,hits=[];
+  const tries=$('pTries'),out=$('pOut'),msg=$('pMsg');
+  function reset(){
+    const v=M.readInt($('pN'),1,9999);
+    if(v===null){msg.textContent='請輸入 1～9999 的正整數。';return false;}
+    msg.textContent='';N=v;d=0;done=false;hits=[];tries.innerHTML='';out.innerHTML='';return true;
+  }
+  function step(){
+    if(done)return;
+    d++;
+    const c=document.createElement('span');c.className='try';
+    if(d*d>N){c.className='try stop';c.textContent='試 '+d+'：'+d+'×'+d+'＝'+d*d+'＞'+N+'，停';done=true;}
+    else if(N%d===0){c.className='try hit';c.textContent=d*d===N?d+'×'+d+'（只算一次）':d+'×'+(N/d);hits.push(d);}
+    else{c.textContent=d+' ✘';c.title=N+'÷'+d+' 不整除';}
+    tries.appendChild(c);
+    if(done)show();
+  }
+  function show(){
+    const small=hits.slice(),big=hits.map(x=>N/x).filter(x=>!small.includes(x)).reverse();
+    const all=small.concat(big);
+    let h='<div>'+N+' 的正因數（由小到大）：</div><div class="flist">'+all.map(x=>'<span>'+x+'</span>').join('')+'</div>';
+    h+='<p>共 <b>'+all.length+'</b> 個正因數。'+(N>1&&Math.sqrt(N)%1===0?'（'+N+'＝'+Math.sqrt(N)+'×'+Math.sqrt(N)+' 是平方數，中間的 '+Math.sqrt(N)+' 只算一次，所以正因數是奇數個。）':'')+'</p>';
+    if($('pNeg').checked){
+      h+='<div>負因數：</div><div class="flist">'+all.map(x=>'<span class="neg">−'+x+'</span>').join('')+'</div>';
+      h+='<p>如果題目說「n 是整數」，正負因數都要算，共 <b>'+all.length*2+'</b> 個。</p>';
+    }
+    out.innerHTML=h;
+  }
+  $('pStep').onclick=()=>{if((done||!tries.children.length)&&!reset())return;step();};
+  $('pAll').onclick=()=>{if(!reset())return;while(!done)step();};
+  $('pReset').onclick=()=>reset();
+  $('pNeg').onchange=()=>{if(done)show();};
+  $('pN').addEventListener('keydown',e=>{if(e.key==='Enter')$('pAll').click();});
+  $('pN').addEventListener('input',()=>{if(reset())while(!done)step();});
+  $('pAll').click();
+})();
+
+/* ========== 一、成對找正因數：我出題，你來寫 ========== */
+(function(){
+  /* 2～100 隨機出題：正因數多的數比較常出，質數偶爾出 */
+  const pool=[];for(let n=2;n<=100;n++){const k=M.divisors(n).length;pool.push([n,k>=6?3:(k>=3?1.5:0.6)]);}
+  const recent=[];let N=0,found=new Set(),checked=false,hintLv=0,tot=0,good=0;
+  const pairsOf=n=>M.divisors(n).filter(d=>d*d<=n);
+  function pick(){
+    for(let t=0;t<50;t++){let r=Math.random()*pool.reduce((a,x)=>a+x[1],0);
+      for(const [n,w] of pool){if((r-=w)<0){if(!recent.includes(n))return n;break;}}}
+    return 36;
+  }
+  const msg=(t,ok)=>{const m=$('pzMsg');m.innerHTML=t;m.style.color=ok?'var(--moss)':'';};
+  function render(){
+    const all=pairsOf(N);
+    $('pzPairs').innerHTML=all.filter(d=>found.has(d)||checked).map(d=>{
+      const hit=found.has(d),t=d===N/d?d+'×'+d:d+'×'+(N/d);
+      return '<span class="try '+(hit?'hit':'miss')+'">'+t+(hit?'':'（漏了）')+'</span>';}).join('');
+  }
+  function newQ(){
+    N=pick();recent.push(N);if(recent.length>8)recent.shift();
+    found=new Set();checked=false;hintLv=0;
+    $('pzQ').innerHTML='N＝'+N+'：寫出 '+N+' 所有成對的正因數';
+    document.querySelectorAll('#pairTool .pzN').forEach(e=>e.textContent=N);
+    ['pzA','pzB','pzCnt'].forEach(id=>$(id).value='');
+    $('pzOut').innerHTML='';msg('');render();
+    $('pzWork').hidden=false;$('pzNew').textContent='換一題';$('pzA').focus();
+  }
+  function add(){
+    if(!N)return;
+    const a=M.readInt($('pzA'),1,10000),b=M.readInt($('pzB'),1,10000);
+    if(a===null||b===null){msg('兩格都要填正整數。');return;}
+    if(a*b!==N){msg(a+'×'+b+'＝'+a*b+'，不是 '+N+'。');return;}
+    const s=Math.min(a,b);
+    if(found.has(s)){msg('這一對已經寫過了。');}
+    else{found.add(s);hintLv=0;msg('對！'+Math.min(a,b)+'×'+Math.max(a,b)+'＝'+N,true);render();}
+    $('pzA').value='';$('pzB').value='';$('pzA').focus();
+  }
+  function hint(){
+    if(!N)return;
+    const all=pairsOf(N),miss=all.filter(d=>!found.has(d)),stop=Math.floor(Math.sqrt(N));
+    if(!miss.length){msg('成對的正因數都找齊了！數一數共有幾個正因數'+(stop*stop===N?'（注意：'+stop+'×'+stop+' 的 '+stop+' 只能算一次）':'')+'。',true);return;}
+    if(hintLv===0){msg('提示：還有 '+miss.length+' 對沒找到。從 1 開始試，試到 '+stop+' 就可以停（'+stop+'×'+stop+'＝'+stop*stop+' 不超過 '+N+'，'+(stop+1)+'×'+(stop+1)+'＝'+(stop+1)*(stop+1)+' 超過了）。');hintLv=1;}
+    else{msg('提示：試試看 '+N+'÷'+miss[0]+' 能不能整除。');}
+  }
+  function check(){
+    if(!N)return;
+    const all=pairsOf(N),D=M.divisors(N),miss=all.filter(d=>!found.has(d));
+    const c=M.readInt($('pzCnt'),0,1000),cntOk=(c===D.length);
+    checked=true;render();
+    let h='';
+    h+=miss.length?'<p>成對的因數漏了 <b>'+miss.length+' 對</b>（橘色）。</p>':'<p>成對的因數全部找齊了。</p>';
+    if(c===null)h+='<p>還沒填「共有幾個正因數」。</p>';
+    else h+=cntOk?'<p>正因數個數答對了。</p>':'<p>正因數個數填 '+c+' 不對。</p>';
+    h+='<div>'+N+' 的正因數（由小到大）：</div><div class="flist">'+D.map(x=>'<span>'+x+'</span>').join('')+'</div>';
+    h+='<p>共 <b>'+D.length+'</b> 個正因數。'+(M.isPrime(N)?N+' 是質數，正因數只有 1 和自己。':'')+(Math.sqrt(N)%1===0?N+'＝'+Math.sqrt(N)+'×'+Math.sqrt(N)+' 是平方數，中間的 '+Math.sqrt(N)+' 只算一次，所以正因數是奇數個。':'')+'</p>';
+    const all3=!miss.length&&cntOk;
+    if(all3&&!$('pzOut').dataset.scored){good++;}
+    if(!$('pzOut').dataset.scored){tot++;$('pzOut').dataset.scored='1';}
+    $('pzOut').innerHTML=(all3?'<p class="big-ans" style="color:var(--moss)">全對！</p>':'')+h;
+    $('pzOut').dataset.scored='1';
+    $('pzScore').textContent='這次練習：全對 '+good+' / '+tot+' 題';
+    $('pzNew').textContent='下一題';
+  }
+  $('pzNew').onclick=()=>{delete $('pzOut').dataset.scored;newQ();};
+  $('pzAdd').onclick=add;$('pzHint').onclick=hint;$('pzCheck').onclick=check;
+  $('pzA').addEventListener('keydown',e=>{if(e.key==='Enter')$('pzB').focus();});
+  $('pzB').addEventListener('keydown',e=>{if(e.key==='Enter')add();});
+  $('pzCnt').addEventListener('keydown',e=>{if(e.key==='Enter')check();});
+  $('pMode').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{
+    const m=b.dataset.m;$('pMode').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));
+    $('pQuiz').hidden=(m!=='quiz');$('pDemo').hidden=(m!=='demo');
+  });
+})();
+
+/* ========== 二、倍數判別器 ========== */
+function digitBoxes(s,opt){
+  opt=opt||{};const L=s.length;
+  return '<div class="digits">'+s.split('').map((ch,i)=>{
+    const pos=L-i,cls=['dg',pos%2?'odd':'even'];
+    if(opt.box===i)cls.push('box');
+    return '<div class="'+cls.join(' ')+'"><b>'+ch+'</b><small>第'+pos+'位</small></div>';
+  }).join('')+'</div>';
+}
+function sums(s){let o=0,e=0;const L=s.length;s.split('').forEach((ch,i)=>{const v=+ch,pos=L-i;if(pos%2)o+=v;else e+=v;});return{o,e,sum:o+e};}
+(function(){
+  function run(){
+    let s=String($('dN').value).trim().replace(/[０-９]/g,c=>String.fromCharCode(c.charCodeAt(0)-65248));
+    if(!/^\d{1,15}$/.test(s)||/^0\d/.test(s)||+s===0){$('dMsg').textContent='請輸入 1～15 位數的正整數（開頭不能是 0）。';return;}
+    $('dMsg').textContent='';
+    const L=s.length,last=+s[L-1],l2=+s.slice(-2),l3=+s.slice(-3),S=sums(s);
+    const join=a=>a.join('＋');
+    const oddD=[],evD=[];s.split('').forEach((ch,i)=>{(L-i)%2?oddD.unshift(ch):evD.unshift(ch);});
+    const r2=last%2===0,r5=last%5===0,r4=l2%4===0,r8=l3%8===0,r3=S.sum%3===0,r9=S.sum%9===0,diff=Math.abs(S.o-S.e),r11=diff%11===0;
+    const yes=b=>b?'<td class="ok">✔ 是</td>':'<td class="no">✘ 不是</td>';
+    const rows=[
+      ['2','個位數字是 '+last,r2],
+      ['5','個位數字是 '+last,r5],
+      ['4','末兩位數是 '+(L>=2?s.slice(-2):s)+(r4?'，是 4 的倍數':'，不是 4 的倍數'),r4],
+      ['8','末三位數是 '+(L>=3?s.slice(-3):s)+(r8?'＝8×'+(l3/8):'，不是 8 的倍數'),r8],
+      ['3','各位數字和 '+join(s.split(''))+'＝'+S.sum,r3],
+      ['9','各位數字和＝'+S.sum,r9],
+      ['11','奇數位和 '+join(oddD)+'＝'+S.o+'，偶數位和 '+(evD.length?join(evD):'0')+'＝'+S.e+'，差 '+diff,r11],
+      ['6','2 的倍數'+(r2?'✔':'✘')+'、3 的倍數'+(r3?'✔':'✘'),r2&&r3],
+      ['12','3 的倍數'+(r3?'✔':'✘')+'、4 的倍數'+(r4?'✔':'✘'),r3&&r4]
+    ];
+    /* 用大數再驗算一次，避免判別寫錯 */
+    const B=BigInt(s);rows.forEach(r=>{if((B%BigInt(r[0])===0n)!==r[2])console.error('判別不一致',s,r[0]);});
+    $('dDigits').innerHTML=digitBoxes(s);
+    $('dTable').innerHTML='<tr><th>是不是…的倍數</th><th>判斷依據</th><th>結果</th></tr>'+rows.map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td>'+yes(r[2])+'</tr>').join('');
+  }
+  $('dN').addEventListener('input',run);run();
+})();
+
+/* ========== 二、□ 填數字 ========== */
+(function(){
+  const sel=new Set([11]);
+  $('fDiv').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const d=+b.dataset.d;if(sel.has(d)){if(sel.size>1)sel.delete(d);}else sel.add(d);b.classList.toggle('on',sel.has(d));run();});
+  $('fBox').onclick=()=>{const el=$('fN'),p=el.selectionStart??el.value.length;el.value=el.value.slice(0,p)+'□'+el.value.slice(el.selectionEnd??p);el.focus();el.setSelectionRange(p+1,p+1);run();};
+  function why(s,bi,d){
+    const L=s.length,pos=L-bi;
+    if(d===3||d===9){const k=s.split('').reduce((a,c)=>c==='□'?a:a+(+c),0);return d+' 的倍數：各位數字和＝'+k+'＋□，要是 '+d+' 的倍數。';}
+    if(d===11){let o=0,e=0;s.split('').forEach((c,i)=>{if(c==='□')return;((L-i)%2)?o+=+c:e+=+c;});
+      return '11 的倍數：□ 在第 '+pos+' 位（'+(pos%2?'奇數位':'偶數位')+'）。奇數位和＝'+o+(pos%2?'＋□':'')+'，偶數位和＝'+e+(pos%2?'':'＋□')+'，兩個和的差要是 11 的倍數（0、11、22…）。';}
+    if(d===2||d===5)return d+' 的倍數：看個位數字'+(pos===1?'，□ 就在個位。':'，□ 不在個位，所以 □ 填什麼都不影響。');
+    if(d===4)return '4 的倍數：看末兩位數'+(pos<=2?'，□ 在末兩位裡。':'，□ 不在末兩位，填什麼都不影響。');
+    if(d===8)return '8 的倍數：看末三位數'+(pos<=3?'，□ 在末三位裡。':'，□ 不在末三位，填什麼都不影響。');
+    if(d===6)return '6 的倍數：要同時是 2 和 3 的倍數。';
+    if(d===12)return '12 的倍數：要同時是 3 和 4 的倍數（不能用 2 和 6）。';
+    return '';
+  }
+  function run(){
+    let s=String($('fN').value).trim().replace(/[?？_＿xX]/g,'□').replace(/[０-９]/g,c=>String.fromCharCode(c.charCodeAt(0)-65248));
+    const n=(s.match(/□/g)||[]).length;
+    if(!/^[\d□]{2,13}$/.test(s)||n!==1){$('fMsg').textContent='請輸入 2～13 位數，裡面剛好有一個 □。';$('fGrid').innerHTML='';$('fAns').innerHTML='';$('fWhy').innerHTML='';return;}
+    if(s[0]==='0'){$('fMsg').textContent='第一個數字不能是 0。';return;}
+    $('fMsg').textContent='';
+    const bi=s.indexOf('□'),ds=[...sel].sort((a,b)=>a-b);
+    let w=digitBoxes(s,{box:bi})+'<ul>'+ds.map(d=>'<li>'+why(s,bi,d)+'</li>').join('')+'</ul>';
+    $('fWhy').innerHTML=w;
+    const ok=[];let g='';
+    for(let v=0;v<=9;v++){
+      if(v===0&&bi===0){g+='<div class="fillcell no"><b>0</b>首位不可</div>';continue;}
+      const t=s.replace('□',v),B=BigInt(t);
+      const good=ds.every(d=>B%BigInt(d)===0n);if(good)ok.push(v);
+      g+='<div class="fillcell '+(good?'ok':'no')+'"><b>'+v+'</b>'+t+'<br>'+(good?'✔':'✘')+'</div>';
+    }
+    $('fGrid').innerHTML=g;
+    $('fAns').innerHTML=ok.length?'□ 可以是：'+ok.join('、')+'（共 '+ok.length+' 個）':'□ 填 0～9 都不行，沒有答案。';
+  }
+  $('fN').addEventListener('input',run);run();
+})();
+
+/* ========== 三、質數篩 ========== */
+(function(){
+  const box=$('sieve');const cells=[];
+  for(let i=1;i<=100;i++){const c=document.createElement('div');c.textContent=i;box.appendChild(c);cells[i]=c;}
+  let st=0,state=[];
+  const steps=[
+    ()=>{state[1]='x';return '1 不是質數也不是合數，先劃掉。';},
+    ()=>sweep(2),()=>sweep(3),()=>sweep(5),()=>sweep(7),
+    ()=>{let k=0;for(let i=2;i<=100;i++)if(!state[i]){state[i]='p';k++;}
+      return '下一個是 11，但 11×11＝121 已經超過 100。100 以內的合數，一定有一個比 11 小的質因數（2、3、5 或 7），前面已經全部劃掉了。所以剩下沒劃掉的 '+k+' 個數也全是質數，加上已經圈起來的 2、3、5、7，1～100 共 <b>25 個質數</b>、<b>74 個合數</b>。';}
+  ];
+  function sweep(p){
+    const nw=[];for(let m=p*2;m<=100;m+=p)if(!state[m]){state[m]='c'+p;nw.push(m);}
+    state[p]='p';
+    return '圈起質數 <b>'+p+'</b>，劃掉還沒被劃掉的 '+p+' 的倍數，這一步劃掉 '+nw.length+' 個：'+nw.slice(0,6).join('、')+(nw.length>6?'……':'')+'。';
+  }
+  function paint(){
+    let x=0,p=0;
+    for(let i=1;i<=100;i++){const s=state[i]||'',c=cells[i];const tr=c.classList.contains('trap');c.className=s==='p'?'p':(s==='x'?'x':(s?'x '+s:''));if(tr)c.classList.add('trap');if(s==='p')p++;else if(s)x++;}
+    /* 上一步以前劃掉的改成灰色，這一步劃掉的保留顏色 */
+    $('sX').textContent=x;$('sP').textContent=p;
+  }
+  function fade(){for(let i=1;i<=100;i++)if(/^c/.test(state[i]||''))state[i]='x';}
+  $('sStep').onclick=()=>{
+    if(st>=steps.length)return;fade();$('sMsg').innerHTML=steps[st++]();paint();
+    if(st>=steps.length){$('sStep').disabled=true;}
+  };
+  $('sReset').onclick=()=>{st=0;state=[];$('sStep').disabled=false;$('sMsg').innerHTML='按「下一步」開始。';for(let i=1;i<=100;i++)cells[i].classList.remove('trap');paint();};
+  $('sTrap').onclick=()=>{const on=!cells[51].classList.contains('trap');[51,57,87,91].forEach(i=>cells[i].classList.toggle('trap',on));
+    if(on)$('sMsg').innerHTML='紅框是長得像質數的合數：51＝3×17、57＝3×19、87＝3×29、91＝7×13。';};
+  paint();
+})();
+
+/* ========== 三、質數判斷 ========== */
+(function(){
+  function run(){
+    const N=M.readInt($('qN'),2,99999);
+    if(N===null){$('qMsg').textContent='請輸入 2～99999 的正整數。';$('qTries').innerHTML='';$('qAns').innerHTML='';return;}
+    $('qMsg').textContent='';
+    let h='',found=0;
+    for(let p=2;p*p<=N;p++){
+      if(!M.isPrime(p))continue;
+      if(N%p===0){h+='<span class="try hit">÷'+p+'＝'+(N/p)+' 整除</span>';found=p;break;}
+      h+='<span class="try">÷'+p+' ✘</span>';
+    }
+    if(!found){let p=2;while(p*p<=N)p++;while(!M.isPrime(p))p++;h+='<span class="try stop">下一個質數 '+p+'：'+p+'×'+p+'＝'+p*p+'＞'+N+'，停</span>';}
+    $('qTries').innerHTML=h;
+    $('qAns').innerHTML=found?N+' 是<b style="color:var(--clay)">合數</b>：'+N+'＝'+found+'×'+(N/found)+'，標準分解式 '+M.std(M.factorize(N)):N+' 是<b style="color:var(--moss)">質數</b>。';
+  }
+  $('qN').addEventListener('input',run);run();
+})();
+
+/* ========== 四、短除法 ========== */
+(function(){
+  let n=0,rows=[],done=false;
+  const L=$('ladder');
+  function reset(){
+    const N=M.readInt($('lN'),2,99999);
+    if(N===null){$('lMsg').textContent='請輸入 2～99999 的正整數。';return false;}
+    $('lMsg').textContent='';n=N;rows=[];done=false;L.innerHTML='';$('lOut').innerHTML='';
+    if(M.isPrime(N)){done=true;$('lOut').innerHTML='<p class="big-ans">'+N+' 本身就是質數，標準分解式就是 '+N+'。</p>';$('lHint').textContent='';return true;}
+    L.innerHTML='<div class="row"><div class="dv"></div><div class="qt">'+n+'</div></div>';
+    $('lHint').textContent='從最小的質數 2 開始試，除得盡就除，除不盡就換下一個質數。';
+    return true;
+  }
+  function step(){
+    if(done)return;
+    let p=2;while(n%p)p++;
+    rows.push(p);
+    const last=L.lastElementChild;last.querySelector('.dv').textContent=p;
+    n=n/p;
+    const r=document.createElement('div');r.className='row new';r.innerHTML='<div class="dv"></div><div class="qt">'+n+'</div>';L.appendChild(r);
+    if(M.isPrime(n)){done=true;rows.push(n);r.classList.add('last');finish();}
+    else $('lHint').textContent='商是 '+n+'，還不是質數，繼續除。';
+  }
+  function finish(){
+    const N=rows.reduce((a,b)=>a*b,1),f=M.factorize(N);
+    $('lHint').textContent='商 '+rows[rows.length-1]+' 已經是質數，停。左邊的除數和最後的商乘起來就是 '+N+'。';
+    $('lOut').innerHTML='<p>'+N+'＝'+rows.join('×')+'</p><p class="big-ans">標準分解式：'+N+'＝'+M.std(f)+'</p><p class="note">質因數有 '+f.map(x=>x[0]).join('、')+'，共 '+f.length+' 個相異質因數。</p>';
+  }
+  $('lStep').onclick=()=>{if((done||!L.children.length)&&!reset())return;step();};
+  $('lAll').onclick=()=>{if(!reset())return;while(!done)step();};
+  $('lReset').onclick=()=>reset();
+  $('lN').addEventListener('keydown',e=>{if(e.key==='Enter')$('lAll').click();});
+  $('lN').addEventListener('input',()=>{if(reset())while(!done)step();});
+  $('lAll').click();
+})();
+
+/* ========== 四、補成平方數 ========== */
+(function(){
+  function run(){
+    const N=M.readInt($('sqN'),2,99999);
+    if(N===null){$('sqMsg').textContent='請輸入 2～99999 的正整數。';$('sqOut').innerHTML='';return;}
+    $('sqMsg').textContent='';
+    const f=M.factorize(N),odd=f.filter(x=>x[1]%2);
+    const show=f.map(([p,e])=>'<span class="pf" style="background:'+(e%2?'var(--rose-bg)':'var(--moss-bg)')+'">'+p+(e>1?'<sup>'+e+'</sup>':'')+'</span>').join('×');
+    let h='<p>'+N+'＝'+show+'</p>';
+    if(!odd.length){const r=Math.round(Math.sqrt(N));h+='<p class="big-ans">每個指數都是偶數，'+N+' 本身就是平方數：'+N+'＝'+r+'<sup>2</sup>，n 最小是 1。</p>';}
+    else{
+      const n=odd.reduce((a,x)=>a*x[0],1),g=M.factorize(N*n),r=Math.round(Math.sqrt(N*n));
+      h+='<p>紅色的指數是奇數：'+odd.map(x=>x[0]+(x[1]>1?'<sup>'+x[1]+'</sup>':'（指數 1）')).join('、')+'。各補一個 '+odd.map(x=>x[0]).join('、')+'。</p>';
+      h+='<p class="big-ans">n 最小是 '+odd.map(x=>x[0]).join('×')+(odd.length>1?'＝'+n:'')+'</p>';
+      h+='<p class="note">'+N+'×'+n+'＝'+(N*n)+'＝'+M.std(g)+'＝'+r+'<sup>2</sup></p>';
+    }
+    $('sqOut').innerHTML=h;
+  }
+  $('sqN').addEventListener('input',run);run();
+})();
+
+/* ========== 五、頭尾配對與拼長方形 ========== */
+(function(){
+  function run(){
+    const N=M.readInt($('aN'),2,2000);
+    if(N===null){$('aMsg').textContent='請輸入 2～2000 的正整數。';$('arcs').innerHTML='';$('aOut').innerHTML='';$('rects').innerHTML='';return;}
+    $('aMsg').textContent='';
+    const D=M.divisors(N),k=D.length,cw=($('arcs').clientWidth||620)-64,gap=Math.max(N>=1000?36:30,Math.min(64,cw/Math.max(1,k-1)));
+    const W=Math.round(30*2+gap*(k-1)),pairs=Math.floor(k/2),H=Math.round(34+Math.min(150,gap*(k-1)/2*0.55));
+    const cols=['#2d6f9e','#a8572f','#3f7a4f','#a33a4a','#b98516','#6b4fa0'];
+    let s='<svg width="'+W+'" height="'+(H+30)+'" viewBox="0 0 '+W+' '+(H+30)+'" role="img" aria-label="'+N+' 的正因數頭尾配對">';
+    for(let i=0;i<pairs;i++){
+      const x1=30+gap*i,x2=30+gap*(k-1-i),r=(x2-x1)/2,hh=Math.min(H-26,r*0.55+8),c=cols[i%cols.length];
+      s+='<path d="M'+x1+' '+(H-4)+' C'+x1+' '+(H-4-hh*1.3)+' '+x2+' '+(H-4-hh*1.3)+' '+x2+' '+(H-4)+'" fill="none" stroke="'+c+'" stroke-width="2"/>';
+      if(i<4||r>40)s+='<text x="'+(x1+x2)/2+'" y="'+(H-4-hh+2)+'" text-anchor="middle" font-size="11.5" fill="'+c+'" paint-order="stroke" stroke="#fff" stroke-width="3">'+D[i]+'×'+D[k-1-i]+'</text>';
+    }
+    D.forEach((d,i)=>{const x=30+gap*i,mid=(k%2===1&&i===(k-1)/2);
+      s+='<text x="'+x+'" y="'+(H+16)+'" text-anchor="middle" font-size="'+(gap<40?13:15)+'" font-weight="700" fill="'+(mid?'#a33a4a':'#1f2a24')+'">'+d+'</text>';
+      s+='<text x="'+x+'" y="'+(H+29)+'" text-anchor="middle" font-size="10" fill="#7a857e">第'+(i+1)+'小</text>';});
+    s+='</svg>';
+    $('arcs').innerHTML=s;
+    const mid=k%2===1?D[(k-1)/2]:null;
+    $('aOut').innerHTML='<p>'+N+' 有 '+k+' 個正因數，每一條弧線連起來的兩個數，乘起來都是 '+N+'。'+(mid?'正中間的 <b style="color:var(--rose)">'+mid+'</b> 自己乘自己：'+mid+'×'+mid+'＝'+N+'。':'')+'第 2 小的 '+D[1]+' 是 '+N+' 最小的質因數。</p>'+
+      '<p>用 '+N+' 個小正方形拼長方形，共可拼出 <b>'+Math.ceil(k/2)+' 種</b>（長寬交換算同一種）：</p>';
+    let r='';const best=Math.ceil(k/2)-1;
+    for(let i=0;i<Math.ceil(k/2);i++){
+      const a=D[i],b=D[k-1-i],u=Math.max(1,110/b),w=Math.max(2,b*u),h=Math.max(2,a*u);
+      let g='<svg width="'+(w+2)+'" height="'+(h+2)+'"><rect x="1" y="1" width="'+w+'" height="'+h+'" fill="'+(i===best?'#e5f0e2':'#e2eef7')+'" stroke="'+(i===best?'#3f7a4f':'#2d6f9e')+'" stroke-width="1.5"/>';
+      if(u>=5){for(let x=1;x<b;x++)g+='<line x1="'+(1+x*u)+'" y1="1" x2="'+(1+x*u)+'" y2="'+(1+h)+'" stroke="#9cb9cf" stroke-width=".6"/>';for(let y=1;y<a;y++)g+='<line x1="1" y1="'+(1+y*u)+'" x2="'+(1+w)+'" y2="'+(1+y*u)+'" stroke="#9cb9cf" stroke-width=".6"/>';}
+      g+='</svg>';
+      r+='<figure class="'+(i===best?'best':'')+'">'+g+'<figcaption>'+a+'×'+b+'<br>周長 2×('+a+'＋'+b+')＝'+2*(a+b)+(i===best?'<br>最短':'')+'</figcaption></figure>';
+    }
+    $('rects').innerHTML=r;
+  }
+  $('aN').addEventListener('input',run);run();
+  let rt=0;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(run,150);});
+})();
+
+/* ========== 小測驗 ========== */
+const QZ=[
+ {u:1,s:'下列敘述何者正確？',o:['0 是 7 的因數','−4 是 20 的因數','7 不是 7 的倍數','1 的正因數有 2 個'],a:1,
+  e:'20＝(−4)×(−5)，所以 −4 是 20 的因數。(A) 0 不能當除數，0 不是任何數的因數。(C) 7＝7×1，7 是 7 的倍數。(D) 1 的正因數只有 1，共 1 個。'},
+ {u:1,s:'若 n 是正整數，而且 84÷n 的結果也是正整數，n 有幾種可能？',o:['6 種','10 種','12 種','24 種'],a:2,
+  e:'n 就是 84 的正因數。成對找：1×84、2×42、3×28、4×21、6×14、7×12，試到 9 時 9×9＝81、10×10＝100＞84 就停，共 12 個。'},
+ {u:1,s:'若 n 是整數，而且 20÷n 的結果也是整數，n 有幾種可能？',o:['6 種','10 種','12 種','20 種'],a:2,
+  e:'20 的正因數有 1、2、4、5、10、20 共 6 個。題目說 n 是「整數」，−1、−2、−4、−5、−10、−20 也可以，共 12 種。'},
+ {u:1,s:'把 90 顆糖分裝成好幾袋，每袋顆數相同而且全部裝完。如果每袋至少 5 顆、至多 20 顆，共有幾種裝法？',o:['4 種','5 種','6 種','7 種'],a:2,
+  e:'每袋的顆數是 90 的正因數：1、2、3、5、6、9、10、15、18、30、45、90。在 5～20 之間的有 5、6、9、10、15、18，共 6 種。'},
+ {u:2,s:'下列哪一個數是 11 的倍數？',o:['4728','5918','8253','4196'],a:1,
+  e:'5918 從個位往左：奇數位 8＋9＝17，偶數位 1＋5＝6，差 11，是 11 的倍數。4728 差 15－6＝9；8253 差 13－5＝8；4196 差 13－7＝6，都不是。'},
+ {u:2,s:'五位數 63□54 是 9 的倍數，□ 是多少？',o:['只有 0','只有 9','0 或 9','沒有答案'],a:2,
+  e:'6＋3＋5＋4＝18，18＋□ 要是 9 的倍數。□＝0 時和是 18，□＝9 時和是 27，兩個都對。這就是「9 的倍數最多兩個答案」。'},
+ {u:2,s:'四位數 4□52 是 12 的倍數，□ 可以填哪些數字？',o:['1、4、7','只有 4','1、7','2、5、8'],a:0,
+  e:'12 要拆成互質的 3 和 4。末兩位 52＝4×13，是 4 的倍數，□ 填什麼都可以；4＋□＋5＋2＝11＋□ 要是 3 的倍數，□＝1、4、7。'},
+ {u:2,s:'要判斷一個數是不是 12 的倍數，下列哪個方法正確？',o:['看它是不是同時是 2 和 6 的倍數','看它是不是同時是 3 和 4 的倍數','看各位數字和是不是 12 的倍數','看末兩位數是不是 12 的倍數'],a:1,
+  e:'2 和 6 不互質（都有因數 2），例如 18 同時是 2 和 6 的倍數，卻不是 12 的倍數。要用互質的 3 和 4。(C) 39 的數字和是 12，但 39 不是 12 的倍數。(D) 112 的末兩位是 12，但 112 不是 12 的倍數。'},
+ {u:3,s:'下列哪一組數全部都是質數？',o:['31、41、51','43、53、73','19、29、39','7、57、67'],a:1,
+  e:'51＝3×17、39＝3×13、57＝3×19 都是合數。43、53、73 都是質數。'},
+ {u:3,s:'下列敘述何者正確？',o:['1 是最小的質數','2 是唯一的偶質數','任兩個質數的和一定是偶數','91 是質數'],a:1,
+  e:'(A) 1 不是質數也不是合數，最小的質數是 2。(C) 2＋3＝5 是奇數。(D) 91＝7×13 是合數。'},
+ {u:3,s:'247 是質數還是合數？',o:['質數','合數，247＝13×19','合數，247＝7×37','合數，247＝11×23'],a:1,
+  e:'13×13＝169 不超過 247，17×17＝289 超過 247，所以只要試 2、3、5、7、11、13。試到 13：247÷13＝19，所以 247＝13×19 是合數。(C) 7×37＝259、(D) 11×23＝253，都不對。'},
+ {u:4,s:'下列哪一個是 600 的標準分解式？',o:['2<sup>3</sup>×3×5<sup>2</sup>','4×2×3×25','2<sup>3</sup>×5<sup>2</sup>×3','2<sup>2</sup>×3×5<sup>2</sup>×2'],a:0,
+  e:'600＝2<sup>3</sup>×3×5<sup>2</sup>。(B) 4、25 不是質數。(C) 質因數沒有由小到大排。(D) 相同的質因數 2 要合併成 2<sup>3</sup>。'},
+ {u:4,s:'密碼 abcd 藏在 1764 的標準分解式 2<sup>a</sup>×3<sup>b</sup>×c<sup>d</sup> 裡，密碼是多少？',o:['2272','2227','2372','2722'],a:0,
+  e:'短除法：1764÷2＝882，÷2＝441，÷3＝147，÷3＝49，÷7＝7。所以 1764＝2<sup>2</sup>×3<sup>2</sup>×7<sup>2</sup>，對照位置 a＝2、b＝2、c＝7、d＝2，密碼 2272。'},
+ {u:4,s:'若 3×8×9×10＝2<sup>a</sup>×3<sup>b</sup>×5<sup>c</sup>，則 a＋b＋c＝？',o:['6','7','8','9'],a:2,
+  e:'3＝3、8＝2<sup>3</sup>、9＝3<sup>2</sup>、10＝2×5。2 的指數 3＋1＝4，3 的指數 1＋2＝3，5 的指數 1，所以 2<sup>4</sup>×3<sup>3</sup>×5，a＋b＋c＝4＋3＋1＝8。'},
+ {u:4,s:'252 乘上正整數 n 以後，會變成某個整數的平方。n 最小是多少？',o:['2','3','7','14'],a:2,
+  e:'252＝2<sup>2</sup>×3<sup>2</sup>×7，只有 7 的指數是奇數（1），補一個 7：252×7＝1764＝2<sup>2</sup>×3<sup>2</sup>×7<sup>2</sup>＝42<sup>2</sup>。'},
+ {u:5,s:'正整數 N 的所有正因數由小到大排列為：1、3、a、7、b、21、c、N。a＋b＋c＝？',o:['45','50','55','60'],a:2,
+  e:'第 2 小的因數是 3，表示 N 不是 2 的倍數。a 在 3 和 7 之間，又不能是偶數，所以 a＝5。頭尾配對：a×21＝N，N＝105。再由 3×c＝105 得 c＝35，7×b＝105 得 b＝15。a＋b＋c＝5＋15＋35＝55。'},
+ {u:5,s:'用 48 個邊長 1 公分的小正方形，緊密拼成一個長方形而且全部用完，共可拼出幾種不同形狀的長方形？（長、寬交換算同一種）',o:['4 種','5 種','6 種','10 種'],a:1,
+  e:'48 的正因數配對：1×48、2×24、3×16、4×12、6×8，共 5 種。48 有 10 個正因數，但兩個配成一組，所以是 5 種。'},
+ {u:5,s:'承上題，這些長方形中，周長最短是幾公分？',o:['28 公分','32 公分','38 公分','98 公分'],a:0,
+  e:'長寬越接近，周長越短。6×8 的周長＝2×(6＋8)＝28 公分。4×12 是 32，3×16 是 38，1×48 是 98。'}
+];
+(function(){
+  const box=$('qz');let cur='all';const got=new Array(QZ.length).fill(null);
+  function build(){
+    box.innerHTML=QZ.map((q,i)=>'<div class="q" data-u="'+q.u+'" data-i="'+i+'"><div class="stem"><span class="no">第 '+(i+1)+' 題</span>'+q.s+'<span class="u">重點'+'一二三四五'[q.u-1]+'</span></div><div class="opts">'+
+      q.o.map((t,j)=>'<button class="opt" data-j="'+j+'">('+'ABCD'[j]+') '+t+'</button>').join('')+'</div><div class="exp"></div></div>').join('');
+    box.querySelectorAll('.q').forEach(d=>{
+      const i=+d.dataset.i,q=QZ[i];
+      d.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+        const j=+b.dataset.j;
+        d.querySelectorAll('.opt').forEach(x=>x.classList.remove('right','wrong'));
+        d.querySelectorAll('.opt')[q.a].classList.add('right');if(j!==q.a)b.classList.add('wrong');
+        if(got[i]===null)got[i]=(j===q.a);
+        const ex=d.querySelector('.exp');ex.innerHTML=(j===q.a?'<b class="ok">答對了！</b> ':'<b class="no">正確答案是 ('+'ABCD'[q.a]+')。</b> ')+q.e;ex.classList.add('show');
+        tally();
+      });
+    });
+    flt();tally();
+  }
+  function tally(){const d=got.filter(x=>x!==null).length,r=got.filter(x=>x).length;$('qzScore').textContent=r+' / '+QZ.length;$('qzDone').textContent='已作答 '+d+' 題'+(d===QZ.length?'，全部完成！錯的題目回到上面的重點再看一次。':'');}
+  function flt(){box.querySelectorAll('.q').forEach(d=>d.style.display=(cur==='all'||d.dataset.u===cur)?'':'none');}
+  $('qzFlt').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{cur=b.dataset.u;$('qzFlt').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));flt();});
+  $('qzReset').onclick=()=>{got.fill(null);build();};
+  build();
+  window.__QZ=QZ;
+})();
+})();
+</script>
+</body>
+</html>

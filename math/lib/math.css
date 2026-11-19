@@ -1,0 +1,90 @@
+/* 數學互動教室：數學頁專用樣式（全站共用樣式在 ../assets/style.css） */
+.kicker.m{color:var(--sea);background:var(--sea-bg)}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.toc a{font-size:14px;text-decoration:none;padding:4px 12px;border-radius:999px;border:1px solid var(--line-2);background:var(--card);color:var(--ink)}
+.toc a:hover{border-color:var(--sea);color:var(--sea)}
+.sec{scroll-margin-top:12px}
+.sec h2 .star{font-size:13px;font-weight:700;color:var(--sun);background:var(--sun-bg);border-radius:999px;padding:2px 9px;margin-left:8px;vertical-align:3px;white-space:nowrap}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin:12px 0 14px}
+.tool h3{margin:0 0 8px;font-size:16.5px;color:var(--sea)}
+.inrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 10px}
+.inrow label{font-size:14px;color:var(--ink-2)}
+.num{font:inherit;font-size:17px;width:9em;padding:5px 10px;border:1px solid var(--line-2);border-radius:8px;background:#fff;color:var(--ink)}
+.num.wide{width:11em;letter-spacing:.08em}
+.num.sm{width:4.6em;text-align:center}
+.try.miss{background:var(--clay-bg);border-color:var(--clay);color:var(--clay);font-weight:700}
+.num:focus{outline:2px solid var(--sea);outline-offset:1px}
+.msg{font-size:14px;color:var(--rose);min-height:1em}
+.hot{color:var(--rose);font-weight:700;background:var(--rose-bg);padding:1px 6px;border-radius:5px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.out{font-size:15.5px}
+.big-ans{font-size:19px;font-weight:700;margin:6px 0}
+.big-ans sup,.out sup{font-size:.72em}
+
+/* 成對找因數 */
+.tries{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.try{font-size:14px;padding:3px 9px;border-radius:8px;border:1px solid var(--line-2);background:#f3f1ea;color:var(--ink-3);white-space:nowrap}
+.try.hit{background:var(--moss-bg);border-color:var(--moss);color:var(--ink);font-weight:700}
+.try.stop{background:var(--sun-bg);border-color:var(--sun);color:var(--ink)}
+.flist{display:flex;flex-wrap:wrap;gap:4px 6px;margin:4px 0}
+.flist span{min-width:2.2em;text-align:center;padding:1px 6px;border-radius:6px;background:var(--sea-bg);font-weight:700;font-size:15px}
+.flist span.neg{background:var(--rose-bg)}
+
+/* 數字格（倍數判別） */
+.digits{display:inline-flex;gap:4px;margin:4px 0 6px;flex-wrap:wrap}
+.dg{display:flex;flex-direction:column;align-items:center;min-width:34px}
+.dg b{display:block;width:34px;height:40px;line-height:40px;text-align:center;font-size:21px;border:1.5px solid var(--line-2);border-radius:7px;background:#fff}
+.dg small{font-size:11px;color:var(--ink-3);line-height:1.5}
+.dg.odd b{background:#e2eef7;border-color:var(--sea)}
+.dg.even b{background:#f6e6dc;border-color:var(--clay)}
+.dg.hl b{background:var(--sun-bg);border-color:var(--sun)}
+.dg.box b{border-style:dashed;color:var(--rose)}
+table.t td.ok{color:var(--moss);font-weight:700;white-space:nowrap}
+table.t td.no{color:var(--ink-3);white-space:nowrap}
+.fillgrid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:5px;margin:8px 0}
+@media (max-width:600px){.fillgrid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.fillcell{border:1px solid var(--line-2);border-radius:8px;background:#fbfaf6;text-align:center;padding:4px 2px;font-size:13px;line-height:1.4}
+.fillcell b{display:block;font-size:18px}
+.fillcell.ok{background:var(--moss-bg);border-color:var(--moss)}
+.fillcell.no{color:var(--ink-3)}
+
+.chips .pick-hint{display:inline-flex;align-items:center;gap:6px;margin-left:6px;font-size:14.5px;font-weight:700;color:var(--clay);white-space:nowrap}
+.chips .pick-hint .arr{display:inline-block;font-size:17px;animation:nudge 1.2s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(-5px)}}
+@media (prefers-reduced-motion:reduce){.chips .pick-hint .arr{animation:none}}
+
+/* 質數篩 */
+.sieve{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;max-width:520px;margin:8px 0}
+.sieve div{aspect-ratio:1/1;display:grid;place-items:center;border-radius:7px;background:#fff;border:1px solid var(--line);font-size:15px;font-weight:700;transition:background .25s,color .25s}
+.sieve div.p{background:var(--moss-bg);border-color:var(--moss);color:#24563a}
+.sieve div.x{background:#ecebe5;color:#b6b2a6;font-weight:400;text-decoration:line-through}
+.sieve div.c2{background:#f6e6dc;color:#a8572f}
+.sieve div.c3{background:#e2eef7;color:#2d6f9e}
+.sieve div.c5{background:#f8eed2;color:#8a6410}
+.sieve div.c7{background:#f7e3e6;color:#a33a4a}
+.sieve div.trap{outline:3px solid var(--rose);outline-offset:-3px}
+@media (max-width:600px){.sieve div{font-size:13px}}
+
+/* 短除法 */
+.ladder{display:inline-block;margin:6px 0 4px;font-size:20px;font-variant-numeric:tabular-nums}
+.ladder .row{display:flex;align-items:stretch}
+.ladder .dv{min-width:44px;text-align:right;padding:2px 8px 2px 0;color:var(--clay);font-weight:700}
+.ladder .qt{min-width:86px;padding:2px 10px;border-left:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.ladder .last .qt{border:none;padding-left:12px;color:var(--moss);font-weight:700}
+.ladder .row.new{animation:pop .35s ease}
+@keyframes pop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.pf{display:inline-block;padding:1px 8px;margin:2px;border-radius:6px;font-weight:700}
+
+/* 頭尾配對 */
+.arcs{overflow-x:auto;margin:4px 0}
+.arcs svg{display:block}
+.rects{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin:8px 0}
+.rects figure{margin:0;text-align:center;font-size:13.5px;color:var(--ink-2)}
+.rects figure.best figcaption{color:var(--moss);font-weight:700}
+.rects svg{display:block;margin:0 auto 4px}
+
+/* 小測驗 */
+.score{position:sticky;top:0;z-index:5;background:var(--paper);padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.score .big{font-size:20px;font-weight:700}
+.q .no{font-size:13px;color:var(--ink-3);margin-right:6px}
+.q .u{font-size:12px;font-weight:700;color:var(--sea);background:var(--sea-bg);border-radius:999px;padding:1px 8px;margin-left:6px;white-space:nowrap}
+.q sup{font-size:.72em}
