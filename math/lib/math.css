@@ -129,3 +129,14 @@ table.inv tr.bad td:nth-child(2){text-decoration:none;color:var(--rose)}
 table.inv tr.okr td{background:var(--moss-bg)}
 table.inv tr.out td{color:var(--ink-3)}
 table.inv td.ab{white-space:nowrap}
+.figbox{overflow-x:auto;margin:6px 0}
+.figbox svg{display:block;max-width:100%}
+.chip.gmax{font-weight:700;border-color:var(--sun)}
+ol.steps{margin:4px 0 8px;padding-left:1.4em}
+ol.steps li{margin:3px 0}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.86em;line-height:1.15;margin:0 2px}
+.frac span:first-child{border-bottom:1.5px solid currentColor;padding:0 3px}
+.lampc{color:#2d6f9e}
+.flagc{color:#a8572f}
+.btn.gmb.right{background:var(--moss-bg);border-color:var(--moss);color:#24563a;font-weight:700}
+.btn.gmb.wrong{background:var(--rose-bg);border-color:var(--rose);color:var(--rose)}
