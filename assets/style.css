@@ -128,3 +128,10 @@ a.subject:hover{border-color:var(--moss);transform:translateY(-2px);box-shadow:0
 .subject .go{display:inline-block;margin-top:8px;font-size:14px;font-weight:700;color:var(--moss)}
 .subject.soon{background:transparent;border-style:dashed;color:var(--ink-3)}
 .subject.soon .ic{background:#eeebe2}
+
+/* 首頁頁尾：版本號與部署時間 */
+.site-foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 18px}
+.ver{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:12.5px;color:var(--ink-3)}
+.ver .vtag{font-weight:700;color:var(--moss);background:var(--moss-bg);border-radius:999px;padding:1px 9px}
+.ver .vcommit{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;background:#eeebe2;border-radius:4px;padding:1px 6px;color:var(--ink-2);text-decoration:none}
+.ver .vcommit:hover{background:#e2ddd0}

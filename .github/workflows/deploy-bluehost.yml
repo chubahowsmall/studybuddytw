@@ -1,12 +1,14 @@
 # 自動部署到 Bluehost：推送到 master 時，用 SSH + rsync 把網站檔案同步到主機（public_html）。
 # 主機自己的檔案（.htaccess、.well-known/、cgi-bin/ 等）受保護，不會被刪除。
+# 部署時會產生 version.json（tag、commit ID、部署時間），首頁頁尾會顯示版本號。
 # 設定步驟見 docs/deploy-bluehost.md。
 name: Deploy to Bluehost
 
 on:
   push:
     branches: [master]
-    paths-ignore:            # 只改說明文件時不部署
+    tags: ['v*']             # 推送版本 tag（如 v0.0.2）時也重新部署，讓首頁版本號更新
+    paths-ignore:            # 只改說明文件時不部署（推送 tag 不受此限制）
       - 'README.md'
       - 'docs/**'
   workflow_dispatch:         # Actions 頁面手動執行
@@ -36,8 +38,26 @@ jobs:
       DRY_RUN: ${{ inputs.dry_run && '--dry-run' || '' }}
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0       # 抓完整歷史與 tag，才能算出版本號
+
+      - name: 產生版本資訊（version.json）
+        run: |
+          # 推送 tag 時，只有 tag 指向 master 最新的 commit 才部署，避免把舊版本蓋上網站
+          if [ "$GITHUB_REF_TYPE" = "tag" ] && [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/master)" ]; then
+            echo "::notice::tag $GITHUB_REF_NAME 不是 master 最新的 commit，略過部署"
+            echo "SKIP=1" >> "$GITHUB_ENV"; exit 0
+          fi
+          tag=$(git describe --tags --abbrev=0 2>/dev/null || true)
+          if [ -n "$tag" ]; then ahead=$(git rev-list --count "$tag"..HEAD); else ahead=$(git rev-list --count HEAD); fi
+          sha=$(git rev-parse HEAD)
+          jq -n --arg tag "$tag" --argjson ahead "$ahead" --arg sha "$sha" --arg commit "${sha:0:6}" \
+                --arg deployed "$(TZ=Asia/Taipei date '+%Y/%m/%d %H:%M')" --arg deployed_utc "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+                '{tag:$tag, ahead:$ahead, commit:$commit, sha:$sha, deployed:$deployed, deployed_utc:$deployed_utc}' > version.json
+          cat version.json
 
       - name: 檢查設定
+        if: env.SKIP != '1'
         run: |
           for v in HOST USER PORT DEST; do
             if [ -z "${!v}" ]; then echo "::error::缺少 secret：BLUEHOST_${v/DEST/PATH}"; exit 1; fi
@@ -54,6 +74,7 @@ jobs:
           [ -n "$DRY_RUN" ] && echo "::notice::試跑模式：不會實際上傳或刪除檔案" || true
 
       - name: 設定 SSH 金鑰
+        if: env.SKIP != '1'
         run: |
           install -m 700 -d ~/.ssh
           printf '%s\n' "${{ secrets.BLUEHOST_SSH_KEY }}" > ~/.ssh/id_deploy
@@ -66,9 +87,11 @@ jobs:
           chmod 600 ~/.ssh/known_hosts
 
       - name: 測試連線
+        if: env.SKIP != '1'
         run: ssh -i ~/.ssh/id_deploy -p "$PORT" -o BatchMode=yes "$USER@$HOST" "mkdir -p '$DEST' && echo 連線成功：\$(hostname)"
 
       - name: 同步網站檔案
+        if: env.SKIP != '1'
         run: |
           rsync -rltvz --delete --itemize-changes $DRY_RUN \
             --chmod=D755,F644 \
