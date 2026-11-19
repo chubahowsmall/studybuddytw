@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>伴讀書僮｜國中複習教材</title>
-<meta name="description" content="伴讀書僮：國中各科自編互動複習教材。目前提供 3D 地理探索館（國七上第二次段考：地形、海岸與島嶼）。">
+<meta name="description" content="伴讀書僮：國中各科自編互動複習教材。目前提供 3D 地理探索館（國七上第二次段考：地形、海岸與島嶼）與數學互動教室（國七上第二次段考：因數與倍數）。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect x=%225%22 y=%224%22 width=%2222%22 height=%2224%22 rx=%223%22 fill=%22%23a8572f%22/%3E%3Crect x=%229%22 y=%229%22 width=%2214%22 height=%222.5%22 fill=%22%23f7f5ef%22/%3E%3Crect x=%229%22 y=%2214%22 width=%2210%22 height=%222.5%22 fill=%22%23f7f5ef%22/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=2">
 </head>
 <body>
 <figure class="hub-banner">
@@ -36,6 +36,17 @@
         <span class="go">進入探索館 →</span>
       </div>
     </a>
+    <a class="subject" href="math/">
+      <div class="ic" aria-hidden="true" style="background:var(--sea-bg)">
+        <svg width="32" height="32" viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" rx="5" fill="#2d6f9e"/><path d="M10 16h12M16 10v12" stroke="#fff" stroke-width="3"/></svg>
+      </div>
+      <div>
+        <div class="tg" style="color:var(--sea)">數學・國七上・第二次段考（康軒版）</div>
+        <div class="tt">數學互動教室</div>
+        <p class="ds">第 2 章因數、倍數、分數與指數律。自己輸入數字找因數、篩質數、做短除法，每個單元附小測驗。目前完成 2-1 因數與倍數。</p>
+        <span class="go" style="color:var(--sea)">進入教室 →</span>
+      </div>
+    </a>
     <div class="subject soon" aria-disabled="true">
       <div class="ic" aria-hidden="true">
         <svg width="30" height="30" viewBox="0 0 32 32"><rect x="6" y="5" width="20" height="22" rx="2" fill="none" stroke="#a9a493" stroke-width="2"/><path d="M10 11h12M10 16h12M10 21h7" stroke="#a9a493" stroke-width="2"/></svg>
@@ -60,13 +71,15 @@
 /* 版本號：部署時由 GitHub Actions 產生 version.json（tag、tag 之後的 commit 數、commit ID、部署時間） */
 (function(){
   const el=document.getElementById('ver');
-  const add=(tag,cls,text,attrs)=>{const e=document.createElement(tag);if(cls)e.className=cls;e.textContent=text;Object.assign(e,attrs||{});el.appendChild(e);return e;};
+  const add=(p,tag,cls,text,attrs)=>{const e=document.createElement(tag);if(cls)e.className=cls;e.textContent=text;Object.assign(e,attrs||{});p.appendChild(e);return e;};
+  const grp=()=>add(el,'span','vgrp','');
   fetch('version.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(v=>{
-    el.textContent='';add('span','','版本');
-    if(v.tag)add('span','vtag',v.tag);
-    if(v.tag&&v.ahead>0)add('span','','（之後 '+v.ahead+' 個更新）');
-    if(v.commit)add('a','vcommit',v.commit,{href:'https://github.com/chubahowsmall/studybuddytw/commit/'+(v.sha||v.commit),target:'_blank',rel:'noopener',title:'在 GitHub 查看這個 commit'});
-    if(v.deployed)add('span','','部署時間 '+v.deployed);
+    /* 分成三組：版本（tag）、commit ID、部署時間；組和組之間留大一點的間隔 */
+    el.textContent='';let g=grp();add(g,'span','','版本');
+    if(v.tag)add(g,'span','vtag',v.tag);
+    if(v.tag&&v.ahead>0)add(g,'span','','（之後 '+v.ahead+' 個更新）');
+    if(v.commit)add(v.tag?grp():g,'a','vcommit',v.commit,{href:'https://github.com/chubahowsmall/studybuddytw/commit/'+(v.sha||v.commit),target:'_blank',rel:'noopener',title:'在 GitHub 查看這個 commit'});
+    if(v.deployed){g=grp();add(g,'span','','部署時間');add(g,'span','',v.deployed);}
   }).catch(()=>{el.textContent='本機預覽（沒有版本資訊）';});
 })();
 </script>
