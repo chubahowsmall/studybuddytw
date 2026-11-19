@@ -59,3 +59,4 @@ bluehost_deploy*
 *.pem
 id_rsa*
 id_ed25519*
+Claude outputs/

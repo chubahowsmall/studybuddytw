@@ -2,7 +2,7 @@
 (function(){
 'use strict';
 const NAV=[
-  ['geography.html','地理首頁'],
+  ['index.html','地理首頁'],
   ['forces.html','3-1 內外營力'],
   ['contour.html','3-2 等高線'],
   ['taiwan.html','3-3 臺灣地形'],
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const head=document.getElementById('site-head');
   if(head){
     head.className='site-head';
-    head.innerHTML='<div class="wrap"><a class="home" href="index.html" title="回到伴讀書僮首頁">← 伴讀書僮</a><a class="brand" href="geography.html">3D 地理探索館<small>國七上・第二次段考<span style="color:#f5c84c;font-weight:700">（翰林版）</span></small></a><nav class="nav">'+
+    head.innerHTML='<div class="wrap"><a class="home" href="../index.html" title="回到伴讀書僮首頁">← 伴讀書僮</a><a class="brand" href="index.html">3D 地理探索館<small>國七上・第二次段考<span style="color:#f5c84c;font-weight:700">（翰林版）</span></small></a><nav class="nav">'+
       NAV.map(([h,t])=>'<a href="'+h+'"'+(h===here?' class="on" aria-current="page"':'')+'>'+t+'</a>').join('')+'</nav></div>';
   }
   const foot=document.getElementById('site-foot');

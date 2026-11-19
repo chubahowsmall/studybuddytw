@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>3-3 臺灣地形的特徵與分布｜3D 地理探索館</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Cpath d=%22M2 26 L12 10 L18 18 L22 13 L30 26Z%22 fill=%22%233f7a4f%22/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/style.css">
-<script src="assets/three.min.js"></script>
-<script src="assets/geo.js"></script>
-<script src="assets/taiwan-counties.js"></script>
-<script src="assets/dem-taiwan.js"></script>
-<script src="assets/common.js"></script>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="lib/three.min.js"></script>
+<script src="lib/geo.js"></script>
+<script src="lib/taiwan-counties.js"></script>
+<script src="lib/dem-taiwan.js"></script>
+<script src="lib/common.js"></script>
 </head>
 <body>
 <header id="site-head"></header>
@@ -27,7 +27,7 @@
   </div>
   <div class="lab">
     <div>
-      <a href="assets/img/plates-block.svg" target="_blank" rel="noopener" title="開新分頁看大圖"><img src="assets/img/plates-block.svg" alt="臺灣周邊板塊擠壓立體示意圖：臺灣位在歐亞板塊與菲律賓海板塊的交界，兩板塊互相擠壓，陸上交界是花東縱谷。前方（南側）切面：歐亞板塊在馬尼拉海溝向東隱沒到菲律賓海板塊之下；右方（東側）切面：菲律賓海板塊在琉球海溝向北隱沒到歐亞板塊之下" style="width:100%;height:auto;display:block;background:#fff;border:1px solid var(--line);border-radius:var(--r)"></a>
+      <a href="img/plates-block.svg" target="_blank" rel="noopener" title="開新分頁看大圖"><img src="img/plates-block.svg" alt="臺灣周邊板塊擠壓立體示意圖：臺灣位在歐亞板塊與菲律賓海板塊的交界，兩板塊互相擠壓，陸上交界是花東縱谷。前方（南側）切面：歐亞板塊在馬尼拉海溝向東隱沒到菲律賓海板塊之下；右方（東側）切面：菲律賓海板塊在琉球海溝向北隱沒到歐亞板塊之下" style="width:100%;height:auto;display:block;background:#fff;border:1px solid var(--line);border-radius:var(--r)"></a>
       <p class="small">點圖可開新分頁看大圖。自繪示意圖。陸地高度依 NASA SRTM 衛星資料；海底深度、海溝位置與板塊厚度為大略示意。</p>
     </div>
     <div>
@@ -265,7 +265,7 @@ layerButtons.forEach(b=>b.onclick=()=>{layerButtons.forEach(x=>x.classList.toggl
 countyNames.addEventListener('change',M.draw);
 
 /* ---------- 3D 地形剖面（可自選位置） ---------- */
-/* 高程：NASA SRTM 重新取樣的格點（assets/dem-taiwan.js）；海底為示意 */
+/* 高程：NASA SRTM 重新取樣的格點（lib/dem-taiwan.js）；海底為示意 */
 const DEM=(()=>{const d=window.TW_DEM,dec=b=>Uint8Array.from(atob(b),c=>c.charCodeAt(0));
   const L=dec(d.land),S=dec(d.sea),v=new Float32Array(d.nx*d.ny);
   for(let i=0;i<v.length;i++)v[i]=L[i]?L[i]*16:-S[i]*20;

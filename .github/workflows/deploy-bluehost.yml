@@ -1,4 +1,5 @@
-# 自動部署到 Bluehost：推送到 master 時，用 SSH + rsync 把網站檔案同步到主機。
+# 自動部署到 Bluehost：推送到 master 時，用 SSH + rsync 把網站檔案同步到主機（public_html）。
+# 主機自己的檔案（.htaccess、.well-known/、cgi-bin/ 等）受保護，不會被刪除。
 # 設定步驟見 docs/deploy-bluehost.md。
 name: Deploy to Bluehost
 
@@ -41,13 +42,14 @@ jobs:
           for v in HOST USER PORT DEST; do
             if [ -z "${!v}" ]; then echo "::error::缺少 secret：BLUEHOST_${v/DEST/PATH}"; exit 1; fi
           done
-          # 防呆：不允許直接部署到家目錄或 public_html 根目錄（rsync --delete 會刪掉其他網站）
+          # 防呆：這個網站部署在 public_html（整個網域專用）。
+          # 不允許部署到家目錄本身，避免 rsync --delete 刪到 mail、etc 等主機資料夾。
           d="${DEST%/}"
           case "$d" in
-            ""|"."|"/"|"public_html"|*/public_html|/home*/"$USER")
-              echo "::error::BLUEHOST_PATH=$DEST 太危險，請指向這個網站專用的資料夾，例如 public_html/studybuddy"; exit 1;;
+            ""|"."|"/"|/home*/"$USER"|/home*/"$USER"/)
+              echo "::error::BLUEHOST_PATH=$DEST 太危險，不能部署到家目錄本身，請填 public_html"; exit 1;;
             "~"*)
-              echo "::error::BLUEHOST_PATH 不要用 ~，請寫相對於家目錄的路徑，例如 public_html/studybuddy"; exit 1;;
+              echo "::error::BLUEHOST_PATH 不要用 ~，請寫相對於家目錄的路徑，例如 public_html"; exit 1;;
           esac
           [ -n "$DRY_RUN" ] && echo "::notice::試跑模式：不會實際上傳或刪除檔案" || true
 
@@ -73,7 +75,9 @@ jobs:
             --exclude='.git/' --exclude='.github/' --exclude='.gitignore' \
             --exclude='docs/' --exclude='resources/' \
             --exclude='README.md' --exclude='LICENSE' \
-            --exclude='bluehost_deploy*' \
+            --exclude='bluehost_deploy*' --exclude='Claude outputs/' \
+            --filter='P .htaccess' --filter='P .well-known/' --filter='P cgi-bin/' \
+            --filter='P .user.ini' --filter='P php.ini' --filter='P error_log' \
             -e "ssh -i $HOME/.ssh/id_deploy -p $PORT -o BatchMode=yes" \
             ./ "$USER@$HOST:${DEST%/}/"
 

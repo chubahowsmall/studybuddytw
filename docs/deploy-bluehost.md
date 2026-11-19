@@ -45,18 +45,21 @@ ls public_html      # 確認網站資料夾
 which rsync         # 確認主機有 rsync（部署需要）
 ```
 
-## 四、決定部署位置（BLUEHOST_PATH）
+## 四、部署位置（BLUEHOST_PATH）
 
-部署會用 `rsync --delete`，**目標資料夾裡多出來的檔案會被刪除**，所以一定要用這個網站**專用**的資料夾：
+這個網域的 `public_html` 只放這個網站，所以整個網站直接部署到 **`public_html`**：
 
-| 想要的網址 | BLUEHOST_PATH 範例 |
+| 網址 | 主機上的位置 |
 |---|---|
-| `https://你的網域/studybuddy/` | `public_html/studybuddy` |
-| 子網域 `https://study.你的網域/` | 子網域的文件根目錄，例如 `public_html/study`（在後台 Domains 建立子網域時會顯示） |
+| `https://你的網域/` | `public_html/index.html`（伴讀書僮首頁） |
+| `https://你的網域/geo/` | `public_html/geo/index.html`（3D 地理探索館） |
+| `https://你的網域/geo/taiwan.html` | `public_html/geo/taiwan.html` |
 
-- 路徑寫成**相對於家目錄**（如上表），不要用 `~`。
-- workflow 有防呆：填 `public_html`、`~`、`/` 或家目錄本身會直接停止，不會部署。
-- 資料夾不存在時會自動建立。
+- `BLUEHOST_PATH` 填 `public_html`（相對於家目錄，不要用 `~`）。
+- 部署會用 `rsync --delete`：**`public_html` 裡多出來、儲存庫沒有的檔案會被刪除**，例如舊的跳轉頁、舊的 `geo/geography.html`。
+- 以下主機自己的檔案**受保護、不會被刪**：`.htaccess`、`.well-known/`（HTTPS 憑證驗證用）、`cgi-bin/`、`.user.ini`、`php.ini`、`error_log`。
+- workflow 有防呆：填 `~` 開頭、`/` 或家目錄本身會直接停止，不會部署。
+- 以後如果要在同一個網域放第二個不相干的網站，改用子網域（例如 `study.你的網域` 對應 `public_html/study`），並把 `BLUEHOST_PATH` 改成那個資料夾。
 
 ## 五、GitHub：設定 Secrets
 
@@ -68,7 +71,7 @@ which rsync         # 確認主機有 rsync（部署需要）
 | `BLUEHOST_HOST` | 主機名稱或 IP | ✔ |
 | `BLUEHOST_USER` | cPanel 使用者名稱 | ✔ |
 | `BLUEHOST_PORT` | SSH port，例如 `22` | ✔ |
-| `BLUEHOST_PATH` | 部署資料夾，例如 `public_html/studybuddy` | ✔ |
+| `BLUEHOST_PATH` | `public_html` | ✔ |
 | `BLUEHOST_KNOWN_HOSTS` | 主機指紋（更安全，可不填）：在自己電腦執行 `ssh-keyscan -p 22 主機`，把輸出整段貼上 | 選填 |
 
 沒填 `BLUEHOST_KNOWN_HOSTS` 時，workflow 會在每次部署時自動抓主機指紋。
@@ -76,7 +79,7 @@ which rsync         # 確認主機有 rsync（部署需要）
 ## 六、第一次部署：先試跑
 
 1. 把 workflow 檔合併到 `master` 並 push。
-   （這次 push 本身就會觸發部署；若想先試跑，可以先設定好 Secrets 但把 `BLUEHOST_PATH` 指向一個新的空資料夾。）
+   （這次 push 本身就會觸發正式部署。若想先試跑，可以先**不要**設定 `BLUEHOST_PATH`：push 時會因缺少設定而停止，等手動試跑前再補上。）
 2. 儲存庫 → **Actions** → **Deploy to Bluehost** → **Run workflow**，「試跑」保持勾選 → 執行。
 3. 打開執行紀錄的「同步網站檔案」步驟，確認列出的檔案與路徑正確（`*deleting` 開頭的是會被刪除的檔案）。
 4. 沒問題後，再按一次 **Run workflow**，取消勾選「試跑」，正式部署。
@@ -97,7 +100,7 @@ which rsync         # 確認主機有 rsync（部署需要）
 | `Permission denied (publickey)` | 公鑰沒有 Authorize、私鑰貼不完整，或 `BLUEHOST_USER` 填成 email |
 | `Connection timed out` / `refused` | port 不對（試 22 或 2222），或 SSH 尚未開啟 |
 | `rsync: command not found` | 主機沒有 rsync，請聯絡 Bluehost 客服，或改用 FTPS 部署 |
-| 網址顯示 403 / 404 | `BLUEHOST_PATH` 與網址對應的資料夾不一致 |
+| 網址顯示 403 / 404 | `BLUEHOST_PATH` 不是 `public_html`，或網址少了 `geo/`（地理頁面在 `/geo/` 底下） |
 | 想停用自動部署 | Actions → Deploy to Bluehost → 右上「…」→ **Disable workflow** |
 
 ## 更換或撤銷金鑰
