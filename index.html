@@ -32,7 +32,7 @@
       <div>
         <div class="tg">地理・國七上・第二次段考（翰林版）</div>
         <div class="tt">3D 地理探索館</div>
-        <p class="ds">地形、等高線、臺灣地形、海岸與離島。拖曳旋轉 3D 模型，自己切地形剖面，再做 25 題小測驗。</p>
+        <p class="ds">地形、等高線、臺灣地形、海岸與離島。拖曳旋轉 3D 模型，自己切地形剖面，再做 28 題小測驗。</p>
         <span class="go">進入探索館 →</span>
       </div>
     </a>
@@ -52,6 +52,23 @@
     <p class="note">這是家長和學生自用的自編複習教材，依 108 課綱與各科使用的課本版本編寫，非出版社或學校官方資料。考試日期與範圍以學校公告為準。</p>
   </div>
 </main>
-<footer class="site-foot"><div class="wrap">伴讀書僮・自編複習教材</div></footer>
+<footer class="site-foot"><div class="wrap">
+  <span>伴讀書僮・自編複習教材</span>
+  <span class="ver" id="ver" title="版本以 git tag 為主；括號內為 commit ID 前六碼">版本資訊讀取中…</span>
+</div></footer>
+<script>
+/* 版本號：部署時由 GitHub Actions 產生 version.json（tag、tag 之後的 commit 數、commit ID、部署時間） */
+(function(){
+  const el=document.getElementById('ver');
+  const add=(tag,cls,text,attrs)=>{const e=document.createElement(tag);if(cls)e.className=cls;e.textContent=text;Object.assign(e,attrs||{});el.appendChild(e);return e;};
+  fetch('version.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(v=>{
+    el.textContent='';add('span','','版本');
+    if(v.tag)add('span','vtag',v.tag);
+    if(v.tag&&v.ahead>0)add('span','','（之後 '+v.ahead+' 個更新）');
+    if(v.commit)add('a','vcommit',v.commit,{href:'https://github.com/chubahowsmall/studybuddytw/commit/'+(v.sha||v.commit),target:'_blank',rel:'noopener',title:'在 GitHub 查看這個 commit'});
+    if(v.deployed)add('span','','部署時間 '+v.deployed);
+  }).catch(()=>{el.textContent='本機預覽（沒有版本資訊）';});
+})();
+</script>
 </body>
 </html>
