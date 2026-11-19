@@ -35,7 +35,7 @@ jobs:
       KNOWN_HOSTS: ${{ secrets.BLUEHOST_KNOWN_HOSTS }}
       DRY_RUN: ${{ inputs.dry_run && '--dry-run' || '' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: 檢查設定
         run: |
