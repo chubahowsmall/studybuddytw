@@ -53,3 +53,9 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# 部署金鑰與私鑰（儲存庫是公開的，絕對不要 commit）
+bluehost_deploy*
+*.pem
+id_rsa*
+id_ed25519*

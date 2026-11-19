@@ -23,6 +23,8 @@ assets/
   img/banner-bandu-*.jpg  首頁 banner（由 resources/ 的原圖縮小）
 resources/      原始圖檔
 .nojekyll       讓 GitHub Pages 不經 Jekyll 處理，原樣發布
+.github/workflows/deploy-bluehost.yml  推送到 master 時自動部署到 Bluehost
+docs/deploy-bluehost.md                Bluehost 自動部署設定說明
 ```
 
 所有函式庫都放在 `assets/`，不依賴外部 CDN。
@@ -45,6 +47,18 @@ python3 -m http.server 8000
 4. 約 1～2 分鐘後，網站會出現在 `https://<你的帳號>.github.io/studybuddytw/`。
 
 > 儲存庫是公開的，請不要把孩子的成績、錯題紀錄或任何個人資料放進來。
+
+## 自動部署到 Bluehost
+
+推送到 `master` 時，GitHub Actions（`.github/workflows/deploy-bluehost.yml`）會用 SSH + rsync 把網站同步到 Bluehost 主機的指定資料夾。
+
+1. 在 Bluehost 開啟 SSH，並授權一把部署專用的公鑰。
+2. 在 GitHub 儲存庫設定 Secrets：`BLUEHOST_SSH_KEY`、`BLUEHOST_HOST`、`BLUEHOST_USER`、`BLUEHOST_PORT`、`BLUEHOST_PATH`（選填 `BLUEHOST_KNOWN_HOSTS`）。
+3. 第一次先到 Actions 手動執行「試跑」，確認檔案清單後再正式部署。
+
+完整步驟與常見問題見 [docs/deploy-bluehost.md](docs/deploy-bluehost.md)。
+
+> ⚠️ 私鑰只放在 GitHub Secrets，不要放進這個資料夾或 commit（`.gitignore` 已排除 `bluehost_deploy*`）。`BLUEHOST_PATH` 要指向這個網站專用的資料夾，部署時會刪除目標資料夾裡多出來的檔案。
 
 ## 嵌入 Blogger
 
