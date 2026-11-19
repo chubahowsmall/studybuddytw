@@ -3,7 +3,8 @@
 'use strict';
 const NAV=[
   ['index.html','數學首頁'],
-  ['factors.html','2-1 因數與倍數']
+  ['factors.html','2-1 因數與倍數'],
+  ['gcd-lcm.html','2-2 最大公因數與最小公倍數']
 ];
 const qs=new URLSearchParams(location.search);
 const EMBED=qs.has('embed');
@@ -53,5 +54,12 @@ M.isPrime=function(n){if(n<2)return false;for(let p=2;p*p<=n;p++)if(n%p===0)retu
 M.std=function(f){return f.map(([p,e])=>p+(e>1?'<sup>'+e+'</sup>':'')).join('×');};
 /* 讀取輸入框的正整數，超出範圍回傳 null */
 M.readInt=function(el,min,max){const v=String(el.value).trim().replace(/[０-９]/g,c=>String.fromCharCode(c.charCodeAt(0)-65248));if(!/^\d+$/.test(v))return null;const n=+v;return(n>=min&&n<=max)?n:null;};
+/* 最大公因數、最小公倍數（兩數；多數用 reduce） */
+M.gcd=function(a,b){a=Math.abs(a);b=Math.abs(b);while(b){const t=a%b;a=b;b=t;}return a;};
+M.lcm=function(a,b){return a/M.gcd(a,b)*b;};
+M.gcdAll=function(arr){return arr.reduce((x,y)=>M.gcd(x,y));};
+M.lcmAll=function(arr){return arr.reduce((x,y)=>M.lcm(x,y));};
+/* 讀取「18, 24, 60」這種用逗號、頓號或空白分開的正整數；個數或範圍不對回傳 null */
+M.readList=function(el,min,max,kmin,kmax){const v=String(el.value).trim().replace(/[０-９]/g,c=>String.fromCharCode(c.charCodeAt(0)-65248));if(!v)return null;const parts=v.split(/[\s,，、;；]+/).filter(Boolean);if(parts.length<kmin||parts.length>kmax)return null;const out=[];for(const t of parts){if(!/^\d+$/.test(t))return null;const n=+t;if(n<min||n>max)return null;out.push(n);}return out;};
 window.M=M;
 })();

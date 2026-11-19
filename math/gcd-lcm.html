@@ -1,0 +1,1210 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2-2 最大公因數與最小公倍數｜數學互動教室</title>
+<meta name="description" content="國七上數學（康軒版第一冊）2-2 最大公因數與最小公倍數互動複習：列舉法、質因數對照表與文氏圖、短除法、互質判斷、(a, b)×[a, b]＝a×b 與反推題、裁正方形、分東西、種樹、週期時間軸、路燈與旗子、餘數題、拼正方形，附自編小測驗。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect x=%223%22 y=%223%22 width=%2226%22 height=%2226%22 rx=%225%22 fill=%22%232d6f9e%22/%3E%3Ctext x=%2216%22 y=%2222%22 font-size=%2215%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22700%22%3E%5B%2C%5D%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="lib/math.css">
+<script src="lib/common.js"></script>
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap">
+  <span class="kicker m">2-2・康軒版第一冊第 2 章</span>
+  <h1>最大公因數與最小公倍數</h1>
+  <p class="lead">2-1 學會了標準分解式，這一節就用它來找「兩個數共同的因數、共同的倍數」。這一節在考卷上配分很重，而且<b>應用題特別多</b>。每個重點都有可以自己輸入數字的小工具，先動手玩，再看易錯陷阱。</p>
+  <nav class="toc" aria-label="本頁重點">
+    <a href="#s1">一、求最大公因數與最小公倍數</a>
+    <a href="#s2">二、互質</a>
+    <a href="#s3">三、(a, b)×[a, b]＝a×b</a>
+    <a href="#s4">四、最大公因數的應用</a>
+    <a href="#s5">五、最小公倍數的應用</a>
+    <a href="#s7">公因數還是公倍數？</a>
+    <a href="#s6">小測驗</a>
+  </nav>
+
+  <!-- ================= 一 ================= -->
+  <section class="sec" id="s1">
+  <h2>一、求最大公因數與最小公倍數<span class="star">★★★ 幾乎每卷必考</span></h2>
+  <div class="key">
+    <ul>
+      <li>兩個數共同的因數叫<b>公因數</b>，其中最大的叫<b>最大公因數</b>，記作 <b>(a, b)</b>。</li>
+      <li>兩個數共同的倍數叫<b>公倍數</b>，其中最小的（正數）叫<b>最小公倍數</b>，記作 <b>[a, b]</b>。</li>
+      <li>用標準分解式：最大公因數取<b>共同的</b>質因數，<b>指數取小的</b>；最小公倍數取<b>所有的</b>質因數，<b>指數取大的</b>。</li>
+      <li>公因數都是最大公因數的因數；公倍數都是最小公倍數的倍數。</li>
+    </ul>
+  </div>
+
+  <div class="tool" id="enumTool">
+    <h3>動手做：先用「列出來」看懂意思</h3>
+    <div class="inrow">
+      <label for="eA">a＝</label><input class="num sm" id="eA" inputmode="numeric" value="12" aria-label="第一個數 a">
+      <label for="eB">b＝</label><input class="num sm" id="eB" inputmode="numeric" value="18" aria-label="第二個數 b">
+      <span class="small">（2～200）</span>
+    </div>
+    <div class="msg" id="eMsg"></div>
+    <div id="eOut"></div>
+  </div>
+
+  <div class="tool" id="tabTool">
+    <h3>動手做：質因數對照表</h3>
+    <p class="note">數字大的時候，列出來太慢。改用標準分解式：把每個質因數的指數排成一張表，<b>最大公因數每一欄取最小的</b>（有一個數沒有這個質因數，就不取），<b>最小公倍數每一欄取最大的</b>。</p>
+    <div class="inrow">
+      <label for="tN">輸入 2～3 個數：</label><input class="num wide" id="tN" value="84, 126" aria-label="用逗號分開的 2 到 3 個正整數">
+    </div>
+    <div class="chips" id="tView" role="group" aria-label="要看哪一個">
+      <button class="chip on" data-v="g">看最大公因數（取小）</button>
+      <button class="chip" data-v="l">看最小公倍數（取大）</button>
+    </div>
+    <div class="msg" id="tMsg"></div>
+    <div class="tscroll"><table class="t ftab" id="tTab"></table></div>
+    <div class="out" id="tOut"></div>
+    <div id="venn"></div>
+  </div>
+
+  <div class="tool" id="ladTool">
+    <h3>動手做：用短除法求最大公因數、最小公倍數</h3>
+    <div class="inrow">
+      <label for="lN">輸入 2～3 個數：</label><input class="num wide" id="lN" value="18, 24, 60" aria-label="用逗號分開的 2 到 3 個正整數">
+    </div>
+    <div class="chips" id="lMode" role="group" aria-label="要求哪一個">
+      <button class="chip on" data-m="g">求最大公因數</button>
+      <button class="chip" data-m="l">求最小公倍數</button>
+    </div>
+    <div class="inrow">
+      <button class="btn" id="lStep">除一次</button>
+      <button class="btn on" id="lAll">全部除完</button>
+      <button class="btn" id="lReset">重來</button>
+    </div>
+    <div class="msg" id="lMsg"></div>
+    <div class="note" id="lHint"></div>
+    <div class="ladder multi" id="ladder"></div>
+    <div class="out" id="lOut"></div>
+  </div>
+
+  <div class="tool" id="drillTool">
+    <h3>動手做：我出題，你來算</h3>
+    <div class="inrow">
+      <button class="btn on" id="dNew">出一題</button>
+      <label><input type="radio" name="dK" value="2" checked> 兩個數</label>
+      <label><input type="radio" name="dK" value="3"> 三個數</label>
+      <span class="small" id="dScore"></span>
+    </div>
+    <div id="dWork" hidden>
+      <p class="big-ans" id="dQ" style="margin:4px 0 8px"></p>
+      <div class="inrow">
+        <label for="dG">最大公因數＝</label><input class="num sm" id="dG" inputmode="numeric" aria-label="你算的最大公因數">
+        <label for="dL">最小公倍數＝</label><input class="num" id="dL" inputmode="numeric" style="width:6.5em" aria-label="你算的最小公倍數">
+        <button class="btn on" id="dCheck">對答案</button>
+        <button class="btn" id="dHint">提示</button>
+      </div>
+      <div class="msg" id="dMsg" aria-live="polite"></div>
+      <div class="out" id="dOut"></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>常考：用標準分解式作答</h3>
+      <p>已知 A＝2<sup>4</sup>×3×5<sup>2</sup>，B＝2<sup>2</sup>×3<sup>3</sup>×7，C＝2<sup>3</sup>×3<sup>2</sup>×5。以標準分解式寫出 (A, B, C) 和 [A, B, C]。</p>
+      <details><summary>看解法</summary>
+        <p>先排成表，每個質因數看三個數的指數：</p>
+        <div class="tscroll"><table class="t">
+          <tr><th></th><th>2</th><th>3</th><th>5</th><th>7</th></tr>
+          <tr><td>A</td><td>4</td><td>1</td><td>2</td><td>0</td></tr>
+          <tr><td>B</td><td>2</td><td>3</td><td>0</td><td>1</td></tr>
+          <tr><td>C</td><td>3</td><td>2</td><td>1</td><td>0</td></tr>
+        </table></div>
+        <p>最大公因數：5 和 7 不是三個數都有，不取；2 取最小的 2，3 取最小的 1。<br><b>(A, B, C)＝2<sup>2</sup>×3</b></p>
+        <p>最小公倍數：每個質因數都取，指數取最大的。<br><b>[A, B, C]＝2<sup>4</sup>×3<sup>3</sup>×5<sup>2</sup>×7</b></p>
+        <p class="note">題目要求「以標準分解式表示」時，不要乘出來變成數字。</p>
+      </details>
+    </div>
+    <div class="card">
+      <h3>常考：括號裡面先算</h3>
+      <p>求 [(90, 126), 28]。</p>
+      <details><summary>看解法</summary>
+        <p>先算小括號：90＝2×3<sup>2</sup>×5，126＝2×3<sup>2</sup>×7，(90, 126)＝2×3<sup>2</sup>＝18。</p>
+        <p>再算中括號：18＝2×3<sup>2</sup>，28＝2<sup>2</sup>×7，[18, 28]＝2<sup>2</sup>×3<sup>2</sup>×7＝<b>252</b>。</p>
+        <p class="note">(  ) 是最大公因數、[  ] 是最小公倍數，符號不要看反了。</p>
+      </details>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>三個數的最大公因數，質因數要<b>三個數都有</b>才算；只有其中兩個有的不能算。</li>
+      <li>短除法求最大公因數：<b>每個數都要能被除</b>才可以除。求最小公倍數：<b>只要有兩個數能被除就繼續</b>，不能除的數直接抄下來，除到<b>任兩個數都互質</b>才停。</li>
+      <li>三個數求最小公倍數，不能在「三個數沒有公因數」時就停（例如 18、24、60 除到 3、4、10 就停，會算成 720，正確是 360）。</li>
+      <li>題目要求「以標準分解式表示」時，不能寫成乘出來的數字。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 二 ================= -->
+  <section class="sec" id="s2">
+  <h2>二、互質<span class="star">★★★ 幾乎每卷必考</span></h2>
+  <div class="key">
+    <ul>
+      <li>如果 (a, b)＝1，就說 a、b <b>互質</b>。判斷方法：寫出標準分解式，<b>沒有共同的質因數</b>就互質。</li>
+      <li><span class="hot">互質的兩數不一定是質數</span>：8＝2<sup>3</sup>、9＝3<sup>2</sup> 都是合數，但沒有共同的質因數，所以互質。</li>
+      <li>1 和任何正整數都互質；<b>相鄰的兩個正整數一定互質</b>；兩個不同的質數一定互質。</li>
+      <li>a、b 互質時，[a, b]＝a×b。</li>
+      <li>分子、分母互質的分數就是<b>最簡分數</b>。</li>
+    </ul>
+  </div>
+
+  <div class="tool" id="cpTool">
+    <h3>動手做：這兩個數互質嗎？</h3>
+    <div class="inrow">
+      <label for="cA">a＝</label><input class="num sm" id="cA" inputmode="numeric" value="39" aria-label="第一個數">
+      <label for="cB">b＝</label><input class="num sm" id="cB" inputmode="numeric" value="91" aria-label="第二個數">
+    </div>
+    <div class="chips" id="cTrap" role="group" aria-label="常考的陷阱">
+      <span class="small" style="align-self:center">常考陷阱：</span>
+      <button class="chip" data-a="39" data-b="91">39、91</button>
+      <button class="chip" data-a="51" data-b="85">51、85</button>
+      <button class="chip" data-a="57" data-b="95">57、95</button>
+      <button class="chip" data-a="8" data-b="9">8、9</button>
+      <button class="chip" data-a="15" data-b="16">15、16</button>
+      <button class="chip" data-a="1" data-b="24">1、24</button>
+    </div>
+    <div class="msg" id="cMsg"></div>
+    <div class="out" id="cOut"></div>
+  </div>
+
+  <div class="tool" id="cgTool">
+    <h3>動手做：哪些數和 N 互質？</h3>
+    <p class="note">把和 N 有共同質因數的數劃掉（顏色表示是被哪個質因數劃掉的），剩下綠色的就和 N 互質。</p>
+    <div class="inrow">
+      <label for="gN">N＝</label><input class="num sm" id="gN" inputmode="numeric" value="10" aria-label="N">
+      <label for="gM">看 1 到</label><input class="num sm" id="gM" inputmode="numeric" value="31" aria-label="範圍上限"><span class="small">（最多 100）</span>
+    </div>
+    <div class="chips" id="gPre" role="group" aria-label="常見題目">
+      <button class="chip" data-n="10" data-m="31" data-cal="1">10 月有幾天月、日互質？</button>
+      <button class="chip" data-n="12" data-m="31" data-cal="1">12 月</button>
+      <button class="chip" data-n="6" data-m="30" data-cal="1">6 月</button>
+      <button class="chip" data-n="210" data-m="30">和 210 互質（1～30）</button>
+      <button class="chip" data-n="39" data-m="50">和 39 互質（1～50）</button>
+    </div>
+    <div class="msg" id="gMsg"></div>
+    <div class="legend" id="gLeg"></div>
+    <div class="cpgrid" id="cpGrid" aria-label="數字表"></div>
+    <div class="out" id="gOut"></div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>39 和 91、51 和 85、57 和 95 看起來沒有公因數，其實分別有 13、17、19。<b>先寫出標準分解式再判斷。</b></li>
+      <li>「兩個合數一定不互質」錯：8 和 9 都是合數，但互質。「兩個奇數一定互質」也錯：9 和 15 有公因數 3。</li>
+      <li>「a、b 沒有共同的質因數，所以沒有最大公因數」錯：最大公因數是 1。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 三 ================= -->
+  <section class="sec" id="s3">
+  <h2>三、(a, b)×[a, b]＝a×b 與反推題<span class="star">★★ 常考</span></h2>
+  <div class="key">
+    <ul>
+      <li>兩個正整數：<b>(a, b)×[a, b]＝a×b</b>。<span class="hot">只能用在兩個數</span>，三個數沒有這個公式。</li>
+      <li>設 (a, b)＝g，可以寫成 a＝g×m、b＝g×n，<b>m、n 互質</b>，而且 [a, b]＝g×m×n。</li>
+      <li>已知 (a, b) 和 [a, b] 求 a、b：先算 m×n＝[a, b]÷(a, b)，再把 m×n 拆成<b>互質</b>的兩個數。</li>
+    </ul>
+  </div>
+
+  <div class="tool" id="blkTool">
+    <h3>動手做：為什麼 (a, b)×[a, b]＝a×b？</h3>
+    <p class="note">把 a、b 拆成質因數方塊。共同的方塊（框起來的）就是最大公因數。最小公倍數只要把共同的方塊用一次，再加上各自多出來的；a×b 卻把共同的方塊<b>用了兩次</b>。</p>
+    <div class="inrow">
+      <label for="bA">a＝</label><input class="num sm" id="bA" inputmode="numeric" value="12" aria-label="a">
+      <label for="bB">b＝</label><input class="num sm" id="bB" inputmode="numeric" value="18" aria-label="b">
+      <span class="small">（2～9999）</span>
+    </div>
+    <div class="msg" id="bMsg"></div>
+    <div id="bOut"></div>
+  </div>
+
+  <div class="tool" id="invTool">
+    <h3>動手做：已知 (a, b) 和 [a, b]，反推 a、b</h3>
+    <div class="inrow">
+      <label for="iG">(a, b)＝</label><input class="num sm" id="iG" inputmode="numeric" value="6" aria-label="最大公因數">
+      <label for="iL">[a, b]＝</label><input class="num sm" id="iL" inputmode="numeric" value="72" aria-label="最小公倍數">
+    </div>
+    <div class="inrow">
+      <label><input type="checkbox" id="iRng"> 限制 a、b 都介於</label>
+      <input class="num sm" id="iLo" inputmode="numeric" value="10" aria-label="下限"><span>到</span><input class="num sm" id="iHi" inputmode="numeric" value="50" aria-label="上限">
+      <span class="small">（含兩端）</span>
+    </div>
+    <div class="msg" id="iMsg"></div>
+    <div class="out" id="iOut"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>常考：已知乘積和最大公因數</h3>
+      <p>兩個正整數的乘積是 1080，最大公因數是 6，最小公倍數是多少？</p>
+      <details><summary>看解法</summary>
+        <p>(a, b)×[a, b]＝a×b，所以 [a, b]＝1080÷6＝<b>180</b>。</p>
+        <p class="note">例如 a＝6、b＝180，或 a＝30、b＝36 都符合。</p>
+      </details>
+    </div>
+    <div class="card">
+      <h3>常考：(a, N)＝g 代表什麼？</h3>
+      <p>正整數 a 和 180 的最大公因數是 12，a 可能是哪一個？(A) 24　(B) 36　(C) 60　(D) 18</p>
+      <details><summary>看解法</summary>
+        <p>180＝2<sup>2</sup>×3<sup>2</sup>×5，12＝2<sup>2</sup>×3。對照每個質因數：</p>
+        <ul>
+          <li>2：最大公因數有 2<sup>2</sup>，180 也只有 2<sup>2</sup>，所以 a <b>至少有兩個 2</b>（更多也可以）。</li>
+          <li>3：最大公因數只有一個 3，但 180 有兩個，所以 a <b>剛好一個 3</b>。</li>
+          <li>5：最大公因數沒有 5，所以 a <b>不能有 5</b>。</li>
+        </ul>
+        <p>(A) 24＝2<sup>3</sup>×3 ✓。(B) 36＝2<sup>2</sup>×3<sup>2</sup>，多一個 3，最大公因數變 36。(C) 60＝2<sup>2</sup>×3×5，有 5，最大公因數變 60。(D) 18＝2×3<sup>2</sup>，2 不夠，最大公因數變 18。答案 <b>(A)</b>。</p>
+      </details>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>(a, b)×[a, b]＝a×b <b>只能用在兩個數</b>。</li>
+      <li>反推時 m、n 一定要互質：例如 m×n＝12，2×6 不行（2、6 有公因數 2，最大公因數會變大）。</li>
+      <li>題目限制「a、b 都介於某個範圍」時，答案可能不只一組，要全部寫出來。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 四 ================= -->
+  <section class="sec" id="s4">
+  <h2>四、最大公因數的應用<span class="star">★★★ 幾乎每卷必考</span></h2>
+  <div class="key">
+    <ul>
+      <li>判斷方法：<b>要找的數能整除題目裡的每個數 → 公因數</b>。常見說法：「最多幾人」「最大的正方形」「平分」「剛好分完」「間隔最大」。關鍵字只是提示，真正要想的是「誰除誰」。</li>
+      <li>長方形裁成最大的正方形：<b>邊長＝(長, 寬)</b>；張數＝(長÷邊長)×(寬÷邊長)。</li>
+      <li>有剩下：先把剩下的<b>扣掉</b>；不足：先把不足的<b>補上</b>，再求最大公因數。<b>人數要比剩下（或不足）的個數多</b>。</li>
+      <li>種樹：<b>圍一圈</b>（四個角都種）棵數＝周長÷間隔；<b>一條直線兩端都種</b>棵數＝長度÷間隔＋1。</li>
+    </ul>
+  </div>
+
+  <div class="tool" id="cutTool">
+    <h3>動手做：長方形裁成一樣大的正方形</h3>
+    <div class="inrow">
+      <label for="kL">長＝</label><input class="num sm" id="kL" inputmode="numeric" value="84" aria-label="長方形的長">
+      <label for="kW">寬＝</label><input class="num sm" id="kW" inputmode="numeric" value="60" aria-label="長方形的寬"><span class="small">公分（2～300）</span>
+    </div>
+    <div class="inrow">
+      <label for="kS">正方形邊長：</label><input type="range" id="kS" min="1" max="60" value="6" style="flex:1;min-width:140px" aria-label="正方形的邊長">
+      <b id="kSv" style="min-width:4.5em">6 公分</b>
+      <button class="btn on" id="kMax">跳到最大的</button>
+    </div>
+    <div class="chips" id="kCd" aria-label="公因數"></div>
+    <div class="msg" id="kMsg"></div>
+    <div id="kSvg" class="figbox"></div>
+    <div class="out" id="kOut"></div>
+  </div>
+
+  <div class="tool" id="shTool">
+    <h3>動手做：分東西，有剩下也有不足</h3>
+    <div class="inrow">
+      <label for="sA">第一種東西</label><input class="num sm" id="sA" inputmode="numeric" value="150" aria-label="第一種東西的數量">
+      <select id="sAm" class="num" style="width:auto" aria-label="第一種東西分完的情形"><option value="r" selected>剩下</option><option value="s">不足</option><option value="0">剛好分完</option></select>
+      <input class="num sm" id="sAr" inputmode="numeric" value="6" aria-label="剩下或不足的數量">
+    </div>
+    <div class="inrow">
+      <label for="sB">第二種東西</label><input class="num sm" id="sB" inputmode="numeric" value="110" aria-label="第二種東西的數量">
+      <select id="sBm" class="num" style="width:auto" aria-label="第二種東西分完的情形"><option value="r">剩下</option><option value="s" selected>不足</option><option value="0">剛好分完</option></select>
+      <input class="num sm" id="sBr" inputmode="numeric" value="2" aria-label="剩下或不足的數量">
+    </div>
+    <p class="small" style="margin:0 0 6px">每個人分到的第一種東西一樣多、第二種東西也一樣多。人數最多是多少？</p>
+    <div class="msg" id="sMsg"></div>
+    <div class="out" id="sOut"></div>
+  </div>
+
+  <div class="tool" id="trTool">
+    <h3>動手做：種樹（圍一圈和一條直線差在哪裡）</h3>
+    <div class="chips" id="tMode" role="group" aria-label="種法">
+      <button class="chip on" data-m="c">長方形四周圍一圈</button>
+      <button class="chip" data-m="l2">一條直線，兩端都種</button>
+      <button class="chip" data-m="l0">一條直線，兩端都不種</button>
+    </div>
+    <div class="inrow">
+      <label for="rL">長＝</label><input class="num sm" id="rL" inputmode="numeric" value="84" aria-label="長">
+      <span id="rWbox"><label for="rW">寬＝</label><input class="num sm" id="rW" inputmode="numeric" value="60" aria-label="寬"></span><span class="small">公尺</span>
+    </div>
+    <div class="chips" id="rD" aria-label="可以用的間隔"></div>
+    <div class="msg" id="rMsg"></div>
+    <div id="rSvg" class="figbox"></div>
+    <div class="out" id="rOut"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>常考：三種東西平分</h3>
+      <p>72 顆巧克力、108 支棒棒糖、90 塊餅乾分裝成禮盒，每盒裡三種東西的數量各自一樣多，而且剛好分完。最多可以裝幾盒？每盒各有幾個？</p>
+      <details><summary>看解法</summary>
+        <p>盒數要能整除 72、108、90 → 公因數，最多就是最大公因數。<br>72＝2<sup>3</sup>×3<sup>2</sup>，108＝2<sup>2</sup>×3<sup>3</sup>，90＝2×3<sup>2</sup>×5，(72, 108, 90)＝2×3<sup>2</sup>＝<b>18 盒</b>。</p>
+        <p>每盒：巧克力 72÷18＝4 顆、棒棒糖 108÷18＝6 支、餅乾 90÷18＝5 塊。</p>
+      </details>
+    </div>
+    <div class="card">
+      <h3>常考：分組，每組人數有範圍</h3>
+      <p>48 位男生和 72 位女生分組，每組男生人數都一樣、女生人數也都一樣，而且剛好分完。(1) 最多幾組？(2) 如果每組人數要超過 15 人、少於 25 人，每組幾人？</p>
+      <details><summary>看解法</summary>
+        <p>(1) 組數要整除 48 和 72 → 公因數，最多 (48, 72)＝<b>24 組</b>（每組 2 男 3 女）。</p>
+        <p>(2) 組數是 24 的正因數：1、2、3、4、6、8、12、24。每組人數＝120÷組數：120、60、40、30、<b>20</b>、15、10、5。超過 15 又少於 25 的只有 <b>20 人</b>（分 6 組，每組 8 男 12 女）。</p>
+        <p class="note">題目問「每組幾人」不是問「幾組」，寫答案前再看一次題目。</p>
+      </details>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>剩下 6 枝，人數不能是 6 以下（不然還可以再分）。算出來的公因數要逐一檢查。</li>
+      <li>圍一圈和一條直線的棵數差 1：圍一圈頭尾接在一起，<b>不用＋1</b>。</li>
+      <li>題目問「每組幾人」「每人幾個」不是問「幾組」「幾人」。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 五 ================= -->
+  <section class="sec" id="s5">
+  <h2>五、最小公倍數的應用<span class="star">★★★ 幾乎每卷必考</span></h2>
+  <div class="key">
+    <ul>
+      <li>判斷方法：<b>要找的數是題目裡每個數的倍數 → 公倍數</b>。常見說法：「同時」「再一次」「最少經過」「最小的正方形（正方體）」。</li>
+      <li>週期題：<b>每隔 [a, b] 同時發生一次</b>。問星期幾：天數÷7 看餘數，從今天往後數。</li>
+      <li>數「同時幾次」：要看<b>開始那一次算不算</b>，題目說「從 8:00 到 20:00（含）」就要算。</li>
+      <li>除以 a、b 都<b>餘 r</b>：這個數＝[a, b]×k＋r。都<b>不足 r</b>（餘數都比除數少 r）：這個數＝[a, b]×k－r。</li>
+      <li>長方形磁磚拼成最小的正方形：邊長＝[長, 寬]；長方體堆成最小的正方體：邊長＝[長, 寬, 高]。</li>
+    </ul>
+  </div>
+
+  <div class="tool" id="cyTool">
+    <h3>動手做：週期時間軸，什麼時候會「同時」？</h3>
+    <div class="chips" id="yPre" role="group" aria-label="常見題目">
+      <button class="chip" data-p="12,20,30" data-u="秒" data-t="600" data-s="1">三盞燈：每 12、20、30 秒亮一次，10 分鐘內</button>
+      <button class="chip" data-p="15,20" data-u="分鐘" data-t="720" data-c="08:00" data-s="1">公車：每 15、20 分鐘一班，8:00～20:00</button>
+      <button class="chip" data-p="6,8,9" data-u="天" data-t="150" data-w="3" data-s="0">圖書館：每 6、8、9 天，今天星期三</button>
+    </div>
+    <div class="inrow">
+      <label for="yA">每</label><input class="num sm" id="yA" inputmode="numeric" value="12" aria-label="第一個週期">
+      <label for="yB">、</label><input class="num sm" id="yB" inputmode="numeric" value="20" aria-label="第二個週期">
+      <label for="yC">、</label><input class="num sm" id="yC" inputmode="numeric" value="30" aria-label="第三個週期（可以空白）">
+      <select id="yU" class="num" style="width:auto" aria-label="單位"><option>秒</option><option>分鐘</option><option>天</option></select>
+      <span class="small">一次（第三格可以空白）</span>
+    </div>
+    <div class="inrow">
+      <label for="yT">從開始到第</label><input class="num sm" id="yT" inputmode="numeric" value="600" aria-label="總時間"><span id="yTu">秒</span>
+      <span id="yCbox"><label for="yClk">，開始時刻</label><input class="num sm" id="yClk" value="" placeholder="8:00" aria-label="開始時刻（可以空白）"></span>
+      <span id="yWbox" hidden><label for="yW">，今天是</label><select id="yW" class="num" style="width:auto" aria-label="今天星期幾"><option value="0">星期日</option><option value="1">星期一</option><option value="2">星期二</option><option value="3" selected>星期三</option><option value="4">星期四</option><option value="5">星期五</option><option value="6">星期六</option></select></span>
+    </div>
+    <div class="inrow"><label><input type="checkbox" id="yS" checked> 開始那一次也算</label></div>
+    <div class="msg" id="yMsg"></div>
+    <div id="ySvg" class="figbox"></div>
+    <div class="out" id="yOut"></div>
+  </div>
+
+  <div class="tool" id="rdTool">
+    <h3>動手做：路燈和旗子，哪裡兩種都有？</h3>
+    <div class="chips" id="wPre" role="group" aria-label="常見題目">
+      <button class="chip" data-d="1200" data-p="20" data-q="15" data-e="2">公路 1200 公尺：每 20 公尺路燈、每 15 公尺旗子，起點終點都有</button>
+      <button class="chip" data-d="600" data-p="10" data-q="15" data-e="0">大橋 600 公尺：路燈從每 10 公尺改成每 15 公尺（橋頭橋尾不裝），不用拆的有幾盞</button>
+    </div>
+    <div class="inrow">
+      <label for="wD">全長</label><input class="num sm" id="wD" inputmode="numeric" value="1200" aria-label="全長">
+      <label for="wP">公尺，每</label><input class="num sm" id="wP" inputmode="numeric" value="20" aria-label="路燈間隔"><span>公尺一盞<b class="lampc">路燈</b>，每</span>
+      <input class="num sm" id="wQ" inputmode="numeric" value="15" aria-label="旗子間隔"><span>公尺一面<b class="flagc">旗子</b></span>
+      <select id="wE" class="num" style="width:auto" aria-label="兩端"><option value="2" selected>起點、終點都有</option><option value="0">起點、終點都沒有</option></select>
+    </div>
+    <div class="msg" id="wMsg"></div>
+    <div id="wSvg" class="figbox"></div>
+    <div class="out" id="wOut"></div>
+  </div>
+
+  <div class="tool" id="rmTool">
+    <h3>動手做：餘數題，都餘幾還是都不足幾？</h3>
+    <div class="inrow">
+      <span>被</span><input class="num sm" id="mA" inputmode="numeric" value="4" aria-label="除數一"><span>除餘</span><input class="num sm" id="mAr" inputmode="numeric" value="2" aria-label="餘數一"><span>，</span>
+      <span>被</span><input class="num sm" id="mB" inputmode="numeric" value="5" aria-label="除數二"><span>除餘</span><input class="num sm" id="mBr" inputmode="numeric" value="3" aria-label="餘數二"><span>，</span>
+      <span>被</span><input class="num sm" id="mC" inputmode="numeric" value="6" aria-label="除數三（可以空白）"><span>除餘</span><input class="num sm" id="mCr" inputmode="numeric" value="4" aria-label="餘數三"><span class="small">（第三組可以空白）</span>
+    </div>
+    <div class="inrow">
+      <label for="mLo">找介於</label><input class="num sm" id="mLo" inputmode="numeric" value="100" aria-label="下限"><span>到</span><input class="num sm" id="mHi" inputmode="numeric" value="999" aria-label="上限"><span>的數（含兩端）</span>
+    </div>
+    <div class="chips" id="mPre" role="group" aria-label="常見題目">
+      <button class="chip" data-v="4,2,5,3,6,4,100,999">4 餘 2、5 餘 3、6 餘 4 的三位數</button>
+      <button class="chip" data-v="4,1,6,1,9,1,100,999">4、6、9 都餘 1 的三位數</button>
+      <button class="chip" data-v="8,3,12,3,,,1,200">8、12 都餘 3（1～200）</button>
+    </div>
+    <div class="msg" id="mMsg"></div>
+    <div class="out" id="mOut"></div>
+  </div>
+
+  <div class="tool" id="tiTool">
+    <h3>動手做：長方形磁磚拼成最小的正方形</h3>
+    <div class="inrow">
+      <label for="zA">磁磚長</label><input class="num sm" id="zA" inputmode="numeric" value="6" aria-label="磁磚的長">
+      <label for="zB">寬</label><input class="num sm" id="zB" inputmode="numeric" value="4" aria-label="磁磚的寬">
+      <label for="zC">（積木的高</label><input class="num sm" id="zC" inputmode="numeric" value="" placeholder="空白" aria-label="長方體積木的高（可以空白）"><span>）公分</span>
+    </div>
+    <p class="small" style="margin:0 0 6px">只填長、寬：拼成正方形；填了高：用長方體積木（同一方向）堆成正方體。</p>
+    <div class="msg" id="zMsg"></div>
+    <div id="zSvg" class="figbox"></div>
+    <div class="out" id="zOut"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>常考：分數乘上 N 變成整數</h3>
+      <p><span class="frac"><span>5</span><span>12</span></span> 和 <span class="frac"><span>7</span><span>18</span></span> 分別乘上同一個正整數 N 以後，結果都是整數。N 最小是多少？</p>
+      <details><summary>看解法</summary>
+        <p>兩個都是最簡分數，所以 N 要能被分母整除：N 是 12 的倍數，也是 18 的倍數 → 公倍數。</p>
+        <p>N 最小＝[12, 18]＝<b>36</b>。驗算：<span class="frac"><span>5</span><span>12</span></span>×36＝15，<span class="frac"><span>7</span><span>18</span></span>×36＝14。</p>
+      </details>
+    </div>
+    <div class="card">
+      <h3>常考：繞操場再相遇</h3>
+      <p>甲繞操場一圈要 4 分鐘，乙要 6 分鐘。兩人同時從起點、同方向出發，至少幾分鐘後兩人會再同時回到起點？那時甲跑了幾圈？</p>
+      <details><summary>看解法</summary>
+        <p>甲每 4 分鐘、乙每 6 分鐘回到起點一次，要找的時間是 4 和 6 的公倍數。最少是 [4, 6]＝<b>12 分鐘</b>。</p>
+        <p>甲跑了 12÷4＝<b>3 圈</b>，乙跑了 12÷6＝2 圈。</p>
+      </details>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>「被 4 除餘 2、被 5 除餘 3、被 6 除餘 4」不是「都餘 2」，是<b>都不足 2</b>：這個數＝60k－2。</li>
+      <li>求「最大的三位數」「最小的三位數」時，算完要確認答案真的是三位數。</li>
+      <li>數「同時幾次」：開始那一次算不算、結束那一刻算不算，要看題目。公車從 8:00 到 20:00 每 60 分鐘同時一次，共 12＋1＝13 次。</li>
+      <li>星期題：72 天後，72÷7＝10 餘 2，是從今天往後數 2 天，不是數 72 天。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 判斷練習 ================= -->
+  <section class="sec" id="s7">
+  <h2>綜合：公因數還是公倍數？</h2>
+  <p class="note">應用題最難的是第一步：判斷要用哪一個。不要只背關鍵字，想想看：<b>要找的數會「整除」題目的數（公因數），還是會「被」題目的數整除（公倍數）？</b></p>
+  <div class="tool" id="gmTool">
+    <div class="score" style="position:static;border:none;padding:0;margin:0 0 8px"><span class="big" id="gmScore">0 / 0</span><span class="small" id="gmInfo"></span><button class="btn" id="gmNext">下一題</button></div>
+    <p class="big-ans" id="gmQ" style="font-size:17.5px;font-weight:500"></p>
+    <div class="inrow">
+      <button class="btn gmb" data-k="g">公因數（最大公因數）</button>
+      <button class="btn gmb" data-k="l">公倍數（最小公倍數）</button>
+    </div>
+    <div class="out" id="gmOut"></div>
+  </div>
+  </section>
+
+  <!-- ================= 小測驗 ================= -->
+  <section class="sec" id="s6">
+  <h2>小測驗（<span id="qzN">24</span> 題）</h2>
+  <p class="note">每題只有一個正確答案，選了就會顯示解析（第一次選的答案才計分）。題目都是自編題，不是學校或出版社的考題。</p>
+  <div class="score"><span class="big" id="qzScore">0 / 24</span><span class="small" id="qzDone">已作答 0 題</span><button class="btn" id="qzReset">重新作答</button></div>
+  <div class="chips" id="qzFlt">
+    <button class="chip on" data-u="all">全部</button>
+    <button class="chip" data-u="1">一、求法</button>
+    <button class="chip" data-u="2">二、互質</button>
+    <button class="chip" data-u="3">三、(a, b)×[a, b]</button>
+    <button class="chip" data-u="4">四、公因數應用</button>
+    <button class="chip" data-u="5">五、公倍數應用</button>
+  </div>
+  <div id="qz"></div>
+  </section>
+
+  <div id="pager"></div>
+</main>
+<footer id="site-foot"></footer>
+
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const M=window.M;
+const PC={2:'#a8572f',3:'#2d6f9e',5:'#b98516',7:'#a33a4a',11:'#3f7a4f',13:'#6b4fa0'};
+const pcol=p=>PC[p]||'#5d6b60';
+const prod=a=>a.reduce((x,y)=>x*y,1);
+const sup=(p,e)=>p+(e>1?'<sup>'+e+'</sup>':'');
+/* 標準分解式，數字是 1 時寫 1 */
+const stdN=n=>n===1?'1':M.std(M.factorize(n));
+function radio(box,attr,cb){const bs=box.querySelectorAll('.chip');bs.forEach(b=>b.onclick=()=>{bs.forEach(x=>x.classList.toggle('on',x===b));cb(b.dataset[attr]);});}
+
+/* ========== 一、列舉法 ========== */
+(function(){
+  function chips(list,cls){return '<div class="flist">'+list.map(x=>x==='…'?'<span class="dots">…</span>':'<span class="'+(cls(x)||'')+'">'+x+'</span>').join('')+'</div>';}
+  function mults(x,lim){const k=lim/x;if(k<=24){const a=[];for(let i=1;i<=k;i++)a.push(x*i);return a;}
+    const a=[x,2*x,3*x,4*x,'…'];for(let i=Math.max(5,k-2);i<=k;i++)a.push(x*i);return a;}
+  function run(){
+    const a=M.readInt($('eA'),2,200),b=M.readInt($('eB'),2,200);
+    if(a===null||b===null){$('eMsg').textContent='請輸入 2～200 的正整數。';$('eOut').innerHTML='';return;}
+    $('eMsg').textContent='';
+    const g=M.gcd(a,b),L=M.lcm(a,b),Da=M.divisors(a),Db=M.divisors(b),C=Da.filter(x=>b%x===0);
+    const lim=(3*L/a<=24&&3*L/b<=24)?3*L:L;
+    const cf=x=>x===g?'g':(a%x===0&&b%x===0?'c':'');
+    const cm=x=>typeof x==='number'&&x%a===0&&x%b===0?(x===L?'g':'c'):'';
+    $('eOut').innerHTML=
+      '<p class="sub">① 因數</p>'+
+      '<div class="lrow"><b>'+a+' 的正因數</b>'+chips(Da,cf)+'</div>'+
+      '<div class="lrow"><b>'+b+' 的正因數</b>'+chips(Db,cf)+'</div>'+
+      '<p>兩個數都有的（綠色）就是<b>公因數</b>：'+C.join('、')+'。其中最大的是 <b class="gl">'+g+'</b>，所以 ('+a+', '+b+')＝'+g+'。'+
+      (C.length>1?'<br><span class="small">注意：每個公因數都是 '+g+' 的因數（'+M.divisors(g).join('、')+'）。</span>':'')+'</p>'+
+      '<p class="sub">② 倍數</p>'+
+      '<div class="lrow"><b>'+a+' 的倍數</b>'+chips(mults(a,lim),cm)+'</div>'+
+      '<div class="lrow"><b>'+b+' 的倍數</b>'+chips(mults(b,lim),cm)+'</div>'+
+      '<p>兩個數都有的就是<b>公倍數</b>'+(lim>L?'：'+L+'、'+2*L+'、'+3*L+'……有無限多個':'')+'。其中最小的是 <b class="gl">'+L+'</b>，所以 ['+a+', '+b+']＝'+L+'。'+
+      (lim>L?'<br><span class="small">每個公倍數都是 '+L+' 的倍數。</span>':'<br><span class="small">公倍數有無限多個：'+L+'、'+2*L+'、'+3*L+'……都是 '+L+' 的倍數。</span>')+'</p>'+
+      (g===1?'<p class="note">('+a+', '+b+')＝1，'+a+' 和 '+b+' <b>互質</b>（見重點二）。這時 ['+a+', '+b+'] 剛好等於 '+a+'×'+b+'。</p>':'');
+  }
+  ['eA','eB'].forEach(id=>$(id).addEventListener('input',run));run();
+})();
+
+/* ========== 一、質因數對照表＋文氏圖 ========== */
+(function(){
+  let view='g';
+  function run(){
+    const N=M.readList($('tN'),2,99999,2,3);
+    if(!N){$('tMsg').textContent='請輸入 2～3 個 2～99999 的正整數，用逗號或空白分開，例如 84, 126。';$('tTab').innerHTML='';$('tOut').innerHTML='';$('venn').innerHTML='';return;}
+    $('tMsg').textContent='';
+    const F=N.map(n=>new Map(M.factorize(n)));
+    const P=[...new Set(F.flatMap(f=>[...f.keys()]))].sort((x,y)=>x-y);
+    const E=F.map(f=>P.map(p=>f.get(p)||0));
+    const gE=P.map((p,j)=>Math.min(...E.map(r=>r[j]))),lE=P.map((p,j)=>Math.max(...E.map(r=>r[j])));
+    const g=M.gcdAll(N),L=M.lcmAll(N);
+    const nm=N.length===2?['a','b']:['A','B','C'];
+    let h='<tr><th>數</th><th>標準分解式</th>'+P.map(p=>'<th class="pc" style="color:'+pcol(p)+'">'+p+' 的指數</th>').join('')+'</tr>';
+    N.forEach((n,i)=>{
+      h+='<tr><td><b>'+n+'</b></td><td>'+M.std(M.factorize(n))+'</td>'+P.map((p,j)=>{
+        const e=E[i][j],tgt=view==='g'?gE[j]:lE[j],miss=view==='g'&&gE[j]===0;
+        const cls=e===0?'z':'';const pick=!miss&&e===tgt&&e>0;
+        return '<td class="ex '+cls+(pick?' pick':'')+(miss?' gone':'')+'">'+e+'</td>';}).join('')+'</tr>';
+    });
+    h+='<tr class="res'+(view==='g'?' on':'')+'"><td>最大公因數</td><td><b>'+stdN(g)+'</b>'+(g>1?'＝'+g:'')+'</td>'+P.map((p,j)=>'<td class="ex">'+(gE[j]===0?'<span class="small">不取</span>':gE[j])+'</td>').join('')+'</tr>';
+    h+='<tr class="res'+(view==='l'?' on':'')+'"><td>最小公倍數</td><td><b>'+M.std(M.factorize(L))+'</b>＝'+L+'</td>'+P.map((p,j)=>'<td class="ex">'+lE[j]+'</td>').join('')+'</tr>';
+    $('tTab').innerHTML=h;
+    const sym=N.length===2?['(',')','[',']']:['(',')','[',']'];
+    const names=N.join(', ');
+    $('tOut').innerHTML=view==='g'?
+      '<p>每一欄取<b>最小</b>的指數（黃色）。'+(gE.some(e=>e===0)?'有 0 的那一欄，表示有一個數沒有這個質因數，<b>不取</b>。':'')+'<br><span class="big-ans">('+names+')＝'+stdN(g)+(stdN(g)!==String(g)?'＝'+g:'')+'</span></p>'+
+      (g===1?'<p class="note">沒有任何質因數是每個數都有的，最大公因數是 1。</p>':''):
+      '<p>每一欄取<b>最大</b>的指數（黃色），所有的質因數都要取。<br><span class="big-ans">['+names+']＝'+M.std(M.factorize(L))+'＝'+L+'</span></p>';
+    venn(N,F,P);
+  }
+  function venn(N,F,P){
+    if(N.length!==2){$('venn').innerHTML='<p class="note">三個數時用上面的表最清楚：最大公因數的質因數要<b>三個數都有</b>。</p>';return;}
+    const tok=(f)=>{const a=[];P.forEach(p=>{for(let i=0;i<(f.get(p)||0);i++)a.push(p);});return a;};
+    const mid=new Map(P.map(p=>[p,Math.min(F[0].get(p)||0,F[1].get(p)||0)]));
+    const only=k=>new Map(P.map(p=>[p,(F[k].get(p)||0)-mid.get(p)]));
+    const regions=[only(0),mid,only(1)].map(tok);
+    const W=420,H=248;
+    const cx=[150,270],cy=118,r=100;
+    let s='<svg viewBox="0 0 '+W+' '+H+'" width="100%" style="max-width:460px" role="img" aria-label="'+N[0]+' 和 '+N[1]+' 的質因數文氏圖">';
+    s+='<circle cx="'+cx[0]+'" cy="'+cy+'" r="'+r+'" fill="#e2eef7" fill-opacity=".75" stroke="#2d6f9e" stroke-width="1.5"/>';
+    s+='<circle cx="'+cx[1]+'" cy="'+cy+'" r="'+r+'" fill="#f6e6dc" fill-opacity=".75" stroke="#a8572f" stroke-width="1.5"/>';
+    s+='<text x="'+(cx[0]-55)+'" y="20" font-size="15" font-weight="700" fill="#2d6f9e">'+N[0]+'</text>';
+    s+='<text x="'+(cx[1]+30)+'" y="20" font-size="15" font-weight="700" fill="#a8572f">'+N[1]+'</text>';
+    const box=[[62,152],[178,242],[268,358]];
+    regions.forEach((t,k)=>{
+      let items=t.map(p=>({p,e:1}));
+      if(t.length>8){items=[];P.forEach(p=>{const e=t.filter(x=>x===p).length;if(e)items.push({p,e});});}
+      const [x0,x1]=box[k],cols=Math.max(1,Math.min(2,items.length)),rows=Math.ceil(items.length/cols),dx=(x1-x0)/cols,dy=Math.min(32,150/Math.max(1,rows)),y0=cy-dy*(rows-1)/2;
+      items.forEach((it,i)=>{const x=x0+dx*(i%cols+.5),y=y0+dy*Math.floor(i/cols);
+        s+='<text x="'+x+'" y="'+(y+7)+'" text-anchor="middle" font-size="20" font-weight="700" fill="'+pcol(it.p)+'">'+it.p+(it.e>1?'<tspan font-size="12" dy="-9">'+it.e+'</tspan>':'')+'</text>';});
+      if(!items.length)s+='<text x="'+(x0+x1)/2+'" y="'+(cy+5)+'" text-anchor="middle" font-size="13" fill="#7a857e">（沒有）</text>';
+    });
+    s+='<text x="'+(W/2)+'" y="'+(H-6)+'" text-anchor="middle" font-size="12.5" fill="#4d5a52">中間重疊的部分＝兩個數共同的質因數</text></svg>';
+    const g=prod(regions[1]),L=prod(regions.flat());
+    $('venn').innerHTML='<p class="sub">用文氏圖看兩個數</p>'+s+
+      '<p>最大公因數＝<b>中間</b>的數相乘＝'+(regions[1].length?regions[1].join('×'):'1')+'＝<b>'+g+'</b><br>'+
+      '最小公倍數＝<b>圖裡所有</b>的數相乘（中間的只算一次）＝'+(regions.flat().length>12?M.std(M.factorize(L)):[regions[0].join('×'),regions[1].length?'('+regions[1].join('×')+')':'',regions[2].join('×')].filter(Boolean).join('×'))+'＝<b>'+L+'</b></p>';
+  }
+  radio($('tView'),'v',v=>{view=v;run();});
+  $('tN').addEventListener('input',run);run();
+})();
+
+/* ========== 一、短除法（多數） ========== */
+(function(){
+  let mode='g',cur=[],rows=[],done=false,stopAt=null,orig=[];
+  const L=$('ladder');
+  const cell=(n,copied)=>'<span class="'+(copied?'cp':'')+'">'+n+'</span>';
+  function reset(){
+    const N=M.readList($('lN'),2,99999,2,3);
+    if(!N){$('lMsg').textContent='請輸入 2～3 個 2～99999 的正整數，用逗號或空白分開。';L.innerHTML='';$('lOut').innerHTML='';$('lHint').textContent='';done=true;return false;}
+    $('lMsg').textContent='';orig=N.slice();cur=N.slice();rows=[];done=false;stopAt=null;
+    L.innerHTML='<div class="row"><div class="dv"></div><div class="qt">'+cur.map(n=>cell(n)).join('')+'</div></div>';
+    $('lOut').innerHTML='';
+    $('lHint').textContent=mode==='g'?'找一個能同時整除「每一個數」的質數，從 2 開始試。':'先找能整除「每一個數」的質數；沒有了，再找能整除「其中兩個數」的質數。';
+    return true;
+  }
+  function pickPrime(){
+    const mx=Math.max(...cur);
+    for(let p=2;p<=mx;p++){if(!M.isPrime(p))continue;if(cur.every(n=>n%p===0))return {p,all:true};}
+    if(mode==='g'||cur.length<3)return null;
+    for(let p=2;p<=mx;p++){if(!M.isPrime(p))continue;if(cur.filter(n=>n%p===0).length>=2)return {p,all:false};}
+    return null;
+  }
+  function step(){
+    if(done)return;
+    const k=pickPrime();
+    if(!k){done=true;finish();return;}
+    if(!k.all&&stopAt===null)stopAt={rows:rows.slice(),cur:cur.slice()};
+    const cp=cur.map(n=>n%k.p!==0);
+    L.lastElementChild.querySelector('.dv').textContent=k.p;
+    rows.push(k.p);
+    cur=cur.map(n=>n%k.p===0?n/k.p:n);
+    const r=document.createElement('div');r.className='row new';r.innerHTML='<div class="dv"></div><div class="qt">'+cur.map((n,i)=>cell(n,cp[i])).join('')+'</div>';L.appendChild(r);
+    $('lHint').innerHTML=k.all?k.p+' 能整除每一個數，全部除以 '+k.p+'。':
+      k.p+' 只能整除其中兩個數：能除的除，<b>不能除的 '+cur.filter((n,i)=>cp[i]).join('、')+' 直接抄下來</b>（灰色）。';
+  }
+  function finish(){
+    L.lastElementChild.classList.add('last');
+    const names=orig.join(', ');
+    if(mode==='g'){
+      const gg=M.gcdAll(orig);
+      $('lHint').innerHTML=rows.length?'除了 1 以外，已經沒有能同時整除每一個數的數了，停。':'找不到能同時整除每一個數的質數。';
+      $('lOut').innerHTML=rows.length?
+        '<p>把<b>左邊的除數</b>乘起來：'+rows.join('×')+'＝'+gg+'</p><p class="big-ans">('+names+')＝'+gg+'</p>'+
+        (orig.length===3&&pickPairs()?'<p class="note">'+pickPairs()+'</p>':''):
+        '<p class="big-ans">('+names+')＝1</p><p class="note">沒有共同的質因數，最大公因數是 1'+(orig.length===2?'，兩數互質':'')+'。</p>';
+    }else{
+      const LL=M.lcmAll(orig);
+      $('lHint').innerHTML='最下面一列 '+cur.join('、')+' 任兩個數都互質了，停。';
+      $('lOut').innerHTML='<p>把<b>左邊的除數</b>和<b>最下面一列</b>全部乘起來：'+rows.concat(cur).join('×')+'＝'+LL+'</p><p class="big-ans">['+names+']＝'+LL+'</p>'+
+        (stopAt?'<p class="warnline">⚠ 如果在 '+stopAt.cur.join('、')+' 那一列（三個數沒有公因數時）就停，會算成 '+stopAt.rows.concat(stopAt.cur).join('×')+'＝'+prod(stopAt.rows.concat(stopAt.cur))+'，是<b>錯的</b>。因為 '+pairNote(stopAt.cur)+'。</p>':'');
+    }
+  }
+  function pairNote(c){const out=[];for(let i=0;i<c.length;i++)for(let j=i+1;j<c.length;j++){const d=M.gcd(c[i],c[j]);if(d>1)out.push(c[i]+' 和 '+c[j]+' 還有公因數 '+d);}return out.join('，');}
+  function pickPairs(){const t=pairNote(cur);return t?'最下面一列 '+t+'，但第三個數不能被除，所以求最大公因數到這裡就停；求最小公倍數才要繼續除。':'';}
+  radio($('lMode'),'m',m=>{mode=m;if(reset())while(!done)step();});
+  $('lStep').onclick=()=>{if(done&&!reset())return;step();};
+  $('lAll').onclick=()=>{if(!reset())return;while(!done)step();};
+  $('lReset').onclick=()=>reset();
+  $('lN').addEventListener('input',()=>{if(reset())while(!done)step();});
+  $('lAll').click();
+})();
+
+/* ========== 一、我出題，你來算 ========== */
+(function(){
+  let Q=null,tot=0,ok=0,first=true;const recent=[];
+  const GS=[2,3,4,5,6,7,8,9,10,12,14,15,16,18,21,24];
+  function pickK(){return +document.querySelector('input[name="dK"]:checked').value;}
+  function make(k){
+    for(let t=0;t<500;t++){
+      const g=GS[Math.floor(Math.random()*GS.length)],ms=[];
+      while(ms.length<k){const m=1+Math.floor(Math.random()*(k===2?15:10));if(!ms.includes(m))ms.push(m);}
+      if(M.gcdAll(ms)!==1)continue;
+      const N=ms.map(m=>g*m).sort((x,y)=>x-y);
+      if(N[0]<4||N[k-1]>(k===2?300:240))continue;
+      const L=M.lcmAll(N);if(L>(k===2?3000:5000))continue;
+      const key=N.join(',');if(recent.includes(key))continue;
+      recent.push(key);if(recent.length>10)recent.shift();
+      return {N,g:M.gcdAll(N),L};
+    }
+    return {N:[12,18],g:6,L:36};
+  }
+  $('dNew').onclick=()=>{
+    Q=make(pickK());first=true;$('dWork').hidden=false;
+    $('dQ').textContent='求 ('+Q.N.join(', ')+') 和 ['+Q.N.join(', ')+']';
+    $('dG').value='';$('dL').value='';$('dMsg').textContent='';$('dOut').innerHTML='';$('dG').focus();
+  };
+  $('dHint').onclick=()=>{if(!Q)return;$('dOut').innerHTML='<p class="note">先寫標準分解式：'+Q.N.map(n=>n+'＝'+M.std(M.factorize(n))).join('，')+'。<br>最大公因數取每個數都有的質因數、指數取小；最小公倍數取全部、指數取大。</p>';};
+  $('dCheck').onclick=()=>{
+    if(!Q)return;
+    const g=M.readInt($('dG'),1,1e9),l=M.readInt($('dL'),1,1e9);
+    if(g===null||l===null){$('dMsg').textContent='兩格都要填正整數。';return;}
+    $('dMsg').textContent='';
+    const gOk=g===Q.g,lOk=l===Q.L;
+    if(first){tot++;if(gOk&&lOk)ok++;first=false;$('dScore').textContent='全對 '+ok+' / '+tot+' 題';}
+    const why=[];
+    if(!gOk)why.push(Q.N.every(n=>n%g===0)?g+' 是公因數，但不是最大的。':g+' 不能整除每一個數，不是公因數。');
+    if(!lOk)why.push(Q.N.every(n=>l%n===0)?l+' 是公倍數，但不是最小的。':l+' 不是每個數的倍數。');
+    $('dOut').innerHTML=(gOk&&lOk?'<p class="big-ans" style="color:var(--moss)">✓ 全對！</p>':'<p><b style="color:var(--rose)">'+(gOk?'最大公因數對了，':'')+(lOk?'最小公倍數對了，':'')+'再檢查一下。</b> '+why.filter(Boolean).join(' ')+'</p>')+
+      '<details'+(gOk&&lOk?'':' open')+'><summary>看詳解</summary><p>'+Q.N.map(n=>n+'＝'+M.std(M.factorize(n))).join('<br>')+'</p><p>('+Q.N.join(', ')+')＝'+stdN(Q.g)+(stdN(Q.g)!==String(Q.g)?'＝'+Q.g:'')+'<br>['+Q.N.join(', ')+']＝'+M.std(M.factorize(Q.L))+'＝'+Q.L+'</p></details>';
+  };
+  ['dG','dL'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')$('dCheck').click();}));
+})();
+
+/* ========== 二、互質判斷器 ========== */
+(function(){
+  function fhtml(n,common){if(n===1)return '1（沒有質因數）';return M.factorize(n).map(([p,e])=>'<span class="pf'+(common.includes(p)?' hl':'')+'">'+sup(p,e)+'</span>').join('×');}
+  function run(){
+    const a=M.readInt($('cA'),1,99999),b=M.readInt($('cB'),1,99999);
+    if(a===null||b===null){$('cMsg').textContent='請輸入 1～99999 的正整數。';$('cOut').innerHTML='';return;}
+    $('cMsg').textContent='';
+    const g=M.gcd(a,b),common=g>1?M.factorize(g).map(x=>x[0]):[];
+    let h='<p>'+a+'＝'+fhtml(a,common)+'<br>'+b+'＝'+fhtml(b,common)+'</p>';
+    if(g===1){
+      h+='<p class="big-ans" style="color:var(--moss)">沒有共同的質因數 → ('+a+', '+b+')＝1，<b>互質</b>。</p>';
+      const notes=[];
+      if(a===1||b===1)notes.push('1 和任何正整數都互質。');
+      if(Math.abs(a-b)===1)notes.push('相鄰的兩個正整數一定互質。');
+      if(a>1&&b>1&&!M.isPrime(a)&&!M.isPrime(b))notes.push(a+' 和 '+b+' 都是合數，還是可以互質。');
+      notes.push('互質時 ['+a+', '+b+']＝'+a+'×'+b+'＝'+a*b+'。');
+      h+='<p class="note">'+notes.join('<br>')+'</p>';
+    }else{
+      h+='<p class="big-ans" style="color:var(--rose)">有共同的質因數 '+common.join('、')+' → ('+a+', '+b+')＝'+g+'，<b>不互質</b>。</p>';
+      if(common.some(p=>p>=13))h+='<p class="note">⚠ 共同的質因數 '+common.filter(p=>p>=13).join('、')+' 比較大，用眼睛看不出來，這就是常考的陷阱。</p>';
+    }
+    $('cOut').innerHTML=h;
+  }
+  $('cTrap').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{$('cA').value=c.dataset.a;$('cB').value=c.dataset.b;run();});
+  ['cA','cB'].forEach(id=>$(id).addEventListener('input',run));run();
+})();
+
+/* ========== 二、和 N 互質的數字表 ========== */
+(function(){
+  let cal=false;
+  function run(){
+    const N=M.readInt($('gN'),2,99999),Mx=M.readInt($('gM'),2,100);
+    if(N===null||Mx===null){$('gMsg').textContent='N 請輸入 2～99999，範圍上限請輸入 2～100。';$('cpGrid').innerHTML='';$('gOut').innerHTML='';$('gLeg').innerHTML='';return;}
+    $('gMsg').textContent='';
+    const P=M.factorize(N).map(x=>x[0]);
+    const cols=['#f6e6dc|#a8572f','#e2eef7|#2d6f9e','#f8eed2|#8a6410','#f7e3e6|#a33a4a','#ece6f5|#6b4fa0','#e8efe0|#4f6b2f'];
+    let h='',ok=[];
+    for(let i=1;i<=Mx;i++){
+      const p=P.find(q=>i%q===0);
+      if(p===undefined){ok.push(i);h+='<div class="ok">'+i+'</div>';}
+      else{const [bg,fg]=cols[P.indexOf(p)%cols.length].split('|');h+='<div class="x" style="background:'+bg+';color:'+fg+'" title="'+i+' 是 '+p+' 的倍數">'+i+'</div>';}
+    }
+    $('cpGrid').className='cpgrid'+(cal?' cal':'');
+    $('cpGrid').innerHTML=h;
+    $('gLeg').innerHTML='<span><i style="background:var(--moss-bg);border:1px solid var(--moss)"></i>和 '+N+' 互質</span>'+P.map((p,k)=>{const [bg,fg]=cols[k%cols.length].split('|');return '<span><i style="background:'+bg+';border:1px solid '+fg+'"></i>'+p+' 的倍數</span>';}).join('');
+    $('gOut').innerHTML='<p>'+N+'＝'+M.std(M.factorize(N))+'，質因數是 '+P.join('、')+'。把 '+P.map(p=>p+' 的倍數').join('、')+'劃掉。</p>'+
+      '<p class="big-ans">1～'+Mx+' 中，和 '+N+' 互質的有 '+ok.length+' 個'+(cal?'（'+N+' 月有 '+ok.length+' 天月、日互質）':'')+'</p><p class="small">'+ok.join('、')+'</p>';
+  }
+  $('gPre').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{$('gN').value=c.dataset.n;$('gM').value=c.dataset.m;cal=!!c.dataset.cal;$('gPre').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));run();});
+  ['gN','gM'].forEach(id=>$(id).addEventListener('input',()=>{cal=false;$('gPre').querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));run();}));
+  $('gPre').querySelector('.chip').click();
+})();
+
+/* ========== 三、方塊圖 ========== */
+(function(){
+  const blk=(p,g)=>'<span class="blk'+(g?' gc':'')+'" style="--c:'+pcol(p)+'">'+p+'</span>';
+  const expand=f=>{const a=[];f.forEach(([p,e])=>{for(let i=0;i<e;i++)a.push(p);});return a;};
+  function split(n,G){const all=expand(M.factorize(n)),gs=expand(M.factorize(G)),rest=all.slice();gs.forEach(p=>rest.splice(rest.indexOf(p),1));return {gs,rest};}
+  function row(label,gs,rest,val){return '<div class="brow"><span class="bl">'+label+'</span><span class="bs">'+gs.map(p=>blk(p,true)).join('')+(gs.length&&rest.length?'<i class="sep"></i>':'')+rest.map(p=>blk(p,false)).join('')+(gs.length+rest.length===0?'<span class="small">1</span>':'')+'</span><span class="bv">＝'+val+'</span></div>';}
+  function run(){
+    const a=M.readInt($('bA'),2,9999),b=M.readInt($('bB'),2,9999);
+    if(a===null||b===null){$('bMsg').textContent='請輸入 2～9999 的正整數。';$('bOut').innerHTML='';return;}
+    $('bMsg').textContent='';
+    const g=M.gcd(a,b),L=M.lcm(a,b),A=split(a,g),B=split(b,g),gs=A.gs;
+    $('bOut').innerHTML=
+      row('a',A.gs,A.rest,a)+row('b',B.gs,B.rest,b)+
+      '<div class="bsep"></div>'+
+      row('(a, b)',gs,[],g)+
+      row('[a, b]',gs,A.rest.concat(B.rest),L)+
+      '<div class="bsep"></div>'+
+      row('a×b',gs.concat(gs),A.rest.concat(B.rest),a*b)+
+      '<p class="note">框起來的方塊 '+(gs.length?gs.join('×'):'（沒有，(a, b)＝1）')+' 在 a×b 裡出現<b>兩次</b>，在 (a, b)×[a, b] 裡也剛好兩次（一次在 (a, b)、一次在 [a, b]）。所以<br><b>(a, b)×[a, b]＝'+g+'×'+L+'＝'+g*L+'＝'+a+'×'+b+'＝a×b</b></p>'+
+      '<p class="small">也可以寫成 a＝'+g+'×'+a/g+'、b＝'+g+'×'+b/g+'，其中 '+a/g+' 和 '+b/g+' 互質，[a, b]＝'+g+'×'+a/g+'×'+b/g+'＝'+L+'。</p>';
+  }
+  ['bA','bB'].forEach(id=>$(id).addEventListener('input',run));run();
+})();
+
+/* ========== 三、反推器 ========== */
+(function(){
+  function run(){
+    const g=M.readInt($('iG'),1,99999),L=M.readInt($('iL'),1,999999);
+    if(g===null||L===null){$('iMsg').textContent='請輸入正整數。';$('iOut').innerHTML='';return;}
+    if(L%g!==0){$('iMsg').textContent='[a, b] 一定是 (a, b) 的倍數，'+L+' 不是 '+g+' 的倍數，沒有這樣的 a、b。';$('iOut').innerHTML='';return;}
+    let lo=null,hi=null;
+    if($('iRng').checked){lo=M.readInt($('iLo'),1,999999);hi=M.readInt($('iHi'),1,999999);if(lo===null||hi===null||lo>hi){$('iMsg').textContent='範圍請輸入正整數，而且下限不能大於上限。';$('iOut').innerHTML='';return;}}
+    $('iMsg').textContent='';
+    const k=L/g;let rows='',good=[];
+    M.divisors(k).forEach(m=>{const n=k/m;if(m>n)return;
+      const d=M.gcd(m,n),a=g*m,b=g*n;
+      if(d>1){rows+='<tr class="bad"><td>'+m+'×'+n+'</td><td>✗ '+m+'、'+n+' 有公因數 '+d+'</td><td colspan="2">'+a+'、'+b+' 的最大公因數會變成 '+M.gcd(a,b)+'，不是 '+g+'</td></tr>';return;}
+      const inR=lo===null||(a>=lo&&a<=hi&&b>=lo&&b<=hi);
+      if(inR)good.push([a,b]);
+      rows+='<tr class="'+(inR?'okr':'out')+'"><td>'+m+'×'+n+'</td><td>✓ 互質</td><td class="ab">a＝<b>'+a+'</b>（'+g+'×'+m+'）<br>b＝<b>'+b+'</b>（'+g+'×'+n+'）</td><td>'+(inR?'符合':'不在 '+lo+'～'+hi+' 之間')+'</td></tr>';
+    });
+    $('iOut').innerHTML='<p>m×n＝[a, b]÷(a, b)＝'+L+'÷'+g+'＝<b>'+k+'</b>。把 '+k+' 拆成兩個數相乘（m≤n），只留<b>互質</b>的：</p>'+
+      '<div class="tscroll"><table class="t inv"><tr><th>m×n</th><th>m、n 互質？</th><th>a、b</th><th>範圍</th></tr>'+rows+'</table></div>'+
+      '<p class="big-ans">'+(good.length?'共 '+good.length+' 組：'+good.map(([a,b])=>'('+a+', '+b+')').join('、'):'沒有符合的 a、b')+'</p>'+
+      (good.length?'<p class="small">驗算第一組：('+good[0][0]+', '+good[0][1]+')＝'+M.gcd(...good[0])+'，['+good[0][0]+', '+good[0][1]+']＝'+M.lcm(...good[0])+'，而且 '+g+'×'+L+'＝'+g*L+'＝'+good[0][0]+'×'+good[0][1]+'。</p>':'');
+  }
+  ['iG','iL','iLo','iHi'].forEach(id=>$(id).addEventListener('input',run));$('iRng').addEventListener('change',run);run();
+})();
+
+/* ========== 四、裁正方形 ========== */
+(function(){
+  let L=84,W=60;
+  const sl=$('kS');
+  function setup(){
+    const a=M.readInt($('kL'),2,300),b=M.readInt($('kW'),2,300);
+    if(a===null||b===null){$('kMsg').textContent='請輸入 2～300 的正整數。';$('kSvg').innerHTML='';$('kOut').innerHTML='';$('kCd').innerHTML='';return false;}
+    $('kMsg').textContent='';L=Math.max(a,b);W=Math.min(a,b);
+    sl.max=W;if(+sl.value>W)sl.value=W;
+    const g=M.gcd(L,W);
+    $('kCd').innerHTML='<span class="small" style="align-self:center">公因數（可以剛好裁完的邊長）：</span>'+M.divisors(g).map(d=>'<button class="chip'+(d===g?' gmax':'')+'" data-s="'+d+'">'+d+'</button>').join('');
+    $('kCd').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{sl.value=c.dataset.s;draw();});
+    return true;
+  }
+  function draw(){
+    const s=+sl.value,g=M.gcd(L,W);$('kSv').textContent=s+' 公分';
+    $('kCd').querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',+c.dataset.s===s));
+    const box=$('kSvg'),maxW=Math.min(560,(box.clientWidth||560)-4),k=Math.min(maxW/L,260/W),w=L*k,h=W*k;
+    const nx=Math.floor(L/s),ny=Math.floor(W/s),okx=L%s===0,oky=W%s===0;
+    let svg='<svg width="'+(w+2)+'" height="'+(h+2)+'" role="img" aria-label="長方形裁成正方形">';
+    svg+='<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#f7e3e6"/><line x1="0" y1="0" x2="0" y2="6" stroke="#a33a4a" stroke-width="1.5"/></pattern></defs>';
+    svg+='<rect x="1" y="1" width="'+w+'" height="'+h+'" fill="'+(okx&&oky?'#e5f0e2':'#e2eef7')+'" stroke="#1f2a24" stroke-width="1.5"/>';
+    if(!okx)svg+='<rect x="'+(1+nx*s*k)+'" y="1" width="'+(w-nx*s*k)+'" height="'+h+'" fill="url(#hatch)"/>';
+    if(!oky)svg+='<rect x="1" y="'+(1+ny*s*k)+'" width="'+w+'" height="'+(h-ny*s*k)+'" fill="url(#hatch)"/>';
+    const lw=s*k<5?.4:.9;
+    for(let i=1;i<=nx;i++){if(i*s===L)break;svg+='<line x1="'+(1+i*s*k)+'" y1="1" x2="'+(1+i*s*k)+'" y2="'+(1+ny*s*k)+'" stroke="#3f7a4f" stroke-width="'+lw+'"/>';}
+    for(let j=1;j<=ny;j++){if(j*s===W)break;svg+='<line x1="1" y1="'+(1+j*s*k)+'" x2="'+(1+nx*s*k)+'" y2="'+(1+j*s*k)+'" stroke="#3f7a4f" stroke-width="'+lw+'"/>';}
+    svg+='</svg>';
+    box.innerHTML=svg;
+    let o;
+    if(okx&&oky){
+      o='<p>'+s+' 是 '+L+' 和 '+W+' 的<b>公因數</b>，剛好裁完：長邊 '+L+'÷'+s+'＝'+nx+' 個，寬邊 '+W+'÷'+s+'＝'+ny+' 個，共 '+nx+'×'+ny+'＝<b>'+nx*ny+' 張</b>。</p>';
+      o+=s===g?'<p class="big-ans" style="color:var(--moss)">這就是最大的正方形：邊長＝('+L+', '+W+')＝'+g+' 公分，共 '+nx*ny+' 張。</p>':'<p class="small">還可以更大：最大的邊長是 ('+L+', '+W+')＝'+g+'。</p>';
+    }else{
+      o='<p style="color:var(--rose)">'+s+' 不能整除'+(okx?'':' '+L)+(okx||oky?'':' 和')+(oky?'':' '+W)+'，紅色斜線的地方會剩下，<b>裁不完</b>。</p><p class="small">邊長要能同時整除長和寬，也就是要選公因數：'+M.divisors(g).join('、')+'。</p>';
+    }
+    $('kOut').innerHTML=o;
+  }
+  $('kMax').onclick=()=>{sl.value=M.gcd(L,W);draw();};
+  sl.addEventListener('input',draw);
+  ['kL','kW'].forEach(id=>$(id).addEventListener('input',()=>{if(setup())draw();}));
+  if(setup())draw();
+  let rt=0;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(draw,150);});
+})();
+
+/* ========== 四、分東西（剩下、不足） ========== */
+(function(){
+  function side(n,m,r,nm){
+    if(m==='0')return {v:n,txt:nm+' '+n+' 剛好分完，不用調整',r:0};
+    if(m==='r')return {v:n-r,txt:nm+' 剩下 '+r+'：實際分出去的是 '+n+'－'+r+'＝<b>'+(n-r)+'</b>',r};
+    return {v:n+r,txt:nm+' 不足 '+r+'：要 '+n+'＋'+r+'＝<b>'+(n+r)+'</b> 才夠分',r};
+  }
+  function run(){
+    const a=M.readInt($('sA'),1,99999),b=M.readInt($('sB'),1,99999);
+    const am=$('sAm').value,bm=$('sBm').value;
+    $('sAr').disabled=am==='0';$('sBr').disabled=bm==='0';
+    const ar=am==='0'?0:M.readInt($('sAr'),1,9999),br=bm==='0'?0:M.readInt($('sBr'),1,9999);
+    if(a===null||b===null||ar===null||br===null){$('sMsg').textContent='請輸入正整數。';$('sOut').innerHTML='';return;}
+    const A=side(a,am,ar,'第一種'),B=side(b,bm,br,'第二種');
+    if(A.v<1||B.v<1){$('sMsg').textContent='剩下的數量不能比全部還多。';$('sOut').innerHTML='';return;}
+    $('sMsg').textContent='';
+    const g=M.gcd(A.v,B.v),need=Math.max(A.r,B.r),ok=M.divisors(g).filter(d=>d>need);
+    let h='<ol class="steps"><li>先調整成「剛好分完」的數量：<br>'+A.txt+'<br>'+B.txt+'</li>'+
+      '<li>人數要整除 '+A.v+' 和 '+B.v+' → 公因數。最多是 ('+A.v+', '+B.v+')＝<b>'+g+'</b>。</li>'+
+      '<li>檢查：'+(need?'人數要比剩下（或不足）的 '+need+' 多。':'沒有剩下也沒有不足，不用檢查。')+(need?(g>need?g+'＞'+need+'，合理。':g+' 沒有比 '+need+' 多，<b>不合理</b>。'):'')+'</li></ol>';
+    if(ok.length){
+      const p=ok[ok.length-1];
+      h+='<p class="big-ans">最多 '+p+' 人，每人分到第一種 '+A.v/p+' 個、第二種 '+B.v/p+' 個。</p>';
+      if(ok.length>1)h+='<p class="small">如果題目問「人數可能有幾種」：'+g+' 的正因數中比 '+need+' 大的有 '+ok.join('、')+'，共 '+ok.length+' 種。</p>';
+    }else h+='<p class="big-ans" style="color:var(--rose)">沒有符合的人數。</p>';
+    $('sOut').innerHTML=h;
+  }
+  ['sA','sB','sAr','sBr'].forEach(id=>$(id).addEventListener('input',run));['sAm','sBm'].forEach(id=>$(id).addEventListener('change',run));run();
+})();
+
+/* ========== 四、種樹 ========== */
+(function(){
+  let mode='c',d=0;
+  function run(keep){
+    const Lv=M.readInt($('rL'),2,500),Wv=mode==='c'?M.readInt($('rW'),2,500):1;
+    $('rWbox').style.display=mode==='c'?'':'none';
+    if(Lv===null||Wv===null){$('rMsg').textContent='請輸入 2～500 的正整數。';$('rSvg').innerHTML='';$('rOut').innerHTML='';$('rD').innerHTML='';return;}
+    $('rMsg').textContent='';
+    const base=mode==='c'?M.gcd(Lv,Wv):Lv,ds=M.divisors(base).filter(x=>x<Lv||mode==='c');
+    if(!keep||!ds.includes(d))d=ds[ds.length-1];
+    if(mode!=='c'&&d===Lv&&ds.length>1)d=ds[ds.length-1];
+    $('rD').innerHTML='<span class="small" style="align-self:center">間隔：</span>'+ds.map(x=>'<button class="chip'+(x===d?' on':'')+(x===ds[ds.length-1]?' gmax':'')+'" data-d="'+x+'">'+x+'</button>').join('');
+    $('rD').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{d=+c.dataset.d;run(true);});
+    const box=$('rSvg'),maxW=Math.min(560,(box.clientWidth||560)-20);
+    let svg,n;
+    if(mode==='c'){
+      const k=Math.min((maxW-20)/Lv,200/Wv),w=Lv*k,h=Wv*k,P=[];
+      for(let x=0;x<Lv;x+=d)P.push([x,0]);for(let y=0;y<Wv;y+=d)P.push([Lv,y]);for(let x=Lv;x>0;x-=d)P.push([x,Wv]);for(let y=Wv;y>0;y-=d)P.push([0,y]);
+      n=P.length;const r=Math.max(2.2,Math.min(6,d*k/3));
+      svg='<svg width="'+(w+24)+'" height="'+(h+24)+'"><rect x="12" y="12" width="'+w+'" height="'+h+'" fill="#e5f0e2" stroke="#7a857e" stroke-dasharray="4 3"/>'+
+        P.map(([x,y],i)=>'<circle cx="'+(12+x*k)+'" cy="'+(12+y*k)+'" r="'+r+'" fill="'+(i===0?'#a33a4a':'#3f7a4f')+'"/>').join('')+'</svg>';
+      $('rOut').innerHTML='<p>間隔要能整除長和寬（四個角都要種）→ 間隔是 '+Lv+' 和 '+Wv+' 的公因數，最大是 ('+Lv+', '+Wv+')＝'+M.gcd(Lv,Wv)+'。</p>'+
+        '<p class="big-ans">間隔 '+d+' 公尺：周長 2×('+Lv+'＋'+Wv+')＝'+2*(Lv+Wv)+'，棵數＝'+2*(Lv+Wv)+'÷'+d+'＝'+n+' 棵</p>'+
+        '<p class="small">圍一圈頭尾接在一起（紅色那棵是起點，也是終點），所以<b>不用＋1</b>。</p>';
+    }else{
+      const k=(maxW-20)/Lv,pts=[];for(let x=0;x<=Lv;x+=d)if(mode==='l2'||(x>0&&x<Lv))pts.push(x);
+      n=pts.length;const r=Math.max(2,Math.min(6,d*k/3));
+      svg='<svg width="'+(maxW)+'" height="44"><line x1="10" y1="22" x2="'+(10+Lv*k)+'" y2="22" stroke="#7a857e" stroke-width="2"/>'+
+        '<line x1="10" y1="14" x2="10" y2="30" stroke="#1f2a24" stroke-width="2"/><line x1="'+(10+Lv*k)+'" y1="14" x2="'+(10+Lv*k)+'" y2="30" stroke="#1f2a24" stroke-width="2"/>'+
+        pts.map(x=>'<circle cx="'+(10+x*k)+'" cy="22" r="'+r+'" fill="#3f7a4f"/>').join('')+'</svg>';
+      $('rOut').innerHTML=mode==='l2'?
+        '<p class="big-ans">間隔 '+d+' 公尺：'+Lv+'÷'+d+'＝'+Lv/d+' 段，兩端都種，棵數＝'+Lv/d+'＋1＝'+n+' 棵</p><p class="small">一條直線分成 '+Lv/d+' 段，有 '+(Lv/d+1)+' 個端點，所以要＋1。</p>':
+        '<p class="big-ans">間隔 '+d+' 公尺：'+Lv+'÷'+d+'＝'+Lv/d+' 段，兩端都不種，棵數＝'+Lv/d+'－1＝'+n+' 棵</p><p class="small">頭尾兩個端點不種，所以是段數－1。</p>';
+    }
+    box.innerHTML=svg;
+  }
+  radio($('tMode'),'m',m=>{mode=m;run(false);});
+  ['rL','rW'].forEach(id=>$(id).addEventListener('input',()=>run(false)));run(false);
+  let rt=0;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>run(true),150);});
+})();
+
+/* ========== 五、週期時間軸 ========== */
+(function(){
+  const WD='日一二三四五六';
+  const COL=['#2d6f9e','#a8572f','#6b4fa0'];
+  function clk(base,m){if(base===null)return null;const t=base+m,h=Math.floor(t/60),mm=t%60;return h+':'+String(mm).padStart(2,'0');}
+  function run(){
+    const u=$('yU').value;$('yTu').textContent=u;
+    $('yWbox').hidden=u!=='天';$('yCbox').style.display=u==='分鐘'?'':'none';
+    const P=[M.readInt($('yA'),1,9999),M.readInt($('yB'),1,9999)];
+    const cRaw=$('yC').value.trim();if(cRaw!=='')P.push(M.readInt($('yC'),1,9999));
+    const T=M.readInt($('yT'),1,100000);
+    if(P.some(x=>x===null)||T===null){$('yMsg').textContent='週期和總時間請輸入正整數（第三格可以空白）。';$('ySvg').innerHTML='';$('yOut').innerHTML='';return;}
+    let base=null;
+    if(u==='分鐘'&&$('yClk').value.trim()){const m=$('yClk').value.trim().replace('：',':').match(/^(\d{1,2}):(\d{2})$/);if(!m){$('yMsg').textContent='開始時刻請寫成 8:00 這種格式，或留空白。';return;}base=(+m[1])*60+(+m[2]);}
+    $('yMsg').textContent='';
+    const Lc=M.lcmAll(P),inc=$('yS').checked;
+    const times=[];for(let t=inc?0:Lc;t<=T;t+=Lc)times.push(t);
+    /* 畫圖：只畫到 T，最多畫到 3 個公倍數的長度，太長就縮短 */
+    const span=Math.min(T,Math.max(Lc*3,Math.min(T,Lc*1.2))),box=$('ySvg'),Wd=Math.min(640,(box.clientWidth||640)-4),x0=58,xr=Wd-14,k=(xr-x0)/span;
+    const H=26+P.length*34+26;
+    let s='<svg width="'+Wd+'" height="'+H+'" role="img" aria-label="週期時間軸">';
+    for(let t=0;t<=span;t+=Lc){const x=x0+t*k;s+='<rect x="'+(x-5)+'" y="12" width="10" height="'+(P.length*34+10)+'" fill="#f8eed2" stroke="#b98516" stroke-width="1"/>';
+      s+='<text x="'+x+'" y="'+(H-6)+'" text-anchor="middle" font-size="12" font-weight="700" fill="#8a6410">'+(base!==null?clk(base,t):t)+'</text>';}
+    P.forEach((p,i)=>{const y=30+i*34;
+      s+='<text x="4" y="'+(y+4)+'" font-size="12.5" font-weight="700" fill="'+COL[i]+'">每 '+p+'</text>';
+      s+='<line x1="'+x0+'" y1="'+y+'" x2="'+xr+'" y2="'+y+'" stroke="#c6c1b2" stroke-width="1.5"/>';
+      const cnt=Math.floor(span/p);const step=cnt>160?Math.ceil(cnt/160):1;
+      for(let j=0;j<=cnt;j+=step){const x=x0+j*p*k;s+='<circle cx="'+x+'" cy="'+y+'" r="'+(cnt>60?2.4:4)+'" fill="'+COL[i]+'"/>';}
+    });
+    s+='</svg>';
+    box.innerHTML=s;
+    const names=P.join(', ');
+    let h='<p>每一條線上的點是各自發生的時間，黃色直條是<b>同時</b>發生的時間：每隔 ['+names+']＝<b>'+Lc+' '+u+'</b>一次。</p>';
+    if(u==='天'){const w0=+$('yW').value;
+      h+='<p class="big-ans">至少再過 '+Lc+' 天會再同時：'+Lc+'÷7＝'+Math.floor(Lc/7)+' 餘 '+Lc%7+'，從星期'+WD[w0]+'往後數 '+Lc%7+' 天是<b>星期'+WD[(w0+Lc)%7]+'</b>。</p>';}
+    else h+='<p class="big-ans">至少再過 '+Lc+' '+u+'會再同時'+(base!==null?'（'+clk(base,Lc)+'）':'')+'。</p>';
+    h+='<p>從開始到第 '+T+' '+u+(base!==null?'（'+clk(base,0)+'～'+clk(base,T)+'）':'')+'，同時發生的時間：'+(times.length>14?times.slice(0,6).map(t=>base!==null?clk(base,t):t).join('、')+'……'+times.slice(-2).map(t=>base!==null?clk(base,t):t).join('、'):times.map(t=>base!==null?clk(base,t):t).join('、')||'（沒有）')+'</p>';
+    h+='<p class="big-ans">共 '+times.length+' 次'+(inc?'（'+T+'÷'+Lc+'＝'+Math.floor(T/Lc)+(T%Lc?' 餘 '+T%Lc:'')+'，再加上開始那一次）':'（開始那一次不算）')+'</p>';
+    if(span<T)h+='<p class="small">圖只畫出前面一段，後面都一樣每 '+Lc+' '+u+'重複一次。</p>';
+    $('yOut').innerHTML=h;
+  }
+  $('yPre').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{
+    const p=c.dataset.p.split(',');$('yA').value=p[0];$('yB').value=p[1];$('yC').value=p[2]||'';
+    $('yU').value=c.dataset.u;$('yT').value=c.dataset.t;$('yClk').value=c.dataset.c||'';$('yS').checked=c.dataset.s==='1';
+    if(c.dataset.w)$('yW').value=c.dataset.w;
+    $('yPre').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));run();});
+  ['yA','yB','yC','yT','yClk'].forEach(id=>$(id).addEventListener('input',run));['yU','yW','yS'].forEach(id=>$(id).addEventListener('change',run));
+  $('yPre').querySelector('.chip').click();
+  let rt=0;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(run,150);});
+})();
+
+/* ========== 五、路燈和旗子 ========== */
+(function(){
+  function run(){
+    const D=M.readInt($('wD'),2,100000),p=M.readInt($('wP'),1,99999),q=M.readInt($('wQ'),1,99999),e=$('wE').value==='2';
+    if(D===null||p===null||q===null){$('wMsg').textContent='請輸入正整數。';$('wSvg').innerHTML='';$('wOut').innerHTML='';return;}
+    $('wMsg').textContent='';
+    const Lc=M.lcm(p,q),pos=n=>{const a=[];for(let x=0;x<=D;x+=n)if(e||(x>0&&x<D))a.push(x);return a;};
+    const A=pos(p),B=pos(q),C=pos(Lc);
+    const box=$('wSvg'),Wd=Math.min(640,(box.clientWidth||640)-4),x0=12,show=Math.min(D,Math.max(Lc*4,Math.min(D,Lc*1.5))),k=(Wd-24)/show;
+    let s='<svg width="'+Wd+'" height="86" role="img" aria-label="路燈和旗子的位置">';
+    C.filter(x=>x<=show).forEach(x=>{s+='<rect x="'+(x0+x*k-6)+'" y="6" width="12" height="70" rx="3" fill="#f8eed2" stroke="#b98516"/>';});
+    s+='<line x1="'+x0+'" y1="44" x2="'+(x0+show*k)+'" y2="44" stroke="#7a857e" stroke-width="3"/>';
+    const sm=D/p>80||D/q>80;
+    A.filter(x=>x<=show).forEach(x=>{const X=x0+x*k;s+='<line x1="'+X+'" y1="44" x2="'+X+'" y2="22" stroke="#2d6f9e" stroke-width="1.5"/><circle cx="'+X+'" cy="20" r="'+(sm?3:4.5)+'" fill="#2d6f9e"/>';});
+    B.filter(x=>x<=show).forEach(x=>{const X=x0+x*k;s+='<line x1="'+X+'" y1="44" x2="'+X+'" y2="66" stroke="#a8572f" stroke-width="1.5"/><path d="M'+X+' 58 L'+(X+(sm?6:9))+' 62 L'+X+' 66 Z" fill="#a8572f"/>';});
+    s+='<text x="'+x0+'" y="84" font-size="11" fill="#7a857e">0</text>';
+    if(show<D)s+='<text x="'+(Wd-4)+'" y="84" text-anchor="end" font-size="11" fill="#7a857e">'+show+' 公尺……（後面一樣重複）</text>';
+    else s+='<text x="'+(x0+D*k)+'" y="84" text-anchor="end" font-size="11" fill="#7a857e">'+D+'</text>';
+    s+='</svg>';box.innerHTML=s;
+    const div=D%Lc===0;
+    let h='<p>同時有路燈和旗子的地方，距離起點要是 '+p+' 和 '+q+' 的公倍數 → 每隔 ['+p+', '+q+']＝<b>'+Lc+' 公尺</b>一處（黃色）。</p>';
+    h+='<p class="big-ans">兩種都有的地方共 '+C.length+' 處</p>';
+    if(div)h+='<p>'+D+'÷'+Lc+'＝'+D/Lc+' 段，'+(e?'起點、終點都有：'+D/Lc+'＋1＝'+C.length:'起點、終點都沒有：'+D/Lc+'－1＝'+C.length)+'。</p>';
+    else h+='<p>'+D+'÷'+Lc+'＝'+Math.floor(D/Lc)+' 餘 '+D%Lc+'，'+(e?'從起點算：'+Math.floor(D/Lc)+'＋1＝'+C.length:'不算起點：'+C.length)+'。</p>';
+    h+='<p class="small">路燈共 '+A.length+' 盞、旗子共 '+B.length+' 面。如果路的兩側都有，答案要再 ×2。'+(e?'':'<br>像「路燈從每 '+p+' 公尺改成每 '+q+' 公尺，哪些不用拆」：不用拆的就是兩種間隔都有的位置。')+'</p>';
+    $('wOut').innerHTML=h;
+  }
+  $('wPre').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{$('wD').value=c.dataset.d;$('wP').value=c.dataset.p;$('wQ').value=c.dataset.q;$('wE').value=c.dataset.e;
+    $('wPre').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));run();});
+  ['wD','wP','wQ'].forEach(id=>$(id).addEventListener('input',run));$('wE').addEventListener('change',run);run();
+  let rt=0;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(run,150);});
+})();
+
+/* ========== 五、餘數題 ========== */
+(function(){
+  function run(){
+    const pairs=[['mA','mAr'],['mB','mBr'],['mC','mCr']];const D=[],R=[];
+    for(let i=0;i<3;i++){const [a,b]=pairs[i];
+      if(i===2&&$(a).value.trim()===''&&$(b).value.trim()==='')break;
+      const d=M.readInt($(a),2,999),r=M.readInt($(b),0,998);
+      if(d===null||r===null){$('mMsg').textContent='除數請輸入 2～999，餘數請輸入 0 以上的整數（第三組可以整組空白）。';$('mOut').innerHTML='';return;}
+      if(r>=d){$('mMsg').textContent='餘數一定要比除數小：'+d+' 除的餘數不能是 '+r+'。';$('mOut').innerHTML='';return;}
+      D.push(d);R.push(r);}
+    const lo=M.readInt($('mLo'),0,999999),hi=M.readInt($('mHi'),0,999999);
+    if(lo===null||hi===null||lo>hi){$('mMsg').textContent='範圍請輸入整數，而且下限不能大於上限。';$('mOut').innerHTML='';return;}
+    $('mMsg').textContent='';
+    const Lc=M.lcmAll(D),sameR=R.every(r=>r===R[0]),gap=D.map((d,i)=>d-R[i]),sameG=gap.every(g=>g===gap[0]);
+    let h='<p>'+D.map((d,i)=>'被 '+d+' 除餘 '+R[i]+'（比 '+d+' 少 '+gap[i]+'）').join('；')+'。</p>';
+    let f=null,txt;
+    if(sameR){f=k=>Lc*k+R[0];txt='餘數都是 <b>'+R[0]+'</b> → <b>都餘 '+R[0]+'</b>：這個數減 '+R[0]+' 以後是 '+D.join('、')+' 的公倍數。<br>這個數＝['+D.join(', ')+']×k＋'+R[0]+'＝<b>'+Lc+'k＋'+R[0]+'</b>（k＝0、1、2……）';}
+    else if(sameG){f=k=>Lc*k-gap[0];txt='餘數都比除數少 <b>'+gap[0]+'</b> → <b>都不足 '+gap[0]+'</b>：這個數加 '+gap[0]+' 以後是 '+D.join('、')+' 的公倍數。<br>這個數＝['+D.join(', ')+']×k－'+gap[0]+'＝<b>'+Lc+'k－'+gap[0]+'</b>（k＝1、2、3……）';}
+    else txt='餘數不一樣，也不是都不足同一個數。國中考題幾乎都是「都餘」或「都不足」，先檢查一下題目或數字有沒有抄錯。';
+    h+='<p>'+txt+'</p>';
+    if(f){
+      const sol=[];for(let k=0;;k++){const v=f(k);if(v>hi)break;if(v>=lo&&v>0)sol.push(v);if(k>200000)break;}
+      if(sol.length){
+        const mn=sol[0],mx=sol[sol.length-1];
+        h+='<p class="big-ans">介於 '+lo+'～'+hi+'：最小 '+mn+'，最大 '+mx+'（共 '+sol.length+' 個）</p>';
+        h+='<p class="small">'+(sol.length<=12?sol.join('、'):sol.slice(0,5).join('、')+'……'+sol.slice(-3).join('、'))+'</p>';
+        h+='<p class="small">驗算最小的 '+mn+'：'+D.map(d=>mn+'÷'+d+'＝'+Math.floor(mn/d)+' 餘 '+mn%d).join('；')+'。</p>';
+        if(lo>=100&&hi<=999){const k0=(sameR?Math.ceil((lo-R[0])/Lc):Math.ceil((lo+gap[0])/Lc));if(k0>0){const below=f(k0-1);if(below>0&&below<lo)h+='<p class="note">⚠ 比 '+mn+' 小一號的是 '+below+'，它不是三位數，所以最小的三位數是 '+mn+'。</p>';}}
+      }else h+='<p class="big-ans">這個範圍裡沒有符合的數。</p>';
+    }
+    $('mOut').innerHTML=h;
+  }
+  $('mPre').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{const v=c.dataset.v.split(',');['mA','mAr','mB','mBr','mC','mCr','mLo','mHi'].forEach((id,i)=>$(id).value=v[i]);
+    $('mPre').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));run();});
+  ['mA','mAr','mB','mBr','mC','mCr','mLo','mHi'].forEach(id=>$(id).addEventListener('input',run));run();
+})();
+
+/* ========== 五、拼正方形 ========== */
+(function(){
+  function run(){
+    const a=M.readInt($('zA'),1,60),b=M.readInt($('zB'),1,60),cRaw=$('zC').value.trim(),c=cRaw===''?null:M.readInt($('zC'),1,60);
+    if(a===null||b===null||(cRaw!==''&&c===null)){$('zMsg').textContent='請輸入 1～60 的正整數（高可以空白）。';$('zSvg').innerHTML='';$('zOut').innerHTML='';return;}
+    $('zMsg').textContent='';
+    if(c===null){
+      const S=M.lcm(a,b),nx=S/a,ny=S/b,box=$('zSvg'),sz=Math.min(260,(box.clientWidth||260)-4),k=sz/S;
+      let s='<svg width="'+(sz+2)+'" height="'+(sz+2)+'" role="img" aria-label="磁磚拼成正方形">';
+      for(let i=0;i<nx;i++)for(let j=0;j<ny;j++)s+='<rect x="'+(1+i*a*k)+'" y="'+(1+j*b*k)+'" width="'+(a*k)+'" height="'+(b*k)+'" fill="'+((i+j)%2?'#e2eef7':'#f6e6dc')+'" stroke="#4d5a52" stroke-width="'+(nx*ny>200?.3:1)+'"/>';
+      s+='</svg>';box.innerHTML=s;
+      $('zOut').innerHTML='<p>正方形的邊長要同時是 '+a+' 和 '+b+' 的倍數（橫的排 '+a+' 公分一塊、直的排 '+b+' 公分一塊）→ 公倍數。最小的邊長＝['+a+', '+b+']＝<b>'+S+' 公分</b>。</p>'+
+        '<p class="big-ans">橫排 '+S+'÷'+a+'＝'+nx+' 塊，直排 '+S+'÷'+b+'＝'+ny+' 塊，共 '+nx+'×'+ny+'＝'+nx*ny+' 塊</p>';
+    }else{
+      const S=M.lcmAll([a,b,c]);$('zSvg').innerHTML='';
+      $('zOut').innerHTML='<p>正方體的邊長要同時是 '+a+'、'+b+'、'+c+' 的倍數 → 最小邊長＝['+a+', '+b+', '+c+']＝<b>'+S+' 公分</b>。</p>'+
+        '<p class="big-ans">長的方向 '+S+'÷'+a+'＝'+S/a+' 個，寬的方向 '+S+'÷'+b+'＝'+S/b+' 個，高的方向 '+S+'÷'+c+'＝'+S/c+' 個，共 '+S/a+'×'+S/b+'×'+S/c+'＝'+S*S*S/(a*b*c)+' 個</p>'+
+        '<p class="small">和平面一樣，只是多了一個方向要相乘。</p>';
+    }
+  }
+  ['zA','zB','zC'].forEach(id=>$(id).addEventListener('input',run));run();
+  let rt=0;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(run,150);});
+})();
+
+/* ========== 綜合：公因數還是公倍數？ ========== */
+(function(){
+  const G=[
+   ['g','72 顆糖和 96 顆巧克力平分裝成好幾袋，每袋的糖一樣多、巧克力也一樣多，剛好分完。最多可以裝幾袋？','袋數要能<b>整除</b> 72 和 96（每袋才分得一樣多）→ 公因數，最多是 (72, 96)＝24 袋。'],
+   ['l','甲每 6 天、乙每 10 天去游泳一次。今天兩人同時去，至少再過幾天兩人會再同時去？','天數要是 6 的倍數（甲那天會去），也要是 10 的倍數 → 公倍數，最少是 [6, 10]＝30 天。'],
+   ['g','長 48 公分、寬 36 公分的地板，要鋪滿一樣大的正方形磁磚（不切割）。磁磚邊長最大是多少？','磁磚邊長要能<b>整除</b> 48 和 36（才鋪得剛好）→ 公因數，最大是 (48, 36)＝12 公分。'],
+   ['l','用長 6 公分、寬 4 公分的長方形磁磚（同一方向）拼成正方形，正方形邊長最小是多少？','正方形的邊長要是 6 的倍數，也是 4 的倍數 → 公倍數，最小是 [6, 4]＝12 公分。'],
+   ['g','兩條繩子長 84 公分和 60 公分，都要剪成一樣長的小段而且沒有剩。每段最長幾公分？','每段的長度要能<b>整除</b> 84 和 60 → 公因數，最長是 (84, 60)＝12 公分。'],
+   ['l','一個大於 3 的數，除以 8 和除以 12 都餘 3。這個數最小是多少？','這個數減 3 以後，要是 8 的倍數也是 12 的倍數 → 公倍數：[8, 12]＋3＝27。'],
+   ['l','A 公車每 15 分鐘、B 公車每 20 分鐘發一班。8:00 兩班同時發車，下一次同時發車是幾點？','經過的時間要是 15 的倍數，也是 20 的倍數 → 公倍數：[15, 20]＝60 分鐘，所以是 9:00。'],
+   ['g','長方形花圃長 90 公尺、寬 54 公尺，四周種樹、四個角都要種，相鄰兩棵距離都一樣而且盡量大。距離是多少？','距離要能<b>整除</b> 90 和 54（四個角才都種得到）→ 公因數，最大是 (90, 54)＝18 公尺。'],
+   ['l','兩個咬合的齒輪，一個 24 齒、一個 36 齒。開始時咬在一起的兩個齒，至少要轉過幾齒才會再碰在一起？','轉過的齒數要是 24 的倍數（大齒輪轉回原位），也是 36 的倍數 → 公倍數：[24, 36]＝72 齒。'],
+   ['g','全班男生 18 人、女生 24 人分組，每組男生一樣多、女生也一樣多，剛好分完。最多可以分幾組？','組數要能<b>整除</b> 18 和 24 → 公因數，最多是 (18, 24)＝6 組。'],
+   ['l','<span class="frac"><span>5</span><span>12</span></span> 和 <span class="frac"><span>7</span><span>18</span></span> 乘上同一個正整數都變成整數，這個正整數最小是多少？','這個數要被 12 整除，也要被 18 整除 → 公倍數：[12, 18]＝36。'],
+   ['l','高 30 公分和高 45 公分的兩種盒子，各自一個一個往上疊，要疊到一樣高。最矮是幾公分？','高度要是 30 的倍數，也是 45 的倍數 → 公倍數：[30, 45]＝90 公分。'],
+   ['g','把 120 毫升的蘋果汁和 150 毫升的柳橙汁，分別倒進一樣大的杯子裡，每杯都倒滿而且剛好倒完（兩種果汁不混合）。杯子最大可以裝多少毫升？','杯子的容量要能<b>整除</b> 120 和 150 → 公因數，最大是 (120, 150)＝30 毫升。'],
+   ['l','某數同時是 4、6、10 的倍數，這個數最小是多少？','直接就是公倍數：[4, 6, 10]＝60。']
+  ];
+  let order=[],idx=-1,tot=0,ok=0,answered=false;
+  function shuffle(){order=G.map((_,i)=>i);for(let i=order.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]];}}
+  function next(){idx++;if(idx>=order.length){shuffle();idx=0;}answered=false;
+    const q=G[order[idx]];$('gmQ').innerHTML=q[1];$('gmOut').innerHTML='';
+    document.querySelectorAll('.gmb').forEach(b=>{b.classList.remove('right','wrong');b.disabled=false;});
+    $('gmInfo').textContent='第 '+(idx+1)+' / '+order.length+' 題';}
+  document.querySelectorAll('.gmb').forEach(b=>b.onclick=()=>{
+    if(answered)return;answered=true;const q=G[order[idx]],r=b.dataset.k===q[0];
+    tot++;if(r)ok++;$('gmScore').textContent=ok+' / '+tot;
+    b.classList.add(r?'right':'wrong');
+    $('gmOut').innerHTML='<p><b style="color:'+(r?'var(--moss)':'var(--rose)')+'">'+(r?'✓ 對！':'✗ 這題是'+(q[0]==='g'?'公因數':'公倍數')+'。')+'</b> '+q[2]+'</p>';
+  });
+  $('gmNext').onclick=next;shuffle();next();
+})();
+
+/* ========== 小測驗 ========== */
+const QZ=[
+ {u:1,s:'(48, 72) 和 [48, 72] 分別是多少？',o:['24、144','12、144','24、288','12、288'],a:0,
+  e:'48＝2<sup>4</sup>×3，72＝2<sup>3</sup>×3<sup>2</sup>。最大公因數取共同、指數小：2<sup>3</sup>×3＝24。最小公倍數取全部、指數大：2<sup>4</sup>×3<sup>2</sup>＝144。'},
+ {u:1,s:'已知 A＝2<sup>3</sup>×3<sup>2</sup>×5，B＝2<sup>2</sup>×3<sup>3</sup>×7，則 (A, B)＝？',o:['2<sup>2</sup>×3<sup>2</sup>','2<sup>3</sup>×3<sup>3</sup>','2<sup>2</sup>×3<sup>2</sup>×5×7','2<sup>3</sup>×3<sup>3</sup>×5×7'],a:0,
+  e:'最大公因數只取兩個數都有的質因數（2 和 3），指數取小的：2<sup>2</sup>×3<sup>2</sup>。5 只有 A 有、7 只有 B 有，都不取。(D) 是最小公倍數。'},
+ {u:1,s:'(12, 18, 30) 和 [12, 18, 30] 分別是多少？',o:['6、180','6、360','3、180','6、1080'],a:0,
+  e:'12＝2<sup>2</sup>×3，18＝2×3<sup>2</sup>，30＝2×3×5。最大公因數：2×3＝6。最小公倍數：2<sup>2</sup>×3<sup>2</sup>×5＝180。'},
+ {u:1,s:'小明用短除法求 [16, 20, 24]，除到 4、5、6 這一列就停下來，算出 2×2×4×5×6＝480。下列敘述何者正確？',o:['480 是對的','錯，4 和 6 還能同除 2，正確答案是 240','錯，正確答案是 120','錯，正確答案是 960'],a:1,
+  e:'求最小公倍數時，只要有兩個數能被除就要繼續。4 和 6 還能同除 2（5 抄下來）得 2、5、3，任兩數互質才停：2×2×2×2×5×3＝240。用標準分解式驗算：16＝2<sup>4</sup>、20＝2<sup>2</sup>×5、24＝2<sup>3</sup>×3，最小公倍數＝2<sup>4</sup>×3×5＝240。'},
+ {u:1,s:'[(90, 126), 28]＝？',o:['126','252','504','2520'],a:1,
+  e:'先算小括號：90＝2×3<sup>2</sup>×5，126＝2×3<sup>2</sup>×7，(90, 126)＝2×3<sup>2</sup>＝18。再算 [18, 28]：18＝2×3<sup>2</sup>、28＝2<sup>2</sup>×7，最小公倍數＝2<sup>2</sup>×3<sup>2</sup>×7＝252。'},
+ {u:2,s:'下列哪兩個數互質？',o:['51、68','65、91','77、117','87、116'],a:2,
+  e:'77＝7×11，117＝3<sup>2</sup>×13，沒有共同的質因數，互質。(A) 51＝3×17、68＝2<sup>2</sup>×17，有 17。(B) 65＝5×13、91＝7×13，有 13。(D) 87＝3×29、116＝2<sup>2</sup>×29，有 29。'},
+ {u:2,s:'下列敘述何者正確？',o:['兩個合數一定不互質','1 和任何正整數都互質','互質的兩個數一定都是質數','兩個奇數一定互質'],a:1,
+  e:'(1, n)＝1，所以 1 和任何正整數都互質。(A) 8 和 9 都是合數，但互質。(C) 8 和 9 互質但都不是質數。(D) 9 和 15 都是奇數，有公因數 3。'},
+ {u:2,s:'下列哪一個數與 2<sup>3</sup>×3×5<sup>2</sup> 互質？',o:['2×11','7×13','3<sup>2</sup>×7','5×17'],a:1,
+  e:'2<sup>3</sup>×3×5<sup>2</sup> 的質因數是 2、3、5。只有 7×13 不含 2、3、5，所以互質。其他選項分別含有 2、3、5。'},
+ {u:2,s:'1～20 的正整數中，和 30 互質的有幾個？',o:['4 個','5 個','6 個','8 個'],a:2,
+  e:'30＝2×3×5，把 2、3、5 的倍數劃掉，剩下 1、7、11、13、17、19，共 6 個。別忘了 1 也和 30 互質。'},
+ {u:3,s:'兩個正整數的乘積是 1200，最大公因數是 10，最小公倍數是多少？',o:['12','60','120','12000'],a:2,
+  e:'(a, b)×[a, b]＝a×b，所以 [a, b]＝1200÷10＝120。例如 a＝30、b＝40：(30, 40)＝10、[30, 40]＝120、30×40＝1200。'},
+ {u:3,s:'已知 (a, b)＝6，[a, b]＝90，a＝18，則 b＝？',o:['15','30','45','90'],a:1,
+  e:'a×b＝(a, b)×[a, b]＝6×90＝540，b＝540÷18＝30。驗算：(18, 30)＝6、[18, 30]＝90。'},
+ {u:3,s:'a、b 是正整數，a×b＝2<sup>5</sup>×3<sup>2</sup>×5。下列哪一個<b>不可能</b>是 (a, b)？',o:['2<sup>2</sup>×3','2<sup>3</sup>','2×3','2<sup>2</sup>'],a:1,
+  e:'設 (a, b)＝g，a＝g×m、b＝g×n，所以 a×b＝g×g×m×n，g×g 一定是 a×b 的因數。2<sup>3</sup>×2<sup>3</sup>＝2<sup>6</sup>，但 a×b 只有 2<sup>5</sup>，不可能。其他選項都可以，例如 (A) a＝2<sup>2</sup>×3、b＝2<sup>3</sup>×3×5。'},
+ {u:3,s:'(a, b)＝12，[a, b]＝144，而且 a＜b。符合的 a、b 共有幾組？',o:['1 組','2 組','3 組','4 組'],a:1,
+  e:'m×n＝144÷12＝12，拆成互質的兩數：1×12、3×4（2×6 不互質）。所以 (a, b)＝(12, 144) 或 (36, 48)，共 2 組。'},
+ {u:3,s:'正整數 a 和 240 的最大公因數是 16，a 可能是下列哪一個數？',o:['48','80','112','40'],a:2,
+  e:'240＝2<sup>4</sup>×3×5，16＝2<sup>4</sup>。a 至少要有四個 2，而且不能有 3、不能有 5。112＝2<sup>4</sup>×7 ✓。(A) 48＝2<sup>4</sup>×3，最大公因數變 48。(B) 80＝2<sup>4</sup>×5，最大公因數變 80。(D) 40＝2<sup>3</sup>×5，最大公因數變 40。'},
+ {u:4,s:'96 支鉛筆和 120 本筆記本平分給一群學生，每人的鉛筆一樣多、筆記本也一樣多，剛好分完。學生最多有幾人？',o:['8 人','12 人','24 人','48 人'],a:2,
+  e:'人數要能整除 96 和 120 → 公因數。96＝2<sup>5</sup>×3，120＝2<sup>3</sup>×3×5，(96, 120)＝2<sup>3</sup>×3＝24 人，每人 4 支鉛筆、5 本筆記本。'},
+ {u:4,s:'老師把 100 支鉛筆和 75 本簿子分給全班，每人分到的鉛筆一樣多、簿子也一樣多。結果鉛筆剩 4 支，簿子不足 3 本。全班最多幾人？',o:['3 人','6 人','12 人','24 人'],a:1,
+  e:'鉛筆實際分出 100－4＝96 支；簿子要 75＋3＝78 本才夠。(96, 78)＝6，而且 6 比剩下的 4、不足的 3 都多，合理。全班最多 6 人。'},
+ {u:4,s:'一張長 120 公分、寬 84 公分的紙，要裁成大小相同、邊長盡量大的正方形，而且沒有剩下。共可以裁成幾張？',o:['12 張','35 張','70 張','84 張'],a:2,
+  e:'邊長＝(120, 84)＝12 公分。長邊 120÷12＝10 個、寬邊 84÷12＝7 個，共 10×7＝70 張。(A) 是邊長，不是張數。'},
+ {u:4,s:'長 90 公尺、寬 54 公尺的長方形花圃，四周種樹，四個角都要種，相鄰兩棵的距離都一樣而且盡量大。共要種幾棵？',o:['14 棵','15 棵','16 棵','18 棵'],a:2,
+  e:'距離＝(90, 54)＝18 公尺。圍一圈：周長 2×(90＋54)＝288 公尺，棵數＝288÷18＝16 棵（圍一圈不用＋1）。'},
+ {u:5,s:'甲每 4 天、乙每 6 天、丙每 10 天去一次圖書館。今天（星期一）三人同時去，至少再過幾天會再同時去？那天是星期幾？',o:['30 天後，星期三','60 天後，星期五','60 天後，星期四','120 天後，星期五'],a:1,
+  e:'[4, 6, 10]＝60 天。60÷7＝8 餘 4，從星期一往後數 4 天是星期五。'},
+ {u:5,s:'一個三位數除以 6、8、9 都餘 5。這個數最小是多少？',o:['77','149','221','293'],a:1,
+  e:'都餘 5：這個數＝[6, 8, 9]×k＋5＝72k＋5。k＝1 是 77，不是三位數；k＝2 是 149，最小的三位數。驗算：149÷6＝24 餘 5，149÷8＝18 餘 5，149÷9＝16 餘 5。'},
+ {u:5,s:'一個正整數被 5 除餘 3、被 7 除餘 5、被 9 除餘 7。這個數最小是多少？',o:['313','315','317','628'],a:0,
+  e:'餘數都比除數少 2，是「都不足 2」：這個數＋2 是 [5, 7, 9]＝315 的倍數，所以最小是 315－2＝313。(C) 317＝315＋2 是「都餘 2」的答案，看錯就會選它。'},
+ {u:5,s:'一條 600 公尺的路，從起點開始每 20 公尺一盞路燈、每 30 公尺一面旗子，起點和終點都有。同時有路燈和旗子的地方共有幾處？',o:['10 處','11 處','12 處','30 處'],a:1,
+  e:'同時有兩種的地方每隔 [20, 30]＝60 公尺一處。600÷60＝10 段，起點、終點都有，所以是 10＋1＝11 處。'},
+ {u:5,s:'用長 8 公分、寬 6 公分、高 4 公分的長方體積木，以相同方向堆成一個實心正方體。最少需要幾個積木？',o:['24 個','48 個','72 個','96 個'],a:2,
+  e:'正方體邊長最小＝[8, 6, 4]＝24 公分。長方向 24÷8＝3 個、寬方向 24÷6＝4 個、高方向 24÷4＝6 個，共 3×4×6＝72 個。'},
+ {u:5,s:'A 公車每 12 分鐘、B 公車每 16 分鐘發一班車。早上 6:00 兩班同時發車，從 6:00 到 9:00（都包含）兩班同時發車共幾次？',o:['3 次','4 次','5 次','6 次'],a:1,
+  e:'每隔 [12, 16]＝48 分鐘同時發車一次：6:00、6:48、7:36、8:24，下一次 9:12 已經超過 9:00。共 4 次（180÷48＝3 餘 36，再加上 6:00 那一次）。'}
+];
+(function(){
+  const box=$('qz');let cur='all';const got=new Array(QZ.length).fill(null);
+  $('qzN').textContent=QZ.length;
+  function build(){
+    box.innerHTML=QZ.map((q,i)=>'<div class="q" data-u="'+q.u+'" data-i="'+i+'"><div class="stem"><span class="no">第 '+(i+1)+' 題</span>'+q.s+'<span class="u">重點'+'一二三四五'[q.u-1]+'</span></div><div class="opts">'+
+      q.o.map((t,j)=>'<button class="opt" data-j="'+j+'">('+'ABCD'[j]+') '+t+'</button>').join('')+'</div><div class="exp"></div></div>').join('');
+    box.querySelectorAll('.q').forEach(d=>{
+      const i=+d.dataset.i,q=QZ[i];
+      d.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+        const j=+b.dataset.j;
+        d.querySelectorAll('.opt').forEach(x=>x.classList.remove('right','wrong'));
+        d.querySelectorAll('.opt')[q.a].classList.add('right');if(j!==q.a)b.classList.add('wrong');
+        if(got[i]===null)got[i]=(j===q.a);
+        const ex=d.querySelector('.exp');ex.innerHTML=(j===q.a?'<b class="ok">答對了！</b> ':'<b class="no">正確答案是 ('+'ABCD'[q.a]+')。</b> ')+q.e;ex.classList.add('show');
+        tally();
+      });
+    });
+    flt();tally();
+  }
+  function tally(){const d=got.filter(x=>x!==null).length,r=got.filter(x=>x).length;$('qzScore').textContent=r+' / '+QZ.length;$('qzDone').textContent='已作答 '+d+' 題'+(d===QZ.length?'，全部完成！錯的題目回到上面的重點再看一次。':'');}
+  function flt(){box.querySelectorAll('.q').forEach(d=>d.style.display=(cur==='all'||d.dataset.u===cur)?'':'none');}
+  $('qzFlt').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{cur=b.dataset.u;$('qzFlt').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));flt();});
+  $('qzReset').onclick=()=>{got.fill(null);build();};
+  build();
+  window.__QZ=QZ;
+})();
+})();
+</script>
+</body>
+</html>
