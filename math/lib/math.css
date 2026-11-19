@@ -88,3 +88,44 @@ table.t td.no{color:var(--ink-3);white-space:nowrap}
 .q .no{font-size:13px;color:var(--ink-3);margin-right:6px}
 .q .u{font-size:12px;font-weight:700;color:var(--sea);background:var(--sea-bg);border-radius:999px;padding:1px 8px;margin-left:6px;white-space:nowrap}
 .q sup{font-size:.72em}
+
+/* ===== 2-2 最大公因數與最小公倍數 ===== */
+.sub{font-weight:700;color:var(--ink-2);margin:10px 0 2px}
+.lrow{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin:2px 0}
+.lrow>b{min-width:7.5em;font-size:14.5px}
+.flist span.c{background:var(--moss-bg);outline:1.5px solid var(--moss)}
+.flist span.g{background:var(--sun-bg);outline:2.5px solid var(--sun)}
+.flist span.dots{background:none;min-width:1.4em}
+b.gl{background:var(--sun-bg);padding:0 6px;border-radius:5px}
+table.ftab td.ex{text-align:center;font-weight:700;font-size:16px}
+table.ftab td.ex.z{color:var(--ink-3);font-weight:400}
+table.ftab td.ex.pick{background:var(--sun-bg);outline:2px solid var(--sun);outline-offset:-3px}
+table.ftab td.ex.gone{background:#ecebe5;color:#b6b2a6}
+table.ftab th.pc{text-align:center}
+table.ftab tr.res td{border-top:2px solid var(--line-2);color:var(--ink-3)}
+table.ftab tr.res.on td{color:var(--ink);background:#fbfaf6}
+.ladder.multi .qt{display:flex;gap:0;min-width:0}
+.ladder.multi .qt span{display:inline-block;min-width:3.4em;text-align:center}
+.ladder.multi .qt span.cp{color:var(--ink-3);font-style:italic}
+.ladder.multi .last .qt span{color:var(--moss)}
+.warnline{color:var(--rose);background:var(--rose-bg);border-radius:8px;padding:6px 10px;font-size:15px}
+.pf.hl{background:var(--rose-bg);color:var(--rose);outline:2px solid var(--rose)}
+.cpgrid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;max-width:520px;margin:8px 0}
+.cpgrid.cal{grid-template-columns:repeat(7,minmax(0,1fr));max-width:400px}
+.cpgrid div{aspect-ratio:1/1;display:grid;place-items:center;border-radius:7px;border:1px solid var(--line);font-size:15px;font-weight:700}
+.cpgrid div.ok{background:var(--moss-bg);border-color:var(--moss);color:#24563a}
+.cpgrid div.x{font-weight:400;text-decoration:line-through;border-color:transparent}
+@media (max-width:600px){.cpgrid div{font-size:13px}}
+.brow{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;margin:6px 0}
+.brow .bl{min-width:4.2em;font-weight:700;color:var(--ink-2)}
+.brow .bs{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.brow .bv{font-weight:700}
+.blk{display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 4px;border-radius:6px;background:#fff;border:2px solid var(--c);color:var(--c);font-weight:700;font-size:15px}
+.blk.gc{background:var(--sun-bg);box-shadow:0 0 0 2px var(--sun)}
+.brow .sep{display:inline-block;width:1px;height:26px;background:var(--line-2);margin:0 4px}
+.bsep{border-top:1px dashed var(--line-2);margin:8px 0}
+table.inv tr.bad td{color:var(--ink-3);text-decoration:line-through;text-decoration-color:#b6b2a6}
+table.inv tr.bad td:nth-child(2){text-decoration:none;color:var(--rose)}
+table.inv tr.okr td{background:var(--moss-bg)}
+table.inv tr.out td{color:var(--ink-3)}
+table.inv td.ab{white-space:nowrap}
