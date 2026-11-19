@@ -217,9 +217,14 @@ function TwMap(canvas,o){
   function poly(pts,fill,stroke,lw){ctx.beginPath();pts.forEach((c,i)=>{const p=P(c[0],c[1]);i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]);});ctx.closePath();if(fill){ctx.fillStyle=fill;ctx.fill();}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||1;ctx.stroke();}}
   function line(pts,stroke,lw,dash){ctx.beginPath();pts.forEach((c,i)=>{const p=P(c[0],c[1]);i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]);});ctx.strokeStyle=stroke;ctx.lineWidth=lw||1;ctx.setLineDash(dash||[]);ctx.stroke();ctx.setLineDash([]);}
   function label(t,lon,lat,opt){opt=opt||{};const p=P(lon,lat);ctx.font=(opt.bold?'700 ':'500 ')+(opt.size||12)+'px '+getComputedStyle(document.body).fontFamily;
-    ctx.textAlign=opt.align||'left';ctx.textBaseline='middle';const dx=opt.dx??6,dy=opt.dy??0;
-    if(opt.halo!==false){ctx.lineWidth=3;ctx.strokeStyle='rgba(255,255,255,.9)';ctx.strokeText(t,p[0]+dx,p[1]+dy);}
-    ctx.fillStyle=opt.color||'#1f2a24';ctx.fillText(t,p[0]+dx,p[1]+dy);}
+    let al=opt.align||'left';ctx.textBaseline='middle';const dx=opt.dx??6,dy=opt.dy??0;let x=p[0]+dx;
+    /* 手機等窄畫面：文字超出地圖邊緣時往內移；opt.fit='flip'（點的名稱）先試著換到點的另一側 */
+    if(opt.fit!==false){const w=ctx.measureText(t).width,pad=2,lft=(a,xx)=>a==='right'?xx-w:a==='center'?xx-w/2:xx,ok=l=>l>=0&&l+w<=W;
+      if(!ok(lft(al,x))){const fa=al==='right'?'left':al==='left'?'right':al,fx=p[0]-dx;
+        if(opt.fit==='flip'&&al!=='center'&&ok(lft(fa,fx))){al=fa;x=fx;}else{const l=lft(al,x);x+=l<0?pad-l:(W-pad)-(l+w);}}}
+    ctx.textAlign=al;
+    if(opt.halo!==false){ctx.lineWidth=3;ctx.strokeStyle='rgba(255,255,255,.9)';ctx.strokeText(t,x,p[1]+dy);}
+    ctx.fillStyle=opt.color||'#1f2a24';ctx.fillText(t,x,p[1]+dy);}
   function dot(lon,lat,r,fill,stroke,hit){const p=P(lon,lat);ctx.beginPath();ctx.arc(p[0],p[1],r,0,Math.PI*2);ctx.fillStyle=fill;ctx.fill();if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1.5;ctx.stroke();}if(hit)hits.push({x:p[0],y:p[1],r:Math.max(r,10),d:hit});}
   function draw(){
     size();hits.length=0;

@@ -6,6 +6,13 @@
 <title>4-1・4-2 海岸的類型與臺灣的海岸｜3D 地理探索館</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Cpath d=%22M2 26 L12 10 L18 18 L22 13 L30 26Z%22 fill=%22%233f7a4f%22/%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/style.css">
+<style>
+/* 4-2 分布圖：臺灣地圖是直長形，左欄 400px 就能完整顯示，其餘寬度給右側比較表 */
+@media (min-width:861px){
+  .lab.lab-map{grid-template-columns:minmax(0,400px) minmax(0,1fr)}
+  .lab-map .t td:first-child{white-space:nowrap}
+}
+</style>
 <script src="lib/three.min.js"></script>
 <script src="lib/geo.js"></script>
 <script src="lib/common.js"></script>
@@ -38,7 +45,7 @@
   <table class="t">
     <tr><th></th><th>沙岸</th><th>岩岸</th><th>珊瑚礁海岸</th></tr>
     <tr><td style="white-space:nowrap"><b>怎麼形成</b></td><td>由海水、河川的<b>堆積</b>作用形成</td><td><b>山地、丘陵逼近海洋</b>所形成的岩石海岸</td><td>由死亡的<b>珊瑚蟲骨骼或貝殼</b>組成的礁岩海岸</td></tr>
-    <tr><td><b>特徵</b></td><td>海岸線<b>平直</b>；海岸平原較廣；沿岸海水<b>較淺</b>；多沙灘、<b>沙洲</b>、<b>潟湖</b></td><td>常見<b>岬角與海灣相間</b>；海岸平原較窄；沿岸海水<b>較深</b>；<b>多良港</b></td><td>出現在<b>海水乾淨、陽光充足的熱帶淺海</b>；海底生態豐富</td></tr>
+    <tr><td><b>特徵</b></td><td>海岸線<b>平直</b>；海岸平原較廣；沿岸海水<b>較淺</b>；多沙灘、<b>沙洲</b>、<b>潟湖</b><span class="small">（潟，音ㄒㄧˋ）</span></td><td>常見<b>岬角與海灣相間</b>；海岸平原較窄；沿岸海水<b>較深</b>；<b>多良港</b></td><td>出現在<b>海水乾淨、陽光充足的熱帶淺海</b>；海底生態豐富</td></tr>
     <tr><td><b>發展</b></td><td><b>鹽業、養殖漁業</b>（魚塭、蚵架）；也常成為海水浴場和度假勝地</td><td><b>捕撈漁業與海運</b></td><td>常成為<b>旅遊勝地</b></td></tr>
   </table>
   </div>
@@ -89,7 +96,7 @@
   </div>
 
   <h2>4-2 臺灣海岸分布圖</h2>
-  <div class="lab">
+  <div class="lab lab-map">
     <div><canvas id="map" class="map" aria-label="臺灣海岸類型分布示意圖"></canvas>
       <div class="legend">
         <span><i style="background:#e0b43c"></i>沙岸</span><span><i style="background:#7b5e9e"></i>岬灣海岸（岩岸）</span>
@@ -122,7 +129,7 @@
 const SX=2.4,SZ=1.6;
 const TXT={
  sand:{t:'西部・沙岸',c:'#e0b43c',
-  d:'<p><b>成因：</b>西部河川從山地帶來大量泥沙，加上海底坡度平緩，泥沙在沿岸<b>堆積</b>。</p><p><b>特色：</b>主要由泥沙或礫石堆積而成，海岸線<b>平直</b>，海灘寬廣、入海坡度緩，海水淺。外海常有和海岸平行的<b>沙洲</b>，沙洲和陸地之間圍出<b>潟湖</b>。</p><p><b>例子：</b>雲林、嘉義外海的外傘頂洲；臺南的七股潟湖。</p><p><b>利用：</b>沿海居民從事<b>養殖漁業</b>，<b>魚塭、蚵架</b>廣布；過去也有<b>鹽田</b>。缺乏天然深港，大型港口多是人工修築（如臺中港）；沿海也發展風力發電。</p>',
+  d:'<p><b>成因：</b>西部河川從山地帶來大量泥沙，加上海底坡度平緩，泥沙在沿岸<b>堆積</b>。</p><p><b>特色：</b>主要由泥沙或礫石堆積而成，海岸線<b>平直</b>，海灘寬廣、入海坡度緩，海水淺。外海常有和海岸平行的<b>沙洲</b>，沙洲和陸地之間圍出<b>潟湖</b>（潟音ㄒㄧˋ，不唸「瀉」）。</p><p><b>例子：</b>雲林、嘉義外海的外傘頂洲；臺南的七股潟湖。</p><p><b>利用：</b>沿海居民從事<b>養殖漁業</b>，<b>魚塭、蚵架</b>廣布；過去也有<b>鹽田</b>。缺乏天然深港，大型港口多是人工修築（如臺中港）；沿海也發展風力發電。潟湖水面平靜，可養殖牡蠣（蚵架）、發展觀光，例如七股潟湖；<b>高雄港</b>就是利用潟湖改建而成的港口。</p>',
   s:'模型為示意，高度經垂直誇大。'},
  rock:{t:'北部・岬灣海岸（岩岸）',c:'#7b5e9e',
   d:'<p><b>成因：</b>山地、丘陵延伸到海邊，岩石軟硬不同。波浪<b>侵蝕</b>時，堅硬的岩石留下來突出成<b>岬角</b>，較軟的岩石被侵蝕凹進去成<b>海灣</b>。</p><p><b>特色：</b>岬角與海灣交錯，海岸線<b>曲折</b>。岬角常見海蝕崖、海蝕平臺、海蝕洞、蕈狀岩等<b>海蝕地形</b>；海灣內波浪較弱，常有沙灘。</p><p><b>例子：</b>新北野柳（蕈狀岩、女王頭）。海風及海浪的風化與侵蝕作用，造出許多<b>奇岩怪石</b>；海中還可能留下<b>海蝕柱</b>。</p><p><b>利用：</b>天然良港多，利於<b>捕撈漁業、海運</b>（如<b>八斗子漁港、基隆港</b>）；奇岩怪石富觀光價值（野柳地質公園）。</p>',
@@ -219,7 +226,7 @@ const M=G3.TwMap(document.getElementById('map'),{maxH:640,draw:m=>{
   /* 分界點 */
   [['淡水河口',121.41,25.17,'right',-8,-8],['三貂角',122.0,25.01,'left',8,-8],['蘇澳',121.86,24.59,'left',8,6],['旭海',120.88,22.2,'left',8,0],['楓港',120.68,22.19,'right',-8,0]].forEach(([n,lon,lat,al,dx,dy])=>{
     const p=m.P(lon,lat),c=m.ctx;c.strokeStyle='#1f2a24';c.lineWidth=2.2;c.beginPath();c.moveTo(p[0]-5,p[1]-5);c.lineTo(p[0]+5,p[1]+5);c.moveTo(p[0]+5,p[1]-5);c.lineTo(p[0]-5,p[1]+5);c.stroke();
-    m.label(n,lon,lat,{size:11.5,bold:true,align:al,dx,dy});});
+    m.label(n,lon,lat,{size:11.5,bold:true,align:al,dx,dy,fit:'flip'});});
 },onPick:k=>show(k)});
 show('sand');
 })();

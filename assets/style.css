@@ -135,4 +135,3 @@ a.subject:hover{border-color:var(--moss);transform:translateY(-2px);box-shadow:0
 .ver .vgrp{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 .ver .vtag{font-weight:700;color:var(--moss);background:var(--moss-bg);border-radius:999px;padding:1px 9px}
 .ver .vcommit{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;background:#eeebe2;border-radius:4px;padding:1px 6px;color:var(--ink-2);text-decoration:none}
-.ver .vcommit:hover{background:#e2ddd0}

@@ -1,6 +1,11 @@
 # 伴讀書僮（國中複習教材）
 
-「伴讀書僮」是國中各科自編複習教材的入口網站。目前收錄「3D 地理探索館」：國中七年級上學期地理（翰林版第一冊）第 3～4 章的互動 3D 複習網站。純靜態網頁，不需要任何建置步驟，可以直接放上 GitHub Pages。
+「伴讀書僮」是國中各科自編複習教材的入口網站。目前收錄：
+
+- 「3D 地理探索館」：國中七年級上學期地理（翰林版第一冊）第 3～4 章的互動 3D 複習網站。
+- 「數學互動教室」：國中七年級上學期數學（康軒版第一冊）第二次段考範圍 2-1～2-4，目前完成 2-1 因數與倍數。
+
+純靜態網頁，不需要任何建置步驟，可以直接放上 GitHub Pages。
 
 ## 檔案結構
 
@@ -16,7 +21,7 @@ geo/                3D 地理探索館 → 網址：/geo/
   taiwan.html         3-3 臺灣地形（地形分布圖、可自選位置的 3D 地形剖面）
   coast.html          4-1・4-2 海岸（沙岸、岬灣、斷層、珊瑚礁四種 3D 模型與分布圖）
   islands.html        4-3 離島成因（大陸島、火山島、珊瑚礁島，含滑桿形成過程）
-  quiz.html           小測驗 25 題（自編題，作答後即時解析）
+  quiz.html           小測驗 28 題（自編題，作答後即時解析）
   img/plates-block.svg  臺灣周邊板塊立體示意圖
   lib/                地理專用程式與資料
     common.js           共用程式（導覽列、3D 視窗、地形、等高線、臺灣地圖）
@@ -24,15 +29,21 @@ geo/                3D 地理探索館 → 網址：/geo/
     geo.js              臺灣與鄰近海岸輪廓（Natural Earth 1:10m，公有領域）
     taiwan-counties.js  縣市界線
     dem-taiwan.js       臺灣高度資料（NASA SRTM 重新取樣，公有領域；海底為示意）
+math/               數學互動教室 → 網址：/math/
+  index.html          數學首頁：段考範圍、單元入口（2-2～2-4 準備中）
+  factors.html        2-1 因數與倍數（成對找因數練習、倍數判別、質數篩、短除法、排長方形、小測驗）
+  lib/
+    common.js           數學共用程式（導覽列、頁尾、嵌入模式、因數與質因數分解小工具）
+    math.css            數學頁專用樣式
 resources/          原始圖檔（不部署到 Bluehost）
 docs/deploy-bluehost.md                Bluehost 自動部署設定說明
 .github/workflows/deploy-bluehost.yml  推送到 master 時自動部署到 Bluehost
 .nojekyll           讓 GitHub Pages 不經 Jekyll 處理，原樣發布
 ```
 
-新增科目時，在根目錄建立新的資料夾（例如 `math/`），並在 `index.html` 加一張入口卡片。
+新增科目時，在根目錄建立新的資料夾（例如 `math/`），並在 `index.html` 加一張入口卡片。數學新增單元時，在 `math/lib/common.js` 的導覽清單加一行，並把 `math/index.html` 的「準備中」卡片改成連結。
 
-所有函式庫都放在網站裡（`geo/lib/`），不依賴外部 CDN。
+所有函式庫都放在網站裡（`geo/lib/`、`math/lib/`），不依賴外部 CDN。
 
 ## 本機預覽
 
