@@ -141,10 +141,10 @@ const IS=[
  ['volc','澎湖群島',119.58,23.57,-1],['volc','龜山島',121.95,24.84,1],['volc','綠島',121.49,22.66,1],['volc','蘭嶼',121.55,22.05,1],['volc','彭佳嶼',122.08,25.63,1],
  ['coral','琉球嶼',120.37,22.34,-1]];
 const COL={cont:'#c08a3e',volc:'#c0482e',coral:'#2ba3a0'};
-const M=G3.TwMap(document.getElementById('map'),{bbox:[117.9,122.4,21.8,26.45],maxH:680,draw:m=>{
+const M=G3.TwMap(document.getElementById('map'),{bbox:[117.9,122.8,21.8,26.45],maxH:680,draw:m=>{
   m.label('中國大陸',118.3,25.6,{size:13,color:'#5d6b60',dx:0});
   IS.forEach(([k,n,lon,lat,side])=>{const on=k===cur;m.dot(lon,lat,on?7:5.5,COL[k],'#fff',k);
-    m.label(n,lon,lat,{size:on?13:12,bold:on,color:COL[k],align:side<0?'right':'left',dx:side<0?-9:9});});
+    m.label(n,lon,lat,{size:on?13:12,bold:on,color:COL[k],align:side<0?'right':'left',dx:side<0?-9:9,fit:'flip'});});
   m.label('臺灣海峽',119.2,23.0,{size:12,color:'#2d6f9e',dx:0});
   /* 南海小框：東沙島、太平島距離太遠，用小框示意（不按比例） */
   const c=m.ctx,a=m.P(117.98,24.08),b=m.P(118.72,21.9),on=cur==='coral';
@@ -156,11 +156,17 @@ const M=G3.TwMap(document.getElementById('map'),{bbox:[117.9,122.4,21.8,26.45],m
     m.label(n,lon,lat,{size:on?13:12,bold:true,color:COL.coral,align:'center',dx:0,dy:18});});
   m.label('（南沙群島）',118.35,22.85,{size:11,color:'#7a857d',align:'center',dx:0});
   /* 東北小框：釣魚臺列嶼（實際約在東經 123.5 度，超出地圖範圍） */
-  const a2=m.P(121.55,26.4),b2=m.P(122.36,25.98),on2=cur==='volc';
-  c.fillStyle='#e8f1f8';c.fillRect(a2[0],a2[1],b2[0]-a2[0],b2[1]-a2[1]);c.strokeStyle='#8fa3b3';c.lineWidth=1;c.strokeRect(a2[0],a2[1],b2[0]-a2[0],b2[1]-a2[1]);
-  m.dot(121.68,26.19,on2?7:5.5,COL.volc,'#fff','volc');
-  m.label('釣魚臺列嶼',121.68,26.19,{size:on2?13:12,bold:on2,color:COL.volc,dx:9});
-  m.label('（在東北方，位置示意）',121.95,26.06,{size:10,color:'#7a857d',align:'center',dx:0});
+  /* 小框大小依文字寬度計算，靠地圖右上角；畫面窄時說明分兩行 */
+  const on2=cur==='volc',fs=on2?13:12,ff=getComputedStyle(document.body).fontFamily;
+  c.font='700 '+fs+'px '+ff;const wl=c.measureText('釣魚臺列嶼').width;c.font='500 10px '+ff;
+  const n1='（在東北方，位置示意）',wn=c.measureText(n1).width,R=m.P(122.76,26.4),pad=6,wd=Math.max(wl+30,Math.min(wn,m.W*0.3))+pad*2;
+  const two=wn+pad*2>wd,bx=Math.min(R[0],m.W-4)-wd,by=R[1],bh=two?45:36;
+  c.fillStyle='#e8f1f8';c.fillRect(bx,by,wd,bh);c.strokeStyle='#8fa3b3';c.lineWidth=1;c.strokeRect(bx,by,wd,bh);
+  const dx0=bx+pad+8,dy0=by+13,q1=m.P(121,26),q2=m.P(122,25);
+  m.dot(121+(dx0-q1[0])/(q2[0]-q1[0]),26-(dy0-q1[1])/(q2[1]-q1[1]),on2?7:5.5,COL.volc,'#fff','volc');
+  c.textBaseline='middle';c.textAlign='left';c.font=(on2?'700 ':'500 ')+fs+'px '+ff;c.lineWidth=3;c.strokeStyle='rgba(255,255,255,.9)';c.strokeText('釣魚臺列嶼',dx0+11,dy0);c.fillStyle=COL.volc;c.fillText('釣魚臺列嶼',dx0+11,dy0);
+  c.font='500 10px '+ff;c.fillStyle='#7a857d';c.textAlign='center';
+  if(two){c.fillText('（在東北方，',bx+wd/2,by+27);c.fillText('位置示意）',bx+wd/2,by+38);}else c.fillText(n1,bx+wd/2,by+27);
 },onPick:k=>show(k)});
 show('cont');
 })();

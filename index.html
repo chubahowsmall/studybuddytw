@@ -6,7 +6,7 @@
 <title>伴讀書僮｜國中複習教材</title>
 <meta name="description" content="伴讀書僮：國中各科自編互動複習教材。目前提供 3D 地理探索館（國七上第二次段考：地形、海岸與島嶼）與數學互動教室（國七上第二次段考：因數與倍數）。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect x=%225%22 y=%224%22 width=%2222%22 height=%2224%22 rx=%223%22 fill=%22%23a8572f%22/%3E%3Crect x=%229%22 y=%229%22 width=%2214%22 height=%222.5%22 fill=%22%23f7f5ef%22/%3E%3Crect x=%229%22 y=%2214%22 width=%2210%22 height=%222.5%22 fill=%22%23f7f5ef%22/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/style.css?v=2">
+<link rel="stylesheet" href="assets/style.css?v=3">
 </head>
 <body>
 <figure class="hub-banner">
@@ -78,7 +78,7 @@
     el.textContent='';let g=grp();add(g,'span','','版本');
     if(v.tag)add(g,'span','vtag',v.tag);
     if(v.tag&&v.ahead>0)add(g,'span','','（之後 '+v.ahead+' 個更新）');
-    if(v.commit)add(v.tag?grp():g,'a','vcommit',v.commit,{href:'https://github.com/chubahowsmall/studybuddytw/commit/'+(v.sha||v.commit),target:'_blank',rel:'noopener',title:'在 GitHub 查看這個 commit'});
+    if(v.commit)add(v.tag?grp():g,'span','vcommit',v.commit,{title:'commit ID（前六碼）'});
     if(v.deployed){g=grp();add(g,'span','','部署時間');add(g,'span','',v.deployed);}
   }).catch(()=>{el.textContent='本機預覽（沒有版本資訊）';});
 })();
