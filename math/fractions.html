@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2-3 分數的四則運算｜數學互動教室</title>
+<meta name="description" content="國七上數學（康軒版第一冊）2-3 分數的四則運算互動複習：約分與最簡分數、倒數、範圍內的最簡分數、數線比大小、一步一步算的分數計算器（通分、乘倒數、括號、絕對值）、分數應用題長條圖、裝瓶與兩科及格，附自編小測驗。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect x=%223%22 y=%223%22 width=%2226%22 height=%2226%22 rx=%225%22 fill=%22%232d6f9e%22/%3E%3Ctext x=%2216%22 y=%2214%22 font-size=%2211%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22700%22%3E1%3C/text%3E%3Cline x1=%2210%22 y1=%2217%22 x2=%2222%22 y2=%2217%22 stroke=%22white%22 stroke-width=%222%22/%3E%3Ctext x=%2216%22 y=%2227%22 font-size=%2211%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22700%22%3E2%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="lib/math.css?v=2">
+<script src="lib/common.js?v=2"></script>
+<script src="lib/frac.js"></script>
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap">
+  <span class="kicker m">2-3・康軒版第一冊第 2 章</span>
+  <h1>分數的四則運算</h1>
+  <p class="lead">這一節要用到 2-1、2-2 學的東西：約分用最大公因數、通分用最小公倍數。考卷上幾乎每份都有分數計算題，<b>答案要化成最簡分數</b>。小工具都可以自己輸入數字或算式，先動手試，再自己用紙筆算一次。</p>
+  <div class="note">輸入方式：分數寫成 <b>3/4</b>，負分數寫成 <b>-3/4</b>，帶分數寫成 <b>2 1/3</b>（整數和分數中間空一格）或 <b>2又1/3</b>，小數直接寫 <b>0.75</b>。</div>
+  <nav class="toc" aria-label="本頁重點">
+    <a href="#s1">一、最簡分數與倒數</a>
+    <a href="#s2">二、分數比大小</a>
+    <a href="#s3">三、分數的四則運算</a>
+    <a href="#s4">四、分數的應用問題</a>
+    <a href="#s6">小測驗</a>
+  </nav>
+
+  <!-- ================= 一 ================= -->
+  <section class="sec" id="s1">
+  <h2>一、等值分數、最簡分數與倒數<span class="star">★★★ 幾乎每卷必考</span></h2>
+  <div class="key">
+    <ul>
+      <li>分子、分母同乘（<b>擴分</b>）或同除（<b>約分</b>）一個不是 0 的數，分數的值不變，叫做<b>等值分數</b>。</li>
+      <li>用分子、分母的<b>最大公因數</b>一次約分，就得到<b>最簡分數</b>（分子、分母互質）。</li>
+      <li>負號可以放在三個地方：<span class="frac"><span>−3</span><span>4</span></span>＝<span class="frac"><span>3</span><span>−4</span></span>＝−<span class="frac"><span>3</span><span>4</span></span>；分子、分母都有負號會抵消。</li>
+      <li><b>倒數</b>：兩數相乘等於 1 就互為倒數。<span class="frac"><span>a</span><span>b</span></span> 的倒數是 <span class="frac"><span>b</span><span>a</span></span>。<span class="hot">帶分數要先化成假分數</span>，小數先化成分數。</li>
+      <li><span class="hot">0 沒有倒數</span>；1 的倒數是 1，−1 的倒數是 −1；倒數的正負號不變。</li>
+    </ul>
+  </div>
+
+  <div class="tool" id="rdTool">
+    <h3>動手做：約分成最簡分數</h3>
+    <div class="inrow">
+      <label for="rN">分子</label><input class="num sm" id="rN" inputmode="numeric" value="252" aria-label="分子">
+      <label for="rD">分母</label><input class="num sm" id="rD" inputmode="numeric" value="396" aria-label="分母">
+      <span class="small">（可以是負數）</span>
+    </div>
+    <div class="msg" id="rMsg"></div>
+    <div class="out" id="rOut"></div>
+  </div>
+
+  <div class="tool" id="rcTool">
+    <h3>動手做：求倒數</h3>
+    <div class="inrow">
+      <label for="cX">數字：</label><input class="num wide" id="cX" value="-2 4/9" aria-label="要求倒數的數">
+    </div>
+    <div class="chips" id="cPre" role="group" aria-label="常考的數">
+      <button class="chip" data-v="-5/8">−5/8</button>
+      <button class="chip" data-v="-2 4/9">−2又4/9</button>
+      <button class="chip" data-v="0.75">0.75</button>
+      <button class="chip" data-v="-1">−1</button>
+      <button class="chip" data-v="1/2">1/2</button>
+      <button class="chip" data-v="0">0</button>
+    </div>
+    <div class="msg" id="cMsg"></div>
+    <div class="out" id="cOut"></div>
+  </div>
+
+  <div class="tool" id="rgTool">
+    <h3>動手做：介於兩個分數之間的最簡分數</h3>
+    <div class="inrow">
+      <span>介於</span><input class="num sm" id="gLo" value="-3/4" aria-label="下限">
+      <span>和</span><input class="num sm" id="gHi" value="-1/3" aria-label="上限">
+      <span>之間，分母是</span><input class="num sm" id="gD" inputmode="numeric" value="24" aria-label="分母">
+      <span>的最簡分數</span>
+    </div>
+    <div class="msg" id="gMsg"></div>
+    <div class="out" id="gOut"></div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>−2<span class="frac"><span>4</span><span>9</span></span> 的倒數不是 −2<span class="frac"><span>9</span><span>4</span></span>：先化成 −<span class="frac"><span>22</span><span>9</span></span>，倒數是 −<span class="frac"><span>9</span><span>22</span></span>。</li>
+      <li>「互為倒數的兩數相加等於 1」錯，是<b>相乘</b>等於 1。「一個數的倒數一定比原數小」也錯：<span class="frac"><span>1</span><span>2</span></span> 的倒數是 2。</li>
+      <li>約分是分子、分母<b>整個</b>同除一個數。<span class="frac"><span>6＋4</span><span>6</span></span> 不能把 6 劃掉，要先算分子：<span class="frac"><span>10</span><span>6</span></span>＝<span class="frac"><span>5</span><span>3</span></span>。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 二 ================= -->
+  <section class="sec" id="s2">
+  <h2>二、分數的大小比較<span class="star">★★★ 幾乎每卷必考</span></h2>
+  <div class="key">
+    <ul>
+      <li>正分數：<b>通分</b>（分母取最小公倍數）比分子，或<b>交叉相乘</b>，或化成小數。</li>
+      <li><b>負數：絕對值大的反而比較小</b>。先比絕對值，再把順序反過來。</li>
+      <li>負帶分數：整數部分一樣時比分數部分，分數部分大的，整個數反而小。</li>
+      <li>數線上越右邊越大；x 和 1 的距離是 |x－1|。</li>
+    </ul>
+  </div>
+
+  <div class="tool" id="cmpTool">
+    <h3>動手做：放到數線上比大小</h3>
+    <div class="inrow">
+      <label for="mL">輸入 2～5 個數，用逗號分開：</label><input class="num" id="mL" style="width:16em" value="-3/4, -5/7, -7/10" aria-label="要比較的數">
+    </div>
+    <div class="chips" id="mPre" role="group" aria-label="常考的題目">
+      <button class="chip" data-v="-3/4, -5/7, -7/10">三個負分數</button>
+      <button class="chip" data-v="-2 5/6, -2 4/5, -2 3/4">負帶分數</button>
+      <button class="chip" data-v="7/8, -11/12, 10/9, 13/12">哪個最接近 1？</button>
+      <button class="chip" data-v="-5/7, -3/4">−5/7 和 −3/4</button>
+    </div>
+    <div class="msg" id="mMsg"></div>
+    <div id="mSvg" class="figbox"></div>
+    <div class="out" id="mOut"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>常考：甲×a＝乙×b＝丙×c</h3>
+      <p>甲、乙、丙都是正數，而且 甲×<span class="frac"><span>5</span><span>6</span></span>＝乙×<span class="frac"><span>3</span><span>4</span></span>＝丙×<span class="frac"><span>4</span><span>7</span></span>。比較甲、乙、丙的大小。</p>
+      <details><summary>看解法</summary>
+        <p>乘積一樣、而且是正數時，<b>乘的數越大，原來的數越小</b>。</p>
+        <p>比乘的數：<span class="frac"><span>5</span><span>6</span></span>≈0.83、<span class="frac"><span>3</span><span>4</span></span>＝0.75、<span class="frac"><span>4</span><span>7</span></span>≈0.57，所以 <span class="frac"><span>5</span><span>6</span></span>＞<span class="frac"><span>3</span><span>4</span></span>＞<span class="frac"><span>4</span><span>7</span></span>，<b>丙＞乙＞甲</b>。</p>
+        <p class="note">如果甲、乙、丙都是負數（乘積是負的），順序要反過來。</p>
+      </details>
+    </div>
+    <div class="card">
+      <h3>常考：負數比大小</h3>
+      <p>比較 −<span class="frac"><span>5</span><span>7</span></span> 和 −<span class="frac"><span>3</span><span>4</span></span>。</p>
+      <details><summary>看解法</summary>
+        <p>先比絕對值：通分（分母 28）<span class="frac"><span>5</span><span>7</span></span>＝<span class="frac"><span>20</span><span>28</span></span>、<span class="frac"><span>3</span><span>4</span></span>＝<span class="frac"><span>21</span><span>28</span></span>，所以 <span class="frac"><span>5</span><span>7</span></span>＜<span class="frac"><span>3</span><span>4</span></span>。</p>
+        <p>負數絕對值大的反而小：<b>−<span class="frac"><span>5</span><span>7</span></span>＞−<span class="frac"><span>3</span><span>4</span></span></b>。</p>
+      </details>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>負數比大小最容易反過來：先比絕對值，<b>最後記得反過來</b>。</li>
+      <li>題目要「由大到小」還是「由小到大」，寫答案前再看一次。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 三 ================= -->
+  <section class="sec" id="s3">
+  <h2>三、分數的四則運算<span class="star">★★★ 幾乎每卷必考</span></h2>
+  <div class="key">
+    <ul>
+      <li>運算順序：<b>括號 → 次方 → 乘除 → 加減</b>；同一級的由左往右算。絕對值裡面也要先算。</li>
+      <li>加減：先<b>通分</b>（分母取最小公倍數最好算），再把分子相加減。</li>
+      <li>乘法：分子乘分子、分母乘分母，<b>能約分先約分</b>。除法：<b>除以一個數＝乘以它的倒數</b>。</li>
+      <li>連乘除先決定正負號：負號有奇數個是負，偶數個是正。帶分數要先化成假分數。</li>
+      <li><b>分配律</b>：a×c＋b×c＝(a＋b)×c。題目出現相同的分數時，先提出來會好算很多。</li>
+    </ul>
+  </div>
+
+  <div class="tool" id="calcTool">
+    <h3>動手做：一步一步算</h3>
+    <div class="inrow">
+      <input class="num" id="xE" style="width:100%;max-width:520px;letter-spacing:.02em" value="1 - 2/3 ÷ 4/9 × 2" aria-label="算式">
+    </div>
+    <div class="inrow keys" id="xKeys" aria-label="符號鍵">
+      <button class="btn" data-k=" + ">＋</button><button class="btn" data-k=" - ">－</button><button class="btn" data-k=" × ">×</button><button class="btn" data-k=" ÷ ">÷</button>
+      <button class="btn" data-k="(">(</button><button class="btn" data-k=")">)</button><button class="btn" data-k="|">| |</button><button class="btn" data-k="^">次方 ^</button>
+      <button class="btn" data-k="CLR">清除</button>
+    </div>
+    <div class="chips" id="xPre" role="group" aria-label="常考的算式">
+      <button class="chip" data-v="1 - 2/3 ÷ 4/9 × 2">由左往右</button>
+      <button class="chip" data-v="2 1/3 - 3 3/4 + (-1/6)">帶分數加減</button>
+      <button class="chip" data-v="(-3/4) ÷ 9/10 × (-2 2/5)">連乘除</button>
+      <button class="chip" data-v="7/12 × (-53) + 7/12 × 29 - 7/12 × (-12)">分配律</button>
+      <button class="chip" data-v="4/5 - 3/2 × |1/3 - 7/6|">絕對值</button>
+      <button class="chip" data-v="(1/3 - 1) × (1/4 - 1) × (1/5 - 1) × (1/6 - 1)">連乘規律</button>
+    </div>
+    <div class="inrow"><button class="btn on" id="xAll">全部算出來</button><button class="btn" id="xStep">一步一步</button><span class="small">輸入完按 Enter 也可以</span></div>
+    <div class="msg" id="xMsg"></div>
+    <ol class="calc" id="xOut"></ol>
+    <div class="out" id="xAns"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>常考：用分配律</h3>
+      <p>計算 <span class="frac"><span>5</span><span>18</span></span>×(−37)＋<span class="frac"><span>5</span><span>18</span></span>×73－<span class="frac"><span>5</span><span>18</span></span>×18。</p>
+      <details><summary>看解法</summary>
+        <p>每一項都有 <span class="frac"><span>5</span><span>18</span></span>，先提出來：<span class="frac"><span>5</span><span>18</span></span>×(−37＋73－18)＝<span class="frac"><span>5</span><span>18</span></span>×18＝<b>5</b>。</p>
+        <p class="note">如果一項一項乘，數字會很大又容易算錯。看到相同的數，先想分配律。</p>
+      </details>
+    </div>
+    <div class="card">
+      <h3>常考：找出哪一步算錯</h3>
+      <p>小明算 6÷(<span class="frac"><span>1</span><span>2</span></span>＋<span class="frac"><span>1</span><span>3</span></span>)，寫成 6÷<span class="frac"><span>1</span><span>2</span></span>＋6÷<span class="frac"><span>1</span><span>3</span></span>＝12＋18＝30。哪裡錯了？正確答案是多少？</p>
+      <details><summary>看解法</summary>
+        <p><b>除法不能這樣拆</b>：a÷(b＋c) ≠ a÷b＋a÷c。（乘法才有分配律：a×(b＋c)＝a×b＋a×c。）</p>
+        <p>正確：先算括號 <span class="frac"><span>1</span><span>2</span></span>＋<span class="frac"><span>1</span><span>3</span></span>＝<span class="frac"><span>5</span><span>6</span></span>，再 6÷<span class="frac"><span>5</span><span>6</span></span>＝6×<span class="frac"><span>6</span><span>5</span></span>＝<b><span class="frac"><span>36</span><span>5</span></span></b>。</p>
+      </details>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>1－<span class="frac"><span>2</span><span>3</span></span>÷<span class="frac"><span>4</span><span>9</span></span>×2 要<b>由左往右</b>：先 ÷ 再 ×，不能先算 <span class="frac"><span>4</span><span>9</span></span>×2。</li>
+      <li>−2<span class="frac"><span>1</span><span>3</span></span> 是 −(2＋<span class="frac"><span>1</span><span>3</span></span>)，不是 −2＋<span class="frac"><span>1</span><span>3</span></span>。</li>
+      <li>分數相加不是分子加分子、分母加分母：<span class="frac"><span>1</span><span>2</span></span>＋<span class="frac"><span>1</span><span>3</span></span> 不是 <span class="frac"><span>2</span><span>5</span></span>，要先通分：<span class="frac"><span>3</span><span>6</span></span>＋<span class="frac"><span>2</span><span>6</span></span>＝<span class="frac"><span>5</span><span>6</span></span>。</li>
+      <li>減去括號時，括號裡每一項都要變號：<span class="frac"><span>1</span><span>2</span></span>－(<span class="frac"><span>1</span><span>3</span></span>－<span class="frac"><span>1</span><span>4</span></span>)＝<span class="frac"><span>1</span><span>2</span></span>－<span class="frac"><span>1</span><span>3</span></span>＋<span class="frac"><span>1</span><span>4</span></span>。</li>
+      <li>答案要化成最簡分數。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 四 ================= -->
+  <section class="sec" id="s4">
+  <h2>四、分數的應用問題<span class="star">★★ 常考</span></h2>
+  <div class="key">
+    <ul>
+      <li>「全長的幾分之幾」：把<b>全部當作 1</b>。「用掉全長的」和「用掉剩下的」不一樣。</li>
+      <li>「每 a 公升裝一瓶」：總量÷a 的<b>整數部分</b>是瓶數；剩下＝總量－瓶數×a。</li>
+      <li>「甲是乙的幾分之幾」：甲÷乙。「原來是後來的 <span class="frac"><span>7</span><span>10</span></span>」：增加的部分是後來的 1－<span class="frac"><span>7</span><span>10</span></span>＝<span class="frac"><span>3</span><span>10</span></span>。</li>
+      <li>兩科及格題：畫兩個重疊的圈，<b>先填中間「兩科都及格」</b>，再填兩邊，圈外就是兩科都不及格。</li>
+    </ul>
+  </div>
+
+  <div class="tool" id="barTool">
+    <h3>動手做：用長條圖看「用掉多少、剩多少」</h3>
+    <div id="bRows"></div>
+    <div class="inrow"><button class="btn" id="bAdd">再用掉一次</button><button class="btn" id="bDel">刪掉最後一次</button></div>
+    <div class="chips" id="bPre" role="group" aria-label="常考的題目">
+      <button class="chip" data-v="all:3/8|all:1/6">先用全長的 3/8，再用全長的 1/6</button>
+      <button class="chip" data-v="all:3/8|rest:1/6">先用全長的 3/8，再用剩下的 1/6</button>
+      <button class="chip" data-v="all:1/3|rest:1/4|rest:1/2">連續用掉剩下的</button>
+    </div>
+    <div class="msg" id="bMsg"></div>
+    <div id="bSvg" class="figbox"></div>
+    <div class="out" id="bOut"></div>
+  </div>
+
+  <div class="tool" id="btTool">
+    <h3>動手做：裝瓶，可以裝幾杯、剩多少？</h3>
+    <div class="inrow">
+      <span>買了</span><input class="num sm" id="tK" inputmode="numeric" value="3" aria-label="瓶數"><span>瓶，每瓶</span>
+      <input class="num sm" id="tV" value="1 3/4" aria-label="每瓶的量"><span>公升，用每杯</span>
+      <input class="num sm" id="tC" value="2/5" aria-label="每杯的量"><span>公升的杯子裝</span>
+    </div>
+    <div class="msg" id="tMsg"></div>
+    <div class="out" id="tOut"></div>
+  </div>
+
+  <div class="tool" id="vnTool">
+    <h3>動手做：兩科及格（文氏圖）</h3>
+    <div class="inrow">
+      <span>英文及格占</span><input class="num sm" id="vA" value="3/4" aria-label="英文及格">
+      <span>，數學及格占</span><input class="num sm" id="vB" value="2/3" aria-label="數學及格">
+      <span>，兩科都及格占</span><input class="num sm" id="vC" value="1/2" aria-label="兩科都及格">
+    </div>
+    <div class="msg" id="vMsg"></div>
+    <div id="vSvg" class="figbox"></div>
+    <div class="out" id="vOut"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>常考：添購前是添購後的幾分之幾</h3>
+      <p>圖書館添購 600 本新書，添購前的書是添購後的 <span class="frac"><span>7</span><span>10</span></span>。添購前有幾本書？</p>
+      <details><summary>看解法</summary>
+        <p>把添購後當作 1。添購前是 <span class="frac"><span>7</span><span>10</span></span>，所以新書占添購後的 1－<span class="frac"><span>7</span><span>10</span></span>＝<span class="frac"><span>3</span><span>10</span></span>。</p>
+        <p>添購後＝600÷<span class="frac"><span>3</span><span>10</span></span>＝2000 本，添購前＝2000×<span class="frac"><span>7</span><span>10</span></span>＝<b>1400 本</b>（也可以用 2000－600）。</p>
+      </details>
+    </div>
+    <div class="card">
+      <h3>常考：蠟燭燒了多少</h3>
+      <p>一根蠟燭以固定速度燃燒，6 小時可以燒完。點燃 2<span class="frac"><span>1</span><span>4</span></span> 小時後吹熄，剩下的是全長的幾分之幾？</p>
+      <details><summary>看解法</summary>
+        <p>每小時燒掉全長的 <span class="frac"><span>1</span><span>6</span></span>。燒了 2<span class="frac"><span>1</span><span>4</span></span>＝<span class="frac"><span>9</span><span>4</span></span> 小時，燒掉 <span class="frac"><span>9</span><span>4</span></span>×<span class="frac"><span>1</span><span>6</span></span>＝<span class="frac"><span>3</span><span>8</span></span>。</p>
+        <p>剩下 1－<span class="frac"><span>3</span><span>8</span></span>＝<b><span class="frac"><span>5</span><span>8</span></span></b>。</p>
+      </details>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>瓶數、杯數要取整數（不能裝半杯）；剩下的量要比一杯少。剛好裝完就是剩 0。</li>
+      <li>「用了全長的 <span class="frac"><span>1</span><span>6</span></span>」和「用了剩下的 <span class="frac"><span>1</span><span>6</span></span>」不一樣：剩下的 <span class="frac"><span>1</span><span>6</span></span> 要先乘上剩下的部分。</li>
+      <li>兩科都及格的人被算了兩次，要扣掉一次。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 小測驗 ================= -->
+  <section class="sec" id="s6">
+  <h2>小測驗（<span id="qzN">20</span> 題）</h2>
+  <p class="note">每題只有一個正確答案，選了就會顯示解析（第一次選的答案才計分）。題目都是自編題，不是學校或出版社的考題。</p>
+  <div class="score"><span class="big" id="qzScore">0 / 20</span><span class="small" id="qzDone">已作答 0 題</span><button class="btn" id="qzReset">重新作答</button></div>
+  <div class="chips" id="qzFlt">
+    <button class="chip on" data-u="all">全部</button>
+    <button class="chip" data-u="1">一、最簡分數與倒數</button>
+    <button class="chip" data-u="2">二、比大小</button>
+    <button class="chip" data-u="3">三、四則運算</button>
+    <button class="chip" data-u="4">四、應用問題</button>
+  </div>
+  <div id="qz"></div>
+  </section>
+
+  <div id="pager"></div>
+</main>
+<footer id="site-foot"></footer>
+
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const FR=window.FR,F=FR.F,gcd=FR.gcd,lcm=FR.lcm;
+const fh=a=>F.html(a);
+const fp=a=>a.n<0?'('+F.html(a)+')':F.html(a);
+function readF(el){const r=FR.parseNum(el.value);return r?r:null;}
+function chipsTo(box,target,run){box.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{$(target).value=c.dataset.v;box.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));run();});}
+
+/* ========== 一、約分 ========== */
+(function(){
+  function readI(el){const v=FR.normalize(el.value).replace(/\s/g,'');return /^-?\d+$/.test(v)?+v:null;}
+  function run(){
+    const n=readI($('rN')),d=readI($('rD'));
+    if(n===null||d===null||Math.abs(n)>9999999||Math.abs(d)>9999999){$('rMsg').textContent='請輸入整數。';$('rOut').innerHTML='';return;}
+    if(d===0){$('rMsg').textContent='分母不能是 0。';$('rOut').innerHTML='';return;}
+    $('rMsg').textContent='';
+    const g=gcd(n,d)||1,v=F(n,d);
+    let h='';
+    if(n<0&&d<0)h+='<p>分子、分母都是負數，負號會抵消：<span class="frac"><span>−'+(-n)+'</span><span>−'+(-d)+'</span></span>＝<span class="frac"><span>'+(-n)+'</span><span>'+(-d)+'</span></span>。</p>';
+    else if(d<0)h+='<p>分母是負數，把負號移到前面：<span class="frac"><span>'+n+'</span><span>−'+(-d)+'</span></span>＝−<span class="frac"><span>'+Math.abs(n)+'</span><span>'+(-d)+'</span></span>。</p>';
+    const an=Math.abs(n),ad=Math.abs(d);
+    if(n===0){h+='<p class="big-ans">0 除以任何不是 0 的數都是 0。</p>';$('rOut').innerHTML=h;return;}
+    h+='<p>'+an+'＝'+(an>1?M.std(M.factorize(an)):'1')+'，'+ad+'＝'+(ad>1?M.std(M.factorize(ad)):'1')+'</p>';
+    if(g===1)h+='<p class="big-ans">('+an+', '+ad+')＝1，分子、分母互質，'+F.html(v)+' 已經是最簡分數。</p>';
+    else h+='<p>最大公因數 ('+an+', '+ad+')＝<b>'+g+'</b>，分子、分母同除以 '+g+'：</p><p class="big-ans">'+(v.n<0?'−':'')+'<span class="frac"><span>'+an+'</span><span>'+ad+'</span></span>＝'+(v.n<0?'−':'')+'<span class="frac"><span>'+an+'÷'+g+'</span><span>'+ad+'÷'+g+'</span></span>＝'+F.html(v)+'</p>'+
+      '<p class="small">也可以分好幾次約分（例如先除以 2 再除以 3），但用最大公因數一次就約到最簡。</p>';
+    if(v.d!==1&&Math.abs(v.n)>v.d)h+='<p class="small">化成帶分數：'+F.mixed(v)+'</p>';
+    $('rOut').innerHTML=h;
+  }
+  ['rN','rD'].forEach(id=>$(id).addEventListener('input',run));run();
+})();
+
+/* ========== 一、倒數 ========== */
+(function(){
+  function run(){
+    const r=readF($('cX'));
+    if(!r){$('cMsg').textContent='看不懂這個數。分數寫 3/4，帶分數寫 2 1/3 或 2又1/3，小數寫 0.75。';$('cOut').innerHTML='';return;}
+    $('cMsg').textContent='';
+    const v=r.v;let h='';
+    if(v.n===0){$('cOut').innerHTML='<p class="big-ans" style="color:var(--rose)">0 沒有倒數</p><p class="small">任何數乘以 0 都是 0，不可能等於 1。</p>';return;}
+    if(r.kind==='mixed')h+='<p>帶分數先化成假分數：'+(r.neg?'−':'')+r.w+'<span class="frac"><span>'+r.n+'</span><span>'+r.d+'</span></span>＝'+(r.neg?'−':'')+'<span class="frac"><span>'+r.w+'×'+r.d+'＋'+r.n+'</span><span>'+r.d+'</span></span>＝'+F.html(v)+'</p>'+
+      '<p class="warnline">⚠ 不能寫成 '+(r.neg?'−':'')+r.w+'<span class="frac"><span>'+r.d+'</span><span>'+r.n+'</span></span>（只把分數部分倒過來是錯的）</p>';
+    if(r.kind==='dec')h+='<p>小數先化成分數：'+r.src.replace('-','−')+'＝'+F.html(F(1),{n:(r.neg?-1:1)*r.raw.n,d:r.raw.d})+(r.raw.d!==v.d?'＝'+F.html(v):'')+'</p>';
+    if(r.kind==='int')h+='<p>整數 '+F.html(v)+' 可以看成分母是 1 的分數：'+(v.n<0?'−':'')+'<span class="frac"><span>'+Math.abs(v.n)+'</span><span>1</span></span>。</p>';
+    const iv=F.inv(v);
+    h+='<p>分子、分母上下交換，正負號不變：</p><p class="big-ans">'+F.html(v)+' 的倒數是 '+F.html(iv)+(Math.abs(iv.n)>iv.d&&iv.d>1?'（＝'+F.mixed(iv)+'）':'')+'</p>';
+    h+='<p class="small">驗算：'+fp(v)+'×'+fp(iv)+'＝1</p>';
+    if(F.eq(v,iv))h+='<p class="note">'+F.html(v)+' 的倒數就是自己（只有 1 和 −1 會這樣）。</p>';
+    $('cOut').innerHTML=h;
+  }
+  chipsTo($('cPre'),'cX',run);$('cX').addEventListener('input',run);run();
+})();
+
+/* ========== 一、範圍內的最簡分數 ========== */
+(function(){
+  function run(){
+    const a=readF($('gLo')),b=readF($('gHi')),d=M.readInt($('gD'),2,999);
+    if(!a||!b||d===null){$('gMsg').textContent='請輸入兩個分數，和 2～999 的分母。';$('gOut').innerHTML='';return;}
+    let lo=a.v,hi=b.v;if(F.cmp(lo,hi)>0){const t=lo;lo=hi;hi=t;}
+    $('gMsg').textContent='';
+    const nlo=lo.n*d/lo.d,nhi=hi.n*d/hi.d;
+    const all=[],ok=[];
+    for(let n=Math.floor(nlo)+1;n<Math.ceil(nhi);n++){if(n===0)continue;all.push(n);if(gcd(n,d)===1)ok.push(n);}
+    const f=n=>F.html(F(1),{n,d});
+    let h='<p>把兩個分數都通分成分母 '+d+'：'+F.html(lo)+'＝'+(Number.isInteger(nlo)?f(nlo):F.html(lo)+'（分子 '+nlo.toFixed(2).replace('-','−')+'……）')+'，'+F.html(hi)+'＝'+(Number.isInteger(nhi)?f(nhi):F.html(hi)+'（分子 '+nhi.toFixed(2).replace('-','−')+'……）')+'。</p>';
+    h+='<p>介於中間（不含兩端）、分母是 '+d+' 的分數，分子可以是：'+(all.length?all.map(n=>n<0?'−'+(-n):n).join('、'):'（沒有）')+'。</p>';
+    h+='<p>其中分子和 '+d+' 互質的才是最簡分數（'+d+'＝'+M.std(M.factorize(d))+'，分子不能有 '+M.factorize(d).map(x=>x[0]).join('、')+' 這些因數）：</p>';
+    h+='<div class="flist">'+all.map(n=>'<span class="'+(gcd(n,d)===1?'c':'x')+'">'+(gcd(n,d)===1?f(n):'<s>'+f(n)+'</s>')+'</span>').join('')+'</div>';
+    h+='<p class="big-ans">共 '+ok.length+' 個</p>';
+    $('gOut').innerHTML=h;
+  }
+  ['gLo','gHi','gD'].forEach(id=>$(id).addEventListener('input',run));run();
+})();
+
+/* ========== 二、數線比大小 ========== */
+(function(){
+  function run(){
+    const parts=FR.normalize($('mL').value).split(/[,，、;；]+/).map(s=>s.trim()).filter(Boolean);
+    if(parts.length<2||parts.length>5){$('mMsg').textContent='請輸入 2～5 個數，用逗號分開。';$('mSvg').innerHTML='';$('mOut').innerHTML='';return;}
+    const X=[];for(const p of parts){const r=FR.parseNum(p);if(!r){$('mMsg').textContent='看不懂「'+p+'」。';$('mSvg').innerHTML='';$('mOut').innerHTML='';return;}X.push({r,src:p});}
+    $('mMsg').textContent='';
+    const show=x=>x.r.kind==='mixed'?(x.r.neg?'−':'')+x.r.w+'<span class="frac"><span>'+x.r.n+'</span><span>'+x.r.d+'</span></span>':x.r.kind==='dec'?x.r.src.replace('-','−'):F.html(x.r.v);
+    const vals=X.map(x=>F.val(x.r.v)),mn=Math.min(...vals),mx=Math.max(...vals);
+    let lo=Math.floor(mn),hi=Math.ceil(mx);if(lo===hi){lo-=1;hi+=1;}if(hi-lo<1){hi=lo+1;}
+    const box=$('mSvg'),W=Math.min(640,(box.clientWidth||640)-4),x0=24,x1=W-24,k=(x1-x0)/(hi-lo);
+    const sorted=X.map((x,i)=>({x,i,v:vals[i]})).sort((a,b)=>a.v-b.v);
+    const cols=['#2d6f9e','#a8572f','#6b4fa0','#3f7a4f','#a33a4a'];
+    const spread=mx-mn,zoom=spread>0&&spread/(hi-lo)<0.35;
+    let s='<svg width="'+W+'" height="'+(zoom?150:70)+'" role="img" aria-label="數線">';
+    s+='<line x1="'+x0+'" y1="40" x2="'+x1+'" y2="40" stroke="#4d5a52" stroke-width="2"/><path d="M'+x1+' 40 l-8 -5 v10 z" fill="#4d5a52"/>';
+    for(let t=lo;t<=hi;t++){const x=x0+(t-lo)*k;s+='<line x1="'+x+'" y1="34" x2="'+x+'" y2="46" stroke="#4d5a52" stroke-width="'+(t===0?2.5:1.5)+'"/><text x="'+x+'" y="62" text-anchor="middle" font-size="13" fill="#4d5a52" font-weight="'+(t===0?700:400)+'">'+String(t).replace('-','−')+'</text>';}
+    /* 點與標籤（避免重疊：交錯上下） */
+    sorted.forEach((o,j)=>{const x=x0+(o.v-lo)*k,c=cols[o.i%cols.length];s+='<circle cx="'+x+'" cy="40" r="5" fill="'+c+'"/><text x="'+x+'" y="'+(j%2?26:14)+'" text-anchor="middle" font-size="12.5" font-weight="700" fill="'+c+'">'+String.fromCharCode(65+o.i)+'</text>';});
+    if(zoom){
+      const r=spread*0.25,zl=mn-r,zh=mx+r,zk=(x1-x0)/(zh-zl),y=118;
+      const a1=x0+(mn-lo)*k,a2=x0+(mx-lo)*k;
+      s+='<path d="M'+(a1-6)+' 48 L'+x0+' '+(y-14)+' M'+(a2+6)+' 48 L'+x1+' '+(y-14)+'" stroke="#c6c1b2" stroke-dasharray="3 3" fill="none"/>';
+      s+='<line x1="'+x0+'" y1="'+y+'" x2="'+x1+'" y2="'+y+'" stroke="#4d5a52" stroke-width="2"/><text x="'+x1+'" y="'+(y+24)+'" text-anchor="end" font-size="11" fill="#7a857e">放大看</text>';
+      sorted.forEach((o,j)=>{const x=x0+(o.v-zl)*zk,c=cols[o.i%cols.length];s+='<circle cx="'+x+'" cy="'+y+'" r="5.5" fill="'+c+'"/><text x="'+x+'" y="'+(j%2?y+22:y-10)+'" text-anchor="middle" font-size="13" font-weight="700" fill="'+c+'">'+String.fromCharCode(65+o.i)+'</text>';});
+    }
+    s+='</svg>';box.innerHTML=s;
+    /* 通分 */
+    const L=X.reduce((a,x)=>lcm(a,x.r.v.d),1);
+    let h='<p>'+X.map((x,i)=>'<b style="color:'+cols[i%cols.length]+'">'+String.fromCharCode(65+i)+'</b>＝'+show(x)).join('，')+'</p>';
+    if(X.some(x=>x.r.kind==='mixed'))h+='<p class="small">帶分數先看整數部分；整數部分一樣，再比分數部分。</p>';
+    h+='<p>通分（分母取最小公倍數 '+L+'）：'+X.map((x,i)=>String.fromCharCode(65+i)+'＝'+F.html(F(1),{n:x.r.v.n*L/x.r.v.d,d:L})).join('，')+'</p>';
+    if(X.some(x=>x.r.v.n<0)&&X.filter(x=>x.r.v.n<0).length>=2)h+='<p class="small">負數比大小：先比絕對值（分子 '+X.filter(x=>x.r.v.n<0).map(x=>-x.r.v.n*L/x.r.v.d).join('、')+'），絕對值大的反而小。</p>';
+    h+='<p class="big-ans">由小到大：'+sorted.map(o=>show(o.x)).join(' ＜ ')+'</p>';
+    const near=X.map(x=>({x,d:Math.abs(F.val(x.r.v)-1)})).sort((a,b)=>a.d-b.d);
+    if(/接近/.test(document.querySelector('#mPre .chip.on')?.textContent||''))h+='<p>和 1 的距離 |x－1|：'+X.map(x=>show(x)+' → '+F.html(F.abs(F.sub(x.r.v,F(1))))).join('；')+'。<b>最接近 1 的是 '+show(near[0].x)+'</b>。</p>';
+    $('mOut').innerHTML=h;
+  }
+  chipsTo($('mPre'),'mL',run);$('mL').addEventListener('input',()=>{$('mPre').querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));run();});run();
+  let rt=0;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(run,150);});
+})();
+
+/* ========== 三、一步一步算 ========== */
+(function(){
+  let res=null,shown=0;
+  function compute(){
+    try{res=FR.steps($('xE').value);$('xMsg').textContent='';return true;}
+    catch(e){res=null;$('xMsg').textContent=e.message;$('xOut').innerHTML='';$('xAns').innerHTML='';return false;}
+  }
+  function draw(){
+    const st=res.steps.slice(0,shown);
+    $('xOut').innerHTML=st.map((s,i)=>'<li class="'+(i===st.length-1&&shown<res.steps.length?'cur':'')+'"><div class="ex">'+(i?'＝ ':'')+s.html+'</div>'+(i?'<div class="why">'+s.note+'</div>':'')+'</li>').join('');
+    if(shown>=res.steps.length){const v=res.value;
+      $('xAns').innerHTML='<p class="big-ans">答案：'+F.html(v)+(v.d>1&&Math.abs(v.n)>v.d?'（＝'+F.mixed(v)+'）':'')+'</p><p class="small">已經是最簡分數。</p>';
+      $('xStep').textContent='一步一步';}
+    else{$('xAns').innerHTML='';$('xStep').textContent='下一步（'+shown+' / '+res.steps.length+'）';}
+  }
+  $('xAll').onclick=()=>{if(compute()){shown=res.steps.length;draw();}};
+  $('xStep').onclick=()=>{if(!res||shown>=res.steps.length){if(!compute())return;shown=1;}else shown++;draw();};
+  $('xE').addEventListener('keydown',e=>{if(e.key==='Enter')$('xAll').click();});
+  $('xE').addEventListener('input',()=>{res=null;});
+  $('xKeys').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{const el=$('xE');
+    if(b.dataset.k==='CLR'){el.value='';el.focus();return;}
+    const s=el.selectionStart??el.value.length,e=el.selectionEnd??el.value.length;
+    el.value=el.value.slice(0,s)+b.dataset.k+el.value.slice(e);el.focus();const p=s+b.dataset.k.length;el.setSelectionRange(p,p);res=null;});
+  $('xPre').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{$('xE').value=c.dataset.v;$('xPre').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));$('xAll').click();});
+  $('xAll').click();
+})();
+
+/* ========== 四、長條圖 ========== */
+(function(){
+  let ops=[['all','3/8'],['rest','1/6']];
+  function rows(){
+    $('bRows').innerHTML=ops.map((o,i)=>'<div class="inrow"><span>第 '+(i+1)+' 次：用掉</span><select class="num" style="width:auto" data-i="'+i+'" aria-label="用掉哪一部分"><option value="all"'+(o[0]==='all'?' selected':'')+'>全長</option><option value="rest"'+(o[0]==='rest'?' selected':'')+'>剩下</option></select><span>的</span><input class="num sm" data-i="'+i+'" value="'+o[1]+'" aria-label="分數"></div>').join('');
+    $('bRows').querySelectorAll('select').forEach(s=>s.onchange=()=>{ops[+s.dataset.i][0]=s.value;run();});
+    $('bRows').querySelectorAll('input').forEach(s=>s.oninput=()=>{ops[+s.dataset.i][1]=s.value;run();});
+  }
+  function run(){
+    let rest=F(1);const used=[];let h='<ol class="steps">';
+    for(let i=0;i<ops.length;i++){
+      const r=FR.parseNum(ops[i][1]);
+      if(!r||r.v.n<=0){$('bMsg').textContent='第 '+(i+1)+' 次請輸入正的分數。';$('bSvg').innerHTML='';$('bOut').innerHTML='';return;}
+      const u=ops[i][0]==='all'?r.v:F.mul(rest,r.v);
+      if(F.cmp(u,rest)>0){$('bMsg').textContent='第 '+(i+1)+' 次用掉的比剩下的還多，不合理。';$('bSvg').innerHTML='';$('bOut').innerHTML='';return;}
+      h+='<li>'+(ops[i][0]==='all'?'用掉<b>全長</b>的 '+fh(r.v)+'：用掉 '+fh(u):'用掉<b>剩下</b>的 '+fh(r.v)+'：剩下是 '+fh(rest)+'，用掉 '+fh(rest)+'×'+fh(r.v)+'＝'+fh(u))+'，';
+      rest=F.sub(rest,u);used.push(u);
+      h+='還剩 '+fh(rest)+'</li>';
+    }
+    $('bMsg').textContent='';
+    h+='</ol><p class="big-ans">最後剩下全長的 '+fh(rest)+'</p>';
+    const box=$('bSvg'),W=Math.min(600,(box.clientWidth||600)-4),bw=W-4;let x=2;
+    const cols=['#a8572f','#2d6f9e','#6b4fa0','#b98516','#a33a4a'];
+    let s='<svg width="'+W+'" height="64" role="img" aria-label="長條圖">';
+    used.forEach((u,i)=>{const w=F.val(u)*bw;s+='<rect x="'+x+'" y="6" width="'+w+'" height="34" fill="'+cols[i%cols.length]+'" fill-opacity=".8" stroke="#fff"/>';
+      if(w>26)s+='<text x="'+(x+w/2)+'" y="28" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">第'+(i+1)+'次</text>';x+=w;});
+    s+='<rect x="'+x+'" y="6" width="'+Math.max(0,bw+2-x)+'" height="34" fill="#e5f0e2" stroke="#3f7a4f"/>';
+    if(bw+2-x>36)s+='<text x="'+(x+(bw+2-x)/2)+'" y="28" text-anchor="middle" font-size="12.5" fill="#24563a" font-weight="700">剩下</text>';
+    s+='<rect x="2" y="6" width="'+bw+'" height="34" fill="none" stroke="#1f2a24" stroke-width="1.5"/><text x="2" y="58" font-size="11" fill="#7a857e">0</text><text x="'+(bw+2)+'" y="58" text-anchor="end" font-size="11" fill="#7a857e">全長＝1</text></svg>';
+    box.innerHTML=s;$('bOut').innerHTML=h;
+  }
+  $('bAdd').onclick=()=>{if(ops.length<5){ops.push(['rest','1/2']);rows();run();}};
+  $('bDel').onclick=()=>{if(ops.length>1){ops.pop();rows();run();}};
+  $('bPre').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{ops=c.dataset.v.split('|').map(t=>t.split(':'));$('bPre').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));rows();run();});
+  rows();run();
+  let rt=0;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(run,150);});
+})();
+
+/* ========== 四、裝瓶 ========== */
+(function(){
+  function run(){
+    const k=M.readInt($('tK'),1,999),v=readF($('tV')),c=readF($('tC'));
+    if(k===null||!v||!c||v.v.n<=0||c.v.n<=0){$('tMsg').textContent='請輸入正數（帶分數寫成 1 3/4）。';$('tOut').innerHTML='';return;}
+    $('tMsg').textContent='';
+    const tot=F.mul(F(k),v.v),q=F.div(tot,c.v),cups=Math.floor(F.val(q)+1e-12),rem=F.sub(tot,F.mul(F(cups),c.v));
+    $('tOut').innerHTML='<ol class="steps"><li>總量：'+k+'×'+fp(v.v)+'＝'+fh(tot)+(tot.d>1&&tot.n>tot.d?'（＝'+F.mixed(tot)+'）':'')+' 公升</li>'+
+      '<li>可以倒幾杯：'+fh(tot)+'÷'+fh(c.v)+'＝'+fh(tot)+'×'+fh(F.inv(c.v))+'＝'+fh(q)+(q.d>1?'＝'+F.mixed(q):'')+'，<b>取整數部分 '+cups+' 杯</b>（不能倒半杯）</li>'+
+      '<li>剩下：'+fh(tot)+'－'+cups+'×'+fh(c.v)+'＝'+fh(rem)+' 公升'+(rem.n===0?'（剛好倒完）':'，比一杯的 '+fh(c.v)+' 少，合理')+'</li></ol>'+
+      '<p class="big-ans">可以倒滿 '+cups+' 杯，剩下 '+fh(rem)+' 公升</p>';
+  }
+  ['tK','tV','tC'].forEach(id=>$(id).addEventListener('input',run));run();
+})();
+
+/* ========== 四、兩科及格 ========== */
+(function(){
+  function run(){
+    const a=readF($('vA')),b=readF($('vB')),c=readF($('vC'));
+    if(!a||!b||!c){$('vMsg').textContent='請輸入三個分數。';$('vSvg').innerHTML='';$('vOut').innerHTML='';return;}
+    const A=a.v,B=b.v,C=c.v,onlyA=F.sub(A,C),onlyB=F.sub(B,C),none=F.sub(F(1),F.add(F.add(onlyA,onlyB),C));
+    if([A,B,C].some(x=>x.n<0||F.cmp(x,F(1))>0)||onlyA.n<0||onlyB.n<0||none.n<0){$('vMsg').textContent='數字不合理：兩科都及格不能比單科多，加起來也不能超過全班。';$('vSvg').innerHTML='';$('vOut').innerHTML='';return;}
+    $('vMsg').textContent='';
+    const fo=x=>'<foreignObject x="'+(x[0]-34)+'" y="'+(x[1]-20)+'" width="68" height="44"><div xmlns="http://www.w3.org/1999/xhtml" class="vlab">'+fh(x[2])+'</div></foreignObject>';
+    let s='<svg viewBox="0 0 400 200" width="100%" style="max-width:420px" role="img" aria-label="兩科及格文氏圖">';
+    s+='<rect x="4" y="4" width="392" height="192" rx="10" fill="#fbfaf6" stroke="#c6c1b2"/>';
+    s+='<circle cx="150" cy="104" r="74" fill="#e2eef7" fill-opacity=".8" stroke="#2d6f9e" stroke-width="1.5"/><circle cx="250" cy="104" r="74" fill="#f6e6dc" fill-opacity=".8" stroke="#a8572f" stroke-width="1.5"/>';
+    s+='<text x="110" y="24" font-size="13" font-weight="700" fill="#2d6f9e">英文及格 '+'</text><text x="236" y="24" font-size="13" font-weight="700" fill="#a8572f">數學及格</text>';
+    s+=fo([112,104,onlyA])+fo([200,104,C])+fo([288,104,onlyB])+fo([360,178,none]);
+    s+='<text x="320" y="160" font-size="11" fill="#7a857e">兩科都不及格</text></svg>';
+    $('vSvg').innerHTML=s;
+    $('vOut').innerHTML='<ol class="steps"><li>先填中間：兩科都及格 '+fh(C)+'</li><li>只有英文及格（英文及格、數學不及格）＝'+fh(A)+'－'+fh(C)+'＝<b>'+fh(onlyA)+'</b></li><li>只有數學及格＝'+fh(B)+'－'+fh(C)+'＝<b>'+fh(onlyB)+'</b></li>'+
+      '<li>兩科都不及格＝1－('+fh(onlyA)+'＋'+fh(C)+'＋'+fh(onlyB)+')＝<b>'+fh(none)+'</b><br><span class="small">也可以寫成 1－(英文及格＋數學及格－兩科都及格)＝1－('+fh(A)+'＋'+fh(B)+'－'+fh(C)+')</span></li></ol>';
+  }
+  ['vA','vB','vC'].forEach(id=>$(id).addEventListener('input',run));run();
+})();
+
+/* ========== 小測驗 ========== */
+const fr=(n,d)=>'<span class="frac"><span>'+n+'</span><span>'+d+'</span></span>';
+const QZ=[
+ {u:1,s:'下列哪一個是最簡分數？',o:[fr(39,91),fr(51,85),fr(49,144),fr(57,95)],a:2,
+  e:'49＝7<sup>2</sup>、144＝2<sup>4</sup>×3<sup>2</sup>，沒有共同的質因數，所以 '+fr(49,144)+' 是最簡分數。其他的分子分母分別有公因數 13、17、19。'},
+ {u:1,s:'把 '+fr(168,252)+' 化成最簡分數。',o:[fr(2,3),fr(4,6),fr(14,21),fr(3,2)],a:0,
+  e:'(168, 252)＝84，分子分母同除以 84 得 '+fr(2,3)+'。(B)、(C) 還可以再約分。'},
+ {u:1,s:'−3'+fr(2,5)+' 的倒數是多少？',o:['−3'+fr(5,2),'−'+fr(5,17),fr(5,17),'−'+fr(17,5)],a:1,
+  e:'先化成假分數：−3'+fr(2,5)+'＝−'+fr(17,5)+'，倒數是 −'+fr(5,17)+'（正負號不變）。(A) 只把分數部分倒過來是錯的。'},
+ {u:1,s:'下列敘述何者正確？',o:['0 的倒數是 0','互為倒數的兩數相加等於 1','−1 的倒數是 −1','一個數的倒數一定比原數小'],a:2,
+  e:'(−1)×(−1)＝1，所以 −1 的倒數是 −1。(A) 0 沒有倒數。(B) 是相乘等於 1。(D) '+fr(1,3)+' 的倒數是 3，比原數大。'},
+ {u:1,s:'若 '+fr(5,'−6')+'＝'+fr('a',18)+'＝'+fr(-20,'b')+'，則 a＋b＝？',o:['9','−9','39','−39'],a:0,
+  e:fr(5,'−6')+'＝−'+fr(5,6)+'。分母乘 3 變 18，分子也乘 3：a＝−15。分子 5 變 −20 是乘 −4，分母也乘 −4：b＝(−6)×(−4)＝24。a＋b＝−15＋24＝9。'},
+ {u:2,s:'下列哪一個數最大？',o:['−'+fr(2,3),'−'+fr(3,5),'−'+fr(5,8),'−'+fr(7,10)],a:1,
+  e:'先比絕對值：通分（分母 120）'+fr(80,120)+'、'+fr(72,120)+'、'+fr(75,120)+'、'+fr(84,120)+'。負數絕對值最小的最大：−'+fr(3,5)+' 最大。'},
+ {u:2,s:'甲＝−3'+fr(4,5)+'，乙＝−3'+fr(5,6)+'，丙＝−3'+fr(3,4)+'。下列何者正確？',o:['甲＞乙＞丙','丙＞甲＞乙','乙＞甲＞丙','丙＞乙＞甲'],a:1,
+  e:'整數部分都是 −3，比分數部分：'+fr(3,4)+'＜'+fr(4,5)+'＜'+fr(5,6)+'。負數的分數部分越大，整個數越小，所以丙＞甲＞乙。'},
+ {u:2,s:'下列各數在數線上，哪一個離 1 最近？',o:[fr(9,10),fr(9,8),fr(7,8),fr(6,5)],a:0,
+  e:'算和 1 的距離 |x－1|：'+fr(9,10)+' 差 '+fr(1,10)+'，'+fr(9,8)+' 差 '+fr(1,8)+'，'+fr(7,8)+' 差 '+fr(1,8)+'，'+fr(6,5)+' 差 '+fr(1,5)+'。'+fr(1,10)+' 最小，所以 '+fr(9,10)+' 最近。'},
+ {u:3,s:'計算 1－'+fr(3,4)+'÷'+fr(9,8)+'×3＝？',o:['−1',''+fr(7,9),'−'+fr(1,2),'0'],a:0,
+  e:'由左往右先乘除：'+fr(3,4)+'÷'+fr(9,8)+'＝'+fr(3,4)+'×'+fr(8,9)+'＝'+fr(2,3)+'，再 ×3＝2。最後 1－2＝−1。如果先算 '+fr(9,8)+'×3 就會錯。'},
+ {u:3,s:'計算 2'+fr(1,2)+'－3'+fr(2,3)+'＋'+fr(5,6)+'＝？',o:['−'+fr(1,3),fr(1,3),'−'+fr(2,3),'−1'],a:0,
+  e:'化成假分數並通分（分母 6）：'+fr(15,6)+'－'+fr(22,6)+'＋'+fr(5,6)+'＝'+fr(-2,6)+'＝−'+fr(1,3)+'。'},
+ {u:3,s:'計算 (−'+fr(5,6)+')×'+fr(9,10)+'÷(−1'+fr(1,2)+')＝？',o:[fr(1,2),'−'+fr(1,2),fr(9,8),'−'+fr(9,8)],a:0,
+  e:'有兩個負號，答案是正的。−1'+fr(1,2)+'＝−'+fr(3,2)+'，除以它等於乘以 −'+fr(2,3)+'：'+fr(5,6)+'×'+fr(9,10)+'×'+fr(2,3)+'＝'+fr(90,180)+'＝'+fr(1,2)+'。'},
+ {u:3,s:'計算 '+fr(3,8)+'×(−29)＋'+fr(3,8)+'×45－'+fr(3,8)+'×8＝？',o:['3','−3',fr(3,8),'24'],a:0,
+  e:'用分配律提出 '+fr(3,8)+'：'+fr(3,8)+'×(−29＋45－8)＝'+fr(3,8)+'×8＝3。'},
+ {u:3,s:'計算 '+fr(2,3)+'－'+fr(1,2)+'×|'+fr(1,4)+'－'+fr(5,6)+'|＝？',o:[fr(3,8),fr(5,24),fr(1,8),'−'+fr(1,8)],a:0,
+  e:'絕對值裡面先算：'+fr(1,4)+'－'+fr(5,6)+'＝'+fr(3,12)+'－'+fr(10,12)+'＝−'+fr(7,12)+'，絕對值是 '+fr(7,12)+'。再 '+fr(1,2)+'×'+fr(7,12)+'＝'+fr(7,24)+'，最後 '+fr(2,3)+'－'+fr(7,24)+'＝'+fr(16,24)+'－'+fr(7,24)+'＝'+fr(9,24)+'＝'+fr(3,8)+'。'},
+ {u:3,s:'計算 ('+fr(1,2)+'－1)×('+fr(1,3)+'－1)×('+fr(1,4)+'－1)×……×('+fr(1,10)+'－1)＝？',o:[fr(1,10),'−'+fr(1,10),fr(1,9),'−'+fr(1,9)],a:1,
+  e:'每個括號是 −'+fr(1,2)+'、−'+fr(2,3)+'、−'+fr(3,4)+'……−'+fr(9,10)+'，共 9 個負號，答案是負的。相乘時分子分母互相約掉：'+fr(1,2)+'×'+fr(2,3)+'×……×'+fr(9,10)+'＝'+fr(1,10)+'，所以答案是 −'+fr(1,10)+'。'},
+ {u:3,s:'下列哪一個算式是對的？',o:['6÷('+fr(1,2)+'＋'+fr(1,3)+')＝6÷'+fr(1,2)+'＋6÷'+fr(1,3),fr(1,2)+'＋'+fr(1,3)+'＝'+fr(2,5),'−2'+fr(1,3)+'＝−2＋'+fr(1,3),fr(1,2)+'－('+fr(1,3)+'－'+fr(1,4)+')＝'+fr(1,2)+'－'+fr(1,3)+'＋'+fr(1,4)],a:3,
+  e:'減去括號時，括號裡每一項都變號，所以 (D) 對。(A) 除法不能拆。(B) 要通分：'+fr(5,6)+'。(C) −2'+fr(1,3)+'＝−(2＋'+fr(1,3)+')＝−2－'+fr(1,3)+'。'},
+ {u:4,s:'一條緞帶先用掉全長的 '+fr(1,4)+'，再用掉<b>剩下</b>的 '+fr(1,3)+'。最後剩下全長的幾分之幾？',o:[fr(5,12),fr(1,2),fr(7,12),fr(2,3)],a:1,
+  e:'第一次後剩 '+fr(3,4)+'。再用掉剩下的 '+fr(1,3)+'：'+fr(3,4)+'×'+fr(1,3)+'＝'+fr(1,4)+'，剩 '+fr(3,4)+'－'+fr(1,4)+'＝'+fr(1,2)+'。(A) 是「再用掉全長的 '+fr(1,3)+'」的答案。'},
+ {u:4,s:'買了 4 瓶 1'+fr(1,3)+' 公升的果汁，用每杯 '+fr(3,5)+' 公升的杯子裝，可以倒滿幾杯？剩下多少公升？',o:['8 杯，剩 '+fr(1,3)+' 公升','9 杯，剩 '+fr(1,3)+' 公升','8 杯，剩 '+fr(8,15)+' 公升','9 杯，剩 0 公升'],a:2,
+  e:'總量 4×'+fr(4,3)+'＝'+fr(16,3)+' 公升。'+fr(16,3)+'÷'+fr(3,5)+'＝'+fr(80,9)+'＝8'+fr(8,9)+'，倒滿 8 杯（不能倒 9 杯）。剩下 '+fr(16,3)+'－8×'+fr(3,5)+'＝'+fr(80,15)+'－'+fr(72,15)+'＝'+fr(8,15)+' 公升，比一杯 '+fr(3,5)+'＝'+fr(9,15)+' 少，合理。'},
+ {u:4,s:'一根蠟燭 8 小時可以燒完。點燃 2'+fr(2,3)+' 小時後吹熄，剩下的是全長的幾分之幾？',o:[fr(1,3),fr(2,3),fr(3,8),fr(5,8)],a:1,
+  e:'2'+fr(2,3)+'＝'+fr(8,3)+' 小時，燒掉 '+fr(8,3)+'×'+fr(1,8)+'＝'+fr(1,3)+'，剩下 1－'+fr(1,3)+'＝'+fr(2,3)+'。'},
+ {u:4,s:'班上英文及格的占 '+fr(2,3)+'，數學及格的占 '+fr(3,5)+'，兩科都及格的占 '+fr(1,2)+'。兩科都不及格的占全班幾分之幾？',o:[fr(1,6),fr(7,30),fr(1,5),fr(4,15)],a:1,
+  e:'1－('+fr(2,3)+'＋'+fr(3,5)+'－'+fr(1,2)+')＝1－'+fr(23,30)+'＝'+fr(7,30)+'。兩科都及格的人被算了兩次，要扣掉一次。'},
+ {u:4,s:'書店進了 450 本新書以後，原來的書是現在的 '+fr(5,8)+'。原來有幾本書？',o:['750 本','1200 本','720 本','281 本'],a:0,
+  e:'新書占現在的 1－'+fr(5,8)+'＝'+fr(3,8)+'，現在共 450÷'+fr(3,8)+'＝1200 本，原來 1200×'+fr(5,8)+'＝750 本。(B) 是現在的本數。'}
+];
+(function(){
+  const box=$('qz');let cur='all';const got=new Array(QZ.length).fill(null);
+  $('qzN').textContent=QZ.length;
+  function build(){
+    box.innerHTML=QZ.map((q,i)=>'<div class="q" data-u="'+q.u+'" data-i="'+i+'"><div class="stem"><span class="no">第 '+(i+1)+' 題</span>'+q.s+'<span class="u">重點'+'一二三四'[q.u-1]+'</span></div><div class="opts">'+
+      q.o.map((t,j)=>'<button class="opt" data-j="'+j+'">('+'ABCD'[j]+') '+t+'</button>').join('')+'</div><div class="exp"></div></div>').join('');
+    box.querySelectorAll('.q').forEach(d=>{
+      const i=+d.dataset.i,q=QZ[i];
+      d.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+        const j=+b.dataset.j;
+        d.querySelectorAll('.opt').forEach(x=>x.classList.remove('right','wrong'));
+        d.querySelectorAll('.opt')[q.a].classList.add('right');if(j!==q.a)b.classList.add('wrong');
+        if(got[i]===null)got[i]=(j===q.a);
+        const ex=d.querySelector('.exp');ex.innerHTML=(j===q.a?'<b class="ok">答對了！</b> ':'<b class="no">正確答案是 ('+'ABCD'[q.a]+')。</b> ')+q.e;ex.classList.add('show');
+        tally();
+      });
+    });
+    flt();tally();
+  }
+  function tally(){const d=got.filter(x=>x!==null).length,r=got.filter(x=>x).length;$('qzScore').textContent=r+' / '+QZ.length;$('qzDone').textContent='已作答 '+d+' 題'+(d===QZ.length?'，全部完成！錯的題目回到上面的重點再看一次。':'');}
+  function flt(){box.querySelectorAll('.q').forEach(d=>d.style.display=(cur==='all'||d.dataset.u===cur)?'':'none');}
+  $('qzFlt').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{cur=b.dataset.u;$('qzFlt').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));flt();});
+  $('qzReset').onclick=()=>{got.fill(null);build();};
+  build();
+  window.__QZ=QZ;
+})();
+})();
+</script>
+</body>
+</html>

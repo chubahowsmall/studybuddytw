@@ -73,7 +73,7 @@
   const el=document.getElementById('ver');
   const add=(p,tag,cls,text,attrs)=>{const e=document.createElement(tag);if(cls)e.className=cls;e.textContent=text;Object.assign(e,attrs||{});p.appendChild(e);return e;};
   const grp=()=>add(el,'span','vgrp','');
-  fetch('version.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(v=>{
+  fetch('version.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(v=>{
     /* 分成三組：版本（tag）、commit ID、部署時間；組和組之間留大一點的間隔 */
     el.textContent='';let g=grp();add(g,'span','','版本');
     if(v.tag)add(g,'span','vtag',v.tag);

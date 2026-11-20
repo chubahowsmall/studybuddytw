@@ -4,7 +4,9 @@
 const NAV=[
   ['index.html','數學首頁'],
   ['factors.html','2-1 因數與倍數'],
-  ['gcd-lcm.html','2-2 最大公因數與最小公倍數']
+  ['gcd-lcm.html','2-2 最大公因數與最小公倍數'],
+  ['fractions.html','2-3 分數的四則運算'],
+  ['exponents.html','2-4 指數律']
 ];
 const qs=new URLSearchParams(location.search);
 const EMBED=qs.has('embed');
