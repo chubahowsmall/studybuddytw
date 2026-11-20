@@ -140,3 +140,39 @@ ol.steps li{margin:3px 0}
 .flagc{color:#a8572f}
 .btn.gmb.right{background:var(--moss-bg);border-color:var(--moss);color:#24563a;font-weight:700}
 .btn.gmb.wrong{background:var(--rose-bg);border-color:var(--rose);color:var(--rose)}
+
+/* ===== 2-3 分數的四則運算、2-4 指數律 ===== */
+.flist span.x{background:#ecebe5;color:#9a968b;font-weight:400}
+.flist .frac{font-size:.92em}
+ol.calc{list-style:none;padding:0;margin:8px 0}
+ol.calc li{padding:8px 10px;border-left:3px solid var(--line);margin:0 0 6px;background:#fbfaf6;border-radius:0 8px 8px 0}
+ol.calc li.cur{border-left-color:var(--sun)}
+ol.calc .ex{font-size:20px;line-height:2.1;font-variant-numeric:tabular-nums}
+ol.calc .ex .frac{font-size:.82em}
+ol.calc .why{font-size:14px;color:var(--ink-2);line-height:2}
+ol.calc .why .frac{font-size:.9em}
+ol.calc .hl{background:var(--sun-bg);outline:2px solid var(--sun);border-radius:5px;padding:0 3px}
+.keys .btn{min-width:2.6em;padding-left:10px;padding-right:10px}
+.vlab{font:700 17px var(--font);text-align:center;line-height:1.1;color:var(--ink)}
+.vlab .frac{font-size:.9em}
+.big-ans .frac,.out .frac,.steps .frac{font-size:.86em}
+.out p,.out li{overflow-wrap:anywhere}
+.bgrp{display:inline-flex;gap:3px;padding:3px;border-radius:8px;background:#f3f1ea;border:1px dashed var(--line-2)}
+.brow .op{font-weight:700;margin:0 4px;color:var(--ink-2)}
+.blk.cut{opacity:.45;text-decoration:line-through}
+.fracblk{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 2px}
+.fracblk>span{display:flex;gap:3px;padding:3px 2px}
+.fracblk>span:first-child{border-bottom:2px solid var(--ink)}
+.tfq{font-size:22px!important;font-weight:700;margin:6px 0 10px}
+.tfq .frac{font-size:.8em}
+.btn.tfb.right{background:var(--moss-bg);border-color:var(--moss);color:#24563a;font-weight:700}
+.btn.tfb.wrong{background:var(--rose-bg);border-color:var(--rose);color:var(--rose)}
+table.ptab tr.odd td{background:var(--rose-bg)}
+table.ptab tr.even td{background:var(--moss-bg)}
+table.ptab .frac{font-size:.86em}
+.cyc{display:flex;flex-wrap:wrap;gap:6px;align-items:stretch;margin:6px 0}
+.cyc span{display:flex;flex-direction:column;align-items:center;min-width:56px;padding:4px 8px;border:1.5px solid var(--line-2);border-radius:8px;background:#fff}
+.cyc span small{font-size:11px;color:var(--ink-3)}
+.cyc span b{font-size:22px}
+.cyc span.on{background:var(--sun-bg);border-color:var(--sun)}
+.cyc span.more{border:none;background:none;justify-content:center;font-size:22px;color:var(--ink-3)}

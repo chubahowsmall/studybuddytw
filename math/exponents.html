@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2-4 指數律｜數學互動教室</title>
+<meta name="description" content="國七上數學（康軒版第一冊）2-4 指數律互動複習：指數律展開方塊、指數律正誤判斷練習、化成同底數、含次方的一步一步計算、負數的乘方表、同指數比大小、幾位數與個位數字週期，附自編小測驗。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect x=%223%22 y=%223%22 width=%2226%22 height=%2226%22 rx=%225%22 fill=%22%232d6f9e%22/%3E%3Ctext x=%2213%22 y=%2224%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22700%22%3Ea%3C/text%3E%3Ctext x=%2222%22 y=%2215%22 font-size=%2210%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22sans-serif%22 font-weight=%22700%22%3En%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="lib/math.css">
+<script src="lib/common.js"></script>
+<script src="lib/frac.js"></script>
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap">
+  <span class="kicker m">2-4・康軒版第一冊第 2 章</span>
+  <h1>指數律</h1>
+  <p class="lead">指數是「同一個數連乘幾次」的簡寫。這一節的規則不多，但考卷上幾乎每份都有<b>指數律正誤題</b>，而且很多陷阱是「看起來很像」的寫法。每條規則都用方塊展開來看，就不會背錯。</p>
+  <nav class="toc" aria-label="本頁重點">
+    <a href="#s1">一、指數律與乘方計算</a>
+    <a href="#s2">二、負數的乘方、比大小與位數</a>
+    <a href="#s6">小測驗</a>
+  </nav>
+
+  <!-- ================= 一 ================= -->
+  <section class="sec" id="s1">
+  <h2>一、指數律與乘方計算<span class="star">★★★ 幾乎每卷必考</span></h2>
+  <div class="key">
+    <ul>
+      <li>a<sup>n</sup>＝a×a×……×a（n 個 a 相乘），a 叫<b>底數</b>，n 叫<b>指數</b>。</li>
+      <li><b>a<sup>m</sup>×a<sup>n</sup>＝a<sup>m＋n</sup></b>；<b>a<sup>m</sup>÷a<sup>n</sup>＝a<sup>m－n</sup></b>（a≠0，m≥n）。</li>
+      <li><b>(a<sup>m</sup>)<sup>n</sup>＝a<sup>m×n</sup></b>；<b>(a×b)<sup>n</sup>＝a<sup>n</sup>×b<sup>n</sup></b>；<b>(<span class="frac"><span>a</span><span>b</span></span>)<sup>n</sup>＝<span class="frac"><span>a<sup>n</sup></span><span>b<sup>n</sup></span></span></b>（b≠0）。</li>
+      <li><b>a<sup>0</sup>＝1</b>（a≠0）。例如 2026<sup>0</sup>＝1，但 −(−<span class="frac"><span>3</span><span>5</span></span>)<sup>0</sup>＝−1。</li>
+      <li><span class="hot">同底數相乘、相除，指數才能相加、相減</span>。底數不同時，先化成同底數：8＝2<sup>3</sup>、16＝2<sup>4</sup>、27＝3<sup>3</sup>。</li>
+      <li><span class="hot">加法不能把指數相加</span>：4<sup>5</sup>＋4<sup>5</sup>＋4<sup>5</sup>＋4<sup>5</sup>＝4×4<sup>5</sup>＝4<sup>6</sup>。</li>
+    </ul>
+  </div>
+
+  <div class="tool" id="lawTool">
+    <h3>動手做：把指數律展開成方塊</h3>
+    <div class="chips" id="lLaw" role="group" aria-label="選一條指數律">
+      <button class="chip on" data-l="mul">a<sup>m</sup>×a<sup>n</sup></button>
+      <button class="chip" data-l="div">a<sup>m</sup>÷a<sup>n</sup></button>
+      <button class="chip" data-l="pp">(a<sup>m</sup>)<sup>n</sup></button>
+      <button class="chip" data-l="prod">(a×b)<sup>n</sup></button>
+      <button class="chip" data-l="quo">(a÷b)<sup>n</sup></button>
+      <button class="chip" data-l="zero">a<sup>0</sup></button>
+    </div>
+    <div class="inrow">
+      <label for="lA">a＝</label><input class="num sm" id="lA" inputmode="numeric" value="2" aria-label="a">
+      <span id="lBbox"><label for="lB">b＝</label><input class="num sm" id="lB" inputmode="numeric" value="3" aria-label="b"></span>
+      <span id="lMbox"><label for="lM">m＝</label><input class="num sm" id="lM" inputmode="numeric" value="3" aria-label="m"></span>
+      <span id="lNbox"><label for="lN">n＝</label><input class="num sm" id="lN" inputmode="numeric" value="2" aria-label="n"></span>
+      <span class="small">（指數 0～6）</span>
+    </div>
+    <div class="msg" id="lMsg"></div>
+    <div id="lOut"></div>
+  </div>
+
+  <div class="tool" id="tfTool">
+    <h3>動手做：指數律正誤判斷（考卷最愛考）</h3>
+    <div class="score" style="position:static;border:none;padding:0;margin:0 0 8px"><span class="big" id="tfScore">0 / 0</span><span class="small">按「下一題」會隨機出題</span><button class="btn" id="tfNext">下一題</button></div>
+    <p class="big-ans tfq" id="tfQ"></p>
+    <div class="inrow">
+      <button class="btn tfb" data-k="1">✓ 正確</button>
+      <button class="btn tfb" data-k="0">✗ 錯誤</button>
+    </div>
+    <div class="out" id="tfOut"></div>
+  </div>
+
+  <div class="tool" id="sbTool">
+    <h3>動手做：化成同底數</h3>
+    <p class="note">輸入用 × 或 ÷ 連起來的次方，例如 8^4 × 16^3；或是好幾個一樣的數相加，例如 4^5 + 4^5 + 4^5 + 4^5。</p>
+    <div class="inrow">
+      <input class="num" id="sE" style="width:100%;max-width:420px" value="8^4 × 16^3" aria-label="算式">
+    </div>
+    <div class="chips" id="sPre" role="group" aria-label="常考的題目">
+      <button class="chip" data-v="8^4 × 16^3">8<sup>4</sup>×16<sup>3</sup></button>
+      <button class="chip" data-v="4^5 + 4^5 + 4^5 + 4^5">4<sup>5</sup>＋4<sup>5</sup>＋4<sup>5</sup>＋4<sup>5</sup></button>
+      <button class="chip" data-v="2^8 + 2^8">2<sup>8</sup>＋2<sup>8</sup></button>
+      <button class="chip" data-v="27^2 ÷ 9^3 × 3^4">27<sup>2</sup>÷9<sup>3</sup>×3<sup>4</sup></button>
+      <button class="chip" data-v="25^3 × 125^2">25<sup>3</sup>×125<sup>2</sup></button>
+    </div>
+    <div class="msg" id="sMsg"></div>
+    <div class="out" id="sOut"></div>
+  </div>
+
+  <div class="tool" id="calcTool">
+    <h3>動手做：含次方的計算，一步一步算</h3>
+    <p class="note">次方用 ^ 輸入，例如 (-2)^3、(2/3)^2。負數、分數的次方要加括號。順序：括號 → 次方 → 乘除 → 加減。</p>
+    <div class="inrow">
+      <input class="num" id="xE" style="width:100%;max-width:520px" value="(-1/2)^4 × 6^3 ÷ (3/2)^3 + 5^0" aria-label="算式">
+    </div>
+    <div class="inrow keys" id="xKeys" aria-label="符號鍵">
+      <button class="btn" data-k=" + ">＋</button><button class="btn" data-k=" - ">－</button><button class="btn" data-k=" × ">×</button><button class="btn" data-k=" ÷ ">÷</button>
+      <button class="btn" data-k="(">(</button><button class="btn" data-k=")">)</button><button class="btn" data-k="^">次方 ^</button><button class="btn" data-k="CLR">清除</button>
+    </div>
+    <div class="chips" id="xPre" role="group" aria-label="常考的算式">
+      <button class="chip" data-v="(-1/2)^4 × 6^3 ÷ (3/2)^3 + 5^0">綜合計算</button>
+      <button class="chip" data-v="-3^2 + (-3)^2">−3² 和 (−3)²</button>
+      <button class="chip" data-v="(-2)^3 × (-1/2)^2 - 2^0">負數的次方</button>
+      <button class="chip" data-v="-(-3/5)^0 + 2026^0">0 次方</button>
+      <button class="chip" data-v="(2/3)^2 - 2^2 ÷ 3">括號差很多</button>
+    </div>
+    <div class="inrow"><button class="btn on" id="xAll">全部算出來</button><button class="btn" id="xStep">一步一步</button></div>
+    <div class="msg" id="xMsg"></div>
+    <ol class="calc" id="xOut"></ol>
+    <div class="out" id="xAns"></div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>3<sup>4</sup>×3<sup>5</sup>＝3<sup>9</sup>，不是 3<sup>20</sup>；(2<sup>3</sup>)<sup>4</sup>＝2<sup>12</sup>，不是 2<sup>7</sup>；5<sup>9</sup>÷5<sup>3</sup>＝5<sup>6</sup>，不是 5<sup>3</sup>。</li>
+      <li>(−4)<sup>3</sup>＋(−4)<sup>2</sup> 不能寫成 (−4)<sup>5</sup>：指數律只能用在<b>乘除</b>。</li>
+      <li>2<sup>3</sup>＝2×2×2＝8，不是 2×3＝6。(2＋3)<sup>2</sup>＝25，不是 2<sup>2</sup>＋3<sup>2</sup>＝13。</li>
+      <li>(<span class="frac"><span>2</span><span>3</span></span>)<sup>2</sup>＝<span class="frac"><span>4</span><span>9</span></span>，但 <span class="frac"><span>2<sup>2</sup></span><span>3</span></span>＝<span class="frac"><span>4</span><span>3</span></span>：有沒有括號差很多。</li>
+      <li>−5<sup>8</sup> 的負號不在次方裡面，是 −(5<sup>8</sup>)，是負數；(−5)<sup>8</sup> 才是正數。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 二 ================= -->
+  <section class="sec" id="s2">
+  <h2>二、負數的乘方、大小比較與位數<span class="star">★★ 常考</span></h2>
+  <div class="key">
+    <ul>
+      <li>a＞0 時，<b>(−a)<sup>偶數</sup>＞0，(−a)<sup>奇數</sup>＜0</b>。−a<sup>n</sup> 是 −(a<sup>n</sup>)，和 (−a)<sup>n</sup> 不一樣。</li>
+      <li>0＜x＜1：次方越高越<b>小</b>（0.8<sup>4</sup>＜0.8<sup>3</sup>）；x＞1：次方越高越大。</li>
+      <li>比較 2<sup>30</sup>、3<sup>20</sup>、5<sup>10</sup> 這類：<b>把指數化成一樣</b>（2<sup>30</sup>＝8<sup>10</sup>、3<sup>20</sup>＝9<sup>10</sup>），再比底數。</li>
+      <li>判斷幾位數：<b>把 2 和 5 配成 10</b>。例如 2<sup>12</sup>×5<sup>9</sup>＝2<sup>3</sup>×10<sup>9</sup>＝8×10<sup>9</sup>，是 10 位數。</li>
+      <li>個位數字有週期：2 → 2、4、8、6；3 → 3、9、7、1；7 → 7、9、3、1；8 → 8、4、2、6（4 個一循環）。指數÷4 <b>整除（餘 0）對應第 4 個</b>。</li>
+    </ul>
+  </div>
+
+  <div class="tool" id="npTool">
+    <h3>動手做：負數（和小數、分數）的次方</h3>
+    <div class="inrow">
+      <label for="nB">底數＝</label><input class="num sm" id="nB" value="-2/3" aria-label="底數">
+    </div>
+    <div class="chips" id="nPre" role="group" aria-label="常考的底數">
+      <button class="chip" data-v="-2/3">−2/3</button><button class="chip" data-v="-0.3">−0.3</button><button class="chip" data-v="-3">−3</button><button class="chip" data-v="0.8">0.8</button><button class="chip" data-v="-1">−1</button>
+    </div>
+    <div class="msg" id="nMsg"></div>
+    <div class="tscroll"><table class="t ptab" id="nTab"></table></div>
+    <div class="out" id="nOut"></div>
+  </div>
+
+  <div class="tool" id="cpTool">
+    <h3>動手做：把指數化成一樣再比大小</h3>
+    <div class="inrow">
+      <label for="cL">輸入 2～4 個次方，用逗號分開：</label><input class="num" id="cL" style="width:14em" value="2^30, 3^20, 5^10" aria-label="要比較的次方">
+    </div>
+    <div class="chips" id="cPre" role="group" aria-label="常考的題目">
+      <button class="chip" data-v="2^30, 3^20, 5^10">2<sup>30</sup>、3<sup>20</sup>、5<sup>10</sup></button>
+      <button class="chip" data-v="2^24, 3^16, 10^8">2<sup>24</sup>、3<sup>16</sup>、10<sup>8</sup></button>
+      <button class="chip" data-v="3^40, 4^30, 5^20">3<sup>40</sup>、4<sup>30</sup>、5<sup>20</sup></button>
+    </div>
+    <div class="msg" id="cMsg"></div>
+    <div class="out" id="cOut"></div>
+  </div>
+
+  <div class="tool" id="dgTool">
+    <h3>動手做：2<sup>a</sup>×5<sup>b</sup> 是幾位數？</h3>
+    <div class="inrow">
+      <span>2 的</span><input class="num sm" id="dA" inputmode="numeric" value="12" aria-label="2 的指數"><span>次方 × 5 的</span><input class="num sm" id="dB" inputmode="numeric" value="9" aria-label="5 的指數"><span>次方</span>
+    </div>
+    <div class="msg" id="dMsg"></div>
+    <div class="out" id="dOut"></div>
+  </div>
+
+  <div class="tool" id="udTool">
+    <h3>動手做：個位數字的週期</h3>
+    <div class="inrow">
+      <label for="uB">底數</label><input class="num sm" id="uB" inputmode="numeric" value="7" aria-label="底數">
+      <label for="uE">的</label><input class="num sm" id="uE" inputmode="numeric" value="2027" aria-label="指數"><span>次方，個位數字是多少？</span>
+    </div>
+    <div class="msg" id="uMsg"></div>
+    <div class="out" id="uOut"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>常考：底數互為倒數，配對相乘</h3>
+      <p>計算 (−4)<sup>51</sup>×(<span class="frac"><span>1</span><span>4</span></span>)<sup>50</sup>。</p>
+      <details><summary>看解法</summary>
+        <p>把 (−4)<sup>51</sup> 拆成 (−4)×(−4)<sup>50</sup>：</p>
+        <p>(−4)×(−4)<sup>50</sup>×(<span class="frac"><span>1</span><span>4</span></span>)<sup>50</sup>＝(−4)×[(−4)×<span class="frac"><span>1</span><span>4</span></span>]<sup>50</sup>＝(−4)×(−1)<sup>50</sup>＝(−4)×1＝<b>−4</b>。</p>
+        <p class="note">(a×b)<sup>n</sup>＝a<sup>n</sup>×b<sup>n</sup> 反過來用：指數一樣的先合併。</p>
+      </details>
+    </div>
+    <div class="card">
+      <h3>常考：哪些等於 1？</h3>
+      <p>下列各數中，值等於 1 的有幾個？<br>2026<sup>0</sup>、−(−<span class="frac"><span>3</span><span>5</span></span>)<sup>0</sup>、(−1)<sup>5</sup>×(−1)<sup>8</sup>、(−<span class="frac"><span>3</span><span>4</span></span>)<sup>6</sup>×(−<span class="frac"><span>4</span><span>3</span></span>)<sup>6</sup></p>
+      <details><summary>看解法</summary>
+        <p>2026<sup>0</sup>＝1 ✓。−(−<span class="frac"><span>3</span><span>5</span></span>)<sup>0</sup>＝−1 ✗（負號在括號外面）。(−1)<sup>5</sup>×(−1)<sup>8</sup>＝(−1)×1＝−1 ✗。(−<span class="frac"><span>3</span><span>4</span></span>)<sup>6</sup>×(−<span class="frac"><span>4</span><span>3</span></span>)<sup>6</sup>＝[(−<span class="frac"><span>3</span><span>4</span></span>)×(−<span class="frac"><span>4</span><span>3</span></span>)]<sup>6</sup>＝1<sup>6</sup>＝1 ✓。</p>
+        <p>共 <b>2 個</b>。</p>
+      </details>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>(−<span class="frac"><span>2</span><span>3</span></span>)<sup>2</sup> 和 (−<span class="frac"><span>2</span><span>3</span></span>)<sup>4</sup> 都是正的，但 (−<span class="frac"><span>2</span><span>3</span></span>)<sup>2</sup> 比較大（<span class="frac"><span>4</span><span>9</span></span>＞<span class="frac"><span>16</span><span>81</span></span>）：絕對值小於 1，次方越高越小。</li>
+      <li>(−0.3)<sup>3</sup>＝−0.027，不是 −2.7 或 −0.27。小數的次方，小數點後的位數也要乘起來（0.3 有 1 位，三次方有 3 位）。</li>
+      <li>個位數字週期：指數÷4 整除時對應<b>第 4 個</b>，不是第 1 個。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 小測驗 ================= -->
+  <section class="sec" id="s6">
+  <h2>小測驗（<span id="qzN">17</span> 題）</h2>
+  <p class="note">每題只有一個正確答案，選了就會顯示解析（第一次選的答案才計分）。題目都是自編題，不是學校或出版社的考題。</p>
+  <div class="score"><span class="big" id="qzScore">0 / 17</span><span class="small" id="qzDone">已作答 0 題</span><button class="btn" id="qzReset">重新作答</button></div>
+  <div class="chips" id="qzFlt">
+    <button class="chip on" data-u="all">全部</button>
+    <button class="chip" data-u="1">一、指數律與乘方</button>
+    <button class="chip" data-u="2">二、負數乘方、比大小、位數</button>
+  </div>
+  <div id="qz"></div>
+  </section>
+
+  <div id="pager"></div>
+</main>
+<footer id="site-foot"></footer>
+
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const FR=window.FR,F=FR.F;
+const P=(a,n)=>a+'<sup>'+n+'</sup>';
+const blk=(t,c,x)=>'<span class="blk'+(x?' cut':'')+'" style="--c:'+(c||'#2d6f9e')+'">'+t+'</span>';
+const row=(label,inner)=>'<div class="brow"><span class="bl">'+label+'</span><span class="bs">'+inner+'</span></div>';
+const rep=(t,n,c,x)=>Array(n).fill(0).map(()=>blk(t,c,x)).join('');
+const grp=s=>'<span class="bgrp">'+s+'</span>';
+
+/* ========== 一、指數律展開 ========== */
+(function(){
+  let law='mul';
+  const CA='#2d6f9e',CB='#a8572f';
+  function run(){
+    const show={mul:'AMN',div:'AMN',pp:'AMN',prod:'ABN',quo:'ABN',zero:'A'}[law];
+    $('lBbox').style.display=show.includes('B')?'':'none';$('lMbox').style.display=show.includes('M')?'':'none';$('lNbox').style.display=show.includes('N')?'':'none';
+    const a=M.readInt($('lA'),1,20),b=M.readInt($('lB'),1,20),m=M.readInt($('lM'),0,6),n=M.readInt($('lN'),0,6);
+    if(a===null||(show.includes('B')&&b===null)||(show.includes('M')&&m===null)||(show.includes('N')&&n===null)){$('lMsg').textContent='底數請輸入 1～20，指數請輸入 0～6。';$('lOut').innerHTML='';return;}
+    $('lMsg').textContent='';let h='';
+    if(law==='mul'){
+      h=row(P(a,m)+'×'+P(a,n),grp(rep(a,m,CA))+'<span class="op">×</span>'+grp(rep(a,n,CA)))+
+        '<p>前面 '+m+' 個 '+a+'，後面 '+n+' 個 '+a+'，一共 '+m+'＋'+n+'＝<b>'+(m+n)+'</b> 個 '+a+' 相乘：</p><p class="big-ans">'+P(a,m)+'×'+P(a,n)+'＝'+P(a,m+n)+'</p>'+
+        '<p class="warnline">⚠ 不是 '+P(a,m+'×'+n)+'＝'+P(a,m*n)+'：相乘的時候指數是<b>相加</b>。</p>';
+    }else if(law==='div'){
+      if(m<n){$('lMsg').textContent='國中先學 m≥n 的情形，請讓 m 不小於 n。';$('lOut').innerHTML='';return;}
+      h=row(P(a,m)+'÷'+P(a,n),'<span class="fracblk"><span>'+Array(m).fill(0).map((_,i)=>blk(a,CA,i<n)).join('')+'</span><span>'+rep(a,n,CA,true)+'</span></span>')+
+        '<p>寫成分數，上面 '+m+' 個 '+a+'、下面 '+n+' 個 '+a+'，上下各約掉 '+n+' 個（劃掉的），剩下 '+m+'－'+n+'＝<b>'+(m-n)+'</b> 個：</p><p class="big-ans">'+P(a,m)+'÷'+P(a,n)+'＝'+P(a,m-n)+(m===n?'＝1':'')+'</p>'+
+        (m===n?'<p class="note">全部約掉剩下 1，所以 '+P(a,0)+'＝1。這就是「0 次方等於 1」的由來。</p>':'<p class="warnline">⚠ 不是 '+P(a,m+'÷'+n)+'：相除的時候指數是<b>相減</b>。</p>');
+    }else if(law==='pp'){
+      h=row('('+P(a,m)+')'+'<sup>'+n+'</sup>',Array(n).fill(0).map(()=>grp(rep(a,m,CA))).join('<span class="op">×</span>')||'<span class="small">（0 次方＝1）</span>')+
+        '<p>'+n+' 組，每組 '+m+' 個 '+a+'，一共 '+m+'×'+n+'＝<b>'+(m*n)+'</b> 個 '+a+'：</p><p class="big-ans">('+P(a,m)+')<sup>'+n+'</sup>＝'+P(a,m*n)+'</p>'+
+        '<p class="warnline">⚠ 不是 '+P(a,m+'＋'+n)+'＝'+P(a,m+n)+'：次方的次方，指數是<b>相乘</b>。</p>';
+    }else if(law==='prod'){
+      h=row('('+a+'×'+b+')<sup>'+n+'</sup>',Array(n).fill(0).map(()=>grp(blk(a,CA)+blk(b,CB))).join('<span class="op">×</span>')||'<span class="small">（0 次方＝1）</span>')+
+        row('重新排',grp(rep(a,n,CA))+'<span class="op">×</span>'+grp(rep(b,n,CB)))+
+        '<p>乘法可以交換位置，把 '+n+' 個 '+a+' 放一起、'+n+' 個 '+b+' 放一起：</p><p class="big-ans">('+a+'×'+b+')<sup>'+n+'</sup>＝'+P(a,n)+'×'+P(b,n)+'</p>'+
+        '<p class="warnline">⚠ 不是 '+P(a,n)+'×'+b+'：括號裡的<b>每一個</b>都要乘 '+n+' 次。也不能用在加法：('+a+'＋'+b+')<sup>2</sup> ≠ '+P(a,2)+'＋'+P(b,2)+'（'+((a+b)*(a+b))+' ≠ '+(a*a+b*b)+'）。</p>';
+    }else if(law==='quo'){
+      h=row('(<span class="frac"><span>'+a+'</span><span>'+b+'</span></span>)<sup>'+n+'</sup>',Array(n).fill(0).map(()=>'<span class="fracblk"><span>'+blk(a,CA)+'</span><span>'+blk(b,CB)+'</span></span>').join('<span class="op">×</span>')||'<span class="small">（0 次方＝1）</span>')+
+        '<p>分子乘分子、分母乘分母：分子有 '+n+' 個 '+a+'，分母有 '+n+' 個 '+b+'：</p><p class="big-ans">(<span class="frac"><span>'+a+'</span><span>'+b+'</span></span>)<sup>'+n+'</sup>＝<span class="frac"><span>'+P(a,n)+'</span><span>'+P(b,n)+'</span></span></p>'+
+        '<p class="warnline">⚠ 沒有括號就不一樣：<span class="frac"><span>'+P(a,n)+'</span><span>'+b+'</span></span> 只有分子乘 '+n+' 次。</p>';
+    }else{
+      const rows=[];for(let k=4;k>=0;k--)rows.push('<tr><td>'+P(a,k)+'</td><td>'+(k?Array(k).fill(a).join('×'):'')+'</td><td><b>'+Math.pow(a,k)+'</b></td><td class="small">'+(k<4?'÷'+a:'')+'</td></tr>');
+      h='<div class="tscroll"><table class="t"><tr><th>次方</th><th>展開</th><th>值</th><th></th></tr>'+rows.join('')+'</table></div>'+
+        '<p>每少一次方，就是再除以 '+a+'。'+P(a,1)+'＝'+a+'，再除以 '+a+' 就是 '+P(a,0)+'＝1。</p><p class="big-ans">'+P(a,0)+'＝1（底數不是 0）</p>'+
+        '<p class="warnline">⚠ −'+P(a,0)+'＝−1（負號在外面）；(−'+a+')<sup>0</sup>＝1。</p>';
+    }
+    $('lOut').innerHTML=h;
+  }
+  $('lLaw').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{law=c.dataset.l;$('lLaw').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));run();});
+  ['lA','lB','lM','lN'].forEach(id=>$(id).addEventListener('input',run));run();
+})();
+
+/* ========== 一、正誤判斷 ========== */
+(function(){
+  const R=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+  const fr=(n,d)=>'<span class="frac"><span>'+n+'</span><span>'+d+'</span></span>';
+  const T=[
+    ()=>{const a=R(2,9),m=R(2,6),n=R(2,6);return Math.random()<.5?[P(a,m)+'×'+P(a,n)+'＝'+P(a,m+n),1,'同底數相乘，指數相加：'+m+'＋'+n+'＝'+(m+n)+'。']:[P(a,m)+'×'+P(a,n)+'＝'+P(a,m*n),0,'同底數相乘，指數是<b>相加</b>：'+P(a,m+n)+'，不是相乘。'];},
+    ()=>{const a=R(2,9),n=R(2,4),q=R(2,3),m=n*q;return Math.random()<.5?[P(a,m)+'÷'+P(a,n)+'＝'+P(a,m-n),1,'同底數相除，指數相減：'+m+'－'+n+'＝'+(m-n)+'。']:[P(a,m)+'÷'+P(a,n)+'＝'+P(a,q),0,'同底數相除，指數是<b>相減</b>：'+P(a,m-n)+'，不是相除。'];},
+    ()=>{const a=R(2,9),m=R(2,5),n=R(2,5);return Math.random()<.5?['('+P(a,m)+')<sup>'+n+'</sup>＝'+P(a,m*n),1,'次方的次方，指數相乘：'+m+'×'+n+'＝'+(m*n)+'。']:['('+P(a,m)+')<sup>'+n+'</sup>＝'+P(a,m+n),0,'次方的次方，指數是<b>相乘</b>：'+P(a,m*n)+'。'];},
+    ()=>{const a=R(2,7),b=R(2,7),n=R(2,5);return Math.random()<.5?['('+a+'×'+b+')<sup>'+n+'</sup>＝'+P(a,n)+'×'+P(b,n),1,'積的次方：括號裡每一個都乘 '+n+' 次。']:['('+a+'×'+b+')<sup>'+n+'</sup>＝'+P(a,n)+'×'+b,0,'括號裡的 '+b+' 也要乘 '+n+' 次：'+P(a,n)+'×'+P(b,n)+'。'];},
+    ()=>{const a=R(2,5),n=R(3,8),k=[2,a][R(0,1)];const s=Array(k).fill(P(a,n)).join('＋');
+      if(k===a)return Math.random()<.5?[s+'＝'+P(a,n+1),1,a+' 個 '+P(a,n)+' 相加＝'+a+'×'+P(a,n)+'＝'+P(a,n+1)+'。']:[s+'＝'+P(a,n*a),0,'加法不能把指數相加或相乘：'+a+' 個 '+P(a,n)+' 相加＝'+a+'×'+P(a,n)+'＝'+P(a,n+1)+'。'];
+      return [s+'＝'+P(a,2*n),0,'加法不能把指數相加：'+P(a,n)+'＋'+P(a,n)+'＝2×'+P(a,n)+(a===2?'＝'+P(2,n+1):'')+'。'];},
+    ()=>{const a=R(2,6),n=2*R(1,3);return Math.random()<.5?['(−'+a+')<sup>'+n+'</sup>＝−'+P(a,n),0,'負數的偶數次方是正的：(−'+a+')<sup>'+n+'</sup>＝'+P(a,n)+'；−'+P(a,n)+' 是負的。']:['(−'+a+')<sup>'+n+'</sup>＝'+P(a,n),1,'負數的偶數次方是正的。'];},
+    ()=>{const a=R(2,6),n=2*R(1,3)+1;return Math.random()<.5?['(−'+a+')<sup>'+n+'</sup>＝−'+P(a,n),1,'負數的奇數次方是負的，所以 (−'+a+')<sup>'+n+'</sup>＝−'+P(a,n)+'。']:['(−'+a+')<sup>'+n+'</sup>＝'+P(a,n),0,'負數的奇數次方是負的：(−'+a+')<sup>'+n+'</sup>＝−'+P(a,n)+'。'];},
+    ()=>{const a=R(2,9),b=R(2,9);const t=[['(−'+fr(a,b)+')<sup>0</sup>＝1',1,'不是 0 的數，0 次方都是 1（括號裡整個是底數）。'],['−('+fr(a,b)+')<sup>0</sup>＝1',0,'負號在括號外面：−('+fr(a,b)+')<sup>0</sup>＝−1。'],[P(a*100+b,0)+'＝1',1,'不是 0 的數，0 次方都是 1。'],[P(a,0)+'＝0',0,P(a,0)+'＝1，不是 0。']];return t[R(0,3)];},
+    ()=>{const a=R(2,5),b=R(2,5);return ['('+a+'＋'+b+')<sup>2</sup>＝'+P(a,2)+'＋'+P(b,2),0,'次方不能用在加法拆開：('+a+'＋'+b+')<sup>2</sup>＝'+P(a+b,2)+'＝'+((a+b)*(a+b))+'，'+P(a,2)+'＋'+P(b,2)+'＝'+(a*a+b*b)+'。'];},
+    ()=>{const a=R(2,5),n=R(3,5);return Math.random()<.5?[P(a,n)+'＝'+a+'×'+n,0,P(a,n)+' 是 '+n+' 個 '+a+' 相乘＝'+Math.pow(a,n)+'，不是 '+a+'×'+n+'＝'+(a*n)+'。']:[P(a,n)+'＝'+Math.pow(a,n),1,n+' 個 '+a+' 相乘＝'+Math.pow(a,n)+'。'];},
+    ()=>{const a=R(2,4),n=R(2,3);return Math.random()<.5?['('+fr(a,a+1)+')<sup>'+n+'</sup>＝'+fr(P(a,n),P(a+1,n)),1,'分數的次方：分子、分母都要乘 '+n+' 次。']:['('+fr(a,a+1)+')<sup>'+n+'</sup>＝'+fr(P(a,n),a+1),0,'分母也要乘 '+n+' 次：'+fr(P(a,n),P(a+1,n))+'。'];},
+    ()=>{const a=R(2,6),m=R(2,4),n=R(2,4);return ['(−'+a+')<sup>'+m+'</sup>＋(−'+a+')<sup>'+n+'</sup>＝(−'+a+')<sup>'+(m+n)+'</sup>',0,'指數律只能用在乘除，加法不能把指數相加。'];}
+  ];
+  let cur=null,tot=0,ok=0,done=false,last=-1;
+  function next(){let k;do{k=Math.floor(Math.random()*T.length);}while(k===last);last=k;cur=T[k]();done=false;
+    $('tfQ').innerHTML=cur[0];$('tfOut').innerHTML='';document.querySelectorAll('.tfb').forEach(b=>b.classList.remove('right','wrong'));}
+  document.querySelectorAll('.tfb').forEach(b=>b.onclick=()=>{if(done)return;done=true;const r=(+b.dataset.k)===cur[1];tot++;if(r)ok++;
+    $('tfScore').textContent=ok+' / '+tot;b.classList.add(r?'right':'wrong');
+    $('tfOut').innerHTML='<p><b style="color:'+(r?'var(--moss)':'var(--rose)')+'">'+(r?'✓ 對！':'✗ 這個式子是'+(cur[1]?'正確':'錯誤')+'的。')+'</b> '+cur[2]+'</p>';});
+  $('tfNext').onclick=next;next();
+})();
+
+/* ========== 一、化成同底數 ========== */
+(function(){
+  /* 找最小的底數 p，使 n＝p 的 e 次方 */
+  function asPow(n){for(let p=2;p<=n;p++){let e=0,x=n;while(x%p===0){x/=p;e++;}if(x===1&&e>0)return [p,e];if(x!==n)return null;}return null;}
+  function run(){
+    let s=FR.normalize($('sE').value).replace(/\s+/g,'');
+    if(!s){$('sMsg').textContent='請輸入算式。';$('sOut').innerHTML='';return;}
+    let h='';let terms;
+    /* 好幾個一樣的相加 */
+    if(s.includes('+')){
+      const parts=s.split('+');
+      if(!parts.every(p=>p===parts[0])||!/^\d+\^\d+$/.test(parts[0])){$('sMsg').textContent='加法只支援「好幾個一樣的次方相加」，例如 4^5+4^5+4^5+4^5。';$('sOut').innerHTML='';return;}
+      const k=parts.length,[b,e]=parts[0].split('^').map(Number);
+      h+='<p>'+k+' 個 '+P(b,e)+' 相加＝<b>'+k+'×'+P(b,e)+'</b>（加法不能把指數相加！）</p>';
+      terms=[{op:'×',b:k,e:1},{op:'×',b,e}];
+    }else{
+      const m=s.match(/^(\d+\^\d+|\d+)([×÷](\d+\^\d+|\d+))*$/);
+      if(!m){$('sMsg').textContent='看不懂這個算式。請用 8^4 × 16^3 這種寫法。';$('sOut').innerHTML='';return;}
+      terms=[];const re=/([×÷]?)(\d+)(?:\^(\d+))?/g;let t;while((t=re.exec(s))){terms.push({op:t[1]||'×',b:+t[2],e:t[3]===undefined?1:+t[3]});}
+    }
+    const pw=terms.map(t=>({...t,pe:asPow(t.b)}));
+    if(pw.some(t=>!t.pe||t.b<2)){$('sMsg').textContent='每個底數都要能寫成同一個質數的次方（例如 4、8、16 都是 2 的次方）。';$('sOut').innerHTML='';return;}
+    const base=pw[0].pe[0];
+    if(pw.some(t=>t.pe[0]!==base)){$('sMsg').textContent='這些底數不能化成同一個底數。';$('sOut').innerHTML='';return;}
+    $('sMsg').textContent='';
+    const conv=pw.filter(t=>t.pe[1]>1);
+    if(conv.length)h+='<p>先把底數化成 '+base+' 的次方：'+[...new Set(conv.map(t=>t.b))].map(b=>b+'＝'+P(base,asPow(b)[1])).join('，')+'</p>';
+    h+='<p>代進去：'+pw.map((t,i)=>(i?' '+t.op+' ':'')+(t.pe[1]>1?'('+P(base,t.pe[1])+')'+(t.e>1?'<sup>'+t.e+'</sup>':''):P(base,t.e))).join('')+'</p>';
+    h+='<p>次方的次方，指數相乘：'+pw.map((t,i)=>(i?' '+t.op+' ':'')+P(base,t.pe[1]*t.e)).join('')+'</p>';
+    let E=0;const ex=pw.map((t,i)=>{const v=t.pe[1]*t.e;E+=(t.op==='÷'?-v:v);return (i?(t.op==='÷'?'－':'＋'):'')+v;});
+    h+='<p>同底數相乘指數相加、相除指數相減：'+P(base,ex.join(''))+'</p>';
+    h+='<p class="big-ans">＝'+P(base,E<0?'−'+(-E):E)+'</p>';
+    if(E<0)h+='<p class="small">指數是負的，國中第一冊先不討論；可以寫成 '+'<span class="frac"><span>1</span><span>'+P(base,-E)+'</span></span>。</p>';
+    $('sOut').innerHTML=h;
+  }
+  $('sPre').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{$('sE').value=c.dataset.v;$('sPre').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));run();});
+  $('sE').addEventListener('input',run);run();
+})();
+
+/* ========== 一、一步一步算 ========== */
+(function(){
+  let res=null,shown=0;
+  function compute(){try{res=FR.steps($('xE').value);$('xMsg').textContent='';return true;}catch(e){res=null;$('xMsg').textContent=e.message;$('xOut').innerHTML='';$('xAns').innerHTML='';return false;}}
+  function draw(){
+    const st=res.steps.slice(0,shown);
+    $('xOut').innerHTML=st.map((s,i)=>'<li class="'+(i===st.length-1&&shown<res.steps.length?'cur':'')+'"><div class="ex">'+(i?'＝ ':'')+s.html+'</div>'+(i?'<div class="why">'+s.note+'</div>':'')+'</li>').join('');
+    if(shown>=res.steps.length){const v=res.value;$('xAns').innerHTML='<p class="big-ans">答案：'+F.html(v)+(v.d>1&&Math.abs(v.n)>v.d?'（＝'+F.mixed(v)+'）':'')+'</p>';$('xStep').textContent='一步一步';}
+    else{$('xAns').innerHTML='';$('xStep').textContent='下一步（'+shown+' / '+res.steps.length+'）';}
+  }
+  $('xAll').onclick=()=>{if(compute()){shown=res.steps.length;draw();}};
+  $('xStep').onclick=()=>{if(!res||shown>=res.steps.length){if(!compute())return;shown=1;}else shown++;draw();};
+  $('xE').addEventListener('keydown',e=>{if(e.key==='Enter')$('xAll').click();});
+  $('xE').addEventListener('input',()=>{res=null;});
+  $('xKeys').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{const el=$('xE');
+    if(b.dataset.k==='CLR'){el.value='';el.focus();return;}
+    const s=el.selectionStart??el.value.length,e=el.selectionEnd??el.value.length;
+    el.value=el.value.slice(0,s)+b.dataset.k+el.value.slice(e);el.focus();const p=s+b.dataset.k.length;el.setSelectionRange(p,p);res=null;});
+  $('xPre').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{$('xE').value=c.dataset.v;$('xPre').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));$('xAll').click();});
+  $('xAll').click();
+})();
+
+/* ========== 二、負數的次方表 ========== */
+(function(){
+  function dec(r,k){/* 小數底數：用小數顯示 */const n=Math.abs(r.raw.n),d=r.raw.d;let num=1;for(let i=0;i<k;i++)num*=n;const places=String(d).length-1;let s=String(num).padStart(places*k+1,'0');s=s.slice(0,s.length-places*k)+(places*k?'.'+s.slice(s.length-places*k):'');s=s.replace(/^0+(?=\d)/,'');return s;}
+  function run(){
+    const r=FR.parseNum($('nB').value);
+    if(!r||r.kind==='mixed'||Math.abs(r.v.n)>50||r.v.d>50){$('nMsg').textContent='請輸入整數、分數或小數（例如 −2/3、−0.3、−3）。';$('nTab').innerHTML='';$('nOut').innerHTML='';return;}
+    $('nMsg').textContent='';
+    const v=r.v,neg=v.n<0,base=r.kind==='dec'?r.src.replace('-','−'):F.html(v),bs=(neg||v.d>1||r.kind==='dec')?'('+base+')':base;
+    let h='<tr><th>次方</th><th>值</th><th>正負</th></tr>';
+    for(let k=1;k<=6;k++){
+      const p=F.pow(v,k);const val=r.kind==='dec'?((neg&&k%2?'−':'')+dec(r,k)):F.html(p);
+      h+='<tr class="'+(neg?(k%2?'odd':'even'):'')+'"><td>'+bs+'<sup>'+k+'</sup></td><td><b>'+val+'</b></td><td>'+(p.n>0?'正':p.n<0?'<span style="color:var(--rose)">負</span>':'0')+'</td></tr>';
+    }
+    $('nTab').innerHTML=h;
+    const a=F.abs(v);let o='';
+    if(neg)o+='<p>底數是負數：<b>偶數次方是正的，奇數次方是負的</b>。</p>';
+    if(F.cmp(a,F(1))<0&&a.n>0)o+='<p>絕對值比 1 小：次方越高，絕對值越<b>小</b>（越接近 0）。所以 '+bs+'<sup>2</sup>＞'+bs+'<sup>4</sup>＞'+bs+'<sup>6</sup>'+(neg?'，而奇數次方都是負的，比偶數次方都小':'')+'。</p>';
+    else if(F.cmp(a,F(1))>0)o+='<p>絕對值比 1 大：次方越高，絕對值越<b>大</b>。</p>';
+    else o+='<p>絕對值是 1：'+(neg?'偶數次方是 1、奇數次方是 −1。':'任何次方都是 1。')+'</p>';
+    if(neg){const ab=r.kind==='dec'?r.src.replace('-',''):F.html(a);const ab2=(a.d>1||r.kind==='dec')?'('+ab+')':ab;
+      o+='<p class="warnline">⚠ 注意負號位置：'+bs+'<sup>2</sup>＝'+(r.kind==='dec'?dec(r,2):F.html(F.pow(v,2)))+'，但 −'+ab2+'<sup>2</sup>＝−('+ab2+'<sup>2</sup>)＝'+(r.kind==='dec'?'−'+dec(r,2):F.html(F.neg(F.pow(a,2))))+'。</p>';}
+    if(r.kind==='dec')o+='<p class="small">小數的次方：'+r.src.replace('-','−').replace(/^−?/,'')+' 小數點後有 '+(String(r.raw.d).length-1)+' 位，k 次方就有 '+(String(r.raw.d).length-1)+'×k 位。</p>';
+    $('nOut').innerHTML=o;
+  }
+  $('nPre').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{$('nB').value=c.dataset.v;$('nPre').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));run();});
+  $('nB').addEventListener('input',run);run();
+})();
+
+/* ========== 二、同指數比大小 ========== */
+(function(){
+  function run(){
+    const parts=FR.normalize($('cL').value).replace(/\s/g,'').split(/[,，、;；]+/).filter(Boolean);
+    if(parts.length<2||parts.length>4||!parts.every(p=>/^\d+\^\d+$/.test(p))){$('cMsg').textContent='請輸入 2～4 個像 2^30 這樣的次方，用逗號分開。';$('cOut').innerHTML='';return;}
+    const X=parts.map(p=>p.split('^').map(Number));
+    if(X.some(([b,e])=>b<2||b>99||e<1||e>200)){$('cMsg').textContent='底數請用 2～99，指數 1～200。';$('cOut').innerHTML='';return;}
+    $('cMsg').textContent='';
+    const g=X.map(x=>x[1]).reduce((a,b)=>FR.gcd(a,b));
+    const nb=X.map(([b,e])=>{let v=1n;for(let i=0;i<e/g;i++)v*=BigInt(b);return v;});
+    let h='<p>指數 '+X.map(x=>x[1]).join('、')+' 的最大公因數是 <b>'+g+'</b>，把每個都寫成「某數的 '+g+' 次方」：</p>';
+    h+='<p>'+X.map(([b,e],i)=>P(b,e)+'＝('+P(b,e/g)+')<sup>'+g+'</sup>＝'+P(nb[i].toString(),g)).join('<br>')+'</p>';
+    if(g===1)h+='<p class="note">指數的最大公因數是 1，沒辦法化成一樣的指數，要用別的方法比（例如取近似值）。</p>';
+    const order=X.map((x,i)=>i).sort((i,j)=>(nb[i]<nb[j]?-1:nb[i]>nb[j]?1:0));
+    h+='<p>指數一樣（都是 '+g+' 次方），<b>底數大的就大</b>：'+order.map(i=>nb[i].toString()).join('＜')+'</p>';
+    h+='<p class="big-ans">'+order.map(i=>P(X[i][0],X[i][1])).join(' ＜ ')+'</p>';
+    $('cOut').innerHTML=h;
+  }
+  $('cPre').querySelectorAll('.chip').forEach(c=>c.onclick=()=>{$('cL').value=c.dataset.v;$('cPre').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));run();});
+  $('cL').addEventListener('input',run);run();
+})();
+
+/* ========== 二、幾位數 ========== */
+(function(){
+  function run(){
+    const a=M.readInt($('dA'),0,200),b=M.readInt($('dB'),0,200);
+    if(a===null||b===null||a+b===0){$('dMsg').textContent='請輸入 0～200 的指數（不能兩個都是 0）。';$('dOut').innerHTML='';return;}
+    $('dMsg').textContent='';
+    const k=Math.min(a,b),ra=a-k,rb=b-k;let rest=1n;for(let i=0;i<ra;i++)rest*=2n;for(let i=0;i<rb;i++)rest*=5n;
+    const total=(rest*(10n**BigInt(k))).toString().length,rs=rest.toString();
+    let h='<p>2 和 5 各取 '+k+' 個配成 10：'+P(2,a)+'×'+P(5,b)+'＝'+(ra?P(2,ra)+'×':'')+(rb?P(5,rb)+'×':'')+'(2×5)<sup>'+k+'</sup>＝'+(ra||rb?(ra?P(2,ra):P(5,rb))+'×':'')+P(10,k)+'</p>';
+    if(ra||rb)h+='<p>'+(ra?P(2,ra):P(5,rb))+'＝'+(rs.length>30?rs.slice(0,12)+'……（'+rs.length+' 位）':rs)+'，是 '+rs.length+' 位數；乘上 '+P(10,k)+' 等於後面再補 '+k+' 個 0。</p>';
+    else h+='<p>就是 1 後面 '+k+' 個 0。</p>';
+    h+='<p class="big-ans">共 '+rs.length+'＋'+k+'＝'+total+' 位數</p>';
+    $('dOut').innerHTML=h;
+  }
+  ['dA','dB'].forEach(id=>$(id).addEventListener('input',run));run();
+})();
+
+/* ========== 二、個位數字週期 ========== */
+(function(){
+  function run(){
+    const b=M.readInt($('uB'),1,9999),e=M.readInt($('uE'),1,999999999);
+    if(b===null||e===null){$('uMsg').textContent='底數請輸入 1～9999，指數請輸入正整數。';$('uOut').innerHTML='';return;}
+    $('uMsg').textContent='';
+    const u=b%10,cyc=[];let x=u;while(!cyc.includes(x)){cyc.push(x);x=(x*u)%10;}
+    const L=cyc.length,r=e%L,idx=r===0?L:r,ans=cyc[idx-1];
+    let h='<p>個位數字只看底數的個位 <b>'+u+'</b>。'+u+' 的次方，個位數字依序是：</p>';
+    h+='<div class="cyc">'+cyc.map((c,i)=>'<span class="'+(i===idx-1?'on':'')+'"><small>第 '+(i+1)+' 個</small><b>'+c+'</b></span>').join('')+'<span class="more">⟳</span></div>';
+    if(L===1)h+='<p>個位是 '+u+' 的數，次方以後個位數字都是 '+u+'（不會變）。</p>';
+    else h+='<p>'+L+' 個一循環。指數 '+e+'÷'+L+'＝'+Math.floor(e/L)+' 餘 '+r+(r===0?'，<b>整除對應第 '+L+' 個</b>':'，對應第 '+r+' 個')+'。</p>';
+    h+='<p class="big-ans">'+P(b,e)+' 的個位數字是 '+ans+'</p>';
+    $('uOut').innerHTML=h;
+  }
+  ['uB','uE'].forEach(id=>$(id).addEventListener('input',run));run();
+})();
+
+/* ========== 小測驗 ========== */
+const fr=(n,d)=>'<span class="frac"><span>'+n+'</span><span>'+d+'</span></span>';
+const QZ=[
+ {u:1,s:'下列何者正確？',o:[P(3,4)+'×'+P(3,5)+'＝'+P(3,20),'('+P(2,3)+')<sup>4</sup>＝'+P(2,7),P(5,9)+'÷'+P(5,3)+'＝'+P(5,3),'(2×7)<sup>5</sup>＝'+P(2,5)+'×'+P(7,5)],a:3,
+  e:'(D) 積的次方，每一個都乘 5 次。(A) 應為 '+P(3,9)+'（指數相加）。(B) 應為 '+P(2,12)+'（指數相乘）。(C) 應為 '+P(5,6)+'（指數相減）。'},
+ {u:1,s:'若 '+P(8,4)+'×'+P(16,3)+'＝'+P(2,'□')+'，則 □＝？',o:['12','24','36','84'],a:1,
+  e:'8＝'+P(2,3)+'、16＝'+P(2,4)+'。'+P(8,4)+'＝'+P(2,12)+'，'+P(16,3)+'＝'+P(2,12)+'，相乘指數相加：12＋12＝24。'},
+ {u:1,s:'若 '+P(9,5)+'＋'+P(9,5)+'＋'+P(9,5)+'＝'+P(3,'□')+'，則 □＝？',o:['11','15','30','10'],a:0,
+  e:'3 個 '+P(9,5)+' 相加＝3×'+P(9,5)+'＝3×'+P(3,10)+'＝'+P(3,11)+'。加法不能把指數相加。'},
+ {u:1,s:P(2,10)+'＋'+P(2,10)+' 等於下列哪一個？',o:[P(2,20),P(4,10),P(2,11),P(4,20)],a:2,
+  e:P(2,10)+'＋'+P(2,10)+'＝2×'+P(2,10)+'＝'+P(2,11)+'。'},
+ {u:1,s:'下列各數中，值等於 1 的有幾個？<br>'+P(2026,0)+'、−'+P(7,0)+'、(−1)<sup>6</sup>、(−'+fr(2,5)+')<sup>3</sup>×(−'+fr(5,2)+')<sup>3</sup>',o:['1 個','2 個','3 個','4 個'],a:2,
+  e:P(2026,0)+'＝1 ✓；−'+P(7,0)+'＝−1 ✗（負號在外面）；(−1)<sup>6</sup>＝1 ✓；(−'+fr(2,5)+')<sup>3</sup>×(−'+fr(5,2)+')<sup>3</sup>＝[(−'+fr(2,5)+')×(−'+fr(5,2)+')]<sup>3</sup>＝1<sup>3</sup>＝1 ✓。共 3 個。'},
+ {u:1,s:'計算 (−'+fr(1,3)+')<sup>2</sup>×'+P(6,2)+'÷'+P(2,2)+'＋'+P(3,0)+'＝？',o:['2','3','0','10'],a:0,
+  e:'先算次方：'+fr(1,9)+'×36÷4＋1。再由左往右乘除：'+fr(1,9)+'×36＝4，4÷4＝1。最後 1＋1＝2。'},
+ {u:1,s:'計算 −'+P(2,4)+'＋(−2)<sup>4</sup>＋(−'+P(2,3)+')＝？',o:['−8','8','−40','24'],a:0,
+  e:'−'+P(2,4)+'＝−16（負號在外面），(−2)<sup>4</sup>＝16，−'+P(2,3)+'＝−8。−16＋16－8＝−8。'},
+ {u:1,s:'('+fr(2,3)+')<sup>2</sup> 和 '+fr(P(2,2),3)+' 的差是多少（大減小）？',o:['0',fr(8,9),fr(4,9),fr(4,3)],a:1,
+  e:'('+fr(2,3)+')<sup>2</sup>＝'+fr(4,9)+'，'+fr(P(2,2),3)+'＝'+fr(4,3)+'＝'+fr(12,9)+'。差 '+fr(12,9)+'－'+fr(4,9)+'＝'+fr(8,9)+'。有沒有括號差很多。'},
+ {u:1,s:'若 '+P(27,2)+'÷'+P(9,3)+'×'+P(3,4)+'＝'+P(3,'n')+'，n＝？',o:['4','6','2','16'],a:0,
+  e:'27＝'+P(3,3)+'、9＝'+P(3,2)+'。'+P(3,6)+'÷'+P(3,6)+'×'+P(3,4)+'＝'+P(3,'6－6＋4')+'＝'+P(3,4)+'，n＝4。'},
+ {u:2,s:'甲＝(−'+fr(3,4)+')<sup>2</sup>，乙＝(−'+fr(3,4)+')<sup>3</sup>，丙＝(−'+fr(3,4)+')<sup>4</sup>。下列何者正確？',o:['甲＞丙＞乙','丙＞甲＞乙','甲＞乙＞丙','乙＞丙＞甲'],a:0,
+  e:'乙是奇數次方，是負的，最小。甲＝'+fr(9,16)+'、丙＝'+fr(81,256)+'，絕對值小於 1 次方越高越小，所以甲＞丙。答案：甲＞丙＞乙。'},
+ {u:2,s:'(−0.2)<sup>3</sup>＝？',o:['−0.6','−0.008','0.008','−0.08'],a:1,
+  e:'0.2×0.2×0.2＝0.008（小數點後 1×3＝3 位），奇數次方是負的：−0.008。'},
+ {u:2,s:'比較 a＝'+P(2,40)+'、b＝'+P(3,30)+'、c＝'+P(5,20)+' 的大小。',o:['a＜b＜c','c＜a＜b','a＜c＜b','b＜a＜c'],a:2,
+  e:'指數的最大公因數是 10：a＝(2<sup>4</sup>)<sup>10</sup>＝'+P(16,10)+'，b＝(3<sup>3</sup>)<sup>10</sup>＝'+P(27,10)+'，c＝(5<sup>2</sup>)<sup>10</sup>＝'+P(25,10)+'。16＜25＜27，所以 a＜c＜b。'},
+ {u:2,s:P(2,15)+'×'+P(5,12)+' 是幾位數？',o:['12 位','13 位','14 位','15 位'],a:1,
+  e:P(2,15)+'×'+P(5,12)+'＝'+P(2,3)+'×(2×5)<sup>12</sup>＝8×'+P(10,12)+'：8 是 1 位數，後面再補 12 個 0，共 1＋12＝13 位。'},
+ {u:2,s:P(3,2026)+' 的個位數字是多少？',o:['1','3','7','9'],a:3,
+  e:'3 的次方個位數字：3、9、7、1，4 個一循環。2026÷4＝506 餘 2，對應第 2 個：9。'},
+ {u:2,s:P(8,100)+' 的個位數字是多少？',o:['2','4','6','8'],a:2,
+  e:'8 的次方個位數字：8、4、2、6，4 個一循環。100÷4＝25 整除，對應第 4 個：6。'},
+ {u:2,s:'計算 (−2)<sup>21</sup>×(0.5)<sup>20</sup>＝？',o:['2','−2','1','−1'],a:1,
+  e:'(−2)<sup>21</sup>＝(−2)×(−2)<sup>20</sup>，所以原式＝(−2)×[(−2)×0.5]<sup>20</sup>＝(−2)×(−1)<sup>20</sup>＝(−2)×1＝−2。'},
+ {u:2,s:'下列哪一個是負數？',o:['(−5)<sup>4</sup>','−(−5)<sup>3</sup>','−'+P(5,2),'(−1)<sup>100</sup>'],a:2,
+  e:'−'+P(5,2)+'＝−25 是負數。(A) 偶數次方是正的。(B) (−5)<sup>3</sup>＝−125，前面再一個負號變成 125。(D) (−1)<sup>100</sup>＝1。'}
+];
+(function(){
+  const box=$('qz');let cur='all';const got=new Array(QZ.length).fill(null);
+  $('qzN').textContent=QZ.length;$('qzScore').textContent='0 / '+QZ.length;
+  function build(){
+    box.innerHTML=QZ.map((q,i)=>'<div class="q" data-u="'+q.u+'" data-i="'+i+'"><div class="stem"><span class="no">第 '+(i+1)+' 題</span>'+q.s+'<span class="u">重點'+'一二'[q.u-1]+'</span></div><div class="opts">'+
+      q.o.map((t,j)=>'<button class="opt" data-j="'+j+'">('+'ABCD'[j]+') '+t+'</button>').join('')+'</div><div class="exp"></div></div>').join('');
+    box.querySelectorAll('.q').forEach(d=>{
+      const i=+d.dataset.i,q=QZ[i];
+      d.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+        const j=+b.dataset.j;
+        d.querySelectorAll('.opt').forEach(x=>x.classList.remove('right','wrong'));
+        d.querySelectorAll('.opt')[q.a].classList.add('right');if(j!==q.a)b.classList.add('wrong');
+        if(got[i]===null)got[i]=(j===q.a);
+        const ex=d.querySelector('.exp');ex.innerHTML=(j===q.a?'<b class="ok">答對了！</b> ':'<b class="no">正確答案是 ('+'ABCD'[q.a]+')。</b> ')+q.e;ex.classList.add('show');
+        tally();
+      });
+    });
+    flt();tally();
+  }
+  function tally(){const d=got.filter(x=>x!==null).length,r=got.filter(x=>x).length;$('qzScore').textContent=r+' / '+QZ.length;$('qzDone').textContent='已作答 '+d+' 題'+(d===QZ.length?'，全部完成！錯的題目回到上面的重點再看一次。':'');}
+  function flt(){box.querySelectorAll('.q').forEach(d=>d.style.display=(cur==='all'||d.dataset.u===cur)?'':'none');}
+  $('qzFlt').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{cur=b.dataset.u;$('qzFlt').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));flt();});
+  $('qzReset').onclick=()=>{got.fill(null);build();};
+  build();
+  window.__QZ=QZ;
+})();
+})();
+</script>
+</body>
+</html>
