@@ -18,6 +18,20 @@ function withEmbed(href){
   const [p,h]=href.split('#');return p+'?embed=1'+(h?'#'+h:'');
 }
 
+/* 頁尾版本資訊：和首頁（根目錄 index.html）同樣的格式；version.json 由部署流程產生，放在網站根目錄 */
+function showVersion(el){
+  if(!el)return;
+  const add=(p,tag,cls,text,attrs)=>{const e=document.createElement(tag);if(cls)e.className=cls;e.textContent=text;Object.assign(e,attrs||{});p.appendChild(e);return e;};
+  const grp=()=>add(el,'span','vgrp','');
+  fetch('../version.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(v=>{
+    el.textContent='';let g=grp();add(g,'span','','版本');
+    if(v.tag)add(g,'span','vtag',v.tag);
+    if(v.tag&&v.ahead>0)add(g,'span','','（之後 '+v.ahead+' 個更新）');
+    if(v.commit)add(v.tag?grp():g,'span','vcommit',v.commit,{title:'commit ID（前六碼）'});
+    if(v.deployed){g=grp();add(g,'span','','部署時間');add(g,'span','',v.deployed);}
+  }).catch(()=>{el.textContent='本機預覽（沒有版本資訊）';});
+}
+
 document.addEventListener('DOMContentLoaded',()=>{
   const head=document.getElementById('site-head');
   if(head){
@@ -28,7 +42,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   const foot=document.getElementById('site-foot');
   if(foot){
     foot.className='site-foot';
-    foot.innerHTML='<div class="wrap">自編複習教材，依 108 課綱國中數學第一冊（康軒版）第 2 章範圍編寫，非出版社或學校官方資料。</div>';
+    foot.innerHTML='<div class="wrap"><span>伴讀書僮・自編複習教材</span><span class="ver" title="版本以 git tag 為主；括號內為 commit ID 前六碼">版本資訊讀取中…</span><span class="foot-note" style="flex-basis:100%;font-size:12px">自編複習教材，依 108 課綱國中數學第一冊（康軒版）第 2 章範圍編寫，非出版社或學校官方資料。</span></div>';
+    showVersion(foot.querySelector('.ver'));
   }
   const pg=document.getElementById('pager');
   if(pg){
