@@ -1,0 +1,85 @@
+/* 生物互動實驗室：生物頁專用樣式（全站共用樣式在 ../assets/style.css） */
+:root{--bio:#6a4c93;--bio-bg:#efe9f6}
+.kicker.b{color:var(--bio);background:var(--bio-bg)}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.toc a{font-size:14px;text-decoration:none;padding:4px 12px;border-radius:999px;border:1px solid var(--line-2);background:var(--card);color:var(--ink)}
+.toc a:hover{border-color:var(--bio);color:var(--bio)}
+.sec{scroll-margin-top:12px}
+.sec h2 .star{font-size:13px;font-weight:700;color:var(--sun);background:var(--sun-bg);border-radius:999px;padding:2px 9px;margin-left:8px;vertical-align:3px;white-space:nowrap}
+.sec h2 .unitno{font-size:13px;font-weight:700;color:var(--bio);background:var(--bio-bg);border-radius:999px;padding:2px 9px;margin-left:6px;vertical-align:3px;white-space:nowrap}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin:12px 0 14px}
+.tool h3{margin:0 0 8px;font-size:16.5px;color:var(--bio)}
+.inrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 10px}
+.inrow label{font-size:14px;color:var(--ink-2)}
+.num{font:inherit;font-size:16px;width:6em;padding:4px 8px;border:1px solid var(--line-2);border-radius:8px;background:#fff;color:var(--ink)}
+.num:focus{outline:2px solid var(--bio);outline-offset:1px}
+select.num{width:auto}
+.msg{font-size:14px;color:var(--rose);min-height:1em}
+.hot{color:var(--rose);font-weight:700;background:var(--rose-bg);padding:1px 6px;border-radius:5px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.out{font-size:15.5px}
+.big-ans{font-size:19px;font-weight:700;margin:6px 0}
+.exam{font-size:13.5px;color:var(--ink-2);border-top:1px dashed var(--line-2);margin-top:10px;padding-top:6px}
+.exam b{color:var(--bio)}
+.mnemo{display:inline-block;font-weight:700;color:var(--bio);background:var(--bio-bg);border-radius:8px;padding:2px 10px;margin:2px 0}
+
+/* 可點的示意圖 */
+.figwrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:760px){.figwrap{grid-template-columns:minmax(0,1fr)}}
+.figwrap svg{width:100%;height:auto;display:block;background:#fbfaf6;border:1px solid var(--line);border-radius:var(--r)}
+svg [data-part]{cursor:pointer;transition:filter .15s,opacity .15s}
+svg [data-part]:hover{filter:brightness(1.08) drop-shadow(0 0 2px rgba(106,76,147,.6))}
+svg [data-part]:focus{outline:none;filter:drop-shadow(0 0 3px var(--bio))}
+svg [data-part].sel{filter:drop-shadow(0 0 4px #e0a100) brightness(1.1);animation:blink 1s ease-in-out 3}
+svg [data-part].good{filter:drop-shadow(0 0 4px #3f7a4f)}
+svg [data-part].bad{filter:drop-shadow(0 0 4px #a33a4a);opacity:.75}
+@keyframes blink{50%{opacity:.45}}
+svg.dim [data-part]{opacity:.2}
+svg.dim [data-part].hl{opacity:1;filter:drop-shadow(0 0 2px #1f7a32) drop-shadow(0 0 3px #1f7a32)}
+@media (prefers-reduced-motion:reduce){svg [data-part].sel{animation:none}}
+svg.testing .lbl,svg.testing .lbls{display:none}
+svg .lbl{font-size:15px;fill:var(--ink);pointer-events:none}
+svg .lbl.s{font-size:11.5px}
+.figout{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;min-height:110px;font-size:15px}
+.figout .pname{font-size:17px;font-weight:700;margin-bottom:4px}
+
+/* 排順序 */
+.opool{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.ocard{font:inherit;font-size:14.5px;padding:7px 12px;border-radius:9px;border:1px solid var(--line-2);background:#fbfaf6;cursor:pointer;text-align:left;line-height:1.45}
+.ocard:hover{border-color:var(--bio)}
+.oans{display:grid;gap:6px;margin:6px 0}
+.ostep{display:flex;gap:10px;align-items:flex-start;padding:7px 12px;border-radius:9px;border:1px solid var(--line);background:#fff;font-size:14.5px}
+.ostep>b{flex:0 0 1.6em;height:1.6em;border-radius:50%;background:var(--bio-bg);color:var(--bio);display:grid;place-items:center;font-size:13px}
+.ostep.good{border-color:var(--moss);background:var(--moss-bg)}
+.ostep.bad{border-color:var(--rose);background:var(--rose-bg)}
+
+/* 試管、梅花盤 */
+.tubes{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;margin:8px 0}
+.tubes figure{margin:0;text-align:center;font-size:13px;color:var(--ink-2);width:100px}
+.tubes figure b{display:block;color:var(--ink);font-size:14px}
+.tubes svg{display:block;margin:0 auto 4px}
+.tcfg{display:grid;gap:4px;font-size:13px;margin-top:4px}
+.tcfg select{font:inherit;font-size:13px;padding:2px 4px;border:1px solid var(--line-2);border-radius:6px;background:#fff;width:100%}
+.swatch{display:inline-block;width:14px;height:14px;border-radius:50%;vertical-align:-2px;border:1px solid rgba(0,0,0,.2);margin-right:4px}
+
+/* 小測驗 */
+.score{position:sticky;top:0;z-index:5;background:var(--paper);padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.score .big{font-size:20px;font-weight:700}
+.q .no{font-size:13px;color:var(--ink-3);margin-right:6px}
+.q .u{font-size:12px;font-weight:700;color:var(--bio);background:var(--bio-bg);border-radius:999px;padding:1px 8px;margin-left:6px;white-space:nowrap}
+.unit .no{color:var(--bio)}
+.unit:hover{border-color:var(--bio)}
+.out p,.out li{overflow-wrap:anywhere}
+.unit.soon{background:transparent;border-style:dashed;color:var(--ink-3);cursor:default}
+.unit.soon:hover{transform:none;border-color:var(--line)}
+.unit.soon .no,.unit.soon .ds{color:var(--ink-3)}
+ol.steps li{margin:3px 0}
+
+/* 2-4 養分的消化旅程 */
+.road{display:flex;align-items:stretch;gap:6px;min-width:620px;margin:6px 0 10px}
+.rstop{flex:1 1 0;border:1px solid var(--line-2);border-radius:10px;background:#f3f1ea;padding:8px 10px;font-size:13.5px;color:var(--ink-3);display:flex;flex-direction:column;gap:2px}
+.rstop b{font-size:15.5px;color:var(--ink-2)}
+.rstop .jc{font-weight:700}
+.rstop.act{background:var(--moss-bg);border-color:var(--moss);color:var(--ink)}
+.rstop.act b{color:var(--ink)}
+.rstop.start,.rstop.end{background:var(--bio-bg);border-color:var(--bio);color:var(--ink);flex:0 0 96px}
+.rarrow{align-self:center;color:var(--ink-3);font-size:18px}

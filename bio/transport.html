@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3-1 植物的運輸構造｜生物互動實驗室</title>
+<meta name="description" content="國七上生物（南一版第一冊）3-1 植物的運輸構造互動複習：雙子葉與單子葉莖的橫切面、形成層與年輪、木質部和韌皮部的運輸方向、環狀剝皮、蒸散作用與芹菜紅色溶液實驗，附小測驗。">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/style.css?v=3">
+<link rel="stylesheet" href="lib/bio.css">
+<style>
+.hk{cursor:pointer;border-radius:6px;padding:2px 6px;margin-left:-6px;width:fit-content}
+#stSvg.dim [data-part="m_vb"].sub{opacity:1}
+#stSvg.dim .sub ellipse{opacity:.2}
+#stSvg.dim .sub ellipse.hl2{opacity:1;filter:drop-shadow(0 0 2px #1f7a32) drop-shadow(0 0 3px #1f7a32)}
+.hk.on{background:#fff1c7;box-shadow:inset 0 0 0 2px #e0a100;color:#8a4b00;font-weight:700}
+</style>
+<script src="lib/common.js"></script>
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap">
+  <span class="kicker b">3-1・南一版第一冊</span>
+  <h1>植物的運輸構造</h1>
+  <p class="lead">根吸收的水要往上送到葉，葉做好的養分要送到全身。負責運送的是<b>維管束</b>：<b>木質部</b>運水和礦物質，<b>韌皮部</b>運養分。這一節的三個重點，在考卷上幾乎都有：莖的構造與年輪、運輸方向與環狀剝皮、蒸散作用與紅色溶液實驗。</p>
+  <nav class="toc" aria-label="本頁重點">
+    <a href="#s1">一、莖的構造與年輪</a>
+    <a href="#s2">二、運輸方向與環狀剝皮</a>
+    <a href="#s3">三、蒸散作用與紅色溶液實驗</a>
+    <a href="#s4">小測驗</a>
+  </nav>
+
+  <!-- ================= 一 ================= -->
+  <section class="sec" id="s1">
+  <h2>一、莖的構造：維管束、形成層、年輪<span class="star">★★★ 必考</span></h2>
+  <div class="key">
+    <ul>
+      <li>莖裡的維管束由<b>木質部</b>和<b>韌皮部</b>組成。</li>
+      <li><b>雙子葉植物</b>（例如向日葵、榕樹）：維管束<b>環狀排列</b>，木質部在內、韌皮部在外，中間有<b>形成層</b>。一年生的草本（例如向日葵、鬼針草）形成層<b>不發達</b>；多年生的木本（例如榕樹、相思樹）形成層<b>發達</b>，莖會逐年加粗。</li>
+      <li><b>單子葉植物</b>（例如玉米、水稻、小麥、竹子、甘蔗）：維管束<b>散生</b>，<b>沒有形成層</b>。（葉脈：雙子葉多為網狀脈，單子葉多為平行脈）</li>
+      <li>維管束的位置：<b>莖內</b>木質部在內、韌皮部在外；<b>葉內</b>木質部在上、韌皮部在下（葉脈就是葉片裡的維管束）。散生的維管束也一樣，每一束的<b>木質部都朝向莖的中心</b>。</li>
+      <li>形成層不斷分裂：<b>向內</b>產生新的木質部，<b>向外</b>產生新的韌皮部，使莖<b>逐年加粗</b>。</li>
+      <li>木本植物：形成層以外是<b>樹皮</b>（含韌皮部），以內是<b>木材</b>（多年累積的木質部）。</li>
+      <li>中空的神木：樹心空掉的是<b>老化的木質部</b>；外圈還有<b>形成層</b>，能繼續產生新的木質部和韌皮部運輸物質，所以仍然枝葉茂盛。</li>
+      <li><b>年輪在木質部</b>：春夏溫暖多雨，形成層分裂快，細胞大、顏色淺；秋冬長得慢，細胞小、顏色深。一圈淺加一圈深約是一年。四季溫差明顯的地方，年輪才清楚。</li>
+    </ul>
+  </div>
+
+  <div class="tool">
+    <h3>莖的橫切面：雙子葉和單子葉</h3>
+    <div class="bar" id="stMode">
+      <button class="btn on" data-m="learn">學習：點了看說明</button>
+      <button class="btn warm" data-m="test">測驗：找出指定部位</button>
+    </div>
+    <div class="figwrap">
+      <svg id="stSvg" viewBox="0 0 560 300" role="img" aria-label="雙子葉與單子葉植物莖的橫切面示意圖"></svg>
+      <div class="figout" id="stOut"></div>
+    </div>
+  </div>
+
+  <div class="tool">
+    <h3>樹幹一年一年變粗：年輪</h3>
+    <div class="figwrap">
+      <svg id="rgSvg" viewBox="0 0 320 320" role="img" aria-label="木本植物莖的橫切面與年輪示意圖"></svg>
+      <div>
+        <div class="range"><span>樹齡</span><input type="range" id="rgX" min="1" max="7" step="1" value="3"><b id="rgVal"></b></div>
+        <div class="out" id="rgOut"></div>
+        <div class="legend"><span><i style="background:#8d6e4a"></i>樹皮（含韌皮部）</span><span><i style="background:#3f9a5a"></i>形成層</span><span><i style="background:#f1dcae"></i>春夏的木質部（淺）</span><span><i style="background:#c49a5c"></i>秋冬的木質部（深）</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>形成層讓莖<b>加粗</b>，不是長高。玉米沒有形成層，不會像榕樹一樣越長越粗。</li>
+      <li>樹皮包含<b>韌皮部</b>，但不含木質部；年輪的深色和淺色部分<b>都是木質部</b>。</li>
+      <li>越靠近形成層越新：新的木質部在老木質部的<b>外面</b>，新的韌皮部在老韌皮部的<b>裡面</b>。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 二 ================= -->
+  <section class="sec" id="s2">
+  <h2>二、植物體內的運輸與環狀剝皮<span class="star">★★★ 必考</span></h2>
+  <div class="key">
+    <ul>
+      <li><b>木質部</b>：運送<b>水和礦物質</b>，方向<b>由下往上</b>（根 → 莖 → 葉），<b>只能往上</b>。</li>
+      <li><b>韌皮部</b>：運送葉片製造的<b>養分</b>，方向<b>可上可下</b>：往下送到根、莖儲存，或往上送到芽、花、果實。早春還沒長葉子時，根和莖儲存的養分會往上運到新芽。</li>
+      <li><b>根毛</b>：根的表皮細胞向外突出，增加吸收水和礦物質的表面積（和小腸絨毛的道理一樣）。根毛不能進行光合作用。</li>
+      <li>菟絲子是寄生植物，把吸器插入寄主的<b>韌皮部</b>吸取養分。</li>
+    </ul>
+    <p class="mnemo">木質部：水往上走　韌皮部：養分上下都能走</p>
+  </div>
+
+  <div class="tool">
+    <h3>運輸方向：看看水和養分往哪裡走</h3>
+    <div class="bar" id="trBar">
+      <button class="btn cool on" data-k="water">水和礦物質（木質部）</button>
+      <button class="btn warm" data-k="food">養分（韌皮部）</button>
+      <button class="btn warm" data-k="spring">早春：還沒長葉</button>
+    </div>
+    <div class="figwrap">
+      <svg id="trSvg" viewBox="0 0 360 360" role="img" aria-label="植物體內水分與養分運輸方向示意圖"></svg>
+      <div class="out" id="trOut"></div>
+    </div>
+  </div>
+
+  <div class="tool">
+    <h3>環狀剝皮：樹皮被剝一圈以後</h3>
+    <div class="figwrap">
+      <svg id="rbSvg" viewBox="0 0 360 340" role="img" aria-label="環狀剝皮後樹木變化示意圖"></svg>
+      <div>
+        <div class="oans" id="rbSteps"></div>
+        <div class="inrow"><button class="btn cool" id="rbNext">下一階段</button><button class="btn" id="rbReset">重來</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>礦物質是<b>跟著水走木質部</b>，不是走韌皮部。</li>
+      <li>「水分可以由葉往下運到根」是錯的，水只往上運。</li>
+      <li>環狀剝皮後，<b>最先</b>受影響的是「養分不能往下運」；全株枯死是<b>最後</b>的結果。剛剝皮時葉子不會馬上枯萎，因為木質部還在。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 三 ================= -->
+  <section class="sec" id="s3">
+  <h2>三、蒸散作用與紅色溶液實驗（實驗 3-1）<span class="star">★★★ 必考</span></h2>
+  <div class="key">
+    <ul>
+      <li><b>蒸散作用</b>：植物體內的水變成水蒸氣，主要從<b>氣孔</b>散失。根吸收的水，<b>大部分</b>都經由蒸散作用散失。</li>
+      <li>氣孔的開閉：<b>白天</b>保衛細胞吸水膨脹，氣孔<b>打開</b>；<b>晚上</b>保衛細胞失水萎縮，氣孔<b>關閉</b>。</li>
+      <li>功能：產生拉力，是水在木質部往上運的<b>主要動力</b>；幫助根吸收水和礦物質；散熱，降低葉片溫度。</li>
+      <li>蒸散變快：葉片多、氣孔多、光照強、溫度高、通風、空氣乾燥。移植植物時<b>剪掉一部分葉片</b>，可以減少蒸散，避免缺水枯死。</li>
+      <li>用塑膠袋套住植物，袋子內壁的水珠主要來自蒸散作用。</li>
+      <li>實驗 3-1：芹菜插進紅色溶液，一段時間後橫切，<b>木質部被染紅</b>，證明水由木質部往上運。葉柄要<b>在水中切</b>，避免空氣進入、阻塞運水的管道。</li>
+      <li>延伸：白玫瑰插在紅色水裡，花瓣會變紅；把莖縱切成兩半，分別插進紅色和藍色的水，花瓣會一半紅、一半藍。表示<b>花瓣也有維管束</b>，而且和莖的維管束相通。</li>
+      <li>葉片塗凡士林會堵住氣孔；塗在氣孔<b>比較多</b>的那一面（通常是下表皮），水分散失減少得最多。</li>
+    </ul>
+  </div>
+
+  <div class="tool">
+    <h3>量筒實驗：哪一支的水減少最多？</h3>
+    <p class="note">四支量筒裝等量的水，水面都加一層油（防止水直接蒸發），插入大小相近的枝條。</p>
+    <div class="inrow"><label>環境 <select class="num" id="tpEnv"><option value="1">室內、無風</option><option value="2.2">陽光下、有風</option></select></label></div>
+    <div class="range"><span>經過時間</span><input type="range" id="tpX" min="0" max="24" step="2" value="0"><b id="tpVal"></b></div>
+    <div class="tubes" id="tpCyl"></div>
+    <div class="out" id="tpOut"></div>
+  </div>
+
+  <div class="tool">
+    <h3>芹菜紅色溶液：橫切看哪裡變紅</h3>
+    <div class="figwrap">
+      <svg id="ceSvg" viewBox="0 0 360 230" role="img" aria-label="芹菜葉柄橫切面示意圖"></svg>
+      <div>
+        <div class="inrow"><button class="btn cool" id="ceGo">放進紅色溶液 2 小時後，橫切</button><button class="btn" id="ceReset">重來</button></div>
+        <div class="out" id="ceOut">芹菜葉柄的橫切面。按按鈕看看哪些地方會變紅。</div>
+      </div>
+    </div>
+  </div>
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>蒸散作用的主要功能是<b>讓水往上運</b>，不是「排出二氧化碳」或「得到氧氣」。</li>
+      <li>紅色溶液染紅的是<b>木質部</b>（運水），不是韌皮部。</li>
+      <li>量筒裡的水減少，主要原因是<b>蒸散作用</b>，不是光合作用用掉的。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 小測驗 ================= -->
+  <section class="sec" id="s4">
+  <h2>小測驗</h2>
+  <p class="note">每題只有一個正確答案，選了就會顯示解析（第一次選的答案才計分）。題目都是自編題，不是學校或出版社的考題。</p>
+  <div class="score"><span class="big" id="qzScore">0 / 0</span><span class="small" id="qzDone">已作答 0 題</span><button class="btn" id="qzReset">重新作答</button></div>
+  <div class="chips" id="qzFlt">
+    <button class="chip on" data-u="all">全部</button>
+    <button class="chip" data-u="1">一、莖與年輪</button>
+    <button class="chip" data-u="2">二、運輸方向</button>
+    <button class="chip" data-u="3">三、蒸散作用</button>
+  </div>
+  <div id="qz"></div>
+  </section>
+  <div id="pager"></div>
+</main>
+<footer id="site-foot"></footer>
+<script>
+(function(){
+'use strict';
+const $=B.$;
+const XY='#f2c6a8',XYS='#b5643a',PH='#cdd9f2',PHS='#4a6fb0',CA='#3f9a5a',EPI='#c4a07a';/* 表皮用淺棕色，和形成層的綠色分開 */
+
+/* ---------- 一、莖的橫切面 ---------- */
+(function(){
+  let g='<rect width="560" height="300" fill="#fbfaf6"/>';
+  /* 雙子葉 */
+  const cx=140,cy=150;
+  g+='<circle data-part="d_epi" cx="'+cx+'" cy="'+cy+'" r="110" fill="#e3efd8" stroke="'+EPI+'" stroke-width="5"/>';
+  g+='<circle cx="'+cx+'" cy="'+cy+'" r="104" fill="#eef5e6"/>';
+  let ph='',xy='',ca='';
+  for(let i=0;i<10;i++){
+    const a=i/10*Math.PI*2,r1=48,r2=70,r3=88,da=0.22;
+    const P=(r,t)=>(cx+r*Math.cos(t)).toFixed(1)+' '+(cy+r*Math.sin(t)).toFixed(1);
+    xy+='<path d="M'+P(r1,a-da)+' A'+r1+' '+r1+' 0 0 1 '+P(r1,a+da)+' L'+P(r2-2,a+da)+' A'+(r2-2)+' '+(r2-2)+' 0 0 0 '+P(r2-2,a-da)+'Z" fill="'+XY+'" stroke="'+XYS+'"/>';
+    ph+='<path d="M'+P(r2+2,a-da)+' A'+(r2+2)+' '+(r2+2)+' 0 0 1 '+P(r2+2,a+da)+' L'+P(r3,a+da*0.8)+' A'+r3+' '+r3+' 0 0 0 '+P(r3,a-da*0.8)+'Z" fill="'+PH+'" stroke="'+PHS+'"/>';
+  }
+  g+='<g data-part="d_xy">'+xy+'</g><g data-part="d_ph">'+ph+'</g>';
+  g+='<g data-part="d_ca"><circle cx="'+cx+'" cy="'+cy+'" r="70" fill="none" stroke="'+CA+'" stroke-width="5"/><circle cx="'+cx+'" cy="'+cy+'" r="70" fill="none" stroke="transparent" stroke-width="12" pointer-events="stroke"/></g>';
+  g+='<text x="'+cx+'" y="290" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2a24">雙子葉植物的莖</text>';
+  /* 單子葉 */
+  const mx=420,my=150;
+  g+='<circle data-part="m_epi" cx="'+mx+'" cy="'+my+'" r="110" fill="#e3efd8" stroke="'+EPI+'" stroke-width="5"/><circle cx="'+mx+'" cy="'+my+'" r="104" fill="#eef5e6"/>';
+  let mb='';const pts=[[0,0],[-40,-30],[35,-45],[50,20],[-20,45],[-60,15],[15,80],[-75,-55],[70,-70],[85,40],[-50,75],[-85,-10],[30,-85],[-15,-75],[60,72],[-80,50]];
+  /* 散生的維管束：每一束的木質部朝向莖的中心、韌皮部朝外（旋轉角度讓韌皮部指向外側） */
+  pts.forEach(([dx,dy])=>{const x=mx+dx,y=my+dy,rot=(dx||dy)?Math.atan2(dx,-dy)*180/Math.PI:0;mb+='<g transform="rotate('+rot.toFixed(1)+' '+x+' '+y+')"><ellipse class="mxy" cx="'+x+'" cy="'+(y+3)+'" rx="9" ry="7" fill="'+XY+'" stroke="'+XYS+'"/><ellipse class="mph" cx="'+x+'" cy="'+(y-5)+'" rx="7" ry="4.5" fill="'+PH+'" stroke="'+PHS+'"/></g>';});
+  g+='<g data-part="m_vb">'+mb+'</g>';
+  g+='<text x="'+mx+'" y="290" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2a24">單子葉植物的莖</text>';
+  /* 標籤（簡短） */
+  g+='<g><text class="lbl s" x="'+(cx+48)+'" y="'+(cy-104)+'">表皮</text><text class="lbl s" x="'+(cx-14)+'" y="'+(cy-3)+'">（中央：髓）</text></g>';
+  $('stSvg').innerHTML=g;
+})();
+const ST={
+  d_epi:{n:'表皮（雙子葉莖）',d:'最外層，保護莖的內部。'},
+  d_ph:{n:'韌皮部（雙子葉莖）',d:'在形成層<b>外側</b>，運送<b>養分</b>，方向可上可下。木本植物的韌皮部在<b>樹皮</b>裡。'},
+  d_ca:{n:'形成層',d:'夾在木質部和韌皮部之間的一圈細胞，會<b>分裂</b>：向內產生新木質部，向外產生新韌皮部，讓莖<b>逐年加粗</b>。單子葉植物沒有形成層。'},
+  d_xy:{n:'木質部（雙子葉莖）',d:'在形成層<b>內側</b>，運送<b>水和礦物質</b>，只往上。木材和年輪都是木質部。'},
+  m_epi:{n:'表皮（單子葉莖）',d:'最外層，保護莖的內部。'},
+  m_vb:{n:'維管束（單子葉莖，散生）',d:'單子葉植物的維管束<b>散生</b>在莖裡，每束都有木質部和韌皮部，但<b>沒有形成層</b>，所以莖不會逐年加粗（玉米、竹子、甘蔗）。'}
+};
+/* 圖例名稱：滑過（手機點一下）時，在兩張莖圖上標出對應部位；單子葉莖的維管束裡另外標出木質部或韌皮部（單子葉沒有形成層） */
+const SUB={d_xy:'mxy',d_ph:'mph'};
+function stHk(k){const v=$('stSvg'),mvb=v.querySelector('[data-part="m_vb"]');
+  v.querySelectorAll('.hl2').forEach(e=>e.classList.remove('hl2'));mvb.classList.remove('sub');
+  if(k){B.mark('stSvg',[k]);if(SUB[k]){mvb.classList.add('sub');v.querySelectorAll('.'+SUB[k]).forEach(e=>e.classList.add('hl2'));}}
+  else{v.classList.remove('dim');v.querySelectorAll('.hl').forEach(e=>e.classList.remove('hl'));}
+  $('stOut').querySelectorAll('.hk').forEach(e=>e.classList.toggle('on',e.dataset.hk===k));}
+$('stOut').addEventListener('pointerover',ev=>{const t=ev.target.closest('.hk');if(t&&ev.pointerType==='mouse')stHk(t.dataset.hk);});
+$('stOut').addEventListener('pointerout',ev=>{const t=ev.target.closest('.hk');if(t&&ev.pointerType==='mouse'&&!t.contains(ev.relatedTarget))stHk(null);});
+$('stOut').addEventListener('click',ev=>{const t=ev.target.closest('.hk');if(t&&ev.pointerType!=='mouse')stHk(t.classList.contains('on')?null:t.dataset.hk);});
+B.figure({svg:'stSvg',out:'stOut',parts:ST,modeBar:'stMode',hint:'點圖上的部位，看名稱和功能。<div style="margin-top:8px;font-weight:700">顏色（由外而內）：<span style="font-weight:400;font-size:.85em;color:var(--ink-3);margin-left:6px">滑鼠移到名稱上，圖上會標出位置</span></div><div style="display:grid;gap:4px;margin-top:4px"><div class="hk" data-hk="d_ph"><span class="swatch" style="background:#cdd9f2"></span>韌皮部（外）</div><div class="hk" data-hk="d_ca"><span class="swatch" style="background:#3f9a5a"></span>形成層（中間）<span style="font-size:.85em;color:var(--ink-3);margin-left:6px">只有雙子葉莖有</span></div><div class="hk" data-hk="d_xy"><span class="swatch" style="background:#f2c6a8"></span>木質部（內）</div></div>'});
+
+/* 年輪 */
+function rgDraw(){
+  const n=+$('rgX').value,c=160,maxR=140;
+  const pith=10,ringW=(maxR-pith-22)/7, bark=12;
+  const xyR=pith+ringW*n;
+  let g='<rect width="320" height="320" fill="#fbfaf6"/>';
+  g+='<circle cx="'+c+'" cy="'+c+'" r="'+(xyR+bark+3)+'" fill="#8d6e4a"/>';
+  g+='<circle cx="'+c+'" cy="'+c+'" r="'+(xyR+3)+'" fill="#b49072"/>';
+  g+='<circle cx="'+c+'" cy="'+c+'" r="'+(xyR+1.5)+'" fill="none" stroke="#3f9a5a" stroke-width="3"/>';
+  for(let i=n;i>=1;i--){const r=pith+ringW*i;g+='<circle cx="'+c+'" cy="'+c+'" r="'+r+'" fill="#c49a5c"/><circle cx="'+c+'" cy="'+c+'" r="'+(r-ringW*0.28)+'" fill="#f1dcae"/>';}
+  g+='<circle cx="'+c+'" cy="'+c+'" r="'+pith+'" fill="#e8d6b0"/>';
+  g+='<text x="'+c+'" y="'+(c-xyR-bark-8)+'" text-anchor="middle" font-size="12" fill="#4d5a52">樹皮（含韌皮部）</text>';
+  $('rgSvg').innerHTML=g;
+  $('rgVal').textContent=n+' 年';
+  $('rgOut').innerHTML='數一數：一圈淺色加一圈深色是一年，共 <b>'+n+' 圈</b>年輪 → 大約 <b>'+n+' 歲</b>。<br>最<b>外圈</b>（靠近綠色形成層）的木質部是<b>最新</b>的；中心附近的最老。樹皮不含年輪。';
+}
+$('rgX').addEventListener('input',rgDraw);rgDraw();
+
+/* ---------- 二、運輸方向 ---------- */
+function plant(extra,leaves){
+  let g='<defs><marker id="mb" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#2d6f9e"/></marker><marker id="mo" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#c0622a"/></marker></defs>';
+  g+='<rect width="360" height="360" fill="#fbfaf6"/><rect y="250" width="360" height="110" fill="#d9c3a0"/>';
+  g+='<path d="M180 250 V70" stroke="#6b8e4e" stroke-width="16"/><path d="M180 252 C170 290 140 310 120 330 M180 252 C190 290 220 305 245 330 M180 252 V335" stroke="#a7865a" stroke-width="6" fill="none"/>';
+  for(let i=0;i<9;i++)g+='<line x1="'+(118+i*16)+'" y1="'+(320+(i%3)*6)+'" x2="'+(112+i*16)+'" y2="'+(332+(i%3)*6)+'" stroke="#a7865a" stroke-width="1.5"/>';
+  if(leaves){g+='<ellipse cx="135" cy="120" rx="44" ry="17" fill="#4f9a5e" transform="rotate(-20 135 120)"/><ellipse cx="228" cy="100" rx="44" ry="17" fill="#4f9a5e" transform="rotate(20 228 100)"/><ellipse cx="140" cy="185" rx="38" ry="15" fill="#4f9a5e" transform="rotate(-15 140 185)"/>';}
+  else{g+='<circle cx="180" cy="66" r="9" fill="#b5d98f"/><circle cx="172" cy="120" r="7" fill="#b5d98f"/><circle cx="190" cy="160" r="7" fill="#b5d98f"/>';}
+  g+='<circle cx="232" cy="175" r="14" fill="#e0573a"/><path d="M225 162 L218 152" stroke="#6b8e4e" stroke-width="3"/>';
+  return g+extra;
+}
+const TR={
+  water:{lv:1,a:'<path d="M168 320 V90" stroke="#2d6f9e" stroke-width="5" marker-end="url(#mb)"/><path d="M168 150 L120 125" stroke="#2d6f9e" stroke-width="3" marker-end="url(#mb)"/><path d="M168 110 L215 98" stroke="#2d6f9e" stroke-width="3" marker-end="url(#mb)"/><text x="20" y="300" font-size="14" fill="#2d6f9e" font-weight="700">根吸收水和礦物質</text>',
+    t:'<b>木質部</b>：根吸收的<b>水和礦物質</b>，由下往上運到莖、葉。方向<b>只能往上</b>。到了葉，大部分的水經由蒸散作用從氣孔散失，一部分用來進行光合作用。'},
+  food:{lv:1,a:'<path d="M192 110 V300" stroke="#c0622a" stroke-width="5" marker-end="url(#mo)"/><path d="M150 125 L188 135" stroke="#c0622a" stroke-width="3" marker-end="url(#mo)"/><path d="M196 172 L222 172" stroke="#c0622a" stroke-width="3" marker-end="url(#mo)"/><text x="215" y="215" font-size="13" fill="#c0622a" font-weight="700">送到果實</text><text x="200" y="290" font-size="13" fill="#c0622a" font-weight="700">往下送到根儲存</text>',
+    t:'<b>韌皮部</b>：葉進行光合作用做出的<b>養分</b>，可以<b>往下</b>送到根、莖儲存，也可以<b>往上或往旁邊</b>送到正在長的芽、花、果實。方向<b>可上可下</b>。'},
+  spring:{lv:0,a:'<path d="M192 315 V80" stroke="#c0622a" stroke-width="5" marker-end="url(#mo)"/><text x="200" y="300" font-size="13" fill="#c0622a" font-weight="700">根、莖儲存的養分</text><text x="200" y="76" font-size="13" fill="#c0622a" font-weight="700">送到新芽</text>',
+    t:'早春還沒長葉子，不能進行光合作用。根和莖<b>儲存的養分</b>經由<b>韌皮部往上</b>運到新芽和花，讓它們長出來。這就是「韌皮部可以往上運」的例子。'}
+};
+function trShow(k){$('trSvg').innerHTML=plant(TR[k].a,TR[k].lv);$('trOut').innerHTML=TR[k].t;}
+$('trBar').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{$('trBar').querySelectorAll('.btn').forEach(x=>x.classList.toggle('on',x===b));trShow(b.dataset.k);});
+trShow('water');
+
+/* 環狀剝皮 */
+const RB=[
+  {t:'把樹幹的樹皮剝掉一整圈',w:'樹皮裡的<b>韌皮部被切斷</b>；木質部還在，水照樣往上運，葉子暫時不會枯萎。'},
+  {t:'切口<b>上方</b>膨大',w:'葉製造的養分往下運到切口就過不去，<b>堆積在切口上方</b>，那裡變得膨大。'},
+  {t:'根得不到養分，慢慢死亡',w:'根細胞沒有養分可以進行呼吸作用，慢慢死亡。'},
+  {t:'根不能吸水，全株枯死',w:'根死了就不能吸收水分，最後<b>整株枯死</b>。'}
+];
+let rbI=0;
+function rbDraw(){
+  const s=rbI;let g='<rect width="360" height="340" fill="#fbfaf6"/><rect y="270" width="360" height="70" fill="#d9c3a0"/>';
+  const leaf=s>=4?'#b39b5a':'#4f9a5e',root=s>=3?'#8b7a6a':'#a7865a';
+  g+='<rect x="166" y="90" width="28" height="182" fill="#8d6e4a"/>';
+  if(s>=1){g+='<rect x="164" y="190" width="32" height="14" fill="#f1dcae"/><line x1="164" y1="190" x2="196" y2="190" stroke="#5a4630"/><line x1="164" y1="204" x2="196" y2="204" stroke="#5a4630"/>';}
+  if(s>=2)g+='<path d="M162 190 C150 182 150 170 166 166 L194 166 C210 170 210 182 198 190Z" fill="#8d6e4a"/>';
+  g+='<path d="M180 272 C170 300 140 315 120 330 M180 272 C190 300 220 312 245 330 M180 272 V335" stroke="'+root+'" stroke-width="6" fill="none"'+(s>=3?' stroke-dasharray="6 4"':'')+'/>';
+  [[120,70,-20],[240,70,20],[180,40,0],[130,120,-10],[230,120,10]].forEach(([x,y,r])=>g+='<ellipse cx="'+x+'" cy="'+y+'" rx="46" ry="22" fill="'+leaf+'" transform="rotate('+r+' '+x+' '+y+')"/>');
+  if(s>=1&&s<4)g+='<path d="M200 110 V182" stroke="#c0622a" stroke-width="4" marker-end="url(#rbm)"/><text x="206" y="150" font-size="12" fill="#c0622a">養分往下</text>';
+  if(s>=1)g+='<text x="210" y="202" font-size="13" fill="#a33a4a" font-weight="700">剝皮處</text>';
+  if(s>=2)g+='<text x="80" y="178" font-size="13" fill="#4d5a52">上方膨大 →</text>';
+  if(s>=3)g+='<text x="250" y="320" font-size="13" fill="#a33a4a">根慢慢死亡</text>';
+  g='<defs><marker id="rbm" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="#c0622a"/></marker></defs>'+g;
+  $('rbSvg').innerHTML=g;
+  $('rbSteps').innerHTML=RB.map((r,i)=>'<div class="ostep'+(i<s?' good':'')+'"><b>'+(i+1)+'</b><span>'+r.t+(i<s?'<br><span class="small">'+r.w+'</span>':'')+'</span></div>').join('');
+  $('rbNext').disabled=s>=RB.length;
+}
+$('rbNext').onclick=()=>{if(rbI<RB.length){rbI++;rbDraw();}};
+$('rbReset').onclick=()=>{rbI=0;rbDraw();};
+rbDraw();
+
+/* ---------- 三、量筒實驗 ---------- */
+const TP=[
+  {n:'甲',d:'有葉',r:1.0},
+  {n:'乙',d:'葉全部剪掉',r:0.08},
+  {n:'丙',d:'下表皮塗凡士林',r:0.35},
+  {n:'丁',d:'上表皮塗凡士林',r:0.85}
+];
+function cyl(level,leaf,lab,sub){
+  const top=20,bot=150,h=bot-top,y=bot-h*level;
+  let s='<figure style="width:110px"><svg width="70" height="162" viewBox="0 0 70 162" aria-hidden="true">';
+  if(leaf==='有葉'||leaf.includes('凡士林')){s+='<path d="M35 '+(y-2)+' V8" stroke="#6b8e4e" stroke-width="3"/><ellipse cx="22" cy="18" rx="14" ry="6" fill="'+(leaf.includes('凡士林')?'#9fbf8a':'#4f9a5e')+'" transform="rotate(-25 22 18)"/><ellipse cx="48" cy="26" rx="14" ry="6" fill="'+(leaf.includes('凡士林')?'#9fbf8a':'#4f9a5e')+'" transform="rotate(25 48 26)"/><ellipse cx="25" cy="40" rx="12" ry="5" fill="'+(leaf.includes('凡士林')?'#9fbf8a':'#4f9a5e')+'" transform="rotate(-20 25 40)"/>';}
+  else s+='<path d="M35 '+(y-2)+' V22" stroke="#6b8e4e" stroke-width="3"/>';
+  s+='<rect x="20" y="'+top+'" width="30" height="'+h+'" fill="none" stroke="#8d8877" stroke-width="2"/><rect x="21" y="'+y+'" width="28" height="'+(bot-y)+'" fill="#bcd9ee"/><rect x="21" y="'+(y-3)+'" width="28" height="3" fill="#e8c95a"/><rect x="12" y="'+bot+'" width="46" height="6" fill="#8d8877"/>';
+  for(let i=0;i<=5;i++)s+='<line x1="50" y1="'+(top+i*h/5)+'" x2="56" y2="'+(top+i*h/5)+'" stroke="#8d8877"/>';
+  s+='</svg><b>'+lab+'</b><span class="small">'+sub+'</span></figure>';return s;
+}
+function tpDraw(){
+  const t=+$('tpX').value,env=+$('tpEnv').value;
+  $('tpVal').textContent=t+' 小時';
+  const loss=TP.map(x=>Math.min(0.72,x.r*env*t*0.02));
+  $('tpCyl').innerHTML=TP.map((x,i)=>cyl(0.9-loss[i],x.d,x.n,x.d+(t?'<br>減少約 '+Math.round(loss[i]/0.9*100*10)/10+'%':''))).join('');
+  if(!t){$('tpOut').innerHTML='拖動「經過時間」，看看哪一支的水減少最多。';return;}
+  const order=TP.map((x,i)=>i).sort((a,b)=>loss[b]-loss[a]).map(i=>TP[i].n).join(' ＞ ');
+  $('tpOut').innerHTML='水減少：<b>'+order+'</b>。<br>甲的葉子最多、氣孔沒被堵住，蒸散最多。丙把氣孔<b>比較多的下表皮</b>堵住，比丁（堵上表皮）減少得更少。乙沒有葉子，幾乎不蒸散。'+(env>1?'<br>陽光下、有風時，每一支都蒸散得更快。':'');
+}
+$('tpX').addEventListener('input',tpDraw);$('tpEnv').addEventListener('change',tpDraw);tpDraw();
+
+/* 芹菜 */
+function ceDraw(red){
+  let g='<rect width="360" height="230" fill="#fbfaf6"/>';
+  g+='<path d="M60 160 C40 110 70 50 130 40 C170 34 190 34 230 40 C290 50 320 110 300 160 C280 190 220 200 180 200 C140 200 80 190 60 160Z" fill="#cfe8b8" stroke="#5f8f55" stroke-width="3"/>';
+  const vb=[[85,140],[110,95],[150,70],[180,62],[210,70],[250,95],[275,140],[230,165],[180,175],[130,165]];
+  vb.forEach(([x,y])=>{g+='<ellipse cx="'+x+'" cy="'+(y+5)+'" rx="11" ry="8" fill="'+(red?'#d23b3b':'#eef5e6')+'" stroke="'+(red?'#8f1f1f':'#8aa67a')+'"/><ellipse cx="'+x+'" cy="'+(y-6)+'" rx="8" ry="5" fill="#eef5e6" stroke="#8aa67a"/>';});
+  g+='<text x="180" y="222" text-anchor="middle" font-size="12" fill="#4d5a52">芹菜葉柄橫切面（示意）：每個小圓是一束維管束</text>';
+  $('ceSvg').innerHTML=g;
+}
+$('ceGo').onclick=()=>{ceDraw(1);$('ceOut').innerHTML='維管束中靠<b>內側</b>的部分被染紅了，那是<b>木質部</b>。外側的韌皮部沒有變紅。<br>結論：<b>水由木質部往上運送</b>。有葉子的芹菜蒸散多，紅色溶液減少得比較多，也比較快染紅。';};
+$('ceReset').onclick=()=>{ceDraw(0);$('ceOut').innerHTML='芹菜葉柄的橫切面。按按鈕看看哪些地方會變紅。';};
+ceDraw(0);
+
+/* ---------- 小測驗 ---------- */
+const QZ=[
+ {u:1,s:'榕樹的莖會越長越粗，玉米的莖卻不會。主要原因是什麼？',o:['玉米沒有木質部','玉米沒有形成層','玉米的韌皮部在內側','玉米不能進行光合作用'],a:1,
+  e:'形成層分裂讓莖逐年加粗。玉米是單子葉植物，維管束散生，沒有形成層。'},
+ {u:1,s:'木本植物莖的構造由外到內，何者正確？',o:['老韌皮部 → 新韌皮部 → 形成層 → 新木質部 → 老木質部','新韌皮部 → 老韌皮部 → 形成層 → 老木質部 → 新木質部','木質部 → 形成層 → 韌皮部','老木質部 → 新木質部 → 形成層 → 新韌皮部 → 老韌皮部'],a:0,
+  e:'越靠近形成層越新：形成層向外產生新韌皮部（把老的往外推），向內產生新木質部。'},
+ {u:1,s:'關於年輪的敘述，何者正確？',o:['年輪在樹皮中','淺色部分是韌皮部，深色部分是木質部','年輪的深色、淺色部分都是木質部','熱帶地區四季溫差小，年輪最明顯'],a:2,
+  e:'年輪在木材（木質部）裡，深淺都是木質部。四季溫差明顯的地方年輪才清楚。'},
+ {u:1,s:'下列哪一種植物的莖，維管束是散生的？',o:['向日葵','榕樹','甘蔗','玫瑰'],a:2,
+  e:'甘蔗是單子葉植物，維管束散生。向日葵、榕樹、玫瑰是雙子葉植物，維管束環狀排列。'},
+ {u:1,s:'樹皮包含下列哪一種構造？',o:['木質部','韌皮部','年輪','髓'],a:1,
+  e:'形成層以外的部分是樹皮，含韌皮部；形成層以內是木材（木質部）。'},
+ {u:2,s:'植物體內的水和礦物質，由哪一種構造運送？方向如何？',o:['韌皮部，可上可下','木質部，由下往上','木質部，可上可下','韌皮部，由上往下'],a:1,
+  e:'木質部運水和礦物質，只能由下往上。'},
+ {u:2,s:'早春還沒長葉的桃樹開了花，花所需的養分從哪裡來？',o:['花自己行光合作用','根、莖儲存的養分經韌皮部往上運','根從土壤吸收的葡萄糖','經木質部從根運來的水'],a:1,
+  e:'根和莖儲存的養分可以經韌皮部往上運到花和新芽。根不會從土壤吸收葡萄糖。'},
+ {u:2,s:'松鼠把一棵樹的樹皮啃掉一整圈。下列變化發生的先後順序何者正確？甲：根細胞死亡　乙：葉製造的養分不能運到根　丙：全株枯死',o:['甲 → 乙 → 丙','乙 → 甲 → 丙','丙 → 甲 → 乙','乙 → 丙 → 甲'],a:1,
+  e:'韌皮部被切斷 → 養分運不到根（乙）→ 根得不到養分死亡（甲）→ 根不能吸水，全株枯死（丙）。'},
+ {u:2,s:'環狀剝皮後，切口哪裡會膨大？為什麼？',o:['切口下方，水堆積','切口上方，養分堆積','切口下方，養分堆積','切口上方，水堆積'],a:1,
+  e:'葉製造的養分經韌皮部往下運，到切口過不去，堆積在切口上方，所以上方膨大。'},
+ {u:2,s:'根毛的主要功能是什麼？',o:['進行光合作用','增加吸收水和礦物質的表面積','運送養分','儲存澱粉'],a:1,
+  e:'根毛是根的表皮細胞向外突出，增加吸收的表面積，和小腸絨毛道理一樣。根毛沒有葉綠體。'},
+ {u:2,s:'菟絲子把吸器插入寄主植物，主要是從寄主的哪個構造吸取養分？',o:['木質部','韌皮部','形成層','表皮'],a:1,
+  e:'養分在韌皮部運送，菟絲子從寄主的韌皮部吸取養分。'},
+ {u:3,s:'蒸散作用對植物最主要的功能是什麼？',o:['排出二氧化碳','得到氧氣','產生拉力，幫助水往上運','製造養分'],a:2,
+  e:'蒸散作用產生的拉力，是水在木質部往上運的主要動力；也能幫助散熱。'},
+ {u:3,s:'把芹菜插在紅色溶液中一段時間後橫切，被染紅的是哪個構造？',o:['韌皮部','木質部','表皮','形成層'],a:1,
+  e:'紅色溶液隨著水由木質部往上運，所以木質部被染紅。'},
+ {u:3,s:'移植樹木時常會剪掉一部分葉子，目的是什麼？',o:['減少光合作用','減少蒸散作用，避免缺水','增加呼吸作用','讓根長得更快'],a:1,
+  e:'剛移植時根受損、吸水能力差，剪葉可以減少蒸散，避免植物缺水枯死。'},
+ {u:3,s:'甲、乙兩片相同的葉子，甲在下表皮塗凡士林，乙在上表皮塗凡士林，放在同樣的環境中。哪一片散失的水比較少？',o:['甲','乙','一樣多','都不會散失水'],a:0,
+  e:'陸生植物的氣孔大多在下表皮。甲把下表皮堵住，堵掉的氣孔多，水分散失最少。'},
+ {u:3,s:'量筒插入有葉的枝條，水面加一層油。一天後水減少了，主要原因是？',o:['水被光合作用用掉了','水從水面直接蒸發','水經由蒸散作用從葉子散失','水被莖儲存起來'],a:2,
+  e:'水面的油防止水直接蒸發，減少的水主要經由蒸散作用從葉的氣孔散失。光合作用用掉的水很少。'}
+];
+B.quiz({box:'qz',score:'qzScore',done:'qzDone',reset:'qzReset',filter:'qzFlt',data:QZ,names:{1:'重點一',2:'重點二',3:'重點三'}});
+window.__QZ=QZ;
+})();
+</script>
+</body>
+</html>
