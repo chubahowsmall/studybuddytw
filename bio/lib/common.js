@@ -102,8 +102,8 @@ B.quiz=function(cfg){
 B.figure=function(cfg){
   const svg=B.$(cfg.svg),out=B.$(cfg.out),parts=cfg.parts;let mode='learn',target=null,ok=0,tot=0,order=[];
   const els=k=>svg.querySelectorAll('[data-part="'+k+'"]');
-  function clear(){svg.querySelectorAll('[data-part]').forEach(e=>e.classList.remove('sel','good','bad','hl'));svg.classList.remove('dim');(cfg.markBtns||[]).forEach(id=>{const b=B.$(id);if(b)b.classList.remove('on');});}
-  function show(k){clear();els(k).forEach(e=>e.classList.add('sel'));const p=parts[k];out.innerHTML='<div class="pname">'+p.n+'</div><div>'+p.d+'</div>';}
+  function clear(){svg.querySelectorAll('[data-part],[data-lbl]').forEach(e=>e.classList.remove('sel','good','bad','hl'));svg.classList.remove('dim','chl-on');(cfg.markBtns||[]).forEach(id=>{const b=B.$(id);if(b)b.classList.remove('on');});}
+  function show(k){clear();svg.classList.add('dim');els(k).forEach(e=>e.classList.add('sel'));svg.querySelectorAll('[data-lbl="'+k+'"]').forEach(e=>e.classList.add('sel'));const p=parts[k];out.innerHTML='<div class="pname">'+p.n+'</div><div>'+p.d+'</div>';}
   function nextQ(){
     if(!order.length)order=B.shuffle(Object.keys(parts).filter(k=>!parts[k].skip));
     target=order.pop();clear();
@@ -115,8 +115,8 @@ B.figure=function(cfg){
     if(!target)return;
     tot++;
     /* 答完先停在解說，按「下一題」才換題（不自動消失） */
-    if(k===target){ok++;clear();els(k).forEach(e=>e.classList.add('good'));out.innerHTML='<div class="pname" style="color:var(--moss)">答對了！這是'+parts[k].n+'</div><div>'+parts[k].d+'</div>';}
-    else{clear();els(k).forEach(e=>e.classList.add('bad'));els(target).forEach(e=>e.classList.add('sel'));out.innerHTML='<div class="pname" style="color:var(--rose)">不對，你點的是'+parts[k].n+'。</div><div>閃爍的地方才是<b>'+parts[target].n+'</b>：'+parts[target].d+'</div>';}
+    if(k===target){ok++;clear();svg.classList.add('dim');els(k).forEach(e=>e.classList.add('good'));svg.querySelectorAll('[data-lbl="'+k+'"]').forEach(e=>e.classList.add('good'));out.innerHTML='<div class="pname" style="color:var(--moss)">答對了！這是'+parts[k].n+'</div><div>'+parts[k].d+'</div>';}
+    else{clear();svg.classList.add('dim');els(k).forEach(e=>e.classList.add('bad'));els(target).forEach(e=>e.classList.add('sel'));svg.querySelectorAll('[data-lbl="'+k+'"]').forEach(e=>e.classList.add('bad'));svg.querySelectorAll('[data-lbl="'+target+'"]').forEach(e=>e.classList.add('sel'));out.innerHTML='<div class="pname" style="color:var(--rose)">不對，你點的是'+parts[k].n+'。</div><div>閃爍的地方才是<b>'+parts[target].n+'</b>：'+parts[target].d+'</div>';}
     target=null;
     out.innerHTML+='<div class="small">答對 '+ok+' / '+tot+'</div><div class="bar" style="margin-top:8px"><button type="button" class="btn on fig-next">下一題 →</button></div>';
     const nb=out.querySelector('.fig-next');nb.onclick=()=>{if(mode==='test')nextQ();};nb.focus({preventScroll:true});

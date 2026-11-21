@@ -8,15 +8,19 @@
 <link rel="icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="../assets/style.css?v=3">
-<link rel="stylesheet" href="lib/bio.css">
-<script src="lib/common.js"></script>
+<link rel="stylesheet" href="lib/bio.css?v=5">
+<script src="lib/common.js?v=5"></script>
 <style>
 /* 葉片橫切面：標出有葉綠體的細胞時，加強這三個名稱，其他名稱變淡 */
 #lfSvg .lblbg{display:none;fill:#dcefd6;stroke:#3f7a4f;stroke-width:1.5}
-#lfSvg.dim .lblbg{display:inline}
-#lfSvg.dim .lbls text.lbl,#lfSvg.dim .lbls line{opacity:.35}
-#lfSvg.dim .lbls text.lbl.chl{opacity:1;fill:#1f6b30;font-weight:700}
-#lfSvg.dim .lbls line.chl{opacity:1;stroke:#1f6b30;stroke-width:2}
+#lfSvg.chl-on .lblbg{display:inline}
+#lfSvg.chl-on .lbls text.lbl,#lfSvg.chl-on .lbls line{opacity:.35}
+#lfSvg.chl-on .lbls text.lbl.chl{opacity:1;fill:#1f6b30;font-weight:700}
+#lfSvg.chl-on .lbls line.chl{opacity:1;stroke:#1f6b30;stroke-width:2}
+/* 點了看說明：點選單一部位時，對應的標籤與連線也加強，其餘標籤變淡 */
+#lfSvg.dim:not(.chl-on) .lbls text.lbl,#lfSvg.dim:not(.chl-on) .lbls line{opacity:.35}
+#lfSvg.dim:not(.chl-on) .lbls text.lbl.sel{opacity:1;fill:#a8572f;font-weight:700}
+#lfSvg.dim:not(.chl-on) .lbls line.sel{opacity:1;stroke:#a8572f;stroke-width:2}
 </style>
 </head>
 <body>
@@ -82,12 +86,13 @@
     <b>易錯陷阱</b>
     <ul>
       <li>葡萄糖是光合作用<b>製造</b>的，不是根從土壤吸收的。根吸收的是<b>水和礦物質</b>。</li>
+      <li>水蘊草實驗加小蘇打：水中的二氧化碳用完時氣泡會變少，實驗中常在水中加入少量的<b>碳酸氫鈉（小蘇打）</b>，用來提供光合作用所需的<b>二氧化碳</b>。</li>
       <li>植物<b>白天晚上都進行呼吸作用</b>。「清晨空氣新鮮，是因為植物整晚放出氧氣」是錯的：晚上只有呼吸作用，植物放出的是二氧化碳。</li>
       <li>「葉綠體會產生能量」是錯的：葉綠體把光能轉換成化學能存在葡萄糖裡；把能量<b>釋放</b>出來的是呼吸作用。</li>
       <li>讀「溫度和光合作用速率」的圖：比較同一個溫度下兩種植物的數值，不要只看線的形狀。</li>
     </ul>
   </div>
-  <p class="small">補充：有些考卷會考光合作用分成「光反應」（需要光、分解水放出氧）和「碳反應」（把二氧化碳合成葡萄糖），這是課本以外的補充，以老師上課的說法為準。</p>
+  <p class="small">補充：① 有些考卷會考光合作用分成「光反應」（需要光、分解水放出氧）和「碳反應」（把二氧化碳合成葡萄糖），這是課本以外的補充，以老師上課的說法為準。② 在較完整的化學反應中，光合作用的產物也包含<b>水</b>（二氧化碳＋水 ──→ 葡萄糖＋氧氣＋水）；國中段考通常簡化為「葡萄糖與氧氣」，但若考題選項出現產物有水，也是正確的。</p>
   </section>
 
   <!-- ================= 二 ================= -->
@@ -133,7 +138,7 @@
   <div class="key">
     <ul>
       <li>目的：證明光合作用<b>需要光</b>，並且會<b>產生澱粉</b>（葡萄糖會轉成澱粉暫存在葉中）。</li>
-      <li>做法：用鋁箔紙（或黑紙）遮住葉片的一部分，照光幾天。遮光要夠久，讓遮住處原本的澱粉被用掉。（有些課本先把整盆植物放在暗處一天，目的一樣：先用掉葉中原有的澱粉。）</li>
+      <li>做法：用鋁箔紙（或黑紙）遮住葉片的一部分，照光幾天。（<b>暗室處理</b>：實驗前先把盆栽放在黑暗處 1～2 天，目的是<b>消耗葉片原本儲存的澱粉</b>，避免干擾實驗結果，這是段考很常考的設計細節。）</li>
       <li>檢驗步驟：① 熱水煮幾分鐘（破壞細胞、葉片變軟）→ ② <b>酒精隔水加熱</b>（溶出葉綠素；酒精易燃，<b>不能直接用火加熱</b>）→ ③ 熱水漂洗（洗掉酒精、使葉片變軟）→ ④ <b>滴碘液</b>。</li>
       <li>結果：酒精變<b>綠色</b>，葉片變<b>黃白色</b>。滴碘液後，照光部分<b>藍黑色</b>（有澱粉），遮光部分<b>黃褐色</b>（碘液原本的顏色）。</li>
       <li>為什麼要先去掉葉綠素：葉片是綠色的，會看不清楚碘液的顏色變化。</li>
@@ -284,7 +289,7 @@ if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)wpTimer=setInt
   pts.forEach(([x,y],i)=>{sp+='<ellipse cx="'+x+'" cy="'+y+'" rx="'+(16+(i%3)*2)+'" ry="'+(12+(i%2)*3)+'" fill="#d3eac6" stroke="#5f8f55"/><circle cx="'+(x-5)+'" cy="'+(y-2)+'" r="2.8" fill="#2f7d3c"/><circle cx="'+(x+6)+'" cy="'+(y+3)+'" r="2.8" fill="#2f7d3c"/>';});
   g+='<g data-part="spongy">'+sp+'</g>';
   /* 葉脈：木質部（上）、韌皮部（下） */
-  g+='<ellipse cx="240" cy="200" rx="62" ry="50" fill="#f1ead8" stroke="#a89a73" stroke-width="2"/>';
+  g+='<ellipse class="vein-bg" cx="240" cy="200" rx="62" ry="50" fill="#f1ead8" stroke="#a89a73" stroke-width="2"/>';
   /* 木質部（上）、韌皮部（下）：兩個一樣大的半圓，以葉脈中心 (240,200) 上下對稱 */
   let xy='<path d="M186 197 A54 42 0 0 1 294 197 Z" fill="#f6d9c4" stroke="#b5643a"/>';for(let i=0;i<7;i++)xy+='<circle cx="'+(240+(i-3)*13)+'" cy="'+(i%2?176:186)+'" r="5.5" fill="#fff" stroke="#b5643a" stroke-width="1.6"/>';
   g+='<g data-part="xylem">'+xy+'</g>';
@@ -297,8 +302,8 @@ if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)wpTimer=setInt
   g+='<g data-part="guard"><path d="M306 274 q10 13 0 26 q10 0 12 -13 q-2 -13 -12 -13Z" fill="#a8d69a" stroke="#3f7a4f" stroke-width="1.5"/><path d="M334 274 q-10 13 0 26 q-10 0 -12 -13 q2 -13 12 -13Z" fill="#a8d69a" stroke="#3f7a4f" stroke-width="1.5"/><circle cx="313" cy="287" r="2.2" fill="#2f7d3c"/><circle cx="327" cy="287" r="2.2" fill="#2f7d3c"/></g>';
   g+='<rect data-part="stoma" x="318" y="272" width="4" height="34" fill="#ffffff" stroke="#e0a100" stroke-dasharray="2 2"/>';
   /* 標籤 */
-  const lab=(x,y,t,x2,y2,c)=>'<line'+(c?' class="chl"':'')+' x1="'+x2+'" y1="'+y2+'" x2="'+(x-4)+'" y2="'+(y-4)+'" stroke="#7a857e" stroke-width="1"/><text class="lbl'+(c?' chl':'')+'" x="'+x+'" y="'+y+'">'+t+'</text>';
-  g+='<g class="lbls">'+lab(440,22,'角質層',412,24)+lab(440,46,'上表皮',412,42)+lab(440,96,'葉肉（柵狀組織）',414,96,1)+lab(440,170,'木質部',290,180)+lab(440,232,'韌皮部',282,220)+lab(440,205,'葉肉（海綿組織）',404,210,1)+lab(440,290,'下表皮',412,288)+lab(440,330,'保衛細胞',336,296,1)+lab(440,350,'氣孔',322,306)+'</g>';
+  const lab=(x,y,t,x2,y2,c,p)=>'<line'+(c?' class="chl"':'')+(p?' data-lbl="'+p+'"':'')+' x1="'+x2+'" y1="'+y2+'" x2="'+(x-4)+'" y2="'+(y-4)+'" stroke="#7a857e" stroke-width="1"/><text class="lbl'+(c?' chl':'')+'"'+(p?' data-lbl="'+p+'"':'')+' x="'+x+'" y="'+y+'">'+t+'</text>';
+  g+='<g class="lbls">'+lab(440,22,'角質層',412,24,0,'cuticle')+lab(440,46,'上表皮',412,42,0,'upper')+lab(440,96,'葉肉（柵狀組織）',414,96,1,'palisade')+lab(440,170,'木質部',290,180,0,'xylem')+lab(440,232,'韌皮部',282,220,0,'phloem')+lab(440,205,'葉肉（海綿組織）',404,210,1,'spongy')+lab(440,290,'下表皮',412,288,0,'lower')+lab(440,330,'保衛細胞',336,296,1,'guard')+lab(440,350,'氣孔',322,306,0,'stoma')+'</g>';
   g+='<text x="20" y="345" font-size="12" fill="#7a857e">示意圖，比例不代表實際大小</text>';
   $('lfSvg').innerHTML=g;
 })();
@@ -319,7 +324,7 @@ $('lfChl').onclick=()=>{
   lf.setMode('learn');/* 在測驗模式按下時，先切回學習模式（也會清掉原本的標示） */
   if(!on)return;
   B.mark('lfSvg',['palisade','spongy','guard']);$('lfChl').classList.add('on');
-  const svg=$('lfSvg');
+  const svg=$('lfSvg');svg.classList.add('chl-on');
   if(!svg.querySelector('.lblbg'))svg.querySelectorAll('text.lbl.chl').forEach(t=>{const bb=t.getBBox(),r=document.createElementNS('http://www.w3.org/2000/svg','rect');
     r.setAttribute('class','lblbg');r.setAttribute('x',bb.x-5);r.setAttribute('y',bb.y-3);r.setAttribute('width',bb.width+10);r.setAttribute('height',bb.height+6);r.setAttribute('rx',7);t.parentNode.insertBefore(r,t);});
   $('lfOut').innerHTML='<div class="pname">有葉綠體、能進行光合作用的細胞</div><div>沒有變淡的是<b>柵狀組織、海綿組織（都是葉肉）</b>和<b>保衛細胞</b>。上表皮、下表皮的一般細胞和葉脈都沒有葉綠體。<br><span class="small">再按一次按鈕，或點圖上的部位，就會恢復。</span></div>';
@@ -380,6 +385,8 @@ const QZ=[
   e:'中午兩種作用都在進行，但光合作用比呼吸作用快很多，所以整體看起來吸收二氧化碳、放出氧氣。'},
  {u:1,s:'把水蘊草放在檯燈前，燈越靠近，冒出的氣泡越多。下列敘述何者正確？',o:['氣泡是二氧化碳','氣泡能讓快熄滅的線香重新燃燒','燈越近，呼吸作用越快','這個實驗證明光合作用需要水'],a:1,
   e:'氣泡是光合作用產生的氧氣，能讓快熄滅的線香復燃。燈越近，光越強，光合作用越快。'},
+ {u:1,s:'在水蘊草照光實驗中，若想讓水蘊草產生更多氣泡，通常可以在水中加入少量的哪一種物質？',o:['食鹽（氯化鈉）','小蘇打（碳酸氫鈉）','酒精','碘液'],a:1,
+  e:'碳酸氫鈉（小蘇打）溶於水會釋出二氧化碳，能為水蘊草提供光合作用所需的原料。'},
  {u:1,s:'「清晨在樹林裡空氣特別新鮮，因為植物整晚都在放出氧氣。」這句話錯在哪裡？',o:['植物晚上不進行任何作用','植物晚上只進行呼吸作用，放出的是二氧化碳','植物晚上的光合作用比白天快','植物只在清晨放出氧氣'],a:1,
   e:'晚上沒有光，不能進行光合作用，只進行呼吸作用：吸收氧氣、放出二氧化碳。'},
  {u:2,s:'葉片中，哪些細胞含有葉綠體、能進行光合作用？',o:['上表皮細胞和下表皮細胞','葉肉細胞和保衛細胞','葉脈的細胞','角質層'],a:1,
