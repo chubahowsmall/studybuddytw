@@ -100,34 +100,74 @@ B.quiz=function(cfg){
 /* 點選圖上的部位：svg 內有 [data-part] 的元素；parts={key:{n:名稱,d:說明 HTML}}
    模式：learn（點了看說明）／test（題目給名稱，點出位置） */
 B.figure=function(cfg){
-  const svg=B.$(cfg.svg),out=B.$(cfg.out),parts=cfg.parts;let mode='learn',target=null,ok=0,tot=0,order=[];
+  const svg=B.$(cfg.svg),out=B.$(cfg.out),parts=cfg.parts;let mode='learn',target=null,ok=0,tot=0,order=[],round=1,roundTotal=0,wrong=[];
   const els=k=>svg.querySelectorAll('[data-part="'+k+'"]');
-  function clear(){svg.querySelectorAll('[data-part],[data-lbl]').forEach(e=>e.classList.remove('sel','good','bad','hl'));svg.classList.remove('dim','chl-on');(cfg.markBtns||[]).forEach(id=>{const b=B.$(id);if(b)b.classList.remove('on');});}
-  function show(k){clear();svg.classList.add('dim');els(k).forEach(e=>e.classList.add('sel'));svg.querySelectorAll('[data-lbl="'+k+'"]').forEach(e=>e.classList.add('sel'));const p=parts[k];out.innerHTML='<div class="pname">'+p.n+'</div><div>'+p.d+'</div>';}
-  function nextQ(){
-    if(!order.length)order=B.shuffle(Object.keys(parts).filter(k=>!parts[k].skip));
-    target=order.pop();clear();
-    out.innerHTML='<div class="pname">請在圖上點出：<span class="hot">'+parts[target].n+'</span></div><div class="small">答對 '+ok+' / '+tot+'</div>';
+  const isMarked=()=>(cfg.markBtns||[]).some(id=>{const b=B.$(id);return b&&b.classList.contains('on');});
+  function clear(){svg.querySelectorAll('[data-part],[data-lbl]').forEach(e=>e.classList.remove('sel','good','bad','hl'));svg.classList.remove('dim','chl-on');(cfg.markBtns||[]).forEach(id=>{const b=B.$(id);if(b)b.classList.remove('on');});if(cfg.modeBar)B.$(cfg.modeBar).querySelectorAll('.btn[data-m]').forEach(x=>x.classList.toggle('on',x.dataset.m===mode));}
+  function hlPart(k){clear();svg.classList.add('dim');els(k).forEach(e=>e.classList.add('sel'));svg.querySelectorAll('[data-lbl="'+k+'"]').forEach(e=>e.classList.add('sel'));}
+  function show(k){hlPart(k);const p=parts[k];if(p)out.innerHTML='<div class="pname">'+p.n+'</div><div>'+p.d+'</div>';}
+  function startRound(){
+    order=B.shuffle(Object.keys(parts).filter(k=>!parts[k].skip));
+    roundTotal=order.length;ok=0;tot=0;wrong=[];
+    nextQ();
   }
+  function showSummary(){
+    target=null;clear();
+    const pct=roundTotal?Math.round(ok/roundTotal*100):0;
+    const msg=wrong.length?'<div style="margin-top:4px">本回合需再複習：<b>'+wrong.join('、')+'</b></div>':'<div style="margin-top:4px;color:var(--moss)">全部答對，這一輪的部位都掌握了！</div>';
+    out.innerHTML='<div class="pname" style="color:var(--moss)">第 '+round+' 回合完成！</div><div>本回合答對 <b>'+ok+' / '+roundTotal+'</b> 題（正確率 '+pct+'%）</div>'+msg+'<div class="bar" style="margin-top:10px"><button type="button" class="btn on fig-next">開始第 '+(round+1)+' 回合 →</button></div>';
+    const nb=out.querySelector('.fig-next');nb.onclick=()=>{if(mode==='test'){round++;startRound();}};nb.focus({preventScroll:true});
+  }
+  function nextQ(){
+    if(!order.length){showSummary();return;}
+    target=order.pop();clear();
+    out.innerHTML='<div class="small">第 '+round+' 回合・第 '+(tot+1)+' / '+roundTotal+' 題</div><div class="pname">請在圖上點出：<span class="hot">'+parts[target].n+'</span></div><div class="small">本回合答對 '+ok+' / '+tot+'</div>';
+  }
+  svg.addEventListener('pointerover',ev=>{
+    if(mode==='learn'){
+      if(isMarked())return;
+      const t=ev.target.closest('[data-part],[data-lbl]');if(!t)return;const k=t.dataset.part||t.dataset.lbl;
+      if(k&&parts[k])show(k);
+    }else if(mode==='test'&&target){
+      const t=ev.target.closest('[data-part]');if(!t)return;const k=t.dataset.part;
+      if(k&&parts[k])hlPart(k);
+    }
+  });
+  svg.addEventListener('pointerleave',()=>{
+    if(mode==='learn'){
+      if(isMarked())return;
+      clear();out.innerHTML=cfg.hint||'點圖上的部位看說明。';
+    }else if(mode==='test'&&target){
+      clear();
+    }
+  });
   svg.addEventListener('click',ev=>{
-    const t=ev.target.closest('[data-part]');if(!t)return;const k=t.dataset.part;
-    if(mode==='learn'){show(k);return;}
-    if(!target)return;
+    const t=ev.target.closest('[data-part],[data-lbl]');
+    if(mode==='learn'){
+      if(isMarked()&&cfg.lockMark)return;
+      if(!t){if(isMarked())clear();out.innerHTML=cfg.hint||'點圖上的部位看說明。';return;}
+      const k=t.dataset.part||t.dataset.lbl;
+      if(k&&parts[k])show(k);
+      return;
+    }
+    if(!t)return;const k=t.dataset.part||t.dataset.lbl;
+    if(!k||!parts[k]||!target)return;
     tot++;
     /* 答完先停在解說，按「下一題」才換題（不自動消失） */
     if(k===target){ok++;clear();svg.classList.add('dim');els(k).forEach(e=>e.classList.add('good'));svg.querySelectorAll('[data-lbl="'+k+'"]').forEach(e=>e.classList.add('good'));out.innerHTML='<div class="pname" style="color:var(--moss)">答對了！這是'+parts[k].n+'</div><div>'+parts[k].d+'</div>';}
-    else{clear();svg.classList.add('dim');els(k).forEach(e=>e.classList.add('bad'));els(target).forEach(e=>e.classList.add('sel'));svg.querySelectorAll('[data-lbl="'+k+'"]').forEach(e=>e.classList.add('bad'));svg.querySelectorAll('[data-lbl="'+target+'"]').forEach(e=>e.classList.add('sel'));out.innerHTML='<div class="pname" style="color:var(--rose)">不對，你點的是'+parts[k].n+'。</div><div>閃爍的地方才是<b>'+parts[target].n+'</b>：'+parts[target].d+'</div>';}
+    else{wrong.push(parts[target].n);clear();svg.classList.add('dim');els(k).forEach(e=>e.classList.add('bad'));els(target).forEach(e=>e.classList.add('sel'));svg.querySelectorAll('[data-lbl="'+k+'"]').forEach(e=>e.classList.add('bad'));svg.querySelectorAll('[data-lbl="'+target+'"]').forEach(e=>e.classList.add('sel'));out.innerHTML='<div class="pname" style="color:var(--rose)">不對，你點的是'+parts[k].n+'。</div><div>亮起的地方才是<b>'+parts[target].n+'</b>：'+parts[target].d+'</div>';}
     target=null;
-    out.innerHTML+='<div class="small">答對 '+ok+' / '+tot+'</div><div class="bar" style="margin-top:8px"><button type="button" class="btn on fig-next">下一題 →</button></div>';
-    const nb=out.querySelector('.fig-next');nb.onclick=()=>{if(mode==='test')nextQ();};nb.focus({preventScroll:true});
+    const isLast=!order.length;
+    out.innerHTML+='<div class="small">第 '+round+' 回合・進度 '+tot+' / '+roundTotal+'・答對 '+ok+' 題</div><div class="bar" style="margin-top:8px"><button type="button" class="btn on fig-next">'+(isLast?'查看本回合結果 →':'下一題 →')+'</button></div>';
+    const nb=out.querySelector('.fig-next');nb.onclick=()=>{if(mode==='test')isLast?showSummary():nextQ();};nb.focus({preventScroll:true});
   });
-  svg.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){const t=ev.target.closest('[data-part]');if(t){ev.preventDefault();t.dispatchEvent(new MouseEvent('click',{bubbles:true}));}}});
+  svg.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){const t=ev.target.closest('[data-part],[data-lbl]');if(t){ev.preventDefault();t.dispatchEvent(new MouseEvent('click',{bubbles:true}));}}});
   svg.querySelectorAll('[data-part]').forEach(e=>{e.setAttribute('tabindex','0');e.setAttribute('role','button');e.setAttribute('aria-label',parts[e.dataset.part]?parts[e.dataset.part].n:'');});
   function setMode(m){mode=m;if(cfg.modeBar)B.$(cfg.modeBar).querySelectorAll('.btn[data-m]').forEach(x=>x.classList.toggle('on',x.dataset.m===m));
     svg.classList.toggle('testing',mode==='test');
-    if(mode==='test'){ok=0;tot=0;order=[];nextQ();}else{target=null;clear();out.innerHTML=cfg.hint||'點圖上的部位，看名稱和功能。';}}
+    if(mode==='test'){round=1;startRound();}else{target=null;clear();out.innerHTML=cfg.hint||'點圖上的部位看說明。';}}
   if(cfg.modeBar)B.$(cfg.modeBar).querySelectorAll('.btn[data-m]').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
-  out.innerHTML=cfg.hint||'點圖上的部位，看名稱和功能。';
+  out.innerHTML=cfg.hint||'點圖上的部位看說明。';
   return {show,setMode,clear};
 };
 
