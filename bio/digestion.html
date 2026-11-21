@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2-4 人體如何獲得養分｜生物互動實驗室</title>
+<meta name="description" content="國七上生物（南一版第一冊）2-4 人體如何獲得養分互動複習：消化系統圖點點看、食物經過的路線、消化道與消化腺、三大養分的消化旅程、消化液配對、物理性與化學性消化，附小測驗。">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/style.css?v=3">
+<link rel="stylesheet" href="lib/bio.css">
+<style>
+/* 消化系統全圖：插畫上的可點範圍平常透明，滑過、選到、答對答錯時才顯示外框 */
+#dgSvg .hs [data-part]{fill:transparent;stroke:transparent;stroke-width:5;filter:none}
+#dgSvg .hs [data-part]:hover{fill:rgba(106,76,147,.12);stroke:rgba(106,76,147,.85)}
+#dgSvg .hs [data-part].sel{fill:rgba(224,161,0,.22);stroke:#e0a100}
+#dgSvg .hs [data-part].good{fill:rgba(63,122,79,.2);stroke:#2f7d3c}
+#dgSvg .hs [data-part].bad{fill:rgba(163,58,74,.22);stroke:#a33a4a;opacity:1}
+#dgSvg .hs [data-part].hl{fill:transparent;stroke:transparent}
+#dgSvg.dim [data-part]{opacity:1;filter:none}
+#dgSvg .dimlayer{display:none;opacity:.62;pointer-events:none}
+#dgSvg.dim .dimlayer{display:inline}
+#dgSvg .hlimg{display:none;pointer-events:none}
+#dgSvg:not(.dim) .hlimg{display:none!important}
+/* 食物的旅程：名稱強調 */
+#dgSvg.trip .lbls text,#dgSvg.trip .lbls line,#dgSvg.trip .lbls circle{opacity:.28}
+#dgSvg.trip .lbls .past{opacity:1}
+#dgSvg.trip .lbls .cur{opacity:1}
+#dgSvg.trip .lbls text.cur,#dgSvg.trip .lbls text.past{fill:#8a4b00!important}
+#dgSvg.trip .lbls line.cur,#dgSvg.trip .lbls line.past{stroke:#e08a00;stroke-width:4}
+#dgSvg.trip .lbls circle.cur,#dgSvg.trip .lbls circle.past{fill:#e08a00;r:8px}
+#dgSvg.trip .lbls line.cur{stroke-width:6}
+#dgSvg.trip .lbls text.wallorg,#dgSvg.trip .lbls text.sub{opacity:1}
+#dgSvg .lbls text.sub{font-size:26px;font-weight:700;fill:#8a4b00}
+#dgSvg .lbls rect.pill.sub{fill:#fff8e1;stroke:#e0a100;stroke-width:3;stroke-dasharray:8 5}
+#dgSvg .lbls .pill{fill:#fff1c7;stroke:#e0a100;stroke-width:3}
+#dgSvg .lbls .pill.cur{fill:#ffd966;stroke:#c77700;stroke-width:6}
+.rlegend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13.5px;color:var(--ink-2);margin:2px 0 4px}
+.rlegend span{display:inline-flex;align-items:center;gap:6px}
+.rlegend .sw{display:inline-block;width:18px;height:14px;border-radius:4px;border:1px solid var(--line-2);background:#f3f1ea}
+.rlegend .sw.act{background:var(--moss-bg);border-color:var(--moss)}
+.rstop .pass{align-self:flex-start;font-style:normal;font-size:12px;font-weight:700;color:var(--ink-3);border:1px dashed var(--ink-3);border-radius:999px;padding:0 8px;margin:1px 0 2px;white-space:nowrap}
+</style>
+<script src="lib/common.js"></script>
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap">
+  <span class="kicker b">2-4・南一版第一冊</span>
+  <h1>人體如何獲得養分</h1>
+  <p class="lead">植物自己做養分，人只能靠吃。但飯、肉、油都是大分子，太大了進不了細胞，所以要先<b>消化</b>成小分子，再由小腸<b>吸收</b>進血液。消化系統圖幾乎每份考卷都有題組，每個器官都要能指出來。</p>
+  <nav class="toc" aria-label="本頁重點">
+    <a href="#s1">一、消化系統的構造</a>
+    <a href="#s2">二、消化液與養分的分解</a>
+    <a href="#s3">小測驗</a>
+  </nav>
+
+  <!-- ================= 一 ================= -->
+  <section class="sec" id="s1">
+  <h2>一、消化系統的構造與功能<span class="star">★★★ 必考</span></h2>
+  <div class="key">
+    <ul>
+      <li><b>消化</b>：把大分子養分分解成小分子，才能被吸收。分成<b>物理性消化</b>（咀嚼、胃腸蠕動、膽汁乳化脂質，只把食物變小）和<b>化學性消化</b>（靠<b>酵素</b>把大分子分解成小分子）。</li>
+      <li>消化系統＝<b>消化道</b>＋<b>消化腺</b>。消化道是食物經過的路：口腔 → 咽 → 食道 → 胃 → 小腸 → 大腸 → 肛門。</li>
+      <li>消化腺：唾腺、胃腺、<b>肝臟</b>、<b>胰臟</b>、腸腺。肝、胰分泌的消化液經導管送到小腸，<b>食物不會經過肝臟和胰臟</b>。</li>
+      <li>胃：胃液含<b>鹽酸</b>和酵素，強酸性能殺菌；初步分解<b>蛋白質</b>；幾乎不吸收養分。</li>
+      <li>小腸：消化道中<b>最長</b>；內壁有皺褶和<b>絨毛</b>，增加吸收的表面積；是<b>消化和吸收最主要</b>的器官。葡萄糖、胺基酸進入絨毛裡的微血管。</li>
+      <li>大腸：比小腸粗而短，吸收<b>水分</b>和部分礦物質；殘渣在這裡形成糞便。盲腸末端有<b>闌尾</b>，「盲腸炎」其實是闌尾發炎。</li>
+    </ul>
+  </div>
+
+  <div class="tool">
+    <h3>消化系統全圖：點點看</h3>
+    <p class="note">頭部是側面剖開的樣子，身體是正面、面對面看（圖的左邊是身體的右邊）。學習模式會顯示名稱；測驗模式會把名稱藏起來，照題目點出器官。</p>
+    <div class="bar" id="dgMode">
+      <button class="btn on" data-m="learn">學習：點了看說明</button>
+      <button class="btn warm" data-m="test">測驗：找出指定器官</button>
+    </div>
+    <div class="bar">
+      <button class="btn cool" id="dgTube">標出消化道</button>
+      <button class="btn cool" id="dgGland">標出消化腺</button>
+      <button class="btn cool" id="dgTrip">食物的旅程</button>
+    </div>
+    <div class="figwrap">
+      <svg id="dgSvg" viewBox="0 0 1148 1152" role="img" aria-label="人體消化系統全圖：口腔到肛門，可以點選各器官" style="background:#faece0"></svg>
+      <div class="figout" id="dgOut"></div>
+    </div>
+    <p class="small">唾腺有三對：耳朵前下方的耳下腺、下巴下方的頷下腺、舌頭下方的舌下腺（圖上畫的是靠近我們這一側的三個）。膽囊下方的細管是<b>膽管</b>：肝臟製造、膽囊儲存的膽汁，經膽管送到小腸。胰臟中間的細管是<b>胰管</b>，把胰液送到小腸。小腸最前段繞成 C 字形（十二指腸），膽汁和胰液就是在這裡流進小腸。圖為示意插畫，比例與顏色不代表實際情形。</p>
+  </div>
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>肝臟、胰臟<b>不是消化道</b>，「食物經過肝臟」是錯的。</li>
+      <li>吸收養分最主要的器官是<b>小腸</b>，不是胃。小腸和大腸都能吸收水分。</li>
+      <li>小腸的絨毛和植物的根毛道理一樣：都是<b>增加吸收的表面積</b>。</li>
+      <li>膽汁乳化脂質、牙齒咀嚼、胃腸蠕動都是<b>物理性消化</b>；靠酵素分解才是化學性消化。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 二 ================= -->
+  <section class="sec" id="s2">
+  <h2>二、消化液與養分的分解<span class="star">★★★ 必考</span></h2>
+  <div class="key">
+    <ul>
+      <li><b>唾液</b>（唾腺 → 口腔）：含澱粉酶，把澱粉分解成較小的醣。</li>
+      <li><b>胃液</b>（胃腺 → 胃）：含<b>鹽酸</b>和分解蛋白質的酵素，<b>初步</b>分解蛋白質。</li>
+      <li><b>膽汁</b>（<b>肝臟製造</b>、<b>膽囊儲存</b> → 小腸）：<b>不含酵素</b>，把脂質<b>乳化</b>成小油滴（物理性消化）。</li>
+      <li><b>胰液</b>（胰臟 → 小腸）：含多種酵素，能分解醣類、蛋白質、脂質。<b>腸液</b>（腸腺 → 小腸）：含酵素，能分解<b>醣類和蛋白質</b>。</li>
+      <li>最後產物：澱粉 → <b>葡萄糖</b>；蛋白質 → <b>胺基酸</b>；脂質 → <b>脂肪酸和甘油</b>。維生素、礦物質、水本來就是小分子，不用消化。</li>
+    </ul>
+    <p class="mnemo">澱粉從口腔開始，蛋白質從胃開始，脂質到小腸才開始</p>
+  </div>
+
+  <div class="tool">
+    <h3>三大養分的消化旅程</h3>
+    <div class="bar" id="nuBar">
+      <button class="btn on" data-n="starch">澱粉</button>
+      <button class="btn" data-n="protein">蛋白質</button>
+      <button class="btn" data-n="fat">脂質</button>
+    </div>
+    <div class="rlegend"><span><i class="sw act"></i>亮色＝這裡會分解</span><span><i class="sw"></i>淡色＝經過，但不分解</span></div>
+    <div class="tscroll"><div id="nuRoad" class="road"></div></div>
+    <div class="out" id="nuOut"></div>
+  </div>
+
+  <div class="tool">
+    <h3>消化液小卡：點一種消化液</h3>
+    <div class="chips" id="jcBar"></div>
+    <div class="tscroll"><table class="t" id="jcTab"></table></div>
+  </div>
+
+  <div class="tool">
+    <h3>練習：物理性消化還是化學性消化？</h3>
+    <div class="out" id="pcQ" style="font-size:17px;font-weight:700;margin-bottom:8px"></div>
+    <div class="bar"><button class="btn warm" data-c="p">物理性消化</button><button class="btn cool" data-c="c">化學性消化</button></div>
+    <div class="out" id="pcOut"></div>
+  </div>
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>膽汁是<b>肝臟製造</b>的，膽囊只負責儲存。膽汁<b>不含酵素</b>，是<b style="background:#ffd966;color:#8a4b00;padding:1px 6px;border-radius:5px;font-size:1.08em">乳化</b>脂質（把大油滴打散成小油滴），不是「分解」脂質。</li>
+      <li>含鹽酸的只有<b>胃液</b>；胃液不分解澱粉和脂質。</li>
+      <li>在小腸作用的消化液有<b>膽汁、胰液、腸液</b>三種。</li>
+      <li>人體沒有分解纖維素的酵素，胰液也不能分解纖維素，所以纖維素<b>不能被吸收、不能提供能量</b>。但它還是有用：會隨食物進入大腸，吸水讓糞便變軟、體積變大，刺激腸道蠕動，<b>幫助排便、預防便秘</b>；吃了也比較有飽足感。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 小測驗 ================= -->
+  <section class="sec" id="s3">
+  <h2>小測驗</h2>
+  <p class="note">每題只有一個正確答案，選了就會顯示解析（第一次選的答案才計分）。題目都是自編題，不是學校或出版社的考題。</p>
+  <div class="score"><span class="big" id="qzScore">0 / 0</span><span class="small" id="qzDone">已作答 0 題</span><button class="btn" id="qzReset">重新作答</button></div>
+  <div class="chips" id="qzFlt">
+    <button class="chip on" data-u="all">全部</button>
+    <button class="chip" data-u="1">一、消化系統</button>
+    <button class="chip" data-u="2">二、消化液</button>
+  </div>
+  <div id="qz"></div>
+  </section>
+  <div id="pager"></div>
+</main>
+<footer id="site-foot"></footer>
+<script>
+(function(){
+'use strict';
+const $=B.$;
+/* ---------- 一、消化系統全圖（插畫＋可點範圍＋名稱） ---------- */
+/* 插畫 img/organs-map.jpg（768×1152，原圖 1024×1536 縮 0.75）放在 x=190。
+   可點範圍用原圖座標描，外層 transform 換算。標出消化道／腺時：整張圖蓋一層白色變淡，
+   被標出的器官再用「裁成器官形狀的插畫」疊回去，維持原色 */
+const HS={
+  large:'<path d="M225 1000 C240 978 300 972 312 1000 L316 1250 C322 1302 280 1322 245 1302 C224 1282 218 1250 224 1200Z"/><path d="M300 985 C400 958 600 958 692 980 L698 1042 C600 1062 400 1062 305 1047Z"/><path d="M640 990 L716 990 L726 1300 C722 1342 690 1362 650 1362 L640 1300Z"/><path d="M500 1290 C540 1270 600 1280 650 1290 L655 1362 C600 1366 560 1352 530 1340Z"/>',
+  small:'<path d="M318 1062 C420 1040 560 1040 636 1062 L642 1262 C602 1302 560 1312 520 1292 L432 1302 C382 1322 332 1292 320 1252Z"/><path d="M362 898 C348 952 372 1004 422 1012 L472 1012 L472 984 L432 978 C402 968 392 940 398 902Z"/>',
+  rectum:'<path d="M432 1300 C440 1280 500 1276 528 1300 L520 1440 C514 1462 470 1466 452 1446 L440 1380Z"/>',
+  appendix:'<ellipse cx="347" cy="1318" rx="16" ry="38"/>',
+  anus:'<ellipse cx="470" cy="1480" rx="28" ry="16"/>',
+  pancreas:'<path d="M414 952 C430 920 520 904 642 894 C658 900 652 926 632 936 C562 956 482 980 432 986Z"/>',
+  stomach:'<path d="M556 700 C620 696 692 720 702 790 C712 860 662 912 590 922 C520 928 452 922 402 902 C390 882 402 862 432 862 C482 872 540 862 560 822 C576 782 560 742 556 700Z"/>',
+  liver:'<path d="M252 760 C300 710 462 700 562 740 C556 790 522 820 472 836 C422 852 382 862 302 902 C262 922 244 882 250 820Z"/>',
+  gall:'<ellipse cx="337" cy="866" rx="38" ry="27"/>',
+  eso:'<path d="M494 330 L526 330 L530 600 C532 650 560 676 582 698 L556 716 C526 690 500 660 497 600Z"/>',
+  phar:'<path d="M468 188 L516 188 L520 330 L472 330Z"/>',
+  mouth:'<ellipse cx="380" cy="246" rx="96" ry="40"/>',
+  saliv:'<ellipse cx="540" cy="192" rx="40" ry="66"/><ellipse cx="350" cy="318" rx="38" ry="17"/><ellipse cx="430" cy="332" rx="46" ry="27"/>'
+};
+const HS_T='translate(190,0) scale(.75)';
+(function(){
+  /* clipPath 裡不能用 <g>，座標換算要寫在每個形狀上 */
+  let g='<defs>'+Object.keys(HS).map(k=>'<clipPath id="cp-'+k+'">'+HS[k].replace(/<(path|ellipse)/g,'<$1 transform="'+HS_T+'"')+'</clipPath>').join('')+'</defs>';
+  g+='<image href="img/organs-map.jpg" x="190" y="0" width="768" height="1152"/>';
+  g+='<rect class="dimlayer" x="190" y="0" width="768" height="1152" fill="#fff"/>';
+  g+=Object.keys(HS).map(k=>'<g class="hlimg" data-k="'+k+'" clip-path="url(#cp-'+k+')"><image href="img/organs-map.jpg" x="190" y="0" width="768" height="1152"/></g>').join('');
+  g+='<g class="hs" transform="'+HS_T+'">'+Object.keys(HS).map(k=>'<g data-part="'+k+'">'+HS[k]+'</g>').join('')+'</g>';
+  /* 名稱：[名稱, 器官位置（插畫座標，可多個）, 左或右, 標籤 y, 主要器官 1／導管 0] */
+  const OM=[
+    ['口腔',[[285,180]],'L',186,1,'mouth'],['唾腺',[[259,239],[321,262]],'L',272,1,'saliv'],['肝臟',[[248,585]],'L',590,1,'liver'],['膽囊',[[251,649]],'L',652,1,'gall'],['膽管',[[291,679]],'L',712,0,''],['大腸',[[203,840]],'L',846,1,'large'],['闌尾',[[259,992]],'L',996,1,'appendix'],
+    ['唾腺',[[405,139]],'R',150,1,'saliv'],['咽',[[375,210]],'R',222,1,'phar'],['食道',[[386,420]],'R',426,1,'eso'],['胃',[[473,600]],'R',604,1,'stomach'],['胰管',[[450,695]],'R',682,0,''],['胰臟',[[390,712]],'R',736,1,'pancreas'],
+    ['小腸',[[360,885]],'R',890,1,'small'],['直腸',[[353,1065]],'R',1060,1,'rectum'],['肛門',[[353,1117]],'R',1122,1,'anus']
+  ];
+  g+='<g class="lbls">';
+  OM.forEach(([t,pts,side,ly,main,k])=>{
+    const lx=side==='L'?182:966,dk=' data-k="'+k+'"';
+    pts.forEach(([x,y])=>{g+='<line'+dk+' x1="'+(190+x)+'" y1="'+y+'" x2="'+lx+'" y2="'+(ly-10)+'" stroke="#4d5a52" stroke-width="2"/><circle'+dk+' cx="'+(190+x)+'" cy="'+y+'" r="5.5" fill="#a33a4a" stroke="#fff" stroke-width="2"/>';});
+    g+='<text'+dk+' class="lbl" x="'+(side==='L'?lx-8:lx+8)+'" y="'+ly+'" text-anchor="'+(side==='L'?'end':'start')+'" style="font-size:'+(main?36:28)+'px;font-weight:'+(main?700:400)+';fill:'+(main?'#1f2a24':'#5a4630')+'">'+t+'</text>';
+  });
+  g+='</g>';
+  $('dgSvg').innerHTML=g;
+})();
+/* 標出時，讓被標出的器官顯示原色插畫 */
+function hlShow(keys){$('dgSvg').querySelectorAll('.hlimg').forEach(e=>e.style.display=keys.includes(e.dataset.k)?'inline':'none');}
+/* 名稱強調（食物的旅程、標出消化道／消化腺共用）：past 裡的器官名稱加黃色底框、深橘色字；cur 是旅程目前這一站（底框較深、框線較粗）；其他變淡 */
+function tripLabels(past,cur){
+  const svg=$('dgSvg');svg.classList.add('trip');
+  svg.querySelectorAll('.lbls .pill').forEach(e=>e.remove());
+  svg.querySelectorAll('.lbls [data-k]').forEach(e=>{const k=e.dataset.k;e.classList.toggle('cur',k===cur);e.classList.toggle('past',k!==cur&&past.includes(k));});
+  svg.querySelectorAll('.lbls text.cur,.lbls text.past').forEach(t=>{const b=t.getBBox(),r=document.createElementNS('http://www.w3.org/2000/svg','rect');
+    r.setAttribute('class','pill'+(t.classList.contains('cur')?' cur':''));r.setAttribute('x',b.x-10);r.setAttribute('y',b.y-5);r.setAttribute('width',b.width+20);r.setAttribute('height',b.height+10);r.setAttribute('rx',12);t.parentNode.insertBefore(r,t);});
+}
+function tripOff(){const svg=$('dgSvg');svg.classList.remove('trip');svg.querySelectorAll('.lbls .pill,.lbls .sub').forEach(e=>e.remove());svg.querySelectorAll('.lbls .wallorg').forEach(e=>e.classList.remove('wallorg'));}
+/* 標出消化腺時：胃、小腸本身是消化道，只在名稱下方加註管壁內的胃腺、腸腺 */
+function wallLabels(){
+  const svg=$('dgSvg'),NS='http://www.w3.org/2000/svg';
+  [['stomach','壁內有胃腺'],['small','壁內有腸腺']].forEach(([k,t])=>{
+    svg.querySelectorAll('.lbls line[data-k="'+k+'"],.lbls circle[data-k="'+k+'"]').forEach(e=>e.classList.add('past'));
+    const m=svg.querySelector('.lbls text[data-k="'+k+'"]');m.classList.remove('past');m.classList.add('wallorg');const pv=m.previousElementSibling;if(pv&&pv.classList.contains('pill'))pv.remove();
+    const x=document.createElementNS(NS,'text');x.setAttribute('class','sub');x.setAttribute('x',m.getAttribute('x'));x.setAttribute('y',+m.getAttribute('y')+40);
+    x.setAttribute('text-anchor',m.getAttribute('text-anchor'));x.textContent=t;m.parentNode.appendChild(x);
+    const b=x.getBBox(),r=document.createElementNS(NS,'rect');r.setAttribute('class','pill sub');r.setAttribute('x',b.x-8);r.setAttribute('y',b.y-4);r.setAttribute('width',b.width+16);r.setAttribute('height',b.height+8);r.setAttribute('rx',10);m.parentNode.insertBefore(r,x);
+  });
+}
+const DG={
+  mouth:{n:'口腔',d:'消化道的起點。牙齒咀嚼、舌頭攪拌（物理性消化）；唾液中的澱粉酶開始分解<b>澱粉</b>。',tube:1},
+  saliv:{n:'唾腺',d:'<b>消化腺</b>，分泌唾液送到口腔。唾液含澱粉酶。',gland:1},
+  phar:{n:'咽',d:'口腔後方的通道，食物和空氣都會經過。吞嚥時，食物由咽進入食道。屬於消化道，<b>不分泌消化液</b>。',tube:1},
+  eso:{n:'食道',d:'消化道。把食物往下推送到胃，<b>不分泌消化液</b>，也不吸收養分。',tube:1},
+  liver:{n:'肝臟',d:'<b>消化腺</b>（人體最大的腺體），<b>製造膽汁</b>。食物<b>不會經過</b>肝臟。',gland:1},
+  gall:{n:'膽囊',d:'<b>儲存</b>肝臟製造的膽汁，再把膽汁送進小腸。膽囊不製造膽汁。'},
+  stomach:{n:'胃',d:'消化道，成囊狀，可<b>暫時儲存食物</b>。胃腺分泌胃液（含<b>鹽酸</b>和酵素），強酸性能殺菌，<b>初步分解蛋白質</b>；胃壁肌肉攪拌食物。<b>幾乎不吸收養分</b>。',tube:1},
+  pancreas:{n:'胰臟',d:'<b>消化腺</b>，分泌胰液送到小腸。胰液含多種酵素，能分解醣類、蛋白質、脂質。食物<b>不會經過</b>胰臟。',gland:1},
+  small:{n:'小腸',d:'消化道中<b>最長</b>的部分。膽汁、胰液、腸液都在這裡作用，是<b>消化和吸收最主要</b>的器官。內壁的<b>絨毛</b>增加吸收表面積。小腸本身是消化道；小腸壁裡的<b>腸腺</b>才是消化腺，分泌腸液。',tube:1},
+  large:{n:'大腸',d:'消化道。比小腸粗而短，吸收<b>水分</b>和部分礦物質，形成糞便。<b>不分泌消化酵素</b>。',tube:1},
+  rectum:{n:'直腸',d:'<b>大腸的最後一段</b>，暫時儲存糞便，再經肛門排出。',tube:1},
+  appendix:{n:'闌尾',d:'大腸的起始端是盲腸，盲腸下方的指狀突起就是闌尾。人類的闌尾<b>沒有消化功能</b>。俗稱的「盲腸炎」其實是<b>闌尾發炎</b>。'},
+  anus:{n:'肛門',d:'消化道的終點，排出糞便。',tube:1}
+};
+const dg=B.figure({svg:'dgSvg',out:'dgOut',parts:DG,modeBar:'dgMode',markBtns:['dgTube','dgGland','dgTrip'],hint:'點圖上的器官，看名稱和功能。也可以按上面的「標出消化道」「標出消化腺」「食物的旅程」。'});
+let tripT=null;
+function dgToggle(id,keys,html){
+  clearInterval(tripT);tripOff();const on=!$(id).classList.contains('on');
+  dg.setMode('learn');if(!on)return;
+  B.mark('dgSvg',keys);hlShow(keys);tripLabels(keys,null);$(id).classList.add('on');$('dgOut').innerHTML=html+'<div class="small">再按一次按鈕，或點圖上的器官，就會恢復。</div>';
+}
+$('dgTube').onclick=()=>dgToggle('dgTube',Object.keys(DG).filter(k=>DG[k].tube),'<div class="pname">消化道（食物經過的路）</div><div>沒有變淡的是消化道：口腔 → 咽 → 食道 → 胃 → 小腸 → 大腸 → 肛門。<br><span class="hot">肝臟、胰臟、膽囊不是消化道。</span></div>');
+$('dgGland').onclick=()=>{dgToggle('dgGland',Object.keys(DG).filter(k=>DG[k].gland).concat(['stomach','small']),'<div class="pname">消化腺（分泌消化液）</div><div>單獨的消化腺：<b>唾腺</b>、<b>肝臟</b>、<b>胰臟</b>，食物不會經過；肝、胰的消化液經導管送到小腸。<br>藏在管壁裡的消化腺：胃壁的<b>胃腺</b>、小腸壁的<b>腸腺</b>。<span class="hot">胃和小腸本身是消化道</span>，記法：「小腸是消化道，腸壁有腸腺」。<br>膽囊只儲存膽汁、闌尾沒有消化功能，兩者都<b>不是消化腺</b>。</div>');if($('dgGland').classList.contains('on'))wallLabels();};
+$('dgTrip').onclick=()=>{
+  clearInterval(tripT);dg.setMode('learn');$('dgTrip').classList.add('on');
+  const seq=['mouth','phar','eso','stomach','small','large','rectum','anus'];let i=0;
+  const step=()=>{B.mark('dgSvg',seq.slice(0,i+1));hlShow(seq.slice(0,i+1));$('dgSvg').querySelectorAll('[data-part="'+seq[i]+'"]').forEach(e=>e.classList.add('sel'));
+    tripLabels(seq.slice(0,i),seq[i]);
+    $('dgOut').innerHTML='<div class="pname">食物的旅程：第 '+(i+1)+' 站</div><div><b>'+DG[seq[i]].n+'</b>：'+DG[seq[i]].d+'</div><div class="small">口腔 → 咽 → 食道 → 胃 → 小腸 → 大腸（最後一段是直腸）→ 肛門</div>';i++;if(i>=seq.length)clearInterval(tripT);};
+  step();tripT=setInterval(step,2300);
+};
+$('dgSvg').addEventListener('click',()=>{clearInterval(tripT);tripOff();});
+$('dgMode').addEventListener('click',()=>{clearInterval(tripT);tripOff();});
+
+/* ---------- 二、三大養分的旅程 ---------- */
+const ROAD={
+  starch:{n:'澱粉',st:[['口腔','唾液','把澱粉分解成較小的醣（麥芽糖）',1],['胃','胃液','不分解澱粉',0],['小腸','胰液、腸液','分解成<b>葡萄糖</b>',1]],end:'葡萄糖',out:'澱粉的化學性消化從<b>口腔</b>開始，在小腸完成，最後變成<b>葡萄糖</b>，由絨毛的微血管吸收。'},
+  protein:{n:'蛋白質',st:[['口腔','唾液','不分解蛋白質',0],['胃','胃液','<b>初步</b>分解蛋白質',1],['小腸','胰液、腸液','分解成<b>胺基酸</b>',1]],end:'胺基酸',out:'蛋白質從<b>胃</b>開始分解（胃液含鹽酸和酵素），在小腸完成，最後變成<b>胺基酸</b>。'},
+  fat:{n:'脂質',st:[['口腔','唾液','不分解脂質',0],['胃','胃液','不分解脂質',0],['小腸','膽汁 → 胰液','膽汁先<b>乳化</b>成小油滴，再由<b>胰液</b>的酵素分解成<b>脂肪酸和甘油</b>',1]],end:'脂肪酸＋甘油',out:'脂質<b>到小腸才開始</b>消化。膽汁沒有酵素，只是把大油滴變小油滴，讓酵素比較好作用。'}
+};
+function nuShow(k){
+  const r=ROAD[k];
+  $('nuRoad').innerHTML='<div class="rstop start"><b>'+r.n+'</b><span>大分子</span></div>'+r.st.map(s=>'<div class="rarrow">→</div><div class="rstop'+(s[3]?' act':'')+'"><b>'+s[0]+'</b>'+(s[3]?'':'<em class="pass">經過，但不分解</em>')+'<span class="jc">'+s[1]+'</span><span>'+s[2]+'</span></div>').join('')+'<div class="rarrow">→</div><div class="rstop end"><b>'+r.end+'</b><span>小分子，可以吸收</span></div>';
+  $('nuOut').innerHTML=r.out;
+}
+$('nuBar').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{$('nuBar').querySelectorAll('.btn').forEach(x=>x.classList.toggle('on',x===b));nuShow(b.dataset.n);});
+nuShow('starch');
+
+/* 消化液小卡 */
+const JC=[
+  {n:'唾液',from:'唾腺',to:'口腔',enz:'有（澱粉酶）',act:'澱粉',ph:'接近中性'},
+  {n:'胃液',from:'胃腺（胃壁）',to:'胃',enz:'有',act:'蛋白質（初步分解）；含鹽酸能殺菌',ph:'強酸性'},
+  {n:'膽汁',from:'肝臟製造，膽囊儲存',to:'小腸',enz:'<span class="hot">沒有</span>',act:'把脂質乳化成小油滴（物理性消化）',ph:'—'},
+  {n:'胰液',from:'胰臟',to:'小腸',enz:'有（多種）',act:'醣類、蛋白質、脂質',ph:'弱鹼性'},
+  {n:'腸液',from:'腸腺（小腸壁）',to:'小腸',enz:'有（多種）',act:'分解醣類和蛋白質',ph:'弱鹼性'}
+];
+$('jcBar').innerHTML='<button class="chip on" data-i="all">全部</button>'+JC.map((j,i)=>'<button class="chip" data-i="'+i+'">'+j.n+'</button>').join('');
+function jcShow(sel){
+  const rows=sel==='all'?JC:[JC[+sel]];
+  $('jcTab').innerHTML='<tr><th>消化液</th><th>哪裡分泌</th><th>在哪裡作用</th><th>含酵素？</th><th>作用的對象</th></tr>'+rows.map(j=>'<tr><th>'+j.n+'</th><td>'+j.from+'</td><td>'+j.to+'</td><td>'+j.enz+'</td><td>'+j.act+'</td></tr>').join('');
+}
+$('jcBar').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{$('jcBar').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));jcShow(b.dataset.i);});
+jcShow('all');
+
+/* 物理性／化學性 */
+const PC=[['牙齒咀嚼食物','p','只把食物切碎、變小，沒有變成別的物質。'],['胃壁肌肉收縮攪拌食物','p','只是攪拌、混合。'],['膽汁把脂質乳化成小油滴','p','膽汁沒有酵素，油滴只是變小，還是脂質。'],['小腸蠕動推送食物','p','只是推送、混合。'],['唾液把澱粉分解成麥芽糖','c','靠酵素把大分子變成小分子，變成別的物質。'],['胃液初步分解蛋白質','c','胃液中的酵素分解蛋白質。'],['胰液把脂質分解成脂肪酸和甘油','c','胰液中的酵素分解脂質。'],['腸液把蛋白質分解成胺基酸','c','腸液中的酵素分解蛋白質。']];
+let pcOrder=B.shuffle(PC),pcI=0,pcOk=0,pcN=0;
+function pcAsk(){if(pcI>=pcOrder.length){pcOrder=B.shuffle(PC);pcI=0;}$('pcQ').textContent='「'+pcOrder[pcI][0]+'」';}
+document.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{
+  const q=pcOrder[pcI],ok=b.dataset.c===q[1];pcN++;if(ok)pcOk++;
+  $('pcOut').innerHTML=(ok?'<b style="color:var(--moss)">答對了！</b>':'<b style="color:var(--rose)">不對，</b>')+'「'+q[0]+'」是<b>'+(q[1]==='p'?'物理性':'化學性')+'消化</b>：'+q[2]+' <span class="small">（答對 '+pcOk+' / '+pcN+'）</span>';
+  pcI++;pcAsk();
+});
+pcAsk();
+
+/* ---------- 小測驗 ---------- */
+const QZ=[
+ {u:1,s:'下列哪一個器官<b>不是</b>食物經過的消化道？',o:['食道','胃','肝臟','大腸'],a:2,
+  e:'肝臟是消化腺，製造膽汁，經導管送到小腸；食物不會經過肝臟。'},
+ {u:1,s:'消化和吸收養分最主要的器官是哪一個？',o:['口腔','胃','小腸','大腸'],a:2,
+  e:'小腸最長，有膽汁、胰液、腸液作用，內壁的皺褶和絨毛增加吸收的表面積。'},
+ {u:1,s:'小腸內壁有許多絨毛，和下列哪一種構造的功能最相似？',o:['葉片的氣孔','植物的根毛','莖的形成層','葉的角質層'],a:1,
+  e:'絨毛和根毛都能增加吸收的表面積。'},
+ {u:1,s:'食物通過消化道的順序，何者正確？',o:['口腔 → 食道 → 胃 → 大腸 → 小腸 → 肛門','口腔 → 食道 → 胃 → 小腸 → 大腸 → 肛門','口腔 → 胃 → 食道 → 小腸 → 大腸 → 肛門','口腔 → 食道 → 肝臟 → 胃 → 小腸 → 肛門'],a:1,
+  e:'口腔 → 咽 → 食道 → 胃 → 小腸 → 大腸 → 肛門。'},
+ {u:1,s:'某人經常便秘，醫生建議多吃蔬菜。蔬菜中的哪一種成分能幫助排便？',o:['蛋白質','纖維素','脂質','維生素 C'],a:1,
+  e:'纖維素人體不能消化，但能促進腸道蠕動、幫助排便。'},
+ {u:1,s:'俗稱的「盲腸炎」，發炎的部位其實是哪裡？',o:['小腸','胃','闌尾','膽囊'],a:2,
+  e:'盲腸末端有闌尾，俗稱的盲腸炎其實是闌尾發炎。'},
+ {u:1,s:'下列哪一項屬於化學性消化？',o:['牙齒咀嚼','胃的蠕動','膽汁乳化脂質','唾液把澱粉分解成較小的醣'],a:3,
+  e:'化學性消化要靠酵素把大分子分解成小分子。咀嚼、蠕動、乳化都只是把食物變小，是物理性消化。'},
+ {u:1,s:'大腸的主要功能是什麼？',o:['分泌胰液','吸收水分，形成糞便','分解蛋白質','製造膽汁'],a:1,
+  e:'大腸吸收水分和部分礦物質，殘渣形成糞便。'},
+ {u:2,s:'唯一<b>不含</b>消化酵素的消化液是哪一種？',o:['唾液','胃液','膽汁','胰液'],a:2,
+  e:'膽汁不含酵素，只把脂質乳化成小油滴。'},
+ {u:2,s:'關於膽汁的敘述，下列何者正確？',o:['由膽囊製造','能把脂質分解成脂肪酸和甘油','由肝臟製造，膽囊儲存','在胃中作用'],a:2,
+  e:'膽汁由肝臟製造、膽囊儲存，送到小腸把脂質乳化。真正分解脂質的是胰液中的酵素。'},
+ {u:2,s:'在小腸中作用的消化液有哪些？',o:['唾液、胃液','膽汁、胰液、腸液','胃液、膽汁','只有腸液'],a:1,
+  e:'膽汁、胰液、腸液都在小腸作用。'},
+ {u:2,s:'蛋白質從消化道的哪個部位開始被分解？',o:['口腔','食道','胃','小腸'],a:2,
+  e:'胃液含分解蛋白質的酵素，蛋白質從胃開始分解；澱粉從口腔開始；脂質到小腸才開始。'},
+ {u:2,s:'下列養分與它最後的消化產物，何者配對正確？',o:['澱粉 → 胺基酸','蛋白質 → 葡萄糖','脂質 → 脂肪酸和甘油','維生素 → 葡萄糖'],a:2,
+  e:'澱粉 → 葡萄糖；蛋白質 → 胺基酸；脂質 → 脂肪酸和甘油。維生素是小分子，不用消化。'},
+ {u:2,s:'下列哪一種消化液含有鹽酸？',o:['唾液','胃液','胰液','腸液'],a:1,
+  e:'只有胃液含鹽酸，胃是強酸性，能殺死食物中的細菌。'},
+ {u:2,s:'膽囊被切除的人，比較不容易消化哪一種食物？',o:['白飯','瘦肉','油炸食物','青菜'],a:2,
+  e:'膽囊儲存膽汁，切除後膽汁不能集中大量送進小腸，乳化脂質的效果變差，所以油膩食物比較不容易消化。'},
+ {u:2,s:'下列哪一種養分不需要消化，就能直接被吸收？',o:['澱粉','蛋白質','葡萄糖','脂質'],a:2,
+  e:'葡萄糖本身就是小分子，可以直接吸收。澱粉、蛋白質、脂質都是大分子，要先消化。'}
+];
+B.quiz({box:'qz',score:'qzScore',done:'qzDone',reset:'qzReset',filter:'qzFlt',data:QZ,names:{1:'重點一',2:'重點二'}});
+window.__QZ=QZ;
+})();
+</script>
+</body>
+</html>

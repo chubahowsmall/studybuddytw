@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3-3 人體的防禦｜生物互動實驗室</title>
+<meta name="description" content="國七上生物（南一版第一冊）3-3 人體的防禦互動複習：三道防線分類練習、發炎反應、抗體與記憶、疫苗與兩次感染的防禦強度曲線，附小測驗。">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/style.css?v=3">
+<link rel="stylesheet" href="lib/bio.css">
+<script src="lib/common.js"></script>
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap">
+  <span class="kicker b">3-3・南一版第一冊</span>
+  <h1>人體的防禦</h1>
+  <p class="lead">細菌、病毒這些<b>病原體</b>想進入身體，要先通過三道防線。前兩道對所有入侵者都一樣（非專一性），第三道會「認人」，而且會<b>記住</b>，所以同一種病原體第二次來時，身體反應又快又強。疫苗就是利用這個原理。</p>
+  <nav class="toc" aria-label="本頁重點">
+    <a href="#s1">一、三道防線</a>
+    <a href="#s2">二、疫苗與記憶</a>
+    <a href="#s3">小測驗</a>
+  </nav>
+
+  <!-- ================= 一 ================= -->
+  <section class="sec" id="s1">
+  <h2>一、人體的三道防線<span class="star">★★ 常考</span></h2>
+  <div class="grid3">
+    <div class="card tight" style="border-top:4px solid #8d6e4a"><h3>第一道防線</h3><p><b>皮膚和黏膜</b>（消化道、呼吸道、泌尿道表面的黏膜，以及淚液、黏液等分泌物），把病原體<b>擋在身體外面</b>。皮膚有傷口時，這道防線就不完整了。</p><p class="small">非專一性：對所有入侵者都一樣。</p></div>
+    <div class="card tight" style="border-top:4px solid #c0622a"><h3>第二道防線</h3><p>病原體進入身體後，<b>白血球穿出微血管吞噬</b>病原體；同時發生<b>發炎反應</b>：微血管<b>擴張</b>、血流增加，傷口<b>紅、腫、熱、痛</b>。發炎反應會讓<b>更多白血球聚集</b>到傷口，吞噬病原體，阻止感染擴大。</p><p class="small">非專一性。</p></div>
+    <div class="card tight" style="border-top:4px solid #6a4c93"><h3>第三道防線</h3><p><b>特殊白血球（淋巴球）</b>認出特定的病原體，有些製造<b>抗體</b>，有些直接破壞被感染的細胞。會留下<b>記憶</b>。</p><p class="small">專一性：只對付特定的病原體。</p></div>
+  </div>
+
+  <div class="tool">
+    <h3>練習：這是第幾道防線？</h3>
+    <div class="out" id="lnQ" style="font-size:17px;font-weight:700;margin-bottom:8px"></div>
+    <div class="bar" id="lnBar">
+      <button class="btn" data-l="1">第一道</button>
+      <button class="btn warm" data-l="2">第二道</button>
+      <button class="btn cool" data-l="3">第三道</button>
+    </div>
+    <div class="out" id="lnOut"></div>
+  </div>
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>皮膚、黏膜是第一道；白血球吞噬、發炎反應是第二道；特殊白血球、抗體、記憶是第三道。</li>
+      <li>發炎反應是微血管<b>擴張</b>，不是收縮。</li>
+      <li>白血球吞噬病原體是<b>非專一性</b>的；有專一性的是第三道防線。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 二 ================= -->
+  <section class="sec" id="s2">
+  <h2>二、疫苗與記憶<span class="star">★★ 常考</span></h2>
+  <div class="key">
+    <ul>
+      <li><b>疫苗</b>：用死掉或減弱的病原體（或病原體的一部分）製成。打進身體後，刺激<b>第三道防線</b>製造抗體、產生<b>記憶</b>。</li>
+      <li>以後真的遇到這種病原體，身體能<b>很快、很強</b>地對抗。疫苗是用來<b>預防</b>，不是治療。打疫苗不會讓人生病，頂多出現輕微的症狀。</li>
+      <li>人體能靠打疫苗預防疾病，是因為專一性防禦作用具有<b>記憶性</b>：再次遇到同一種病原體時，特殊白血球會快速增加、快速製造抗體。</li>
+      <li>第三道防線有<b>專一性</b>，所以不同的疾病要打不同的疫苗；流感病毒容易變化，所以<b>每年要再打</b>。</li>
+    </ul>
+  </div>
+
+  <div class="tool">
+    <h3>防禦作用強度：第一次和第二次感染比一比</h3>
+    <div class="bar" id="vcBar">
+      <button class="btn on" data-v="1">只感染一次</button>
+      <button class="btn" data-v="2">同一種病原體再感染一次</button>
+      <button class="btn" data-v="3">先打疫苗，再遇到病原體</button>
+    </div>
+    <svg id="vcSvg" viewBox="0 0 560 280" role="img" aria-label="兩次感染的專一性防禦作用強度曲線" style="width:100%;max-width:640px;height:auto;display:block;background:#fff;border:1px solid var(--line);border-radius:10px"></svg>
+    <div class="out" id="vcOut"></div>
+  </div>
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li>疫苗裡<b>不是抗體</b>，而是讓身體<b>自己</b>製造抗體。</li>
+      <li>會留下記憶的是<b>特殊白血球</b>，不是疫苗本身，也不是紅血球、淋巴結。</li>
+      <li>讀曲線圖：第二次感染時，反應<b>比較快</b>出現、強度<b>比較高</b>。</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 小測驗 ================= -->
+  <section class="sec" id="s3">
+  <h2>小測驗</h2>
+  <p class="note">每題只有一個正確答案，選了就會顯示解析（第一次選的答案才計分）。題目都是自編題，不是學校或出版社的考題。</p>
+  <div class="score"><span class="big" id="qzScore">0 / 0</span><span class="small" id="qzDone">已作答 0 題</span><button class="btn" id="qzReset">重新作答</button></div>
+  <div class="chips" id="qzFlt">
+    <button class="chip on" data-u="all">全部</button>
+    <button class="chip" data-u="1">一、三道防線</button>
+    <button class="chip" data-u="2">二、疫苗與記憶</button>
+  </div>
+  <div id="qz"></div>
+  </section>
+  <div id="pager"></div>
+</main>
+<footer id="site-foot"></footer>
+<script>
+(function(){
+'use strict';
+const $=B.$;
+/* ---------- 一、三道防線分類 ---------- */
+const LN=[
+  ['皮膚完整，細菌進不了身體',1,'皮膚把病原體擋在外面。'],
+  ['鼻腔黏膜分泌的黏液黏住灰塵和細菌',1,'黏膜和黏液屬於第一道防線。'],
+  ['淚液沖走眼睛裡的細菌',1,'淚液是分泌物，屬於第一道防線。'],
+  ['白血球穿出微血管，吞噬侵入傷口的細菌',2,'白血球吞噬病原體是第二道防線，對所有入侵者都一樣。'],
+  ['傷口附近紅、腫、熱、痛',2,'這是發炎反應，屬於第二道防線。'],
+  ['發炎時，傷口附近的微血管擴張、血流增加',2,'發炎反應：微血管擴張，讓更多白血球來到傷口。'],
+  ['特殊白血球製造抗體，對付某一種病毒',3,'抗體只對付特定的病原體，是專一性的第三道防線。'],
+  ['同一種病原體第二次入侵，身體很快就消滅它',3,'第三道防線留下了記憶。'],
+  ['打完疫苗後，身體產生對抗某種疾病的抗體',3,'疫苗刺激第三道防線製造抗體、產生記憶。']
+];
+let lnO=B.shuffle(LN),lnI=0,lnOk=0,lnN=0;
+function lnAsk(){if(lnI>=lnO.length){lnO=B.shuffle(LN);lnI=0;}$('lnQ').textContent='「'+lnO[lnI][0]+'」';}
+$('lnBar').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{
+  const q=lnO[lnI],ok=+b.dataset.l===q[1];lnN++;if(ok)lnOk++;
+  $('lnOut').innerHTML=(ok?'<b style="color:var(--moss)">答對了！</b>':'<b style="color:var(--rose)">不對，</b>')+'是<b>第'+'一二三'[q[1]-1]+'道防線</b>：'+q[2]+' <span class="small">（答對 '+lnOk+' / '+lnN+'）</span>';
+  lnI++;lnAsk();
+});
+lnAsk();
+
+/* ---------- 二、疫苗曲線 ---------- */
+function bump(t,t0,rise,peak,decay){if(t<t0)return 0;const x=t-t0;return peak*(1-Math.exp(-x/rise))*Math.exp(-Math.max(0,x-rise*3)/decay);}
+function vcDraw(v){
+  const W=560,H=280,L=50,R=16,T=20,Bt=44,pw=W-L-R,ph=H-T-Bt,X=t=>L+t/100*pw,Y=a=>T+ph-a*ph;
+  let g='<line x1="'+L+'" y1="'+(T+ph)+'" x2="'+(W-R)+'" y2="'+(T+ph)+'" stroke="#4d5a52"/><line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(T+ph)+'" stroke="#4d5a52"/>';
+  g+='<text x="16" y="'+(T+ph/2)+'" font-size="12.5" fill="#4d5a52" text-anchor="middle" transform="rotate(-90 16 '+(T+ph/2)+')">專一性防禦作用強度</text><text x="'+(W-R)+'" y="'+(H-8)+'" font-size="12.5" text-anchor="end" fill="#4d5a52">時間 →</text>';
+  const ev=[];let f;
+  if(v===1){ev.push([10,'病原體入侵','#a33a4a']);f=t=>bump(t,10,9,0.32,20);}
+  else if(v===2){ev.push([8,'第一次感染','#a33a4a'],[55,'第二次感染','#a33a4a']);f=t=>bump(t,8,9,0.3,14)+bump(t,55,3,0.9,30);}
+  else{ev.push([8,'打疫苗','#2d6f9e'],[55,'遇到病原體','#a33a4a']);f=t=>bump(t,8,9,0.25,14)+bump(t,55,3,0.85,30);}
+  ev.forEach(([t,n,c])=>{g+='<line x1="'+X(t)+'" y1="'+T+'" x2="'+X(t)+'" y2="'+(T+ph)+'" stroke="'+c+'" stroke-dasharray="4 4"/><text x="'+X(t)+'" y="'+(T+ph+18)+'" font-size="12.5" text-anchor="middle" fill="'+c+'">'+n+'</text>';});
+  let d='';for(let t=0;t<=100;t+=0.5)d+=(t?'L':'M')+X(t).toFixed(1)+' '+Y(Math.min(1,f(t))).toFixed(1);
+  g+='<path d="'+d+'" fill="none" stroke="#6a4c93" stroke-width="3"/>';
+  if(v>1){g+='<text x="'+X(22)+'" y="'+(Y(0.3)-8)+'" font-size="12.5" text-anchor="middle" fill="#6a4c93">慢、弱</text><text x="'+X(64)+'" y="'+(Y(0.9)-6)+'" font-size="12.5" text-anchor="middle" fill="#6a4c93" font-weight="700">快、強</text>';}
+  $('vcSvg').innerHTML=g;
+  $('vcOut').innerHTML=v===1?'第一次遇到這種病原體，第三道防線要花一段時間才認出它、製造抗體，所以反應<b>比較慢、比較弱</b>，這段期間容易生病。':
+    v===2?'第一次感染後，特殊白血球留下<b>記憶</b>。同一種病原體再來時，身體<b>很快</b>就製造<b>大量</b>抗體，可能還沒發病就把它消滅了。':
+    '疫苗用死掉或減弱的病原體，讓身體在<b>不生病</b>的情況下先產生抗體和記憶（像是「演習」）。真的遇到病原體時，反應又快又強。疫苗是<b>預防</b>，不是治療。';
+}
+$('vcBar').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{$('vcBar').querySelectorAll('.btn').forEach(x=>x.classList.toggle('on',x===b));vcDraw(+b.dataset.v);});
+vcDraw(1);
+
+/* ---------- 小測驗 ---------- */
+const QZ=[
+ {u:1,s:'下列哪些屬於人體的第一道防線？甲：皮膚　乙：白血球　丙：黏膜　丁：抗體',o:['甲乙','甲丙','乙丁','丙丁'],a:1,
+  e:'第一道防線是皮膚和黏膜。白血球吞噬是第二道，抗體是第三道。'},
+ {u:1,s:'手指被割傷後，傷口紅、腫、熱、痛，這是哪一道防線的反應？',o:['第一道','第二道','第三道','不屬於防禦'],a:1,
+  e:'紅腫熱痛是發炎反應，屬於第二道防線。'},
+ {u:1,s:'關於發炎反應的敘述，何者正確？',o:['傷口附近的微血管收縮','傷口附近的微血管擴張、血流增加','發炎是第一道防線','發炎反應有專一性'],a:1,
+  e:'發炎時微血管擴張、血流增加，讓更多白血球到達傷口。發炎是第二道防線，沒有專一性。'},
+ {u:1,s:'哪一道防線具有「專一性」，只對付特定的病原體？',o:['第一道','第二道','第三道','三道都有'],a:2,
+  e:'第三道防線由特殊白血球認出特定病原體，製造抗體並留下記憶，是專一性的防禦。'},
+ {u:1,s:'關於人體防禦的敘述，何者正確？',o:['皮膚和黏膜可以擋住所有病原體','白血球吞噬病原體是專一性的反應','抗體屬於第三道防線，能對付特定的病原體','發炎反應會產生記憶'],a:2,
+  e:'(A) 第一道防線不能擋住所有病原體。(B) 白血球吞噬是非專一性的。(D) 產生記憶的是第三道防線。'},
+ {u:1,s:'白血球能穿出微血管吞噬細菌。白血球在三道防線中主要參與哪幾道？',o:['只有第一道','第二道和第三道','只有第一道和第二道','三道都沒有'],a:1,
+  e:'一般白血球吞噬病原體是第二道防線；特殊白血球（淋巴球）製造抗體是第三道防線。'},
+ {u:2,s:'下列哪一種構造會對入侵過的病原體留下記憶？',o:['紅血球','血小板','特殊白血球','疫苗'],a:2,
+  e:'特殊白血球（淋巴球）會記住病原體，下次同一種病原體入侵時能快速反應。疫苗本身不會記憶。'},
+ {u:2,s:'打疫苗可以預防疾病，主要原因是什麼？',o:['疫苗裡含有抗體','疫苗是藥物，能直接殺死病毒','疫苗讓身體自己製造抗體並產生記憶','疫苗讓紅血球數量增加'],a:2,
+  e:'疫苗用死掉或減弱的病原體刺激第三道防線，讓身體自己製造抗體、留下記憶。'},
+ {u:2,s:'為什麼流感疫苗需要每年施打？',o:['流感疫苗的抗體只能存在一天','流感病毒容易變化，去年的記憶可能認不出新病毒','流感疫苗是治療用的','第三道防線沒有專一性'],a:1,
+  e:'第三道防線有專一性，流感病毒容易變化，所以每年要針對新的病毒打疫苗。'},
+ {u:2,s:'同一種病原體第二次入侵時，人體的專一性防禦作用和第一次相比，何者正確？',o:['比較慢、比較弱','比較快、比較強','一樣快、一樣強','完全沒有反應'],a:1,
+  e:'第一次感染後留下記憶，第二次反應比較快、強度比較高。'},
+ {u:2,s:'打了 B 型肝炎疫苗的人，能不能因此預防流感？',o:['可以，疫苗能對付所有病原體','不行，第三道防線有專一性','可以，因為白血球變多了','不行，因為疫苗會被消化'],a:1,
+  e:'疫苗刺激的是有專一性的第三道防線，B 型肝炎疫苗只對 B 型肝炎病毒有效。不同疾病要打不同疫苗。'},
+ {u:2,s:'小華上週打了流感疫苗。今天騎腳踏車跌倒，膝蓋擦傷流血，後來傷口有點紅腫。下列敘述何者正確？',o:['流感疫苗產生的抗體可以消滅傷口的細菌','擦傷以後，第一道防線仍然完整','傷口紅腫，表示第二道防線正在作用','打過疫苗的人，傷口不會發炎'],a:2,
+  e:'紅、腫、熱、痛是發炎反應，屬於第二道防線。流感疫苗只針對流感病毒（專一性），對傷口的細菌沒有用，也不能防止發炎；皮膚破了，第一道防線就不完整了。'},
+ {u:2,s:'下列關於疫苗的敘述，何者錯誤？',o:['疫苗可用死掉或減弱的病原體製成','疫苗主要用來預防疾病','打疫苗後身體會自己製造抗體','生病以後打疫苗，就能立刻治好疾病'],a:3,
+  e:'疫苗是預防，不是治療；產生抗體和記憶需要時間。'}
+];
+B.quiz({box:'qz',score:'qzScore',done:'qzDone',reset:'qzReset',filter:'qzFlt',data:QZ,names:{1:'重點一',2:'重點二'}});
+window.__QZ=QZ;
+})();
+</script>
+</body>
+</html>
