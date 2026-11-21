@@ -8,8 +8,8 @@
 <link rel="icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="../assets/style.css?v=3">
-<link rel="stylesheet" href="lib/bio.css">
-<script src="lib/common.js"></script>
+<link rel="stylesheet" href="lib/bio.css?v=5">
+<script src="lib/common.js?v=5"></script>
 <style>
 /* 葉片橫切面：標出有葉綠體的細胞時，加強這三個名稱，其他名稱變淡 */
 #lfSvg .lblbg{display:none;fill:#dcefd6;stroke:#3f7a4f;stroke-width:1.5}
@@ -289,7 +289,7 @@ if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)wpTimer=setInt
   pts.forEach(([x,y],i)=>{sp+='<ellipse cx="'+x+'" cy="'+y+'" rx="'+(16+(i%3)*2)+'" ry="'+(12+(i%2)*3)+'" fill="#d3eac6" stroke="#5f8f55"/><circle cx="'+(x-5)+'" cy="'+(y-2)+'" r="2.8" fill="#2f7d3c"/><circle cx="'+(x+6)+'" cy="'+(y+3)+'" r="2.8" fill="#2f7d3c"/>';});
   g+='<g data-part="spongy">'+sp+'</g>';
   /* 葉脈：木質部（上）、韌皮部（下） */
-  g+='<ellipse cx="240" cy="200" rx="62" ry="50" fill="#f1ead8" stroke="#a89a73" stroke-width="2"/>';
+  g+='<ellipse class="vein-bg" cx="240" cy="200" rx="62" ry="50" fill="#f1ead8" stroke="#a89a73" stroke-width="2"/>';
   /* 木質部（上）、韌皮部（下）：兩個一樣大的半圓，以葉脈中心 (240,200) 上下對稱 */
   let xy='<path d="M186 197 A54 42 0 0 1 294 197 Z" fill="#f6d9c4" stroke="#b5643a"/>';for(let i=0;i<7;i++)xy+='<circle cx="'+(240+(i-3)*13)+'" cy="'+(i%2?176:186)+'" r="5.5" fill="#fff" stroke="#b5643a" stroke-width="1.6"/>';
   g+='<g data-part="xylem">'+xy+'</g>';

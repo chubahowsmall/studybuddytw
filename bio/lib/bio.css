@@ -33,11 +33,12 @@ svg [data-part].sel{filter:drop-shadow(0 0 3px #d97706) drop-shadow(0 0 6px #f59
 svg [data-part].good{filter:drop-shadow(0 0 3px #16a34a) drop-shadow(0 0 6px #22c55e) brightness(1.1)}
 svg [data-part].bad{filter:drop-shadow(0 0 3px #dc2626) drop-shadow(0 0 6px #ef4444) brightness(1.1)}
 @keyframes blink{50%{opacity:.45}}
-svg.dim [data-part]{opacity:.22;transition:opacity .15s,filter .15s}
-svg.dim [data-part].sel{opacity:1;filter:drop-shadow(0 0 3px #d97706) drop-shadow(0 0 6px #f59e0b) brightness(1.15)}
-svg.dim [data-part].good{opacity:1;filter:drop-shadow(0 0 3px #16a34a) drop-shadow(0 0 6px #22c55e) brightness(1.15)}
-svg.dim [data-part].bad{opacity:1;filter:drop-shadow(0 0 3px #dc2626) drop-shadow(0 0 6px #ef4444) brightness(1.12)}
-svg.dim [data-part].hl{opacity:1;filter:drop-shadow(0 0 2px #1f7a32) drop-shadow(0 0 4px #3f7a4f)}
+svg.dim [data-part]{opacity:.32;filter:brightness(0.55) grayscale(70%);transition:opacity .15s,filter .15s}
+svg.dim [data-part].sel{opacity:1;filter:grayscale(0%) drop-shadow(0 0 4px #d97706) drop-shadow(0 0 10px #f59e0b) brightness(1.25);animation:blink 1.2s ease-in-out infinite}
+svg.dim [data-part].good{opacity:1;filter:grayscale(0%) drop-shadow(0 0 4px #16a34a) drop-shadow(0 0 10px #22c55e) brightness(1.22)}
+svg.dim [data-part].bad{opacity:1;filter:grayscale(0%) drop-shadow(0 0 4px #dc2626) drop-shadow(0 0 10px #ef4444) brightness(1.15)}
+svg.dim [data-part].hl{opacity:1;filter:grayscale(0%) drop-shadow(0 0 3px #1f7a32) drop-shadow(0 0 8px #3f7a4f) brightness(1.2)}
+svg.dim .vein-bg{opacity:.32;filter:brightness(0.55) grayscale(70%);transition:opacity .15s,filter .15s}
 @media (prefers-reduced-motion:reduce){svg [data-part].sel{animation:none}}
 svg.testing .lbl,svg.testing .lbls{display:none}
 svg .lbl{font-size:15px;fill:var(--ink);pointer-events:none}
