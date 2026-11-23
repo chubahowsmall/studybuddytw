@@ -38,6 +38,54 @@
 .bcstage.mode-plasma .anno-buffy,.bcstage.mode-plasma .anno-rbc{opacity:.14}
 .bcstage.mode-buffy .anno-plasma,.bcstage.mode-buffy .anno-rbc{opacity:.14}
 .bcstage.mode-rbc .anno-plasma,.bcstage.mode-rbc .anno-buffy{opacity:.14}
+.hsgrid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:14px;align-items:stretch}
+@media (max-width:760px){.hsgrid{grid-template-columns:minmax(0,1fr)}}
+.hsstage{border:1px solid var(--line);border-radius:var(--r);background:#f7f1e5;padding:6px;display:flex;align-items:center}
+.hsstage svg{display:block;width:100%;height:auto;border-radius:8px}
+.hsright{display:flex;flex-direction:column;gap:10px;justify-content:space-between}
+.hsinfo{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;font-size:14.5px;line-height:1.6;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:8px}
+.hsbot{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:8px;align-items:stretch}
+.hswave{border:1px solid var(--line);border-radius:var(--r);background:#fbfaf6;padding:6px 8px;display:flex;align-items:center;justify-content:center}
+.hswave svg{display:block;width:100%;height:auto}
+.hstag{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:700;vertical-align:1px}
+.hstag.open{background:#dcfce7;color:#166534;border:1px solid #86efac}
+.hstag.close{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+.hstag.snd{background:#fef3c7;color:#92400e;border:1px solid #f59e0b}
+@keyframes hsPulse{0%{opacity:.95;transform:scale(.68)}100%{opacity:0;transform:scale(1.9)}}
+@keyframes hsDash{to{stroke-dashoffset:-32}}
+#hsSvg .wave-ring{transform-box:fill-box;transform-origin:center;animation:hsPulse 1.15s ease-out infinite}
+#hsSvg .wave-ring-2{transform-box:fill-box;transform-origin:center;animation:hsPulse 1.15s ease-out .38s infinite}
+#hsSvg .flow-fast{stroke-dasharray:10 6;animation:hsDash .75s linear infinite}
+#hsSvg .flow-slow{stroke-dasharray:8 8;animation:hsDash 1.3s linear infinite}
+#hsSvg .vleaf{transition:transform .42s cubic-bezier(.22,1.25,.36,1),fill .25s,stroke .25s}
+#hsSvg .chord{transition:opacity .3s}
+#hsSvg .v-ra-l{transform-origin:158px 286px}
+#hsSvg .v-ra-r{transform-origin:226px 268px}
+#hsSvg .v-la-l{transform-origin:312px 268px}
+#hsSvg .v-la-r{transform-origin:386px 274px}
+#hsSvg .v-pa-l{transform-origin:229px 262px}
+#hsSvg .v-pa-r{transform-origin:273px 264px}
+#hsSvg .v-ao-l{transform-origin:282px 262px}
+#hsSvg .v-ao-r{transform-origin:314px 236px}
+#hsSvg.st-0 .v-ra-l,#hsSvg.st-1 .v-ra-l{transform:rotate(50deg)}
+#hsSvg.st-0 .v-ra-r,#hsSvg.st-1 .v-ra-r{transform:rotate(-44deg)}
+#hsSvg.st-0 .v-la-l,#hsSvg.st-1 .v-la-l{transform:rotate(50deg)}
+#hsSvg.st-0 .v-la-r,#hsSvg.st-1 .v-la-r{transform:rotate(-50deg)}
+#hsSvg.st-0 .chord,#hsSvg.st-1 .chord{opacity:.35}
+#hsSvg.st-2 .v-av{fill:#fef08a;stroke:#b45309;stroke-width:2.8}
+#hsSvg.st-2 .v-pa-l{transform:rotate(-68deg)}
+#hsSvg.st-2 .v-pa-r{transform:rotate(68deg)}
+#hsSvg.st-2 .v-ao-l{transform:rotate(-62deg)}
+#hsSvg.st-2 .v-ao-r{transform:rotate(62deg)}
+#hsSvg.st-2 .chord{opacity:.95}
+#hsSvg.st-3 .v-sl{fill:#fef08a;stroke:#b45309;stroke-width:2.8}
+#hsSvg.st-3 .chord{opacity:.65}
+#hsSvg .ch-atria,#hsSvg .ch-vent{transition:filter .35s}
+#hsSvg.st-1 .ch-atria{filter:brightness(1.07) saturate(1.16)}
+#hsSvg.st-2 .ch-vent{filter:brightness(1.07) saturate(1.18)}
+#hsSvg .stage-layer{display:none}
+#hsSvg.st-0 .layer-0,#hsSvg.st-1 .layer-1,#hsSvg.st-2 .layer-2,#hsSvg.st-3 .layer-3{display:inline}
+@media (prefers-reduced-motion:reduce){#hsSvg .wave-ring,#hsSvg .wave-ring-2,#hsSvg .flow-fast,#hsSvg .flow-slow{animation:none}}
 .q figure svg{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fbfaf6}
 </style>
 <script src="lib/common.js?v=13"></script>
@@ -557,6 +605,183 @@
     </div>
   </div>
 
+  <div class="tool">
+    <div class="hchead">
+      <h3>一次心跳（0.8 秒）為什麼有「噗—通」兩個心音？看懂瓣膜開閉</h3>
+      <div class="bar" id="hsTabs">
+        <button class="btn on" type="button" data-st="0">① 全心舒張（0.4秒）</button>
+        <button class="btn" type="button" data-st="1">② 心房收縮（0.1秒）</button>
+        <button class="btn warm" type="button" data-st="2">③ 心室收縮（0.3秒）➔「噗！」</button>
+        <button class="btn warm" type="button" data-st="3">④ 心室剛舒張 ➔「通！」</button>
+        <button class="btn cool" id="hsPlay" type="button">▶ 連續慢動作播放</button>
+      </div>
+    </div>
+    <p class="note">心音不是心臟撞胸口、也不是瓣膜打開，而是<b>血液試圖逆流時撞擊「關閉」的瓣膜</b>發出的聲音！依序切換下方四步驟，對照 0.8 秒週期圓盤觀察房室瓣（含腱索）與半月瓣的真實開閉時序。</p>
+    <div class="hsgrid">
+      <div class="hsstage">
+        <svg id="hsSvg" class="st-0" viewBox="20 18 520 492" role="img" aria-label="多圖層擬真解剖心臟剖面：呈現四步驟心動週期之房室瓣與半月瓣開閉及前後血管血流方向" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="hsSh" x="-15%" y="-15%" width="130%" height="130%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#1f2a24" flood-opacity="0.18"/></filter>
+            <marker id="hsFaB" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#1d4ed8"/></marker>
+            <marker id="hsFaR" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#dc2626"/></marker>
+            <linearGradient id="hsGMyo" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f2baa7"/><stop offset="55%" stop-color="#e59c87"/><stop offset="100%" stop-color="#d4816c"/></linearGradient>
+            <linearGradient id="hsGBlueV" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6d8cb8"/><stop offset="50%" stop-color="#90aed6"/><stop offset="100%" stop-color="#6483b0"/></linearGradient>
+            <linearGradient id="hsGBlueC" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9eb7d4"/><stop offset="100%" stop-color="#7693b8"/></linearGradient>
+            <linearGradient id="hsGRedV" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d95c50"/><stop offset="48%" stop-color="#f28474"/><stop offset="100%" stop-color="#cc5046"/></linearGradient>
+            <linearGradient id="hsGRedC" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f48b7a"/><stop offset="100%" stop-color="#d96154"/></linearGradient>
+            <linearGradient id="hsGIvory" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fffdf4"/><stop offset="100%" stop-color="#efe3c2"/></linearGradient>
+          </defs>
+          <rect x="20" y="18" width="520" height="492" fill="#f7f1e5"/>
+          <path d="M154,358 V452 C154,462 194,462 194,452 V382 Z" fill="url(#hsGBlueV)" stroke="#3d2f28" stroke-width="2.4"/>
+          <path d="M152,98 V204 H196 V98 Z" fill="url(#hsGBlueV)" stroke="#3d2f28" stroke-width="2.4"/>
+          <ellipse cx="174" cy="98" rx="22" ry="6.5" fill="#7d9cc4" stroke="#3d2f28" stroke-width="2.2"/>
+          <path d="M368,186 L432,172 L438,196 L376,210 Z" fill="url(#hsGRedV)" stroke="#3d2f28" stroke-width="2.3"/>
+          <ellipse cx="435" cy="184" rx="5.5" ry="12" fill="#c94f45" stroke="#3d2f28" stroke-width="2"/>
+          <path d="M376,222 L440,226 L438,250 L374,246 Z" fill="url(#hsGRedV)" stroke="#3d2f28" stroke-width="2.3"/>
+          <ellipse cx="439" cy="238" rx="5.5" ry="12" fill="#c94f45" stroke="#3d2f28" stroke-width="2"/>
+          <path d="M264,454 V490 C264,499 298,499 298,490 V458 Z" fill="url(#hsGRedV)" stroke="#3d2f28" stroke-width="2.3"/>
+          <path d="M266,248 C252,190 236,144 252,102 C264,70 306,60 334,74 C362,88 370,126 364,180 L328,176 C332,136 326,114 312,108 C298,102 284,112 282,130 C278,162 296,204 314,242 Z" fill="url(#hsGRedV)" stroke="#3d2f28" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M262,86 L252,52 L270,48 L279,78 Z" fill="url(#hsGRedV)" stroke="#3d2f28" stroke-width="2.2"/>
+          <ellipse cx="261" cy="50" rx="9" ry="4" fill="#c94f45" stroke="#3d2f28" stroke-width="1.8"/>
+          <path d="M291,72 L292,40 L310,40 L309,72 Z" fill="url(#hsGRedV)" stroke="#3d2f28" stroke-width="2.2"/>
+          <ellipse cx="301" cy="40" rx="9" ry="4" fill="#c94f45" stroke="#3d2f28" stroke-width="1.8"/>
+          <path d="M322,76 L334,46 L351,53 L337,84 Z" fill="url(#hsGRedV)" stroke="#3d2f28" stroke-width="2.2"/>
+          <ellipse cx="342" cy="49" rx="9" ry="4" fill="#c94f45" stroke="#3d2f28" stroke-width="1.8"/>
+          <g class="stage-layer layer-2" pointer-events="none">
+            <path d="M342,356 Q312,306 296,252 Q266,184 268,128 Q272,88 318,90 Q348,92 348,144" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".68"/>
+            <path class="flow-fast" d="M342,356 Q312,306 296,252 Q266,184 268,128 Q272,88 318,90 Q348,92 348,144" fill="none" stroke="#dc2626" stroke-width="5.2" stroke-linecap="round" marker-end="url(#hsFaR)"/>
+          </g>
+          <g class="stage-layer layer-3" pointer-events="none">
+            <path d="M270,136 Q272,194 294,242" fill="none" stroke="#fff" stroke-width="8.5" stroke-linecap="round" opacity=".7"/>
+            <path class="flow-fast" d="M270,136 Q272,194 294,242" fill="none" stroke="#dc2626" stroke-width="5" stroke-linecap="round" marker-end="url(#hsFaR)"/>
+          </g>
+          <path d="M174,186 C132,208 122,292 152,364 C184,438 278,480 344,468 C406,456 432,374 416,282 C408,228 386,184 348,176 C318,170 292,188 282,216 C254,200 212,174 174,186 Z" fill="url(#hsGMyo)" stroke="#3d2f28" stroke-width="2.8" stroke-linejoin="round"/>
+          <path d="M408,332 C416,386 404,440 352,462 C324,472 292,464 264,452" fill="none" stroke="#c81e2b" stroke-width="3.6" stroke-linecap="round"/>
+          <path d="M398,412 C384,436 364,450 338,458" fill="none" stroke="#c81e2b" stroke-width="2.2" stroke-linecap="round"/>
+          <path class="ch-atria" d="M168,196 C140,214 136,262 156,288 L228,268 C236,238 224,200 198,194 C186,191 176,192 168,196 Z" fill="url(#hsGBlueC)" stroke="#3d2f28" stroke-width="2.2"/>
+          <path class="ch-vent" d="M158,292 L228,272 L274,272 C276,326 286,382 302,424 C258,434 196,404 168,354 C156,332 154,310 158,292 Z" fill="url(#hsGBlueC)" stroke="#3d2f28" stroke-width="2.2"/>
+          <path class="ch-atria" d="M342,188 C374,192 396,228 388,274 L310,268 C298,236 308,192 342,188 Z" fill="url(#hsGRedC)" stroke="#3d2f28" stroke-width="2.2"/>
+          <path class="ch-vent" d="M312,272 L384,278 C392,324 382,386 356,416 C340,432 326,420 314,386 C298,342 290,300 284,262 L314,236 Z" fill="url(#hsGRedC)" stroke="#3d2f28" stroke-width="2.2"/>
+          <g class="stage-layer layer-0" pointer-events="none">
+            <path d="M174,114 V224 Q190,278 214,332 Q228,366 250,386" fill="none" stroke="#fff" stroke-width="8.5" stroke-linecap="round" opacity=".6"/>
+            <path class="flow-slow" d="M174,114 V224 Q190,278 214,332 Q228,366 250,386" fill="none" stroke="#1d4ed8" stroke-width="5" stroke-linecap="round" marker-end="url(#hsFaB)"/>
+            <path d="M430,184 L366,204 Q350,242 350,334 Q350,368 344,390" fill="none" stroke="#fff" stroke-width="8.5" stroke-linecap="round" opacity=".6"/>
+            <path class="flow-slow" d="M430,184 L366,204 Q350,242 350,334 Q350,368 344,390" fill="none" stroke="#dc2626" stroke-width="5" stroke-linecap="round" marker-end="url(#hsFaR)"/>
+          </g>
+          <g class="stage-layer layer-1" pointer-events="none">
+            <path d="M182,226 Q192,278 214,332 Q228,366 250,386" fill="none" stroke="#fff" stroke-width="9.5" stroke-linecap="round" opacity=".68"/>
+            <path class="flow-fast" d="M182,226 Q192,278 214,332 Q228,366 250,386" fill="none" stroke="#1d4ed8" stroke-width="5.6" stroke-linecap="round" marker-end="url(#hsFaB)"/>
+            <path d="M350,218 Q350,278 350,334 Q350,368 344,390" fill="none" stroke="#fff" stroke-width="9.5" stroke-linecap="round" opacity=".68"/>
+            <path class="flow-fast" d="M350,218 Q350,278 350,334 Q350,368 344,390" fill="none" stroke="#dc2626" stroke-width="5.6" stroke-linecap="round" marker-end="url(#hsFaR)"/>
+            <path d="M150,236 L164,242 M380,224 L366,230" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".85"/>
+          </g>
+          <g class="stage-layer layer-2" pointer-events="none">
+            <path class="flow-slow" d="M174,114 V224" fill="none" stroke="#1d4ed8" stroke-width="4.4" stroke-linecap="round" marker-end="url(#hsFaB)"/>
+            <path class="flow-slow" d="M430,184 L366,204" fill="none" stroke="#dc2626" stroke-width="4.4" stroke-linecap="round" marker-end="url(#hsFaR)"/>
+            <path d="M174,344 L190,336 M208,382 L222,368 M378,344 L362,338 M366,388 L350,376" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".8"/>
+          </g>
+          <g class="stage-layer layer-3" pointer-events="none">
+            <path class="flow-slow" d="M174,114 V224" fill="none" stroke="#1d4ed8" stroke-width="4.4" stroke-linecap="round" marker-end="url(#hsFaB)"/>
+            <path class="flow-slow" d="M430,184 L366,204" fill="none" stroke="#dc2626" stroke-width="4.4" stroke-linecap="round" marker-end="url(#hsFaR)"/>
+          </g>
+          <g class="chord" stroke="#f5ebd1" stroke-width="1.5" pointer-events="none">
+            <line x1="194" y1="280" x2="184" y2="348"/><line x1="198" y1="280" x2="218" y2="358"/>
+            <line x1="346" y1="274" x2="326" y2="354"/><line x1="352" y1="274" x2="368" y2="352"/>
+          </g>
+          <g stroke="#3d2f28" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" fill="url(#hsGIvory)">
+            <path class="vleaf v-av v-ra-l" d="M158,286 Q176,272 195,277 Q182,292 158,294 Z"/>
+            <path class="vleaf v-av v-ra-r" d="M226,268 Q210,274 195,277 Q210,286 228,276 Z"/>
+            <path class="vleaf v-av v-la-l" d="M312,268 Q330,262 349,271 Q330,282 312,276 Z"/>
+            <path class="vleaf v-av v-la-r" d="M386,274 Q368,264 349,271 Q368,284 386,282 Z"/>
+            <path class="vleaf v-sl v-ao-l" d="M282,262 Q296,262 299,246 Q289,254 278,252 Z"/>
+            <path class="vleaf v-sl v-ao-r" d="M314,236 Q314,250 299,246 Q306,238 306,228 Z"/>
+          </g>
+          <path d="M234,142 L134,160 L138,184 L236,168 Z" fill="url(#hsGBlueV)" stroke="#3d2f28" stroke-width="2.4"/>
+          <ellipse cx="136" cy="172" rx="5.5" ry="12" fill="#5e7da8" stroke="#3d2f28" stroke-width="2"/>
+          <path d="M226,270 C228,218 242,174 264,142 C276,126 306,122 396,122 L396,154 C324,154 300,158 292,172 C278,198 274,230 274,270 Z" fill="url(#hsGBlueV)" stroke="#3d2f28" stroke-width="2.5" stroke-linejoin="round"/>
+          <ellipse cx="396" cy="138" rx="6.5" ry="16" fill="#5e7da8" stroke="#3d2f28" stroke-width="2.2"/>
+          <path d="M228,270 C229,246 238,226 252,226 C266,226 273,246 273,270" fill="#7795ba" stroke="#3d2f28" stroke-width="2.2"/>
+          <g class="stage-layer layer-2" pointer-events="none">
+            <path d="M242,366 Q248,314 251,260 Q258,190 282,150 Q306,138 386,138" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".68"/>
+            <path class="flow-fast" d="M242,366 Q248,314 251,260 Q258,190 282,150 Q306,138 386,138" fill="none" stroke="#1d4ed8" stroke-width="5.2" stroke-linecap="round" marker-end="url(#hsFaB)"/>
+          </g>
+          <g class="stage-layer layer-3" pointer-events="none">
+            <path d="M276,178 Q258,214 251,250" fill="none" stroke="#fff" stroke-width="8.5" stroke-linecap="round" opacity=".7"/>
+            <path class="flow-fast" d="M276,178 Q258,214 251,250" fill="none" stroke="#1d4ed8" stroke-width="5" stroke-linecap="round" marker-end="url(#hsFaB)"/>
+          </g>
+          <g stroke="#3d2f28" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" fill="url(#hsGIvory)">
+            <path class="vleaf v-sl v-pa-l" d="M229,262 Q240,275 251,260 Q239,265 230,250 Z"/>
+            <path class="vleaf v-sl v-pa-r" d="M273,264 Q262,276 251,260 Q263,266 272,252 Z"/>
+          </g>
+          <g font-size="12" font-weight="800" text-anchor="middle" pointer-events="none" opacity=".75">
+            <text x="180" y="242" fill="#173257">右心房</text>
+            <text x="216" y="388" fill="#173257">右心室</text>
+            <text x="348" y="232" fill="#63171f">左心房</text>
+            <text x="348" y="378" fill="#63171f">左心室</text>
+          </g>
+          <g class="stage-layer layer-0" pointer-events="none">
+            <g filter="url(#hsSh)"><rect x="24" y="264" width="114" height="34" rx="17" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="81" y="286" text-anchor="middle" font-size="13" font-weight="800" fill="#166534">房室瓣已打開</text></g>
+            <line x1="138" y1="281" x2="156" y2="286" stroke="#16a34a" stroke-width="2.2"/>
+            <g filter="url(#hsSh)"><rect x="406" y="264" width="126" height="44" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="469" y="283" text-anchor="middle" font-size="12.5" font-weight="800" fill="#166534">靜脈➔心房➔心室</text><text x="469" y="300" text-anchor="middle" font-size="11" fill="#166534">約 80% 血液自然流入</text></g>
+            <g filter="url(#hsSh)"><rect x="26" y="54" width="136" height="34" rx="17" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/><text x="94" y="76" text-anchor="middle" font-size="13" font-weight="800" fill="#334155">半月瓣維持關閉</text></g>
+            <polyline points="162,71 216,71 246,252" fill="none" stroke="#64748b" stroke-width="1.8" stroke-dasharray="4 3"/>
+          </g>
+          <g class="stage-layer layer-1" pointer-events="none">
+            <g filter="url(#hsSh)"><rect x="24" y="256" width="116" height="44" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="82" y="275" text-anchor="middle" font-size="13" font-weight="800" fill="#166534">房室瓣仍打開</text><text x="82" y="292" text-anchor="middle" font-size="11" fill="#166534">擠入剩餘約 20%</text></g>
+            <line x1="140" y1="278" x2="156" y2="286" stroke="#16a34a" stroke-width="2.2"/>
+            <g filter="url(#hsSh)"><rect x="412" y="260" width="118" height="34" rx="17" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="471" y="282" text-anchor="middle" font-size="13" font-weight="800" fill="#166534">心房 ➔ 心室</text></g>
+            <line x1="412" y1="277" x2="390" y2="276" stroke="#16a34a" stroke-width="2.2"/>
+            <g filter="url(#hsSh)"><rect x="26" y="54" width="136" height="34" rx="17" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/><text x="94" y="76" text-anchor="middle" font-size="13" font-weight="800" fill="#334155">半月瓣維持關閉</text></g>
+            <polyline points="162,71 216,71 246,252" fill="none" stroke="#64748b" stroke-width="1.8" stroke-dasharray="4 3"/>
+          </g>
+          <g class="stage-layer layer-2" pointer-events="none">
+            <circle class="wave-ring" cx="195" cy="278" r="22" fill="none" stroke="#f59e0b" stroke-width="3.6"/>
+            <circle class="wave-ring-2" cx="195" cy="278" r="22" fill="none" stroke="#d97706" stroke-width="2.8"/>
+            <circle class="wave-ring" cx="349" cy="272" r="22" fill="none" stroke="#f59e0b" stroke-width="3.6"/>
+            <circle class="wave-ring-2" cx="349" cy="272" r="22" fill="none" stroke="#d97706" stroke-width="2.8"/>
+            <g filter="url(#hsSh)"><rect x="24" y="256" width="116" height="46" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2.2"/><text x="82" y="276" text-anchor="middle" font-size="15" font-weight="900" fill="#92400e">噗！(第一心音)</text><text x="82" y="294" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b45309">房室瓣用力關閉</text></g>
+            <line x1="140" y1="278" x2="180" y2="278" stroke="#b45309" stroke-width="2.4"/>
+            <g filter="url(#hsSh)"><rect x="416" y="254" width="116" height="46" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2.2"/><text x="474" y="274" text-anchor="middle" font-size="15" font-weight="900" fill="#92400e">噗！(第一心音)</text><text x="474" y="292" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b45309">房室瓣用力關閉</text></g>
+            <line x1="416" y1="276" x2="366" y2="274" stroke="#b45309" stroke-width="2.4"/>
+            <g filter="url(#hsSh)"><rect x="378" y="60" width="152" height="34" rx="17" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="454" y="82" text-anchor="middle" font-size="13.5" font-weight="800" fill="#166534">半月瓣衝開 ➔ 射血！</text></g>
+          </g>
+          <g class="stage-layer layer-3" pointer-events="none">
+            <circle class="wave-ring" cx="251" cy="260" r="20" fill="none" stroke="#f59e0b" stroke-width="3.6"/>
+            <circle class="wave-ring-2" cx="251" cy="260" r="20" fill="none" stroke="#d97706" stroke-width="2.8"/>
+            <circle class="wave-ring" cx="299" cy="246" r="19" fill="none" stroke="#f59e0b" stroke-width="3.6"/>
+            <circle class="wave-ring-2" cx="299" cy="246" r="19" fill="none" stroke="#d97706" stroke-width="2.8"/>
+            <g filter="url(#hsSh)"><rect x="24" y="40" width="146" height="48" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2.2"/><text x="97" y="61" text-anchor="middle" font-size="15" font-weight="900" fill="#92400e">通！(第二心音)</text><text x="97" y="79" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b45309">動脈血回沖關半月瓣</text></g>
+            <polyline points="170,64 218,64 246,248" fill="none" stroke="#b45309" stroke-width="2.4" stroke-linejoin="round"/>
+            <polyline points="218,64 292,236" fill="none" stroke="#b45309" stroke-width="2" stroke-dasharray="5 3"/>
+            <g filter="url(#hsSh)"><rect x="404" y="294" width="128" height="44" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/><text x="468" y="313" text-anchor="middle" font-size="12.5" font-weight="800" fill="#334155">房室瓣暫時仍關</text><text x="468" y="330" text-anchor="middle" font-size="11" fill="#475569">隨即打開回到①</text></g>
+            <line x1="404" y1="308" x2="366" y2="282" stroke="#64748b" stroke-width="1.8" stroke-dasharray="4 3"/>
+          </g>
+        </svg>
+      </div>
+      <div class="hsright">
+        <div class="hsinfo" id="hsInfo"></div>
+        <div class="hsbot">
+          <div class="hswave">
+            <svg id="hsDial" viewBox="0 0 156 112" role="img" aria-label="一次心跳 0.8 秒週期圓盤：全心舒張 0.4 秒、心房收縮 0.1 秒、心室收縮 0.3 秒"></svg>
+          </div>
+          <div class="hswave">
+            <svg id="hsWave" viewBox="0 0 260 92" role="img" aria-label="聽診器心音聲波：第一心音噗與第二心音通"></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tscroll" style="margin-top:10px">
+    <table class="t">
+      <tr><th>步驟（1 心跳 0.8 秒）</th><th>心房／心室</th><th>房室瓣（房室間）</th><th>半月瓣（心室與動脈間）</th><th>血液流向與心音重點</th></tr>
+      <tr><th>① 全心舒張（0.4 秒）</th><td>心房舒張、心室舒張</td><td><b>已打開</b></td><td>關閉</td><td><b>靜脈 → 心房 → 心室</b>（約 80% 血自然流入；佔一半時間休息）</td></tr>
+      <tr><th>② 心房收縮（0.1 秒）</th><td><b>心房收縮</b>、心室舒張</td><td><b>維持打開</b></td><td>關閉</td><td><b>心房 → 心室</b>（擠入剩餘約 20% 血液；無明顯心音）</td></tr>
+      <tr><th>③ 心室收縮（0.3 秒）</th><td>心房舒張、<b>心室收縮</b></td><td><b>碰！用力關閉</b></td><td><b>衝開</b></td><td><b>第一心音「噗」</b>！<b>心室 → 動脈</b>（摸到脈搏），同時<b>靜脈 → 心房</b></td></tr>
+      <tr><th>④ 心室剛舒張（交界）</th><td>心房舒張、<b>心室剛舒張</b></td><td>暫時仍閉（隨即打開）</td><td><b>叩！迅速關閉</b></td><td><b>第二心音「通」</b>！動脈血回沖關半月瓣，隨即回到 ① 全心舒張</td></tr>
+    </table>
+    </div>
+    <p class="mnemo" style="margin-top:8px">室收「噗」（房室瓣關）、室舒「通」（半月瓣關）— 順血流先關房室、再關半月！</p>
+  </div>
+
   <div class="card tight">
     <h3>考前必背對照：血液流經四大器官微血管後的成分變化</h3>
     <div class="tscroll">
@@ -580,6 +805,7 @@
         </ul>
       </li>
       <li><b>冠狀動脈</b>從主動脈基部分支供應心肌；心臟腔室裡的血液不能直接拿來養心肌。</li>
+      <li><b>心音是瓣膜「關閉」的聲音</b>，不是瓣膜打開的聲音：心室收縮關房室瓣發「<b>噗</b>」、心室舒張關半月瓣發「<b>通</b>」，合起來才算 1 次心跳。</li>
       <li>心房接靜脈、心室接動脈；「主動脈和心房相連」或「心房與靜脈間有瓣膜」都是錯的。</li>
       <li>小腸吸收的養分經靜脈回心臟，也是<b>最先進入右心房</b>。</li>
       <li>心臟圖是<b>面對面</b>看：圖的左邊是心臟的右邊。</li>
@@ -899,6 +1125,69 @@ $('hcZoom').onclick=()=>{
   $('hcZoom').classList.toggle('on',z);
   $('hcZoom').textContent=z?'縮回符合視窗寬度':'放大檢視細節';
 };
+/* 四步驟心動週期（0.8秒）與心音瓣膜開閉互動 */
+(function(){
+  const ST=[
+    {title:'① 全心舒張（約 0.4 秒，佔一半時間！）',snd:'（無明顯心音）',sb:'',atria:'舒張',vent:'舒張',av:'open',avT:'已打開，靜脈血經心房大量流入心室（約 80%）',sl:'close',slT:'關閉，防止動脈血倒流',flow:'靜脈 → 心房 → 心室',tip:'心臟每跳一次（0.8 秒）就有一半時間（0.4 秒）在「全心舒張」休息！',wx:44},
+    {title:'② 心房收縮（約 0.1 秒）',snd:'（無明顯心音）',sb:'',atria:'收縮（將剩餘血液擠入心室）',vent:'舒張（裝滿最後約 20% 血液）',av:'open',avT:'維持打開，讓剩餘血液完全進入心室',sl:'close',slT:'維持關閉',flow:'心房 → 心室',tip:'心房收縮只花短短 0.1 秒，把最後約 20% 的血補滿進心室。',wx:94},
+    {title:'③ 心室收縮（約 0.3 秒）',snd:'第一心音「噗（Lub）」！',sb:'房室瓣關閉',atria:'同步舒張（開始接收靜脈回血！）',vent:'收縮（壓力上升把血推入動脈）',av:'slam',avT:'壓力上升瞬間「碰！」關緊 ➔ 發出第一心音「噗！」',sl:'open',slT:'隨後被衝開，將血液射入肺動脈與主動脈',flow:'心室 → 動脈；同時 靜脈 → 心房',tip:'「噗」發生在心室剛開始收縮的瞬間！此時心房同步舒張接收靜脈血，不會浪費時間。',wx:146},
+    {title:'④ 心室剛舒張（進入舒張期瞬間）',snd:'第二心音「通（Dub）」！',sb:'半月瓣關閉',atria:'舒張（持續接收靜脈回血）',vent:'開始舒張（壓力驟降，動脈血回沖）',av:'close',avT:'此瞬間暫時仍閉，壓力再降即重新打開回到①',sl:'slam',slT:'動脈血回沖「叩！」關緊 ➔ 發出第二心音「通！」',flow:'半月瓣擋住逆流；隨即回到 ① 全心舒張（靜脈 → 心房 → 心室）',tip:'「通」發生在心室剛開始舒張的交界瞬間！接著房室瓣重開，循環回到 ① 全心舒張。',wx:222}
+  ];
+  const svg=$('hsSvg'),tabs=$('hsTabs').querySelectorAll('.btn[data-st]'),playBtn=$('hsPlay');
+  let cur=0,tm=null;
+  const tag=(k)=>k==='open'?'<span class="hstag open">打開</span>':k==='slam'?'<span class="hstag snd">碰！關閉</span>':'<span class="hstag close">關閉</span>';
+  function arc(cx,cy,r,a1,a2){
+    const rad=d=>(d-90)*Math.PI/180,x1=cx+r*Math.cos(rad(a1)),y1=cy+r*Math.sin(rad(a1)),x2=cx+r*Math.cos(rad(a2)),y2=cy+r*Math.sin(rad(a2));
+    return 'M'+x1.toFixed(1)+','+y1.toFixed(1)+' A'+r+','+r+' 0 '+((a2-a1)>180?1:0)+',1 '+x2.toFixed(1)+','+y2.toFixed(1);
+  }
+  function show(i){
+    cur=i;const s=ST[i];
+    tabs.forEach(b=>b.classList.toggle('on',+b.dataset.st===i));
+    svg.classList.remove('st-0','st-1','st-2','st-3');svg.classList.add('st-'+i);
+    $('hsInfo').innerHTML=
+      '<div><div class="pname" style="margin-bottom:4px">'+s.title+'</div><div>'+(i<2?'<span class="small">'+s.snd+'</span>':'<span class="hstag snd">'+s.snd+'（'+s.sb+'）</span>')+'</div></div>'+
+      '<div style="border-top:1px solid var(--line);padding-top:8px">'+
+        '<div><b>心房／心室：</b>'+s.atria+' ／ '+s.vent+'</div>'+
+        '<div><b>房室瓣：</b>'+tag(s.av)+' '+s.avT+'</div>'+
+        '<div><b>半月瓣：</b>'+tag(s.sl)+' '+s.slT+'</div>'+
+        '<div><b>血液流向：</b>'+s.flow+'</div>'+
+      '</div>'+
+      '<div class="small" style="background:var(--bio-bg);padding:8px 10px;border-radius:8px;color:var(--ink)"><b>重點：</b>'+s.tip+'</div>';
+    const cx=78,cy=58,r=36,pt=(deg,rr)=>{const rad=(deg-90)*Math.PI/180;return[cx+rr*Math.cos(rad),cy+rr*Math.sin(rad)];};
+    const [p1x,p1y]=pt(25,r),[p2x,p2y]=pt(160,r);
+    $('hsDial').innerHTML=
+      '<rect width="156" height="112" rx="8" fill="#fbfaf6"/>'+
+      '<text x="78" y="13" text-anchor="middle" font-size="10.5" font-weight="800" fill="#4d5a52">1 次心跳 = 0.8 秒</text>'+
+      '<path d="'+arc(cx,cy,r,160,340)+'" fill="none" stroke="'+(i===0?'#ec4899':'#f5b5d3')+'" stroke-width="'+(i===0?'13':'10')+'"/>'+
+      '<path d="'+arc(cx,cy,r,-20,25)+'" fill="none" stroke="'+(i===1?'#16a34a':'#9bd9b0')+'" stroke-width="'+(i===1?'13':'10')+'"/>'+
+      '<path d="'+arc(cx,cy,r,25,160)+'" fill="none" stroke="'+(i===2?'#2563eb':'#9dc2f2')+'" stroke-width="'+(i===2?'13':'10')+'"/>'+
+      '<circle cx="'+p1x.toFixed(1)+'" cy="'+p1y.toFixed(1)+'" r="'+(i===2?'6.5':'4.5')+'" fill="#f59e0b" stroke="#fff" stroke-width="1.8"/>'+
+      '<circle cx="'+p2x.toFixed(1)+'" cy="'+p2y.toFixed(1)+'" r="'+(i===3?'6.5':'4.5')+'" fill="#f59e0b" stroke="#fff" stroke-width="1.8"/>'+
+      '<text x="20" y="61" text-anchor="middle" font-size="9.5" font-weight="800" fill="'+(i===0?'#be185d':'#9d5a76')+'">0.4s</text>'+
+      '<text x="20" y="72" text-anchor="middle" font-size="8.5" fill="#7a857e">舒張</text>'+
+      '<text x="78" y="34" text-anchor="middle" font-size="9" font-weight="800" fill="'+(i===1?'#15803d':'#5b7a65')+'">0.1s</text>'+
+      '<text x="136" y="62" text-anchor="middle" font-size="9.5" font-weight="800" fill="'+(i===2?'#1d4ed8':'#5c78a3')+'">0.3s</text>'+
+      '<text x="136" y="73" text-anchor="middle" font-size="8.5" fill="#7a857e">室收</text>'+
+      '<text x="115" y="28" font-size="9.5" font-weight="900" fill="'+(i===2?'#b45309':'#92400e')+'">噗</text>'+
+      '<text x="97" y="106" font-size="9.5" font-weight="900" fill="'+(i===3?'#b45309':'#92400e')+'">通</text>'+
+      '<text x="78" y="62" text-anchor="middle" font-size="10" font-weight="800" fill="#334155">'+(i===0?'全心舒張':i===1?'心房收縮':i===2?'心室收縮':'心室舒張')+'</text>';
+    $('hsWave').innerHTML=
+      '<rect width="260" height="92" rx="8" fill="#fbfaf6"/>'+
+      '<text x="8" y="16" font-size="10.5" font-weight="800" fill="#4d5a52">心音聲波（1 心跳 = 2 聲）</text>'+
+      '<line x1="10" y1="50" x2="250" y2="50" stroke="#cbd2cd" stroke-width="1.5"/>'+
+      '<path d="M124 50 L131 35 L138 66 L146 26 L154 68 L161 36 L168 58 L174 50" fill="none" stroke="'+(i===2?'#d97706':'#9ca3af')+'" stroke-width="'+(i===2?'2.8':'1.8')+'" stroke-linejoin="round"/>'+
+      '<text x="148" y="83" text-anchor="middle" font-size="10.5" font-weight="800" fill="'+(i===2?'#92400e':'#6b7670')+'">① 噗(房室關)</text>'+
+      '<path d="M204 50 L210 38 L216 61 L222 32 L228 60 L234 41 L240 50" fill="none" stroke="'+(i===3?'#d97706':'#9ca3af')+'" stroke-width="'+(i===3?'2.8':'1.8')+'" stroke-linejoin="round"/>'+
+      '<text x="222" y="83" text-anchor="middle" font-size="10.5" font-weight="800" fill="'+(i===3?'#92400e':'#6b7670')+'">② 通(半月關)</text>'+
+      '<text x="44" y="83" text-anchor="middle" font-size="9.5" fill="'+(i===0?'#be185d':'#7a857e')+'">舒張0.4s</text>'+
+      '<text x="94" y="83" text-anchor="middle" font-size="9.5" fill="'+(i===1?'#15803d':'#7a857e')+'">房收0.1s</text>'+
+      '<circle cx="'+s.wx+'" cy="50" r="5" fill="#6a4c93" stroke="#fff" stroke-width="1.8"/>';
+  }
+  function stop(){if(tm){clearInterval(tm);tm=null;playBtn.classList.remove('on');playBtn.textContent='▶ 連續慢動作播放';}}
+  tabs.forEach(b=>b.onclick=()=>{stop();show(+b.dataset.st);});
+  playBtn.onclick=()=>{if(tm){stop();return;}playBtn.classList.add('on');playBtn.textContent='⏸ 暫停播放';show((cur+1)%4);tm=setInterval(()=>show((cur+1)%4),2200);};
+  show(0);
+})();
 
 /* ---------- 四、淋巴 ---------- */
 (function(){
@@ -1009,7 +1298,9 @@ const QZ=[
  {u:3,s:'下圖為血液流經人體某一器官的微血管前後，氧氣、二氧化碳與葡萄糖相對含量的變化。此器官最可能是下列哪一個？',fig:QF_EXCH,o:['肺部微血管','飯後的小腸絨毛微血管','劇烈運動中的腿部肌肉','腦部微血管'],a:1,
   e:'流出微血管後氧氣減少、二氧化碳增加，代表屬於體循環組織（排除肺部，肺部應氧氣增加、二氧化碳減少）；同時葡萄糖「大幅增加」，代表吸收了大量養分，最符合飯後的小腸絨毛微血管！'},
  {u:4,s:'下圖為人體微血管（甲）、組織細胞周圍液體（乙）、盲端管道（丙）與大血管（丁）之間的液體循環示意圖。下列敘述何者正確？',fig:QF_LYMPH,o:['乙是組織液、丙是淋巴管，兩者內部液體的成分最相似','丙內的液體最後會匯入丁，而丁是一條主動脈','紅血球可以自由穿梭在甲、乙、丙三處','若丙發生嚴重阻塞，乙會立刻全部消失'],a:0,
-  e:'血漿由甲（微血管）滲出形成乙（組織液），部分進入丙（淋巴管）成為淋巴，故乙與丙成分最相似。(B) 丙最後匯入靠近心臟的靜脈（丁）；(C) 紅血球不會離開血管；(D) 淋巴管阻塞會導致組織液堆積而水腫。'}
+  e:'血漿由甲（微血管）滲出形成乙（組織液），部分進入丙（淋巴管）成為淋巴，故乙與丙成分最相似。(B) 丙最後匯入靠近心臟的靜脈（丁）；(C) 紅血球不會離開血管；(D) 淋巴管阻塞會導致組織液堆積而水腫。'},
+ {u:3,s:'用聽診器聽心跳時，一次心跳會聽到「噗—通」兩個心音。關於這兩個心音的成因，下列敘述何者正確？',o:['是瓣膜打開時發出的聲音','「噗」是心室收縮時房室瓣關閉的聲音；「通」是心室舒張時半月瓣關閉的聲音','「噗」是心房收縮時靜脈瓣膜關閉；「通」是心室收縮時房室瓣打開','「噗」是心臟撞擊胸壁的聲音；「通」是血液流經微血管的聲音'],a:1,
+  e:'心音是血液逆流撞擊「關閉」的瓣膜發出的聲音：心室收縮時，房室瓣用力關閉發出第一心音「噗」；心室舒張時，動脈血倒流撞關半月瓣發出第二心音「通」。口訣：室收「噗」（房室瓣關）、室舒「通」（半月瓣關）。'}
 ];
 B.quiz({box:'qz',score:'qzScore',done:'qzDone',reset:'qzReset',filter:'qzFlt',data:QZ,names:{1:'重點一',2:'重點二',3:'重點三',4:'重點四'}});
 window.__QZ=QZ;
