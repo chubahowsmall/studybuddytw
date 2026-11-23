@@ -22,6 +22,8 @@
 #stSvg.dim .lbl[data-lbl].sel{fill:#92400e;font-weight:700}
 #stSvg.dim .lbl[data-lbl].good{fill:#166534;font-weight:700}
 #stSvg.dim .lbl[data-lbl].bad{fill:#991b1b;font-weight:700}
+.tpwrap{overflow-x:auto;margin:6px 0 10px}
+.tpwrap svg{display:block;width:100%;max-width:580px;min-width:440px;height:auto;border:1px solid var(--line);border-radius:var(--r)}
 </style>
 <script src="lib/common.js?v=13"></script>
 </head>
@@ -154,7 +156,7 @@
     <p class="note">四支量筒裝等量的水，水面都加一層油（防止水直接蒸發），插入大小相近的枝條。</p>
     <div class="inrow"><label>環境 <select class="num" id="tpEnv"><option value="1">室內、無風</option><option value="2.2">陽光下、有風</option></select></label></div>
     <div class="range"><span>經過時間</span><input type="range" id="tpX" min="0" max="24" step="2" value="0"><b id="tpVal"></b></div>
-    <div class="tubes" id="tpCyl"></div>
+    <div class="tpwrap" id="tpCyl"></div>
     <div class="out" id="tpOut"></div>
   </div>
 
@@ -345,24 +347,49 @@ const TP=[
   {n:'丙',d:'下表皮塗凡士林',r:0.35},
   {n:'丁',d:'上表皮塗凡士林',r:0.85}
 ];
-function cyl(level,leaf,lab,sub){
-  const top=20,bot=150,h=bot-top,y=bot-h*level;
-  let s='<figure style="width:110px"><svg width="70" height="162" viewBox="0 0 70 162" aria-hidden="true">';
-  /* 枝條確實插入水面以下（bot-14），避免水下降時看起來懸浮 */
-  if(leaf==='有葉'||leaf.includes('凡士林')){s+='<path d="M35 '+(bot-14)+' V8" stroke="#6b8e4e" stroke-width="3"/><ellipse cx="22" cy="18" rx="14" ry="6" fill="'+(leaf.includes('凡士林')?'#9fbf8a':'#4f9a5e')+'" transform="rotate(-25 22 18)"/><ellipse cx="48" cy="26" rx="14" ry="6" fill="'+(leaf.includes('凡士林')?'#9fbf8a':'#4f9a5e')+'" transform="rotate(25 48 26)"/><ellipse cx="25" cy="40" rx="12" ry="5" fill="'+(leaf.includes('凡士林')?'#9fbf8a':'#4f9a5e')+'" transform="rotate(-20 25 40)"/>';}
-  else s+='<path d="M35 '+(bot-14)+' V22" stroke="#6b8e4e" stroke-width="3"/>';
-  s+='<rect x="21" y="'+y+'" width="28" height="'+(bot-y)+'" fill="rgba(162,208,238,.76)"/><rect x="21" y="'+(y-3)+'" width="28" height="3" fill="#e8c95a"/><rect x="20" y="'+top+'" width="30" height="'+h+'" fill="none" stroke="#8d8877" stroke-width="2"/><rect x="12" y="'+bot+'" width="46" height="6" fill="#8d8877"/>';
-  for(let i=0;i<=5;i++)s+='<line x1="50" y1="'+(top+i*h/5)+'" x2="56" y2="'+(top+i*h/5)+'" stroke="#8d8877"/>';
-  s+='</svg><b>'+lab+'</b><span class="small">'+sub+'</span></figure>';return s;
-}
 function tpDraw(){
   const t=+$('tpX').value,env=+$('tpEnv').value;
   $('tpVal').textContent=t+' 小時';
   const loss=TP.map(x=>Math.min(0.72,x.r*env*t*0.013));
-  $('tpCyl').innerHTML=TP.map((x,i)=>cyl(0.9-loss[i],x.d,x.n,x.d+(t?'<br>減少約 '+Math.round(loss[i]/0.9*100*10)/10+'%':''))).join('');
+  const top=48,bot=168,h=bot-top,xs=[68,182,296,410];
+  const y0=bot-h*0.9,yA=bot-h*(0.9-loss[0]);
+  let s='<svg viewBox="0 0 546 226" role="img" aria-label="四支量筒蒸散實驗比較圖">';
+  s+='<rect width="546" height="226" fill="#fbfaf6"/>';
+  if(t>0){
+    s+='<line x1="46" y1="'+y0.toFixed(1)+'" x2="446" y2="'+y0.toFixed(1)+'" stroke="#9aa39d" stroke-width="1.2" stroke-dasharray="4 3"/>';
+    s+='<text x="452" y="'+(y0+4).toFixed(1)+'" font-size="11.5" fill="#7a857e">初始水位</text>';
+  }
+  TP.forEach((x,i)=>{
+    const cx=xs[i],lv=0.9-loss[i],y=bot-h*lv,leaf=x.d;
+    /* 枝條確實插入水面以下（bot-14），避免水下降時看起來懸浮 */
+    if(leaf==='有葉'||leaf.includes('凡士林')){
+      const fc=leaf.includes('凡士林')?'#9fbf8a':'#4f9a5e';
+      s+='<path d="M'+cx+' '+(bot-14)+' V16" stroke="#6b8e4e" stroke-width="3.2"/>';
+      s+='<ellipse cx="'+(cx-14)+'" cy="24" rx="14" ry="6" fill="'+fc+'" transform="rotate(-25 '+(cx-14)+' 24)"/>';
+      s+='<ellipse cx="'+(cx+14)+'" cy="32" rx="14" ry="6" fill="'+fc+'" transform="rotate(25 '+(cx+14)+' 32)"/>';
+      s+='<ellipse cx="'+(cx-11)+'" cy="44" rx="12" ry="5" fill="'+fc+'" transform="rotate(-20 '+(cx-11)+' 44)"/>';
+    }else s+='<path d="M'+cx+' '+(bot-14)+' V30" stroke="#6b8e4e" stroke-width="3.2"/>';
+    s+='<rect x="'+(cx-15)+'" y="'+y.toFixed(1)+'" width="30" height="'+(bot-y).toFixed(1)+'" fill="rgba(162,208,238,.76)"/>';
+    s+='<rect x="'+(cx-15)+'" y="'+(y-3).toFixed(1)+'" width="30" height="3" fill="#e8c95a"/>';
+    s+='<rect x="'+(cx-16)+'" y="'+top+'" width="32" height="'+h+'" fill="none" stroke="#8d8877" stroke-width="2"/>';
+    s+='<rect x="'+(cx-24)+'" y="'+bot+'" width="48" height="6" fill="#8d8877" rx="1"/>';
+    for(let k=0;k<=5;k++){const ky=(top+k*h/5).toFixed(1);s+='<line x1="'+(cx+16)+'" y1="'+ky+'" x2="'+(cx+22)+'" y2="'+ky+'" stroke="#8d8877" stroke-width="1.2"/>';}
+    s+='<text x="'+cx+'" y="190" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2a24">'+x.n+'</text>';
+    s+='<text x="'+cx+'" y="206" text-anchor="middle" font-size="12" fill="#4d5a52">'+x.d+'</text>';
+    if(t){const pct=Math.round(loss[i]/0.9*100*10)/10;s+='<text x="'+cx+'" y="221" text-anchor="middle" font-size="11.5" font-weight="700" fill="'+(i===0?'#c05621':'#2d6f9e')+'">減少約 '+pct+'%</text>';}
+  });
+  /* 以最左邊（甲）水面為基準，向右貫穿畫出虛線，方便對照四支量筒高低差 */
+  if(t>0){
+    s+='<line x1="'+(xs[0]-15)+'" y1="'+yA.toFixed(1)+'" x2="446" y2="'+yA.toFixed(1)+'" stroke="#c05621" stroke-width="1.8" stroke-dasharray="6 4"/>';
+    s+='<circle cx="'+(xs[0]-15)+'" cy="'+yA.toFixed(1)+'" r="3.5" fill="#c05621"/>';
+    const labY=(yA-y0<15)?(y0+16):(yA+4);
+    s+='<text x="452" y="'+labY.toFixed(1)+'" font-size="11.5" font-weight="700" fill="#c05621">甲水面基準</text>';
+  }
+  s+='</svg>';
+  $('tpCyl').innerHTML=s;
   if(!t){$('tpOut').innerHTML='拖動「經過時間」，看看哪一支的水減少最多。';return;}
   const order=TP.map((x,i)=>i).sort((a,b)=>loss[b]-loss[a]).map(i=>TP[i].n).join(' ＞ ');
-  $('tpOut').innerHTML='水減少：<b>'+order+'</b>。<br>甲的葉子最多、氣孔沒被堵住，蒸散最多。丙把氣孔<b>比較多的下表皮</b>堵住，比丁（堵上表皮）減少得更少。乙沒有葉子，幾乎不蒸散。'+(env>1?'<br>陽光下、有風時，每一支都蒸散得更快。':'');
+  $('tpOut').innerHTML='水減少：<b>'+order+'</b>。<br>對照橘紅色虛線（甲水面基準），乙、丙、丁剩餘的水面都比甲高；甲的葉子最多、氣孔沒被堵住，蒸散最多。丙把氣孔<b>比較多的下表皮</b>堵住，比丁（堵上表皮）減少得更少。乙沒有葉子，幾乎不蒸散。'+(env>1?'<br>陽光下、有風時，每一支都蒸散得更快。':'');
 }
 $('tpX').addEventListener('input',tpDraw);$('tpEnv').addEventListener('change',tpDraw);tpDraw();
 
