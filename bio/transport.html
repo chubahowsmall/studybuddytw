@@ -8,15 +8,22 @@
 <link rel="icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="../assets/style.css?v=3">
-<link rel="stylesheet" href="lib/bio.css">
+<link rel="stylesheet" href="lib/bio.css?v=13">
 <style>
 .hk{cursor:pointer;border-radius:6px;padding:2px 6px;margin-left:-6px;width:fit-content}
-#stSvg.dim [data-part="m_vb"].sub{opacity:1}
-#stSvg.dim .sub ellipse{opacity:.2}
-#stSvg.dim .sub ellipse.hl2{opacity:1;filter:drop-shadow(0 0 2px #1f7a32) drop-shadow(0 0 3px #1f7a32)}
+#stSvg.dim [data-part="m_vb"].sub{opacity:1;filter:none}
+#stSvg.dim .sub ellipse{opacity:.24;filter:brightness(0.6) grayscale(70%)}
+#stSvg.dim .sub ellipse.hl2{opacity:1;filter:grayscale(0%) drop-shadow(0 0 3px #1f7a32) drop-shadow(0 0 6px #3f7a4f) brightness(1.18)}
 .hk.on{background:#fff1c7;box-shadow:inset 0 0 0 2px #e0a100;color:#8a4b00;font-weight:700}
+#stSvg .lblbg{display:none;pointer-events:all;cursor:pointer}
+#stSvg.dim .lblbg.sel{display:inline;fill:#fef3c7;stroke:#d97706;stroke-width:1.6}
+#stSvg.dim .lblbg.good{display:inline;fill:#dcfce7;stroke:#16a34a;stroke-width:1.6}
+#stSvg.dim .lblbg.bad{display:inline;fill:#fee2e2;stroke:#dc2626;stroke-width:1.6}
+#stSvg.dim .lbl[data-lbl].sel{fill:#92400e;font-weight:700}
+#stSvg.dim .lbl[data-lbl].good{fill:#166534;font-weight:700}
+#stSvg.dim .lbl[data-lbl].bad{fill:#991b1b;font-weight:700}
 </style>
-<script src="lib/common.js"></script>
+<script src="lib/common.js?v=13"></script>
 </head>
 <body>
 <header id="site-head"></header>
@@ -198,9 +205,9 @@ const XY='#f2c6a8',XYS='#b5643a',PH='#cdd9f2',PHS='#4a6fb0',CA='#3f9a5a',EPI='#c
   let g='<rect width="560" height="300" fill="#fbfaf6"/>';
   /* 雙子葉 */
   const cx=140,cy=150;
-  g+='<circle data-part="d_epi" cx="'+cx+'" cy="'+cy+'" r="110" fill="#e3efd8" stroke="'+EPI+'" stroke-width="5"/>';
-  g+='<circle cx="'+cx+'" cy="'+cy+'" r="104" fill="#eef5e6"/>';
-  let ph='',xy='',ca='';
+  g+='<circle cx="'+cx+'" cy="'+cy+'" r="107" fill="#eef5e6"/>';
+  g+='<g data-part="d_epi"><circle cx="'+cx+'" cy="'+cy+'" r="110" fill="none" stroke="'+EPI+'" stroke-width="6"/><circle cx="'+cx+'" cy="'+cy+'" r="110" fill="none" stroke="transparent" stroke-width="18" pointer-events="stroke"/></g>';
+  let ph='',xy='';
   for(let i=0;i<10;i++){
     const a=i/10*Math.PI*2,r1=48,r2=70,r3=88,da=0.22;
     const P=(r,t)=>(cx+r*Math.cos(t)).toFixed(1)+' '+(cy+r*Math.sin(t)).toFixed(1);
@@ -212,15 +219,25 @@ const XY='#f2c6a8',XYS='#b5643a',PH='#cdd9f2',PHS='#4a6fb0',CA='#3f9a5a',EPI='#c
   g+='<text x="'+cx+'" y="290" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2a24">雙子葉植物的莖</text>';
   /* 單子葉 */
   const mx=420,my=150;
-  g+='<circle data-part="m_epi" cx="'+mx+'" cy="'+my+'" r="110" fill="#e3efd8" stroke="'+EPI+'" stroke-width="5"/><circle cx="'+mx+'" cy="'+my+'" r="104" fill="#eef5e6"/>';
+  g+='<circle cx="'+mx+'" cy="'+my+'" r="107" fill="#eef5e6"/>';
+  g+='<g data-part="m_epi"><circle cx="'+mx+'" cy="'+my+'" r="110" fill="none" stroke="'+EPI+'" stroke-width="6"/><circle cx="'+mx+'" cy="'+my+'" r="110" fill="none" stroke="transparent" stroke-width="18" pointer-events="stroke"/></g>';
   let mb='';const pts=[[0,0],[-40,-30],[35,-45],[50,20],[-20,45],[-60,15],[15,80],[-75,-55],[70,-70],[85,40],[-50,75],[-85,-10],[30,-85],[-15,-75],[60,72],[-80,50]];
   /* 散生的維管束：每一束的木質部朝向莖的中心、韌皮部朝外（旋轉角度讓韌皮部指向外側） */
   pts.forEach(([dx,dy])=>{const x=mx+dx,y=my+dy,rot=(dx||dy)?Math.atan2(dx,-dy)*180/Math.PI:0;mb+='<g transform="rotate('+rot.toFixed(1)+' '+x+' '+y+')"><ellipse class="mxy" cx="'+x+'" cy="'+(y+3)+'" rx="9" ry="7" fill="'+XY+'" stroke="'+XYS+'"/><ellipse class="mph" cx="'+x+'" cy="'+(y-5)+'" rx="7" ry="4.5" fill="'+PH+'" stroke="'+PHS+'"/></g>';});
   g+='<g data-part="m_vb">'+mb+'</g>';
   g+='<text x="'+mx+'" y="290" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2a24">單子葉植物的莖</text>';
-  /* 標籤（簡短） */
-  g+='<g><text class="lbl s" x="'+(cx+48)+'" y="'+(cy-104)+'">表皮</text><text class="lbl s" x="'+(cx-14)+'" y="'+(cy-3)+'">（中央：髓）</text></g>';
-  $('stSvg').innerHTML=g;
+  /* 標籤（表皮支援連動高亮與底框；中央髓為純參考文字） */
+  g+='<g class="lbls"><text class="lbl s" data-lbl="d_epi" x="'+(cx+62)+'" y="'+(cy-104)+'">表皮</text><text class="lbl s" data-lbl="m_epi" x="'+(mx+62)+'" y="'+(my-104)+'">表皮</text><text class="lbl s" x="'+cx+'" y="'+(cy+4)+'" text-anchor="middle" style="pointer-events:none;cursor:default">（中央：髓）</text></g>';
+  const svg=$('stSvg'),NS='http://www.w3.org/2000/svg';
+  svg.innerHTML=g;
+  svg.querySelectorAll('.lbls text[data-lbl]').forEach(t=>{
+    const b=t.getBBox(),w=b.width>0?b.width:t.textContent.length*12,h=b.height>0?b.height:14;
+    const x=b.width>0?b.x:+t.getAttribute('x'),y=b.height>0?b.y:+t.getAttribute('y')-11;
+    const r=document.createElementNS(NS,'rect');
+    r.setAttribute('class','lblbg');r.setAttribute('data-lbl',t.dataset.lbl);
+    r.setAttribute('x',x-4);r.setAttribute('y',y-2);r.setAttribute('width',w+8);r.setAttribute('height',h+4);r.setAttribute('rx',5);
+    t.parentNode.insertBefore(r,t);
+  });
 })();
 const ST={
   d_epi:{n:'表皮（雙子葉莖）',d:'最外層，保護莖的內部。'},
@@ -232,15 +249,24 @@ const ST={
 };
 /* 圖例名稱：滑過（手機點一下）時，在兩張莖圖上標出對應部位；單子葉莖的維管束裡另外標出木質部或韌皮部（單子葉沒有形成層） */
 const SUB={d_xy:'mxy',d_ph:'mph'};
+function stHkClear(){
+  const v=$('stSvg');
+  v.querySelectorAll('.hl2').forEach(e=>e.classList.remove('hl2'));
+  v.querySelectorAll('.sub').forEach(e=>e.classList.remove('sub'));
+  $('stOut').querySelectorAll('.hk.on').forEach(e=>e.classList.remove('on'));
+}
 function stHk(k){const v=$('stSvg'),mvb=v.querySelector('[data-part="m_vb"]');
-  v.querySelectorAll('.hl2').forEach(e=>e.classList.remove('hl2'));mvb.classList.remove('sub');
+  stHkClear();
   if(k){B.mark('stSvg',[k]);if(SUB[k]){mvb.classList.add('sub');v.querySelectorAll('.'+SUB[k]).forEach(e=>e.classList.add('hl2'));}}
   else{v.classList.remove('dim');v.querySelectorAll('.hl').forEach(e=>e.classList.remove('hl'));}
   $('stOut').querySelectorAll('.hk').forEach(e=>e.classList.toggle('on',e.dataset.hk===k));}
 $('stOut').addEventListener('pointerover',ev=>{const t=ev.target.closest('.hk');if(t&&ev.pointerType==='mouse')stHk(t.dataset.hk);});
 $('stOut').addEventListener('pointerout',ev=>{const t=ev.target.closest('.hk');if(t&&ev.pointerType==='mouse'&&!t.contains(ev.relatedTarget))stHk(null);});
 $('stOut').addEventListener('click',ev=>{const t=ev.target.closest('.hk');if(t&&ev.pointerType!=='mouse')stHk(t.classList.contains('on')?null:t.dataset.hk);});
-B.figure({svg:'stSvg',out:'stOut',parts:ST,modeBar:'stMode',hint:'點圖上的部位，看名稱和功能。<div style="margin-top:8px;font-weight:700">顏色（由外而內）：<span style="font-weight:400;font-size:.85em;color:var(--ink-3);margin-left:6px">滑鼠移到名稱上，圖上會標出位置</span></div><div style="display:grid;gap:4px;margin-top:4px"><div class="hk" data-hk="d_ph"><span class="swatch" style="background:#cdd9f2"></span>韌皮部（外）</div><div class="hk" data-hk="d_ca"><span class="swatch" style="background:#3f9a5a"></span>形成層（中間）<span style="font-size:.85em;color:var(--ink-3);margin-left:6px">只有雙子葉莖有</span></div><div class="hk" data-hk="d_xy"><span class="swatch" style="background:#f2c6a8"></span>木質部（內）</div></div>'});
+$('stSvg').addEventListener('pointerover',stHkClear);
+$('stSvg').addEventListener('click',stHkClear);
+$('stMode').addEventListener('click',stHkClear);
+B.figure({svg:'stSvg',out:'stOut',parts:ST,modeBar:'stMode',hint:'將滑鼠移到圖上或點選部位，看名稱和功能。<div style="margin-top:8px;font-weight:700">顏色（由外而內）：<span style="font-weight:400;font-size:.85em;color:var(--ink-3);margin-left:6px">滑鼠移到名稱上，圖上會標出位置</span></div><div style="display:grid;gap:4px;margin-top:4px"><div class="hk" data-hk="d_ph"><span class="swatch" style="background:#cdd9f2"></span>韌皮部（外）</div><div class="hk" data-hk="d_ca"><span class="swatch" style="background:#3f9a5a"></span>形成層（中間）<span style="font-size:.85em;color:var(--ink-3);margin-left:6px">只有雙子葉莖有</span></div><div class="hk" data-hk="d_xy"><span class="swatch" style="background:#f2c6a8"></span>木質部（內）</div></div>'});
 
 /* 年輪 */
 function rgDraw(){
@@ -322,16 +348,17 @@ const TP=[
 function cyl(level,leaf,lab,sub){
   const top=20,bot=150,h=bot-top,y=bot-h*level;
   let s='<figure style="width:110px"><svg width="70" height="162" viewBox="0 0 70 162" aria-hidden="true">';
-  if(leaf==='有葉'||leaf.includes('凡士林')){s+='<path d="M35 '+(y-2)+' V8" stroke="#6b8e4e" stroke-width="3"/><ellipse cx="22" cy="18" rx="14" ry="6" fill="'+(leaf.includes('凡士林')?'#9fbf8a':'#4f9a5e')+'" transform="rotate(-25 22 18)"/><ellipse cx="48" cy="26" rx="14" ry="6" fill="'+(leaf.includes('凡士林')?'#9fbf8a':'#4f9a5e')+'" transform="rotate(25 48 26)"/><ellipse cx="25" cy="40" rx="12" ry="5" fill="'+(leaf.includes('凡士林')?'#9fbf8a':'#4f9a5e')+'" transform="rotate(-20 25 40)"/>';}
-  else s+='<path d="M35 '+(y-2)+' V22" stroke="#6b8e4e" stroke-width="3"/>';
-  s+='<rect x="20" y="'+top+'" width="30" height="'+h+'" fill="none" stroke="#8d8877" stroke-width="2"/><rect x="21" y="'+y+'" width="28" height="'+(bot-y)+'" fill="#bcd9ee"/><rect x="21" y="'+(y-3)+'" width="28" height="3" fill="#e8c95a"/><rect x="12" y="'+bot+'" width="46" height="6" fill="#8d8877"/>';
+  /* 枝條確實插入水面以下（bot-14），避免水下降時看起來懸浮 */
+  if(leaf==='有葉'||leaf.includes('凡士林')){s+='<path d="M35 '+(bot-14)+' V8" stroke="#6b8e4e" stroke-width="3"/><ellipse cx="22" cy="18" rx="14" ry="6" fill="'+(leaf.includes('凡士林')?'#9fbf8a':'#4f9a5e')+'" transform="rotate(-25 22 18)"/><ellipse cx="48" cy="26" rx="14" ry="6" fill="'+(leaf.includes('凡士林')?'#9fbf8a':'#4f9a5e')+'" transform="rotate(25 48 26)"/><ellipse cx="25" cy="40" rx="12" ry="5" fill="'+(leaf.includes('凡士林')?'#9fbf8a':'#4f9a5e')+'" transform="rotate(-20 25 40)"/>';}
+  else s+='<path d="M35 '+(bot-14)+' V22" stroke="#6b8e4e" stroke-width="3"/>';
+  s+='<rect x="21" y="'+y+'" width="28" height="'+(bot-y)+'" fill="rgba(162,208,238,.76)"/><rect x="21" y="'+(y-3)+'" width="28" height="3" fill="#e8c95a"/><rect x="20" y="'+top+'" width="30" height="'+h+'" fill="none" stroke="#8d8877" stroke-width="2"/><rect x="12" y="'+bot+'" width="46" height="6" fill="#8d8877"/>';
   for(let i=0;i<=5;i++)s+='<line x1="50" y1="'+(top+i*h/5)+'" x2="56" y2="'+(top+i*h/5)+'" stroke="#8d8877"/>';
   s+='</svg><b>'+lab+'</b><span class="small">'+sub+'</span></figure>';return s;
 }
 function tpDraw(){
   const t=+$('tpX').value,env=+$('tpEnv').value;
   $('tpVal').textContent=t+' 小時';
-  const loss=TP.map(x=>Math.min(0.72,x.r*env*t*0.02));
+  const loss=TP.map(x=>Math.min(0.72,x.r*env*t*0.013));
   $('tpCyl').innerHTML=TP.map((x,i)=>cyl(0.9-loss[i],x.d,x.n,x.d+(t?'<br>減少約 '+Math.round(loss[i]/0.9*100*10)/10+'%':''))).join('');
   if(!t){$('tpOut').innerHTML='拖動「經過時間」，看看哪一支的水減少最多。';return;}
   const order=TP.map((x,i)=>i).sort((a,b)=>loss[b]-loss[a]).map(i=>TP[i].n).join(' ＞ ');
@@ -343,8 +370,19 @@ $('tpX').addEventListener('input',tpDraw);$('tpEnv').addEventListener('change',t
 function ceDraw(red){
   let g='<rect width="360" height="230" fill="#fbfaf6"/>';
   g+='<path d="M60 160 C40 110 70 50 130 40 C170 34 190 34 230 40 C290 50 320 110 300 160 C280 190 220 200 180 200 C140 200 80 190 60 160Z" fill="#cfe8b8" stroke="#5f8f55" stroke-width="3"/>';
+  const cx=180,cy=120;
   const vb=[[85,140],[110,95],[150,70],[180,62],[210,70],[250,95],[275,140],[230,165],[180,175],[130,165]];
-  vb.forEach(([x,y])=>{g+='<ellipse cx="'+x+'" cy="'+(y+5)+'" rx="11" ry="8" fill="'+(red?'#d23b3b':'#eef5e6')+'" stroke="'+(red?'#8f1f1f':'#8aa67a')+'"/><ellipse cx="'+x+'" cy="'+(y-6)+'" rx="8" ry="5" fill="#eef5e6" stroke="#8aa67a"/>';});
+  /* 每一束維管束皆朝向葉柄中心旋轉：內側為木質部（染紅）、外側為韌皮部（未變紅） */
+  vb.forEach(([x,y])=>{
+    const rot=Math.atan2(x-cx,-(y-cy))*180/Math.PI;
+    g+='<g transform="rotate('+rot.toFixed(1)+' '+x+' '+y+')"><ellipse cx="'+x+'" cy="'+(y+5)+'" rx="11" ry="8" fill="'+(red?'#d23b3b':'#eef5e6')+'" stroke="'+(red?'#8f1f1f':'#8aa67a')+'"/><ellipse cx="'+x+'" cy="'+(y-6)+'" rx="8" ry="5" fill="#eef5e6" stroke="#8aa67a"/></g>';
+  });
+  if(red){
+    g+='<line x1="180" y1="108" x2="180" y2="75" stroke="#8f1f1f" stroke-width="1.6"/>';
+    g+='<text x="180" y="122" text-anchor="middle" font-size="12.5" font-weight="700" fill="#8f1f1f">內側：木質部（染紅）</text>';
+    g+='<line x1="216" y1="18" x2="186" y2="54" stroke="#4d5a52" stroke-width="1.4"/>';
+    g+='<text x="220" y="21" font-size="11.5" font-weight="700" fill="#4d5a52">外側：韌皮部（未變紅）</text>';
+  }
   g+='<text x="180" y="222" text-anchor="middle" font-size="12" fill="#4d5a52">芹菜葉柄橫切面（示意）：每個小圓是一束維管束</text>';
   $('ceSvg').innerHTML=g;
 }
