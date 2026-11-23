@@ -85,7 +85,11 @@
 #hsSvg.st-2 .ch-vent{filter:brightness(1.07) saturate(1.18)}
 #hsSvg .stage-layer{display:none}
 #hsSvg.st-0 .layer-0,#hsSvg.st-1 .layer-1,#hsSvg.st-2 .layer-2,#hsSvg.st-3 .layer-3{display:inline}
-@media (prefers-reduced-motion:reduce){#hsSvg .wave-ring,#hsSvg .wave-ring-2,#hsSvg .flow-fast,#hsSvg .flow-slow{animation:none}}
+@media (prefers-reduced-motion:reduce){#hsSvg .wave-ring,#hsSvg .wave-ring-2,#hsSvg .flow-fast,#hsSvg .flow-slow,#oxSvg .blood-flow{animation:none}}
+.oxstage{overflow-x:auto;margin:6px 0 8px}
+.oxstage svg{display:block;width:100%;min-width:540px;height:auto;border:1px solid var(--line);border-radius:var(--r);background:#fbfaf6}
+@keyframes oxFlow{to{stroke-dashoffset:-36}}
+#oxSvg .blood-flow{stroke-dasharray:12 6;animation:oxFlow .9s linear infinite}
 .q figure svg{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fbfaf6}
 </style>
 <script src="lib/common.js?v=13"></script>
@@ -782,15 +786,28 @@
     <p class="mnemo" style="margin-top:8px">室收「噗」（房室瓣關）、室舒「通」（半月瓣關）— 順血流先關房室、再關半月！</p>
   </div>
 
-  <div class="card tight">
-    <h3>考前必背對照：血液流經四大器官微血管後的成分變化</h3>
+  <div class="tool">
+    <div class="hchead">
+      <h3>考前必背圖解：血液流經四大器官微血管後的成分變化</h3>
+      <div class="bar" id="oxTabs">
+        <button class="btn on" type="button" data-ox="lung">① 肺部（氧氣補給站）</button>
+        <button class="btn" type="button" data-ox="gut">② 飯後小腸（養分進貨站）</button>
+        <button class="btn" type="button" data-ox="muscle">③ 肌肉／腦（耗能客戶端）</button>
+        <button class="btn" type="button" data-ox="kidney">④ 腎臟（血液淨水廠）</button>
+      </div>
+    </div>
+    <p class="note">把血液想成一輛<b>快遞貨車</b>，開進微血管裝卸貨後再開出來，比較「流入前」vs「流出後」車上物質變多或變少。<b>黃金原則：只有「肺」是來補氧氣（O₂ ↑），其他所有器官細胞都要呼吸，流出後 O₂ 都是 ↓！</b></p>
+    <div class="oxstage">
+      <svg id="oxSvg" viewBox="0 0 680 286" role="img" aria-label="血液流經四大器官微血管前後之物質交換與成分變化互動示意圖"></svg>
+    </div>
+    <div class="out" id="oxNote" style="margin-bottom:10px"></div>
     <div class="tscroll">
     <table class="t">
-      <tr><th>流經微血管處</th><th>氧氣（O₂）</th><th>二氧化碳（CO₂）</th><th>其他關鍵變化與記憶點</th></tr>
-      <tr><th>肺部微血管</th><td><b>增加（↑）</b></td><td><b>減少（↓）</b></td><td>缺氧血 → 充氧血（肺動脈進、肺靜脈出）</td></tr>
-      <tr><th>飯後小腸絨毛</th><td>減少（↓）</td><td>增加（↑）</td><td><b>葡萄糖、胺基酸等養分大幅增加（↑）</b>；回心先入右心房</td></tr>
-      <tr><th>肌肉／腦部組織</th><td>減少（↓）</td><td>增加（↑）</td><td>養分減少（↓）、代謝廢物增加（↑）；充氧血 → 缺氧血</td></tr>
-      <tr><th>腎臟微血管</th><td>減少（↓）</td><td>增加（↑）</td><td><b>尿素等含氮廢物大幅減少（↓）</b>（過濾形成尿液排出）</td></tr>
+      <tr><th>流經微血管（快遞站角色）</th><th>流出後 O₂</th><th>流出後 CO₂</th><th>流出後其他關鍵變化與記憶點</th></tr>
+      <tr><th>① 肺部微血管（氧氣補給站）</th><td><b>增加（↑）</b></td><td><b>減少（↓）</b></td><td>缺氧血 → 充氧血（肺動脈進、肺靜脈出；唯一 O₂ ↑ 的器官）</td></tr>
+      <tr><th>② 飯後小腸絨毛（養分進貨站）</th><td>減少（↓）</td><td>增加（↑）</td><td><b>葡萄糖、胺基酸等養分大幅增加（↑）</b>；回心先入右心房</td></tr>
+      <tr><th>③ 肌肉／腦部組織（耗能客戶端）</th><td>減少（↓）</td><td>增加（↑）</td><td>養分減少（↓）、代謝廢物增加（↑）；充氧血 → 缺氧血</td></tr>
+      <tr><th>④ 腎臟微血管（血液淨水廠）</th><td>減少（↓）</td><td>增加（↑）</td><td><b>尿素等含氮廢物大幅減少（↓）</b>（過濾成尿液排出，腎靜脈尿素最少）</td></tr>
     </table>
     </div>
   </div>
@@ -1187,6 +1204,66 @@ $('hcZoom').onclick=()=>{
   tabs.forEach(b=>b.onclick=()=>{stop();show(+b.dataset.st);});
   playBtn.onclick=()=>{if(tm){stop();return;}playBtn.classList.add('on');playBtn.textContent='⏸ 暫停播放';show((cur+1)%4);tm=setInterval(()=>show((cur+1)%4),2200);};
   show(0);
+})();
+/* 四大器官微血管成分變化互動示意圖 */
+(function(){
+  const OX={
+    lung:{
+      title:'肺部微血管 ＝ 氧氣補給站',inLbl:'流入前（肺動脈・缺氧血）',outLbl:'流出後（肺靜脈・充氧血）',inCol:'#5b7fc4',outCol:'#d9534f',
+      organTitle:'肺泡（與外界空氣交換氣體）',organBg:'#fae8e8',organStroke:'#d48c8c',
+      ex:[{x:205,dir:'down',col:'#475569',lbl:'CO₂ 排出呼氣',tag:'↓ 卸貨'},{x:405,dir:'up',col:'#dc2626',lbl:'O₂ 吸入上車',tag:'↑ 補滿'}],
+      bars:[{n:'氧氣 O₂',a:28,b:92,diff:'↑ 大增',dc:'#16a34a'},{n:'二氧化碳 CO₂',a:86,b:32,diff:'↓ 減少',dc:'#2563eb'},{n:'養分／尿素',a:55,b:54,diff:'幾乎不變',dc:'#64748b'}],
+      key:'<b>考題秒殺：</b>只有「<b>肺</b>」流出來會變 <b>O₂ ↑、CO₂ ↓</b>（缺氧血 → 充氧血）！其他所有器官流出都是 O₂ ↓。'
+    },
+    gut:{
+      title:'飯後小腸絨毛 ＝ 養分大賣場（進貨站）',inLbl:'流入前（小動脈・充氧血）',outLbl:'流出後（小靜脈・缺氧血）',inCol:'#d9534f',outCol:'#5b7fc4',
+      organTitle:'飯後小腸絨毛（吸收消化好的小分子養分）',organBg:'#fef3dc',organStroke:'#d99b38',
+      ex:[{x:160,dir:'down',col:'#dc2626',lbl:'O₂ 給小腸呼吸',tag:'↓ 用掉'},{x:305,dir:'up',col:'#475569',lbl:'CO₂ 交給血載走',tag:'↑ 增加'},{x:450,dir:'up',col:'#d97706',lbl:'葡萄糖・胺基酸',tag:'↑↑ 大量進貨！',big:1}],
+      bars:[{n:'氧氣 O₂',a:90,b:34,diff:'↓ 減少',dc:'#dc2626'},{n:'二氧化碳 CO₂',a:34,b:82,diff:'↑ 增加',dc:'#475569'},{n:'葡萄糖等養分',a:36,b:96,diff:'↑↑ 大增',dc:'#d97706'}],
+      key:'<b>考題秒殺：</b>看到 <b>O₂ ↓、CO₂ ↑，但葡萄糖大幅 ↑</b>，一定是<b>飯後小腸絨毛</b>！流出後經大靜脈最先進入右心房。'
+    },
+    muscle:{
+      title:'肌肉／腦部組織 ＝ 耗能客戶端',inLbl:'流入前（小動脈・充氧血）',outLbl:'流出後（小靜脈・缺氧血）',inCol:'#d9534f',outCol:'#5b7fc4',
+      organTitle:'肌肉／腦部細胞（大量消耗氧氣與養分產生能量）',organBg:'#efe8f7',organStroke:'#8f72b8',
+      ex:[{x:160,dir:'down',col:'#dc2626',lbl:'O₂ 拿去呼吸',tag:'↓ 消耗'},{x:305,dir:'down',col:'#d97706',lbl:'養分拿去用',tag:'↓ 消耗'},{x:450,dir:'up',col:'#475569',lbl:'CO₂ 與廢物',tag:'↑ 交給血載走',big:1}],
+      bars:[{n:'氧氣 O₂',a:90,b:28,diff:'↓ 減少',dc:'#dc2626'},{n:'二氧化碳 CO₂',a:34,b:88,diff:'↑ 增加',dc:'#475569'},{n:'葡萄糖等養分',a:82,b:34,diff:'↓ 減少',dc:'#d97706'}],
+      key:'<b>考題秒殺：</b>氧氣和養分都減少、二氧化碳和廢物都增加 ➔ 典型的<b>一般耗能組織（肌肉、大腦）</b>。'
+    },
+    kidney:{
+      title:'腎臟微血管 ＝ 血液淨水廠（清尿素）',inLbl:'流入前（腎動脈・充氧血）',outLbl:'流出後（腎靜脈・最乾淨！）',inCol:'#d9534f',outCol:'#5b7fc4',
+      organTitle:'腎臟（過濾血液中的含氮廢物，做成尿液排出體外）',organBg:'#e4f4ee',organStroke:'#3d9970',
+      ex:[{x:160,dir:'down',col:'#dc2626',lbl:'O₂ 給腎臟呼吸',tag:'↓ 用掉'},{x:305,dir:'up',col:'#475569',lbl:'CO₂ 交給血載走',tag:'↑ 增加'},{x:450,dir:'down',col:'#0f766e',lbl:'尿素過濾成尿液',tag:'↓↓ 清掉了！',big:1}],
+      bars:[{n:'氧氣 O₂',a:90,b:38,diff:'↓ 減少',dc:'#dc2626'},{n:'二氧化碳 CO₂',a:34,b:80,diff:'↑ 增加',dc:'#475569'},{n:'尿素（含氮廢物）',a:86,b:18,diff:'↓↓ 大減',dc:'#0f766e'}],
+      key:'<b>最常卡住的觀念：</b>腎臟細胞自己也要呼吸，所以流過後 <b>O₂ 一樣變少（↓）</b>；但因為把尿素過濾做成尿液排掉，<b>尿素大幅減少（↓）</b>！'
+    }
+  };
+  function drawOx(k){
+    const d=OX[k];
+    let g='<defs><linearGradient id="oxGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="'+d.inCol+'"/><stop offset="38%" stop-color="'+d.inCol+'"/><stop offset="62%" stop-color="'+d.outCol+'"/><stop offset="100%" stop-color="'+d.outCol+'"/></linearGradient><marker id="oxW" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#fff"/></marker></defs><rect width="680" height="286" fill="#fbfaf6"/>';
+    g+='<text x="340" y="22" text-anchor="middle" font-size="14.5" font-weight="800" fill="#1f2a24">'+d.title+'</text>';
+    g+='<text x="92" y="42" text-anchor="middle" font-size="11.5" font-weight="700" fill="'+d.inCol+'">'+d.inLbl+'</text>';
+    g+='<text x="588" y="42" text-anchor="middle" font-size="11.5" font-weight="700" fill="'+d.outCol+'">'+d.outLbl+'</text>';
+    g+='<rect x="24" y="52" width="632" height="34" rx="17" fill="url(#oxGrad)"/><path class="blood-flow" d="M46 69 H628" stroke="rgba(255,255,255,0.8)" stroke-width="3.2" fill="none" marker-end="url(#oxW)"/><rect x="234" y="58" width="212" height="22" rx="11" fill="rgba(31,42,36,0.58)"/><text x="340" y="73" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff">血液（快遞貨車）流經微血管 ➔</text>';
+    d.ex.forEach(e=>{
+      const up=e.dir==='up',y1=up?145:90,y2=up?94:141,sw=e.big?4.6:3.2,bw=e.big?122:98;
+      g+='<line x1="'+e.x+'" y1="'+y1+'" x2="'+e.x+'" y2="'+y2+'" stroke="'+e.col+'" stroke-width="'+sw+'" stroke-linecap="round"/>';
+      const tip=up?(e.x+','+(y2-5)+' '+(e.x-7)+','+(y2+6)+' '+(e.x+7)+','+(y2+6)):(e.x+','+(y2+5)+' '+(e.x-7)+','+(y2-6)+' '+(e.x+7)+','+(y2-6));
+      g+='<polygon points="'+tip+'" fill="'+e.col+'"/><rect x="'+(e.x+10)+'" y="97" width="'+bw+'" height="42" rx="8" fill="#ffffff" stroke="'+e.col+'" stroke-width="'+(e.big?1.8:1.2)+'"/><text x="'+(e.x+10+bw/2)+'" y="114" text-anchor="middle" font-size="11.5" font-weight="800" fill="'+e.col+'">'+e.lbl+'</text><text x="'+(e.x+10+bw/2)+'" y="131" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">'+e.tag+'</text>';
+    });
+    g+='<rect x="116" y="148" width="448" height="40" rx="12" fill="'+d.organBg+'" stroke="'+d.organStroke+'" stroke-width="2"/><text x="340" y="173" text-anchor="middle" font-size="13" font-weight="800" fill="#1f2a24">'+d.organTitle+'</text>';
+    g+='<rect x="24" y="198" width="632" height="80" rx="12" fill="#ffffff" stroke="#dcd8cc"/><text x="40" y="216" font-size="11.5" font-weight="800" fill="#4d5a52">車上貨物量變化（灰條＝流入前，色條＝流出後）</text>';
+    d.bars.forEach((b,idx)=>{
+      const x0=40+idx*208;
+      g+='<text x="'+x0+'" y="236" font-size="12" font-weight="800" fill="#1f2a24">'+b.n+'</text><text x="'+(x0+186)+'" y="236" text-anchor="end" font-size="12" font-weight="800" fill="'+b.dc+'">'+b.diff+'</text>';
+      g+='<text x="'+x0+'" y="252" font-size="10" fill="#64748b">前</text><rect x="'+(x0+18)+'" y="243" width="168" height="9" rx="4.5" fill="#eef0ee"/><rect x="'+(x0+18)+'" y="243" width="'+(1.68*b.a).toFixed(1)+'" height="9" rx="4.5" fill="#94a3b8"/>';
+      g+='<text x="'+x0+'" y="267" font-size="10" font-weight="700" fill="'+b.dc+'">後</text><rect x="'+(x0+18)+'" y="258" width="168" height="9" rx="4.5" fill="#eef0ee"/><rect x="'+(x0+18)+'" y="258" width="'+(1.68*b.b).toFixed(1)+'" height="9" rx="4.5" fill="'+b.dc+'"/>';
+    });
+    $('oxSvg').innerHTML=g;
+    $('oxNote').innerHTML=d.key;
+  }
+  const oxBtns=$('oxTabs').querySelectorAll('.btn[data-ox]');
+  oxBtns.forEach(b=>b.onclick=()=>{oxBtns.forEach(x=>x.classList.toggle('on',x===b));drawOx(b.dataset.ox);});
+  drawOx('lung');
 })();
 
 /* ---------- 四、淋巴 ---------- */
