@@ -235,7 +235,7 @@
     <ul>
       <li><b>木質部</b>：運送<b>水和礦物質</b>，方向<b>由下往上</b>（根 → 莖 → 葉），<b>只能往上</b>。</li>
       <li><b>韌皮部</b>：運送葉片製造的<b>養分</b>，方向<b>可上可下</b>：往下送到根、莖儲存，或往上送到芽、花、果實。早春還沒長葉子時，根和莖儲存的養分會往上運到新芽。</li>
-      <li><b>根毛</b>：根的表皮細胞向外突出，增加吸收水和礦物質的表面積（和小腸絨毛的道理一樣）。根毛不能進行光合作用。</li>
+      <li><b>根毛</b>：根的單一表皮細胞向外突出，增加吸收水和礦物質的表面積（和小腸絨毛的道理一樣）。根毛不能進行光合作用，且<b>沒有維管束</b>；而<b>根、莖、葉（葉脈）、花瓣、果實</b>內部都含有維管束。</li>
       <li>菟絲子是寄生植物，把吸器插入寄主的<b>韌皮部</b>吸取養分。</li>
     </ul>
     <p class="mnemo">木質部：水往上走　韌皮部：養分上下都能走</p>
@@ -264,12 +264,105 @@
       </div>
     </div>
   </div>
+
+  <div class="tool">
+    <div class="slhead">
+      <h3>延伸素養：果農「局部側枝環狀剝皮」圖解</h3>
+      <div class="bar">
+        <button class="btn on" id="pgToggle" type="button">隱藏標註（自我測驗）</button>
+        <button class="btn" id="pgZoom" type="button">放大檢視細節</button>
+      </div>
+    </div>
+    <p class="note">與上方「主幹整圈剝皮 ➔ 全株枯死」對照：若果農只在<b>單一結果側枝基部</b>環狀剝皮，其他未剝皮枝條仍可養根，因此整棵樹不會死，反而讓切口上方的果實更碩大香甜。</p>
+    <div class="slstage" id="pgStage">
+      <svg viewBox="0 0 1376 768" role="img" aria-label="果農局部側枝環狀剝皮擬真水彩插畫：主幹與左側枝條完好供應根部養分，右側結果側枝基部環狀剝皮截斷韌皮部使養分集中於切口上方果實，使果實更碩大香甜且整棵樹不枯死" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="pgShadow" x="-8%" y="-12%" width="116%" height="130%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1f2a24" flood-opacity="0.12"/>
+          </filter>
+          <marker id="pgArrWater" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
+            <path d="M1,1.5 L8.5,5 L1,8.5 Z" fill="#1e65a3"/>
+          </marker>
+          <marker id="pgArrFood" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
+            <path d="M1,1.5 L8.5,5 L1,8.5 Z" fill="#c85a17"/>
+          </marker>
+        </defs>
+        <rect width="1376" height="768" fill="#f8f5ee"/>
+        <image href="img/partial-girdling.jpg" x="0" y="0" width="1376" height="768"/>
+        <g class="anno">
+          <path d="M558 310 Q636 376 654 452 L654 556" fill="none" stroke="#c85a17" stroke-width="5" stroke-dasharray="10 6" marker-end="url(#pgArrFood)"/>
+          <path d="M708 552 L708 456 Q724 426 756 394 L806 356" fill="none" stroke="#1e65a3" stroke-width="5" stroke-dasharray="10 6" marker-end="url(#pgArrWater)"/>
+          <path d="M842 308 Q816 332 798 350" fill="none" stroke="#c85a17" stroke-width="4.5" stroke-dasharray="7 5"/>
+          <circle cx="792" cy="356" r="13" fill="#b91c1c" stroke="#fff" stroke-width="2.5"/>
+          <path d="M786 350 L798 362 M798 350 L786 362" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+          <path d="M846 314 Q876 324 892 344" fill="none" stroke="#c85a17" stroke-width="4.5" marker-end="url(#pgArrFood)"/>
+          <path d="M904 294 Q950 288 978 302" fill="none" stroke="#c85a17" stroke-width="4.5" marker-end="url(#pgArrFood)"/>
+
+          <line x1="362" y1="126" x2="438" y2="188" stroke="#3f7a4f" stroke-width="2.5"/>
+          <circle cx="438" cy="188" r="6.5" fill="#3f7a4f" stroke="#fff" stroke-width="2"/>
+          <g filter="url(#pgShadow)">
+            <rect x="20" y="68" width="342" height="114" rx="14" fill="#ffffff" stroke="#5f8f55" stroke-width="2.2"/>
+            <text x="191" y="102" text-anchor="middle" font-size="22" font-weight="800" fill="#2e5928">未剝皮枝條（對照）</text>
+            <text x="191" y="132" text-anchor="middle" font-size="18" fill="#4d5a52">樹皮（韌皮部）完整，果實大小正常</text>
+            <text x="191" y="160" text-anchor="middle" font-size="18" font-weight="700" fill="#c85a17">養分可往下運，供應樹根！</text>
+          </g>
+
+          <line x1="362" y1="472" x2="668" y2="492" stroke="#7c5a38" stroke-width="2.5"/>
+          <circle cx="668" cy="492" r="6.5" fill="#7c5a38" stroke="#fff" stroke-width="2"/>
+          <g filter="url(#pgShadow)">
+            <rect x="20" y="424" width="342" height="92" rx="14" fill="#fffdf7" stroke="#b08962" stroke-width="2.2"/>
+            <text x="191" y="458" text-anchor="middle" font-size="22" font-weight="800" fill="#5e3e20">主幹完好（未環狀剝皮）</text>
+            <text x="191" y="490" text-anchor="middle" font-size="18" fill="#4d5a52">其他枝條製造的養分照常通過主幹</text>
+          </g>
+
+          <line x1="362" y1="646" x2="578" y2="646" stroke="#3f7a4f" stroke-width="2.5"/>
+          <circle cx="578" cy="646" r="6.5" fill="#3f7a4f" stroke="#fff" stroke-width="2"/>
+          <g filter="url(#pgShadow)">
+            <rect x="20" y="592" width="342" height="106" rx="14" fill="#eef6ec" stroke="#3f7a4f" stroke-width="2.4"/>
+            <text x="191" y="628" text-anchor="middle" font-size="22" font-weight="800" fill="#235c34">根部健康 ➔ 整棵樹不會死！</text>
+            <text x="191" y="658" text-anchor="middle" font-size="18" fill="#385441">根持續獲得養分，能繼續吸收水分</text>
+            <text x="191" y="682" text-anchor="middle" font-size="16.5" fill="#4d5a52">（與「主幹整圈剝皮導致枯死」不同）</text>
+          </g>
+
+          <line x1="1084" y1="196" x2="1032" y2="314" stroke="#c85a17" stroke-width="3"/>
+          <circle cx="1032" cy="314" r="7" fill="#c85a17" stroke="#fff" stroke-width="2.5"/>
+          <g filter="url(#pgShadow)">
+            <rect x="1032" y="76" width="324" height="122" rx="14" fill="#fff7ed" stroke="#d97706" stroke-width="2.5"/>
+            <text x="1194" y="112" text-anchor="middle" font-size="23" font-weight="800" fill="#9a3412">果實更大、更香甜！</text>
+            <text x="1194" y="144" text-anchor="middle" font-size="18" fill="#5c3d2e">該側枝葉片製造的養分無法下運</text>
+            <text x="1194" y="174" text-anchor="middle" font-size="18" font-weight="700" fill="#c2410c">全部集中供給切口上方的果實</text>
+          </g>
+
+          <line x1="948" y1="506" x2="746" y2="412" stroke="#a33a4a" stroke-width="3"/>
+          <circle cx="746" cy="412" r="7.5" fill="#a33a4a" stroke="#fff" stroke-width="2.5"/>
+          <g filter="url(#pgShadow)">
+            <rect x="946" y="456" width="410" height="156" rx="15" fill="#fff5f6" stroke="#a33a4a" stroke-width="2.5"/>
+            <text x="1151" y="492" text-anchor="middle" font-size="22" font-weight="800" fill="#881337">局部側枝環狀剝皮（果實下方）</text>
+            <line x1="966" y1="506" x2="1336" y2="506" stroke="#f0c8cf" stroke-width="1.5"/>
+            <text x="966" y="534" font-size="17.5" fill="#1f2a24"><tspan font-weight="800" fill="#a33a4a">① 剝除樹皮（韌皮部）：</tspan>養分過不去</text>
+            <text x="990" y="558" font-size="16.5" fill="#4d5a52">切口上方養分堆積、樹皮微微膨大</text>
+            <text x="966" y="588" font-size="17.5" fill="#1f2a24"><tspan font-weight="800" fill="#1e65a3">② 留下淺黃木質部：</tspan>水分照常往上送</text>
+          </g>
+
+          <g filter="url(#pgShadow)">
+            <rect x="946" y="630" width="410" height="72" rx="12" fill="#ffffff" stroke="#d4cfc2" stroke-width="1.8"/>
+            <line x1="968" y1="654" x2="1014" y2="654" stroke="#1e65a3" stroke-width="4.5" stroke-dasharray="8 4" marker-end="url(#pgArrWater)"/>
+            <text x="1028" y="660" font-size="16.5" font-weight="700" fill="#1e65a3">木質部：水分往上運（未被切斷）</text>
+            <line x1="968" y1="684" x2="1014" y2="684" stroke="#c85a17" stroke-width="4.5" stroke-dasharray="8 4" marker-end="url(#pgArrFood)"/>
+            <text x="1028" y="690" font-size="16.5" font-weight="700" fill="#c85a17">韌皮部：養分運送（僅右側切口受阻）</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <p class="small">圖為示意插畫，實際果園多會在開花前後或幼果期於結果枝基部進行輕度環狀剝皮（或環刻），待果實成熟前傷口會逐漸癒合。</p>
+  </div>
   <div class="warn">
     <b>易錯陷阱</b>
     <ul>
       <li>礦物質是<b>跟著水走木質部</b>，不是走韌皮部。</li>
       <li>「水分可以由葉往下運到根」是錯的，水只往上運。</li>
       <li>環狀剝皮後，<b>最先</b>受影響的是「養分不能往下運」；全株枯死是<b>最後</b>的結果。剛剝皮時葉子不會馬上枯萎，因為木質部還在。</li>
+      <li><b>果農局部環狀剝皮（常考素養題）</b>：若只在「結果實的<b>側枝</b>基部（果實下方）」環狀剝皮，整棵樹<b>不會死亡</b>（其他未剝皮枝條仍可供應養分給根）；反而是該側枝葉片製造的養分無法往下運，全部集中供給切口上方的果實，使果實更香甜碩大。</li>
     </ul>
   </div>
   </section>
@@ -282,11 +375,11 @@
       <li><b>蒸散作用</b>：植物體內的水變成水蒸氣，主要從<b>氣孔</b>散失。根吸收的水，<b>大部分</b>都經由蒸散作用散失。</li>
       <li>氣孔的開閉：<b>白天</b>保衛細胞吸水膨脹，氣孔<b>打開</b>；<b>晚上</b>保衛細胞失水萎縮，氣孔<b>關閉</b>。</li>
       <li>功能：產生拉力，是水在木質部往上運的<b>主要動力</b>；幫助根吸收水和礦物質；散熱，降低葉片溫度。</li>
-      <li>蒸散變快：葉片多、氣孔多、光照強、溫度高、通風、空氣乾燥。移植植物時<b>剪掉一部分葉片</b>，可以減少蒸散，避免缺水枯死。</li>
+      <li>蒸散變快：葉片多、氣孔多、光照強、溫度高、通風、空氣乾燥。<b>樹木移植四大實務</b>：①<b>剪掉部分枝葉</b>（減少蒸散）；②<b>根部保留土團</b>（保護纖細的<b>根毛</b>不被扯斷）；③<b>傍晚或陰天移植</b>（氣溫低、光照弱，減少蒸散）；④<b>剛移植不施濃肥</b>（避免根細胞滲透失水）。</li>
       <li>用塑膠袋套住植物，袋子內壁的水珠主要來自蒸散作用。</li>
       <li>實驗 3-1：芹菜插進紅色溶液，一段時間後橫切，<b>木質部被染紅</b>，證明水由木質部往上運。葉柄要<b>在水中切</b>，避免空氣進入、阻塞運水的管道。</li>
       <li>延伸：白玫瑰插在紅色水裡，花瓣會變紅；把莖縱切成兩半，分別插進紅色和藍色的水，花瓣會一半紅、一半藍。表示<b>花瓣也有維管束</b>，而且和莖的維管束相通。</li>
-      <li>葉片塗凡士林會堵住氣孔；塗在氣孔<b>比較多</b>的那一面（通常是下表皮），水分散失減少得最多。</li>
+      <li>葉片塗凡士林會堵住氣孔；塗在氣孔<b>比較多</b>的那一面（陸生植物通常是下表皮；<b>浮水植物如睡蓮則是上表皮</b>），水分散失減少得最多。</li>
     </ul>
   </div>
 
@@ -482,6 +575,9 @@ function rbDraw(){
 $('rbNext').onclick=()=>{if(rbI<RB.length){rbI++;rbDraw();}};
 $('rbReset').onclick=()=>{rbI=0;rbDraw();};
 rbDraw();
+/* 局部側枝環狀剝皮圖解：隱藏標註與放大檢視切換 */
+$('pgToggle').onclick=()=>{const h=$('pgStage').classList.toggle('hide-lbl');$('pgToggle').classList.toggle('on',!h);$('pgToggle').textContent=h?'顯示標註':'隱藏標註（自我測驗）';};
+$('pgZoom').onclick=()=>{const z=$('pgStage').classList.toggle('zoomed');$('pgZoom').textContent=z?'縮回符合視窗寬度':'放大檢視細節';};
 
 /* ---------- 三、量筒實驗 ---------- */
 const TP=[
@@ -593,7 +689,13 @@ const QZ=[
  {u:3,s:'甲、乙兩片相同的葉子，甲在下表皮塗凡士林，乙在上表皮塗凡士林，放在同樣的環境中。哪一片散失的水比較少？',o:['甲','乙','一樣多','都不會散失水'],a:0,
   e:'陸生植物的氣孔大多在下表皮。甲把下表皮堵住，堵掉的氣孔多，水分散失最少。'},
  {u:3,s:'量筒插入有葉的枝條，水面加一層油。一天後水減少了，主要原因是？',o:['水被光合作用用掉了','水從水面直接蒸發','水經由蒸散作用從葉子散失','水被莖儲存起來'],a:2,
-  e:'水面的油防止水直接蒸發，減少的水主要經由蒸散作用從葉的氣孔散失。光合作用用掉的水很少。'}
+  e:'水面的油防止水直接蒸發，減少的水主要經由蒸散作用從葉的氣孔散失。光合作用用掉的水很少。'},
+ {u:2,s:'果農想讓橘子更甜，只在「結有果實的側枝基部（果實下方）」進行環狀剝皮。下列敘述何者正確？',o:['整棵橘子樹很快就會枯死','切口上方的葉片無法獲得水分','該側枝葉片製造的養分無法往下運，會集中供給果實使果實更甜','果實會因為根吸收不到養分而變酸'],a:2,
+  e:'局部側枝環狀剝皮只切斷該側枝的韌皮部（木質部仍可往上運水），且其他未剝皮的枝條仍能供應養分給根，整棵樹不會死亡；該側枝的養分集中留給切口上方的果實，使果實更香甜。'},
+ {u:2,s:'下列植物的構造中，哪一個「沒有」維管束分布？',o:['白玫瑰的花瓣','蘋果的果實','葉片的葉脈','根尖的根毛'],a:3,
+  e:'根、莖、葉（葉脈）、花瓣、果實都含有維管束（白玫瑰插紅水會變紅即為明證）；根毛只是根的單一表皮細胞向外突出，沒有維管束。'},
+ {u:3,s:'園丁移植大型喬木時，常會「保留根部土團、剪除部分枝葉，並選在傍晚進行」。關於這些做法的目的，下列何者正確？',o:['保留土團是為了讓根能進行光合作用','保留土團可保護根毛，剪葉與傍晚移植可減少蒸散作用','剪除枝葉是為了阻止養分往根部運送','傍晚移植是為了讓氣孔大開，加速水分向上運送'],a:1,
+  e:'保留土團可避免纖細的根毛被扯斷，維持吸水能力；剪除部分枝葉與選在氣溫較低、光照弱的傍晚移植，都能減少蒸散作用、避免缺水枯死。'}
 ];
 B.quiz({box:'qz',score:'qzScore',done:'qzDone',reset:'qzReset',filter:'qzFlt',data:QZ,names:{1:'重點一',2:'重點二',3:'重點三'}});
 window.__QZ=QZ;
