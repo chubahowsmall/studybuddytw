@@ -47,11 +47,25 @@
 #dgSvg .lbls rect.pill.sub{fill:#fff8e1;stroke:#e0a100;stroke-width:3;stroke-dasharray:8 5}
 #dgSvg .lbls .pill{fill:#fff1c7;stroke:#e0a100;stroke-width:3}
 #dgSvg .lbls .pill.cur{fill:#ffd966;stroke:#c77700;stroke-width:6}
-.rlegend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13.5px;color:var(--ink-2);margin:2px 0 4px}
-.rlegend span{display:inline-flex;align-items:center;gap:6px}
-.rlegend .sw{display:inline-block;width:18px;height:14px;border-radius:4px;border:1px solid var(--line-2);background:#f3f1ea}
+.rlegend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;color:var(--ink-2);margin:2px 0 6px;align-items:center}
+.rlegend span{display:inline-flex;align-items:center;gap:5px}
+.rlegend .sw{display:inline-block;width:16px;height:13px;border-radius:4px;border:1px solid var(--line-2);background:#f3f1ea}
 .rlegend .sw.act{background:var(--moss-bg);border-color:var(--moss)}
-.rstop .pass{align-self:flex-start;font-style:normal;font-size:12px;font-weight:700;color:var(--ink-3);border:1px dashed var(--ink-3);border-radius:999px;padding:0 8px;margin:1px 0 2px;white-space:nowrap}
+.dtype{display:inline-block;font-size:11.5px;font-weight:700;line-height:1.35;padding:1px 7px;border-radius:999px;white-space:nowrap;flex-shrink:0}
+.dtype.p{color:var(--clay);background:var(--clay-bg);border:1px solid #dba98f}
+.dtype.c{color:var(--sea);background:var(--sea-bg);border:1px solid #9bc0dc}
+.road{min-width:660px}
+.rstop{gap:5px}
+.rstop .pass{align-self:flex-start;font-style:normal;font-size:11.5px;font-weight:700;color:var(--ink-3);border:1px dashed var(--ink-3);border-radius:999px;padding:0 7px;margin:0;white-space:nowrap;line-height:1.5}
+.rstep{display:flex;flex-direction:column;gap:2px;padding-top:4px;border-top:1px dashed rgba(77,90,82,.22);line-height:1.45}
+.rstep:first-of-type{border-top:none;padding-top:0}
+.rstep-head{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.rstep .jc{color:var(--ink)}
+.rstep b{font-size:inherit;color:inherit}
+.rstop:not(.act) .rstep.phys{color:var(--ink-2)}
+.rstop:not(.act) .rstep.muted{color:var(--ink-3)}
+.rstop:not(.act) .rstep.muted .jc{color:var(--ink-2);font-weight:600}
+.rstop:not(.act) .dtype.p{opacity:.88}
 </style>
 <script src="lib/common.js?v=13"></script>
 </head>
@@ -131,7 +145,7 @@
       <button class="btn" data-n="protein">蛋白質</button>
       <button class="btn" data-n="fat">脂質</button>
     </div>
-    <div class="rlegend"><span><i class="sw act"></i>亮色＝這裡會分解</span><span><i class="sw"></i>淡色＝經過，但不分解</span></div>
+    <div class="rlegend"><span><i class="sw act"></i>亮色＝這裡會化學分解</span><span><i class="sw"></i>淡色＝經過，無化學分解</span><span><span class="dtype p">物理性</span>顆粒變小、不用酵素</span><span><span class="dtype c">化學性</span>靠酵素分解成小分子</span></div>
     <div class="tscroll"><div id="nuRoad" class="road"></div></div>
     <div class="out" id="nuOut"></div>
   </div>
@@ -329,13 +343,45 @@ $('dgMode').addEventListener('click',ev=>{if(ev.target.closest('.btn[data-m]'))s
 
 /* ---------- 二、三大養分的旅程 ---------- */
 const ROAD={
-  starch:{n:'澱粉',st:[['口腔','唾液','把澱粉分解成較小的醣（麥芽糖）',1],['胃','胃液','不分解澱粉',0],['小腸','胰液、腸液','分解成<b>葡萄糖</b>',1]],end:'葡萄糖',out:'澱粉的化學性消化從<b>口腔</b>開始，在小腸完成，最後變成<b>葡萄糖</b>，由絨毛的微血管吸收。'},
-  protein:{n:'蛋白質',st:[['口腔','唾液','不分解蛋白質',0],['胃','胃液','<b>初步</b>分解蛋白質',1],['小腸','胰液、腸液','分解成<b>胺基酸</b>',1]],end:'胺基酸',out:'蛋白質從<b>胃</b>開始分解（胃液含鹽酸和酵素），在小腸完成，最後變成<b>胺基酸</b>。'},
-  fat:{n:'脂質',st:[['口腔','唾液','不分解脂質',0],['胃','胃液','不分解脂質',0],['小腸','膽汁 → 胰液','膽汁先<b>乳化</b>成小油滴，再由<b>胰液</b>的酵素分解成<b>脂肪酸和甘油</b>',1]],end:'脂肪酸＋甘油',out:'脂質<b>到小腸才開始</b>消化。膽汁沒有酵素，只是把大油滴變小油滴，讓酵素比較好作用。'}
+  starch:{
+    n:'澱粉',
+    st:[
+      {org:'口腔',act:1,steps:[{t:'p',jc:'咀嚼、攪拌',d:'牙齒磨碎、舌頭拌勻'},{t:'c',jc:'唾液',d:'分解成較小的醣（麥芽糖）'}]},
+      {org:'胃',act:0,steps:[{t:'p',jc:'胃壁蠕動',d:'持續攪拌混合食糜'},{t:'',jc:'胃液',d:'不分解澱粉'}]},
+      {org:'小腸',act:1,steps:[{t:'p',jc:'小腸蠕動',d:'混合並推送食物'},{t:'c',jc:'胰液、腸液',d:'分解成<b>葡萄糖</b>'}]}
+    ],
+    end:'葡萄糖',
+    out:'澱粉的<b>化學性消化</b>從<b>口腔</b>開始，在小腸完成，最後變成<b>葡萄糖</b>，由絨毛的微血管吸收。'
+  },
+  protein:{
+    n:'蛋白質',
+    st:[
+      {org:'口腔',act:0,steps:[{t:'p',jc:'咀嚼、攪拌',d:'牙齒磨碎食物顆粒'},{t:'',jc:'唾液',d:'不分解蛋白質'}]},
+      {org:'胃',act:1,steps:[{t:'p',jc:'胃壁蠕動',d:'攪拌食物與胃液混合'},{t:'c',jc:'胃液',d:'<b>初步</b>分解蛋白質'}]},
+      {org:'小腸',act:1,steps:[{t:'p',jc:'小腸蠕動',d:'混合並推送食物'},{t:'c',jc:'胰液、腸液',d:'分解成<b>胺基酸</b>'}]}
+    ],
+    end:'胺基酸',
+    out:'蛋白質的<b>化學性消化</b>從<b>胃</b>開始（胃液含鹽酸和酵素），在小腸完成，最後變成<b>胺基酸</b>。'
+  },
+  fat:{
+    n:'脂質',
+    st:[
+      {org:'口腔',act:0,steps:[{t:'p',jc:'咀嚼、攪拌',d:'牙齒磨碎食物顆粒'},{t:'',jc:'唾液',d:'不分解脂質'}]},
+      {org:'胃',act:0,steps:[{t:'p',jc:'胃壁蠕動',d:'攪拌混合食糜'},{t:'',jc:'胃液',d:'不分解脂質'}]},
+      {org:'小腸',act:1,steps:[{t:'p',jc:'膽汁',d:'先<b>乳化</b>成小油滴（＋小腸蠕動）'},{t:'c',jc:'胰液',d:'酵素分解成<b>脂肪酸和甘油</b>'}]}
+    ],
+    end:'脂肪酸＋甘油',
+    out:'脂質<b>到小腸才開始</b>被消化液處理：先由膽汁<b>物理性乳化</b>成小油滴（不含酵素），再由胰液<b>化學性分解</b>成脂肪酸和甘油。'
+  }
 };
+function nuStep(st){
+  const b=st.t==='p'?'<span class="dtype p">物理性</span>':st.t==='c'?'<span class="dtype c">化學性</span>':'';
+  const cls=st.t==='p'?' phys':st.t===''?' muted':'';
+  return '<div class="rstep'+cls+'"><div class="rstep-head">'+b+'<span class="jc">'+st.jc+'</span></div><span>'+st.d+'</span></div>';
+}
 function nuShow(k){
   const r=ROAD[k];
-  $('nuRoad').innerHTML='<div class="rstop start"><b>'+r.n+'</b><span>大分子</span></div>'+r.st.map(s=>'<div class="rarrow">→</div><div class="rstop'+(s[3]?' act':'')+'"><b>'+s[0]+'</b>'+(s[3]?'':'<em class="pass">經過，但不分解</em>')+'<span class="jc">'+s[1]+'</span><span>'+s[2]+'</span></div>').join('')+'<div class="rarrow">→</div><div class="rstop end"><b>'+r.end+'</b><span>小分子，可以吸收</span></div>';
+  $('nuRoad').innerHTML='<div class="rstop start"><b>'+r.n+'</b><span>大分子</span></div>'+r.st.map(s=>'<div class="rarrow">→</div><div class="rstop'+(s.act?' act':'')+'"><b>'+s.org+'</b>'+(s.act?'':'<em class="pass">經過，無化學分解</em>')+s.steps.map(nuStep).join('')+'</div>').join('')+'<div class="rarrow">→</div><div class="rstop end"><b>'+r.end+'</b><span>小分子，可以吸收</span></div>';
   $('nuOut').innerHTML=r.out;
 }
 $('nuBar').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{$('nuBar').querySelectorAll('.btn').forEach(x=>x.classList.toggle('on',x===b));nuShow(b.dataset.n);});
