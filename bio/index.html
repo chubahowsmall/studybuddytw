@@ -3,20 +3,37 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>生物互動實驗室｜國七上第二次段考：養分、酵素、光合作用、消化、運輸與循環</title>
-<meta name="description" content="國中七年級上學期生物（南一版第一冊）2-1～3-3 互動複習教材：食物中的養分、酵素、光合作用、消化、植物的運輸、人體的循環與防禦。">
+<title>生物互動實驗室｜國七上第二次段考：養分、酵素、光合作用、消化、運輸、循環與防禦</title>
+<meta name="description" content="國中七年級上學期生物（南一版第一冊）2-1～3-3 互動複習教材：食物中的養分、酵素、光合作用、消化、植物的運輸、人體的循環與防禦，共 6 大單元、154 題互動小測驗（含 30 題圖表判讀）。">
 <link rel="icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="../assets/style.css?v=4">
 <link rel="stylesheet" href="lib/bio.css?v=13">
+<style>
+.bio-stats{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 18px}
+.bio-stat{display:inline-flex;align-items:center;gap:5px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13.5px;color:var(--ink-2)}
+.bio-stat b{color:var(--bio)}
+.unit{display:flex;flex-direction:column}
+.unit-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.qbadge{font-size:12px;font-weight:700;color:var(--moss);background:var(--moss-bg);border-radius:999px;padding:2px 9px;white-space:nowrap}
+.unit .ds{flex:1}
+.utags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.utag{font-size:12px;font-weight:600;color:var(--bio);background:#f4effa;border:1px solid #dfd3ef;border-radius:6px;padding:1px 7px}
+</style>
 <script src="lib/common.js?v=14"></script>
 </head>
 <body>
 <header id="site-head"></header>
 <main class="wrap">
   <span class="kicker b">生物互動實驗室・國七上・第二次段考</span>
-  <h1>2-1～3-3：養分從哪裡來、怎麼運到全身</h1>
-  <p class="lead">這次段考有兩條主線：<b>生物怎麼得到養分</b>（植物靠光合作用自己做，人靠消化把食物分解），以及<b>養分和水怎麼運送</b>（植物靠維管束，人靠血液和淋巴）。每個單元都有可以點、可以操作的實驗和圖，先動手試，再看「易錯陷阱」，最後做小測驗。</p>
+  <h1>2-1～3-3：養分、運輸、循環與防禦</h1>
+  <p class="lead">這次段考串起三條主線：<b>養分從哪裡來</b>（2-1～2-4 養分、酵素、光合作用與消化）、<b>水與養分怎麼運送</b>（3-1 植物維管束、3-2 血液與淋巴循環），以及<b>身體如何對抗病原體</b>（3-3 三道防線與疫苗）。每個單元都有可操作的互動圖解與實驗，先動手試，再看「易錯陷阱」，最後做圖解小測驗。</p>
+  <div class="bio-stats" aria-label="教材內容總覽">
+    <span class="bio-stat"><b>6</b> 大完整單元</span>
+    <span class="bio-stat"><b>154</b> 題互動小測驗</span>
+    <span class="bio-stat">含 <b>30</b> 題向量 SVG 圖表判讀</span>
+    <span class="bio-stat">3D 水彩剖面・互動曲線・心智圖</span>
+  </div>
 
   <h2>段考範圍</h2>
   <div class="tscroll">
@@ -31,20 +48,50 @@
 
   <h2>單元</h2>
   <div class="units">
-    <a class="unit" href="nutrients.html"><div class="no">2-1・2-2</div><div class="tt">食物中的養分、酵素</div><div class="ds">熱量計算器、碘液和本氏液的檢測模擬、酵素的專一性、唾液實驗的試管設計（哪兩支能比較？），附小測驗。</div></a>
-    <a class="unit" href="photosynthesis.html"><div class="no">2-3</div><div class="tt">植物如何製造養分</div><div class="ds">白天晚上的氣體進出、葉片橫切面點點看、葉片遮光實驗排步驟與結果、水蘊草與光的強弱，附小測驗。</div></a>
-    <a class="unit" href="digestion.html"><div class="no">2-4</div><div class="tt">人體如何獲得養分</div><div class="ds">消化系統圖點點看（消化道、消化腺、食物的旅程）、三大養分的消化旅程、消化液小卡、物理性和化學性消化練習，附小測驗。</div></a>
-    <a class="unit" href="transport.html"><div class="no">3-1</div><div class="tt">植物的運輸構造</div><div class="ds">雙子葉和單子葉莖的橫切面、年輪、水和養分的運輸方向、環狀剝皮四個階段、量筒蒸散實驗、芹菜紅色溶液，附小測驗。</div></a>
-    <a class="unit" href="circulation.html"><div class="no">3-2</div><div class="tt">人體的循環</div><div class="ds">血液組成、脈搏換算、小魚尾鰭分辨血管與判斷方位、心臟圖與肺循環、體循環、點滴路徑、淋巴系統，附小測驗。</div></a>
-    <a class="unit" href="defense.html"><div class="no">3-3</div><div class="tt">人體的防禦</div><div class="ds">三道防線分類練習、發炎反應、疫苗與兩次感染的防禦作用曲線，附小測驗。</div></a>
+    <a class="unit" href="nutrients.html">
+      <div class="unit-top"><div class="no">2-1・2-2</div><span class="qbadge">25 題・5 圖表</span></div>
+      <div class="tt">食物中的養分、酵素</div>
+      <div class="ds">熱量計算器、碘液與本氏液模擬、酵素專一性與產物總量曲線、雙向溫度恢復（0℃ vs 80℃）、唾液四管實驗（含鹽酸變因）。</div>
+      <div class="utags"><span class="utag">熱量計算器</span><span class="utag">產物總量曲線</span><span class="utag">唾液四管實驗</span></div>
+    </a>
+    <a class="unit" href="photosynthesis.html">
+      <div class="unit-top"><div class="no">2-3</div><span class="qbadge">25 題・5 圖表</span></div>
+      <div class="tt">植物如何製造養分</div>
+      <div class="ds">日夜氣體進出、光照與深度曲線（陽性 vs 耐陰）、水蘊草 pH 模擬、葉片橫切面點點看、斑葉＋遮光四區變因實驗與步驟排序。</div>
+      <div class="utags"><span class="utag">光照深度曲線</span><span class="utag">水蘊草 pH</span><span class="utag">斑葉四區實驗</span></div>
+    </a>
+    <a class="unit" href="digestion.html">
+      <div class="unit-top"><div class="no">2-4</div><span class="qbadge">25 題・5 圖表</span></div>
+      <div class="tt">人體如何獲得養分</div>
+      <div class="ds">消化系統全圖與食物旅程、小腸絨毛吸收分流（微血管 vs 乳糜管）、三大養分消化心智圖、三種酵素 pH 活性曲線、物理／化學消化練習。</div>
+      <div class="utags"><span class="utag">三大養分心智圖</span><span class="utag">絨毛分流圖</span><span class="utag">酵素 pH 曲線</span></div>
+    </a>
+    <a class="unit" href="transport.html">
+      <div class="unit-top"><div class="no">3-1</div><span class="qbadge">24 題・5 圖表</span></div>
+      <div class="tt">植物的運輸構造</div>
+      <div class="ds">雙／單子葉莖橫切面與年輪、3D 水彩莖到葉脈與局部環狀剝皮剖面、環狀剝皮四階段、蒸散量筒四組比較、芹菜紅色溶液實驗。</div>
+      <div class="utags"><span class="utag">3D 水彩剖面</span><span class="utag">局部環狀剝皮</span><span class="utag">蒸散量筒</span></div>
+    </a>
+    <a class="unit" href="circulation.html">
+      <div class="unit-top"><div class="no">3-2</div><span class="qbadge">30 題・5 圖表</span></div>
+      <div class="tt">人體的循環</div>
+      <div class="ds">3D 水彩血液離心與心臟剖面、小魚尾鰭顯微鏡倒像、0.8 秒心動週期與雙心音可動瓣膜、血管血壓／流速曲線、血液快遞貨車、手繪水彩淋巴圖。</div>
+      <div class="utags"><span class="utag">心動週期瓣膜</span><span class="utag">血液快遞貨車</span><span class="utag">手繪水彩淋巴</span></div>
+    </a>
+    <a class="unit" href="defense.html">
+      <div class="unit-top"><div class="no">3-3</div><span class="qbadge">25 題・5 圖表</span></div>
+      <div class="tt">人體的防禦</div>
+      <div class="ds">手繪水彩三道防線傷口剖面、15 題防線回合分類挑戰、疫苗與免疫記憶心智圖、4 情境防禦曲線（含專一性與抗蛇毒血清急救對照）。</div>
+      <div class="utags"><span class="utag">三道防線剖面</span><span class="utag">疫苗記憶心智圖</span><span class="utag">4 情境曲線</span></div>
+    </a>
   </div>
 
   <h2>考卷常見的樣子</h2>
   <div class="grid2">
     <div class="card tight"><h3>題組多、附圖多</h3><p>範圍相同的考卷大多是 50 題單選，後面 15～20 題是題組，配實驗步驟或附圖。下面這幾張圖幾乎每份考卷都會出現，每個部位都要能指出來：</p>
-      <ul><li>消化系統圖</li><li>心臟圖（加上血液或點滴藥物的流動路徑）</li><li>葉片橫切面</li><li>莖的橫切面</li><li>小魚尾鰭的血管（影像上下左右顛倒）</li></ul></div>
+      <ul><li>消化系統圖與小腸絨毛（含酵素 pH 活性曲線）</li><li>心臟圖（加上血液、點滴與心導管流動路徑）</li><li>葉片橫切面與光照速率曲線</li><li>莖的橫切面與年輪</li><li>小魚尾鰭的血管（影像上下左右顛倒）</li><li>人體三道防線剖面與疫苗／血清抗體曲線</li></ul></div>
     <div class="card tight"><h3>實驗題要記四件事</h3><p>目的、步驟順序、結果、結論。最常考的實驗題組：</p>
-      <ul><li>唾液實驗：比較兩支試管時，<b>只能有一個條件不同</b></li><li>葉片遮光：煮 → 酒精脫色 → 洗 → 滴碘液</li><li>芹菜紅色溶液：被染紅的是木質部；量筒的水減少主要是蒸散</li></ul></div>
+      <ul><li>唾液實驗：比較兩支試管時，<b>只能有一個條件不同</b></li><li>葉片遮光與斑葉：煮 → 酒精隔水脫色（內酒精外水）→ 洗 → 滴碘液</li><li>芹菜紅色溶液：水中切斷防氣泡、染紅的是木質部；量筒水減少主要是蒸散</li></ul></div>
   </div>
 
   <h2>怎麼使用</h2>
