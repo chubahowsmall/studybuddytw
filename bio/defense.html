@@ -4,95 +4,573 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>3-3 人體的防禦｜生物互動實驗室</title>
-<meta name="description" content="國七上生物（南一版第一冊）3-3 人體的防禦互動複習：三道防線分類練習、發炎反應、抗體與記憶、疫苗與兩次感染的防禦強度曲線，附小測驗。">
+<meta name="description" content="國七上生物（南一版第一冊）3-3 人體的防禦互動複習：三道防線水彩剖面互動圖、發炎反應、15 題防線分類挑戰、疫苗抗體與記憶關係心智圖、雙病原體與抗蛇毒血清防禦強度曲線模擬、抗生素與生活素養，附 25 題圖解小測驗。">
 <link rel="icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="../assets/style.css?v=3">
-<link rel="stylesheet" href="lib/bio.css">
-<script src="lib/common.js"></script>
+<link rel="stylesheet" href="lib/bio.css?v=13">
+<style>
+.figwrap svg .lblbg{fill:rgba(255,253,247,.9);stroke:rgba(90,82,70,.32);stroke-width:1;rx:6;pointer-events:all;cursor:pointer;transition:opacity .15s,fill .15s,stroke .15s}
+.figwrap svg.dim .lblbg{opacity:.32}
+.figwrap svg.dim .lbl[data-lbl]{opacity:.32}
+.figwrap svg.dim .lblbg.sel{opacity:1;fill:#fef3c7;stroke:#d97706;stroke-width:1.7}
+.figwrap svg.dim .lblbg.good{opacity:1;fill:#dcfce7;stroke:#16a34a;stroke-width:1.7}
+.figwrap svg.dim .lblbg.bad{opacity:1;fill:#fee2e2;stroke:#dc2626;stroke-width:1.7}
+.figwrap svg.dim .lblbg.hl{opacity:1;fill:#efe7fa;stroke:#6a4c93;stroke-width:1.7}
+.figwrap svg.dim .lbl[data-lbl].sel{opacity:1;fill:#92400e!important;font-weight:700}
+.figwrap svg.dim .lbl[data-lbl].good{opacity:1;fill:#166534!important;font-weight:700}
+.figwrap svg.dim .lbl[data-lbl].bad{opacity:1;fill:#991b1b!important;font-weight:700}
+.figwrap svg.dim .lbl[data-lbl].hl{opacity:1;fill:#4c2c7a!important;font-weight:700}
+.figwrap svg.testing .lblbg{display:none!important}
+.figwrap svg.mark-lock [data-part],.figwrap svg.mark-lock [data-lbl]{cursor:default}
+#defSvg .lbl{font-size:12px;font-weight:800;fill:#243028}
+@keyframes dfFlow{to{stroke-dashoffset:-28}}
+#defSvg .b-flow{stroke-dasharray:8 6;animation:dfFlow 1.1s linear infinite}
+.hchead{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:0 0 8px}
+.hchead h3{margin:0}
+.hchead .bar{margin:0}
+.mmstage{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:#fbf8f1}
+.mmstage svg{display:block;width:100%;min-width:660px;height:auto}
+.mmstage.zoomed svg{width:1080px;max-width:none}
+#mmSvg .mm-g{transition:opacity .2s,filter .2s}
+#mmSvg.focus .mm-g{opacity:.2}
+#mmSvg.focus .mm-g.lit{opacity:1;filter:drop-shadow(0 2px 6px rgba(106,76,147,.24))}
+.vcstage{overflow-x:auto;margin:6px 0 8px}
+.vcstage svg{display:block;width:100%;min-width:520px;height:auto;border:1px solid var(--line);border-radius:var(--r);background:#fbf8f1}
+@keyframes vcDraw{from{stroke-dashoffset:1200}to{stroke-dashoffset:0}}
+#vcSvg .curve-anim{stroke-dasharray:1200;animation:vcDraw .85s ease-out forwards}
+@media (prefers-reduced-motion:reduce){#defSvg .b-flow,#vcSvg .curve-anim{animation:none;stroke-dasharray:none}}
+.ln-meta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;font-size:13.5px;color:var(--ink-2);margin-bottom:6px}
+.ln-qbox{background:#fbf8f1;border:1px solid var(--line-2);border-radius:10px;padding:12px 14px;font-size:16.5px;font-weight:700;margin-bottom:10px;line-height:1.55}
+.ln-bar .btn[disabled]{opacity:.55;cursor:default}
+.badge-line{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:700;margin-right:4px;vertical-align:1px}
+.badge-line.l1{background:#f3e7d7;color:#6b4b2a;border:1px solid #c9a67f}
+.badge-line.l2{background:#fdebe2;color:#9a4018;border:1px solid #e09870}
+.badge-line.l3{background:#efe7fa;color:#4c2c7a;border:1px solid #b599dc}
+.q figure svg{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fbf8f1}
+.link-note{background:var(--bio-bg);border:1px solid #d4c4e8;border-radius:var(--r);padding:10px 14px;margin:10px 0 14px;font-size:14.5px;line-height:1.6}
+.link-note a{color:var(--bio);font-weight:700}
+</style>
+<script src="lib/common.js?v=13"></script>
 </head>
 <body>
 <header id="site-head"></header>
 <main class="wrap">
   <span class="kicker b">3-3・南一版第一冊</span>
   <h1>人體的防禦</h1>
-  <p class="lead">細菌、病毒這些<b>病原體</b>想進入身體，要先通過三道防線。前兩道對所有入侵者都一樣（非專一性），第三道會「認人」，而且會<b>記住</b>，所以同一種病原體第二次來時，身體反應又快又強。疫苗就是利用這個原理。</p>
+  <p class="lead">細菌、病毒這些<b>病原體</b>想進入身體，要先通過<b>三道防線</b>。前兩道對所有入侵者一視同仁（<b>非專一性</b>）；第三道由特殊白血球（淋巴球）執行，像「<b>一把鑰匙只開一把鎖</b>」般具有<b>專一性</b>，而且會<b>留下記憶</b>，所以同一種病原體第二次入侵時，身體反應又快、又強、維持更久。</p>
+  <div class="link-note">
+    <b>章節銜接小提醒（3-2 ↔ 3-3）：</b>南一版 3-3 同時涵蓋淋巴系統與防禦作用。淋巴系統的組織液回收與構造已整理於 <a href="circulation.html#s4">3-2 重點四：淋巴系統</a>；其中的<b>淋巴結</b>聚集了大量白血球與淋巴球，正是本節防禦作戰的重要基地（感染時附近淋巴結常會腫大）。
+  </div>
   <nav class="toc" aria-label="本頁重點">
-    <a href="#s1">一、三道防線</a>
-    <a href="#s2">二、疫苗與記憶</a>
-    <a href="#s3">小測驗</a>
+    <a href="#s1">一、三道防線與發炎</a>
+    <a href="#s2">二、疫苗、抗體與記憶</a>
+    <a href="#s3">三、血清、抗生素與素養</a>
+    <a href="#s4">小測驗（25 題）</a>
   </nav>
 
   <!-- ================= 一 ================= -->
   <section class="sec" id="s1">
-  <h2>一、人體的三道防線<span class="star">★★ 常考</span></h2>
+  <h2>一、人體的三道防線與發炎反應<span class="star">★★★ 必考</span></h2>
   <div class="grid3">
-    <div class="card tight" style="border-top:4px solid #8d6e4a"><h3>第一道防線</h3><p><b>皮膚和黏膜</b>（消化道、呼吸道、泌尿道表面的黏膜，以及淚液、黏液等分泌物），把病原體<b>擋在身體外面</b>。皮膚有傷口時，這道防線就不完整了。</p><p class="small">非專一性：對所有入侵者都一樣。</p></div>
-    <div class="card tight" style="border-top:4px solid #c0622a"><h3>第二道防線</h3><p>病原體進入身體後，<b>白血球穿出微血管吞噬</b>病原體；同時發生<b>發炎反應</b>：微血管<b>擴張</b>、血流增加，傷口<b>紅、腫、熱、痛</b>。發炎反應會讓<b>更多白血球聚集</b>到傷口，吞噬病原體，阻止感染擴大。</p><p class="small">非專一性。</p></div>
-    <div class="card tight" style="border-top:4px solid #6a4c93"><h3>第三道防線</h3><p><b>特殊白血球（淋巴球）</b>認出特定的病原體，有些製造<b>抗體</b>，有些直接破壞被感染的細胞。會留下<b>記憶</b>。</p><p class="small">專一性：只對付特定的病原體。</p></div>
+    <div class="card tight" style="border-top:4px solid #8d6e4a">
+      <h3><span class="badge-line l1">第一道</span>皮膜阻隔</h3>
+      <p><b>皮膚和黏膜</b>（消化道、呼吸道、泌尿道內壁），搭配各種分泌物與物理構造：<b>胃酸</b>（胃液鹽酸殺菌）、<b>淚液與唾液</b>（沖刷並含溶菌酶）、<b>鼻腔黏液與呼吸道纖毛</b>（黏住灰塵細菌並擺動排出）、皮脂與汗液，把病原體<b>擋在體外</b>。</p>
+      <p class="small"><b>非專一性</b>：消化道與呼吸道內腔仍屬體表延伸屏障；皮膚破皮時這道防線就不完整。</p>
+    </div>
+    <div class="card tight" style="border-top:4px solid #c0622a">
+      <h3><span class="badge-line l2">第二道</span>吞噬與發炎</h3>
+      <p>病原體闖入組織後，<b>白血球</b>可行變形蟲運動穿出微血管壁<b>吞噬</b>病原體；同時啟動<b>發炎反應</b>：傷口附近微血管<b>擴張</b>、血流量增（<b>紅、熱</b>），微血管通透性提高、血漿滲出使組織液增多（<b>腫</b>），壓迫神經末梢（<b>痛</b>），召集更多白血球清除敵人。</p>
+      <p class="small"><b>非專一性</b>：死亡的白血球、病原體殘骸與組織液混合成<b>膿液</b>；適度<b>發燒</b>亦屬非專一性防禦。</p>
+    </div>
+    <div class="card tight" style="border-top:4px solid #6a4c93">
+      <h3><span class="badge-line l3">第三道</span>專一性與記憶</h3>
+      <p><b>特殊白血球（淋巴球）</b>像「<b>一把鑰匙只開一把鎖</b>」，只辨識特定的病原體：有些製造<b>抗體</b>（蛋白質，<b>溶於血漿</b>運往全身鎖定特定病原體），有些直接破壞被感染的細胞，並對入侵者<b>留下記憶</b>。</p>
+      <p class="small"><b>專一性＋記憶性</b>：感染處附近的<b>淋巴結</b>常因淋巴球增生而腫大。人體只有<b>三道</b>防線，記憶性屬第三道（沒有第四道）。</p>
+    </div>
+  </div>
+
+  <div class="card tight" style="margin-top:10px">
+    <h3>一張表比較：人體三道防線總整理</h3>
+    <div class="tscroll">
+    <table class="t">
+      <tr><th>防線</th><th>防禦類型</th><th>代表構造／細胞／物質</th><th>反應速度</th><th>專一性</th><th>記憶性</th></tr>
+      <tr><th>第一道</th><td>非專一性（阻隔）</td><td>完整皮膚、黏膜、<b>胃酸</b>、淚液、唾液、<b>呼吸道纖毛與黏液</b></td><td>立即（持續阻擋）</td><td>無</td><td>無</td></tr>
+      <tr><th>第二道</th><td>非專一性（清除）</td><td><b>一般白血球</b>（穿出微血管吞噬）、<b>發炎反應</b>（紅腫熱痛）、發燒</td><td>快</td><td>無</td><td>無</td></tr>
+      <tr><th>第三道</th><td><b>專一性</b>（精準打擊）</td><td><b>特殊白血球（淋巴球）</b>、<b>抗體</b>（溶於血漿）、免疫記憶</td><td>初次較慢；二次<b>極快</b></td><td><b>有</b></td><td><b>有</b></td></tr>
+    </table>
+    </div>
   </div>
 
   <div class="tool">
-    <h3>練習：這是第幾道防線？</h3>
-    <div class="out" id="lnQ" style="font-size:17px;font-weight:700;margin-bottom:8px"></div>
-    <div class="bar" id="lnBar">
-      <button class="btn" data-l="1">第一道</button>
-      <button class="btn warm" data-l="2">第二道</button>
-      <button class="btn cool" data-l="3">第三道</button>
+    <h3>傷口攻防戰：人體三道防線互動剖面圖</h3>
+    <div class="bar" id="defMode">
+      <button class="btn on" type="button" data-m="learn">學習：點了看說明</button>
+      <button class="btn warm" type="button" data-m="test">測驗：找出指定構造</button>
+      <button class="btn" type="button" id="defM1">只看第一道</button>
+      <button class="btn" type="button" id="defM2">只看第二道</button>
+      <button class="btn" type="button" id="defM3">只看第三道</button>
+    </div>
+    <div class="figwrap">
+      <svg id="defSvg" viewBox="0 0 640 358" role="img" aria-label="手繪水彩風人體三道防線互動剖面圖：呈現完整表皮阻隔、破損傷口、微血管擴張充血與留在管內的紅血球、白血球變形穿出微血管吞噬、淋巴球釋放專一性抗體與淋巴結記憶基地" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="dfAir" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f3f8fc"/><stop offset="100%" stop-color="#fbf8f1"/>
+          </linearGradient>
+          <linearGradient id="dfEpi" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#deb184"/><stop offset="55%" stop-color="#ecc79f"/><stop offset="100%" stop-color="#e3b689"/>
+          </linearGradient>
+          <linearGradient id="dfDerm" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fbeee2"/><stop offset="100%" stop-color="#f6e3d3"/>
+          </linearGradient>
+          <radialGradient id="dfSwel" cx="44%" cy="38%" r="58%">
+            <stop offset="0%" stop-color="#ef6c57" stop-opacity=".42"/>
+            <stop offset="55%" stop-color="#f48b6e" stop-opacity=".24"/>
+            <stop offset="100%" stop-color="#f48b6e" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="dfCap" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#d64a46"/><stop offset="48%" stop-color="#ef7368"/><stop offset="100%" stop-color="#b83333"/>
+          </linearGradient>
+          <radialGradient id="dfWbc" cx="35%" cy="32%" r="68%">
+            <stop offset="0%" stop-color="#ffffff"/><stop offset="72%" stop-color="#e9e4f5"/><stop offset="100%" stop-color="#cfc4e6"/>
+          </radialGradient>
+          <radialGradient id="dfLym" cx="35%" cy="30%" r="68%">
+            <stop offset="0%" stop-color="#f6f0ff"/><stop offset="70%" stop-color="#d8c3f4"/><stop offset="100%" stop-color="#b18ee0"/>
+          </radialGradient>
+          <radialGradient id="dfNode" cx="38%" cy="34%" r="68%">
+            <stop offset="0%" stop-color="#f4ecff"/><stop offset="68%" stop-color="#d9c6f0"/><stop offset="100%" stop-color="#a884d4"/>
+          </radialGradient>
+          <radialGradient id="dfRbc" cx="38%" cy="32%" r="65%">
+            <stop offset="0%" stop-color="#ff8a80"/><stop offset="65%" stop-color="#d9383a"/><stop offset="100%" stop-color="#9e1c22"/>
+          </radialGradient>
+          <linearGradient id="dfThorn" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#9c6b3b"/><stop offset="100%" stop-color="#5c3a1d"/>
+          </linearGradient>
+          <marker id="dfArrR" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M1,1.5 L8.5,5 L1,8.5 Z" fill="#b8442a"/>
+          </marker>
+          <marker id="dfArrP" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto">
+            <path d="M1,1.5 L8.5,5 L1,8.5 Z" fill="#6a4c93"/>
+          </marker>
+        </defs>
+        <rect x="0" y="0" width="640" height="86" fill="url(#dfAir)"/>
+        <rect x="0" y="84" width="640" height="274" fill="url(#dfDerm)"/>
+
+        <rect x="8" y="8" width="114" height="22" rx="11" fill="#f3e7d7" stroke="#b9936a" stroke-width="1"/>
+        <text x="65" y="23" text-anchor="middle" font-size="11" font-weight="800" fill="#6b4b2a">第一道：皮膜阻隔</text>
+        <rect x="148" y="328" width="176" height="22" rx="11" fill="#fdebe2" stroke="#d47a4a" stroke-width="1"/>
+        <text x="236" y="343" text-anchor="middle" font-size="11" font-weight="800" fill="#9a4018">第二道：發炎與白血球吞噬</text>
+        <rect x="444" y="328" width="186" height="22" rx="11" fill="#efe7fa" stroke="#8c6bb8" stroke-width="1"/>
+        <text x="537" y="343" text-anchor="middle" font-size="11" font-weight="800" fill="#52357a">第三道：淋巴球、抗體與記憶</text>
+        <line x1="418" y1="114" x2="418" y2="322" stroke="#c7b8d8" stroke-width="1.3" stroke-dasharray="4 4"/>
+
+        <g data-part="skin">
+          <path d="M0,74 Q55,72 128,74 L132,102 Q65,100 0,103 Z" fill="url(#dfEpi)" stroke="#9a6b3e" stroke-width="1.4"/>
+          <path d="M0,74 Q55,72 128,74 L129,82 Q55,80 0,82 Z" fill="#c7915c" opacity=".55"/>
+          <path d="M188,72 Q250,58 310,72 Q460,74 640,73 L640,102 Q460,103 310,101 Q250,90 185,103 Z" fill="url(#dfEpi)" stroke="#9a6b3e" stroke-width="1.4"/>
+          <path d="M188,72 Q250,58 310,72 Q460,74 640,73 L640,81 Q460,82 310,80 Q250,66 187,80 Z" fill="#c7915c" opacity=".55"/>
+          <g stroke="#a8794c" stroke-width=".9" opacity=".45">
+            <line x1="30" y1="82" x2="30" y2="101"/><line x1="62" y1="82" x2="62" y2="101"/><line x1="96" y1="82" x2="96" y2="101"/>
+            <line x1="340" y1="81" x2="340" y2="101"/><line x1="382" y1="81" x2="382" y2="101"/><line x1="428" y1="81" x2="428" y2="101"/>
+            <line x1="476" y1="81" x2="476" y2="101"/><line x1="526" y1="81" x2="526" y2="101"/><line x1="578" y1="81" x2="578" y2="101"/>
+          </g>
+          <g transform="translate(52,50)">
+            <rect x="-10" y="-4.5" width="20" height="9" rx="4.5" fill="#5e9c54" stroke="#2f5c28" stroke-width="1.1" transform="rotate(-14)"/>
+            <path d="M10,12 Q18,22 28,10" fill="none" stroke="#8d6e4a" stroke-width="1.4" stroke-dasharray="2.5 2"/>
+            <path d="M25,10 L29,9 L28,13" fill="none" stroke="#8d6e4a" stroke-width="1.4"/>
+          </g>
+          <g transform="translate(490,48)">
+            <circle cx="0" cy="0" r="5.5" fill="#5e9c54" stroke="#2f5c28" stroke-width="1.1"/>
+            <path d="M-12,18 Q0,24 14,12" fill="none" stroke="#8d6e4a" stroke-width="1.4" stroke-dasharray="2.5 2"/>
+            <path d="M10,12 L15,11 L14,16" fill="none" stroke="#8d6e4a" stroke-width="1.4"/>
+          </g>
+        </g>
+
+        <g data-part="wound">
+          <path d="M128,74 L145,126 L160,136 L176,118 L188,72" fill="#f7cfc4" stroke="#a63c2e" stroke-width="1.5"/>
+          <polygon points="130,30 144,24 166,118 153,124" fill="url(#dfThorn)" stroke="#472a12" stroke-width="1.1"/>
+          <g fill="#5e9c54" stroke="#2d5a27" stroke-width="1.1">
+            <rect x="148" y="136" width="16" height="7" rx="3.5" transform="rotate(24 156 140)"/>
+            <rect x="169" y="128" width="16" height="7" rx="3.5" transform="rotate(-18 177 132)"/>
+            <rect x="186" y="148" width="16" height="7" rx="3.5" transform="rotate(12 194 152)"/>
+            <rect x="155" y="158" width="15" height="6.5" rx="3.2" transform="rotate(-10 162 161)"/>
+          </g>
+        </g>
+
+        <g data-part="inflam">
+          <ellipse cx="242" cy="158" rx="92" ry="62" fill="url(#dfSwel)"/>
+          <path d="M222,226 Q220,206 232,192" fill="none" stroke="#c86b28" stroke-width="1.8" stroke-dasharray="3 2.5" marker-end="url(#dfArrR)"/>
+          <path d="M276,226 Q278,205 268,190" fill="none" stroke="#c86b28" stroke-width="1.8" stroke-dasharray="3 2.5" marker-end="url(#dfArrR)"/>
+          <g transform="translate(222,126)">
+            <rect x="-46" y="-11" width="92" height="22" rx="11" fill="#fff4ef" stroke="#d9534f" stroke-width="1.3"/>
+            <text x="0" y="4" text-anchor="middle" font-size="11.5" font-weight="800" fill="#b32d26">紅・腫・熱・痛</text>
+          </g>
+        </g>
+
+        <g data-part="capillary">
+          <path d="M0,256 Q95,256 145,244 Q215,226 290,236 Q355,246 410,252 L410,288 Q355,292 290,302 Q215,310 145,292 Q95,282 0,282 Z" fill="url(#dfCap)" stroke="#8f2424" stroke-width="1.6"/>
+          <path d="M168,240 L184,238 M236,232 L254,232 M304,238 L322,241" stroke="#ffe4dc" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+          <path class="b-flow" d="M16,269 Q180,268 395,270" fill="none" stroke="#ffd4cc" stroke-width="1.8" opacity=".75"/>
+          <g>
+            <ellipse cx="42" cy="269" rx="11" ry="7" fill="url(#dfRbc)" stroke="#7d1419" stroke-width="1"/>
+            <ellipse cx="42" cy="269" rx="4.5" ry="2.4" fill="#a82026" opacity=".55"/>
+            <ellipse cx="98" cy="266" rx="11" ry="7" fill="url(#dfRbc)" stroke="#7d1419" stroke-width="1" transform="rotate(-8 98 266)"/>
+            <ellipse cx="98" cy="266" rx="4.5" ry="2.4" fill="#a82026" opacity=".55" transform="rotate(-8 98 266)"/>
+            <ellipse cx="212" cy="276" rx="11.5" ry="7.2" fill="url(#dfRbc)" stroke="#7d1419" stroke-width="1" transform="rotate(6 212 276)"/>
+            <ellipse cx="212" cy="276" rx="4.8" ry="2.5" fill="#a82026" opacity=".55" transform="rotate(6 212 276)"/>
+            <ellipse cx="324" cy="272" rx="11" ry="7" fill="url(#dfRbc)" stroke="#7d1419" stroke-width="1" transform="rotate(-5 324 272)"/>
+            <ellipse cx="324" cy="272" rx="4.5" ry="2.4" fill="#a82026" opacity=".55" transform="rotate(-5 324 272)"/>
+          </g>
+          <text x="72" y="303" text-anchor="middle" font-size="10.5" font-weight="700" fill="#8f2424">紅血球留在管內！</text>
+        </g>
+
+        <g data-part="phago">
+          <path d="M168,262 C156,262 152,248 164,242 C172,238 171,226 164,218 C158,210 166,196 180,198 C194,200 198,214 190,224 C184,232 186,242 194,246 C202,251 196,264 182,264 Z" fill="url(#dfWbc)" stroke="#5c4680" stroke-width="1.5"/>
+          <path d="M172,213 C176,207 184,209 183,216 C182,222 175,222 172,217 Z M173,248 C178,244 187,247 185,254 C183,259 175,258 173,253 Z" fill="#6a4c93" opacity=".82"/>
+          <path d="M294,186 C280,174 282,150 302,146 C315,143 326,152 332,147 C344,138 358,150 350,164 C344,174 352,184 342,196 C330,208 304,204 294,186 Z" fill="url(#dfWbc)" stroke="#5c4680" stroke-width="1.6"/>
+          <path d="M312,165 C318,158 329,161 329,170 C336,172 336,184 326,185 C320,186 317,181 312,182 C304,183 302,172 310,169 Z" fill="#6a4c93" opacity=".85"/>
+          <rect x="278" y="156" width="15" height="6.5" rx="3.2" fill="#5e9c54" stroke="#2d5a27" stroke-width="1.1" transform="rotate(18 286 159)"/>
+          <rect x="331" y="154" width="13" height="5.5" rx="2.7" fill="#5e9c54" stroke="#2d5a27" stroke-width="1" opacity=".75" transform="rotate(-24 338 157)"/>
+        </g>
+
+        <g data-part="lymphocyte">
+          <circle cx="472" cy="184" r="26" fill="url(#dfLym)" stroke="#5b3a8c" stroke-width="1.7"/>
+          <circle cx="470" cy="184" r="16.5" fill="#6a4c93" opacity=".88"/>
+          <circle cx="465" cy="178" r="4.5" fill="#9c7cc9" opacity=".5"/>
+          <path d="M498,178 L526,166" fill="none" stroke="#6a4c93" stroke-width="1.7" stroke-dasharray="3 2.5" marker-end="url(#dfArrP)"/>
+          <path d="M498,192 L526,204" fill="none" stroke="#6a4c93" stroke-width="1.7" stroke-dasharray="3 2.5" marker-end="url(#dfArrP)"/>
+        </g>
+
+        <g data-part="antibody">
+          <g transform="translate(568,162)">
+            <circle cx="0" cy="0" r="12" fill="#d96b43" stroke="#8c3619" stroke-width="1.3"/>
+            <polygon points="0,-17 -4,-11 4,-11" fill="#8c3619"/>
+            <polygon points="0,17 -4,11 4,11" fill="#8c3619"/>
+            <polygon points="-17,0 -11,-4 -11,4" fill="#8c3619"/>
+            <polygon points="17,0 11,-4 11,4" fill="#8c3619"/>
+          </g>
+          <g stroke="#5b2c91" stroke-width="2.6" stroke-linecap="round" fill="none">
+            <path d="M532,162 L546,162 M546,162 L552,156 M546,162 L552,168"/>
+            <path d="M568,128 L568,140 M568,140 L562,146 M568,140 L574,146"/>
+            <path d="M534,205 L546,205 M546,205 L552,199 M546,205 L552,211"/>
+            <path d="M562,216 L574,210 M574,210 L577,203 M574,210 L582,213"/>
+          </g>
+        </g>
+
+        <g data-part="memory">
+          <path d="M484,256 C484,234 514,228 544,236 C576,244 592,262 586,286 C580,308 548,314 516,306 C492,300 484,278 484,256 Z" fill="url(#dfNode)" stroke="#5b3a8c" stroke-width="1.6"/>
+          <circle cx="514" cy="264" r="12" fill="#efe6fc" stroke="#8964b8" stroke-width="1.1"/>
+          <circle cx="546" cy="260" r="13" fill="#efe6fc" stroke="#8964b8" stroke-width="1.1"/>
+          <circle cx="534" cy="288" r="11" fill="#efe6fc" stroke="#8964b8" stroke-width="1.1"/>
+          <circle cx="546" cy="260" r="7" fill="#6a4c93"/>
+          <circle cx="514" cy="264" r="6" fill="#7c5aa8"/>
+          <text x="536" y="294" text-anchor="middle" font-size="9.5" font-weight="800" fill="#4c2c7a">留下記憶</text>
+        </g>
+
+        <g class="lbls">
+          <rect class="lblbg" data-lbl="skin" x="12" y="42" width="104" height="22"/><text class="lbl" data-lbl="skin" x="64" y="57" text-anchor="middle">皮膚與表皮屏障</text>
+          <rect class="lblbg" data-lbl="wound" x="172" y="16" width="116" height="22"/><text class="lbl" data-lbl="wound" x="230" y="31" text-anchor="middle">傷口與病原體入侵</text>
+          <rect class="lblbg" data-lbl="inflam" x="292" y="88" width="92" height="22"/><text class="lbl" data-lbl="inflam" x="338" y="103" text-anchor="middle">發炎組織腫脹</text>
+          <rect class="lblbg" data-lbl="phago" x="286" y="206" width="116" height="22"/><text class="lbl" data-lbl="phago" x="344" y="221" text-anchor="middle">白血球穿出與吞噬</text>
+          <rect class="lblbg" data-lbl="capillary" x="172" y="299" width="108" height="22"/><text class="lbl" data-lbl="capillary" x="226" y="314" text-anchor="middle">微血管擴張充血</text>
+          <rect class="lblbg" data-lbl="lymphocyte" x="424" y="120" width="106" height="22"/><text class="lbl" data-lbl="lymphocyte" x="477" y="135" text-anchor="middle">特殊白血球(淋巴球)</text>
+          <rect class="lblbg" data-lbl="antibody" x="536" y="96" width="96" height="22"/><text class="lbl" data-lbl="antibody" x="584" y="111" text-anchor="middle">專一性抗體鎖定</text>
+          <rect class="lblbg" data-lbl="memory" x="424" y="218" width="108" height="22"/><text class="lbl" data-lbl="memory" x="478" y="233" text-anchor="middle">淋巴結與免疫記憶</text>
+        </g>
+      </svg>
+      <div>
+        <div class="figout" id="defOut"></div>
+        <div class="card tight" style="margin-top:10px;padding:10px 12px;font-size:13.5px">
+          <b>看圖秒破 3 大段考陷阱：</b>
+          <ul style="margin:4px 0 0;padding-left:18px">
+            <li>發炎時微血管是<b>擴張</b>（不是收縮），血流增加→紅熱，血漿滲出→腫痛。</li>
+            <li>穿出微血管吞噬敵人的是<b>白血球</b>，<b>紅血球永遠留在血管內</b>！</li>
+            <li>抗體由<b>淋巴球製造</b>、溶於<b>血漿運送</b>，只鎖定特定病原體。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool">
+    <div class="hchead">
+      <h3>回合制分類挑戰：這是第幾道防線？（共 15 題高頻情境）</h3>
+      <button class="btn" type="button" id="lnReset">重新開始回合</button>
+    </div>
+    <div class="ln-meta">
+      <span id="lnProg">第 1 回合・第 1 / 15 題</span>
+      <span id="lnScore">本回合答對 0 / 0</span>
+    </div>
+    <div class="ln-qbox" id="lnQ"></div>
+    <div class="bar ln-bar" id="lnBar">
+      <button class="btn" type="button" data-l="1">第一道防線（皮膜阻隔）</button>
+      <button class="btn warm" type="button" data-l="2">第二道防線（吞噬・發炎）</button>
+      <button class="btn cool" type="button" data-l="3">第三道防線（專一性・記憶）</button>
     </div>
     <div class="out" id="lnOut"></div>
   </div>
+
   <div class="warn">
     <b>易錯陷阱</b>
     <ul>
-      <li>皮膚、黏膜是第一道；白血球吞噬、發炎反應是第二道；特殊白血球、抗體、記憶是第三道。</li>
-      <li>發炎反應是微血管<b>擴張</b>，不是收縮。</li>
-      <li>白血球吞噬病原體是<b>非專一性</b>的；有專一性的是第三道防線。</li>
+      <li><b>113 段考超高頻陷阱</b>：發炎反應時聚集並穿出微血管壁清除病原體的是<b>白血球</b>，<b>絕不是紅血球</b>！</li>
+      <li>發炎反應是傷口附近的微血管<b>擴張</b>（不是收縮），血流增加才發紅、發熱。</li>
+      <li><b>胃酸（胃液鹽酸）殺菌</b>、<b>呼吸道纖毛與黏液</b>、淚液、皮脂都屬於<b>第一道防線</b>（非專一性）。</li>
+      <li><b>製造抗體</b>的是特殊白血球（淋巴球），但負責<b>運送抗體</b>到全身的是<b>血漿</b>。</li>
+      <li>人體只有<b>三道防線</b>，「記憶性」屬於第三道防線的一部分，沒有所謂「第四道防線」。</li>
+      <li><b>實戰判題提醒</b>：實際感染時（如喉嚨發炎、發燒或淋巴結腫大），<b>第二道與第三道防線常會同時進行</b>；考試分類要看題目強調哪個機制：紅腫熱痛／發燒／一般白血球吞噬 → <b>第二道</b>；特定抗體／專一破壞受感染細胞／留下記憶 → <b>第三道</b>。</li>
     </ul>
   </div>
   </section>
 
   <!-- ================= 二 ================= -->
   <section class="sec" id="s2">
-  <h2>二、疫苗與記憶<span class="star">★★ 常考</span></h2>
+  <h2>二、疫苗、抗體與免疫記憶<span class="star">★★★ 必考</span></h2>
   <div class="key">
     <ul>
-      <li><b>疫苗</b>：用死掉或減弱的病原體（或病原體的一部分）製成。打進身體後，刺激<b>第三道防線</b>製造抗體、產生<b>記憶</b>。</li>
-      <li>以後真的遇到這種病原體，身體能<b>很快、很強</b>地對抗。疫苗是用來<b>預防</b>，不是治療。打疫苗不會讓人生病，頂多出現輕微的症狀。</li>
-      <li>人體能靠打疫苗預防疾病，是因為專一性防禦作用具有<b>記憶性</b>：再次遇到同一種病原體時，特殊白血球會快速增加、快速製造抗體。</li>
-      <li>第三道防線有<b>專一性</b>，所以不同的疾病要打不同的疫苗；流感病毒容易變化，所以<b>每年要再打</b>。</li>
+      <li><b>專一性的因果</b>：第三道防線的淋巴球與抗體像「<b>一把鑰匙只開一把鎖</b>」，只認特定一種病原體；因此無論是自然感染、施打疫苗或注射抗蛇毒血清，都只對<b>特定對象</b>有效。</li>
+      <li><b>疫苗的本質</b>：用<b>減毒（減弱）、殺死的病原體，或病原體一小部分特徵</b>製成（像無害的演習假想敵），<b>疫苗裡面不含抗體</b>！用來<b>事前預防</b>，不是生病後立刻治病的特效藥。</li>
+      <li><b>「產生抗體」≠「留下記憶」</b>：打疫苗後，淋巴球會同時做兩件事——① <b>產生抗體</b>（專用武器，過一段時間會慢慢減少）；② <b>留下記憶</b>（記住敵人長相，才是長期保護的真正關鍵！）。</li>
+      <li><b>二次免疫反應</b>：日後真的遇到<b>同一種</b>病原體，有記憶的淋巴球會以<b>極短的潛伏期</b>立刻暴增，重新製造出<b>更大量、維持更久</b>的抗體，常在還沒發病前就把病原體消滅。</li>
+      <li><b>流感疫苗為何每年重打</b>：流感病毒容易變異，去年的記憶認不出新病毒（專一性），因此每年須針對新病毒株施打。</li>
+      <li><b>跨節必考（3-2＋3-3）</b>：手臂肌肉或靜脈注射疫苗後，藥劑隨靜脈血回流，<b>最先進入心臟的右心房</b>。</li>
     </ul>
   </div>
 
   <div class="tool">
-    <h3>防禦作用強度：第一次和第二次感染比一比</h3>
-    <div class="bar" id="vcBar">
-      <button class="btn on" data-v="1">只感染一次</button>
-      <button class="btn" data-v="2">同一種病原體再感染一次</button>
-      <button class="btn" data-v="3">先打疫苗，再遇到病原體</button>
+    <div class="hchead">
+      <h3>一張圖看懂：疫苗、抗體與「留下記憶」的關係</h3>
+      <div class="bar" id="mmBar">
+        <button class="btn on" type="button" data-f="all">全部總覽</button>
+        <button class="btn" type="button" data-f="ab">① 造抗體（武器）</button>
+        <button class="btn" type="button" data-f="mem">② 留記憶→秒殺 A</button>
+        <button class="btn" type="button" data-f="spec">③ 專一性：遇 B 無效</button>
+        <button class="btn" type="button" data-f="serum">④ 對照：抗蛇毒血清</button>
+        <button class="btn" type="button" id="mmZoom">放大檢視細節</button>
+      </div>
     </div>
-    <svg id="vcSvg" viewBox="0 0 560 280" role="img" aria-label="兩次感染的專一性防禦作用強度曲線" style="width:100%;max-width:640px;height:auto;display:block;background:#fff;border:1px solid var(--line);border-radius:10px"></svg>
+    <p class="note">點擊上方按鈕可分步聚光追蹤每條因果路線，一眼分清「產生抗體」和「留下記憶」為何是同時發生的兩件不同事情。</p>
+    <div class="mmstage" id="mmStage">
+      <svg id="mmSvg" viewBox="0 0 820 432" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="疫苗、抗體與免疫記憶關係向量心智圖，並對照抗蛇毒血清">
+        <defs>
+          <filter id="mmSh" x="-6%" y="-10%" width="112%" height="124%">
+            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#233029" flood-opacity="0.09"/>
+          </filter>
+          <marker id="mmArrB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+            <path d="M0.5,1.5 L8.5,5 L0.5,8.5 Z" fill="#2d6f9e"/>
+          </marker>
+          <marker id="mmArrO" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+            <path d="M0.5,1.5 L8.5,5 L0.5,8.5 Z" fill="#d97706"/>
+          </marker>
+          <marker id="mmArrP" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+            <path d="M0.5,1.5 L8.5,5 L0.5,8.5 Z" fill="#6a4c93"/>
+          </marker>
+          <marker id="mmArrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+            <path d="M0.5,1.5 L8.5,5 L0.5,8.5 Z" fill="#1f7a4b"/>
+          </marker>
+          <marker id="mmArrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+            <path d="M0.5,1.5 L8.5,5 L0.5,8.5 Z" fill="#c94a4a"/>
+          </marker>
+        </defs>
+        <rect width="820" height="432" fill="#fbf8f1"/>
+        <rect x="18" y="12" width="784" height="32" rx="16" fill="#efe9f6" stroke="#c8b6e2" stroke-width="1.2"/>
+        <text x="410" y="33" text-anchor="middle" font-size="14.5" font-weight="800" fill="#4c2c7a">疫苗 ➔ 刺激第三道防線同時做「兩件事」：造抗體（武器）＋ 留記憶（保久關鍵）</text>
+
+        <g class="mm-g" data-tags="ab mem spec">
+          <line x1="176" y1="168" x2="210" y2="168" stroke="#2d6f9e" stroke-width="2.4" marker-end="url(#mmArrB)"/>
+          <text x="193" y="159" text-anchor="middle" font-size="10.5" font-weight="800" fill="#2d6f9e">刺激</text>
+        </g>
+        <g class="mm-g" data-tags="ab">
+          <path d="M366,142 L378,142 Q386,142 386,134 L386,116 Q386,108 394,108 L408,108" fill="none" stroke="#d97706" stroke-width="2.4" marker-end="url(#mmArrO)"/>
+          <text x="386" y="99" text-anchor="middle" font-size="10.5" font-weight="800" fill="#b45309">事一</text>
+        </g>
+        <g class="mm-g" data-tags="mem spec">
+          <path d="M366,194 L378,194 Q386,194 386,202 L386,228 Q386,236 394,236 L408,236" fill="none" stroke="#6a4c93" stroke-width="2.4" marker-end="url(#mmArrP)"/>
+          <text x="386" y="253" text-anchor="middle" font-size="10.5" font-weight="800" fill="#522c85">事二</text>
+        </g>
+        <g class="mm-g" data-tags="mem">
+          <path d="M598,214 L604,214 Q610,214 610,208 L610,180 Q610,174 616,174 L630,174" fill="none" stroke="#1f7a4b" stroke-width="2.4" marker-end="url(#mmArrG)"/>
+        </g>
+        <g class="mm-g" data-tags="spec">
+          <path d="M598,256 L604,256 Q610,256 610,262 L610,268 Q610,274 616,274 L630,274" fill="none" stroke="#c94a4a" stroke-width="2.2" stroke-dasharray="4 3" marker-end="url(#mmArrR)"/>
+        </g>
+        <g class="mm-g" data-tags="mem ab">
+          <path d="M718,128 L718,108 Q718,96 706,96 L603,96" fill="none" stroke="#1f7a4b" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#mmArrG)"/>
+          <rect x="615" y="62" width="174" height="22" rx="11" fill="#e6f5ec" stroke="#6cc293" stroke-width="1"/>
+          <text x="702" y="77" text-anchor="middle" font-size="11" font-weight="800" fill="#166534">秒速重造「更大量」抗體！</text>
+        </g>
+
+        <g class="mm-g" data-tags="ab mem spec" filter="url(#mmSh)">
+          <rect x="18" y="106" width="158" height="124" rx="14" fill="#eef5fc" stroke="#2d6f9e" stroke-width="2"/>
+          <rect x="30" y="116" width="60" height="18" rx="9" fill="#2d6f9e"/>
+          <text x="60" y="129" text-anchor="middle" font-size="10.5" font-weight="800" fill="#fff">事前預防</text>
+          <text x="97" y="154" text-anchor="middle" font-size="15" font-weight="800" fill="#1a496e">① 施打疫苗</text>
+          <text x="97" y="174" text-anchor="middle" font-size="11.5" fill="#2b4559">減毒／死去病原體</text>
+          <text x="97" y="191" text-anchor="middle" font-size="11.5" fill="#2b4559">或病原體一小片段</text>
+          <rect x="28" y="201" width="138" height="20" rx="6" fill="#fff5e6" stroke="#e0a952" stroke-width="1"/>
+          <text x="97" y="215" text-anchor="middle" font-size="10.5" font-weight="800" fill="#9a5208">★ 裡面不含抗體！</text>
+        </g>
+
+        <g class="mm-g" data-tags="ab mem spec" filter="url(#mmSh)">
+          <rect x="214" y="102" width="152" height="132" rx="14" fill="#f5effc" stroke="#6a4c93" stroke-width="2.2"/>
+          <rect x="228" y="112" width="76" height="18" rx="9" fill="#6a4c93"/>
+          <text x="266" y="125" text-anchor="middle" font-size="10.5" font-weight="800" fill="#fff">第三道防線</text>
+          <text x="290" y="150" text-anchor="middle" font-size="14.5" font-weight="800" fill="#462870">② 特殊白血球</text>
+          <text x="290" y="167" text-anchor="middle" font-size="12" font-weight="700" fill="#6a4c93">（淋巴球）</text>
+          <line x1="228" y1="177" x2="352" y2="177" stroke="#d9c9ee" stroke-width="1"/>
+          <text x="290" y="194" text-anchor="middle" font-size="11.5" font-weight="800" fill="#522c85">專一性：認特定敵人</text>
+          <text x="290" y="211" text-anchor="middle" font-size="11" fill="#4f3e66">像一把鑰匙只開一把鎖</text>
+          <text x="290" y="226" text-anchor="middle" font-size="10.5" font-weight="700" fill="#7c4da8">同時啟動右側兩件事 ➔</text>
+        </g>
+
+        <g class="mm-g" data-tags="ab" filter="url(#mmSh)">
+          <rect x="412" y="56" width="186" height="106" rx="14" fill="#fffaf0" stroke="#d97706" stroke-width="2"/>
+          <text x="426" y="80" font-size="14.5" font-weight="800" fill="#92400e">③ 產生抗體</text>
+          <rect x="514" y="65" width="72" height="19" rx="9.5" fill="#fef3c7" stroke="#e5a00d"/>
+          <text x="550" y="78.5" text-anchor="middle" font-size="10.5" font-weight="800" fill="#92400e">專用武器</text>
+          <text x="426" y="102" font-size="11.5" fill="#4b3a24">• 蛋白質武器，溶於<tspan font-weight="800" fill="#92400e">血漿</tspan>運送</text>
+          <text x="426" y="121" font-size="11.5" fill="#4b3a24">• 精準抓住<tspan font-weight="800" fill="#92400e">特定病原體</tspan>消滅</text>
+          <text x="426" y="140" font-size="11.5" fill="#4b3a24">• 會隨時間<tspan font-weight="800" fill="#b45309">慢慢減少</tspan>（非永久）</text>
+          <text x="426" y="155" font-size="10" fill="#7c6648">（比喻：現場先印一批專用武器）</text>
+        </g>
+
+        <g class="mm-g" data-tags="ab mem">
+          <rect x="466" y="165" width="78" height="16" rx="8" fill="#fde8e8" stroke="#e07a7a" stroke-width="1"/>
+          <text x="505" y="177" text-anchor="middle" font-size="10" font-weight="800" fill="#991b1b">兩件事不相等</text>
+        </g>
+
+        <g class="mm-g" data-tags="mem spec" filter="url(#mmSh)">
+          <rect x="412" y="184" width="186" height="112" rx="14" fill="#f5effc" stroke="#6a4c93" stroke-width="2.2"/>
+          <text x="426" y="208" font-size="14.5" font-weight="800" fill="#462870">④ 留下記憶</text>
+          <rect x="514" y="193" width="72" height="19" rx="9.5" fill="#e5d7fa" stroke="#8a64c2"/>
+          <text x="550" y="206.5" text-anchor="middle" font-size="10.5" font-weight="800" fill="#462870">保久關鍵</text>
+          <text x="426" y="230" font-size="11.5" fill="#3a2854">• 由<tspan font-weight="800" fill="#522c85">淋巴球</tspan>記住敵人長相</text>
+          <text x="426" y="249" font-size="11.5" fill="#3a2854">• 駐守在淋巴結與血液中</text>
+          <text x="426" y="268" font-size="11.5" fill="#3a2854">• 抗體降了，<tspan font-weight="800" fill="#522c85">記憶依然還在</tspan>！</text>
+          <text x="426" y="286" font-size="10" fill="#6b5685">（比喻：把嫌犯長相背進檔案庫）</text>
+        </g>
+
+        <g class="mm-g" data-tags="mem" filter="url(#mmSh)">
+          <rect x="634" y="130" width="168" height="90" rx="13" fill="#eaf7ef" stroke="#1f7a4b" stroke-width="2"/>
+          <text x="718" y="151" text-anchor="middle" font-size="12.5" font-weight="800" fill="#166534">再遇「同一種」病原體 A</text>
+          <text x="718" y="170" text-anchor="middle" font-size="11.5" fill="#234d34">記憶立刻啟動（潛伏期極短）</text>
+          <text x="718" y="188" text-anchor="middle" font-size="11.5" font-weight="800" fill="#166534">反應又快、又強、維持更久</text>
+          <text x="718" y="207" text-anchor="middle" font-size="11" fill="#234d34">➔ 常在發病前就消滅！</text>
+        </g>
+
+        <g class="mm-g" data-tags="spec" filter="url(#mmSh)">
+          <rect x="634" y="232" width="168" height="76" rx="13" fill="#fdf1f1" stroke="#c94a4a" stroke-width="1.8" stroke-dasharray="5 3"/>
+          <text x="718" y="252" text-anchor="middle" font-size="12.5" font-weight="800" fill="#991b1b">改遇「不同種」病原體 B</text>
+          <text x="718" y="271" text-anchor="middle" font-size="11.5" fill="#5c2828">記憶認不出來（<tspan font-weight="800">專一性</tspan>）</text>
+          <text x="718" y="289" text-anchor="middle" font-size="11" fill="#5c2828">只出現慢、弱初次反應</text>
+          <text x="718" y="303" text-anchor="middle" font-size="10" fill="#8f3636">（流感突變須每年重打）</text>
+        </g>
+
+        <g class="mm-g" data-tags="serum" filter="url(#mmSh)">
+          <rect x="18" y="324" width="464" height="92" rx="13" fill="#eaf7f5" stroke="#0f766e" stroke-width="2"/>
+          <rect x="30" y="334" width="60" height="18" rx="9" fill="#0f766e"/>
+          <text x="60" y="347" text-anchor="middle" font-size="10.5" font-weight="800" fill="#fff">緊急治療</text>
+          <text x="100" y="348" font-size="13.5" font-weight="800" fill="#0f5c56">對照組：注射「抗蛇毒血清」（不是疫苗！）</text>
+          <rect x="30" y="362" width="124" height="42" rx="8" fill="#fff" stroke="#7ec7bf"/>
+          <text x="92" y="380" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0f5c56">直接輸入現成抗體</text>
+          <text x="92" y="396" text-anchor="middle" font-size="10" fill="#3a6b66">（跳過淋巴球訓練）</text>
+          <text x="164" y="387" text-anchor="middle" font-size="14" font-weight="800" fill="#0f766e">➔</text>
+          <rect x="174" y="362" width="146" height="42" rx="8" fill="#fff" stroke="#7ec7bf"/>
+          <text x="247" y="380" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0f5c56">立刻中和特定蛇毒</text>
+          <text x="247" y="396" text-anchor="middle" font-size="10" fill="#3a6b66">（仍屬於專一性防禦）</text>
+          <text x="330" y="387" text-anchor="middle" font-size="14" font-weight="800" fill="#0f766e">➔</text>
+          <rect x="340" y="362" width="130" height="42" rx="8" fill="#fff4f4" stroke="#e08989"/>
+          <text x="405" y="380" text-anchor="middle" font-size="11.5" font-weight="800" fill="#991b1b">不會留下記憶！</text>
+          <text x="405" y="396" text-anchor="middle" font-size="10" fill="#7a3232">（外來抗體漸漸消失）</text>
+        </g>
+
+        <g class="mm-g" data-tags="ab mem spec serum" filter="url(#mmSh)">
+          <rect x="494" y="324" width="308" height="92" rx="13" fill="#fffdf3" stroke="#d49b27" stroke-width="1.8"/>
+          <text x="508" y="346" font-size="13" font-weight="800" fill="#7c4700">考前 3 句破陷阱速記</text>
+          <text x="508" y="366" font-size="11.5" fill="#4f3d1c">1. 疫苗<tspan font-weight="800" fill="#991b1b">不含抗體</tspan>，是讓身體自己造抗體。</text>
+          <text x="508" y="385" font-size="11.5" fill="#4f3d1c">2. 抗體（武器）會變少，<tspan font-weight="800" fill="#522c85">記憶</tspan>才是長久保護關鍵。</text>
+          <text x="508" y="404" font-size="11.5" fill="#4f3d1c">3. <tspan font-weight="800">疫苗</tspan>預防｜<tspan font-weight="800">血清</tspan>急救｜<tspan font-weight="800">抗生素</tspan>只殺細菌不殺病毒。</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="tool">
+    <div class="hchead">
+      <h3>專一性防禦（抗體濃度）曲線模擬器：4 種段考經典情境</h3>
+      <div class="bar" id="vcBar">
+        <button class="btn on" type="button" data-v="1">① 初次感染 A</button>
+        <button class="btn" type="button" data-v="2">② 同種 A 二次感染</button>
+        <button class="btn" type="button" data-v="3">③ 打 A 疫苗：遇 A vs 遇 B</button>
+        <button class="btn" type="button" data-v="4">④ 抗蛇毒血清（急救對照）</button>
+      </div>
+    </div>
+    <div class="vcstage">
+      <svg id="vcSvg" viewBox="0 0 640 272" role="img" aria-label="專一性防禦強度與抗體濃度變化曲線模擬圖"></svg>
+    </div>
     <div class="out" id="vcOut"></div>
   </div>
+
   <div class="warn">
     <b>易錯陷阱</b>
     <ul>
-      <li>疫苗裡<b>不是抗體</b>，而是讓身體<b>自己</b>製造抗體。</li>
-      <li>會留下記憶的是<b>特殊白血球</b>，不是疫苗本身，也不是紅血球、淋巴結。</li>
-      <li>讀曲線圖：第二次感染時，反應<b>比較快</b>出現、強度<b>比較高</b>。</li>
+      <li>疫苗裡<b>不是抗體</b>，而是減弱／死掉的病原體（或片段），讓身體<b>自己</b>製造抗體並留下記憶。</li>
+      <li>會留下記憶的是<b>特殊白血球（淋巴球）</b>，不是疫苗本身，也不是紅血球或血漿。</li>
+      <li>讀曲線圖三要訣：同種病原體第二次入侵時，<b>潛伏期更短（更快出現）</b>、<b>抗體濃度更高（更強）</b>、<b>維持更久</b>；若改遇<b>不同種病原體</b>，則只會出現慢而弱的初次反應！</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 三 ================= -->
+  <section class="sec" id="s3">
+  <h2>三、抗蛇毒血清、抗生素與免疫生活素養<span class="star">★★ 常考</span></h2>
+  <div class="card tight">
+    <h3>段考最愛混淆三兄弟：疫苗 vs 抗蛇毒血清 vs 抗生素</h3>
+    <div class="tscroll">
+    <table class="t">
+      <tr><th>項目</th><th>主要成分</th><th>使用時機</th><th>對付對象</th><th>屬專一性防禦？</th><th>留下記憶？</th><th>段考常見例子</th></tr>
+      <tr><th>疫苗</th><td>減毒／死去病原體或其片段（<b>不含抗體</b>）</td><td><b>事前預防</b></td><td>特定細菌或病毒</td><td><b>是</b>（刺激自身第三道）</td><td><b>會</b></td><td>流感、B 型肝炎、水痘、牛痘（天花）</td></tr>
+      <tr><th>抗蛇毒血清<br><span class="small">（抗毒素）</span></th><td><b>現成抗體</b>（事先由馬等動物產生並純化）</td><td><b>緊急治療</b>（立刻生效）</td><td>特定蛇毒或毒素</td><td><b>是</b>（抗體具專一性！）</td><td><b>不會</b>（外來抗體漸消失）</td><td>抗龜殼花血清（對百步蛇無效！）</td></tr>
+      <tr><th>抗生素</th><td>抑制或殺死細菌生長的化學藥物</td><td>細菌感染後<b>治療</b></td><td><b>只對細菌有效</b>（對病毒無效！）</td><td>否（藥物作用）</td><td>不會</td><td>治療幽門螺旋桿菌胃潰瘍、細菌性發炎</td></tr>
+    </table>
+    </div>
+    <p class="mnemo" style="margin-top:8px">口訣：疫苗「預防留記憶」、血清「現成抗體來急救（專一但無記憶）」、抗生素「只殺細菌不殺病毒」！</p>
+  </div>
+
+  <div class="grid3" style="margin-top:12px">
+    <div class="card tight">
+      <h3>過敏反應</h3>
+      <p>免疫系統把原本<b>無害的物質</b>（如花粉、塵蟎、海鮮、花生或某些藥物）誤當成敵人而<b>過度反應</b>，引起打噴嚏、流鼻水、皮膚紅疹或氣喘。</p>
+    </div>
+    <div class="card tight">
+      <h3>器官移植排斥</h3>
+      <p>他人的器官進入身體後，受贈者的<b>第三道防線</b>會把它認成外來異物而發動攻擊，稱為<b>排斥作用</b>；因此移植前需配對組織相容性，術後也需服藥控制。</p>
+    </div>
+    <div class="card tight">
+      <h3>愛滋病（HIV）與牛痘史</h3>
+      <p>愛滋病毒（HIV）專門攻擊<b>淋巴球</b>，破壞第三道防線使患者極易感染。另 1796 年詹納以<b>牛痘疫苗</b>預防天花，讓天花成為人類史上第一個絕跡的傳染病。</p>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>易錯陷阱</b>
+    <ul>
+      <li><b>114 段考必殺題</b>：「注射抗龜殼花蛇毒血清」雖不是疫苗、也不會留下記憶，但因為裡面含有針對龜殼花毒的現成抗體，仍屬於<b>專一性防禦</b>的特性！</li>
+      <li>感冒、流感、新冠都是<b>病毒</b>引起，服用<b>抗生素無效</b>（抗生素只殺細菌，例如治療造成胃潰瘍的幽門螺旋桿菌）。</li>
     </ul>
   </div>
   </section>
 
   <!-- ================= 小測驗 ================= -->
-  <section class="sec" id="s3">
-  <h2>小測驗</h2>
-  <p class="note">每題只有一個正確答案，選了就會顯示解析（第一次選的答案才計分）。題目都是自編題，不是學校或出版社的考題。</p>
-  <div class="score"><span class="big" id="qzScore">0 / 0</span><span class="small" id="qzDone">已作答 0 題</span><button class="btn" id="qzReset">重新作答</button></div>
+  <section class="sec" id="s4">
+  <h2>小測驗（25 題）</h2>
+  <p class="note">每題只有一個正確答案，選了就會顯示解析（第一次選的答案才計分）。題目皆依段考高頻考點自編（含 5 題向量圖表判讀題），非學校或出版社官方試題。</p>
+  <div class="score"><span class="big" id="qzScore">0 / 0</span><span class="small" id="qzDone">已作答 0 題</span><button class="btn" type="button" id="qzReset">重新作答</button></div>
   <div class="chips" id="qzFlt">
-    <button class="chip on" data-u="all">全部</button>
-    <button class="chip" data-u="1">一、三道防線</button>
-    <button class="chip" data-u="2">二、疫苗與記憶</button>
+    <button class="chip on" type="button" data-u="all">全部（25 題）</button>
+    <button class="chip" type="button" data-u="1">一、三道防線與發炎</button>
+    <button class="chip" type="button" data-u="2">二、疫苗、抗體與記憶</button>
+    <button class="chip" type="button" data-u="3">三、血清、抗生素與素養</button>
   </div>
   <div id="qz"></div>
   </section>
@@ -103,79 +581,276 @@
 (function(){
 'use strict';
 const $=B.$;
-/* ---------- 一、三道防線分類 ---------- */
-const LN=[
-  ['皮膚完整，細菌進不了身體',1,'皮膚把病原體擋在外面。'],
-  ['鼻腔黏膜分泌的黏液黏住灰塵和細菌',1,'黏膜和黏液屬於第一道防線。'],
-  ['淚液沖走眼睛裡的細菌',1,'淚液是分泌物，屬於第一道防線。'],
-  ['白血球穿出微血管，吞噬侵入傷口的細菌',2,'白血球吞噬病原體是第二道防線，對所有入侵者都一樣。'],
-  ['傷口附近紅、腫、熱、痛',2,'這是發炎反應，屬於第二道防線。'],
-  ['發炎時，傷口附近的微血管擴張、血流增加',2,'發炎反應：微血管擴張，讓更多白血球來到傷口。'],
-  ['特殊白血球製造抗體，對付某一種病毒',3,'抗體只對付特定的病原體，是專一性的第三道防線。'],
-  ['同一種病原體第二次入侵，身體很快就消滅它',3,'第三道防線留下了記憶。'],
-  ['打完疫苗後，身體產生對抗某種疾病的抗體',3,'疫苗刺激第三道防線製造抗體、產生記憶。']
-];
-let lnO=B.shuffle(LN),lnI=0,lnOk=0,lnN=0;
-function lnAsk(){if(lnI>=lnO.length){lnO=B.shuffle(LN);lnI=0;}$('lnQ').textContent='「'+lnO[lnI][0]+'」';}
-$('lnBar').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{
-  const q=lnO[lnI],ok=+b.dataset.l===q[1];lnN++;if(ok)lnOk++;
-  $('lnOut').innerHTML=(ok?'<b style="color:var(--moss)">答對了！</b>':'<b style="color:var(--rose)">不對，</b>')+'是<b>第'+'一二三'[q[1]-1]+'道防線</b>：'+q[2]+' <span class="small">（答對 '+lnOk+' / '+lnN+'）</span>';
-  lnI++;lnAsk();
-});
-lnAsk();
 
-/* ---------- 二、疫苗曲線 ---------- */
-function bump(t,t0,rise,peak,decay){if(t<t0)return 0;const x=t-t0;return peak*(1-Math.exp(-x/rise))*Math.exp(-Math.max(0,x-rise*3)/decay);}
+/* ---------- 一、傷口攻防戰互動剖面圖（B.figure + lockMark） ---------- */
+const DEF_PARTS={
+  skin:{l:1,n:'第一道｜皮膚與表皮屏障',d:'完整的皮膚與黏膜（搭配<b>胃酸</b>、淚液、唾液、<b>呼吸道纖毛與黏液</b>）屬於<b>第一道防線（非專一性）</b>，直接把病原體擋在體外。'},
+  wound:{l:1,n:'皮膚破損（第一道防線缺口）',d:'皮膚割傷破皮後，第一道防線出現缺口，細菌與病毒趁機侵入組織，身體立即啟動第二道防線！'},
+  inflam:{l:2,n:'第二道｜發炎反應（紅、腫、熱、痛）',d:'微血管擴張使血流量增加（<b>紅、熱</b>），通透性提高使血漿滲出成組織液增多（<b>腫</b>），壓迫神經造成<b>痛</b>。屬於<b>非專一性</b>防禦。'},
+  capillary:{l:2,n:'第二道｜微血管擴張與紅血球',d:'發炎時傷口附近微血管<b>擴張</b>（不是收縮！）以帶來更多白血球。<span class="hot">紅血球無法穿出微血管壁</span>，永遠留在血管內運送氧氣。'},
+  phago:{l:2,n:'第二道｜白血球變形穿出與吞噬',d:'一般白血球可行變形蟲運動穿出微血管壁，伸出偽足<b>吞噬</b>病原體（非專一性）。死亡的白血球、病原體殘骸與組織液混合成<b>膿液</b>。'},
+  lymphocyte:{l:3,n:'第三道｜特殊白血球（淋巴球）',d:'特定淋巴球像「一把鑰匙只開一把鎖」辨識入侵病原體的特徵，啟動<b>專一性防禦</b>：有些製造抗體，有些直接破壞被感染細胞。'},
+  antibody:{l:3,n:'第三道｜專一性抗體',d:'由特殊白血球製造、<b>溶於血漿運送</b>的蛋白質，精準鎖定特定病原體並協助消滅（專一性）。抗體本身會隨時間慢慢減少。'},
+  memory:{l:3,n:'第三道｜淋巴結與免疫記憶',d:'感染處附近的<b>淋巴結</b>常因淋巴球增生而腫大；部分淋巴球會留下<b>記憶</b>（仍屬第三道防線，沒有第四道！），下次同種病原體再來反應又快又強。'}
+};
+const defMarkIds=['defM1','defM2','defM3'];
+const defFig=B.figure({
+  svg:'defSvg',out:'defOut',parts:DEF_PARTS,modeBar:'defMode',markBtns:defMarkIds,lockMark:true,
+  hint:'滑鼠移上或點擊圖中部位，探索三道防線如何聯手阻擋入侵；點上方「只看第一／二／三道」可分層鎖定檢視，或切換「測驗」挑戰回合制部位配對。'
+});
+const DEF_MARK_DESC={
+  1:['第一道防線（皮膜阻隔・非專一性）','完整皮膚、黏膜、胃酸、淚液與呼吸道纖毛將病原體擋在體外；一旦破皮，病原體便從傷口入侵。'],
+  2:['第二道防線（吞噬與發炎・非專一性）','傷口附近微血管<b>擴張</b>（紅熱）、血漿滲出成組織液（腫痛），<b>白血球</b>變形穿出微血管吞噬病原體（紅血球留在管內）。'],
+  3:['第三道防線（專一性＋記憶性）','<b>特殊白血球（淋巴球）</b>認出特定病原體，製造溶於血漿的<b>專一性抗體</b>，並在淋巴結等處<b>留下記憶</b>。']
+};
+function clearDefMarkLock(){$('defSvg').classList.remove('mark-lock');}
+[1,2,3].forEach(l=>{
+  const btn=$('defM'+l);
+  btn.onclick=()=>{
+    const wasOn=btn.classList.contains('on');
+    clearDefMarkLock();
+    defFig.setMode('learn');
+    if(wasOn)return;
+    $('defMode').querySelectorAll('.btn[data-m]').forEach(x=>x.classList.remove('on'));
+    btn.classList.add('on');
+    const keys=Object.keys(DEF_PARTS).filter(k=>DEF_PARTS[k].l===l);
+    B.mark('defSvg',keys);
+    const svg=$('defSvg');
+    svg.classList.add('mark-lock');
+    svg.querySelectorAll('[data-lbl]').forEach(e=>{
+      e.classList.remove('sel','good','bad','hl');
+      if(keys.includes(e.dataset.lbl))e.classList.add('hl');
+    });
+    $('defOut').innerHTML='<div class="pname">鎖定檢視：'+DEF_MARK_DESC[l][0]+'</div><div>'+DEF_MARK_DESC[l][1]+'</div><div class="small" style="margin-top:6px">再按一次此鈕，或點上方「學習」「測驗」即可解除鎖定。</div>';
+  };
+});
+$('defMode').addEventListener('click',ev=>{if(ev.target.closest('.btn[data-m]'))clearDefMarkLock();});
+
+/* ---------- 一之二、回合制三道防線分類挑戰（15 題） ---------- */
+const LN=[
+  ['皮膚完整無傷口，細菌無法直接進入體內',1,'皮膚是阻擋病原體於體外的第一道防線（非專一性）。'],
+  ['鼻腔黏膜分泌黏液，並由呼吸道纖毛擺動把灰塵與細菌排出',1,'黏膜、黏液與呼吸道纖毛皆屬於第一道防線。'],
+  ['胃液中的鹽酸（胃酸）殺死隨食物吃進去的細菌',1,'消化道內腔的胃酸殺菌屬於第一道防線（非專一性）。'],
+  ['淚液與唾液沖刷並分解眼口表面的部分細菌',1,'淚液、唾液等體表分泌物屬於第一道防線。'],
+  ['白血球變形穿出微血管壁，吞噬侵入傷口的細菌',2,'一般白血球吞噬病原體屬於第二道防線，沒有專一性。'],
+  ['手指割傷後，傷口周圍出現紅、腫、熱、痛',2,'紅腫熱痛是發炎反應，屬於第二道防線（非專一性）。'],
+  ['受傷時附近微血管擴張、血流量增加且血漿滲出增多',2,'微血管擴張充血與滲出增加是發炎反應的機制，屬第二道防線。'],
+  ['傷口化膿，流出由死亡白血球、細菌殘骸與組織液混合的膿液',2,'膿液是白血球在傷口進行吞噬與發炎作戰（第二道防線）後的產物。'],
+  ['感染病菌時體溫適度升高（發燒），抑制病原體繁殖',2,'發燒對各種入侵病原體都會啟動，屬於第二道非專一性防禦。'],
+  ['特殊白血球（淋巴球）製造抗體，專門鎖定某一種病毒',3,'抗體只對付特定病原體，屬於第三道專一性防禦。'],
+  ['小時候得過水痘，長大後再次接觸水痘病毒很快就能消滅它',3,'第三道防線留下了免疫記憶，下次遇同一種病原體反應又快又強。'],
+  ['施打 B 型肝炎疫苗後，體內產生對抗 B 肝病毒的抗體與記憶',3,'疫苗刺激第三道防線自行製造抗體並留下記憶。'],
+  ['被龜殼花咬傷時注射「抗龜殼花蛇毒血清」中和該種蛇毒',3,'抗蛇毒血清含現成抗體、只中和特定蛇毒，與第三道專一性防禦特性相同！'],
+  ['器官移植後，免疫系統辨認出外來器官並發動排斥攻擊',3,'排斥作用源於淋巴球對特定外來細胞的辨識與攻擊，屬第三道專一性防禦。'],
+  ['特殊白血球辨認出已被某種病毒感染的細胞，並直接將其破壞',3,'第三道防線的特殊白血球除了製造抗體外，有些也能專一辨識並直接破壞受感染的細胞。']
+];
+let lnO=[],lnI=0,lnOk=0,lnTot=0,lnRound=1,lnWrong=[],lnLocked=false;
+const lnBtns=Array.from($('lnBar').querySelectorAll('.btn'));
+function lnStart(){
+  lnO=B.shuffle(LN);lnI=0;lnOk=0;lnTot=0;lnWrong=[];lnLocked=false;
+  lnRender();
+}
+function lnRender(){
+  lnBtns.forEach(b=>b.disabled=false);
+  lnLocked=false;
+  if(lnI>=lnO.length){
+    const pct=Math.round(lnOk/LN.length*100);
+    $('lnProg').textContent='第 '+lnRound+' 回合完成！';
+    $('lnScore').textContent='本回合答對 '+lnOk+' / '+LN.length+'（正確率 '+pct+'%）';
+    $('lnQ').innerHTML='<span style="color:var(--moss)">第 '+lnRound+' 回合挑戰結束！</span> 正確率 '+pct+'%';
+    $('lnOut').innerHTML=(lnWrong.length?'<div><b>本回合需再複習的情境：</b><ul style="margin:6px 0 8px;padding-left:20px">'+lnWrong.map(w=>'<li>「'+w[0]+'」→ <b>第'+'一二三'[w[1]-1]+'道防線</b>（'+w[2]+'）</li>').join('')+'</ul></div>':'<div style="color:var(--moss);font-weight:700;margin-bottom:8px">太厲害了！15 種高頻防線情境全部答對！</div>')+
+      '<button type="button" class="btn on" id="lnNextRd">開始第 '+(lnRound+1)+' 回合 →</button>';
+    lnBtns.forEach(b=>b.disabled=true);
+    $('lnNextRd').onclick=()=>{lnRound++;lnStart();};
+    return;
+  }
+  $('lnProg').textContent='第 '+lnRound+' 回合・第 '+(lnI+1)+' / '+LN.length+' 題';
+  $('lnScore').textContent='本回合答對 '+lnOk+' / '+lnTot;
+  $('lnQ').textContent='「'+lnO[lnI][0]+'」';
+  $('lnOut').innerHTML='<span class="small">請點選上方按鈕判斷這是第幾道防線（答完會保留原題幹方便對照解析）。</span>';
+}
+lnBtns.forEach(b=>b.onclick=()=>{
+  if(lnLocked||lnI>=lnO.length)return;
+  lnLocked=true;lnBtns.forEach(x=>x.disabled=true);
+  const q=lnO[lnI],ok=+b.dataset.l===q[1];
+  lnTot++;if(ok)lnOk++;else lnWrong.push(q);
+  $('lnScore').textContent='本回合答對 '+lnOk+' / '+lnTot;
+  const isLast=(lnI===lnO.length-1);
+  $('lnOut').innerHTML=(ok?'<b style="color:var(--moss)">答對了！</b>':'<b style="color:var(--rose)">不對，</b>')+'這是<b>第'+'一二三'[q[1]-1]+'道防線</b>：'+q[2]+
+    '<div class="bar" style="margin-top:8px"><button type="button" class="btn on" id="lnNext">'+(isLast?'查看本回合結算 →':'下一題 →')+'</button></div>';
+  $('lnNext').onclick=()=>{lnI++;lnRender();};
+  $('lnNext').focus({preventScroll:true});
+});
+$('lnReset').onclick=()=>{lnRound=1;lnStart();};
+lnStart();
+
+/* ---------- 二之一、疫苗與記憶關係心智圖 ---------- */
+$('mmBar').querySelectorAll('.btn[data-f]').forEach(b=>b.onclick=()=>{
+  $('mmBar').querySelectorAll('.btn[data-f]').forEach(x=>x.classList.toggle('on',x===b));
+  const f=b.dataset.f,svg=$('mmSvg');
+  if(f==='all'){svg.classList.remove('focus');svg.querySelectorAll('.mm-g').forEach(g=>g.classList.remove('lit'));return;}
+  svg.classList.add('focus');
+  svg.querySelectorAll('.mm-g').forEach(g=>g.classList.toggle('lit',(g.dataset.tags||'').split(' ').includes(f)));
+});
+$('mmZoom').onclick=()=>{
+  const on=$('mmStage').classList.toggle('zoomed');
+  $('mmZoom').classList.toggle('on',on);
+  $('mmZoom').textContent=on?'縮回符合視窗寬度':'放大檢視細節';
+};
+
+/* ---------- 二之二、專一性防禦曲線模擬器（4 情境含潛伏期與血清對照） ---------- */
+function curve(t,t0,delay,rise,peak,decay){
+  const x=t-(t0+delay);
+  if(x<=0)return 0;
+  return peak*(1-Math.exp(-x/rise))*Math.exp(-Math.max(0,x-rise*2.2)/decay);
+}
+function serumCurve(t,t0,peak,decay){
+  const x=t-t0;
+  if(x<0)return 0;
+  return peak*(1-Math.exp(-x/0.7))*Math.exp(-x/decay);
+}
 function vcDraw(v){
-  const W=560,H=280,L=50,R=16,T=20,Bt=44,pw=W-L-R,ph=H-T-Bt,X=t=>L+t/100*pw,Y=a=>T+ph-a*ph;
-  let g='<line x1="'+L+'" y1="'+(T+ph)+'" x2="'+(W-R)+'" y2="'+(T+ph)+'" stroke="#4d5a52"/><line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(T+ph)+'" stroke="#4d5a52"/>';
-  g+='<text x="16" y="'+(T+ph/2)+'" font-size="12.5" fill="#4d5a52" text-anchor="middle" transform="rotate(-90 16 '+(T+ph/2)+')">專一性防禦作用強度</text><text x="'+(W-R)+'" y="'+(H-8)+'" font-size="12.5" text-anchor="end" fill="#4d5a52">時間 →</text>';
-  const ev=[];let f;
-  if(v===1){ev.push([10,'病原體入侵','#a33a4a']);f=t=>bump(t,10,9,0.32,20);}
-  else if(v===2){ev.push([8,'第一次感染','#a33a4a'],[55,'第二次感染','#a33a4a']);f=t=>bump(t,8,9,0.3,14)+bump(t,55,3,0.9,30);}
-  else{ev.push([8,'打疫苗','#2d6f9e'],[55,'遇到病原體','#a33a4a']);f=t=>bump(t,8,9,0.25,14)+bump(t,55,3,0.85,30);}
-  ev.forEach(([t,n,c])=>{g+='<line x1="'+X(t)+'" y1="'+T+'" x2="'+X(t)+'" y2="'+(T+ph)+'" stroke="'+c+'" stroke-dasharray="4 4"/><text x="'+X(t)+'" y="'+(T+ph+18)+'" font-size="12.5" text-anchor="middle" fill="'+c+'">'+n+'</text>';});
-  let d='';for(let t=0;t<=100;t+=0.5)d+=(t?'L':'M')+X(t).toFixed(1)+' '+Y(Math.min(1,f(t))).toFixed(1);
-  g+='<path d="'+d+'" fill="none" stroke="#6a4c93" stroke-width="3"/>';
-  if(v>1){g+='<text x="'+X(22)+'" y="'+(Y(0.3)-8)+'" font-size="12.5" text-anchor="middle" fill="#6a4c93">慢、弱</text><text x="'+X(64)+'" y="'+(Y(0.9)-6)+'" font-size="12.5" text-anchor="middle" fill="#6a4c93" font-weight="700">快、強</text>';}
+  const W=640,H=272,L=56,R=20,T=26,Bt=48,pw=W-L-R,ph=H-T-Bt;
+  const X=t=>L+t/100*pw, Y=a=>T+ph-a*ph;
+  let g='';
+  [0.25,0.5,0.75,1].forEach(a=>{
+    g+='<line x1="'+L+'" y1="'+Y(a).toFixed(1)+'" x2="'+(W-R)+'" y2="'+Y(a).toFixed(1)+'" stroke="#e8e2d5" stroke-width="1"/>';
+  });
+  const thY=Y(0.42).toFixed(1);
+  g+='<line x1="'+L+'" y1="'+thY+'" x2="'+(W-R)+'" y2="'+thY+'" stroke="#2d7a4f" stroke-width="1.4" stroke-dasharray="6 4"/>';
+  g+='<rect x="'+(W-R-112)+'" y="'+(+thY-18)+'" width="110" height="16" rx="8" fill="#e6f5ec" stroke="#85c7a0" stroke-width=".9"/>';
+  g+='<text x="'+(W-R-57)+'" y="'+(+thY-6.5)+'" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1d5e3a">有效保護門檻</text>';
+  g+='<line x1="'+L+'" y1="'+(T+ph)+'" x2="'+(W-R)+'" y2="'+(T+ph)+'" stroke="#4d5a52" stroke-width="1.6"/>';
+  g+='<line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(T+ph)+'" stroke="#4d5a52" stroke-width="1.6"/>';
+  g+='<text x="18" y="'+(T+ph/2)+'" font-size="12" font-weight="700" fill="#3a453e" text-anchor="middle" transform="rotate(-90 18 '+(T+ph/2)+')">抗體濃度 ／ 專一性防禦強度</text>';
+  g+='<text x="'+(W-R)+'" y="'+(H-10)+'" font-size="12" font-weight="700" fill="#3a453e" text-anchor="end">時間 →</text>';
+  const mkPath=fn=>{let d='';for(let t=0;t<=100;t+=0.5)d+=(t?'L':'M')+X(t).toFixed(1)+' '+Y(Math.min(1,fn(t))).toFixed(1);return d;};
+  const mkEvt=(t,lbl,col)=>{
+    return '<line x1="'+X(t)+'" y1="'+T+'" x2="'+X(t)+'" y2="'+(T+ph)+'" stroke="'+col+'" stroke-width="1.3" stroke-dasharray="4 3"/>'+
+      '<circle cx="'+X(t)+'" cy="'+(T+ph)+'" r="4" fill="'+col+'"/>'+
+      '<text x="'+X(t)+'" y="'+(T+ph+18)+'" font-size="11.5" font-weight="800" text-anchor="middle" fill="'+col+'">'+lbl+'</text>';
+  };
+  if(v===1){
+    g+=mkEvt(12,'初次感染病原體 A','#b83b3b');
+    g+='<rect x="'+X(12)+'" y="'+(T+ph-18)+'" width="'+(X(22)-X(12))+'" height="16" fill="#fde8e8" opacity=".85"/>';
+    g+='<text x="'+X(17)+'" y="'+(T+ph-6.5)+'" text-anchor="middle" font-size="10" font-weight="700" fill="#991b1b">潛伏期長</text>';
+    const f=t=>curve(t,12,9,7,0.34,15);
+    g+='<path class="curve-anim" d="'+mkPath(f)+'" fill="none" stroke="#6a4c93" stroke-width="3.2" stroke-linecap="round"/>';
+    g+='<text x="'+X(36)+'" y="'+(Y(0.34)-10)+'" text-anchor="middle" font-size="12" font-weight="800" fill="#6a4c93">反應慢、強度弱、消退快</text>';
+    $('vcOut').innerHTML='<b>① 初次感染病原體 A：</b>體內尚無記憶，特殊白血球需要一段<b>較長的潛伏期</b>才能辨識並製造抗體；抗體上升慢、濃度低，這段期間容易發病。';
+  }else if(v===2){
+    g+=mkEvt(10,'第 1 次感染 A','#b83b3b');
+    g+=mkEvt(54,'第 2 次感染 A','#b83b3b');
+    g+='<rect x="'+X(10)+'" y="'+(T+ph-18)+'" width="'+(X(19)-X(10))+'" height="16" fill="#fde8e8"/>';
+    g+='<text x="'+X(14.5)+'" y="'+(T+ph-6.5)+'" text-anchor="middle" font-size="9.5" font-weight="700" fill="#991b1b">潛伏期長</text>';
+    g+='<rect x="'+X(54)+'" y="'+(T+ph-18)+'" width="'+(X(56.5)-X(54))+'" height="16" fill="#e6f5ec"/>';
+    g+='<text x="'+X(61.5)+'" y="'+(T+ph-6.5)+'" text-anchor="start" font-size="9.5" font-weight="700" fill="#166534">← 潛伏期極短！</text>';
+    const f=t=>curve(t,10,8.5,6.5,0.31,13)+curve(t,54,1.8,3.2,0.92,48);
+    g+='<path class="curve-anim" d="'+mkPath(f)+'" fill="none" stroke="#6a4c93" stroke-width="3.2" stroke-linecap="round"/>';
+    g+='<text x="'+X(28)+'" y="'+(Y(0.31)-10)+'" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6a4c93">初次：慢、弱</text>';
+    g+='<text x="'+X(72)+'" y="'+(Y(0.92)-9)+'" text-anchor="middle" font-size="12.5" font-weight="800" fill="#522c85">二次：快、強、維持更久！</text>';
+    $('vcOut').innerHTML='<b>② 同一種病原體 A 再感染：</b>初次感染後特殊白血球留下<b>記憶性</b>；第二次遇到同一種病原體時，潛伏期極短、抗體瞬間暴增遠超保護門檻且<b>維持更久</b>，常在發病前就將其消滅。';
+  }else if(v===3){
+    g+=mkEvt(14,'施打 A 疫苗（演習）','#2d6f9e');
+    g+=mkEvt(54,'暴露於病原體 A 與 B','#b83b3b');
+    const fA=t=>curve(t,14,7.5,6.5,0.28,13)+curve(t,54,1.8,3.2,0.90,46);
+    const fB=t=>curve(t,54,8.5,6.5,0.30,15);
+    g+='<path d="'+mkPath(fB)+'" fill="none" stroke="#d97706" stroke-width="2.6" stroke-dasharray="6 4" stroke-linecap="round"/>';
+    g+='<path class="curve-anim" d="'+mkPath(fA)+'" fill="none" stroke="#6a4c93" stroke-width="3.2" stroke-linecap="round"/>';
+    g+='<text x="'+X(32)+'" y="'+(Y(0.28)-10)+'" text-anchor="middle" font-size="11" font-weight="700" fill="#2d6f9e">自行產抗體＋留 A 記憶</text>';
+    g+='<text x="'+X(72)+'" y="'+(Y(0.90)-9)+'" text-anchor="middle" font-size="12" font-weight="800" fill="#522c85">遇 A：立刻快、強、久！</text>';
+    g+='<text x="'+X(81)+'" y="'+(Y(0.30)-8)+'" text-anchor="middle" font-size="11" font-weight="800" fill="#b45309">遇 B：僅初次反應（慢、弱）</text>';
+    g+='<rect x="'+(L+8)+'" y="'+(T+4)+'" width="224" height="42" rx="8" fill="#fffdf8" stroke="#dcd5c6"/>';
+    g+='<line x1="'+(L+18)+'" y1="'+(T+18)+'" x2="'+(L+40)+'" y2="'+(T+18)+'" stroke="#6a4c93" stroke-width="3"/><text x="'+(L+46)+'" y="'+(T+22)+'" font-size="11" font-weight="700" fill="#3a2854">對抗病原體 A（有記憶）</text>';
+    g+='<line x1="'+(L+18)+'" y1="'+(T+35)+'" x2="'+(L+40)+'" y2="'+(T+35)+'" stroke="#d97706" stroke-width="2.5" stroke-dasharray="5 3"/><text x="'+(L+46)+'" y="'+(T+39)+'" font-size="11" font-weight="700" fill="#92400e">對抗病原體 B（無記憶→專一性！）</text>';
+    $('vcOut').innerHTML='<b>③ 段考最愛陷阱（打 A 疫苗後遇 A vs 遇 B）：</b>疫苗讓身體先對 A 建立記憶。之後再遇 <b>A</b> 會立刻又快又強；但改遇不同的 <b>B</b> 只會出現慢而弱的初次反應——這正是第三道防線的<b>專一性</b>！';
+  }else{
+    g+=mkEvt(14,'咬傷→注射抗蛇毒血清','#0f766e');
+    g+=mkEvt(62,'若日後再被咬（無記憶）','#b83b3b');
+    const fS=t=>serumCurve(t,14,0.84,16);
+    const fV=t=>curve(t,14,8,6.5,0.28,15);
+    g+='<path d="'+mkPath(fV)+'" fill="none" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4 4"/>';
+    g+='<text x="'+X(35)+'" y="'+(Y(0.26)+16)+'" text-anchor="middle" font-size="10.5" fill="#6b7280">（對照：打疫苗太慢，急救來不及）</text>';
+    g+='<path class="curve-anim" d="'+mkPath(fS)+'" fill="none" stroke="#0f766e" stroke-width="3.3" stroke-linecap="round"/>';
+    g+='<text x="'+X(28)+'" y="'+(Y(0.84)-9)+'" text-anchor="middle" font-size="12" font-weight="800" fill="#0f766e">直接輸入現成抗體：立刻達高峰！</text>';
+    g+='<text x="'+X(78)+'" y="'+(Y(0.14)-10)+'" text-anchor="middle" font-size="11" font-weight="800" fill="#b83b3b">外來抗體會漸漸消失</text>';
+    g+='<text x="'+X(78)+'" y="'+(Y(0.14)+4)+'" text-anchor="middle" font-size="11" font-weight="700" fill="#b83b3b">沒有留下記憶性！</text>';
+    $('vcOut').innerHTML='<b>④ 抗蛇毒血清（急救治療・仍屬專一性防禦）：</b>被毒蛇咬傷時須直接注射含<b>現成抗體</b>的血清立刻中和特定蛇毒（例如抗龜殼花血清只對龜殼花有效＝<b>專一性</b>）。但外來抗體會漸漸代謝，<b>不會留下記憶性</b>。';
+  }
   $('vcSvg').innerHTML=g;
-  $('vcOut').innerHTML=v===1?'第一次遇到這種病原體，第三道防線要花一段時間才認出它、製造抗體，所以反應<b>比較慢、比較弱</b>，這段期間容易生病。':
-    v===2?'第一次感染後，特殊白血球留下<b>記憶</b>。同一種病原體再來時，身體<b>很快</b>就製造<b>大量</b>抗體，可能還沒發病就把它消滅了。':
-    '疫苗用死掉或減弱的病原體，讓身體在<b>不生病</b>的情況下先產生抗體和記憶（像是「演習」）。真的遇到病原體時，反應又快又強。疫苗是<b>預防</b>，不是治療。';
 }
 $('vcBar').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{$('vcBar').querySelectorAll('.btn').forEach(x=>x.classList.toggle('on',x===b));vcDraw(+b.dataset.v);});
 vcDraw(1);
 
-/* ---------- 小測驗 ---------- */
+/* ---------- 小測驗（25 題，含 5 題原生向量 SVG 插圖判讀題） ---------- */
+const QF_TREE='<svg viewBox="0 0 460 176" width="460" height="176" role="img" aria-label="人體三道防線分類樹狀圖，包含空格甲與乙"><rect width="460" height="176" fill="#fbf8f1"/><rect x="14" y="68" width="96" height="40" rx="10" fill="#efe9f6" stroke="#6a4c93" stroke-width="1.8"/><text x="62" y="93" text-anchor="middle" font-size="13" font-weight="800" fill="#4c2c7a">人體防禦作用</text><path d="M110,88 L136,88 M136,48 L136,134 M136,48 L156,48 M136,134 L156,134" fill="none" stroke="#5d6961" stroke-width="1.6"/><rect x="156" y="28" width="98" height="40" rx="10" fill="#fdebe2" stroke="#c0622a" stroke-width="1.7"/><text x="205" y="53" text-anchor="middle" font-size="12.5" font-weight="800" fill="#8f3b14">非專一性防禦</text><rect x="156" y="114" width="98" height="40" rx="10" fill="#efe7fa" stroke="#6a4c93" stroke-width="1.7"/><text x="205" y="139" text-anchor="middle" font-size="12.5" font-weight="800" fill="#4c2c7a">專一性防禦</text><path d="M254,48 L278,48 M278,24 L278,74 M278,24 L298,24 M278,74 L298,74 M254,134 L298,134" fill="none" stroke="#5d6961" stroke-width="1.6"/><rect x="298" y="8" width="148" height="32" rx="8" fill="#f3e7d7" stroke="#8d6e4a" stroke-width="1.5"/><text x="372" y="29" text-anchor="middle" font-size="12" font-weight="700" fill="#5e4122">第一道：皮膜阻隔</text><rect x="298" y="58" width="148" height="34" rx="8" fill="#fff6eb" stroke="#c0622a" stroke-width="1.8" stroke-dasharray="4 2.5"/><text x="372" y="80" text-anchor="middle" font-size="13" font-weight="800" fill="#a63c18">第二道：【 甲 】</text><rect x="298" y="116" width="148" height="36" rx="8" fill="#f5effc" stroke="#6a4c93" stroke-width="1.8" stroke-dasharray="4 2.5"/><text x="372" y="139" text-anchor="middle" font-size="13" font-weight="800" fill="#4c2c7a">第三道：【 乙 】</text></svg>';
+
+const QF_WOUND='<svg viewBox="0 0 460 198" width="460" height="198" role="img" aria-label="傷口發炎微血管與血球剖面判讀圖，標示甲乙丙丁"><rect width="460" height="198" fill="#fbf8f1"/><rect x="0" y="0" width="460" height="46" fill="#f2f7fb"/><path d="M0,44 L144,44 L152,66 L0,66 Z M206,44 L460,44 L460,66 L200,66 Z" fill="#e6be94" stroke="#8d6e4a" stroke-width="1.4"/><path d="M144,44 L168,84 L182,88 L206,44" fill="#f7cfc4" stroke="#b03a2e" stroke-width="1.5"/><g fill="#4f9446" stroke="#2c5926" stroke-width="1"><rect x="166" y="88" width="14" height="6" rx="3" transform="rotate(15 173 91)"/><rect x="184" y="96" width="14" height="6" rx="3" transform="rotate(-18 191 99)"/></g><ellipse cx="220" cy="108" rx="68" ry="30" fill="#f27a61" opacity=".24"/><path d="M0,146 Q110,144 170,136 Q240,128 310,138 Q380,144 460,146 L460,174 Q380,176 310,182 Q240,188 170,178 Q110,172 0,172 Z" fill="#e5625c" stroke="#8f2424" stroke-width="1.5"/><ellipse cx="78" cy="159" rx="11" ry="6.5" fill="#c92a2a" stroke="#7d1419"/><ellipse cx="132" cy="158" rx="11" ry="6.5" fill="#c92a2a" stroke="#7d1419"/><ellipse cx="332" cy="160" rx="11" ry="6.5" fill="#c92a2a" stroke="#7d1419"/><path d="M214,154 C205,154 203,142 213,138 C219,134 218,125 213,119 C208,112 216,102 227,104 C237,106 239,117 233,124 C228,130 230,138 236,142 C243,146 237,156 226,156 Z" fill="#f3eefb" stroke="#5b3a8c" stroke-width="1.5"/><circle cx="223" cy="117" r="4.5" fill="#6a4c93"/><circle cx="224" cy="146" r="4.5" fill="#6a4c93"/><g font-size="13" font-weight="800"><line x1="88" y1="54" x2="88" y2="24" stroke="#6b4b2a" stroke-width="1.4"/><rect x="70" y="6" width="36" height="20" rx="6" fill="#fff" stroke="#6b4b2a"/><text x="88" y="21" text-anchor="middle" fill="#6b4b2a">甲</text><line x1="132" y1="166" x2="132" y2="188" stroke="#991b1b" stroke-width="1.4"/><rect x="114" y="174" width="36" height="20" rx="6" fill="#fff" stroke="#991b1b"/><text x="132" y="189" text-anchor="middle" fill="#991b1b">乙</text><line x1="238" y1="112" x2="292" y2="96" stroke="#522c85" stroke-width="1.4"/><rect x="292" y="84" width="36" height="20" rx="6" fill="#fff" stroke="#522c85"/><text x="310" y="99" text-anchor="middle" fill="#522c85">丙</text><line x1="266" y1="130" x2="348" y2="126" stroke="#b8442a" stroke-width="1.4"/><rect x="348" y="114" width="96" height="22" rx="6" fill="#fff" stroke="#b8442a"/><text x="396" y="129" text-anchor="middle" font-size="11.5" fill="#b8442a">丁（滲出腫脹處）</text></g></svg>';
+
+const QF_CURVE_AB='<svg viewBox="0 0 460 192" width="460" height="192" role="img" aria-label="施打 A 疫苗後同時暴露於病原體 A 與 B 的雙抗體濃度曲線圖"><rect width="460" height="192" fill="#fbf8f1"/><line x1="48" y1="152" x2="438" y2="152" stroke="#4d5a52" stroke-width="1.6"/><line x1="48" y1="18" x2="48" y2="152" stroke="#4d5a52" stroke-width="1.6"/><text x="16" y="86" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3a453e" transform="rotate(-90 16 86)">抗體濃度</text><text x="436" y="182" text-anchor="end" font-size="11.5" font-weight="700" fill="#3a453e">時間 →</text><line x1="92" y1="20" x2="92" y2="152" stroke="#2d6f9e" stroke-dasharray="4 3"/><text x="92" y="168" text-anchor="middle" font-size="11" font-weight="800" fill="#2d6f9e">第 0 週：打 A 疫苗</text><line x1="248" y1="20" x2="248" y2="152" stroke="#b83b3b" stroke-dasharray="4 3"/><text x="248" y="168" text-anchor="middle" font-size="11" font-weight="800" fill="#b83b3b">第 10 週：同時遇 A 與 B</text><path d="M48,152 L116,152 C136,152 146,110 166,112 C188,114 210,144 256,146 C268,146 276,34 302,34 C338,34 378,56 432,74" fill="none" stroke="#6a4c93" stroke-width="3"/><text x="318" y="28" font-size="12.5" font-weight="800" fill="#522c85">甲曲線</text><path d="M248,152 L286,152 C306,152 320,114 342,115 C368,116 392,142 432,148" fill="none" stroke="#d97706" stroke-width="2.6" stroke-dasharray="6 3.5"/><text x="352" y="109" font-size="12.5" font-weight="800" fill="#b45309">乙曲線</text></svg>';
+
+const QF_HEART_VAC='<svg viewBox="0 0 460 184" width="460" height="184" role="img" aria-label="手臂施打疫苗後進入靜脈回流至心臟四腔室甲乙丙丁示意圖"><rect width="460" height="184" fill="#fbf8f1"/><rect x="16" y="64" width="124" height="54" rx="10" fill="#eef5fc" stroke="#2d6f9e" stroke-width="1.6"/><text x="78" y="86" text-anchor="middle" font-size="12" font-weight="800" fill="#1a496e">手臂施打疫苗</text><text x="78" y="105" text-anchor="middle" font-size="10.5" fill="#365c7a">（經手臂靜脈回流）</text><path d="M140,91 L194,91 L194,54 L224,54" fill="none" stroke="#4a6fb0" stroke-width="3"/><polygon points="224,54 216,49 216,59" fill="#4a6fb0"/><text x="174" y="46" text-anchor="middle" font-size="11" font-weight="700" fill="#234880">大靜脈</text><rect x="226" y="24" width="96" height="62" rx="10" fill="#dce8fa" stroke="#365c96" stroke-width="1.8"/><text x="274" y="59" text-anchor="middle" font-size="15" font-weight="800" fill="#1e447d">甲</text><rect x="226" y="96" width="96" height="64" rx="10" fill="#cfe0f8" stroke="#365c96" stroke-width="1.8"/><text x="274" y="133" text-anchor="middle" font-size="15" font-weight="800" fill="#1e447d">乙</text><rect x="334" y="24" width="96" height="62" rx="10" fill="#fbe2e2" stroke="#b8404c" stroke-width="1.8"/><text x="382" y="59" text-anchor="middle" font-size="15" font-weight="800" fill="#8f2431">丙</text><rect x="334" y="96" width="96" height="64" rx="10" fill="#f7cfcf" stroke="#b8404c" stroke-width="2.4"/><text x="382" y="133" text-anchor="middle" font-size="15" font-weight="800" fill="#8f2431">丁</text><line x1="328" y1="22" x2="328" y2="162" stroke="#7d6d5f" stroke-width="2.4"/><text x="328" y="176" text-anchor="middle" font-size="10.5" fill="#5e5246">（面對面視角：圖左＝心臟右側）</text></svg>';
+
+const QF_SERUM_VS_VAC='<svg viewBox="0 0 460 192" width="460" height="192" role="img" aria-label="比較注射抗蛇毒血清與施打疫苗後體內抗體濃度變化曲線圖"><rect width="460" height="192" fill="#fbf8f1"/><line x1="48" y1="152" x2="438" y2="152" stroke="#4d5a52" stroke-width="1.6"/><line x1="48" y1="18" x2="48" y2="152" stroke="#4d5a52" stroke-width="1.6"/><text x="16" y="86" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3a453e" transform="rotate(-90 16 86)">體內抗體濃度</text><text x="436" y="182" text-anchor="end" font-size="11.5" font-weight="700" fill="#3a453e">時間 →</text><line x1="88" y1="20" x2="88" y2="152" stroke="#0f766e" stroke-dasharray="4 3"/><text x="88" y="168" text-anchor="middle" font-size="11" font-weight="800" fill="#0f766e">注射針劑</text><line x1="274" y1="20" x2="274" y2="152" stroke="#b83b3b" stroke-dasharray="4 3"/><text x="274" y="168" text-anchor="middle" font-size="11" font-weight="800" fill="#b83b3b">數月後遇同種病原體</text><path d="M48,152 L88,152 L96,36 C126,48 164,124 224,148 L428,151" fill="none" stroke="#0f766e" stroke-width="3"/><text x="134" y="34" font-size="12.5" font-weight="800" fill="#0f766e">甲（立刻達高峰）</text><path d="M48,152 L116,152 C136,152 150,112 174,114 C198,116 226,142 282,146 C294,146 306,28 334,28 C368,28 398,52 432,68" fill="none" stroke="#6a4c93" stroke-width="2.8" stroke-dasharray="6 3"/><text x="366" y="26" font-size="12.5" font-weight="800" fill="#522c85">乙（二次暴增）</text></svg>';
+
 const QZ=[
  {u:1,s:'下列哪些屬於人體的第一道防線？甲：皮膚　乙：白血球　丙：黏膜　丁：抗體',o:['甲乙','甲丙','乙丁','丙丁'],a:1,
-  e:'第一道防線是皮膚和黏膜。白血球吞噬是第二道，抗體是第三道。'},
- {u:1,s:'手指被割傷後，傷口紅、腫、熱、痛，這是哪一道防線的反應？',o:['第一道','第二道','第三道','不屬於防禦'],a:1,
-  e:'紅腫熱痛是發炎反應，屬於第二道防線。'},
- {u:1,s:'關於發炎反應的敘述，何者正確？',o:['傷口附近的微血管收縮','傷口附近的微血管擴張、血流增加','發炎是第一道防線','發炎反應有專一性'],a:1,
-  e:'發炎時微血管擴張、血流增加，讓更多白血球到達傷口。發炎是第二道防線，沒有專一性。'},
- {u:1,s:'哪一道防線具有「專一性」，只對付特定的病原體？',o:['第一道','第二道','第三道','三道都有'],a:2,
-  e:'第三道防線由特殊白血球認出特定病原體，製造抗體並留下記憶，是專一性的防禦。'},
- {u:1,s:'關於人體防禦的敘述，何者正確？',o:['皮膚和黏膜可以擋住所有病原體','白血球吞噬病原體是專一性的反應','抗體屬於第三道防線，能對付特定的病原體','發炎反應會產生記憶'],a:2,
-  e:'(A) 第一道防線不能擋住所有病原體。(B) 白血球吞噬是非專一性的。(D) 產生記憶的是第三道防線。'},
- {u:1,s:'白血球能穿出微血管吞噬細菌。白血球在三道防線中主要參與哪幾道？',o:['只有第一道','第二道和第三道','只有第一道和第二道','三道都沒有'],a:1,
-  e:'一般白血球吞噬病原體是第二道防線；特殊白血球（淋巴球）製造抗體是第三道防線。'},
- {u:2,s:'下列哪一種構造會對入侵過的病原體留下記憶？',o:['紅血球','血小板','特殊白血球','疫苗'],a:2,
-  e:'特殊白血球（淋巴球）會記住病原體，下次同一種病原體入侵時能快速反應。疫苗本身不會記憶。'},
- {u:2,s:'打疫苗可以預防疾病，主要原因是什麼？',o:['疫苗裡含有抗體','疫苗是藥物，能直接殺死病毒','疫苗讓身體自己製造抗體並產生記憶','疫苗讓紅血球數量增加'],a:2,
-  e:'疫苗用死掉或減弱的病原體刺激第三道防線，讓身體自己製造抗體、留下記憶。'},
- {u:2,s:'為什麼流感疫苗需要每年施打？',o:['流感疫苗的抗體只能存在一天','流感病毒容易變化，去年的記憶可能認不出新病毒','流感疫苗是治療用的','第三道防線沒有專一性'],a:1,
-  e:'第三道防線有專一性，流感病毒容易變化，所以每年要針對新的病毒打疫苗。'},
- {u:2,s:'同一種病原體第二次入侵時，人體的專一性防禦作用和第一次相比，何者正確？',o:['比較慢、比較弱','比較快、比較強','一樣快、一樣強','完全沒有反應'],a:1,
-  e:'第一次感染後留下記憶，第二次反應比較快、強度比較高。'},
- {u:2,s:'打了 B 型肝炎疫苗的人，能不能因此預防流感？',o:['可以，疫苗能對付所有病原體','不行，第三道防線有專一性','可以，因為白血球變多了','不行，因為疫苗會被消化'],a:1,
-  e:'疫苗刺激的是有專一性的第三道防線，B 型肝炎疫苗只對 B 型肝炎病毒有效。不同疾病要打不同疫苗。'},
- {u:2,s:'小華上週打了流感疫苗。今天騎腳踏車跌倒，膝蓋擦傷流血，後來傷口有點紅腫。下列敘述何者正確？',o:['流感疫苗產生的抗體可以消滅傷口的細菌','擦傷以後，第一道防線仍然完整','傷口紅腫，表示第二道防線正在作用','打過疫苗的人，傷口不會發炎'],a:2,
-  e:'紅、腫、熱、痛是發炎反應，屬於第二道防線。流感疫苗只針對流感病毒（專一性），對傷口的細菌沒有用，也不能防止發炎；皮膚破了，第一道防線就不完整了。'},
- {u:2,s:'下列關於疫苗的敘述，何者錯誤？',o:['疫苗可用死掉或減弱的病原體製成','疫苗主要用來預防疾病','打疫苗後身體會自己製造抗體','生病以後打疫苗，就能立刻治好疾病'],a:3,
-  e:'疫苗是預防，不是治療；產生抗體和記憶需要時間。'}
+  e:'第一道防線是皮膚和黏膜（含胃酸、淚液、纖毛等分泌物與屏障）。一般白血球吞噬是第二道，抗體是第三道。'},
+ {u:1,s:'吃進胃裡的食物偶爾夾帶細菌，卻大多會被胃液中的鹽酸殺死；吸入的灰塵與細菌也會被氣管纖毛與黏液排出。這兩種機制屬於哪一道防線？',o:['皆屬於第一道防線（非專一性）','皆屬於第二道防線（非專一性）','胃酸屬第一道，纖毛屬第三道','皆屬於第三道防線（專一性）'],a:0,
+  e:'消化道與呼吸道內腔仍屬體表延伸，胃酸殺菌、鼻腔／氣管黏液與纖毛擺動皆為<b>第一道防線</b>（非專一性）。'},
+ {u:1,s:'手指被割傷後，傷口附近紅、腫、熱、痛，這是哪一道防線的反應？',o:['第一道防線','第二道防線','第三道防線','不屬於防禦作用'],a:1,
+  e:'紅、腫、熱、痛是發炎反應，屬於第二道防線（非專一性）。'},
+ {u:1,s:'關於傷口「發炎反應」的敘述，何者正確？',o:['傷口附近的微血管收縮以減少出血','傷口附近的微血管擴張，召集更多紅血球吞噬病原體','傷口附近的微血管擴張、血漿滲出增多，吸引更多白血球清除病原體','發炎反應具有專一性且會留下記憶'],a:2,
+  e:'發炎時微血管<b>擴張</b>（非收縮），血流量增（紅熱）、通透性增使血漿滲出（腫痛），召集更多<b>白血球</b>（絕非紅血球！）穿出微血管吞噬病原體，屬非專一性。'},
+ {u:1,s:'傷口感染發炎數日後常會出現黃白色的「膿液」，膿液的主要成分不包含下列何者？',o:['死亡的白血球','病原體殘骸','組織液','大量紅血球'],a:3,
+  e:'膿液主要是作戰後死亡的白血球、病原體殘骸與組織液混合而成；紅血球不會穿出微血管壁參與吞噬。'},
+ {u:1,s:'白血球在人體三道防線中，主要參與哪幾道防線？',o:['只有第一道','第二道和第三道','第一道和第二道','只有第三道'],a:1,
+  e:'一般白血球穿出微血管吞噬病原體屬於<b>第二道防線</b>；特殊白血球（淋巴球）製造抗體並留下記憶屬於<b>第三道防線</b>。'},
+ {u:1,s:'關於人體第三道防線與抗體的敘述，下列何者正確？',o:['抗體由血漿自行製造並運送','特殊白血球製造抗體，並由血漿運送到全身對付特定病原體','淋巴球留下記憶屬於「第四道防線」','一種抗體可以同時消滅所有種類的細菌與病毒'],a:1,
+  e:'(A) 抗體由特殊白血球（淋巴球）製造、溶於<b>血漿運送</b>。(C) 人體只有三道防線，記憶性屬第三道。(D) 抗體具專一性，像一把鑰匙只開一把鎖。'},
+ {u:1,s:'<b>【圖表判讀】</b>附圖為人體防禦作用分類架構圖。關於圖中【甲】與【乙】的內容，下列配對何者正確？',fig:QF_TREE,
+  o:['甲：白血球吞噬與發炎反應；乙：淋巴球產生抗體與記憶','甲：淋巴球產生抗體；乙：發炎反應與吞噬作用','甲：胃酸與淚液殺菌；乙：白血球變形吞噬','甲：皮膚與黏膜；乙：血小板凝血'],a:0,
+  e:'非專一性防禦包含第一道（皮膜阻隔：皮膚、黏膜、胃酸、纖毛）與第二道（甲：白血球吞噬與發炎反應）；專一性防禦為第三道（乙：淋巴球製造抗體與免疫記憶）。'},
+ {u:1,s:'<b>【圖表判讀】</b>附圖為皮膚割傷後的發炎剖面示意圖。關於圖中甲～丁的敘述，何者正確？',fig:QF_WOUND,
+  o:['甲為完整表皮，屬於第二道防線','乙可變形穿出微血管壁去吞噬入侵細菌','丙為白血球，正變形穿出微血管壁吞噬病原體','丁處腫脹是因為紅血球大量湧入組織間隙'],a:2,
+  e:'(A) 甲為皮膚表皮，屬第一道防線。(B) 乙為雙凹圓盤紅血球，無法穿出微血管壁。(C) 丙為穿出管壁吞噬病原體的白血球，正確！(D) 丁處腫脹是血漿滲出形成組織液增多所致。'},
+ {u:2,s:'下列哪一種構造會對入侵過的病原體「留下記憶」？',o:['紅血球','血小板','特殊白血球（淋巴球）','疫苗本身'],a:2,
+  e:'留下免疫記憶的是人體內的<b>特殊白血球（淋巴球）</b>，不是疫苗本身，也不是紅血球或血小板。'},
+ {u:2,s:'打疫苗可以預防傳染病，主要原理是什麼？',o:['疫苗裡含有大量現成抗體，能立刻消滅病毒','疫苗是殺菌藥物，能直接溶解病原體','疫苗含減毒或死去的病原體（或其片段），刺激自身第三道防線製造抗體並留下記憶','疫苗能讓紅血球數量增加以提升免疫力'],a:2,
+  e:'疫苗<b>不含抗體</b>，而是用無害的減毒／死去病原體或片段，讓身體在安全情況下自行製造抗體並建立記憶。'},
+ {u:2,s:'施打某疫苗數個月後，體內原本製造的抗體濃度已漸漸降低，但之後真的遇到同一種病原體時卻仍能迅速消滅它，主要原因是什麼？',o:['疫苗還一直留在皮膚裡沒有消失','特殊白血球留下了「記憶」，能極快重造大量抗體','發炎反應變成了專一性防禦','血漿自己記住了病原體的形狀'],a:1,
+  e:'「產生抗體」與「留下記憶」是同時發生的兩件事：抗體會隨時間減少，但<b>淋巴球留下的記憶</b>能讓身體再次遇同種病原體時，瞬間重造更大量、更持久的抗體！'},
+ {u:2,s:'為什麼流行性感冒疫苗通常需要「每年」重新施打？',o:['人體對流感抗體只能維持一天','流感病毒容易變異，去年的免疫記憶可能認不出新病毒','流感疫苗是發病後用來治療的藥物','第三道防線不具專一性'],a:1,
+  e:'第三道防線具<b>專一性</b>，流感病毒容易突變改變外殼特徵，所以每年需針對流行的新病毒株接種疫苗。'},
+ {u:2,s:'打了 B 型肝炎疫苗的人，能不能因此同時預防流行性感冒？',o:['可以，疫苗能提升所有病原體的免疫力','不行，第三道防線具有專一性，B 肝疫苗只對 B 肝病毒有效','可以，因為身體裡所有白血球都會變多','不行，因為 B 肝疫苗會被胃酸消化'],a:1,
+  e:'第三道防線像「一把鑰匙只開一把鎖」，B 型肝炎疫苗產生的抗體與記憶只對 B 型肝炎病毒有效，無法預防流感。'},
+ {u:2,s:'小華上週打了流感疫苗。今天騎腳踏車跌倒，膝蓋擦傷破皮，後來傷口紅腫。下列敘述何者正確？',o:['流感疫苗產生的抗體可以直接消滅傷口的細菌','擦傷破皮後，第一道防線仍然保持完整','傷口紅腫表示第二道防線（發炎反應）正在作用','打過疫苗的人傷口就不會再發炎'],a:2,
+  e:'擦傷使皮膚破損（第一道防線出現缺口），傷口紅腫是第二道發炎反應；流感疫苗只針對流感病毒（專一性），對傷口細菌無效。'},
+ {u:2,s:'下列關於疫苗的敘述，何者<b>錯誤</b>？',o:['疫苗可用減弱或死掉的病原體製成','疫苗主要用來事前預防傳染病','打完疫苗後身體會自己製造抗體與記憶','生病發高燒時趕快打疫苗，就能立刻治好疾病'],a:3,
+  e:'疫苗是<b>事前預防</b>，刺激身體自行造抗體需要一段時間，無法在生病當下立刻治病。'},
+ {u:2,s:'<b>【圖表判讀】</b>某人在第 0 週施打病原體 A 的疫苗，第 10 週時同時暴露於病原體 A 與另一種不同病原體 B，體內抗體濃度變化如附圖。下列推論何者正確？',fig:QF_CURVE_AB,
+  o:['甲曲線是對抗病原體 B，乙曲線是對抗病原體 A','甲曲線潛伏期更短、濃度更高，代表身體對病原體 A 具有記憶性','乙曲線上升較慢，證明施打 A 疫苗完全失敗','打過 A 疫苗後，遇到 B 也能產生跟甲一樣高的抗體'],a:1,
+  e:'第 0 週打過 A 疫苗已建立對 A 的記憶，故第 10 週遇 A 時出現<b>快、強、久</b>的二次反應（甲曲線）；對從未見過的 B 無記憶，僅出現慢而弱的初次反應（乙曲線），同時驗證記憶性與專一性！'},
+ {u:2,s:'<b>【圖表判讀・跨 3-2】</b>從手臂注射流感疫苗後，藥劑隨血液循環流動，會<b>最先</b>抵達附圖心臟的哪一個腔室？',fig:QF_HEART_VAC,
+  o:['甲（右心房）','乙（右心室）','丙（左心房）','丁（左心室）'],a:0,
+  e:'手臂靜脈回流的血液經上大靜脈進入心臟，面對面視角中圖左為心臟右側，故<b>最先抵達甲（右心房）</b>。'},
+ {u:3,s:'「抗龜殼花蛇毒血清含有針對龜殼花蛇毒的抗體，是被咬傷時的關鍵救命治療。」上述血清的作用方式與人體防禦中的哪種特性相同？',o:['第一道皮膜阻隔','第二道吞噬作用','第二道發炎反應','第三道專一性防禦'],a:3,
+  e:'抗龜殼花蛇毒血清內的抗體只針對龜殼花毒有效（對百步蛇毒無效），展現的正是<b>專一性防禦</b>的特性！'},
+ {u:3,s:'比較「施打疫苗」與「注射抗蛇毒血清」，下列敘述何者正確？',o:['兩者都含有大量現成抗體','疫苗用於緊急治療，血清用於事前預防','疫苗會讓身體留下記憶，血清直接提供現成抗體但不會留下記憶','血清對所有種類的毒蛇都有一樣的解毒效果'],a:2,
+  e:'疫苗不含抗體、事前預防且會留下記憶；抗蛇毒血清含現成抗體、緊急治療、具專一性（只對特定蛇毒），但<b>不會留下記憶</b>。'},
+ {u:3,s:'醫師常開立「抗生素」來消滅造成胃潰瘍的幽門螺旋桿菌（一種細菌），但卻不建議用抗生素來治療流行性感冒，主要原因是什麼？',o:['抗生素只對細菌有效，對引起流感的病毒無效','抗生素就是流感疫苗，不能重複吃','抗生素只對紅血球有效','流感病毒屬於第一道防線'],a:0,
+  e:'抗生素只能抑制或殺死<b>細菌</b>，對<b>病毒</b>（如流感、新冠病毒）完全無效，切勿與疫苗或抗體混淆。'},
+ {u:3,s:'小美每次春天吸入花粉或吃到蝦子時，就會一直打噴嚏、皮膚起紅疹發癢。這種現象稱為過敏反應，其成因最可能是什麼？',o:['第一道防線皮膚完全消失','免疫系統對原本無害的物質產生過度反應','體內紅血球數量過多','缺乏血小板導致無法止血'],a:1,
+  e:'過敏反應是指免疫系統誤將花粉、塵蟎、某些食物等原本無害的物質視為威脅，產生過度強烈的免疫反應。'},
+ {u:3,s:'關於免疫相關疾病與醫療常識的敘述，下列何者<b>錯誤</b>？',o:['愛滋病毒（HIV）主要攻擊淋巴球，使患者第三道防線嚴重受損','器官移植後可能發生排斥作用，與受贈者免疫系統辨識外來物有關','1796 年詹納以牛痘疫苗預防天花，後來使天花在全球絕跡','愛滋病患者體內的紅血球會全部變成白血球'],a:3,
+  e:'愛滋病毒（HIV）是專門攻擊<b>淋巴球</b>（白血球的一類），不會把紅血球變成白血球。其餘 (A)(B)(C) 均正確。'},
+ {u:3,s:'某人被百步蛇咬傷後緊急送醫，若醫師手邊只有「抗龜殼花蛇毒血清」，請問該血清對此傷患是否有效？原因為何？',o:['有效，只要是蛇毒血清就能中和所有蛇毒','有效，因為血清能立刻刺激身體產生所有記憶','無效，因為抗體具有專一性，抗龜殼花血清只針對龜殼花蛇毒','無效，因為血清必須用喝的不能注射'],a:2,
+  e:'抗體具有嚴格的<b>專一性</b>，抗龜殼花蛇毒血清中的抗體無法結合百步蛇毒，必須施打對應的蛇毒血清才有效。'},
+ {u:3,s:'<b>【圖表判讀】</b>附圖比較注射兩種不同醫療針劑（甲、乙）後體內抗體濃度的變化。下列關於甲與乙的判讀，何者正確？',fig:QF_SERUM_VS_VAC,
+  o:['甲為疫苗、乙為抗蛇毒血清','甲為抗蛇毒血清（輸入現成抗體、無記憶）；乙為疫苗（自行造抗體、有記憶）','甲會讓身體留下永久記憶，乙不會留下記憶','乙在剛注射當天就能達到最高抗體濃度，適合毒蛇咬傷急救'],a:1,
+  e:'<b>甲</b>在注射瞬間立刻達高峰（現成抗體救急），但隨後漸減且數月後沒有二次暴增（<b>無記憶性</b>）→ <b>抗蛇毒血清</b>；<b>乙</b>經潛伏期緩升，數月後遇同種病原體瞬間暴增 → <b>疫苗</b>。'}
 ];
-B.quiz({box:'qz',score:'qzScore',done:'qzDone',reset:'qzReset',filter:'qzFlt',data:QZ,names:{1:'重點一',2:'重點二'}});
+B.quiz({box:'qz',score:'qzScore',done:'qzDone',reset:'qzReset',filter:'qzFlt',data:QZ,names:{1:'重點一',2:'重點二',3:'重點三'}});
 window.__QZ=QZ;
 })();
 </script>

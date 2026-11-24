@@ -4,19 +4,105 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>3-2 人體的循環｜生物互動實驗室</title>
-<meta name="description" content="國七上生物（南一版第一冊）3-2 人體的循環互動複習：血液的組成、動脈靜脈微血管、心跳與脈搏換算、小魚尾鰭血液流動與顯微鏡方位、心臟與體循環肺循環、點滴藥物路徑、淋巴系統，附小測驗。">
+<meta name="description" content="國七上生物（南一版第一冊）3-2 人體的循環互動複習：血液的組成、動脈靜脈微血管與血壓流速對照、心跳與脈搏換算、小魚尾鰭血液流動與顯微鏡方位、心臟與體循環肺循環、點滴與心導管路徑、淋巴系統，附圖解小測驗。">
 <link rel="icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="../assets/style.css?v=3">
-<link rel="stylesheet" href="lib/bio.css">
-<script src="lib/common.js"></script>
+<link rel="stylesheet" href="lib/bio.css?v=13">
+<style>
+.figwrap svg .lblbg{display:none;pointer-events:all;cursor:pointer}
+.figwrap svg.dim .lblbg.sel{display:inline;fill:#fef3c7;stroke:#d97706;stroke-width:1.6}
+.figwrap svg.dim .lblbg.good{display:inline;fill:#dcfce7;stroke:#16a34a;stroke-width:1.6}
+.figwrap svg.dim .lblbg.bad{display:inline;fill:#fee2e2;stroke:#dc2626;stroke-width:1.6}
+.figwrap svg.dim .lblbg.hl{display:inline;fill:#dcfce7;stroke:#2f7a4b;stroke-width:1.6}
+.figwrap svg.dim .lbl[data-lbl].sel{fill:#92400e!important;font-weight:700}
+.figwrap svg.dim .lbl[data-lbl].good{fill:#166534!important;font-weight:700}
+.figwrap svg.dim .lbl[data-lbl].bad{fill:#991b1b!important;font-weight:700}
+.figwrap svg.dim .lbl[data-lbl].hl{fill:#166534!important;font-weight:700}
+.figwrap svg.testing .lblbg{display:none!important}
+.figwrap svg.mark-lock [data-part],.figwrap svg.mark-lock [data-lbl]{cursor:default}
+.vsstage{overflow-x:auto;margin:8px 0 4px}
+.vsstage svg{display:block;width:100%;min-width:540px;height:auto;border:1px solid var(--line);border-radius:var(--r);background:#fbfaf6}
+.hchead{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:0 0 8px}
+.hchead h3{margin:0}
+.hchead .bar{margin:0}
+.hcstage{overflow:auto;border:1px solid var(--line);border-radius:var(--r);background:#f7f1e5}
+.hcstage svg{display:block;width:100%;height:auto}
+.hcstage.zoomed svg{width:1220px;max-width:none}
+.hcstage .anno{transition:opacity .18s}
+.hcstage.mode-hide .anno{opacity:0;pointer-events:none}
+.hcstage.mode-right .anno-left{opacity:.14}
+.hcstage.mode-left .anno-right{opacity:.14}
+.bcstage{background:#f7efdc}
+.bcstage.zoomed svg{width:1360px;max-width:none}
+.bcstage.mode-plasma .anno-buffy,.bcstage.mode-plasma .anno-rbc{opacity:.14}
+.bcstage.mode-buffy .anno-plasma,.bcstage.mode-buffy .anno-rbc{opacity:.14}
+.bcstage.mode-rbc .anno-plasma,.bcstage.mode-rbc .anno-buffy{opacity:.14}
+.hsgrid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:14px;align-items:stretch}
+@media (max-width:760px){.hsgrid{grid-template-columns:minmax(0,1fr)}}
+.hsstage{border:1px solid var(--line);border-radius:var(--r);background:#f7f1e5;padding:6px;display:flex;align-items:center}
+.hsstage svg{display:block;width:100%;height:auto;border-radius:8px}
+.hsright{display:flex;flex-direction:column;gap:10px;justify-content:space-between}
+.hsinfo{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;font-size:14.5px;line-height:1.6;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:8px}
+.hsbot{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:8px;align-items:stretch}
+.hswave{border:1px solid var(--line);border-radius:var(--r);background:#fbfaf6;padding:6px 8px;display:flex;align-items:center;justify-content:center}
+.hswave svg{display:block;width:100%;height:auto}
+.hstag{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:700;vertical-align:1px}
+.hstag.open{background:#dcfce7;color:#166534;border:1px solid #86efac}
+.hstag.close{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+.hstag.snd{background:#fef3c7;color:#92400e;border:1px solid #f59e0b}
+@keyframes hsPulse{0%{opacity:.95;transform:scale(.68)}100%{opacity:0;transform:scale(1.9)}}
+@keyframes hsDash{to{stroke-dashoffset:-32}}
+#hsSvg .wave-ring{transform-box:fill-box;transform-origin:center;animation:hsPulse 1.15s ease-out infinite}
+#hsSvg .wave-ring-2{transform-box:fill-box;transform-origin:center;animation:hsPulse 1.15s ease-out .38s infinite}
+#hsSvg .flow-fast{stroke-dasharray:10 6;animation:hsDash .75s linear infinite}
+#hsSvg .flow-slow{stroke-dasharray:8 8;animation:hsDash 1.3s linear infinite}
+#hsSvg .vleaf{transition:transform .42s cubic-bezier(.22,1.25,.36,1),fill .25s,stroke .25s}
+#hsSvg .chord{transition:opacity .3s}
+#hsSvg .v-ra-l{transform-origin:158px 286px}
+#hsSvg .v-ra-r{transform-origin:226px 268px}
+#hsSvg .v-la-l{transform-origin:312px 268px}
+#hsSvg .v-la-r{transform-origin:386px 274px}
+#hsSvg .v-pa-l{transform-origin:229px 262px}
+#hsSvg .v-pa-r{transform-origin:273px 264px}
+#hsSvg .v-ao-l{transform-origin:282px 262px}
+#hsSvg .v-ao-r{transform-origin:314px 236px}
+#hsSvg.st-0 .v-ra-l,#hsSvg.st-1 .v-ra-l{transform:rotate(50deg)}
+#hsSvg.st-0 .v-ra-r,#hsSvg.st-1 .v-ra-r{transform:rotate(-44deg)}
+#hsSvg.st-0 .v-la-l,#hsSvg.st-1 .v-la-l{transform:rotate(50deg)}
+#hsSvg.st-0 .v-la-r,#hsSvg.st-1 .v-la-r{transform:rotate(-50deg)}
+#hsSvg.st-0 .chord,#hsSvg.st-1 .chord{opacity:.35}
+#hsSvg.st-2 .v-av{fill:#fef08a;stroke:#b45309;stroke-width:2.8}
+#hsSvg.st-2 .v-pa-l{transform:rotate(-68deg)}
+#hsSvg.st-2 .v-pa-r{transform:rotate(68deg)}
+#hsSvg.st-2 .v-ao-l{transform:rotate(-62deg)}
+#hsSvg.st-2 .v-ao-r{transform:rotate(62deg)}
+#hsSvg.st-2 .chord{opacity:.95}
+#hsSvg.st-3 .v-sl{fill:#fef08a;stroke:#b45309;stroke-width:2.8}
+#hsSvg.st-3 .chord{opacity:.65}
+#hsSvg .ch-atria,#hsSvg .ch-vent{transition:filter .35s}
+#hsSvg.st-1 .ch-atria{filter:brightness(1.07) saturate(1.16)}
+#hsSvg.st-2 .ch-vent{filter:brightness(1.07) saturate(1.18)}
+#hsSvg .stage-layer{display:none}
+#hsSvg.st-0 .layer-0,#hsSvg.st-1 .layer-1,#hsSvg.st-2 .layer-2,#hsSvg.st-3 .layer-3{display:inline}
+@media (prefers-reduced-motion:reduce){#hsSvg .wave-ring,#hsSvg .wave-ring-2,#hsSvg .flow-fast,#hsSvg .flow-slow,#oxSvg .blood-flow,#lyGv .flow{animation:none}}
+.oxstage{overflow-x:auto;margin:6px 0 8px}
+.oxstage svg{display:block;width:100%;min-width:540px;height:auto;border:1px solid var(--line);border-radius:var(--r);background:#fbfaf6}
+@keyframes oxFlow{to{stroke-dashoffset:-36}}
+#oxSvg .blood-flow{stroke-dasharray:12 6;animation:oxFlow .9s linear infinite}
+@keyframes lyFlow{to{stroke-dashoffset:-28}}
+#lyGv .flow{stroke-dasharray:8 6;animation:lyFlow 1s linear infinite}
+#lyGv .lbl{font-size:13px;font-weight:800}
+.q figure svg{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fbfaf6}
+</style>
+<script src="lib/common.js?v=13"></script>
 </head>
 <body>
 <header id="site-head"></header>
 <main class="wrap">
   <span class="kicker b">3-2・南一版第一冊</span>
   <h1>人體的循環</h1>
-  <p class="lead">小腸吸收的養分、肺吸進的氧氣，要靠<b>血液</b>送到全身每個細胞；細胞產生的二氧化碳和廢物，也靠血液帶走。推動血液的是<b>心臟</b>，運送的管道是<b>血管</b>。另外，從血管滲出去的液體，會由<b>淋巴系統</b>收回來。心臟圖和魚尾鰭幾乎每份考卷都有。</p>
+  <p class="lead">小腸吸收的養分、肺吸進的氧氣，要靠<b>血液</b>送到全身每個細胞；細胞產生的二氧化碳和廢物，也靠血液帶走。推動血液的是<b>心臟</b>，運送的管道是<b>血管</b>。另外，從血管滲出去的液體，會由<b>淋巴系統</b>收回來。心臟圖、血管血壓流速和魚尾鰭幾乎每份考卷都有。</p>
   <nav class="toc" aria-label="本頁重點">
     <a href="#s1">一、血液的組成</a>
     <a href="#s2">二、血管、脈搏與魚尾鰭</a>
@@ -31,13 +117,154 @@
   <div class="key">
     <ul>
       <li>人體的循環＝<b>心血管系統</b>（心臟、血管、血液）＋<b>淋巴系統</b>（淋巴、淋巴管、淋巴結）。</li>
-      <li>血液＝<b>血漿</b>（淡黃色液體，約占一半以上）＋<b>血球</b>（紅血球、白血球、血小板）。</li>
-      <li>血漿：大部分是水，運送<b>養分、廢物、二氧化碳、激素</b>等物質；抗體也在血漿中。</li>
-      <li><b>紅血球</b>：數量<b>最多</b>；成熟的紅血球<b>沒有細胞核</b>（人類等哺乳類）；含<b>血紅素</b>（含鐵），運送<b>氧氣</b>。</li>
-      <li><b>白血球</b>：體積<b>最大</b>、數量最少、<b>有細胞核</b>；能穿出微血管、吞噬病原體，負責防禦。</li>
-      <li><b>血小板</b>：體積<b>最小</b>、沒有細胞核（細胞的碎片），幫助<b>血液凝固</b>、止血。</li>
+      <li>血液＝<b>血漿</b>（淡黃色液體，約占 55%）＋<b>血球</b>（紅血球、白血球、血小板，約占 45%）。醫院抽血檢驗若要離心分層，需先加入<b>抗凝血劑</b>避免凝固。</li>
+      <li><b>血漿</b>：約 90% 是水，負責運送<b>養分、廢物、二氧化碳、激素</b>等物質；<b>抗體</b>也在血漿中。<span class="hot">血漿不含消化酵素</span>（消化酵素只在消化道內作用）。</li>
+      <li><b>紅血球</b>：數量<b>最多</b>、呈<b>雙凹圓盤狀</b>（增加表面積利於攜氧）；成熟的紅血球<b>沒有細胞核</b>（人類等哺乳類）；含<b>血紅素</b>（含鐵），負責運送<b>氧氣</b>。</li>
+      <li><b>白血球</b>：體積<b>最大</b>、數量最少、<b>有細胞核</b>；能做<b>變形蟲運動</b>穿出微血管壁、吞噬病原體，負責防禦。</li>
+      <li><b>血小板</b>：體積<b>最小</b>、沒有細胞核（細胞的碎片），受傷時協助<b>血液凝固</b>、止血。</li>
       <li>含氧多的<b>充氧血</b>是鮮紅色，含氧少的<b>缺氧血</b>是暗紅色。</li>
     </ul>
+  </div>
+
+  <div class="tool">
+    <div class="hchead">
+      <h3>一張圖看懂：血液如何離心分層</h3>
+      <div class="bar" id="bcMode">
+        <button class="btn on" type="button" data-bcm="all">全部標註</button>
+        <button class="btn" type="button" data-bcm="plasma">上層：血漿</button>
+        <button class="btn" type="button" data-bcm="buffy">中層：白血球・血小板</button>
+        <button class="btn" type="button" data-bcm="rbc">下層：紅血球</button>
+        <button class="btn warm" type="button" data-bcm="hide">隱藏標註（自我測驗）</button>
+        <button class="btn" id="bcZoom" type="button">放大檢視細節</button>
+      </div>
+    </div>
+    <p class="note">抽出的全血先加入<b>抗凝血劑</b>防止凝固，放進離心機高速旋轉後，會依密度分成上、中、下三層，對照右側顯微鏡放大圖一眼記住所有考點。</p>
+    <div class="hcstage bcstage" id="bcStage">
+      <svg viewBox="0 0 1624 824" role="img" aria-label="血液離心分層擬真圖解：左為加入抗凝血劑與離心機旋轉，中為分成上層血漿約55%、中層白血球與血小板不到1%、下層紅血球約45%的試管，右為三層顯微放大示意" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="bcShadow" x="-8%" y="-12%" width="116%" height="130%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1f2a24" flood-opacity="0.12"/>
+          </filter>
+          <marker id="bcArr" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
+            <path d="M1,1.5 L8.5,5 L1,8.5 Z" fill="#6a4c93"/>
+          </marker>
+        </defs>
+        <rect width="1624" height="824" fill="#f7efdc"/>
+        <image href="img/blood-centrifuge.jpg" x="0" y="28" width="1376" height="768"/>
+        <g class="anno">
+          <g filter="url(#bcShadow)">
+            <rect x="22" y="14" width="560" height="42" rx="21" fill="#efe9f6" stroke="#6a4c93" stroke-width="2"/>
+            <text x="302" y="42" text-anchor="middle" font-size="20" font-weight="800" fill="#4f3375">步驟 ① 加入抗凝血劑 ＋ 放進離心機高速旋轉</text>
+          </g>
+          <g filter="url(#bcShadow)">
+            <rect x="668" y="14" width="248" height="42" rx="21" fill="#efe9f6" stroke="#6a4c93" stroke-width="2"/>
+            <text x="792" y="42" text-anchor="middle" font-size="20" font-weight="800" fill="#4f3375">步驟 ② 依密度分成三層</text>
+          </g>
+          <g filter="url(#bcShadow)">
+            <rect x="1024" y="14" width="578" height="42" rx="21" fill="#efe9f6" stroke="#6a4c93" stroke-width="2"/>
+            <text x="1313" y="42" text-anchor="middle" font-size="20" font-weight="800" fill="#4f3375">步驟 ③ 顯微鏡放大：看清各層組成與考點</text>
+          </g>
+          <polyline points="122,158 122,354 166,354" fill="none" stroke="#2d63a6" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="174" cy="354" r="6.5" fill="#2d63a6" stroke="#fff" stroke-width="2.2"/>
+          <g filter="url(#bcShadow)">
+            <rect x="22" y="76" width="330" height="82" rx="14" fill="#edf4fc" stroke="#2d63a6" stroke-width="2.2"/>
+            <text x="187" y="106" text-anchor="middle" font-size="20" font-weight="800" fill="#1e4982">加入「抗凝血劑」</text>
+            <text x="187" y="131" text-anchor="middle" font-size="15.5" fill="#3a5687">防止血液凝固，才能離心分離出</text>
+            <text x="187" y="150" text-anchor="middle" font-size="15.5" font-weight="700" fill="#1e4982">血漿與三種血球</text>
+          </g>
+          <path d="M214 484 L256 484" fill="none" stroke="#6a4c93" stroke-width="4" marker-end="url(#bcArr)"/>
+          <path d="M582 426 L688 426" fill="none" stroke="#6a4c93" stroke-width="5.5" marker-end="url(#bcArr)"/>
+          <g filter="url(#bcShadow)">
+            <rect x="578" y="366" width="116" height="42" rx="12" fill="#efe9f6" stroke="#6a4c93" stroke-width="1.8"/>
+            <text x="636" y="394" text-anchor="middle" font-size="18.5" font-weight="800" fill="#4f3375">高速離心</text>
+          </g>
+          <g filter="url(#bcShadow)">
+            <rect x="22" y="654" width="228" height="72" rx="14" fill="#ffffff" stroke="#c6c1b2" stroke-width="2"/>
+            <text x="136" y="684" text-anchor="middle" font-size="19.5" font-weight="800" fill="#1f2a24">全血（尚未分層）</text>
+            <text x="136" y="710" text-anchor="middle" font-size="15.5" fill="#4d5a52">新鮮抽出的整管血液</text>
+          </g>
+          <g filter="url(#bcShadow)">
+            <rect x="266" y="654" width="320" height="72" rx="14" fill="#ffffff" stroke="#c6c1b2" stroke-width="2"/>
+            <text x="426" y="684" text-anchor="middle" font-size="19.5" font-weight="800" fill="#1f2a24">離心機高速旋轉分離</text>
+            <text x="426" y="710" text-anchor="middle" font-size="15.5" fill="#4d5a52">密度大（紅血球）沉底、密度小浮上</text>
+          </g>
+        </g>
+        <g class="anno anno-plasma">
+          <polygon points="866,214 1034,132 1034,242 866,458" fill="#f3d678" opacity="0.22"/>
+          <line x1="866" y1="214" x2="1034" y2="132" stroke="#c98e1a" stroke-width="2.2" stroke-dasharray="6 4"/>
+          <line x1="866" y1="458" x2="1034" y2="242" stroke="#c98e1a" stroke-width="2.2" stroke-dasharray="6 4"/>
+          <g filter="url(#bcShadow)">
+            <rect x="894" y="250" width="106" height="38" rx="19" fill="#fffdf3" stroke="#d49b27" stroke-width="2"/>
+            <text x="947" y="276" text-anchor="middle" font-size="18.5" font-weight="800" fill="#8a5200">約 55%</text>
+          </g>
+          <g filter="url(#bcShadow)">
+            <rect x="1254" y="76" width="350" height="206" rx="16" fill="#fffdf3" stroke="#d49b27" stroke-width="2.4"/>
+            <rect x="1254" y="76" width="350" height="44" rx="16" fill="#fef2c7"/>
+            <rect x="1254" y="104" width="350" height="16" fill="#fef2c7"/>
+            <line x1="1254" y1="120" x2="1604" y2="120" stroke="#e5c165" stroke-width="1.4"/>
+            <text x="1429" y="106" text-anchor="middle" font-size="21" font-weight="800" fill="#7c4700">上層：血漿（淡黃色液體）</text>
+            <text x="1274" y="152" font-size="17" fill="#3a2f1d">• 約 90% 是水（不含血球）</text>
+            <text x="1274" y="182" font-size="17" fill="#3a2f1d">• 運送：<tspan font-weight="800">養分、廢物、CO₂、激素</tspan></text>
+            <text x="1274" y="212" font-size="17" fill="#3a2f1d">• 含<tspan font-weight="800">抗體</tspan>（協助防禦）</text>
+            <rect x="1272" y="228" width="314" height="38" rx="10" fill="#fce8ea" stroke="#c83e4d" stroke-width="1.6"/>
+            <text x="1429" y="254" text-anchor="middle" font-size="17" font-weight="800" fill="#991420">★ 必考陷阱：不含消化酵素！</text>
+          </g>
+        </g>
+        <g class="anno anno-buffy">
+          <polygon points="866,466 1028,376 1028,448 866,494" fill="#b49ad6" opacity="0.24"/>
+          <line x1="866" y1="466" x2="1028" y2="376" stroke="#7a55a8" stroke-width="2.2" stroke-dasharray="6 4"/>
+          <line x1="866" y1="494" x2="1028" y2="448" stroke="#7a55a8" stroke-width="2.2" stroke-dasharray="6 4"/>
+          <g filter="url(#bcShadow)">
+            <rect x="890" y="422" width="114" height="38" rx="19" fill="#f6f2fb" stroke="#7a55a8" stroke-width="2"/>
+            <text x="947" y="448" text-anchor="middle" font-size="18" font-weight="800" fill="#503575">不到 1%</text>
+          </g>
+          <line x1="1254" y1="382" x2="1172" y2="382" stroke="#6a4c93" stroke-width="2.8"/>
+          <circle cx="1172" cy="382" r="6" fill="#6a4c93" stroke="#fff" stroke-width="2"/>
+          <line x1="1254" y1="444" x2="1194" y2="444" stroke="#9b6cc2" stroke-width="2.8"/>
+          <circle cx="1194" cy="444" r="6" fill="#9b6cc2" stroke="#fff" stroke-width="2"/>
+          <g filter="url(#bcShadow)">
+            <rect x="1254" y="302" width="350" height="216" rx="16" fill="#f8f5fc" stroke="#7a55a8" stroke-width="2.4"/>
+            <rect x="1254" y="302" width="350" height="44" rx="16" fill="#ebe2f6"/>
+            <rect x="1254" y="330" width="350" height="16" fill="#ebe2f6"/>
+            <line x1="1254" y1="346" x2="1604" y2="346" stroke="#cbb8e3" stroke-width="1.4"/>
+            <text x="1429" y="332" text-anchor="middle" font-size="20.5" font-weight="800" fill="#4f3375">中層：白血球 ＋ 血小板（白色薄層）</text>
+            <text x="1272" y="376" font-size="18" font-weight="800" fill="#4f3375">● 白血球（最大・最少・有核）</text>
+            <text x="1286" y="402" font-size="16" fill="#433852">唯一有細胞核（可驗 DNA）；穿出微</text>
+            <text x="1286" y="422" font-size="16" fill="#433852">血管吞噬病原體、負責防禦</text>
+            <line x1="1272" y1="436" x2="1586" y2="436" stroke="#dfd3ee" stroke-width="1.2"/>
+            <text x="1272" y="462" font-size="18" font-weight="800" fill="#704396">● 血小板（最小・無核碎片）</text>
+            <text x="1286" y="488" font-size="16" fill="#433852">細胞碎片；受傷時協助血液凝固止血</text>
+          </g>
+        </g>
+        <g class="anno anno-rbc">
+          <polygon points="866,506 1034,586 1034,692 866,704" fill="#d9534f" opacity="0.20"/>
+          <line x1="866" y1="506" x2="1034" y2="586" stroke="#b8404c" stroke-width="2.2" stroke-dasharray="6 4"/>
+          <line x1="866" y1="704" x2="1034" y2="692" stroke="#b8404c" stroke-width="2.2" stroke-dasharray="6 4"/>
+          <g filter="url(#bcShadow)">
+            <rect x="894" y="608" width="106" height="38" rx="19" fill="#fdf2f2" stroke="#b8404c" stroke-width="2"/>
+            <text x="947" y="634" text-anchor="middle" font-size="18.5" font-weight="800" fill="#8f2431">約 45%</text>
+          </g>
+          <g filter="url(#bcShadow)">
+            <rect x="1254" y="538" width="350" height="204" rx="16" fill="#fdf2f2" stroke="#b8404c" stroke-width="2.4"/>
+            <rect x="1254" y="538" width="350" height="44" rx="16" fill="#fad8db"/>
+            <rect x="1254" y="566" width="350" height="16" fill="#fad8db"/>
+            <line x1="1254" y1="582" x2="1604" y2="582" stroke="#e4a6ad" stroke-width="1.4"/>
+            <text x="1429" y="568" text-anchor="middle" font-size="21" font-weight="800" fill="#8f2431">下層：紅血球（暗紅沉澱層）</text>
+            <text x="1274" y="614" font-size="17" fill="#47282c">• 數量<tspan font-weight="800">最多</tspan>・<tspan font-weight="800">雙凹圓盤狀</tspan>（增表面積）</text>
+            <text x="1274" y="644" font-size="17" fill="#47282c">• 成熟<tspan font-weight="800">無細胞核</tspan>（人類等哺乳類）</text>
+            <text x="1274" y="674" font-size="17" fill="#47282c">• 含<tspan font-weight="800">血紅素</tspan>（含鐵）運送<tspan font-weight="800">氧氣</tspan></text>
+            <rect x="1272" y="690" width="314" height="38" rx="10" fill="#fff4e5" stroke="#c85a28" stroke-width="1.6"/>
+            <text x="1429" y="716" text-anchor="middle" font-size="16.5" font-weight="800" fill="#9a3a10">★ 一氧化碳（CO）會搶占血紅素！</text>
+          </g>
+        </g>
+        <g class="anno">
+          <g filter="url(#bcShadow)">
+            <rect x="22" y="762" width="1582" height="46" rx="14" fill="#efe9f6" stroke="#6a4c93" stroke-width="2"/>
+            <text x="813" y="792" text-anchor="middle" font-size="19.5" font-weight="800" fill="#4f3375">段考速記比較：　體積：白血球 ＞ 紅血球 ＞ 血小板　｜　數量：紅血球 ＞ 血小板 ＞ 白血球　｜　有細胞核：只有白血球</text>
+          </g>
+        </g>
+      </svg>
+    </div>
   </div>
 
   <div class="tool">
@@ -53,20 +280,21 @@
     <div class="tscroll" style="margin-top:10px">
     <table class="t">
       <tr><th></th><th>紅血球</th><th>白血球</th><th>血小板</th></tr>
-      <tr><th>形狀</th><td>雙凹圓盤</td><td>球形</td><td>不規則</td></tr>
+      <tr><th>形狀</th><td>雙凹圓盤（增加表面積）</td><td>球形（可變形）</td><td>不規則碎片</td></tr>
       <tr><th>數量</th><td><b>最多</b></td><td>最少</td><td>中間</td></tr>
       <tr><th>體積</th><td>中間</td><td><b>最大</b></td><td>最小</td></tr>
-      <tr><th>細胞核</th><td>沒有（成熟的）</td><td><b>有</b></td><td>沒有（細胞碎片）</td></tr>
-      <tr><th>功能</th><td>運送氧氣（血紅素）</td><td>吞噬病原體、防禦</td><td>凝血、止血</td></tr>
+      <tr><th>細胞核</th><td>沒有（成熟的）</td><td><b>有</b>（可驗 DNA）</td><td>沒有（細胞碎片）</td></tr>
+      <tr><th>功能</th><td>運送氧氣（血紅素）</td><td>穿出微血管、吞噬病原體</td><td>凝血、止血</td></tr>
     </table>
     </div>
   </div>
   <div class="warn">
     <b>易錯陷阱</b>
     <ul>
-      <li>「白血球數量最多」是錯的，最多的是<b>紅血球</b>。體積：白血球＞紅血球＞血小板。</li>
-      <li>運送氧氣靠紅血球的血紅素；運送養分、廢物、二氧化碳主要靠<b>血漿</b>。</li>
-      <li>要檢驗 DNA 得用<b>有細胞核的白血球</b>。魚、青蛙、雞的紅血球有細胞核，人的成熟紅血球沒有。</li>
+      <li>「白血球數量最多」是錯的，最多的是<b>紅血球</b>。體積：<b>白血球 ＞ 紅血球 ＞ 血小板</b>；數量：<b>紅血球 ＞ 血小板 ＞ 白血球</b>。</li>
+      <li>運送氧氣靠紅血球的血紅素；運送養分、廢物、二氧化碳主要靠<b>血漿</b>。<b>血漿不含消化酵素</b>（常考混充選項！）。</li>
+      <li><b>一氧化碳（CO）中毒</b>：熱水器通風不良會產生一氧化碳，CO 與紅血球內<b>血紅素</b>的結合能力遠強於氧氣，導致紅血球無法攜帶氧氣，使身體嚴重缺氧。</li>
+      <li>要檢驗 DNA 得用<b>有細胞核的白血球</b>。魚、青蛙、鳥類的紅血球有細胞核，但人類（哺乳類）的成熟紅血球沒有。</li>
     </ul>
   </div>
   </section>
@@ -76,15 +304,14 @@
   <h2>二、血管、脈搏與魚尾鰭觀察（實驗 3-2、3-3）<span class="star">★★★ 必考</span></h2>
   <div class="key">
     <ul>
-      <li><b>動脈</b>：把血液帶<b>離開</b>心臟；管壁厚、有彈性；血壓最大、流速快。心臟每收縮一次，動脈管壁就擴張一次，這就是<b>脈搏</b>。</li>
-      <li><b>靜脈</b>：把血液送<b>回</b>心臟；管壁薄、彈性小、血壓低；四肢的靜脈有<b>瓣膜</b>，防止血液逆流。抽血、打點滴通常在靜脈。</li>
-      <li><b>微血管</b>：最細，管壁只有<b>一層細胞</b>；血流最慢，是血液和細胞<b>交換物質</b>的地方。</li>
-      <li>流過小腸絨毛後，和小動脈相比，小靜脈的血液<b>養分、二氧化碳、廢物較多</b>，氧氣較少。</li>
+      <li><b>動脈</b>：把血液帶<b>離開</b>心臟；管壁<b>最厚、彈性大</b>；<b>血壓最大、流速最快</b>。心臟每收縮一次，動脈管壁就隨血壓波動擴張一次，這就是<b>脈搏</b>。</li>
+      <li><b>微血管</b>：最細，管壁只有<b>一層細胞</b>，僅容紅血球單列通過；<b>血流速度最慢</b>，是血液和組織細胞<b>交換物質</b>的地方。</li>
+      <li><b>靜脈</b>：把血液送<b>回</b>心臟；管壁較薄、彈性小、<b>血壓最低</b>（無脈搏）；四肢的靜脈有<b>瓣膜</b>，防止血液逆流。抽血、打點滴通常在靜脈。</li>
       <li>血液流向：心臟 → 動脈 → 微血管 → 靜脈 → 心臟。</li>
-      <li>實驗 3-2：正常時<b>脈搏＝心跳</b>次數。量脈搏用食指和中指（也可加無名指），輕按<b>大拇指那一側</b>的手腕內側，<b>不用拇指</b>。聽診器聽到「噗—通」兩聲是<b>一次</b>心跳（瓣膜關閉的聲音）。運動後心跳、脈搏都變快。</li>
-      <li>實驗 3-3：用<b>沾濕的棉花</b>蓋住小魚的頭部和鰓蓋，保持鰓濕潤、讓小魚能呼吸；先用低倍鏡觀察。一顆一顆流動的是<b>紅血球</b>；最細的血管（微血管）血流<b>最慢</b>。</li>
+      <li>實驗 3-2（脈搏與心跳）：正常時<b>脈搏＝心跳</b>次數。量脈搏用食指和中指（可加無名指）輕按大拇指側手腕內側的<b>橈動脈</b>；<b>不用大拇指</b>，因為大拇指本身動脈較粗、有明顯脈搏，容易與受測者混淆。聽診器聽到「噗—通」兩聲是<b>一次</b>心跳（瓣膜關閉的聲音）。運動後心跳、脈搏都變快。</li>
+      <li>實驗 3-3（觀察小魚尾鰭）：選<b>尾鰭</b>是因為薄且透光、容易觀察；用<b>沾濕的棉花</b>蓋住魚頭和鰓蓋，保持鰓濕潤以維持呼吸；先用<b>複式顯微鏡低倍鏡</b>觀察（視野大、亮度高、易追蹤血流）。一顆一顆流動的是<b>紅血球</b>；最細的微血管血流<b>最慢</b>。</li>
     </ul>
-    <p class="mnemo">分支是小動脈、排隊是微血管、匯集是小靜脈</p>
+    <p class="mnemo">分支是小動脈、排隊是微血管、匯集是小靜脈；血壓最低是靜脈、流速最慢是微血管</p>
   </div>
   <div class="tscroll">
   <table class="t">
@@ -92,10 +319,79 @@
     <tr><th>血流方向</th><td>離開心臟</td><td>動脈 → 微血管 → 靜脈</td><td>回到心臟</td></tr>
     <tr><th>連接</th><td>心室</td><td>動脈和靜脈</td><td>心房</td></tr>
     <tr><th>管壁</th><td>最厚、彈性大</td><td>最薄（一層細胞）</td><td>較薄、彈性小</td></tr>
-    <tr><th>血壓／流速</th><td>最大／最快</td><td>次之／最慢</td><td>最小／中間</td></tr>
-    <tr><th>瓣膜</th><td>只在和心室相接處有</td><td>沒有</td><td>有（部分靜脈沒有，四肢較多）</td></tr>
-    <tr><th>生活中</th><td>量脈搏、血壓</td><td>交換物質</td><td>抽血、打針</td></tr>
+    <tr><th>血壓</th><td><b>最大</b></td><td>中間（逐漸下降）</td><td><b>最低</b></td></tr>
+    <tr><th>血流速度</th><td><b>最快</b></td><td><b>最慢</b>（利於物質交換）</td><td>中間（再次回升）</td></tr>
+    <tr><th>瓣膜</th><td>只在和心室相接處有</td><td>沒有</td><td>有（四肢靜脈較多）</td></tr>
+    <tr><th>生活中</th><td>量脈搏（橈動脈）、血壓</td><td>交換物質</td><td>抽血、打點滴</td></tr>
   </table>
+  </div>
+
+  <div class="tool">
+    <h3>一張圖破除陷阱：三種血管的管壁、血壓與血流速度</h3>
+    <p class="note">段考前三大失分題！比較兩條曲線的最低點：<b>血壓</b>一路下降，在<b>靜脈</b>最低；<b>血流速度</b>則在<b>微血管</b>最慢（分支極多，流速變慢，利於物質交換），匯合進靜脈後流速又會再回升。</p>
+    <div class="vsstage">
+      <svg viewBox="0 0 680 318" role="img" aria-label="動脈、微血管、靜脈的橫切面結構與血壓、血流速度雙曲線對照圖" xmlns="http://www.w3.org/2000/svg">
+        <rect width="680" height="318" fill="#fbfaf6"/>
+        <!-- 上半：三種血管結構橫切示意 -->
+        <text x="128" y="22" text-anchor="middle" font-size="14" font-weight="800" fill="#a33a4a">動脈（離開心臟）</text>
+        <circle cx="128" cy="64" r="32" fill="#e69590" stroke="#a33a4a" stroke-width="2.5"/>
+        <circle cx="128" cy="64" r="15" fill="#fff5f4" stroke="#c85a5a" stroke-width="1.5"/>
+        <text x="128" y="112" text-anchor="middle" font-size="11.5" fill="#4d5a52">管壁最厚、彈性大</text>
+
+        <text x="340" y="22" text-anchor="middle" font-size="14" font-weight="800" fill="#8a5200">微血管（交換物質）</text>
+        <circle cx="340" cy="64" r="16" fill="#fffdf6" stroke="#d99a2b" stroke-width="2.5" stroke-dasharray="6 2"/>
+        <ellipse cx="340" cy="64" rx="8" ry="6" fill="#d9534f"/>
+        <text x="340" y="112" text-anchor="middle" font-size="11.5" fill="#4d5a52">管壁僅一層細胞、最細</text>
+
+        <text x="552" y="22" text-anchor="middle" font-size="14" font-weight="800" fill="#2d5f9e">靜脈（回到心臟）</text>
+        <circle cx="552" cy="64" r="32" fill="#b4cae8" stroke="#4a6fb0" stroke-width="2"/>
+        <circle cx="552" cy="64" r="24" fill="#f3f7fd" stroke="#6c8ec4" stroke-width="1.5"/>
+        <path d="M539 68 L552 54 L565 68" fill="none" stroke="#365c96" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="552" y="112" text-anchor="middle" font-size="11.5" fill="#4d5a52">管壁薄、管腔大、具瓣膜</text>
+
+        <!-- 下半：血壓與血流速度雙曲線 -->
+        <line x1="64" y1="132" x2="64" y2="274" stroke="#6b7670" stroke-width="1.8"/>
+        <line x1="64" y1="274" x2="640" y2="274" stroke="#6b7670" stroke-width="1.8"/>
+        <!-- 區隔線 -->
+        <rect x="234" y="134" width="212" height="139" fill="#fef7e6" opacity="0.65"/>
+        <line x1="234" y1="134" x2="234" y2="274" stroke="#d8d2c3" stroke-dasharray="4 3"/>
+        <line x1="446" y1="134" x2="446" y2="274" stroke="#d8d2c3" stroke-dasharray="4 3"/>
+        <text x="52" y="144" text-anchor="end" font-size="11.5" fill="#4d5a52">高／快</text>
+        <text x="52" y="272" text-anchor="end" font-size="11.5" fill="#4d5a52">低／慢</text>
+
+        <!-- 血壓曲線（紅線：一路下降，靜脈最低） -->
+        <path d="M90 150 C165 154, 215 174, 270 206 C335 236, 425 256, 595 262" fill="none" stroke="#c83e4d" stroke-width="3.6" stroke-linecap="round"/>
+        <circle cx="128" cy="153" r="5" fill="#c83e4d"/>
+        <circle cx="340" cy="233" r="5" fill="#c83e4d"/>
+        <circle cx="552" cy="260" r="6" fill="#c83e4d" stroke="#fff" stroke-width="2"/>
+
+        <!-- 血流速度曲線（藍線：微血管最低，靜脈回升） -->
+        <path d="M90 164 C165 172, 225 238, 285 255 C330 264, 375 264, 420 250 C480 232, 535 212, 595 204" fill="none" stroke="#2d6f9e" stroke-width="3.6" stroke-dasharray="8 4" stroke-linecap="round"/>
+        <circle cx="128" cy="172" r="5" fill="#2d6f9e"/>
+        <circle cx="340" cy="261" r="6" fill="#2d6f9e" stroke="#fff" stroke-width="2"/>
+        <circle cx="552" cy="211" r="5" fill="#2d6f9e"/>
+
+        <!-- 標註重點 -->
+        <rect x="242" y="142" width="196" height="44" rx="8" fill="#ffffff" stroke="#2d6f9e" stroke-width="1.5"/>
+        <text x="340" y="160" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1d5680">血流速度最低點：微血管</text>
+        <text x="340" y="178" text-anchor="middle" font-size="11.5" fill="#4d5a52">分支極多，流速變慢，利於物質交換</text>
+        <line x1="340" y1="186" x2="340" y2="253" stroke="#2d6f9e" stroke-width="1.4" stroke-dasharray="3 2"/>
+
+        <rect x="466" y="142" width="174" height="44" rx="8" fill="#fff5f6" stroke="#c83e4d" stroke-width="1.5"/>
+        <text x="553" y="160" text-anchor="middle" font-size="12.5" font-weight="800" fill="#a33a4a">血壓最低點：靜脈</text>
+        <text x="553" y="178" text-anchor="middle" font-size="11.5" fill="#6b4b50">靠瓣膜＋肌肉收縮回心臟</text>
+        <line x1="552" y1="186" x2="552" y2="252" stroke="#c83e4d" stroke-width="1.4" stroke-dasharray="3 2"/>
+
+        <!-- X 軸與圖例 -->
+        <text x="148" y="293" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2a24">動脈</text>
+        <text x="340" y="293" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2a24">微血管</text>
+        <text x="546" y="293" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2a24">靜脈</text>
+        <line x1="74" y1="308" x2="104" y2="308" stroke="#c83e4d" stroke-width="3.5"/>
+        <text x="110" y="312" font-size="12" font-weight="700" fill="#a33a4a">血壓（動脈 ＞ 微血管 ＞ 靜脈）</text>
+        <line x1="332" y1="308" x2="362" y2="308" stroke="#2d6f9e" stroke-width="3.5" stroke-dasharray="7 3"/>
+        <text x="368" y="312" font-size="12" font-weight="700" fill="#1d5680">血流速度（動脈 ＞ 靜脈 ＞ 微血管）</text>
+      </svg>
+    </div>
   </div>
 
   <div class="tool">
@@ -112,16 +408,16 @@
     <div class="bar" id="fiMode">
       <button class="btn on" data-m="learn">學習：點血管看說明</button>
       <button class="btn warm" data-m="test">測驗：找出指定血管</button>
-      <button class="btn cool" id="fiFlip">換一張（左右可能相反）</button>
+      <button class="btn cool" id="fiFlip" type="button">左右翻轉視野（換方向練習）</button>
     </div>
     <div class="figwrap">
       <svg id="fiSvg" viewBox="0 0 360 360" role="img" aria-label="複式顯微鏡下小魚尾鰭的血管示意圖"></svg>
       <div>
         <div class="figout" id="fiOut"></div>
         <div class="tool" style="margin-top:10px">
-          <b>方位題：這是顯微鏡下的影像（上下左右都顛倒）</b>
-          <div class="inrow" style="margin-top:6px"><span>影像中，魚頭在</span><button class="btn" data-h="img-L">左邊</button><button class="btn" data-h="img-R">右邊</button></div>
-          <div class="inrow"><span>實際上，魚頭在</span><button class="btn" data-h="real-L">左邊</button><button class="btn" data-h="real-R">右邊</button></div>
+          <b>方位題：複式顯微鏡下的影像（上下左右皆顛倒，旋轉 180°）</b>
+          <div class="inrow" style="margin-top:6px"><span>影像中，魚頭在</span><button class="btn" type="button" data-h="img-L">左邊</button><button class="btn" type="button" data-h="img-R">右邊</button></div>
+          <div class="inrow"><span>實際上，魚頭在</span><button class="btn" type="button" data-h="real-L">左邊</button><button class="btn" type="button" data-h="real-R">右邊</button></div>
           <div class="out" id="fiAns"></div>
         </div>
       </div>
@@ -130,10 +426,11 @@
   <div class="warn">
     <b>易錯陷阱</b>
     <ul>
+      <li><b>血壓 vs 流速</b>：血壓最低的是<b>靜脈</b>（不是微血管）；血流速度最慢的才是<b>微血管</b>（不是靜脈）。</li>
       <li>血管是依「<b>離開或回到心臟</b>」分類，不是依含氧多少。<b>肺動脈是缺氧血、肺靜脈是充氧血</b>。</li>
       <li>抽血綁住上臂，浮起來的是<b>靜脈</b>：血液流回心臟的路被擋住，靜脈血變多。</li>
-      <li>「噗—通」是 <b>1 次</b>心跳。1 分鐘心跳 72 次，會聽到 144 個聲音。</li>
-      <li>分辨魚尾鰭的血管<b>不能看顏色</b>，要看分支或匯集。影像顛倒不影響判斷血管種類；判斷<b>方位</b>時才要反過來。</li>
+      <li>「噗—通」是 <b>1 次</b>心跳。1 分鐘心跳 72 次，會聽到 144 個聲音；<b>靜脈沒有脈搏</b>。</li>
+      <li>分辨魚尾鰭的血管<b>不能看顏色或只看粗細</b>，要看<b>分支（小動脈）</b>、<b>紅血球單列慢行（微血管）</b>、<b>匯集（小靜脈）</b>。影像顛倒不影響判斷血管種類；判斷<b>魚頭方位</b>時才要「上下左右皆反過來」。</li>
     </ul>
   </div>
   </section>
@@ -144,43 +441,393 @@
   <div class="key">
     <ul>
       <li>心臟在胸腔中央偏左，有 4 個腔室：右心房、右心室、左心房、左心室。<b>心房接靜脈</b>（血流回心臟），<b>心室接動脈</b>（把血送出去）。</li>
-      <li><b>左心室</b>的管壁最厚，因為要把血送到全身。</li>
-      <li><b>瓣膜</b>：在心房和心室之間、心室和動脈之間，防止血液逆流。</li>
+      <li><b>左心室</b>的管壁最厚，因為要把血推向全身。</li>
+      <li><b>瓣膜</b>：位於<b>心房和心室之間（房室瓣）</b>、<b>心室和動脈之間（半月瓣）</b>，防止血液逆流。<span class="hot">心房與靜脈之間沒有瓣膜</span>。</li>
+      <li><b>冠狀動脈</b>：由<b>主動脈基部</b>分支而出，包覆在心臟表面，負責供應<b>心肌細胞</b>所需的氧氣和養分（心臟腔室內的血液<b>不直接</b>供應心肌）；若阻塞會引發心肌梗塞。</li>
       <li>心臟的收縮與舒張：<b>心房收縮</b> → 血液流入心室；<b>心室收縮</b> → 血液流入動脈；心房、心室<b>舒張</b> → 血液流回心臟。</li>
-      <li>心音：心室收縮時，心房和心室之間的瓣膜關閉；心室舒張時，心室和動脈之間的瓣膜關閉。血液撞擊瓣膜發出聲音，所以一次心跳有「噗、通」<b>兩個心音</b>。</li>
+      <li>心音：心室收縮時，房室瓣關閉（「噗」）；心室舒張時，半月瓣關閉（「通」）。血液撞擊關閉的瓣膜發出聲音，所以一次心跳有「噗、通」<b>兩個心音</b>。</li>
       <li><b>體循環</b>：左心室 → 主動脈 → 全身微血管 → 大靜脈 → 右心房（充氧血 → 缺氧血）。</li>
       <li><b>肺循環</b>：右心室 → 肺動脈 → 肺部微血管 → 肺靜脈 → 左心房（缺氧血 → 充氧血）。</li>
-      <li>心臟<b>右半邊是缺氧血</b>，<b>左半邊是充氧血</b>，左右不相通。</li>
-      <li>記法：<b>左體右肺</b>（左心室出發是體循環，右心室出發是肺循環）；<b>要換邊</b>（從左心出去會回到右心，從右心出去會回到左心）。</li>
+      <li>心臟<b>右半邊是缺氧血</b>，<b>左半邊是充氧血</b>，左右不相通。記法：<b>左體右肺、出發換邊</b>。</li>
+      <li>醫療時事連結：<b>葉克膜（ECMO）</b>可在重症時暫時代替心肺循環與氣體交換；<b>AED（自動體外心臟電擊去顫器）</b>可協助心跳異常者恢復正常節律。</li>
     </ul>
-    <p class="mnemo">房接靜脈、室接動脈；右邊缺氧、左邊充氧</p>
+    <p class="mnemo">房接靜脈、室接動脈；右邊缺氧、左邊充氧；靜脈點滴進右房、動脈導管進左室</p>
   </div>
 
   <div class="tool">
-    <h3>心臟與血流路徑</h3>
+    <h3>心臟與血流路徑（含點滴 vs 動脈心導管）</h3>
     <div class="bar" id="htMode">
       <button class="btn on" data-m="learn">學習：點了看說明</button>
       <button class="btn warm" data-m="test">測驗：找出指定部位</button>
     </div>
     <div class="bar" id="htPath">
-      <button class="btn cool" data-p="pul">走一次肺循環</button>
-      <button class="btn cool" data-p="sys">走一次體循環</button>
-      <button class="btn cool" data-p="iv">手臂打點滴，藥物怎麼走</button>
+      <button class="btn cool" id="htPul" type="button" data-p="pul">走一次肺循環</button>
+      <button class="btn cool" id="htSys" type="button" data-p="sys">走一次體循環</button>
+      <button class="btn cool" id="htIv" type="button" data-p="iv">手臂靜脈打點滴</button>
+      <button class="btn cool" id="htCath" type="button" data-p="cath">手腕動脈心導管（逆流）</button>
     </div>
     <div class="figwrap">
-      <svg id="htSvg" viewBox="0 0 520 520" role="img" aria-label="心臟四個腔室與血管、肺循環、體循環示意圖"></svg>
+      <svg id="htSvg" viewBox="0 0 540 530" role="img" aria-label="心臟四個腔室、瓣膜、冠狀動脈與肺循環、體循環示意圖"></svg>
       <div>
         <div class="figout" id="htOut"></div>
         <div class="oans" id="htSteps" style="margin-top:8px"></div>
       </div>
     </div>
   </div>
+
+  <div class="tool">
+    <div class="hchead">
+      <h3>擬真 3D 剖面：看懂左心室厚壁、瓣膜與冠狀動脈</h3>
+      <div class="bar" id="hcMode">
+        <button class="btn on" type="button" data-hcm="all">全部標註</button>
+        <button class="btn" type="button" data-hcm="right">只看右心（缺氧）</button>
+        <button class="btn" type="button" data-hcm="left">只看左心（充氧）</button>
+        <button class="btn warm" type="button" data-hcm="hide">隱藏標註（自我測驗）</button>
+        <button class="btn" id="hcZoom" type="button">放大檢視細節</button>
+      </div>
+    </div>
+    <p class="note">從解剖剖面一眼看懂常考重點：<b>左心室心肌壁約右心室 3 倍厚</b>、心房與心室之間有<b>房室瓣</b>、心室與動脈之間有<b>半月瓣</b>，外層更有<b>冠狀動脈</b>直接供應心肌養分與氧氣。</p>
+    <div class="hcstage" id="hcStage">
+      <svg viewBox="0 0 1376 768" role="img" aria-label="擬真 3D 人體心臟冠狀剖面圖解：標示上下大靜脈、右心房、右心室、左心房、左心室、房室瓣與半月瓣、主動脈、肺動脈、肺靜脈、左心室最厚心肌壁與冠狀動脈" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="hcShadow" x="-8%" y="-12%" width="116%" height="130%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1f2a24" flood-opacity="0.12"/>
+          </filter>
+        </defs>
+        <rect width="1376" height="768" fill="#f7f1e5"/>
+        <image href="img/heart-cutaway.jpg" x="0" y="0" width="1376" height="768"/>
+        <g class="anno anno-right">
+          <g filter="url(#hcShadow)">
+            <rect x="18" y="16" width="370" height="42" rx="21" fill="#eaf1fb" stroke="#4a6fb0" stroke-width="2.2"/>
+            <text x="203" y="44" text-anchor="middle" font-size="19.5" font-weight="800" fill="#234880">圖的左側 ＝ 心臟的右側（缺氧血）</text>
+          </g>
+          <polyline points="366,115 446,115 548,196" fill="none" stroke="#365c96" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="548" cy="196" r="7" fill="#365c96" stroke="#fff" stroke-width="2.5"/>
+          <g filter="url(#hcShadow)">
+            <rect x="18" y="82" width="348" height="66" rx="14" fill="#eef4fc" stroke="#4a6fb0" stroke-width="2.2"/>
+            <text x="192" y="111" text-anchor="middle" font-size="21" font-weight="800" fill="#1e447d">上大靜脈</text>
+            <text x="192" y="136" text-anchor="middle" font-size="16" fill="#3a5687">回收頭、手臂缺氧血送回右心房</text>
+          </g>
+          <polyline points="366,228 424,228 480,276 554,354" fill="none" stroke="#365c96" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="554" cy="354" r="7" fill="#365c96" stroke="#fff" stroke-width="2.5"/>
+          <g filter="url(#hcShadow)">
+            <rect x="18" y="194" width="348" height="66" rx="14" fill="#eef4fc" stroke="#4a6fb0" stroke-width="2.2"/>
+            <text x="192" y="223" text-anchor="middle" font-size="21" font-weight="800" fill="#1e447d">右心房（接大靜脈）</text>
+            <text x="192" y="248" text-anchor="middle" font-size="16" fill="#3a5687">靜脈點滴、小腸養分與淋巴先到</text>
+          </g>
+          <polyline points="366,404 452,404 584,464" fill="none" stroke="#b07a14" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="584" cy="464" r="7" fill="#c98e1a" stroke="#fff" stroke-width="2.5"/>
+          <polyline points="366,380 476,380 668,406" fill="none" stroke="#b07a14" stroke-width="3" stroke-dasharray="7 4" stroke-linejoin="round"/>
+          <circle cx="668" cy="406" r="7" fill="#c98e1a" stroke="#fff" stroke-width="2.5"/>
+          <g filter="url(#hcShadow)">
+            <rect x="18" y="352" width="348" height="76" rx="14" fill="#fffdf3" stroke="#d49b27" stroke-width="2.4"/>
+            <text x="192" y="381" text-anchor="middle" font-size="20.5" font-weight="800" fill="#7c4700">瓣膜（防止血液逆流）</text>
+            <text x="192" y="405" text-anchor="middle" font-size="15.5" fill="#6b5020">實線：房室瓣（房室間）</text>
+            <text x="192" y="423" text-anchor="middle" font-size="15.5" fill="#6b5020">虛線：半月瓣（心室與動脈間）</text>
+          </g>
+          <polyline points="366,510 468,510 632,558" fill="none" stroke="#365c96" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="632" cy="558" r="7" fill="#365c96" stroke="#fff" stroke-width="2.5"/>
+          <g filter="url(#hcShadow)">
+            <rect x="18" y="476" width="348" height="66" rx="14" fill="#eef4fc" stroke="#4a6fb0" stroke-width="2.2"/>
+            <text x="192" y="505" text-anchor="middle" font-size="21" font-weight="800" fill="#1e447d">右心室（肺循環起點）</text>
+            <text x="192" y="530" text-anchor="middle" font-size="16" fill="#3a5687">管壁較薄・送缺氧血進肺動脈</text>
+          </g>
+          <line x1="366" y1="620" x2="546" y2="630" stroke="#365c96" stroke-width="3"/>
+          <circle cx="546" cy="630" r="7" fill="#365c96" stroke="#fff" stroke-width="2.5"/>
+          <g filter="url(#hcShadow)">
+            <rect x="18" y="586" width="348" height="66" rx="14" fill="#eef4fc" stroke="#4a6fb0" stroke-width="2.2"/>
+            <text x="192" y="615" text-anchor="middle" font-size="21" font-weight="800" fill="#1e447d">下大靜脈</text>
+            <text x="192" y="640" text-anchor="middle" font-size="16" fill="#3a5687">回收腹部、小腸與下肢缺氧血</text>
+          </g>
+        </g>
+        <g class="anno anno-right">
+          <polyline points="1004,200 894,200 832,220" fill="none" stroke="#365c96" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="832" cy="220" r="7" fill="#365c96" stroke="#fff" stroke-width="2.5"/>
+          <g filter="url(#hcShadow)">
+            <rect x="1004" y="166" width="354" height="66" rx="14" fill="#eef4fc" stroke="#4a6fb0" stroke-width="2.4"/>
+            <text x="1181" y="195" text-anchor="middle" font-size="20.5" font-weight="800" fill="#1e447d">肺動脈（含缺氧血！）</text>
+            <text x="1181" y="220" text-anchor="middle" font-size="15.5" fill="#3a5687">自右心室往肺・名為動脈卻缺氧</text>
+          </g>
+        </g>
+        <g class="anno anno-left">
+          <g filter="url(#hcShadow)">
+            <rect x="988" y="16" width="370" height="42" rx="21" fill="#fdf0f0" stroke="#b8404c" stroke-width="2.2"/>
+            <text x="1173" y="44" text-anchor="middle" font-size="19.5" font-weight="800" fill="#8f2431">圖的右側 ＝ 心臟的左側（充氧血）</text>
+          </g>
+          <polyline points="1004,109 856,109 736,144" fill="none" stroke="#b8404c" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="736" cy="144" r="7" fill="#b8404c" stroke="#fff" stroke-width="2.5"/>
+          <g filter="url(#hcShadow)">
+            <rect x="1004" y="76" width="354" height="66" rx="14" fill="#fdf2f2" stroke="#b8404c" stroke-width="2.2"/>
+            <text x="1181" y="105" text-anchor="middle" font-size="21" font-weight="800" fill="#8f2431">主動脈（最粗動脈）</text>
+            <text x="1181" y="130" text-anchor="middle" font-size="15.5" fill="#7a3a42">送充氧血往全身・動脈導管逆流路</text>
+          </g>
+          <line x1="1004" y1="288" x2="876" y2="285" stroke="#b8404c" stroke-width="3"/>
+          <circle cx="876" cy="285" r="7" fill="#b8404c" stroke="#fff" stroke-width="2.5"/>
+          <g filter="url(#hcShadow)">
+            <rect x="1004" y="256" width="354" height="66" rx="14" fill="#fdf2f2" stroke="#b8404c" stroke-width="2.4"/>
+            <text x="1181" y="285" text-anchor="middle" font-size="20.5" font-weight="800" fill="#8f2431">肺靜脈（含充氧血！）</text>
+            <text x="1181" y="310" text-anchor="middle" font-size="15.5" fill="#7a3a42">自肺回左心房・名為靜脈卻充氧</text>
+          </g>
+          <polyline points="1004,377 916,377 792,362" fill="none" stroke="#b8404c" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="792" cy="362" r="7" fill="#b8404c" stroke="#fff" stroke-width="2.5"/>
+          <g filter="url(#hcShadow)">
+            <rect x="1004" y="346" width="354" height="62" rx="14" fill="#fdf2f2" stroke="#b8404c" stroke-width="2.2"/>
+            <text x="1181" y="373" text-anchor="middle" font-size="20.5" font-weight="800" fill="#8f2431">左心房（肺循環終點）</text>
+            <text x="1181" y="397" text-anchor="middle" font-size="15.5" fill="#7a3a42">接收肺靜脈流回的鮮紅充氧血</text>
+          </g>
+          <polyline points="1004,466 908,466 792,496" fill="none" stroke="#b8404c" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="792" cy="496" r="7" fill="#b8404c" stroke="#fff" stroke-width="2.5"/>
+          <g filter="url(#hcShadow)">
+            <rect x="1004" y="432" width="354" height="66" rx="14" fill="#fdf2f2" stroke="#b8404c" stroke-width="2.2"/>
+            <text x="1181" y="461" text-anchor="middle" font-size="21" font-weight="800" fill="#8f2431">左心室（體循環起點）</text>
+            <text x="1181" y="486" text-anchor="middle" font-size="15.5" fill="#7a3a42">手腕橈動脈心導管逆流最先進入</text>
+          </g>
+          <line x1="1004" y1="556" x2="872" y2="558" stroke="#c85a28" stroke-width="3"/>
+          <circle cx="872" cy="558" r="7" fill="#c85a28" stroke="#fff" stroke-width="2.5"/>
+          <g filter="url(#hcShadow)">
+            <rect x="1004" y="522" width="354" height="66" rx="14" fill="#fff5eb" stroke="#c85a28" stroke-width="2.4"/>
+            <text x="1181" y="551" text-anchor="middle" font-size="20" font-weight="800" fill="#9a3a10">左心室管壁最厚（約右室 3 倍）</text>
+            <text x="1181" y="576" text-anchor="middle" font-size="15.5" fill="#7c4a2d">收縮力最強・才能把血推向全身</text>
+          </g>
+          <polyline points="1004,645 936,645 894,624" fill="none" stroke="#c81e2b" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="894" cy="624" r="7" fill="#c81e2b" stroke="#fff" stroke-width="2.5"/>
+          <g filter="url(#hcShadow)">
+            <rect x="1004" y="612" width="354" height="66" rx="14" fill="#fdf2f2" stroke="#c81e2b" stroke-width="2.4"/>
+            <text x="1181" y="641" text-anchor="middle" font-size="20.5" font-weight="800" fill="#991420">冠狀動脈（供應心肌）</text>
+            <text x="1181" y="666" text-anchor="middle" font-size="15.5" fill="#7a3a42">主動脈基部分支・供心肌氧氣養分</text>
+          </g>
+        </g>
+        <g class="anno">
+          <g filter="url(#hcShadow)">
+            <rect x="18" y="678" width="416" height="72" rx="14" fill="#efe9f6" stroke="#6a4c93" stroke-width="2.2"/>
+            <text x="226" y="707" text-anchor="middle" font-size="18.5" font-weight="800" fill="#503575">面對面看心臟・必背口訣</text>
+            <text x="226" y="734" text-anchor="middle" font-size="15.5" fill="#3a2854">房接靜脈、室接動脈；左右有中膈完全隔開</text>
+          </g>
+          <g filter="url(#hcShadow)">
+            <rect x="960" y="696" width="398" height="54" rx="14" fill="#fffdf3" stroke="#d49b27" stroke-width="2"/>
+            <text x="1159" y="729" text-anchor="middle" font-size="16" font-weight="800" fill="#7c4700">★ 心腔內的血不直接養心肌，須靠冠狀動脈！</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="tool">
+    <div class="hchead">
+      <h3>一次心跳（0.8 秒）為什麼有「噗—通」兩個心音？看懂瓣膜開閉</h3>
+      <div class="bar" id="hsTabs">
+        <button class="btn on" type="button" data-st="0">① 全心舒張（0.4秒）</button>
+        <button class="btn" type="button" data-st="1">② 心房收縮（0.1秒）</button>
+        <button class="btn warm" type="button" data-st="2">③ 心室收縮（0.3秒）➔「噗！」</button>
+        <button class="btn warm" type="button" data-st="3">④ 心室剛舒張 ➔「通！」</button>
+        <button class="btn cool" id="hsPlay" type="button">▶ 連續慢動作播放</button>
+      </div>
+    </div>
+    <p class="note">心音不是心臟撞胸口、也不是瓣膜打開，而是<b>血液試圖逆流時撞擊「關閉」的瓣膜</b>發出的聲音！依序切換下方四步驟，對照 0.8 秒週期圓盤觀察房室瓣（含腱索）與半月瓣的真實開閉時序。</p>
+    <div class="hsgrid">
+      <div class="hsstage">
+        <svg id="hsSvg" class="st-0" viewBox="20 18 520 492" role="img" aria-label="多圖層擬真解剖心臟剖面：呈現四步驟心動週期之房室瓣與半月瓣開閉及前後血管血流方向" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="hsSh" x="-15%" y="-15%" width="130%" height="130%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#1f2a24" flood-opacity="0.18"/></filter>
+            <marker id="hsFaB" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#1d4ed8"/></marker>
+            <marker id="hsFaR" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#dc2626"/></marker>
+            <linearGradient id="hsGMyo" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#f2baa7"/><stop offset="55%" stop-color="#e59c87"/><stop offset="100%" stop-color="#d4816c"/></linearGradient>
+            <linearGradient id="hsGBlueV" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6d8cb8"/><stop offset="50%" stop-color="#90aed6"/><stop offset="100%" stop-color="#6483b0"/></linearGradient>
+            <linearGradient id="hsGBlueC" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9eb7d4"/><stop offset="100%" stop-color="#7693b8"/></linearGradient>
+            <linearGradient id="hsGRedV" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d95c50"/><stop offset="48%" stop-color="#f28474"/><stop offset="100%" stop-color="#cc5046"/></linearGradient>
+            <linearGradient id="hsGRedC" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f48b7a"/><stop offset="100%" stop-color="#d96154"/></linearGradient>
+            <linearGradient id="hsGIvory" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fffdf4"/><stop offset="100%" stop-color="#efe3c2"/></linearGradient>
+          </defs>
+          <rect x="20" y="18" width="520" height="492" fill="#f7f1e5"/>
+          <path d="M154,358 V452 C154,462 194,462 194,452 V382 Z" fill="url(#hsGBlueV)" stroke="#3d2f28" stroke-width="2.4"/>
+          <path d="M152,98 V204 H196 V98 Z" fill="url(#hsGBlueV)" stroke="#3d2f28" stroke-width="2.4"/>
+          <ellipse cx="174" cy="98" rx="22" ry="6.5" fill="#7d9cc4" stroke="#3d2f28" stroke-width="2.2"/>
+          <path d="M368,186 L432,172 L438,196 L376,210 Z" fill="url(#hsGRedV)" stroke="#3d2f28" stroke-width="2.3"/>
+          <ellipse cx="435" cy="184" rx="5.5" ry="12" fill="#c94f45" stroke="#3d2f28" stroke-width="2"/>
+          <path d="M376,222 L440,226 L438,250 L374,246 Z" fill="url(#hsGRedV)" stroke="#3d2f28" stroke-width="2.3"/>
+          <ellipse cx="439" cy="238" rx="5.5" ry="12" fill="#c94f45" stroke="#3d2f28" stroke-width="2"/>
+          <path d="M264,454 V490 C264,499 298,499 298,490 V458 Z" fill="url(#hsGRedV)" stroke="#3d2f28" stroke-width="2.3"/>
+          <path d="M266,248 C252,190 236,144 252,102 C264,70 306,60 334,74 C362,88 370,126 364,180 L328,176 C332,136 326,114 312,108 C298,102 284,112 282,130 C278,162 296,204 314,242 Z" fill="url(#hsGRedV)" stroke="#3d2f28" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M262,86 L252,52 L270,48 L279,78 Z" fill="url(#hsGRedV)" stroke="#3d2f28" stroke-width="2.2"/>
+          <ellipse cx="261" cy="50" rx="9" ry="4" fill="#c94f45" stroke="#3d2f28" stroke-width="1.8"/>
+          <path d="M291,72 L292,40 L310,40 L309,72 Z" fill="url(#hsGRedV)" stroke="#3d2f28" stroke-width="2.2"/>
+          <ellipse cx="301" cy="40" rx="9" ry="4" fill="#c94f45" stroke="#3d2f28" stroke-width="1.8"/>
+          <path d="M322,76 L334,46 L351,53 L337,84 Z" fill="url(#hsGRedV)" stroke="#3d2f28" stroke-width="2.2"/>
+          <ellipse cx="342" cy="49" rx="9" ry="4" fill="#c94f45" stroke="#3d2f28" stroke-width="1.8"/>
+          <g class="stage-layer layer-2" pointer-events="none">
+            <path d="M342,356 Q312,306 296,252 Q266,184 268,128 Q272,88 318,90 Q348,92 348,144" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".68"/>
+            <path class="flow-fast" d="M342,356 Q312,306 296,252 Q266,184 268,128 Q272,88 318,90 Q348,92 348,144" fill="none" stroke="#dc2626" stroke-width="5.2" stroke-linecap="round" marker-end="url(#hsFaR)"/>
+          </g>
+          <g class="stage-layer layer-3" pointer-events="none">
+            <path d="M270,136 Q272,194 294,242" fill="none" stroke="#fff" stroke-width="8.5" stroke-linecap="round" opacity=".7"/>
+            <path class="flow-fast" d="M270,136 Q272,194 294,242" fill="none" stroke="#dc2626" stroke-width="5" stroke-linecap="round" marker-end="url(#hsFaR)"/>
+          </g>
+          <path d="M174,186 C132,208 122,292 152,364 C184,438 278,480 344,468 C406,456 432,374 416,282 C408,228 386,184 348,176 C318,170 292,188 282,216 C254,200 212,174 174,186 Z" fill="url(#hsGMyo)" stroke="#3d2f28" stroke-width="2.8" stroke-linejoin="round"/>
+          <path d="M408,332 C416,386 404,440 352,462 C324,472 292,464 264,452" fill="none" stroke="#c81e2b" stroke-width="3.6" stroke-linecap="round"/>
+          <path d="M398,412 C384,436 364,450 338,458" fill="none" stroke="#c81e2b" stroke-width="2.2" stroke-linecap="round"/>
+          <path class="ch-atria" d="M168,196 C140,214 136,262 156,288 L228,268 C236,238 224,200 198,194 C186,191 176,192 168,196 Z" fill="url(#hsGBlueC)" stroke="#3d2f28" stroke-width="2.2"/>
+          <path class="ch-vent" d="M158,292 L228,272 L274,272 C276,326 286,382 302,424 C258,434 196,404 168,354 C156,332 154,310 158,292 Z" fill="url(#hsGBlueC)" stroke="#3d2f28" stroke-width="2.2"/>
+          <path class="ch-atria" d="M342,188 C374,192 396,228 388,274 L310,268 C298,236 308,192 342,188 Z" fill="url(#hsGRedC)" stroke="#3d2f28" stroke-width="2.2"/>
+          <path class="ch-vent" d="M312,272 L384,278 C392,324 382,386 356,416 C340,432 326,420 314,386 C298,342 290,300 284,262 L314,236 Z" fill="url(#hsGRedC)" stroke="#3d2f28" stroke-width="2.2"/>
+          <g class="stage-layer layer-0" pointer-events="none">
+            <path d="M174,114 V224 Q190,278 214,332 Q228,366 250,386" fill="none" stroke="#fff" stroke-width="8.5" stroke-linecap="round" opacity=".6"/>
+            <path class="flow-slow" d="M174,114 V224 Q190,278 214,332 Q228,366 250,386" fill="none" stroke="#1d4ed8" stroke-width="5" stroke-linecap="round" marker-end="url(#hsFaB)"/>
+            <path d="M430,184 L366,204 Q350,242 350,334 Q350,368 344,390" fill="none" stroke="#fff" stroke-width="8.5" stroke-linecap="round" opacity=".6"/>
+            <path class="flow-slow" d="M430,184 L366,204 Q350,242 350,334 Q350,368 344,390" fill="none" stroke="#dc2626" stroke-width="5" stroke-linecap="round" marker-end="url(#hsFaR)"/>
+          </g>
+          <g class="stage-layer layer-1" pointer-events="none">
+            <path d="M182,226 Q192,278 214,332 Q228,366 250,386" fill="none" stroke="#fff" stroke-width="9.5" stroke-linecap="round" opacity=".68"/>
+            <path class="flow-fast" d="M182,226 Q192,278 214,332 Q228,366 250,386" fill="none" stroke="#1d4ed8" stroke-width="5.6" stroke-linecap="round" marker-end="url(#hsFaB)"/>
+            <path d="M350,218 Q350,278 350,334 Q350,368 344,390" fill="none" stroke="#fff" stroke-width="9.5" stroke-linecap="round" opacity=".68"/>
+            <path class="flow-fast" d="M350,218 Q350,278 350,334 Q350,368 344,390" fill="none" stroke="#dc2626" stroke-width="5.6" stroke-linecap="round" marker-end="url(#hsFaR)"/>
+            <path d="M150,236 L164,242 M380,224 L366,230" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".85"/>
+          </g>
+          <g class="stage-layer layer-2" pointer-events="none">
+            <path class="flow-slow" d="M174,114 V224" fill="none" stroke="#1d4ed8" stroke-width="4.4" stroke-linecap="round" marker-end="url(#hsFaB)"/>
+            <path class="flow-slow" d="M430,184 L366,204" fill="none" stroke="#dc2626" stroke-width="4.4" stroke-linecap="round" marker-end="url(#hsFaR)"/>
+            <path d="M174,344 L190,336 M208,382 L222,368 M378,344 L362,338 M366,388 L350,376" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".8"/>
+          </g>
+          <g class="stage-layer layer-3" pointer-events="none">
+            <path class="flow-slow" d="M174,114 V224" fill="none" stroke="#1d4ed8" stroke-width="4.4" stroke-linecap="round" marker-end="url(#hsFaB)"/>
+            <path class="flow-slow" d="M430,184 L366,204" fill="none" stroke="#dc2626" stroke-width="4.4" stroke-linecap="round" marker-end="url(#hsFaR)"/>
+          </g>
+          <g class="chord" stroke="#f5ebd1" stroke-width="1.5" pointer-events="none">
+            <line x1="194" y1="280" x2="184" y2="348"/><line x1="198" y1="280" x2="218" y2="358"/>
+            <line x1="346" y1="274" x2="326" y2="354"/><line x1="352" y1="274" x2="368" y2="352"/>
+          </g>
+          <g stroke="#3d2f28" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" fill="url(#hsGIvory)">
+            <path class="vleaf v-av v-ra-l" d="M158,286 Q176,272 195,277 Q182,292 158,294 Z"/>
+            <path class="vleaf v-av v-ra-r" d="M226,268 Q210,274 195,277 Q210,286 228,276 Z"/>
+            <path class="vleaf v-av v-la-l" d="M312,268 Q330,262 349,271 Q330,282 312,276 Z"/>
+            <path class="vleaf v-av v-la-r" d="M386,274 Q368,264 349,271 Q368,284 386,282 Z"/>
+            <path class="vleaf v-sl v-ao-l" d="M282,262 Q296,262 299,246 Q289,254 278,252 Z"/>
+            <path class="vleaf v-sl v-ao-r" d="M314,236 Q314,250 299,246 Q306,238 306,228 Z"/>
+          </g>
+          <path d="M234,142 L134,160 L138,184 L236,168 Z" fill="url(#hsGBlueV)" stroke="#3d2f28" stroke-width="2.4"/>
+          <ellipse cx="136" cy="172" rx="5.5" ry="12" fill="#5e7da8" stroke="#3d2f28" stroke-width="2"/>
+          <path d="M226,270 C228,218 242,174 264,142 C276,126 306,122 396,122 L396,154 C324,154 300,158 292,172 C278,198 274,230 274,270 Z" fill="url(#hsGBlueV)" stroke="#3d2f28" stroke-width="2.5" stroke-linejoin="round"/>
+          <ellipse cx="396" cy="138" rx="6.5" ry="16" fill="#5e7da8" stroke="#3d2f28" stroke-width="2.2"/>
+          <path d="M228,270 C229,246 238,226 252,226 C266,226 273,246 273,270" fill="#7795ba" stroke="#3d2f28" stroke-width="2.2"/>
+          <g class="stage-layer layer-2" pointer-events="none">
+            <path d="M242,366 Q248,314 251,260 Q258,190 282,150 Q306,138 386,138" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".68"/>
+            <path class="flow-fast" d="M242,366 Q248,314 251,260 Q258,190 282,150 Q306,138 386,138" fill="none" stroke="#1d4ed8" stroke-width="5.2" stroke-linecap="round" marker-end="url(#hsFaB)"/>
+          </g>
+          <g class="stage-layer layer-3" pointer-events="none">
+            <path d="M276,178 Q258,214 251,250" fill="none" stroke="#fff" stroke-width="8.5" stroke-linecap="round" opacity=".7"/>
+            <path class="flow-fast" d="M276,178 Q258,214 251,250" fill="none" stroke="#1d4ed8" stroke-width="5" stroke-linecap="round" marker-end="url(#hsFaB)"/>
+          </g>
+          <g stroke="#3d2f28" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round" fill="url(#hsGIvory)">
+            <path class="vleaf v-sl v-pa-l" d="M229,262 Q240,275 251,260 Q239,265 230,250 Z"/>
+            <path class="vleaf v-sl v-pa-r" d="M273,264 Q262,276 251,260 Q263,266 272,252 Z"/>
+          </g>
+          <g font-size="12" font-weight="800" text-anchor="middle" pointer-events="none" opacity=".75">
+            <text x="180" y="242" fill="#173257">右心房</text>
+            <text x="216" y="388" fill="#173257">右心室</text>
+            <text x="348" y="232" fill="#63171f">左心房</text>
+            <text x="348" y="378" fill="#63171f">左心室</text>
+          </g>
+          <g class="stage-layer layer-0" pointer-events="none">
+            <g filter="url(#hsSh)"><rect x="24" y="264" width="114" height="34" rx="17" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="81" y="286" text-anchor="middle" font-size="13" font-weight="800" fill="#166534">房室瓣已打開</text></g>
+            <line x1="138" y1="281" x2="156" y2="286" stroke="#16a34a" stroke-width="2.2"/>
+            <g filter="url(#hsSh)"><rect x="406" y="264" width="126" height="44" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="469" y="283" text-anchor="middle" font-size="12.5" font-weight="800" fill="#166534">靜脈➔心房➔心室</text><text x="469" y="300" text-anchor="middle" font-size="11" fill="#166534">約 80% 血液自然流入</text></g>
+            <g filter="url(#hsSh)"><rect x="26" y="54" width="136" height="34" rx="17" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/><text x="94" y="76" text-anchor="middle" font-size="13" font-weight="800" fill="#334155">半月瓣維持關閉</text></g>
+            <polyline points="162,71 216,71 246,252" fill="none" stroke="#64748b" stroke-width="1.8" stroke-dasharray="4 3"/>
+          </g>
+          <g class="stage-layer layer-1" pointer-events="none">
+            <g filter="url(#hsSh)"><rect x="24" y="256" width="116" height="44" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="82" y="275" text-anchor="middle" font-size="13" font-weight="800" fill="#166534">房室瓣仍打開</text><text x="82" y="292" text-anchor="middle" font-size="11" fill="#166534">擠入剩餘約 20%</text></g>
+            <line x1="140" y1="278" x2="156" y2="286" stroke="#16a34a" stroke-width="2.2"/>
+            <g filter="url(#hsSh)"><rect x="412" y="260" width="118" height="34" rx="17" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="471" y="282" text-anchor="middle" font-size="13" font-weight="800" fill="#166534">心房 ➔ 心室</text></g>
+            <line x1="412" y1="277" x2="390" y2="276" stroke="#16a34a" stroke-width="2.2"/>
+            <g filter="url(#hsSh)"><rect x="26" y="54" width="136" height="34" rx="17" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/><text x="94" y="76" text-anchor="middle" font-size="13" font-weight="800" fill="#334155">半月瓣維持關閉</text></g>
+            <polyline points="162,71 216,71 246,252" fill="none" stroke="#64748b" stroke-width="1.8" stroke-dasharray="4 3"/>
+          </g>
+          <g class="stage-layer layer-2" pointer-events="none">
+            <circle class="wave-ring" cx="195" cy="278" r="22" fill="none" stroke="#f59e0b" stroke-width="3.6"/>
+            <circle class="wave-ring-2" cx="195" cy="278" r="22" fill="none" stroke="#d97706" stroke-width="2.8"/>
+            <circle class="wave-ring" cx="349" cy="272" r="22" fill="none" stroke="#f59e0b" stroke-width="3.6"/>
+            <circle class="wave-ring-2" cx="349" cy="272" r="22" fill="none" stroke="#d97706" stroke-width="2.8"/>
+            <g filter="url(#hsSh)"><rect x="24" y="256" width="116" height="46" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2.2"/><text x="82" y="276" text-anchor="middle" font-size="15" font-weight="900" fill="#92400e">噗！(第一心音)</text><text x="82" y="294" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b45309">房室瓣用力關閉</text></g>
+            <line x1="140" y1="278" x2="180" y2="278" stroke="#b45309" stroke-width="2.4"/>
+            <g filter="url(#hsSh)"><rect x="416" y="254" width="116" height="46" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2.2"/><text x="474" y="274" text-anchor="middle" font-size="15" font-weight="900" fill="#92400e">噗！(第一心音)</text><text x="474" y="292" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b45309">房室瓣用力關閉</text></g>
+            <line x1="416" y1="276" x2="366" y2="274" stroke="#b45309" stroke-width="2.4"/>
+            <g filter="url(#hsSh)"><rect x="378" y="60" width="152" height="34" rx="17" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/><text x="454" y="82" text-anchor="middle" font-size="13.5" font-weight="800" fill="#166534">半月瓣衝開 ➔ 射血！</text></g>
+          </g>
+          <g class="stage-layer layer-3" pointer-events="none">
+            <circle class="wave-ring" cx="251" cy="260" r="20" fill="none" stroke="#f59e0b" stroke-width="3.6"/>
+            <circle class="wave-ring-2" cx="251" cy="260" r="20" fill="none" stroke="#d97706" stroke-width="2.8"/>
+            <circle class="wave-ring" cx="299" cy="246" r="19" fill="none" stroke="#f59e0b" stroke-width="3.6"/>
+            <circle class="wave-ring-2" cx="299" cy="246" r="19" fill="none" stroke="#d97706" stroke-width="2.8"/>
+            <g filter="url(#hsSh)"><rect x="24" y="40" width="146" height="48" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2.2"/><text x="97" y="61" text-anchor="middle" font-size="15" font-weight="900" fill="#92400e">通！(第二心音)</text><text x="97" y="79" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b45309">動脈血回沖關半月瓣</text></g>
+            <polyline points="170,64 218,64 246,248" fill="none" stroke="#b45309" stroke-width="2.4" stroke-linejoin="round"/>
+            <polyline points="218,64 292,236" fill="none" stroke="#b45309" stroke-width="2" stroke-dasharray="5 3"/>
+            <g filter="url(#hsSh)"><rect x="404" y="294" width="128" height="44" rx="12" fill="#f1f5f9" stroke="#64748b" stroke-width="1.8"/><text x="468" y="313" text-anchor="middle" font-size="12.5" font-weight="800" fill="#334155">房室瓣暫時仍關</text><text x="468" y="330" text-anchor="middle" font-size="11" fill="#475569">隨即打開回到①</text></g>
+            <line x1="404" y1="308" x2="366" y2="282" stroke="#64748b" stroke-width="1.8" stroke-dasharray="4 3"/>
+          </g>
+        </svg>
+      </div>
+      <div class="hsright">
+        <div class="hsinfo" id="hsInfo"></div>
+        <div class="hsbot">
+          <div class="hswave">
+            <svg id="hsDial" viewBox="0 0 156 112" role="img" aria-label="一次心跳 0.8 秒週期圓盤：全心舒張 0.4 秒、心房收縮 0.1 秒、心室收縮 0.3 秒"></svg>
+          </div>
+          <div class="hswave">
+            <svg id="hsWave" viewBox="0 0 260 92" role="img" aria-label="聽診器心音聲波：第一心音噗與第二心音通"></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tscroll" style="margin-top:10px">
+    <table class="t">
+      <tr><th>步驟（1 心跳 0.8 秒）</th><th>心房／心室</th><th>房室瓣（房室間）</th><th>半月瓣（心室與動脈間）</th><th>血液流向與心音重點</th></tr>
+      <tr><th>① 全心舒張（0.4 秒）</th><td>心房舒張、心室舒張</td><td><b>已打開</b></td><td>關閉</td><td><b>靜脈 → 心房 → 心室</b>（約 80% 血自然流入；佔一半時間休息）</td></tr>
+      <tr><th>② 心房收縮（0.1 秒）</th><td><b>心房收縮</b>、心室舒張</td><td><b>維持打開</b></td><td>關閉</td><td><b>心房 → 心室</b>（擠入剩餘約 20% 血液；無明顯心音）</td></tr>
+      <tr><th>③ 心室收縮（0.3 秒）</th><td>心房舒張、<b>心室收縮</b></td><td><b>碰！用力關閉</b></td><td><b>衝開</b></td><td><b>第一心音「噗」</b>！<b>心室 → 動脈</b>（摸到脈搏），同時<b>靜脈 → 心房</b></td></tr>
+      <tr><th>④ 心室剛舒張（交界）</th><td>心房舒張、<b>心室剛舒張</b></td><td>暫時仍閉（隨即打開）</td><td><b>叩！迅速關閉</b></td><td><b>第二心音「通」</b>！動脈血回沖關半月瓣，隨即回到 ① 全心舒張</td></tr>
+    </table>
+    </div>
+    <p class="mnemo" style="margin-top:8px">室收「噗」（房室瓣關）、室舒「通」（半月瓣關）— 順血流先關房室、再關半月！</p>
+  </div>
+
+  <div class="tool">
+    <div class="hchead">
+      <h3>考前必背圖解：血液流經四大器官微血管後的成分變化</h3>
+      <div class="bar" id="oxTabs">
+        <button class="btn on" type="button" data-ox="lung">① 肺部（氧氣補給站）</button>
+        <button class="btn" type="button" data-ox="gut">② 飯後小腸（養分進貨站）</button>
+        <button class="btn" type="button" data-ox="muscle">③ 肌肉／腦（耗能客戶端）</button>
+        <button class="btn" type="button" data-ox="kidney">④ 腎臟（血液淨水廠）</button>
+      </div>
+    </div>
+    <p class="note">把血液想成一輛<b>快遞貨車</b>，開進微血管裝卸貨後再開出來，比較「流入前」vs「流出後」車上物質變多或變少。<b>黃金原則：只有「肺」是來補氧氣（O₂ ↑），其他所有器官細胞都要呼吸，流出後 O₂ 都是 ↓！</b></p>
+    <div class="oxstage">
+      <svg id="oxSvg" viewBox="0 0 680 286" role="img" aria-label="血液流經四大器官微血管前後之物質交換與成分變化互動示意圖"></svg>
+    </div>
+    <div class="out" id="oxNote" style="margin-bottom:10px"></div>
+    <div class="tscroll">
+    <table class="t">
+      <tr><th>流經微血管（快遞站角色）</th><th>流出後 O₂</th><th>流出後 CO₂</th><th>流出後其他關鍵變化與記憶點</th></tr>
+      <tr><th>① 肺部微血管（氧氣補給站）</th><td><b>增加（↑）</b></td><td><b>減少（↓）</b></td><td>缺氧血 → 充氧血（肺動脈進、肺靜脈出；唯一 O₂ ↑ 的器官）</td></tr>
+      <tr><th>② 飯後小腸絨毛（養分進貨站）</th><td>減少（↓）</td><td>增加（↑）</td><td><b>葡萄糖、胺基酸等養分大幅增加（↑）</b>；回心先入右心房</td></tr>
+      <tr><th>③ 肌肉／腦部組織（耗能客戶端）</th><td>減少（↓）</td><td>增加（↑）</td><td>養分減少（↓）、代謝廢物增加（↑）；充氧血 → 缺氧血</td></tr>
+      <tr><th>④ 腎臟微血管（血液淨水廠）</th><td>減少（↓）</td><td>增加（↑）</td><td><b>尿素等含氮廢物大幅減少（↓）</b>（過濾成尿液排出，腎靜脈尿素最少）</td></tr>
+    </table>
+    </div>
+  </div>
+
   <div class="warn">
     <b>易錯陷阱</b>
     <ul>
-      <li>心房接靜脈、心室接動脈；「主動脈和心房相連」是錯的。</li>
-      <li>從手臂打點滴：藥物 → 大靜脈 → 右心房 → 右心室 → 肺動脈 → 肺 → 肺靜脈 → 左心房 → 左心室 → 主動脈 → 全身。<b>要先經過肺循環</b>！</li>
-      <li>小腸吸收的養分也是經由靜脈回到心臟，<b>先進入右心房</b>。</li>
+      <li><b>114 段考熱門對照（順流點滴 vs 逆流心導管）</b>：
+        <ul>
+          <li>從<b>手臂靜脈打點滴</b>：藥物順著靜脈血 → 大靜脈 → <b>最先進入右心房</b> → 必須<b>先經過肺循環</b> → 再從左心室送到全身。</li>
+          <li>從<b>手腕橈動脈做心導管手術</b>：導管是沿著動脈<b>逆流而上</b> → 主動脈 → <b>最先進入左心室</b>（或直接抵達主動脈基部的冠狀動脈），<b>不會</b>先進右心房！</li>
+        </ul>
+      </li>
+      <li><b>冠狀動脈</b>從主動脈基部分支供應心肌；心臟腔室裡的血液不能直接拿來養心肌。</li>
+      <li><b>心音是瓣膜「關閉」的聲音</b>，不是瓣膜打開的聲音：心室收縮關房室瓣發「<b>噗</b>」、心室舒張關半月瓣發「<b>通</b>」，合起來才算 1 次心跳。</li>
+      <li>心房接靜脈、心室接動脈；「主動脈和心房相連」或「心房與靜脈間有瓣膜」都是錯的。</li>
+      <li>小腸吸收的養分經靜脈回心臟，也是<b>最先進入右心房</b>。</li>
       <li>心臟圖是<b>面對面</b>看：圖的左邊是心臟的右邊。</li>
     </ul>
   </div>
@@ -191,27 +838,58 @@
   <h2>四、淋巴系統<span class="star">★★ 常考</span></h2>
   <div class="key">
     <ul>
-      <li>血液流經微血管時，一部分<b>血漿滲出</b>到細胞之間，成為<b>組織液</b>。細胞從組織液得到養分和氧氣，也把廢物排進組織液。</li>
-      <li>大部分組織液回到微血管；一部分進入<b>淋巴管</b>，就叫做<b>淋巴</b>。所以組織液和淋巴的成分最相似。</li>
-      <li>淋巴系統：淋巴、淋巴管、<b>淋巴結</b>。淋巴管<b>末端封閉</b>，有瓣膜，淋巴只往一個方向流，靠肌肉收縮推動，最後流入<b>靠近心臟的靜脈</b>，所以淋巴進入心臟時，最先到<b>右心房</b>。</li>
-      <li>淋巴中有<b>白血球</b>（主要是淋巴球），<b>沒有紅血球</b>。</li>
-      <li>淋巴結在頸部、腋下、鼠蹊部等地方，能<b>過濾病原體</b>；感染時可能腫大。</li>
-      <li>功能：① 回收組織液（從微血管滲出的血漿）送回血液 ② 防禦疾病。另外，小腸絨毛裡的淋巴管又叫<b>乳糜管</b>，可以吸收<b>脂溶性養分</b>。</li>
+      <li>血液流經微血管時，一部分<b>血漿</b>自微血管壁滲出到細胞之間，成為<b>組織液</b>。細胞從組織液獲得養分和氧氣，也把廢物排進組織液。</li>
+      <li>大部分組織液回到微血管；一部分進入<b>淋巴管</b>，就叫做<b>淋巴</b>。因此<b>組織液和淋巴的成分最相似</b>。</li>
+      <li>淋巴系統包含<b>淋巴、淋巴管、淋巴結</b>。淋巴管<b>末端封閉（盲端）</b>，內部有<b>瓣膜</b>，淋巴只能單向流動，靠周圍<b>肌肉收縮</b>推動（非心臟直接推動），最後匯入<b>靠近心臟的靜脈</b>，進入心臟時最先到達<b>右心房</b>。</li>
+      <li>淋巴中含有<b>白血球</b>（主要是淋巴球），<b>沒有紅血球、也沒有血小板</b>。</li>
+      <li><b>淋巴結</b>分布於頸部、腋下、鼠蹊部等處，內含大量白血球，能<b>過濾病原體</b>；身體發炎或感染時常會腫大。</li>
+      <li>功能：① 回收組織液送回血液循環（若淋巴管阻塞，組織液堆積會造成<b>水腫</b>） ② 防禦疾病。此外，小腸絨毛內的淋巴管又稱<b>乳糜管</b>，可吸收<b>脂溶性養分</b>。</li>
     </ul>
   </div>
+
   <div class="tool">
     <h3>組織液和淋巴：點點看</h3>
+    <div class="bar" id="lyMode">
+      <button class="btn on" data-m="learn">學習：點了看說明</button>
+      <button class="btn warm" data-m="test">測驗：找出指定構造</button>
+    </div>
     <div class="figwrap">
-      <svg id="lyGv" viewBox="0 0 440 260" role="img" aria-label="微血管、組織液、淋巴管與淋巴結的關係示意圖"></svg>
-      <div class="figout" id="lyOut"></div>
+      <svg id="lyGv" viewBox="0 0 600 356" role="img" aria-label="寫實水彩風微血管、組織液、立體組織細胞、盲端淋巴管、剖面淋巴結與匯入靜脈示意圖"></svg>
+      <div>
+        <div class="figout" id="lyOut"></div>
+        <div class="card tight" style="margin-top:10px;padding:10px 12px;font-size:13.5px">
+          <b>看圖秒懂 3 件事：</b>
+          <ul style="margin:4px 0 0;padding-left:18px">
+            <li>紅血球都<b>留在微血管裡</b>，但白血球可變形穿出微血管壁。</li>
+            <li>血漿滲出成為<b>組織液</b>泡著細胞；多數回流微血管、少數進入<b>盲端淋巴管</b>。</li>
+            <li>淋巴經<b>淋巴結</b>過濾，最後匯入右側<b>靜脈</b>回到心臟（右心房）。</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="card tight">
+    <h3>四大液體比一比：血液・血漿・組織液・淋巴</h3>
+    <div class="tscroll">
+    <table class="t">
+      <tr><th>液體</th><th>所在位置</th><th>水／養分／廢物</th><th>紅血球・血小板</th><th>白血球</th></tr>
+      <tr><th>血液</th><td>血管、心臟內</td><td>有</td><td><b>有</b></td><td>有</td></tr>
+      <tr><th>血漿</th><td>血管內（血液去除血球）</td><td>有</td><td>無</td><td>無</td></tr>
+      <tr><th>組織液</th><td>組織細胞之間（血漿滲出）</td><td>有</td><td>無</td><td>少量（穿出微血管）</td></tr>
+      <tr><th>淋巴</th><td>淋巴管內（組織液流入）</td><td>有</td><td>無</td><td>有（淋巴球等）</td></tr>
+    </table>
+    </div>
+    <p class="small" style="margin-top:8px"><b>必考口訣</b>：成分最相似＝<b>組織液與淋巴</b>；與其他三者差異最大＝<b>血液</b>（只有完整的血液同時含紅血球與血小板）。</p>
+  </div>
+
   <div class="warn">
     <b>易錯陷阱</b>
     <ul>
-      <li>淋巴最後流入<b>靜脈</b>，不是動脈。</li>
+      <li><b>跌倒擦傷破皮</b>時，傷口表面滲出清澈或淡黃色的透明液體，那是<b>組織液</b>（不是淋巴，也不是膿）。</li>
+      <li>淋巴最後流入<b>靜脈</b>，不是動脈；進入心臟最先到達<b>右心房</b>。</li>
       <li>淋巴<b>沒有紅血球</b>；「淋巴中的紅血球比血液多」是錯的。</li>
-      <li>組織液是血漿滲出來形成的；紅血球留在血管裡，白血球可以穿出微血管。</li>
+      <li>組織液是由血漿滲出形成；紅血球無法穿過微血管壁，但<b>白血球</b>可以變形穿出微血管。</li>
     </ul>
   </div>
   </section>
@@ -219,7 +897,7 @@
   <!-- ================= 小測驗 ================= -->
   <section class="sec" id="s5">
   <h2>小測驗</h2>
-  <p class="note">每題只有一個正確答案，選了就會顯示解析（第一次選的答案才計分）。題目都是自編題，不是學校或出版社的考題。</p>
+  <p class="note">每題只有一個正確答案，選了就會顯示解析（第一次選的答案才計分）。題目皆依段考高頻考點自編（含 5 題實驗與圖表判讀題），非學校或出版社官方試題。</p>
   <div class="score"><span class="big" id="qzScore">0 / 0</span><span class="small" id="qzDone">已作答 0 題</span><button class="btn" id="qzReset">重新作答</button></div>
   <div class="chips" id="qzFlt">
     <button class="chip on" data-u="all">全部</button>
@@ -237,170 +915,439 @@
 (function(){
 'use strict';
 const $=B.$;
-const RED='#d9534f',BLUE='#5b7fc4';
+const RED='#d9534f',BLUE='#5b7fc4',NS='http://www.w3.org/2000/svg';
+
+function addLblBg(svg){
+  svg.querySelectorAll('text[data-lbl]').forEach(t=>{
+    const b=t.getBBox();
+    const w=b.width>0?b.width:t.textContent.length*13;
+    const h=b.height>0?b.height:15;
+    const x=b.width>0?b.x:+t.getAttribute('x')-(t.getAttribute('text-anchor')==='middle'?w/2:0);
+    const y=b.height>0?b.y:+t.getAttribute('y')-12;
+    const r=document.createElementNS(NS,'rect');
+    r.setAttribute('class','lblbg');
+    r.setAttribute('data-lbl',t.dataset.lbl);
+    r.setAttribute('x',(x-5).toFixed(1));
+    r.setAttribute('y',(y-2).toFixed(1));
+    r.setAttribute('width',(w+10).toFixed(1));
+    r.setAttribute('height',(h+4).toFixed(1));
+    r.setAttribute('rx','5');
+    t.parentNode.insertBefore(r,t);
+  });
+}
 
 /* ---------- 一、血液 ---------- */
 (function(){
   let g='<rect width="520" height="300" fill="#fbfaf6"/>';
-  g+='<text x="70" y="22" text-anchor="middle" font-size="13" fill="#4d5a52">離心後的血液</text>';
+  g+='<text x="86" y="22" text-anchor="middle" font-size="12.5" fill="#4d5a52">離心後的血液（加抗凝血劑）</text>';
   g+='<path d="M48 34 V240 a22 22 0 0 0 44 0 V34" fill="#fff" stroke="#8d8877" stroke-width="2"/>';
   g+='<path data-part="plasma" d="M50 60 V148 H90 V60Z" fill="#f2dc8a"/>';
-  g+='<path data-part="rbcL" d="M50 154 V240 a20 20 0 0 0 40 0 V154Z" fill="#b8352a"/>';
-  g+='<rect data-part="buffy" x="50" y="148" width="40" height="6" fill="#f3f1e4"/>';
-  g+='<text class="lbl s" x="98" y="104">血漿 約 55%</text><text class="lbl s" x="98" y="154">白血球、血小板</text><text class="lbl s" x="98" y="210">紅血球</text>';
+  g+='<path data-part="rbc" d="M50 154 V240 a20 20 0 0 0 40 0 V154Z" fill="#b8352a"/>';
+  g+='<g data-part="buffy"><rect x="50" y="148" width="40" height="6" fill="#f3f1e4" stroke="#d5cfc0" stroke-width=".6"/><rect x="46" y="143" width="48" height="16" fill="transparent"/></g>';
+  g+='<text class="lbl s" data-lbl="plasma" x="98" y="106">血漿 約 55%</text>';
+  g+='<text class="lbl s" data-lbl="buffy" x="98" y="154">白血球、血小板</text>';
+  g+='<text class="lbl s" data-lbl="rbc" x="98" y="210">紅血球 約 45%</text>';
   /* 三種血球放大 */
-  g+='<text x="350" y="22" text-anchor="middle" font-size="13" fill="#4d5a52">顯微鏡下的血球（示意）</text>';
+  g+='<text x="350" y="22" text-anchor="middle" font-size="12.5" fill="#4d5a52">顯微鏡下的血球（示意）</text>';
   const rbc=(x,y)=>'<g transform="translate('+x+','+y+')"><ellipse rx="22" ry="22" fill="#d9534f"/><ellipse rx="10" ry="10" fill="#e98580"/></g>';
-  g+='<g data-part="rbc">'+rbc(230,80)+rbc(285,70)+rbc(250,135)+rbc(320,125)+rbc(225,200)+rbc(300,190)+rbc(270,250)+'</g>';
-  g+='<g data-part="wbc"><circle cx="410" cy="110" r="38" fill="#ece6f5" stroke="#8b6fb3" stroke-width="2"/><path d="M392 100 q10 -14 22 -2 q14 -8 16 8 q-4 16 -18 10 q-12 10 -20 -4 q-8 -6 0 -12Z" fill="#7a55a8"/></g>';
-  g+='<g data-part="plt"><circle cx="380" cy="200" r="5" fill="#c99ad6"/><circle cx="395" cy="214" r="4" fill="#c99ad6"/><circle cx="420" cy="196" r="5" fill="#c99ad6"/><circle cx="440" cy="220" r="4" fill="#c99ad6"/><circle cx="410" cy="232" r="4.5" fill="#c99ad6"/></g>';
-  g+='<text class="lbl s" x="245" y="290">紅血球</text><text class="lbl s" x="385" y="165">白血球</text><text class="lbl s" x="385" y="260">血小板</text>';
-  $('blSvg').innerHTML=g;
+  g+='<g data-part="rbc"><rect x="198" y="42" width="148" height="232" rx="18" fill="transparent"/>'+rbc(230,80)+rbc(285,70)+rbc(250,135)+rbc(320,125)+rbc(225,200)+rbc(300,190)+rbc(270,250)+'</g>';
+  g+='<g data-part="wbc"><circle cx="420" cy="108" r="38" fill="#ece6f5" stroke="#8b6fb3" stroke-width="2"/><path d="M402 98 q10 -14 22 -2 q14 -8 16 8 q-4 16 -18 10 q-12 10 -20 -4 q-8 -6 0 -12Z" fill="#7a55a8"/></g>';
+  g+='<g data-part="plt"><rect x="366" y="182" width="96" height="66" rx="14" fill="transparent"/><circle cx="384" cy="200" r="5" fill="#c99ad6"/><circle cx="400" cy="214" r="4" fill="#c99ad6"/><circle cx="424" cy="196" r="5" fill="#c99ad6"/><circle cx="444" cy="220" r="4" fill="#c99ad6"/><circle cx="414" cy="232" r="4.5" fill="#c99ad6"/></g>';
+  g+='<text class="lbl s" data-lbl="rbc" x="272" y="290" text-anchor="middle">紅血球</text>';
+  g+='<text class="lbl s" data-lbl="wbc" x="420" y="164" text-anchor="middle">白血球</text>';
+  g+='<text class="lbl s" data-lbl="plt" x="414" y="264" text-anchor="middle">血小板</text>';
+  const svg=$('blSvg');
+  svg.innerHTML=g;
+  addLblBg(svg);
 })();
 const BL={
-  plasma:{n:'血漿',d:'淡黃色液體，約占血液一半以上，大部分是水。運送<b>養分、廢物、二氧化碳</b>和激素；抗體也在血漿中。'},
-  buffy:{n:'白血球和血小板（離心後的薄層）',d:'白血球和血小板數量少，離心後在血漿和紅血球之間形成一層薄薄的白色層。',skip:1},
-  rbcL:{n:'紅血球（離心後沉在下層）',d:'紅血球數量最多，離心後沉在最下面，顏色紅。',skip:1},
-  rbc:{n:'紅血球',d:'數量<b>最多</b>，圓盤狀、中間凹；成熟的紅血球<b>沒有細胞核</b>。含<b>血紅素</b>（含鐵），運送<b>氧氣</b>。血紅素太少會貧血。'},
-  wbc:{n:'白血球',d:'體積<b>最大</b>、數量最少、<b>有細胞核</b>。能穿出微血管，<b>吞噬病原體</b>，負責防禦。'},
-  plt:{n:'血小板',d:'體積<b>最小</b>，是細胞的碎片，沒有細胞核。受傷時幫助<b>血液凝固</b>、止血。'}
+  plasma:{n:'血漿',d:'淡黃色液體，約占血液 55%，約 90% 是水。運送<b>養分、廢物、二氧化碳</b>和激素；抗體也在血漿中。<span class="hot">不含消化酵素</span>。'},
+  buffy:{n:'白血球和血小板（離心後的薄層）',d:'白血球和血小板體積占比很小，離心後在血漿和紅血球之間形成一層薄薄的白色層。',skip:1},
+  rbc:{n:'紅血球',d:'數量<b>最多</b>（離心後沉在下層），雙凹圓盤狀以增加表面積；成熟的紅血球<b>沒有細胞核</b>。含<b>血紅素</b>（含鐵），負責運送<b>氧氣</b>；若吸入一氧化碳（CO），CO 會搶走血紅素導致缺氧。'},
+  wbc:{n:'白血球',d:'體積<b>最大</b>、數量最少、<b>有細胞核</b>（可用來檢驗 DNA）。能做變形蟲運動穿出微血管，<b>吞噬病原體</b>，負責防禦。'},
+  plt:{n:'血小板',d:'體積<b>最小</b>，是細胞的碎片，沒有細胞核。受傷時協助<b>血液凝固</b>、止血。'}
 };
-B.figure({svg:'blSvg',out:'blOut',parts:BL,modeBar:'blMode'});
+B.figure({svg:'blSvg',out:'blOut',parts:BL,modeBar:'blMode',hint:'將滑鼠移到離心試管或血球上（或點標籤）看說明；切到「測驗」挑戰辨識各成分。'});
+$('bcMode').querySelectorAll('.btn[data-bcm]').forEach(b=>b.onclick=()=>{
+  $('bcMode').querySelectorAll('.btn[data-bcm]').forEach(x=>x.classList.toggle('on',x===b));
+  const st=$('bcStage');
+  st.classList.remove('mode-hide','mode-plasma','mode-buffy','mode-rbc');
+  if(b.dataset.bcm!=='all')st.classList.add('mode-'+b.dataset.bcm);
+});
+$('bcZoom').onclick=()=>{
+  const z=$('bcStage').classList.toggle('zoomed');
+  $('bcZoom').classList.toggle('on',z);
+  $('bcZoom').textContent=z?'縮回符合視窗寬度':'放大檢視細節';
+};
 
 /* ---------- 二、脈搏 ---------- */
 function pu(){
   const s=+$('puS').value,v=String($('puN').value).trim().replace(/[０-９]/g,c=>String.fromCharCode(c.charCodeAt(0)-65248));
-  if(!/^\d+$/.test(v)||+v<1||+v>100){$('puOut').innerHTML='<span class="msg">請輸入 1～100 的整數。</span>';return;}
+  if(!/^\d+$/.test(v)||+v<1||+v>150){$('puOut').innerHTML='<span class="msg">請輸入 1～150 的整數。</span>';return;}
   const n=+v,k=60/s,m=n*k;
-  $('puOut').innerHTML='一分鐘有 60 秒，是 '+s+' 秒的 <b>'+k+'</b> 倍：'+n+'×'+k+'＝<b>每分鐘 '+m+' 下</b>。<br>正常時<b>脈搏＝心跳</b>，所以心跳也是每分鐘 '+m+' 下；用聽診器會聽到 '+m+'×2＝<b>'+(m*2)+' 個聲音</b>（「噗—通」兩聲才是一次）。'+(m>100?'<br><span class="small">每分鐘超過 100 下，像是剛運動完。</span>':'');
+  let note='';
+  if(m>100)note='<br><span class="small">每分鐘超過 100 下，像是剛運動完或緊張（正常成人靜息約 60～100 下/分）。</span>';
+  else if(m<60)note='<br><span class="small">每分鐘低於 60 下，常見於安靜休息或耐力運動員（正常成人靜息約 60～100 下/分）。</span>';
+  else note='<br><span class="small">落在正常成人靜息心跳範圍（約 60～100 下/分）。</span>';
+  $('puOut').innerHTML='一分鐘有 60 秒，是 '+s+' 秒的 <b>'+k+'</b> 倍：'+n+'×'+k+'＝<b>每分鐘 '+m+' 下</b>。<br>正常時<b>脈搏＝心跳</b>，所以心跳也是每分鐘 '+m+' 下；用聽診器會聽到 '+m+'×2＝<b>'+(m*2)+' 個聲音</b>（「噗—通」兩聲才是一次）。'+note;
 }
 $('puS').addEventListener('change',pu);$('puN').addEventListener('input',pu);pu();
 
 /* ---------- 二、魚尾鰭 ---------- */
 const FI={
   art:{n:'小動脈',d:'由粗<b>分支</b>成細，血液從粗的那端流向細的分支，<b>流速最快</b>。血液是從心臟（魚頭方向）流過來的。'},
-  cap:{n:'微血管',d:'最細，<b>紅血球排成一列</b>通過，<b>流速最慢</b>，是交換物質的地方。'},
+  cap:{n:'微血管',d:'最細，管壁僅一層細胞，<b>紅血球排成一列</b>通過，<b>流速最慢</b>，是交換物質的地方。'},
   vein:{n:'小靜脈',d:'由細<b>匯集</b>成粗，血液流向粗的那端，流回心臟（魚頭方向）。'}
 };
-let fiFlip=false,fiDots=[];
+let fiFlip=false,fiDots=[],fiFlipCount=0;
 const FP={
-  art:[[30,95],[150,95],[230,60],[330,40]],art2:[[150,95],[230,120],[330,135]],
-  cap:[[40,190],[120,182],[200,198],[280,184],[330,190]],
-  vein:[[330,250],[230,265],[150,290],[30,290]],vein2:[[330,330],[230,315],[150,290]]
+  art:[[24,95],[150,95],[235,58],[338,38]],
+  art2:[[24,95],[150,95],[235,122],[338,136]],
+  cap:[[34,190],[115,180],[195,198],[275,182],[338,190]],
+  vein:[[338,248],[235,264],[150,292],[24,292]],
+  vein2:[[338,332],[235,316],[150,292],[24,292]]
 };
 function fiDraw(){
   let g='<defs><clipPath id="fov"><circle cx="180" cy="180" r="170"/></clipPath></defs><circle cx="180" cy="180" r="172" fill="#f6efe6" stroke="#4d5a52" stroke-width="3"/>';
   g+='<g clip-path="url(#fov)"><g id="fiG"'+(fiFlip?' transform="translate(360,0) scale(-1,1)"':'')+'>';
-  const pl=(pts,w,col)=>'<polyline points="'+pts.map(p=>p.join(',')).join(' ')+'" fill="none" stroke="'+col+'" stroke-width="'+w+'" stroke-linejoin="round" stroke-linecap="round"/>';
-  g+='<g data-part="art">'+pl(FP.art.slice(0,2),26,'#e8a6a0')+pl(FP.art.slice(1),15,'#e8a6a0')+pl(FP.art2,15,'#e8a6a0')+'</g>';
-  g+='<g data-part="cap">'+pl(FP.cap,9,'#efc3bd')+pl(FP.cap,24,'transparent').replace('<polyline','<polyline pointer-events="stroke"')+'</g>';
-  g+='<g data-part="vein">'+pl(FP.vein.slice(2),26,'#d9a7a3')+pl(FP.vein.slice(0,3),15,'#d9a7a3')+pl(FP.vein2,15,'#d9a7a3')+'</g>';
+  const pl=(pts,w,col,pe)=>'<polyline points="'+pts.map(p=>p.join(',')).join(' ')+'" fill="none" stroke="'+col+'" stroke-width="'+w+'" stroke-linejoin="round" stroke-linecap="round"'+(pe?' pointer-events="stroke"':'')+'/>';
+  g+='<g data-part="art">'+pl(FP.art.slice(0,2),26,'#e8a6a0')+pl(FP.art.slice(1),15,'#e8a6a0')+pl(FP.art2.slice(1),15,'#e8a6a0')+pl(FP.art,30,'transparent',1)+pl(FP.art2.slice(1),26,'transparent',1)+'</g>';
+  g+='<g data-part="cap">'+pl(FP.cap,9,'#efc3bd')+pl(FP.cap,26,'transparent',1)+'</g>';
+  g+='<g data-part="vein">'+pl(FP.vein.slice(2),26,'#d9a7a3')+pl(FP.vein.slice(0,3),15,'#d9a7a3')+pl(FP.vein2.slice(0,3),15,'#d9a7a3')+pl(FP.vein,30,'transparent',1)+pl(FP.vein2.slice(0,3),26,'transparent',1)+'</g>';
   g+='<g id="fiDots" pointer-events="none"></g></g></g>';
-  $('fiSvg').innerHTML=g;
+  const svg=$('fiSvg');
+  svg.innerHTML=g;
+  svg.querySelectorAll('[data-part]').forEach(e=>{e.setAttribute('tabindex','0');e.setAttribute('role','button');e.setAttribute('aria-label',FI[e.dataset.part]?FI[e.dataset.part].n:'');});
 }
 function lerp(pts,t){const seg=[];let L=0;for(let i=1;i<pts.length;i++){const d=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);seg.push(d);L+=d;}let x=t*L;for(let i=0;i<seg.length;i++){if(x<=seg[i]){const f=x/seg[i];return[pts[i][0]+(pts[i+1][0]-pts[i][0])*f,pts[i][1]+(pts[i+1][1]-pts[i][1])*f];}x-=seg[i];}return pts[pts.length-1];}
-const LANES=[['art',0.010,4],['art2',0.010,3],['cap',0.0035,4],['vein',0.006,4],['vein2',0.006,3]];
-LANES.forEach(([k,sp,n])=>{for(let i=0;i<n;i++)fiDots.push({k,sp,t:i/n});});
+const LANES=[['art',0.0095,4,0],['art2',0.0095,4,0.125],['cap',0.0032,4,0],['vein',0.0058,4,0],['vein2',0.0058,4,0.125]];
+LANES.forEach(([k,sp,n,off])=>{for(let i=0;i<n;i++)fiDots.push({k,sp,t:(i/n+off)%1});});
 function fiTick(){
   const gd=$('fiSvg').querySelector('#fiDots');if(!gd)return;
-  gd.innerHTML=fiDots.map(d=>{d.t=(d.t+d.sp)%1;const pts=d.k==='art2'?FP.art2:d.k==='vein2'?FP.vein2:FP[d.k];const [x,y]=lerp(pts,d.t);return '<ellipse cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" rx="'+(d.k==='cap'?4:5)+'" ry="'+(d.k==='cap'?3:4)+'" fill="#c0392b"/>';}).join('');
+  gd.innerHTML=fiDots.map(d=>{d.t=(d.t+d.sp)%1;const pts=FP[d.k];const [x,y]=lerp(pts,d.t);return '<ellipse cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" rx="'+(d.k==='cap'?4:5)+'" ry="'+(d.k==='cap'?3:4)+'" fill="#c0392b"/>';}).join('');
 }
 fiDraw();
-B.figure({svg:'fiSvg',out:'fiOut',parts:FI,modeBar:'fiMode',hint:'點一條血管看它是哪一種。看紅血球流動的方向和快慢：<b>分支</b>、<b>排隊</b>、<b>匯集</b>。'});
+const fiFig=B.figure({svg:'fiSvg',out:'fiOut',parts:FI,modeBar:'fiMode',hint:'點一條血管看它是哪一種。看紅血球流動的方向和快慢：<b>分支</b>、<b>排隊</b>、<b>匯集</b>。'});
 if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(fiTick,50);else fiTick();
 let fiPick={};
-$('fiFlip').onclick=()=>{fiFlip=Math.random()<0.5?!fiFlip:fiFlip;fiDraw();fiPick={};$('fiAns').innerHTML='新的一張'+(fiFlip?'':'')+'。先找小動脈，看血從哪邊流過來。';document.querySelectorAll('[data-h]').forEach(b=>b.classList.remove('on'));};
+$('fiFlip').onclick=()=>{
+  fiFlip=!fiFlip;fiFlipCount++;
+  const wasTest=$('fiSvg').classList.contains('testing');
+  fiDraw();fiTick();
+  if(wasTest)fiFig.setMode('test');else fiFig.clear();
+  fiPick={};
+  $('fiAns').innerHTML='已左右翻轉視野（第 '+fiFlipCount+' 次切換）。先找小動脈（分支）或小靜脈（匯集），再判斷影像與實際魚頭方向！';
+  document.querySelectorAll('[data-h]').forEach(b=>b.classList.remove('on'));
+};
 document.querySelectorAll('[data-h]').forEach(b=>b.onclick=()=>{
   const [w,s]=b.dataset.h.split('-');fiPick[w]=s;document.querySelectorAll('[data-h^="'+w+'"]').forEach(x=>x.classList.toggle('on',x===b));
   if(fiPick.img&&fiPick.real){
     const imgHead=fiFlip?'R':'L',realHead=imgHead==='L'?'R':'L',nm={L:'左邊',R:'右邊'};
     const ok1=fiPick.img===imgHead,ok2=fiPick.real===realHead;
-    $('fiAns').innerHTML=(ok1&&ok2?'<b style="color:var(--moss)">兩題都對！</b>':'<b style="color:var(--rose)">再想想。</b>')+'<br>① 小動脈的血從<b>'+nm[imgHead]+'</b>流過來（粗的那端在'+nm[imgHead]+'），所以影像中魚頭（心臟）在<b>'+nm[imgHead]+'</b>。<br>② 顯微鏡影像上下左右顛倒，實際上魚頭在<b>'+nm[realHead]+'</b>。';
+    $('fiAns').innerHTML=(ok1&&ok2?'<b style="color:var(--moss)">兩題都對！</b>':'<b style="color:var(--rose)">再想想。</b>')+'<br>① 小動脈的血由心臟流出，從<b>'+nm[imgHead]+'</b>流向分支（小靜脈也匯集流回'+nm[imgHead]+'），所以影像中魚頭（心臟）在<b>'+nm[imgHead]+'</b>。<br>② 複式顯微鏡影像上下左右皆顛倒（旋轉 180°），因此實際上魚頭在<b>'+nm[realHead]+'</b>。';
   }
 });
 
 /* ---------- 三、心臟 ---------- */
 (function(){
-  let g='<defs><marker id="hb" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="26" markerHeight="26" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="'+BLUE+'"/></marker><marker id="hr" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="26" markerHeight="26" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="'+RED+'"/></marker></defs><rect width="520" height="520" fill="#fbfaf6"/>';
-  g+='<g data-part="lung"><rect x="130" y="12" width="270" height="56" rx="14" fill="#f4dede" stroke="#c98a8a"/><text x="265" y="46" text-anchor="middle" font-size="14" fill="#7a3a3a">肺部的微血管</text></g>';
-  g+='<g data-part="body"><rect x="120" y="456" width="280" height="54" rx="14" fill="#efe6d6" stroke="#b9a37c"/><text x="260" y="488" text-anchor="middle" font-size="14" fill="#5a4630">全身各處的微血管</text></g>';
-  /* 血管 */
-  g+='<path data-part="pa" d="M246 292 V72" stroke="'+BLUE+'" stroke-width="16" fill="none" marker-end="url(#hb)"/>';
-  g+='<path data-part="pv" d="M402 40 H436 V232 H378" stroke="'+RED+'" stroke-width="14" fill="none" marker-end="url(#hr)"/>';
-  g+='<path data-part="ao" d="M384 345 H466 V483 H408" stroke="'+RED+'" stroke-width="18" fill="none" marker-end="url(#hr)"/>';
-  g+='<path data-part="vc" d="M118 483 H76 V230 H142" stroke="'+BLUE+'" stroke-width="18" fill="none" marker-end="url(#hb)"/>';
+  let g='<defs><marker id="hb" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="24" markerHeight="24" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="'+BLUE+'"/></marker><marker id="hr" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="24" markerHeight="24" orient="auto"><path d="M0,0 L10,5 L0,10Z" fill="'+RED+'"/></marker></defs><rect width="540" height="530" fill="#fbfaf6"/>';
+  g+='<g data-part="lung"><rect x="134" y="14" width="276" height="54" rx="14" fill="#f4dede" stroke="#c98a8a" stroke-width="1.6"/></g>';
+  g+='<g data-part="body"><rect x="124" y="460" width="286" height="54" rx="14" fill="#efe6d6" stroke="#b9a37c" stroke-width="1.6"/></g>';
+  /* 血管（含透明加寬點擊熱區） */
+  g+='<g data-part="pa"><path d="M250 294 V72" stroke="'+BLUE+'" stroke-width="16" fill="none" marker-end="url(#hb)"/><path d="M250 294 V72" stroke="transparent" stroke-width="30" fill="none" pointer-events="stroke"/></g>';
+  g+='<g data-part="pv"><path d="M410 41 H450 V234 H388" stroke="'+RED+'" stroke-width="14" fill="none" marker-end="url(#hr)"/><path d="M410 41 H450 V234 H388" stroke="transparent" stroke-width="28" fill="none" pointer-events="stroke"/></g>';
+  g+='<g data-part="ao"><path d="M394 352 H478 V487 H418" stroke="'+RED+'" stroke-width="18" fill="none" marker-end="url(#hr)"/><path d="M394 352 H478 V487 H418" stroke="transparent" stroke-width="30" fill="none" pointer-events="stroke"/></g>';
+  g+='<g data-part="vc"><path d="M122 487 H76 V234 H144" stroke="'+BLUE+'" stroke-width="18" fill="none" marker-end="url(#hb)"/><path d="M122 487 H76 V234 H144" stroke="transparent" stroke-width="30" fill="none" pointer-events="stroke"/></g>';
   /* 腔室 */
-  g+='<rect data-part="ra" x="150" y="185" width="84" height="92" rx="18" fill="#9db3df" stroke="#4a6fb0" stroke-width="2"/>';
-  g+='<rect data-part="rv" x="150" y="288" width="106" height="110" rx="22" fill="#84a0d6" stroke="#4a6fb0" stroke-width="3"/>';
-  g+='<rect data-part="la" x="270" y="185" width="100" height="92" rx="18" fill="#efa3a0" stroke="#a33a4a" stroke-width="2"/>';
-  g+='<rect data-part="lv" x="268" y="288" width="112" height="118" rx="22" fill="#e07a76" stroke="#8f2b38" stroke-width="9"/>';
-  /* 瓣膜 */
-  g+='<path d="M180 280 l12 10 l12 -10" fill="#fff" stroke="#4a6fb0"/><path d="M305 280 l12 10 l12 -10" fill="#fff" stroke="#a33a4a"/>';
-  /* 文字 */
-  const T=(x,y,t,c)=>'<text class="lbl" x="'+x+'" y="'+y+'" text-anchor="middle"'+(c?' style="fill:'+c+'"':'')+'>'+t+'</text>';
-  g+=T(192,236,'右心房')+T(203,346,'右心室')+T(320,236,'左心房')+T(324,352,'左心室');
-  g+=T(200,130,'肺動脈',BLUE)+T(480,140,'肺靜脈',RED)+T(418,430,'主動脈',RED)+T(118,430,'大靜脈',BLUE);
-  g+='<text x="10" y="300" font-size="12" fill="#7a857e" transform="rotate(-90 10 300)">圖的左邊＝心臟的右邊（面對面看）</text>';
-  $('htSvg').innerHTML=g;
+  g+='<rect data-part="ra" x="152" y="188" width="84" height="92" rx="18" fill="#9db3df" stroke="#4a6fb0" stroke-width="2"/>';
+  g+='<rect data-part="rv" x="152" y="292" width="106" height="112" rx="22" fill="#84a0d6" stroke="#4a6fb0" stroke-width="3"/>';
+  g+='<rect data-part="la" x="278" y="188" width="100" height="92" rx="18" fill="#efa3a0" stroke="#a33a4a" stroke-width="2"/>';
+  g+='<rect data-part="lv" x="276" y="292" width="114" height="120" rx="22" fill="#e07a76" stroke="#8f2b38" stroke-width="9"/>';
+  /* 冠狀動脈（從主動脈基部分支包覆心肌） */
+  g+='<g data-part="cor"><path d="M412 356 C414 388, 396 418, 344 422 C310 424, 286 416, 266 408" fill="none" stroke="#c81e2b" stroke-width="5" stroke-linecap="round"/><path d="M388 408 C374 426, 354 434, 326 436" fill="none" stroke="#c81e2b" stroke-width="3.2" stroke-linecap="round"/><path d="M412 356 C414 388, 396 418, 344 422 C310 424, 286 416, 266 408" fill="none" stroke="transparent" stroke-width="22" pointer-events="stroke"/></g>';
+  /* 瓣膜（房室瓣＋半月瓣，均可點選） */
+  g+='<g data-part="valve"><circle cx="194" cy="286" r="15" fill="transparent"/><path d="M180 282 l14 10 l14 -10" fill="#fff" stroke="#365c96" stroke-width="2.2"/><circle cx="328" cy="286" r="15" fill="transparent"/><path d="M314 282 l14 10 l14 -10" fill="#fff" stroke="#8f2b38" stroke-width="2.2"/><circle cx="250" cy="284" r="14" fill="transparent"/><path d="M242 288 q8 -10 16 0" fill="#fff" stroke="#365c96" stroke-width="2.2"/><circle cx="395" cy="352" r="14" fill="transparent"/><path d="M391 344 q10 8 0 16" fill="#fff" stroke="#8f2b38" stroke-width="2.2"/></g>';
+  /* 文字標籤（全部掛 data-lbl，測驗模式自動隱藏，不擋點擊也不洩題） */
+  const T=(x,y,t,k,c,cls)=>'<text class="lbl'+(cls?' '+cls:'')+'" data-lbl="'+k+'" x="'+x+'" y="'+y+'" text-anchor="middle"'+(c?' style="fill:'+c+'"':'')+'>'+t+'</text>';
+  g+=T(272,46,'肺部的微血管','lung','#7a3a3a');
+  g+=T(267,492,'全身各處的微血管','body','#5a4630');
+  g+=T(194,238,'右心房','ra')+T(205,352,'右心室','rv')+T(328,238,'左心房','la')+T(333,356,'左心室','lv');
+  g+=T(200,132,'肺動脈','pa',BLUE)+T(495,142,'肺靜脈','pv',RED)+T(446,432,'主動脈','ao',RED)+T(120,432,'大靜脈','vc',BLUE);
+  g+=T(338,448,'冠狀動脈','cor','#a31d27','s');
+  g+='<line class="lbl" x1="136" y1="288" x2="176" y2="286" stroke="#7a857e" stroke-width="1.2" stroke-dasharray="3 2" style="pointer-events:none"/>';
+  g+=T(116,292,'瓣膜','valve','#4d5a52','s');
+  g+='<text x="14" y="302" font-size="12" fill="#7a857e" transform="rotate(-90 14 302)">圖的左邊＝心臟的右邊（面對面看）</text>';
+  const svg=$('htSvg');
+  svg.innerHTML=g;
+  addLblBg(svg);
 })();
 const HT={
-  ra:{n:'右心房',d:'接收<b>大靜脈</b>從全身流回來的<b>缺氧血</b>。心房接靜脈。'},
+  ra:{n:'右心房',d:'接收<b>大靜脈</b>從全身流回來的<b>缺氧血</b>。靜脈打點滴、小腸吸收的養分、淋巴回流都最先進入右心房。'},
   rv:{n:'右心室',d:'把缺氧血經<b>肺動脈</b>送到肺。是<b>肺循環的起點</b>。'},
   la:{n:'左心房',d:'接收<b>肺靜脈</b>從肺流回來的<b>充氧血</b>。'},
-  lv:{n:'左心室',d:'<b>管壁最厚</b>，把充氧血經<b>主動脈</b>送到全身。是<b>體循環的起點</b>。'},
+  lv:{n:'左心室',d:'<b>管壁最厚</b>，把充氧血經<b>主動脈</b>送到全身。是<b>體循環的起點</b>；手腕動脈心導管逆流時最先進入左心室。'},
   pa:{n:'肺動脈',d:'從右心室把血送到肺，裡面是<b>缺氧血</b>。名字是動脈（離開心臟），但含氧少！'},
   pv:{n:'肺靜脈',d:'從肺把血送回左心房，裡面是<b>充氧血</b>。名字是靜脈（回到心臟），但含氧多！'},
-  ao:{n:'主動脈',d:'從左心室把<b>充氧血</b>送到全身，是最粗的動脈。'},
+  ao:{n:'主動脈',d:'從左心室把<b>充氧血</b>送到全身，是最粗的動脈；基部分支出<b>冠狀動脈</b>供應心肌。'},
   vc:{n:'大靜脈',d:'把全身流回來的<b>缺氧血</b>送進右心房。'},
   lung:{n:'肺部的微血管',d:'在這裡<b>排出二氧化碳、得到氧氣</b>：缺氧血變成充氧血。'},
-  body:{n:'全身各處的微血管',d:'把<b>氧氣和養分</b>交給細胞，帶走<b>二氧化碳和廢物</b>：充氧血變成缺氧血。'}
+  body:{n:'全身各處的微血管',d:'把<b>氧氣和養分</b>交給細胞，帶走<b>二氧化碳和廢物</b>：充氧血變成缺氧血。'},
+  valve:{n:'瓣膜（房室瓣與半月瓣）',d:'位於<b>心房與心室之間</b>、<b>心室與動脈之間</b>，防止血液逆流；關閉時產生「噗、通」兩個心音。<span class="hot">心房與靜脈之間沒有瓣膜</span>。'},
+  cor:{n:'冠狀動脈',d:'由<b>主動脈基部</b>分支而出，包覆在心臟表面，供應<b>心肌細胞</b>所需的氧氣與養分（腔室內的血不直接供應心肌）。阻塞會引發心肌梗塞。'}
 };
-B.figure({svg:'htSvg',out:'htOut',parts:HT,modeBar:'htMode',hint:'點腔室或血管看說明，或按上面的按鈕看血液怎麼走。藍色是缺氧血，紅色是充氧血。'});
+const htPathIds=['htPul','htSys','htIv','htCath'];
+const htFig=B.figure({svg:'htSvg',out:'htOut',parts:HT,modeBar:'htMode',markBtns:htPathIds,lockMark:true,hint:'滑鼠移上或點擊腔室、血管、瓣膜看說明，或按上方按鈕觀看四條經典血流／醫療路徑。藍色是缺氧血，紅色是充氧血。'});
 const PATHS={
-  pul:{n:'肺循環',s:['rv','pa','lung','pv','la'],end:'肺循環：血液經過肺，<b>缺氧血變成充氧血</b>，回到左心房。'},
-  sys:{n:'體循環',s:['lv','ao','body','vc','ra'],end:'體循環：血液把氧氣和養分送到全身，<b>充氧血變成缺氧血</b>，回到右心房。'},
-  iv:{n:'手臂打點滴',s:['body','vc','ra','rv','pa','lung','pv','la','lv','ao','body'],end:'點滴打在手臂的<b>靜脈</b>，藥物要先回到右心房，<b>經過肺循環</b>，再由左心室送到全身。'}
+  pul:{n:'肺循環',s:['rv','pa','lung','pv','la'],end:'肺循環完成：右心室出發，經過肺部微血管，<b>缺氧血變成充氧血</b>，回到<b>左心房</b>。'},
+  sys:{n:'體循環',s:['lv','ao','body','vc','ra'],end:'體循環完成：左心室出發，把氧氣和養分送到全身，<b>充氧血變成缺氧血</b>，回到<b>右心房</b>。'},
+  iv:{n:'手臂靜脈打點滴（順流）',s:['body','vc','ra','rv','pa','lung','pv','la','lv','ao','body'],
+    names:['手臂靜脈（進針）','大靜脈','右心房（最先到達！）','右心室','肺動脈','肺部的微血管','肺靜脈','左心房','左心室','主動脈','全身各處'],
+    end:'點滴打在<b>靜脈</b>，藥物順血流進大靜脈，<b>最先進入右心房</b>，一定要<b>先經過肺循環</b>，才能再由左心室送到全身。'},
+  cath:{n:'手腕橈動脈心導管（逆流）',s:['body','ao','lv','cor'],
+    names:['手腕橈動脈（進針）','沿動脈逆流 → 主動脈','先進入左心室（或進冠狀動脈）','冠狀動脈（檢查／置放支架）'],
+    end:'<b>114 必考反套路！</b>心導管由手腕<b>橈動脈</b>逆流而上，經主動脈<b>最先進入左心室</b>（或直接由主動脈基部進入<b>冠狀動脈</b>），<b>不會</b>先進右心房！'}
 };
 let htT=null;
+function stopHtPath(){
+  clearInterval(htT);htT=null;
+  $('htSvg').classList.remove('mark-lock');
+  $('htSteps').innerHTML='';
+}
+function htMarkLabels(doneKeys,curKey){
+  const svg=$('htSvg');
+  svg.querySelectorAll('[data-lbl]').forEach(e=>{
+    e.classList.remove('sel','good','bad','hl');
+    const k=e.dataset.lbl;
+    if(k===curKey)e.classList.add('sel');
+    else if(doneKeys.includes(k))e.classList.add('hl');
+  });
+}
 $('htPath').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{
-  clearInterval(htT);const P=PATHS[b.dataset.p];let i=0;const svg=$('htSvg');
-  $('htPath').querySelectorAll('.btn').forEach(x=>x.classList.toggle('on',x===b));
-  const names=P.s.map((k,j)=>(b.dataset.p==='iv'&&j===0)?'手臂的靜脈':(b.dataset.p==='iv'&&j===P.s.length-1)?'全身各處':HT[k].n);
+  stopHtPath();
+  htFig.setMode('learn');
+  $('htMode').querySelectorAll('.btn[data-m]').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  const svg=$('htSvg');
+  svg.classList.add('mark-lock');
+  const P=PATHS[b.dataset.p];
+  const names=P.names||P.s.map(k=>HT[k].n);
+  let i=0;
   const step=()=>{
-    svg.querySelectorAll('[data-part]').forEach(e=>e.classList.remove('sel','good','bad'));
-    P.s.slice(0,i+1).forEach(k=>svg.querySelectorAll('[data-part="'+k+'"]').forEach(e=>e.classList.add('good')));
-    svg.querySelectorAll('[data-part="'+P.s[i]+'"]').forEach(e=>{e.classList.remove('good');e.classList.add('sel');});
+    const seen=P.s.slice(0,i+1);
+    B.mark('htSvg',seen);
+    svg.querySelectorAll('[data-part="'+P.s[i]+'"]').forEach(e=>{e.classList.remove('hl');e.classList.add('sel');});
+    htMarkLabels(P.s.slice(0,i),P.s[i]);
     $('htSteps').innerHTML=names.map((n,j)=>'<div class="ostep'+(j<=i?' good':'')+'"><b>'+(j+1)+'</b><span>'+n+'</span></div>').join('');
-    $('htOut').innerHTML='<div class="pname">'+P.n+'</div><div>'+(i===P.s.length-1?P.end:'現在在：<b>'+names[i]+'</b>')+'</div>';
-    i++;if(i>=P.s.length)clearInterval(htT);
+    $('htOut').innerHTML='<div class="pname">'+P.n+'</div><div>'+(i===P.s.length-1?P.end:'第 '+(i+1)+' 站：<b>'+names[i]+'</b>')+'</div><div class="small" style="margin-top:6px">點選上方「學習」或「測驗」可切換模式；再按一次路徑鈕可重播。</div>';
+    i++;if(i>=P.s.length){clearInterval(htT);htT=null;}
   };
-  step();htT=setInterval(step,1300);
+  step();htT=setInterval(step,1350);
 });
-
-/* ---------- 四、淋巴 ---------- */
+$('htMode').addEventListener('click',ev=>{if(ev.target.closest('.btn[data-m]'))stopHtPath();});
+$('hcMode').querySelectorAll('.btn[data-hcm]').forEach(b=>b.onclick=()=>{
+  $('hcMode').querySelectorAll('.btn[data-hcm]').forEach(x=>x.classList.toggle('on',x===b));
+  const st=$('hcStage');
+  st.classList.remove('mode-hide','mode-right','mode-left');
+  if(b.dataset.hcm!=='all')st.classList.add('mode-'+b.dataset.hcm);
+});
+$('hcZoom').onclick=()=>{
+  const z=$('hcStage').classList.toggle('zoomed');
+  $('hcZoom').classList.toggle('on',z);
+  $('hcZoom').textContent=z?'縮回符合視窗寬度':'放大檢視細節';
+};
+/* 四步驟心動週期（0.8秒）與心音瓣膜開閉互動 */
 (function(){
-  let g='<rect width="440" height="260" fill="#fbfaf6"/>';
-  g+='<rect data-part="tf" x="10" y="62" width="330" height="120" fill="#e3f0f7"/>';
-  g+='<path data-part="cap" d="M10 40 H340" stroke="#d9534f" stroke-width="22" stroke-linecap="round"/>';
-  for(let i=0;i<5;i++)g+='<path d="M'+(50+i*60)+' 54 v18" stroke="#9cc0db" stroke-width="2" stroke-dasharray="3 3"/>';
-  g+='<g data-part="cell">'+[[60,115],[130,140],[200,105],[270,145],[100,170]].map(([x,y])=>'<circle cx="'+x+'" cy="'+y+'" r="20" fill="#f3e3c8" stroke="#b9a37c"/><circle cx="'+x+'" cy="'+y+'" r="6" fill="#b9a37c"/>').join('')+'</g>';
-  g+='<path data-part="lv" d="M40 210 C40 196 60 196 60 210 L300 210" stroke="#b6cf7a" stroke-width="16" fill="none" stroke-linecap="round"/>';
-  g+='<path d="M150 182 v18 M230 182 v18" stroke="#8aa648" stroke-width="2" stroke-dasharray="3 3"/>';
-  g+='<ellipse data-part="node" cx="320" cy="210" rx="22" ry="14" fill="#8fb04a" stroke="#5f7d2a" stroke-width="2"/>';
-  g+='<path data-part="vein" d="M342 210 H400 V20" stroke="#5b7fc4" stroke-width="18" fill="none"/>';
-  g+='<text class="lbl s" x="200" y="20" text-anchor="middle">微血管（血液）</text><text class="lbl s" x="300" y="80">組織液</text><text class="lbl s" x="110" y="243">淋巴管（淋巴）</text><text class="lbl s" x="300" y="243">淋巴結</text><text class="lbl s" x="380" y="250">靜脈</text>';
-  $('lyGv').innerHTML=g;
+  const ST=[
+    {title:'① 全心舒張（約 0.4 秒，佔一半時間！）',snd:'（無明顯心音）',sb:'',atria:'舒張',vent:'舒張',av:'open',avT:'已打開，靜脈血經心房大量流入心室（約 80%）',sl:'close',slT:'關閉，防止動脈血倒流',flow:'靜脈 → 心房 → 心室',tip:'心臟每跳一次（0.8 秒）就有一半時間（0.4 秒）在「全心舒張」休息！',wx:44},
+    {title:'② 心房收縮（約 0.1 秒）',snd:'（無明顯心音）',sb:'',atria:'收縮（將剩餘血液擠入心室）',vent:'舒張（裝滿最後約 20% 血液）',av:'open',avT:'維持打開，讓剩餘血液完全進入心室',sl:'close',slT:'維持關閉',flow:'心房 → 心室',tip:'心房收縮只花短短 0.1 秒，把最後約 20% 的血補滿進心室。',wx:94},
+    {title:'③ 心室收縮（約 0.3 秒）',snd:'第一心音「噗（Lub）」！',sb:'房室瓣關閉',atria:'同步舒張（開始接收靜脈回血！）',vent:'收縮（壓力上升把血推入動脈）',av:'slam',avT:'壓力上升瞬間「碰！」關緊 ➔ 發出第一心音「噗！」',sl:'open',slT:'隨後被衝開，將血液射入肺動脈與主動脈',flow:'心室 → 動脈；同時 靜脈 → 心房',tip:'「噗」發生在心室剛開始收縮的瞬間！此時心房同步舒張接收靜脈血，不會浪費時間。',wx:146},
+    {title:'④ 心室剛舒張（進入舒張期瞬間）',snd:'第二心音「通（Dub）」！',sb:'半月瓣關閉',atria:'舒張（持續接收靜脈回血）',vent:'開始舒張（壓力驟降，動脈血回沖）',av:'close',avT:'此瞬間暫時仍閉，壓力再降即重新打開回到①',sl:'slam',slT:'動脈血回沖「叩！」關緊 ➔ 發出第二心音「通！」',flow:'半月瓣擋住逆流；隨即回到 ① 全心舒張（靜脈 → 心房 → 心室）',tip:'「通」發生在心室剛開始舒張的交界瞬間！接著房室瓣重開，循環回到 ① 全心舒張。',wx:222}
+  ];
+  const svg=$('hsSvg'),tabs=$('hsTabs').querySelectorAll('.btn[data-st]'),playBtn=$('hsPlay');
+  let cur=0,tm=null;
+  const tag=(k)=>k==='open'?'<span class="hstag open">打開</span>':k==='slam'?'<span class="hstag snd">碰！關閉</span>':'<span class="hstag close">關閉</span>';
+  function arc(cx,cy,r,a1,a2){
+    const rad=d=>(d-90)*Math.PI/180,x1=cx+r*Math.cos(rad(a1)),y1=cy+r*Math.sin(rad(a1)),x2=cx+r*Math.cos(rad(a2)),y2=cy+r*Math.sin(rad(a2));
+    return 'M'+x1.toFixed(1)+','+y1.toFixed(1)+' A'+r+','+r+' 0 '+((a2-a1)>180?1:0)+',1 '+x2.toFixed(1)+','+y2.toFixed(1);
+  }
+  function show(i){
+    cur=i;const s=ST[i];
+    tabs.forEach(b=>b.classList.toggle('on',+b.dataset.st===i));
+    svg.classList.remove('st-0','st-1','st-2','st-3');svg.classList.add('st-'+i);
+    $('hsInfo').innerHTML=
+      '<div><div class="pname" style="margin-bottom:4px">'+s.title+'</div><div>'+(i<2?'<span class="small">'+s.snd+'</span>':'<span class="hstag snd">'+s.snd+'（'+s.sb+'）</span>')+'</div></div>'+
+      '<div style="border-top:1px solid var(--line);padding-top:8px">'+
+        '<div><b>心房／心室：</b>'+s.atria+' ／ '+s.vent+'</div>'+
+        '<div><b>房室瓣：</b>'+tag(s.av)+' '+s.avT+'</div>'+
+        '<div><b>半月瓣：</b>'+tag(s.sl)+' '+s.slT+'</div>'+
+        '<div><b>血液流向：</b>'+s.flow+'</div>'+
+      '</div>'+
+      '<div class="small" style="background:var(--bio-bg);padding:8px 10px;border-radius:8px;color:var(--ink)"><b>重點：</b>'+s.tip+'</div>';
+    const cx=78,cy=58,r=36,pt=(deg,rr)=>{const rad=(deg-90)*Math.PI/180;return[cx+rr*Math.cos(rad),cy+rr*Math.sin(rad)];};
+    const [p1x,p1y]=pt(25,r),[p2x,p2y]=pt(160,r);
+    $('hsDial').innerHTML=
+      '<rect width="156" height="112" rx="8" fill="#fbfaf6"/>'+
+      '<text x="78" y="13" text-anchor="middle" font-size="10.5" font-weight="800" fill="#4d5a52">1 次心跳 = 0.8 秒</text>'+
+      '<path d="'+arc(cx,cy,r,160,340)+'" fill="none" stroke="'+(i===0?'#ec4899':'#f5b5d3')+'" stroke-width="'+(i===0?'13':'10')+'"/>'+
+      '<path d="'+arc(cx,cy,r,-20,25)+'" fill="none" stroke="'+(i===1?'#16a34a':'#9bd9b0')+'" stroke-width="'+(i===1?'13':'10')+'"/>'+
+      '<path d="'+arc(cx,cy,r,25,160)+'" fill="none" stroke="'+(i===2?'#2563eb':'#9dc2f2')+'" stroke-width="'+(i===2?'13':'10')+'"/>'+
+      '<circle cx="'+p1x.toFixed(1)+'" cy="'+p1y.toFixed(1)+'" r="'+(i===2?'6.5':'4.5')+'" fill="#f59e0b" stroke="#fff" stroke-width="1.8"/>'+
+      '<circle cx="'+p2x.toFixed(1)+'" cy="'+p2y.toFixed(1)+'" r="'+(i===3?'6.5':'4.5')+'" fill="#f59e0b" stroke="#fff" stroke-width="1.8"/>'+
+      '<text x="20" y="61" text-anchor="middle" font-size="9.5" font-weight="800" fill="'+(i===0?'#be185d':'#9d5a76')+'">0.4s</text>'+
+      '<text x="20" y="72" text-anchor="middle" font-size="8.5" fill="#7a857e">舒張</text>'+
+      '<text x="78" y="34" text-anchor="middle" font-size="9" font-weight="800" fill="'+(i===1?'#15803d':'#5b7a65')+'">0.1s</text>'+
+      '<text x="136" y="62" text-anchor="middle" font-size="9.5" font-weight="800" fill="'+(i===2?'#1d4ed8':'#5c78a3')+'">0.3s</text>'+
+      '<text x="136" y="73" text-anchor="middle" font-size="8.5" fill="#7a857e">室收</text>'+
+      '<text x="115" y="28" font-size="9.5" font-weight="900" fill="'+(i===2?'#b45309':'#92400e')+'">噗</text>'+
+      '<text x="97" y="106" font-size="9.5" font-weight="900" fill="'+(i===3?'#b45309':'#92400e')+'">通</text>'+
+      '<text x="78" y="62" text-anchor="middle" font-size="10" font-weight="800" fill="#334155">'+(i===0?'全心舒張':i===1?'心房收縮':i===2?'心室收縮':'心室舒張')+'</text>';
+    $('hsWave').innerHTML=
+      '<rect width="260" height="92" rx="8" fill="#fbfaf6"/>'+
+      '<text x="8" y="16" font-size="10.5" font-weight="800" fill="#4d5a52">心音聲波（1 心跳 = 2 聲）</text>'+
+      '<line x1="10" y1="50" x2="250" y2="50" stroke="#cbd2cd" stroke-width="1.5"/>'+
+      '<path d="M124 50 L131 35 L138 66 L146 26 L154 68 L161 36 L168 58 L174 50" fill="none" stroke="'+(i===2?'#d97706':'#9ca3af')+'" stroke-width="'+(i===2?'2.8':'1.8')+'" stroke-linejoin="round"/>'+
+      '<text x="148" y="83" text-anchor="middle" font-size="10.5" font-weight="800" fill="'+(i===2?'#92400e':'#6b7670')+'">① 噗(房室關)</text>'+
+      '<path d="M204 50 L210 38 L216 61 L222 32 L228 60 L234 41 L240 50" fill="none" stroke="'+(i===3?'#d97706':'#9ca3af')+'" stroke-width="'+(i===3?'2.8':'1.8')+'" stroke-linejoin="round"/>'+
+      '<text x="222" y="83" text-anchor="middle" font-size="10.5" font-weight="800" fill="'+(i===3?'#92400e':'#6b7670')+'">② 通(半月關)</text>'+
+      '<text x="44" y="83" text-anchor="middle" font-size="9.5" fill="'+(i===0?'#be185d':'#7a857e')+'">舒張0.4s</text>'+
+      '<text x="94" y="83" text-anchor="middle" font-size="9.5" fill="'+(i===1?'#15803d':'#7a857e')+'">房收0.1s</text>'+
+      '<circle cx="'+s.wx+'" cy="50" r="5" fill="#6a4c93" stroke="#fff" stroke-width="1.8"/>';
+  }
+  function stop(){if(tm){clearInterval(tm);tm=null;playBtn.classList.remove('on');playBtn.textContent='▶ 連續慢動作播放';}}
+  tabs.forEach(b=>b.onclick=()=>{stop();show(+b.dataset.st);});
+  playBtn.onclick=()=>{if(tm){stop();return;}playBtn.classList.add('on');playBtn.textContent='⏸ 暫停播放';show((cur+1)%4);tm=setInterval(()=>show((cur+1)%4),2200);};
+  show(0);
 })();
-B.figure({svg:'lyGv',out:'lyOut',parts:{
-  cap:{n:'微血管',d:'血液流經這裡時，一部分<b>血漿滲出</b>到細胞之間（虛線），成為組織液。紅血球留在血管裡。'},
-  tf:{n:'組織液',d:'包圍在細胞周圍的液體，由血漿滲出形成。細胞從這裡得到養分和氧氣，也把廢物排進來。大部分回到微血管，一部分進入淋巴管。'},
-  cell:{n:'組織細胞',d:'身體的細胞，靠組織液和血液交換物質。'},
-  lv:{n:'淋巴管',d:'一端封閉，收集多出來的組織液，進來以後就叫<b>淋巴</b>。有<b>瓣膜</b>，只往一個方向流；淋巴裡<b>沒有紅血球</b>。'},
-  node:{n:'淋巴結',d:'淋巴管上膨大的構造，裡面有大量<b>白血球</b>，能<b>過濾病原體</b>。感染時可能腫大（頸部、腋下、鼠蹊部）。'},
-  vein:{n:'靜脈',d:'淋巴最後流入<b>靠近心臟的靜脈</b>，回到血液循環。不是流入動脈。'}
-}});
+/* 四大器官微血管成分變化互動示意圖 */
+(function(){
+  const OX={
+    lung:{
+      title:'肺部微血管 ＝ 氧氣補給站',inLbl:'流入前（肺動脈・缺氧血）',outLbl:'流出後（肺靜脈・充氧血）',inCol:'#5b7fc4',outCol:'#d9534f',
+      organTitle:'肺泡（與外界空氣交換氣體）',organBg:'#fae8e8',organStroke:'#d48c8c',
+      ex:[{x:205,dir:'down',col:'#475569',lbl:'CO₂ 排出呼氣',tag:'↓ 卸貨'},{x:405,dir:'up',col:'#dc2626',lbl:'O₂ 吸入上車',tag:'↑ 補滿'}],
+      bars:[{n:'氧氣 O₂',a:28,b:92,diff:'↑ 大增',dc:'#16a34a'},{n:'二氧化碳 CO₂',a:86,b:32,diff:'↓ 減少',dc:'#2563eb'},{n:'養分／尿素',a:55,b:54,diff:'幾乎不變',dc:'#64748b'}],
+      key:'<b>考題秒殺：</b>只有「<b>肺</b>」流出來會變 <b>O₂ ↑、CO₂ ↓</b>（缺氧血 → 充氧血）！其他所有器官流出都是 O₂ ↓。'
+    },
+    gut:{
+      title:'飯後小腸絨毛 ＝ 養分大賣場（進貨站）',inLbl:'流入前（小動脈・充氧血）',outLbl:'流出後（小靜脈・缺氧血）',inCol:'#d9534f',outCol:'#5b7fc4',
+      organTitle:'飯後小腸絨毛（吸收消化好的小分子養分）',organBg:'#fef3dc',organStroke:'#d99b38',
+      ex:[{x:160,dir:'down',col:'#dc2626',lbl:'O₂ 給小腸呼吸',tag:'↓ 用掉'},{x:305,dir:'up',col:'#475569',lbl:'CO₂ 交給血載走',tag:'↑ 增加'},{x:450,dir:'up',col:'#d97706',lbl:'葡萄糖・胺基酸',tag:'↑↑ 大量進貨！',big:1}],
+      bars:[{n:'氧氣 O₂',a:90,b:34,diff:'↓ 減少',dc:'#dc2626'},{n:'二氧化碳 CO₂',a:34,b:82,diff:'↑ 增加',dc:'#475569'},{n:'葡萄糖等養分',a:36,b:96,diff:'↑↑ 大增',dc:'#d97706'}],
+      key:'<b>考題秒殺：</b>看到 <b>O₂ ↓、CO₂ ↑，但葡萄糖大幅 ↑</b>，一定是<b>飯後小腸絨毛</b>！流出後經大靜脈最先進入右心房。'
+    },
+    muscle:{
+      title:'肌肉／腦部組織 ＝ 耗能客戶端',inLbl:'流入前（小動脈・充氧血）',outLbl:'流出後（小靜脈・缺氧血）',inCol:'#d9534f',outCol:'#5b7fc4',
+      organTitle:'肌肉／腦部細胞（大量消耗氧氣與養分產生能量）',organBg:'#efe8f7',organStroke:'#8f72b8',
+      ex:[{x:160,dir:'down',col:'#dc2626',lbl:'O₂ 拿去呼吸',tag:'↓ 消耗'},{x:305,dir:'down',col:'#d97706',lbl:'養分拿去用',tag:'↓ 消耗'},{x:450,dir:'up',col:'#475569',lbl:'CO₂ 與廢物',tag:'↑ 交給血載走',big:1}],
+      bars:[{n:'氧氣 O₂',a:90,b:28,diff:'↓ 減少',dc:'#dc2626'},{n:'二氧化碳 CO₂',a:34,b:88,diff:'↑ 增加',dc:'#475569'},{n:'葡萄糖等養分',a:82,b:34,diff:'↓ 減少',dc:'#d97706'}],
+      key:'<b>考題秒殺：</b>氧氣和養分都減少、二氧化碳和廢物都增加 ➔ 典型的<b>一般耗能組織（肌肉、大腦）</b>。'
+    },
+    kidney:{
+      title:'腎臟微血管 ＝ 血液淨水廠（清尿素）',inLbl:'流入前（腎動脈・充氧血）',outLbl:'流出後（腎靜脈・最乾淨！）',inCol:'#d9534f',outCol:'#5b7fc4',
+      organTitle:'腎臟（過濾血液中的含氮廢物，做成尿液排出體外）',organBg:'#e4f4ee',organStroke:'#3d9970',
+      ex:[{x:160,dir:'down',col:'#dc2626',lbl:'O₂ 給腎臟呼吸',tag:'↓ 用掉'},{x:305,dir:'up',col:'#475569',lbl:'CO₂ 交給血載走',tag:'↑ 增加'},{x:450,dir:'down',col:'#0f766e',lbl:'尿素過濾成尿液',tag:'↓↓ 清掉了！',big:1}],
+      bars:[{n:'氧氣 O₂',a:90,b:38,diff:'↓ 減少',dc:'#dc2626'},{n:'二氧化碳 CO₂',a:34,b:80,diff:'↑ 增加',dc:'#475569'},{n:'尿素（含氮廢物）',a:86,b:18,diff:'↓↓ 大減',dc:'#0f766e'}],
+      key:'<b>最常卡住的觀念：</b>腎臟細胞自己也要呼吸，所以流過後 <b>O₂ 一樣變少（↓）</b>；但因為把尿素過濾做成尿液排掉，<b>尿素大幅減少（↓）</b>！'
+    }
+  };
+  function drawOx(k){
+    const d=OX[k];
+    let g='<defs><linearGradient id="oxGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="'+d.inCol+'"/><stop offset="38%" stop-color="'+d.inCol+'"/><stop offset="62%" stop-color="'+d.outCol+'"/><stop offset="100%" stop-color="'+d.outCol+'"/></linearGradient><marker id="oxW" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#fff"/></marker></defs><rect width="680" height="286" fill="#fbfaf6"/>';
+    g+='<text x="340" y="22" text-anchor="middle" font-size="14.5" font-weight="800" fill="#1f2a24">'+d.title+'</text>';
+    g+='<text x="92" y="42" text-anchor="middle" font-size="11.5" font-weight="700" fill="'+d.inCol+'">'+d.inLbl+'</text>';
+    g+='<text x="588" y="42" text-anchor="middle" font-size="11.5" font-weight="700" fill="'+d.outCol+'">'+d.outLbl+'</text>';
+    g+='<rect x="24" y="52" width="632" height="34" rx="17" fill="url(#oxGrad)"/><path class="blood-flow" d="M46 69 H628" stroke="rgba(255,255,255,0.8)" stroke-width="3.2" fill="none" marker-end="url(#oxW)"/><rect x="234" y="58" width="212" height="22" rx="11" fill="rgba(31,42,36,0.58)"/><text x="340" y="73" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff">血液（快遞貨車）流經微血管 ➔</text>';
+    d.ex.forEach(e=>{
+      const up=e.dir==='up',y1=up?145:90,y2=up?94:141,sw=e.big?4.6:3.2,bw=e.big?122:98;
+      g+='<line x1="'+e.x+'" y1="'+y1+'" x2="'+e.x+'" y2="'+y2+'" stroke="'+e.col+'" stroke-width="'+sw+'" stroke-linecap="round"/>';
+      const tip=up?(e.x+','+(y2-5)+' '+(e.x-7)+','+(y2+6)+' '+(e.x+7)+','+(y2+6)):(e.x+','+(y2+5)+' '+(e.x-7)+','+(y2-6)+' '+(e.x+7)+','+(y2-6));
+      g+='<polygon points="'+tip+'" fill="'+e.col+'"/><rect x="'+(e.x+10)+'" y="97" width="'+bw+'" height="42" rx="8" fill="#ffffff" stroke="'+e.col+'" stroke-width="'+(e.big?1.8:1.2)+'"/><text x="'+(e.x+10+bw/2)+'" y="114" text-anchor="middle" font-size="11.5" font-weight="800" fill="'+e.col+'">'+e.lbl+'</text><text x="'+(e.x+10+bw/2)+'" y="131" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">'+e.tag+'</text>';
+    });
+    g+='<rect x="116" y="148" width="448" height="40" rx="12" fill="'+d.organBg+'" stroke="'+d.organStroke+'" stroke-width="2"/><text x="340" y="173" text-anchor="middle" font-size="13" font-weight="800" fill="#1f2a24">'+d.organTitle+'</text>';
+    g+='<rect x="24" y="198" width="632" height="80" rx="12" fill="#ffffff" stroke="#dcd8cc"/><text x="40" y="216" font-size="11.5" font-weight="800" fill="#4d5a52">車上貨物量變化（灰條＝流入前，色條＝流出後）</text>';
+    d.bars.forEach((b,idx)=>{
+      const x0=40+idx*208;
+      g+='<text x="'+x0+'" y="236" font-size="12" font-weight="800" fill="#1f2a24">'+b.n+'</text><text x="'+(x0+186)+'" y="236" text-anchor="end" font-size="12" font-weight="800" fill="'+b.dc+'">'+b.diff+'</text>';
+      g+='<text x="'+x0+'" y="252" font-size="10" fill="#64748b">前</text><rect x="'+(x0+18)+'" y="243" width="168" height="9" rx="4.5" fill="#eef0ee"/><rect x="'+(x0+18)+'" y="243" width="'+(1.68*b.a).toFixed(1)+'" height="9" rx="4.5" fill="#94a3b8"/>';
+      g+='<text x="'+x0+'" y="267" font-size="10" font-weight="700" fill="'+b.dc+'">後</text><rect x="'+(x0+18)+'" y="258" width="168" height="9" rx="4.5" fill="#eef0ee"/><rect x="'+(x0+18)+'" y="258" width="'+(1.68*b.b).toFixed(1)+'" height="9" rx="4.5" fill="'+b.dc+'"/>';
+    });
+    $('oxSvg').innerHTML=g;
+    $('oxNote').innerHTML=d.key;
+  }
+  const oxBtns=$('oxTabs').querySelectorAll('.btn[data-ox]');
+  oxBtns.forEach(b=>b.onclick=()=>{oxBtns.forEach(x=>x.classList.toggle('on',x===b));drawOx(b.dataset.ox);});
+  drawOx('lung');
+})();
 
-/* ---------- 小測驗 ---------- */
+/* ---------- 四、淋巴（寫實手繪水彩風多圖層 SVG） ---------- */
+(function(){
+  let g='<defs>';
+  g+='<linearGradient id="lyCapG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#df5d56"/><stop offset="52%" stop-color="#e57a72"/><stop offset="82%" stop-color="#9e7ca8"/><stop offset="100%" stop-color="#6588be"/></linearGradient>';
+  g+='<linearGradient id="lyVeinG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#587bb0"/><stop offset="50%" stop-color="#7fa2d6"/><stop offset="100%" stop-color="#4e70a3"/></linearGradient>';
+  g+='<radialGradient id="lyCellG" cx="38%" cy="34%" r="65%"><stop offset="0%" stop-color="#fdf1dc"/><stop offset="68%" stop-color="#f0d5b0"/><stop offset="100%" stop-color="#d8b282"/></radialGradient>';
+  g+='<radialGradient id="lyNucG" cx="35%" cy="35%" r="65%"><stop offset="0%" stop-color="#b7885a"/><stop offset="100%" stop-color="#7e5634"/></radialGradient>';
+  g+='<linearGradient id="lyLymphG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3f0be"/><stop offset="55%" stop-color="#bfd782"/><stop offset="100%" stop-color="#99b656"/></linearGradient>';
+  g+='<radialGradient id="lyNodeG" cx="42%" cy="36%" r="65%"><stop offset="0%" stop-color="#c3db85"/><stop offset="68%" stop-color="#94b54d"/><stop offset="100%" stop-color="#6c8c30"/></radialGradient>';
+  g+='<radialGradient id="lyTfG" cx="50%" cy="45%" r="60%"><stop offset="0%" stop-color="#e8f6fd"/><stop offset="80%" stop-color="#cde9f8"/><stop offset="100%" stop-color="#b4ddf3"/></radialGradient>';
+  g+='<marker id="lyArrB" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#2d6f9e"/></marker>';
+  g+='<marker id="lyArrG" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#4f7420"/></marker>';
+  g+='<marker id="lyArrW" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#ffffff"/></marker>';
+  g+='</defs><rect width="600" height="356" fill="#f7f1e5"/>';
+  /* 組織液 */
+  g+='<g data-part="tf"><path d="M36,118 C30,96 76,84 152,86 C230,88 332,82 404,92 C448,98 462,134 456,178 C450,218 424,234 366,236 C284,238 142,240 68,228 C34,222 24,186 30,152 Z" fill="url(#lyTfG)" stroke="#8fc4e2" stroke-width="2"/><ellipse cx="92" cy="112" rx="18" ry="6" fill="#fff" opacity=".45"/><ellipse cx="378" cy="126" rx="14" ry="5" fill="#fff" opacity=".4"/></g>';
+  /* 右側靜脈 */
+  g+='<g data-part="vein"><path d="M472,72 C504,72 522,86 522,120 V318 H558 V34 H522 V68 C516,50 496,42 472,42 Z" fill="url(#lyVeinG)" stroke="#3d2f28" stroke-width="2.2" stroke-linejoin="round"/><path d="M524,220 Q536,204 540,192 Q544,204 556,220" fill="none" stroke="#dbeafe" stroke-width="2.4" stroke-linecap="round"/><path class="flow" d="M540,296 V64" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="2.6" marker-end="url(#lyArrW)"/></g>';
+  /* 微血管（單層管壁＋單列立體紅血球＋穿出微血管的白血球） */
+  g+='<g data-part="cap"><path d="M20,42 H476 V72 H20 Z" fill="url(#lyCapG)" stroke="#3d2f28" stroke-width="2.2"/><g stroke="#7a2c2c" stroke-width="1.1" opacity=".55"><line x1="88" y1="42" x2="88" y2="48"/><line x1="168" y1="42" x2="168" y2="48"/><line x1="252" y1="42" x2="252" y2="48"/><line x1="336" y1="42" x2="336" y2="48"/><line x1="418" y1="42" x2="418" y2="48"/><line x1="112" y1="66" x2="112" y2="72"/><line x1="196" y1="66" x2="196" y2="72"/><line x1="286" y1="66" x2="286" y2="72"/><line x1="368" y1="66" x2="368" y2="72"/></g><line x1="26" y1="47" x2="466" y2="47" stroke="#fff" stroke-width="2.2" opacity=".38" stroke-linecap="round"/>';
+  g+='<g stroke="#7c1d1d" stroke-width="1.2">';
+  [[64,'#d93832','#f28c87'],[132,'#d93832','#f28c87'],[206,'#d43c3c','#f28c87'],[278,'#c74352','#eb949b'],[348,'#b34966','#e09bb0'],[420,'#8f4d78','#cfa0c2']].forEach(([x,c1,c2])=>{g+='<g transform="translate('+x+',57)"><ellipse rx="11" ry="7.5" fill="'+c1+'"/><ellipse rx="5" ry="3" fill="'+c2+'" stroke="none"/></g>';});
+  g+='</g><g transform="translate(242,74)"><path d="M-9,-10 C-12,-2 -14,6 -8,12 C-2,17 9,15 12,8 C14,2 9,-4 7,-10 C4,-14 -6,-14 -9,-10 Z" fill="#f3eef9" stroke="#6a4c93" stroke-width="1.6"/><path d="M-4,-4 C-6,2 -2,7 3,6 C7,5 6,-1 3,-3 C1,-5 -2,-6 -4,-4 Z" fill="#7c56b0"/></g></g>';
+  /* 血漿滲出與回流箭頭 */
+  g+='<g pointer-events="none"><path class="flow" d="M112,74 V106" fill="none" stroke="#2d6f9e" stroke-width="2.4" marker-end="url(#lyArrB)"/><path class="flow" d="M188,74 V106" fill="none" stroke="#2d6f9e" stroke-width="2.4" marker-end="url(#lyArrB)"/><path class="flow" d="M368,108 V76" fill="none" stroke="#2d6f9e" stroke-width="2.4" marker-end="url(#lyArrB)"/><text x="150" y="96" text-anchor="middle" font-size="11" font-weight="800" fill="#1d5680">血漿滲出</text><text x="368" y="122" text-anchor="middle" font-size="11" font-weight="800" fill="#1d5680">多數回流微血管</text></g>';
+  /* 立體有機組織細胞 */
+  g+='<g data-part="cell">';
+  [[88,162,-2,1,9,7.5,1],[166,144,1,0,8.5,7.5,1],[148,202,0,1,8.5,7,0],[242,170,2,1,9.5,8,1],[324,154,-1,0,8.5,7.5,0],[310,206,1,1,8,6.5,0]].forEach(([x,y,nx,ny,rx,ry,hi])=>{
+    g+='<g transform="translate('+x+','+y+')"><path d="M-25,-16 C-32,2 -22,23 -2,25 C18,27 31,12 27,-8 C23,-25 2,-28 -15,-22 Z" fill="url(#lyCellG)" stroke="#6b5038" stroke-width="1.8"/><ellipse cx="'+nx+'" cy="'+ny+'" rx="'+rx+'" ry="'+ry+'" fill="url(#lyNucG)"/>'+(hi?'<circle cx="'+(nx-2)+'" cy="'+(ny-2)+'" r="2" fill="#f7e2c8" opacity=".55"/>':'')+'</g>';
+  });
+  g+='</g>';
+  /* 組織液進淋巴管箭頭 */
+  g+='<g pointer-events="none"><path class="flow" d="M126,232 V268" fill="none" stroke="#4f7420" stroke-width="2.4" marker-end="url(#lyArrG)"/><path class="flow" d="M242,232 V268" fill="none" stroke="#4f7420" stroke-width="2.4" marker-end="url(#lyArrG)"/><text x="184" y="255" text-anchor="middle" font-size="11" font-weight="800" fill="#3f6212">部分滲入成為淋巴</text></g>';
+  /* 盲端淋巴管與單向瓣膜 */
+  g+='<g data-part="lv"><path d="M84,274 H368 V302 H84 A14,14 0 0,1 84,274 Z" fill="url(#lyLymphG)" stroke="#445c20" stroke-width="2.2"/><path d="M446,278 H522 V298 H446 Z" fill="url(#lyLymphG)" stroke="#445c20" stroke-width="2.2"/><line x1="88" y1="279" x2="362" y2="279" stroke="#fff" stroke-width="2" opacity=".45" stroke-linecap="round"/><path d="M174,275 L192,288 L174,301 M286,275 L304,288 L286,301" fill="none" stroke="#3f5c16" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="142" cy="288" r="6" fill="#f3eef9" stroke="#6a4c93" stroke-width="1.3"/><circle cx="142" cy="288" r="3" fill="#7c56b0"/><circle cx="238" cy="288" r="6" fill="#f3eef9" stroke="#6a4c93" stroke-width="1.3"/><circle cx="238" cy="288" r="3" fill="#7c56b0"/><circle cx="484" cy="288" r="5.5" fill="#f3eef9" stroke="#6a4c93" stroke-width="1.3"/><circle cx="484" cy="288" r="2.8" fill="#7c56b0"/><path class="flow" d="M312,288 H356 M454,288 H514" fill="none" stroke="#3f6212" stroke-width="2.2" marker-end="url(#lyArrG)"/></g>';
+  /* 剖面豆狀淋巴結 */
+  g+='<g data-part="node"><path d="M366,288 C366,262 390,254 414,258 C438,262 452,272 452,288 C452,306 436,318 412,318 C388,318 366,312 366,288 Z" fill="url(#lyNodeG)" stroke="#3d521b" stroke-width="2.3"/><ellipse cx="394" cy="282" rx="13" ry="10" fill="#e5f0c8" stroke="#6f8e36" stroke-width="1.2"/><ellipse cx="424" cy="280" rx="13" ry="10" fill="#e5f0c8" stroke="#6f8e36" stroke-width="1.2"/><ellipse cx="410" cy="302" rx="14" ry="9" fill="#e5f0c8" stroke="#6f8e36" stroke-width="1.2"/><g fill="#7c56b0"><circle cx="390" cy="280" r="2.6"/><circle cx="398" cy="284" r="2.6"/><circle cx="394" cy="276" r="2.2"/><circle cx="420" cy="278" r="2.6"/><circle cx="428" cy="282" r="2.6"/><circle cx="424" cy="274" r="2.2"/><circle cx="405" cy="301" r="2.6"/><circle cx="414" cy="303" r="2.6"/><circle cx="410" cy="297" r="2.2"/></g></g>';
+  /* 標籤 */
+  g+='<text class="lbl" data-lbl="cap" x="236" y="28" text-anchor="middle">微血管（單層細胞・紅血球單列）</text>';
+  g+='<text class="lbl" data-lbl="tf" x="412" y="176" text-anchor="middle">組織液</text>';
+  g+='<text class="lbl" data-lbl="cell" x="242" y="218" text-anchor="middle">組織細胞</text>';
+  g+='<text class="lbl" data-lbl="lv" x="216" y="334" text-anchor="middle">淋巴管（左端封閉盲端・內有瓣膜）</text>';
+  g+='<text class="lbl" data-lbl="node" x="410" y="340" text-anchor="middle">淋巴結</text>';
+  g+='<text class="lbl" data-lbl="vein" x="542" y="24" text-anchor="middle">靜脈（往右心房）</text>';
+  g+='<text x="580" y="172" text-anchor="middle" font-size="11" font-weight="700" fill="#365c96" transform="rotate(90 580 172)">淋巴匯入靜脈</text>';
+  const svg=$('lyGv');
+  svg.innerHTML=g;
+  addLblBg(svg);
+})();
+B.figure({svg:'lyGv',out:'lyOut',modeBar:'lyMode',parts:{
+  cap:{n:'微血管（單層細胞）',d:'連接動脈與靜脈，管壁僅一層細胞。圖中可見<b>紅血球單列通過且留在血管內</b>，部分<b>血漿滲出</b>成組織液，白血球可變形穿出微血管壁。'},
+  tf:{n:'組織液',d:'包圍在細胞周圍的液體，由血漿滲出形成（跌倒擦傷滲出的透明液體即組織液）。細胞靠它交換養分、氧氣與廢物。'},
+  cell:{n:'組織細胞',d:'身體各處的細胞，浸泡在組織液中，透過周圍的組織液與微血管內的血液交換物質。'},
+  lv:{n:'淋巴管（盲端＋瓣膜）',d:'<b>左端封閉（盲端）</b>，收集多餘的組織液成為<b>淋巴</b>。管內有<b>單向瓣膜</b>，靠肌肉收縮單向推送；淋巴裡含白血球，<b>沒有紅血球</b>。'},
+  node:{n:'淋巴結',d:'淋巴管上膨大的豆狀構造，內部聚集大量<b>白血球</b>，能<b>過濾病原體</b>。感染發炎時可能腫大（頸部、腋下、鼠蹊部）。'},
+  vein:{n:'靜脈（往右心房）',d:'微血管匯合處，也是淋巴的最終去處！淋巴最後匯入<b>靠近心臟的靜脈</b>，回到血液循環並最先進入<b>右心房</b>（不是流入動脈）。'}
+},hint:'滑鼠移上或點擊圖中構造（或標籤）看說明；也可切換「測驗」自我檢測！'});
+
+/* ---------- 小測驗（含 5 題考古題圖表／實驗插圖） ---------- */
+const QF_VESSEL='<svg viewBox="0 0 490 212" width="490" role="img" aria-label="甲乙丙三種血管的血壓實線與血流速度虛線曲線圖"><rect width="490" height="212" fill="#fbfaf6"/><line x1="62" y1="24" x2="62" y2="164" stroke="#6b7670" stroke-width="1.8"/><line x1="62" y1="164" x2="462" y2="164" stroke="#6b7670" stroke-width="1.8"/><rect x="194" y="26" width="134" height="137" fill="#fef7e6" opacity="0.7"/><line x1="194" y1="26" x2="194" y2="164" stroke="#d8d2c3" stroke-dasharray="4 3"/><line x1="328" y1="26" x2="328" y2="164" stroke="#d8d2c3" stroke-dasharray="4 3"/><text x="54" y="34" text-anchor="end" font-size="11.5" fill="#4d5a52">高／快</text><text x="54" y="162" text-anchor="end" font-size="11.5" fill="#4d5a52">低／慢</text><path d="M84 42 C145 48, 190 76, 255 112 C320 140, 380 150, 444 154" fill="none" stroke="#c83e4d" stroke-width="3.2" stroke-linecap="round"/><path d="M84 56 C140 66, 184 128, 232 146 C262 156, 294 154, 326 142 C368 124, 404 108, 444 100" fill="none" stroke="#2d6f9e" stroke-width="3.2" stroke-dasharray="7 4" stroke-linecap="round"/><circle cx="128" cy="50" r="4.5" fill="#c83e4d"/><circle cx="261" cy="115" r="4.5" fill="#c83e4d"/><circle cx="396" cy="150" r="4.5" fill="#c83e4d"/><circle cx="128" cy="70" r="4.5" fill="#2d6f9e"/><circle cx="261" cy="152" r="4.5" fill="#2d6f9e"/><circle cx="396" cy="112" r="4.5" fill="#2d6f9e"/><text x="128" y="182" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1f2a24">甲血管</text><text x="261" y="182" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1f2a24">乙血管</text><text x="396" y="182" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1f2a24">丙血管</text><line x1="94" y1="200" x2="124" y2="200" stroke="#c83e4d" stroke-width="3"/><text x="130" y="204" font-size="12" font-weight="700" fill="#a33a4a">實線：血壓</text><line x1="258" y1="200" x2="288" y2="200" stroke="#2d6f9e" stroke-width="3" stroke-dasharray="6 3"/><text x="294" y="204" font-size="12" font-weight="700" fill="#1d5680">虛線：血流速度</text></svg>';
+
+const QF_FISH='<svg viewBox="0 0 460 198" width="460" role="img" aria-label="複式顯微鏡下小魚尾鰭血管視野：上方甲血管由右向左分支，中間乙血管最細單列流動，下方丙血管由左向右匯集"><defs><marker id="qfArr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#a31d27"/></marker></defs><rect width="460" height="198" fill="#fbfaf6"/><circle cx="170" cy="99" r="86" fill="#f6efe6" stroke="#4d5a52" stroke-width="2.5"/><path d="M244 62 H178 L112 40 M178 62 L110 78" fill="none" stroke="#e49b94" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M236 62 H190 M170 59 L126 45" fill="none" stroke="#a31d27" stroke-width="2.2" marker-end="url(#qfArr)"/><path d="M244 102 Q170 94 98 104" fill="none" stroke="#eec0ba" stroke-width="6.5" stroke-linecap="round"/><circle cx="212" cy="100" r="3" fill="#c0392b"/><circle cx="184" cy="98" r="3" fill="#c0392b"/><circle cx="154" cy="99" r="3" fill="#c0392b"/><circle cx="126" cy="102" r="3" fill="#c0392b"/><path d="M112 126 L178 142 H244 M112 160 L178 142" fill="none" stroke="#d59fa0" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M126 130 L166 140 M186 142 H234" fill="none" stroke="#a31d27" stroke-width="2.2" marker-end="url(#qfArr)"/><text x="150" y="34" font-size="13" font-weight="800" fill="#1f2a24">甲</text><text x="170" y="92" text-anchor="middle" font-size="13" font-weight="800" fill="#1f2a24">乙</text><text x="150" y="172" font-size="13" font-weight="800" fill="#1f2a24">丙</text><rect x="274" y="28" width="172" height="142" rx="10" fill="#ffffff" stroke="#dcd8cc"/><text x="360" y="52" text-anchor="middle" font-size="13" font-weight="800" fill="#1f2a24">顯微鏡視野說明</text><text x="288" y="78" font-size="12" fill="#4d5a52">• 甲：由右向左<tspan font-weight="700" fill="#a33a4a">分支</tspan></text><text x="288" y="102" font-size="12" fill="#4d5a52">• 乙：最細、紅血球單列</text><text x="288" y="126" font-size="12" fill="#4d5a52">• 丙：由左向右<tspan font-weight="700" fill="#2d5f9e">匯集</tspan></text><text x="288" y="152" font-size="11.5" fill="#7a857e">（箭頭代表紅血球流向）</text></svg>';
+
+const QF_HEART='<svg viewBox="0 0 470 222" width="470" role="img" aria-label="心臟四腔室甲乙丙丁與相連血管a、b、c、d代號簡圖"><defs><marker id="qhb" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L9,5 L0,9Z" fill="#5b7fc4"/></marker><marker id="qhr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L9,5 L0,9Z" fill="#d9534f"/></marker></defs><rect width="470" height="222" fill="#fbfaf6"/><rect x="136" y="10" width="198" height="28" rx="8" fill="#f4dede" stroke="#c98a8a"/><text x="235" y="29" text-anchor="middle" font-size="12.5" font-weight="700" fill="#7a3a3a">肺部微血管</text><rect x="136" y="184" width="198" height="28" rx="8" fill="#efe6d6" stroke="#b9a37c"/><text x="235" y="203" text-anchor="middle" font-size="12.5" font-weight="700" fill="#5a4630">全身微血管</text><path d="M214 114 V44" stroke="#5b7fc4" stroke-width="8" fill="none" marker-end="url(#qhb)"/><path d="M334 24 H378 V84 H316" stroke="#d9534f" stroke-width="8" fill="none" marker-end="url(#qhr)"/><path d="M316 142 H408 V198 H342" stroke="#d9534f" stroke-width="9" fill="none" marker-end="url(#qhr)"/><path d="M136 198 H62 V84 H146" stroke="#5b7fc4" stroke-width="9" fill="none" marker-end="url(#qhb)"/><rect x="152" y="64" width="68" height="44" rx="10" fill="#9db3df" stroke="#4a6fb0" stroke-width="1.8"/><rect x="152" y="114" width="76" height="50" rx="12" fill="#84a0d6" stroke="#4a6fb0" stroke-width="2.5"/><rect x="242" y="64" width="68" height="44" rx="10" fill="#efa3a0" stroke="#a33a4a" stroke-width="1.8"/><rect x="242" y="114" width="74" height="52" rx="12" fill="#e07a76" stroke="#8f2b38" stroke-width="5"/><text x="186" y="91" text-anchor="middle" font-size="14" font-weight="800" fill="#1f2a24">甲</text><text x="190" y="145" text-anchor="middle" font-size="14" font-weight="800" fill="#1f2a24">乙</text><text x="276" y="91" text-anchor="middle" font-size="14" font-weight="800" fill="#1f2a24">丙</text><text x="279" y="145" text-anchor="middle" font-size="14" font-weight="800" fill="#1f2a24">丁</text><text x="194" y="56" text-anchor="middle" font-size="13.5" font-weight="800" fill="#365c96">a</text><text x="394" y="60" text-anchor="middle" font-size="13.5" font-weight="800" fill="#a33a4a">b</text><text x="424" y="172" text-anchor="middle" font-size="13.5" font-weight="800" fill="#a33a4a">c</text><text x="46" y="148" text-anchor="middle" font-size="13.5" font-weight="800" fill="#365c96">d</text></svg>';
+
+const QF_EXCH='<svg viewBox="0 0 470 198" width="470" role="img" aria-label="血液流經某器官微血管前與流出後之氧氣、二氧化碳、葡萄糖相對含量柱狀圖"><rect width="470" height="198" fill="#fbfaf6"/><text x="235" y="20" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2a24">血液流經某器官微血管前後的物質含量比較</text><line x1="62" y1="36" x2="62" y2="152" stroke="#6b7670" stroke-width="1.6"/><line x1="62" y1="152" x2="438" y2="152" stroke="#6b7670" stroke-width="1.6"/><text x="54" y="44" text-anchor="end" font-size="11" fill="#4d5a52">高</text><text x="54" y="150" text-anchor="end" font-size="11" fill="#4d5a52">低</text><rect x="96" y="56" width="34" height="96" rx="3" fill="#6b9bc4"/><rect x="136" y="106" width="34" height="46" rx="3" fill="#e08963"/><text x="133" y="170" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2a24">氧氣（O₂）</text><rect x="220" y="108" width="34" height="44" rx="3" fill="#6b9bc4"/><rect x="260" y="64" width="34" height="88" rx="3" fill="#e08963"/><text x="257" y="170" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2a24">二氧化碳（CO₂）</text><rect x="344" y="112" width="34" height="40" rx="3" fill="#6b9bc4"/><rect x="384" y="48" width="34" height="104" rx="3" fill="#e08963"/><text x="381" y="170" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2a24">葡萄糖</text><rect x="114" y="180" width="14" height="10" rx="2" fill="#6b9bc4"/><text x="134" y="189" font-size="11.5" fill="#4d5a52">流入微血管前（小動脈）</text><rect x="284" y="180" width="14" height="10" rx="2" fill="#e08963"/><text x="304" y="189" font-size="11.5" fill="#4d5a52">流出微血管後（小靜脈）</text></svg>';
+
+const QF_LYMPH='<svg viewBox="0 0 470 194" width="470" role="img" aria-label="微血管甲、細胞間液體乙、盲端管狀構造丙與匯入大血管丁的循環交換圖"><defs><marker id="qlyA" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#4d5a52"/></marker></defs><rect width="470" height="194" fill="#fbfaf6"/><rect x="22" y="50" width="322" height="82" rx="8" fill="#e3f0f7" stroke="#bfd9e8"/><path d="M24 34 H344" stroke="#d9534f" stroke-width="16" stroke-linecap="round"/><text x="184" y="39" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">甲（微血管）</text><circle cx="76" cy="92" r="14" fill="#f3e3c8" stroke="#b9a37c"/><circle cx="144" cy="98" r="14" fill="#f3e3c8" stroke="#b9a37c"/><circle cx="216" cy="86" r="14" fill="#f3e3c8" stroke="#b9a37c"/><text x="294" y="96" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1d5680">乙</text><path d="M108 44 v14 M246 44 v14" stroke="#4d5a52" stroke-width="1.8" stroke-dasharray="3 2" marker-end="url(#qlyA)"/><path d="M180 124 v16" stroke="#4d5a52" stroke-width="1.8" stroke-dasharray="3 2" marker-end="url(#qlyA)"/><path d="M62 154 H304" stroke="#b6cf7a" stroke-width="14" stroke-linecap="round"/><path d="M62 147 A7 7 0 0 0 62 161 L304 161 M62 147 L304 147" stroke="#5f7d2a" stroke-width="1.6" fill="none"/><ellipse cx="322" cy="154" rx="20" ry="12" fill="#8fb04a" stroke="#5f7d2a" stroke-width="1.8"/><text x="184" y="180" text-anchor="middle" font-size="13" font-weight="800" fill="#3b5e18">丙（左端封閉管）</text><path d="M342 154 H410 V22" stroke="#5b7fc4" stroke-width="16" fill="none" stroke-linejoin="round"/><path d="M410 124 V70" stroke="#fff" stroke-width="2" marker-end="url(#qlyA)"/><text x="438" y="96" text-anchor="middle" font-size="13.5" font-weight="800" fill="#2d5f9e">丁</text></svg>';
+
 const QZ=[
  {u:1,s:'血液中數量最多的血球是哪一種？',o:['白血球','紅血球','血小板','淋巴球'],a:1,
   e:'紅血球數量最多。白血球體積最大但數量最少。'},
@@ -410,6 +1357,10 @@ const QZ=[
   e:'DNA 在細胞核裡。血球中只有白血球有細胞核。'},
  {u:1,s:'小腸吸收的葡萄糖，主要由血液中的哪一部分運送？',o:['紅血球','白血球','血小板','血漿'],a:3,
   e:'養分、廢物、二氧化碳主要溶在血漿中運送；紅血球主要運送氧氣。'},
+ {u:1,s:'下列哪一種物質「不會」存在於正常人的血漿中？',o:['葡萄糖與胺基酸','抗體與激素','尿素與二氧化碳','澱粉酶等消化酵素'],a:3,
+  e:'血漿運送養分、廢物、二氧化碳、激素與抗體；但消化酵素只由消化腺分泌到消化道中作用，不會存在於血漿裡！'},
+ {u:1,s:'冬天緊閉門窗使用燃氣熱水器，容易造成一氧化碳（CO）中毒。請問一氧化碳中毒的主要機制為何？',o:['破壞血小板導致大出血','與紅血球內的血紅素結合力遠強於氧氣，使身體缺氧','使白血球大量減少而喪失免疫力','堵塞心臟瓣膜導致血液逆流'],a:1,
+  e:'一氧化碳與血紅素的結合能力遠大於氧氣，會搶占血紅素使紅血球無法正常攜帶氧氣，進而造成組織嚴重缺氧。'},
  {u:2,s:'把血液帶離心臟、管壁厚而有彈性的血管是哪一種？',o:['動脈','靜脈','微血管','淋巴管'],a:0,
   e:'動脈把血液帶離心臟，管壁厚、有彈性，血壓最大。'},
  {u:2,s:'血液和組織細胞交換物質，主要發生在哪一種血管？',o:['動脈','靜脈','微血管','主動脈'],a:2,
@@ -419,11 +1370,11 @@ const QZ=[
  {u:2,s:'用聽診器聽心音，1 分鐘聽到 150 個聲音。他的心跳每分鐘幾次？',o:['150 次','300 次','75 次','50 次'],a:2,
   e:'「噗—通」兩個聲音才是一次心跳，150÷2＝75 次。'},
  {u:2,s:'量脈搏 20 秒數到 25 下，每分鐘的脈搏是幾下？',o:['50 下','60 下','75 下','100 下'],a:2,
-  e:'60÷20＝3，25×3＝75 下。'},
+  e:'60÷20＝3，25×3＝75 下。測量脈搏應以食指與中指按壓手腕橈動脈，不可用大拇指（大拇指本身脈搏明顯易混淆）。'},
  {u:2,s:'觀察小魚尾鰭時，血液由粗血管流向細的分支，而且流得很快。這是哪一種血管？',o:['小靜脈','微血管','小動脈','淋巴管'],a:2,
   e:'口訣「分支是小動脈」：由粗分支成細、流速最快的是小動脈。'},
  {u:2,s:'在複式顯微鏡下看到小動脈的血液由左往右流。實際上魚的頭在哪一邊？',o:['左邊','右邊','上面','下面'],a:1,
-  e:'小動脈的血從心臟流出來，影像中心臟（魚頭）在左邊。複式顯微鏡的影像左右顛倒，實際上魚頭在右邊。'},
+  e:'小動脈的血從心臟流出來，影像中心臟（魚頭）在左邊。複式顯微鏡的影像上下左右皆顛倒，實際上魚頭在右邊。'},
  {u:3,s:'心臟的四個腔室中，管壁最厚的是哪一個？',o:['右心房','右心室','左心房','左心室'],a:3,
   e:'左心室要把血液送到全身，所以管壁最厚。'},
  {u:3,s:'下列哪一條血管裡流的是缺氧血？',o:['主動脈','肺靜脈','肺動脈','左心室出來的血管'],a:2,
@@ -435,13 +1386,29 @@ const QZ=[
  {u:3,s:'承上題，藥物從手臂到達腦部，一定會經過下列哪一個器官的微血管？',o:['小腸','肝臟','肺','腎臟'],a:2,
   e:'右心房 → 右心室 → 肺動脈 → 肺 → 肺靜脈 → 左心房 → 左心室 → 主動脈 → 腦。一定要先經過肺。'},
  {u:3,s:'心臟中防止血液逆流的構造是什麼？',o:['瓣膜','心房','血小板','淋巴結'],a:0,
-  e:'瓣膜在心房與心室之間、心室與動脈之間，防止血液逆流。四肢的靜脈和淋巴管也有瓣膜。'},
+  e:'瓣膜在心房與心室之間、心室與動脈之間，防止血液逆流（心房與靜脈間沒有瓣膜）。四肢的靜脈和淋巴管也有瓣膜。'},
+ {u:3,s:'醫師為心肌梗塞患者進行心導管手術時，從手腕的「橈動脈」置入導管並沿血管逆流進入心臟。若導管一路推進，將「最先」抵達心臟的哪一個腔室？且心肌平常是靠哪條血管供血？',o:['右心房；肺動脈','左心室；由主動脈基部分支的冠狀動脈','右心室；大靜脈','左心房；肺靜脈'],a:1,
+  e:'手腕橈動脈屬於體循環動脈，導管沿動脈逆流而上會經主動脈直接先進入「左心室」；心肌細胞則靠主動脈基部分支的「冠狀動脈」供應氧氣與養分，而非直接吸收心腔內血液。'},
  {u:4,s:'下列哪兩種液體的成分最相似？',o:['血液和淋巴','組織液和淋巴','血漿和尿液','組織液和紅血球'],a:1,
-  e:'組織液進入淋巴管就成為淋巴，兩者成分最相似。'},
+  e:'組織液進入淋巴管就成為淋巴，兩者成分最相似。血液因含紅血球與血小板，與另外三者差異最大。'},
  {u:4,s:'關於淋巴的敘述，何者正確？',o:['淋巴最後流入動脈','淋巴中有大量紅血球','淋巴管中有瓣膜，淋巴只往一個方向流','淋巴由心臟推動'],a:2,
   e:'淋巴最後流入靠近心臟的靜脈；淋巴沒有紅血球；淋巴靠肌肉收縮和瓣膜往前流，不是心臟推動。'},
  {u:4,s:'感冒時脖子兩側摸到腫起來的小硬塊，最可能是什麼？',o:['淋巴結','血小板','微血管','瓣膜'],a:0,
-  e:'淋巴結能過濾病原體，裡面有大量白血球，身體感染時可能腫大。'}
+  e:'淋巴結能過濾病原體，裡面有大量白血球，身體感染時可能腫大。'},
+ {u:4,s:'阿明騎腳踏車跌倒，膝蓋表皮擦傷並滲出清澈微黃的透明液體（沒有明顯流血）。這種透明液體主要是什麼？它原本是從哪裡滲出來的？',o:['淋巴；由淋巴結滲出','血漿；由動脈直接噴出','組織液；由血漿自微血管滲出','唾液；由皮脂腺分泌'],a:2,
+  e:'表皮擦傷流出的透明淡黃色液體是「組織液」，由血液流經微血管時一部分血漿滲出細胞間隙所形成。'},
+ {u:2,s:'下圖為人體甲、乙、丙三種血管的血壓（實線）與血流速度（虛線）變化圖。根據圖中曲線，下列敘述何者正確？',fig:QF_VESSEL,o:['乙的血壓最低，因此乙是靜脈','乙的血流速度最慢，是微血管，有利於血液與細胞交換物質','丙的血流速度最慢，且管壁只有一層細胞','甲是負責把血液送回心臟的靜脈'],a:1,
+  e:'血壓由高到低為甲（動脈）＞乙（微血管）＞丙（靜脈），故血壓最低是丙（靜脈）；血流速度則是乙（微血管）最慢，利於物質交換，到丙（靜脈）又再次回升。'},
+ {u:2,s:'下圖為小妮用「複式顯微鏡」觀察小魚尾鰭時看到的視野（箭頭代表紅血球流動方向）。下列關於血管種類與「實際上」魚頭位置的判斷，何者正確？',fig:QF_FISH,o:['甲是小動脈、丙是小靜脈；實際上魚頭在視野的右邊','甲是小靜脈、丙是小動脈；實際上魚頭在視野的左邊','甲是小動脈、丙是小靜脈；實際上魚頭在視野的左邊','乙是流速最快的微血管；實際上魚頭在視野的右邊'],a:2,
+  e:'甲由粗分支成細，是小動脈；乙最細且紅血球單列，是微血管；丙由細匯集成粗，是小靜脈。影像中小動脈的血從右邊（心臟）流出，故「影像中」魚頭在右邊；因複式顯微鏡影像上下左右皆顛倒，所以「實際上」魚頭在左邊！'},
+ {u:3,s:'下圖為人體心臟四個腔室（甲～丁）與相連大血管（a～d）的簡圖。關於此圖的敘述，下列何者正確？',fig:QF_HEART,o:['甲與乙內流動的是充氧血，丙與丁是缺氧血','肺循環的起點是丁，終點是甲','手臂靜脈打點滴後，藥物最先進入的心臟腔室是甲','血管 a 是肺靜脈，血管 b 是肺動脈'],a:2,
+  e:'面對面看心臟：甲＝右心房、乙＝右心室（右側缺氧血），丙＝左心房、丁＝左心室（左側充氧血）；a＝肺動脈、b＝肺靜脈、c＝主動脈、d＝大靜脈。靜脈打點滴經 d（大靜脈）最先進入甲（右心房）。'},
+ {u:3,s:'下圖為血液流經人體某一器官的微血管前後，氧氣、二氧化碳與葡萄糖相對含量的變化。此器官最可能是下列哪一個？',fig:QF_EXCH,o:['肺部微血管','飯後的小腸絨毛微血管','劇烈運動中的腿部肌肉','腦部微血管'],a:1,
+  e:'流出微血管後氧氣減少、二氧化碳增加，代表屬於體循環組織（排除肺部，肺部應氧氣增加、二氧化碳減少）；同時葡萄糖「大幅增加」，代表吸收了大量養分，最符合飯後的小腸絨毛微血管！'},
+ {u:4,s:'下圖為人體微血管（甲）、組織細胞周圍液體（乙）、盲端管道（丙）與大血管（丁）之間的液體循環示意圖。下列敘述何者正確？',fig:QF_LYMPH,o:['乙是組織液、丙是淋巴管，兩者內部液體的成分最相似','丙內的液體最後會匯入丁，而丁是一條主動脈','紅血球可以自由穿梭在甲、乙、丙三處','若丙發生嚴重阻塞，乙會立刻全部消失'],a:0,
+  e:'血漿由甲（微血管）滲出形成乙（組織液），部分進入丙（淋巴管）成為淋巴，故乙與丙成分最相似。(B) 丙最後匯入靠近心臟的靜脈（丁）；(C) 紅血球不會離開血管；(D) 淋巴管阻塞會導致組織液堆積而水腫。'},
+ {u:3,s:'用聽診器聽心跳時，一次心跳會聽到「噗—通」兩個心音。關於這兩個心音的成因，下列敘述何者正確？',o:['是瓣膜打開時發出的聲音','「噗」是心室收縮時房室瓣關閉的聲音；「通」是心室舒張時半月瓣關閉的聲音','「噗」是心房收縮時靜脈瓣膜關閉；「通」是心室收縮時房室瓣打開','「噗」是心臟撞擊胸壁的聲音；「通」是血液流經微血管的聲音'],a:1,
+  e:'心音是血液逆流撞擊「關閉」的瓣膜發出的聲音：心室收縮時，房室瓣用力關閉發出第一心音「噗」；心室舒張時，動脈血倒流撞關半月瓣發出第二心音「通」。口訣：室收「噗」（房室瓣關）、室舒「通」（半月瓣關）。'}
 ];
 B.quiz({box:'qz',score:'qzScore',done:'qzDone',reset:'qzReset',filter:'qzFlt',data:QZ,names:{1:'重點一',2:'重點二',3:'重點三',4:'重點四'}});
 window.__QZ=QZ;

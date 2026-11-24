@@ -8,8 +8,11 @@
 <link rel="icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="../assets/style.css?v=3">
-<link rel="stylesheet" href="lib/bio.css">
-<script src="lib/common.js"></script>
+<link rel="stylesheet" href="lib/bio.css?v=13">
+<style>
+.q figure svg{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fbfaf6}
+</style>
+<script src="lib/common.js?v=13"></script>
 </head>
 <body>
 <header id="site-head"></header>
@@ -32,10 +35,11 @@
     <ul>
       <li>六大養分：<b>醣類、蛋白質、脂質、維生素、礦物質、水</b>。</li>
       <li>能提供能量的只有<b>醣類、蛋白質、脂質</b>。每 1 公克約提供：醣類 <b>4</b> 大卡、蛋白質 <b>4</b> 大卡、脂質 <b>9</b> 大卡（最多）。</li>
-      <li>維生素、礦物質、水<b>不提供能量</b>，但能調節生理作用。水是人體含量最多的物質。</li>
+      <li>維生素、礦物質、水<b>不提供能量</b>，但能調節生理作用。人體物質含量由多到少：<b>水（約 70%）＞ 蛋白質 ＞ 脂質 ＞ 醣類</b>（醣類是主要能量來源，但不是人體含量最多）。</li>
       <li>醣類：主要的能量來源（葡萄糖、澱粉）。<b>纖維素也是醣類</b>，人體不能消化，但能促進腸道蠕動。</li>
       <li>蛋白質：構成身體、修補組織；<b>酵素、抗體</b>的主要成分也是蛋白質。脂質：儲存能量、保持體溫、保護內臟。</li>
-      <li>缺乏症：缺維生素 A → 夜盲症；缺維生素 C → 壞血病；缺維生素 D → 佝僂病；<b>缺鐵 → 貧血</b>；缺鈣 → 骨骼、牙齒不健康。</li>
+      <li>缺乏症與機能：缺維生素 A → 夜盲症；缺維生素 B 群 → 腳氣病；缺維生素 C → 壞血病；缺維生素 D → 佝僂病；<b>缺鐵 → 貧血</b>；缺<b>鈣</b> → 骨骼牙齒不健康、影響血液凝固；缺<b>碘</b> → 甲狀腺腫大。</li>
+      <li>食物熱量測定實驗（燃燒花生加熱水）：<b>水吸收熱量（卡）＝ 水的質量（g）× 水溫上升（℃）</b>；1 大卡＝1000 卡。因熱量會散失到空氣與容器，實測值會<b>小於</b>食物實際熱量。</li>
     </ul>
   </div>
 
@@ -55,8 +59,10 @@
   <div class="warn">
     <b>易錯陷阱</b>
     <ul>
+      <li><b>「糖」已包含在「碳水化合物」裡（超高頻陷阱！）</b>：若標示寫「碳水化合物 15 公克、糖 10 公克」，算熱量只能算 <b>15×4</b>，<b>絕不可把糖再乘 4 重複加一次</b>！另外「鈉」是礦物質，<b>不提供熱量</b>。</li>
       <li>營養標示寫「每份」，算整瓶要<b>再乘份數</b>。「每份 250 毫升、本包裝 500 毫升」就是 2 份。</li>
       <li>1 大卡＝1000 卡。選項寫「卡」還是「大卡」要看清楚。</li>
+      <li>燃燒花生測熱量時，因為部分熱量散失到空氣、鋁箔與試管，水吸收到的熱量一定<b>小於</b>花生實際燃燒釋放的熱量。</li>
       <li>貧血是<b>缺鐵</b>（鐵是血紅素的成分），不是缺鈣。</li>
       <li>「人體吸收纖維素可產生熱量」是錯的：人體沒有分解纖維素的酵素。</li>
       <li>要「最快」補充能量選<b>葡萄糖</b>：它是小分子，不用消化就能直接吸收。</li>
@@ -71,9 +77,9 @@
     <ul>
       <li><b>澱粉 → 碘液</b>：碘液原本是<b>黃褐色</b>，遇到澱粉變成<b>藍黑色</b>。<b>不需要加熱</b>。</li>
       <li><b>葡萄糖 → 本氏液</b>：本氏液原本是<b>藍色</b>，要<b>隔水加熱</b>才會變色。糖越多，顏色依序是 藍 → 綠 → 黃 → 橙 → 紅。</li>
-      <li>隔水加熱：試管放進裝熱水的燒杯加熱，受熱均勻、比較安全。</li>
-      <li>對照組：用<b>碘液</b>測試時，在<b>梅花盤</b>中間的凹槽滴<b>清水</b>；用<b>本氏液</b>測試時，用一支裝<b>清水的試管</b>一起加熱。對照組方便比較顏色有沒有改變。</li>
-      <li>補充：本氏液遇到果糖、麥芽糖也會變色；<b>蔗糖（砂糖）不會</b>讓本氏液變色。</li>
+      <li><b>本氏液隔水加熱的真正目的</b>：是為了<b>促成本氏液與還原糖（葡萄糖、果糖、麥芽糖）發生化學呈色反應</b>，同時讓試管受熱均勻、較安全（不是為了破壞酵素）。</li>
+      <li>對照組與器材：用<b>碘液</b>測試時使用<b>白色梅花盤</b>（白色底方便觀察顏色變化），其中一格滴<b>清水</b>作對照組；用<b>本氏液</b>測試時，用一支裝<b>清水的試管</b>一起加熱對照。</li>
+      <li>補充：本氏液遇到葡萄糖、果糖、麥芽糖都會變色；但<b>蔗糖（砂糖）與澱粉都不會</b>讓本氏液變色。</li>
     </ul>
     <p class="mnemo">碘液配澱粉，不加熱；本氏配葡萄，要隔水</p>
   </div>
@@ -84,7 +90,7 @@
       <label>樣品 <select class="num" id="tsS"></select></label>
       <label>試劑 <select class="num" id="tsR"><option value="i">碘液</option><option value="b">本氏液</option></select></label>
       <label>加熱 <select class="num" id="tsH"><option value="0">不加熱</option><option value="1">隔水加熱</option></select></label>
-      <button class="btn cool" id="tsGo">滴下去！</button>
+      <button type="button" class="btn cool" id="tsGo">滴下去！</button>
     </div>
     <div class="tubes" id="tsTubes"></div>
     <div class="out" id="tsOut"></div>
@@ -95,16 +101,16 @@
     <p class="note">四杯飲料分別加本氏液、隔水加熱，點杯子由<b>含糖量多到少</b>排列。</p>
     <div class="tubes" id="bsCups"></div>
     <div class="inrow"><span id="bsPick" class="out"></span></div>
-    <div class="inrow"><button class="btn" id="bsNew">換一題</button></div>
+    <div class="inrow"><button type="button" class="btn" id="bsNew">換一題</button></div>
     <div class="out" id="bsOut"></div>
   </div>
   <div class="warn">
     <b>易錯陷阱</b>
     <ul>
-      <li>本氏液<b>還沒加熱</b>時，不管有沒有糖都是藍色。</li>
-      <li>碘液原本是<b>黃褐色</b>，不是藍色；本氏液原本才是藍色。</li>
+      <li>本氏液<b>還沒加熱</b>時，不管有沒有糖都是藍色；唾液實驗最後加本氏液隔水加熱是為了<b>讓試劑呈色反應</b>，不是為了破壞酵素。</li>
+      <li>碘液原本是<b>黃褐色</b>，不是藍色；本氏液原本才是藍色。檢驗澱粉時用白色梅花盤方便辨色且<b>不需加熱</b>。</li>
       <li>「滴碘液沒變色」只代表沒有澱粉，不代表沒有糖。</li>
-      <li>本氏液加熱後仍是藍色，代表幾乎沒有葡萄糖這類的糖；但蔗糖不會讓本氏液變色，所以不一定完全沒有糖。</li>
+      <li>本氏液加熱後仍是藍色，代表幾乎沒有葡萄糖、果糖或麥芽糖；但<b>蔗糖（砂糖）不會讓本氏液變色</b>，所以不一定完全沒有糖。</li>
     </ul>
   </div>
   </section>
@@ -114,11 +120,11 @@
   <h2>三、酵素的特性與代謝<span class="unitno">2-2</span><span class="star">★★★ 必考</span></h2>
   <div class="key">
     <ul>
-      <li>生物體內的化學反應叫<b>代謝</b>：<b>合成作用</b>（小分子 → 大分子，例如葡萄糖 → 澱粉）、<b>分解作用</b>（大分子 → 小分子，例如澱粉 → 葡萄糖）。</li>
-      <li>酵素（又叫酶）能<b>加快反應速率</b>。主要成分是<b>蛋白質</b>。</li>
+      <li>生物體內的化學反應叫<b>代謝</b>：<b>合成作用</b>（小分子 → 大分子，例如葡萄糖 → 澱粉、胺基酸 → 蛋白質）、<b>分解作用</b>（大分子 → 小分子，例如澱粉 → 葡萄糖、雙氧水在<b>過氧化氫酶</b>催化下分解成水＋氧氣）。</li>
+      <li>酵素（又叫酶）能<b>加快反應速率</b>，但<b>不會增加最終產物總量</b>（產物總量由受質決定）。主要成分是<b>蛋白質</b>。</li>
       <li>酵素反應前後<b>不會改變</b>，可以<b>重複使用</b>。被改變的是<b>受質</b>（酵素作用的物質），反應後變成<b>產物</b>。</li>
       <li><b>專一性</b>：一種酵素只能和特定的受質作用，像一把鑰匙只開一個鎖。澱粉酶只分解澱粉，不能分解蛋白質。</li>
-      <li>酵素<b>離開細胞也能作用</b>：唾液在試管裡也能分解澱粉。</li>
+      <li>酵素<b>離開細胞也能作用</b>：唾液在試管裡能分解澱粉；新鮮馬鈴薯塊或豬肝中的過氧化氫酶，遇到雙氧水也會冒出大量<b>氧氣泡</b>（煮熟後酵素變性就不再冒氣泡）。</li>
     </ul>
   </div>
 
@@ -126,21 +132,35 @@
     <h3>專一性：澱粉酶能分解哪一種？</h3>
     <p class="note">把受質送進澱粉酶，看看哪一個「鎖」得進去。注意澱粉酶反應完以後還在。</p>
     <div class="bar" id="lkBar">
-      <button class="btn" data-s="starch">澱粉</button>
-      <button class="btn" data-s="protein">蛋白質</button>
-      <button class="btn" data-s="fat">脂質</button>
+      <button type="button" class="btn" data-s="starch">澱粉</button>
+      <button type="button" class="btn" data-s="protein">蛋白質</button>
+      <button type="button" class="btn" data-s="fat">脂質</button>
     </div>
     <svg id="lkSvg" viewBox="0 0 560 170" role="img" aria-label="澱粉酶與受質的鎖鑰示意圖" style="width:100%;max-width:620px;height:auto;display:block;background:#fbfaf6;border:1px solid var(--line);border-radius:10px"></svg>
     <div class="out" id="lkOut" style="margin-top:8px">先選一種受質。</div>
   </div>
+
+  <div class="tool">
+    <h3>酵素只加速、不增加總量：產物累積曲線比較</h3>
+    <p class="note">點選下方比較條件，觀察曲線「上升快慢（斜率）」與「最後高度（產物總量）」哪一個會改變！</p>
+    <div class="bar" id="erBar">
+      <button type="button" class="btn on" data-m="enz">加酵素 vs 不加酵素（同受質）</button>
+      <button type="button" class="btn" data-m="amt">酵素量多 vs 少（同受質）</button>
+      <button type="button" class="btn" data-m="sub">受質多 vs 少（都有酵素）</button>
+    </div>
+    <svg id="erSvg" viewBox="0 0 600 218" role="img" aria-label="酵素對反應速率與最終產物總量之影響曲線圖" style="width:100%;max-width:640px;height:auto;display:block;background:#fbfaf6;border:1px solid var(--line);border-radius:10px"></svg>
+    <div class="out" id="erOut" style="margin-top:8px"></div>
+  </div>
+
   <div class="warn">
     <b>易錯陷阱</b>
     <ul>
+      <li><b>酵素只加快反應速率，不會增加最終產物總量</b>：受質總量相同時，加酵素只是更早達到終點，兩條曲線最終會停在<b>相同高度</b>。</li>
       <li>「專一性」是指<b>只能催化特定的反應</b>，不是「只在某個溫度作用」或「只在某段消化道作用」。</li>
       <li>✗「酵素反應後就被用掉」→ ✓ 酵素反應前後<b>不變</b>，可以<b>重複使用</b>（被改變的是受質）。</li>
-      <li>✗「酵素離開細胞就失去作用」→ ✓ 離開細胞<b>也能作用</b>，例如唾液在試管裡分解澱粉；會讓酵素失去作用的是高溫、酸鹼值不適合。</li>
+      <li>✗「酵素離開細胞就失去作用」→ ✓ 離開細胞<b>也能作用</b>，例如唾液在試管分解澱粉、新鮮馬鈴薯或豬肝分解雙氧水產生氧氣（但煮熟後高溫變性就失效）。</li>
       <li>冰箱讓食物不容易壞，是低溫讓<b>細菌的酵素作用變慢</b>，不是細菌都死光。</li>
-      <li>吃進肚子的「酵素」是蛋白質，會被消化分解，不能直接補充身體裡的酵素。</li>
+      <li>吃進肚子的「酵素」主要成分是蛋白質，會被胃液（強酸＋胃蛋白酶）消化分解，不能直接補充身體裡的酵素。</li>
     </ul>
   </div>
   </section>
@@ -158,24 +178,24 @@
   </div>
 
   <div class="tool">
-    <h3>酵素活性曲線：拖拉看看</h3>
+    <h3>酵素活性曲線：拖拉看看（含低溫回溫 vs 高溫不可逆測試）</h3>
     <div class="bar" id="acBar">
-      <button class="btn on" data-m="t">溫度</button>
-      <button class="btn" data-m="p">酸鹼值</button>
+      <button type="button" class="btn on" data-m="t">溫度</button>
+      <button type="button" class="btn" data-m="p">酸鹼值</button>
     </div>
     <svg id="acSvg" viewBox="0 0 560 250" role="img" aria-label="酵素活性和溫度或酸鹼值的關係圖" style="width:100%;max-width:620px;height:auto;display:block;background:#fff;border:1px solid var(--line);border-radius:10px"></svg>
     <div class="range" id="acRange"><span id="acLab">溫度</span><input type="range" id="acX"><b id="acVal"></b></div>
-    <div class="inrow" id="acCoolRow"><button class="btn" id="acCool">把這支試管降回 37 ℃</button></div>
+    <div class="inrow" id="acCoolRow"><button type="button" class="btn warm" id="acCool">把這支試管移回 37 ℃</button></div>
     <div class="out" id="acOut"></div>
   </div>
 
   <div class="tool">
-    <h3>唾液實驗：自己設計四支試管</h3>
-    <p class="note">每支試管都先放入<b>等量的澱粉液</b>，再設定加入的東西和水浴溫度，放置 10 分鐘後檢測。</p>
+    <h3>唾液實驗：自己設計四支試管（含酸鹼性變因）</h3>
+    <p class="note">每支試管都先放入<b>等量的澱粉液</b>，再設定加入的東西（含「唾液＋稀鹽酸」）和水浴溫度，放置 10 分鐘後檢測。</p>
     <div class="inrow"><label>檢測試劑 <select class="num" id="svR"><option value="b">本氏液（隔水加熱）</option><option value="i">碘液</option></select></label>
-      <button class="btn" id="svPre">恢復課本的四支試管</button></div>
+      <button type="button" class="btn" id="svPre">恢復課本的四支試管</button></div>
     <div class="tubes" id="svTubes"></div>
-    <div class="inrow"><button class="btn cool" id="svGo">放置 10 分鐘後檢測</button></div>
+    <div class="inrow"><button type="button" class="btn cool" id="svGo">放置 10 分鐘後檢測</button></div>
     <div class="out" id="svOut"></div>
     <h3 style="margin-top:14px">選兩支試管比較：能得到什麼結論？</h3>
     <div class="chips" id="svPair"></div>
@@ -185,8 +205,10 @@
     <b>易錯陷阱</b>
     <ul>
       <li>要比較「某個因素的影響」，選<b>只有那個條件不同</b>的兩支試管；兩個條件同時不同，就不能下結論。</li>
-      <li>加本氏液隔水加熱後<b>有變色</b> → 有糖產生 → 澱粉被分解了。加碘液<b>不變藍黑</b> → 澱粉沒了 → 澱粉被分解了。兩種試劑的結果要反過來看。<br>注意：碘液<b>變藍黑</b>不一定代表唾液沒作用，可能只是澱粉還沒分解完（還剩一些澱粉），所以常把兩種試劑的結果一起看。</li>
-      <li>「溫度越高，活性越好」是錯的。高溫破壞不能恢復，低溫只是暫時變慢。</li>
+      <li><b>滴碘液反問法（114 學年度高頻！）</b>：若每隔幾分鐘取樣滴碘液，問「<b>哪一支試管最早不再呈藍黑色</b>」＝ <b>37 ℃ 唾液組</b>（酵素活性最高、最快把澱粉分解完畢）。</li>
+      <li>加本氏液隔水加熱後<b>有變色</b> → 有糖產生 → 澱粉被分解了；加碘液<b>不變藍黑（呈黃褐）</b> → 澱粉沒了 → 澱粉被分解了。兩種試劑的結果要反過來看。<br>注意：碘液<b>變藍黑</b>不一定代表唾液完全沒作用，可能只是澱粉還沒分解完（還剩一些澱粉），所以常把兩種試劑的結果一起看。</li>
+      <li>「溫度越高，活性越好」是錯的。<b>高溫（如 80～100 ℃）會永久破壞蛋白質構造，降回 37 ℃ 也不能恢復</b>；低溫（0 ℃）只是暫時抑活，回溫即可恢復。</li>
+      <li>唾液澱粉酶適合中性，加入<b>稀鹽酸（強酸）</b>會使唾液酵素失去活性、無法分解澱粉。</li>
     </ul>
   </div>
   </section>
@@ -323,13 +345,51 @@ $('lkBar').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{
   $('lkOut').innerHTML=LK[k].fit?'<b>澱粉</b>剛好嵌進澱粉酶，被分解成較小的醣。反應完，澱粉酶的形狀沒變，可以繼續分解下一個澱粉（<b>可重複使用</b>）。':'<b>'+LK[k].n+'</b>的形狀和澱粉酶不合，澱粉酶不能分解它，這就是<b>專一性</b>。分解'+LK[k].n+'要靠別的酵素。';
 });
 
-/* ---------- 四、活性曲線 ---------- */
-const AC={mode:'t',x:37,heated:false};
+/* 三之二、酵素速率與產物總量曲線 */
+function erDraw(m){
+  const W=600,H=218,L=56,R=26,T=22,Bt=36,pw=W-L-R,ph=H-T-Bt;
+  const X=t=>L+t/100*pw,Y=v=>T+ph-v/100*ph;
+  let g='<rect width="600" height="218" fill="#fbfaf6"/>';
+  g+='<line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(T+ph)+'" stroke="#3a453e" stroke-width="1.6"/>';
+  g+='<line x1="'+L+'" y1="'+(T+ph)+'" x2="'+(W-R)+'" y2="'+(T+ph)+'" stroke="#3a453e" stroke-width="1.6"/>';
+  g+='<text x="16" y="'+(T+ph/2)+'" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3a453e" transform="rotate(-90 16 '+(T+ph/2)+')">產物累積總量</text>';
+  g+='<text x="'+(W-R)+'" y="'+(H-8)+'" text-anchor="end" font-size="11.5" font-weight="700" fill="#3a453e">反應時間 →</text>';
+  const mk=fn=>{let d='';for(let t=0;t<=100;t+=2)d+=(t?'L':'M')+X(t).toFixed(1)+' '+Y(fn(t)).toFixed(1);return d;};
+  if(m==='enz'||m==='amt'){
+    const maxY=78;
+    g+='<line x1="'+L+'" y1="'+Y(maxY).toFixed(1)+'" x2="'+(W-R)+'" y2="'+Y(maxY).toFixed(1)+'" stroke="#9ca3af" stroke-dasharray="5 4"/>';
+    g+='<text x="'+(W-R-4)+'" y="'+(Y(maxY)-6).toFixed(1)+'" text-anchor="end" font-size="11" font-weight="800" fill="#6a4c93">最終產物總量相同！（由受質總量決定）</text>';
+    const f1=t=>maxY*(1-Math.exp(-t/(m==='enz'?10:11)));
+    const f2=t=>maxY*(1-Math.exp(-t/(m==='enz'?44:26)));
+    g+='<path d="'+mk(f2)+'" fill="none" stroke="#94a3b8" stroke-width="2.8" stroke-dasharray="6 3.5"/>';
+    g+='<path d="'+mk(f1)+'" fill="none" stroke="#6a4c93" stroke-width="3.2"/>';
+    g+='<text x="'+X(20).toFixed(1)+'" y="'+(Y(f1(20))-10).toFixed(1)+'" font-size="12" font-weight="800" fill="#6a4c93">'+(m==='enz'?'甲：有加酵素（最快達終點）':'甲：酵素較多（更快）')+'</text>';
+    g+='<text x="'+X(52).toFixed(1)+'" y="'+(Y(f2(52))+18).toFixed(1)+'" font-size="12" font-weight="800" fill="#475569">'+(m==='enz'?'乙：未加酵素（很慢，最終同高）':'乙：酵素較少（較慢，最終同高）')+'</text>';
+    $('erOut').innerHTML=m==='enz'
+      ?'<b>段考最愛曲線陷阱：</b>酵素只能<b>加快反應速率</b>（曲線上升較陡、較早變平），但<b>不會增加最終產物總量</b>！因為受質總量是一樣的。'
+      :'<b>酵素濃度比較：</b>受質相同時，加較多酵素能更快把受質分解完，但最後兩條線仍停在<b>相同高度</b>。';
+  }else{
+    const f1=t=>84*(1-Math.exp(-t/14));
+    const f2=t=>44*(1-Math.exp(-t/12));
+    g+='<path d="'+mk(f1)+'" fill="none" stroke="#2d7d46" stroke-width="3.2"/>';
+    g+='<path d="'+mk(f2)+'" fill="none" stroke="#d97706" stroke-width="2.8" stroke-dasharray="6 3.5"/>';
+    g+='<text x="'+X(64).toFixed(1)+'" y="'+(Y(84)-8).toFixed(1)+'" font-size="12" font-weight="800" fill="#1f6b30">甲：受質較多 → 最終產物較多</text>';
+    g+='<text x="'+X(64).toFixed(1)+'" y="'+(Y(44)-8).toFixed(1)+'" font-size="12" font-weight="800" fill="#b45309">乙：受質較少 → 最終產物較少</text>';
+    $('erOut').innerHTML='<b>只有「受質（原料）總量」改變，最終產物總量才會改變！</b>酵素本身可重複使用，不決定最終產物多寡。';
+  }
+  $('erSvg').innerHTML=g;
+}
+$('erBar').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{$('erBar').querySelectorAll('.btn').forEach(x=>x.classList.toggle('on',x===b));erDraw(b.dataset.m);});
+erDraw('enz');
+
+/* ---------- 四、活性曲線（支援低溫回溫恢復 vs 高溫降溫不可逆） ---------- */
+const AC={mode:'t',x:37,back:null};
 function actT(t){if(t<=0)return 0.04;if(t<=37)return 0.04+0.96*Math.pow(t/37,1.6);if(t>=60)return 0;return Math.cos((t-37)/23*Math.PI/2)**1.3;}
 function actP(p,c){return Math.exp(-(((p-c)/1.15)**2));}
 function acDraw(){
   const W=560,H=250,L=52,R=20,T=18,Bt=40,pw=W-L-R,ph=H-T-Bt;
-  let g='<line x1="'+L+'" y1="'+(T+ph)+'" x2="'+(W-R)+'" y2="'+(T+ph)+'" stroke="#4d5a52"/><line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(T+ph)+'" stroke="#4d5a52"/>'+
+  let g='<defs><marker id="acArrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,1 L9,5 L0,9Z" fill="#16a34a"/></marker><marker id="acArrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,1 L9,5 L0,9Z" fill="#dc2626"/></marker></defs>';
+  g+='<line x1="'+L+'" y1="'+(T+ph)+'" x2="'+(W-R)+'" y2="'+(T+ph)+'" stroke="#4d5a52"/><line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(T+ph)+'" stroke="#4d5a52"/>'+
     '<text x="14" y="'+(T+ph/2)+'" font-size="13" fill="#4d5a52" transform="rotate(-90 14 '+(T+ph/2)+')" text-anchor="middle">酵素活性</text>';
   if(AC.mode==='t'){
     const X=t=>L+t/80*pw,Y=a=>T+ph-a*ph;
@@ -338,8 +398,15 @@ function acDraw(){
     let d='';for(let t=0;t<=80;t+=1)d+=(t?'L':'M')+X(t).toFixed(1)+' '+Y(actT(t)).toFixed(1);
     g+='<path d="'+d+'" fill="none" stroke="#6a4c93" stroke-width="3"/>';
     g+='<line x1="'+X(37)+'" y1="'+T+'" x2="'+X(37)+'" y2="'+(T+ph)+'" stroke="#6a4c93" stroke-dasharray="4 4" opacity=".5"/><text x="'+(X(37)+8)+'" y="'+(T+ph-8)+'" font-size="12" fill="#6a4c93">37 ℃ 最適合</text>';
-    const a=AC.heated?0:actT(AC.x);
-    g+='<circle cx="'+X(AC.heated?37:AC.x)+'" cy="'+Y(a)+'" r="8" fill="#e0a100" stroke="#fff" stroke-width="2"/>';
+    if(AC.back==='hot'){
+      g+='<line x1="'+X(AC.x).toFixed(1)+'" y1="'+Y(0).toFixed(1)+'" x2="'+(X(37)+9).toFixed(1)+'" y2="'+Y(0).toFixed(1)+'" stroke="#dc2626" stroke-width="3" marker-end="url(#acArrR)"/>';
+      g+='<circle cx="'+X(37)+'" cy="'+Y(0)+'" r="8" fill="#dc2626" stroke="#fff" stroke-width="2"/>';
+    }else if(AC.back==='cold'){
+      g+='<path d="M'+X(AC.x).toFixed(1)+' '+Y(actT(AC.x)).toFixed(1)+' Q'+X((AC.x+37)/2).toFixed(1)+' '+Y(0.55).toFixed(1)+' '+(X(37)-6).toFixed(1)+' '+(Y(1)+4).toFixed(1)+'" fill="none" stroke="#16a34a" stroke-width="3" marker-end="url(#acArrG)"/>';
+      g+='<circle cx="'+X(37)+'" cy="'+Y(1)+'" r="8" fill="#16a34a" stroke="#fff" stroke-width="2"/>';
+    }else{
+      g+='<circle cx="'+X(AC.x)+'" cy="'+Y(actT(AC.x))+'" r="8" fill="#e0a100" stroke="#fff" stroke-width="2"/>';
+    }
   }else{
     const X=p=>L+(p-1)/12*pw,Y=a=>T+ph-a*ph;
     for(let p=1;p<=13;p+=2)g+='<text x="'+X(p)+'" y="'+(T+ph+18)+'" font-size="12" text-anchor="middle" fill="#4d5a52">'+p+'</text>';
@@ -353,30 +420,37 @@ function acDraw(){
 function acInfo(){
   const x=AC.x;
   if(AC.mode==='t'){
-    $('acVal').textContent=x+' ℃';$('acCoolRow').style.display=x>=50&&!AC.heated?'':'none';
-    if(AC.heated){$('acOut').innerHTML='降回 37 ℃ 後，活性<b>還是 0</b>：高溫已經把酵素的構造破壞，<span class="hot">不能恢復</span>。拖動滑桿可以換一支新的試管。';return;}
+    $('acVal').textContent=x+' ℃';
+    const showHot=x>=55&&!AC.back,showCold=x<=15&&!AC.back;
+    $('acCoolRow').style.display=(showHot||showCold)?'':'none';
+    if(showHot)$('acCool').textContent='把高溫試管降回 37 ℃（測試可否恢復）';
+    if(showCold)$('acCool').textContent='把低溫試管回溫到 37 ℃（測試可否恢復）';
+    if(AC.back==='hot'){$('acOut').innerHTML='從 '+x+' ℃ 降回 37 ℃ 後，活性<b>還是 0</b>：高溫已經把酵素的蛋白質構造破壞，<span class="hot">永久變性不能恢復</span>（像煮熟的雞蛋變不回生蛋）。拖動滑桿可換一支新試管。';return;}
+    if(AC.back==='cold'){$('acOut').innerHTML='從 '+x+' ℃ 回溫到 37 ℃ 後，<b style="color:var(--moss)">活性完全恢復 100%！</b>因為低溫只是暫時讓活性變慢，沒有破壞酵素構造。拖動滑桿可換一支新試管。';return;}
     const a=actT(x);
-    $('acOut').innerHTML=x<20?'溫度低，活性<b>很低</b>，但酵素沒有被破壞，回到 37 ℃ 就能恢復。冰箱保存食物就是這個道理。':
+    $('acOut').innerHTML=x<=15?'溫度低，活性<b>很低</b>，但酵素沒有被破壞。按上方按鈕試試看把它回溫到 37 ℃！':
+      x<25?'溫度偏低，活性較弱，回溫即可上升。':
       x<=45?'接近體溫，活性'+(Math.abs(x-37)<=3?'<b>最高</b>':'<b>不錯</b>')+'。':
-      a>0.02?'溫度太高，活性快速下降，酵素開始被破壞。':'酵素已被破壞，<b>失去活性</b>。試試看把它降回 37 ℃。';
+      a>0.02?'溫度太高，活性快速下降，酵素開始被破壞。':'高溫已破壞酵素構造，<b>失去活性</b>。按上方按鈕試試看降回 37 ℃！';
   }else{
     $('acVal').textContent='pH '+x;$('acCoolRow').style.display='none';
     const best=[[actP(x,2),'胃裡分解蛋白質的酵素'],[actP(x,7),'唾液澱粉酶'],[actP(x,8.3),'小腸的酵素']].sort((a,b)=>b[0]-a[0])[0];
-    $('acOut').innerHTML='pH '+x+(x<7?'（酸性）':x>7?'（鹼性）':'（中性）')+'：三種酵素中活性最高的是<b>'+best[1]+'</b>。不同部位的酵素，適合的酸鹼值不同。';
+    const p7tip=(x>=6.5&&x<=7.5)?' <br><span class="small">★ <b>尾端判讀陷阱</b>：注意藍色「小腸酵素」曲線在 pH 7 中性處<b>尚未歸零</b>，仍有部分活性（不可說在中性完全無作用）！</span>':'';
+    $('acOut').innerHTML='pH '+x+(x<7?'（酸性）':x>7?'（鹼性）':'（中性）')+'：三種酵素中活性最高的是<b>'+best[1]+'</b>。不同部位的酵素，適合的酸鹼值不同。'+p7tip;
   }
 }
 function acSet(m){
-  AC.mode=m;AC.heated=false;const r=$('acX');
+  AC.mode=m;AC.back=null;const r=$('acX');
   if(m==='t'){r.min=0;r.max=80;r.step=1;AC.x=37;$('acLab').textContent='溫度';}else{r.min=1;r.max=13;r.step=0.5;AC.x=7;$('acLab').textContent='酸鹼值';}
   r.value=AC.x;acDraw();acInfo();
 }
-$('acX').addEventListener('input',e=>{AC.x=+e.target.value;AC.heated=false;acDraw();acInfo();});
-$('acCool').onclick=()=>{AC.heated=true;acDraw();acInfo();};
+$('acX').addEventListener('input',e=>{AC.x=+e.target.value;AC.back=null;acDraw();acInfo();});
+$('acCool').onclick=()=>{AC.back=AC.x>=55?'hot':'cold';acDraw();acInfo();};
 $('acBar').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{$('acBar').querySelectorAll('.btn').forEach(x=>x.classList.toggle('on',x===b));acSet(b.dataset.m);});
 acSet('t');
 
-/* ---------- 四、唾液實驗 ---------- */
-const ADD={s:'唾液',w:'清水',b:'煮沸過的唾液'};
+/* ---------- 四、唾液實驗（含酸鹼性變因） ---------- */
+const ADD={s:'唾液',w:'清水',b:'煮沸過的唾液',a:'唾液＋稀鹽酸'};
 const TEMP=['0','37','100'];
 const DEF=[{a:'s',t:'37'},{a:'w',t:'37'},{a:'b',t:'37'},{a:'s',t:'0'}];
 let SV=DEF.map(x=>Object.assign({},x)),svDone=false;
@@ -387,9 +461,9 @@ function svRender(){
   $('svTubes').innerHTML=SV.map((x,i)=>{
     let col='#f1efe6',res='';
     if(svDone){const d=svDigest(x);
-      if(r==='b'){col=d>=2?COL.b3:(d>0?COL.ben:COL.ben);res=d>=2?'橙紅色':'藍色';}
+      if(r==='b'){col=d>=2?COL.b3:COL.ben;res=d>=2?'橙紅色':'藍色';}
       else{col=d>=2?COL.iodine:COL.iodBlack;res=d>=2?'黃褐色':'藍黑色';}}
-    return '<div style="width:120px">'+tube(col,TN[i],svDone?'<span class="small">'+res+'</span>':'')+
+    return '<div style="width:128px">'+tube(col,TN[i],svDone?'<span class="small">'+res+'</span>':'')+
       '<div class="tcfg"><select data-i="'+i+'" data-k="a">'+Object.keys(ADD).map(k=>'<option value="'+k+'"'+(x.a===k?' selected':'')+'>加'+ADD[k]+'</option>').join('')+'</select>'+
       '<select data-i="'+i+'" data-k="t">'+TEMP.map(t=>'<option value="'+t+'"'+(x.t===t?' selected':'')+'>'+t+' ℃ 水浴</option>').join('')+'</select></div></div>';
   }).join('');
@@ -398,15 +472,15 @@ function svRender(){
 $('svGo').onclick=()=>{
   svDone=true;svRender();const r=$('svR').value;
   $('svOut').innerHTML=SV.map((x,i)=>{const d=svDigest(x);
-    const why=x.a==='w'?'清水沒有酵素，澱粉沒被分解':x.a==='b'?'唾液煮沸後酵素被破壞，澱粉沒被分解':x.t==='37'?'唾液的澱粉酶在 37 ℃ 活性好，把澱粉分解成麥芽糖':x.t==='0'?'0 ℃ 活性很低，幾乎沒有分解':'100 ℃ 酵素被破壞，澱粉沒被分解';
-    return '<div><b>'+TN[i]+'</b>：'+why+(r==='b'?(d>=2?' → 有糖，本氏液變色。':' → 沒有糖，本氏液維持藍色。'):(d>=2?' → 澱粉沒了，碘液不變藍黑。':' → 還有澱粉，碘液變藍黑。'))+'</div>';}).join('')+
-    (SV.some(x=>x.a==='s'&&x.t==='0')?'<div class="small" style="margin-top:4px">0 ℃ 的試管如果再放回 37 ℃，酵素活性會恢復，澱粉就會被分解。</div>':'');
+    const why=x.a==='w'?'清水沒有酵素，澱粉沒被分解':x.a==='b'?'唾液煮沸後酵素被破壞，澱粉沒被分解':x.a==='a'?'加入稀鹽酸（強酸）使唾液酵素失去活性，澱粉沒被分解':x.t==='37'?'唾液的澱粉酶在 37 ℃ 活性最好，最快把澱粉分解成麥芽糖':x.t==='0'?'0 ℃ 活性很低，幾乎沒有分解':'100 ℃ 酵素被破壞，澱粉沒被分解';
+    return '<div><b>'+TN[i]+'</b>：'+why+(r==='b'?(d>=2?' → 有糖，本氏液變色。':' → 沒有糖，本氏液維持藍色。'):(d>=2?' → 澱粉分解完畢，碘液維持黃褐色（<b>最早不再變藍黑</b>）。':' → 還有澱粉，碘液變藍黑色。'))+'</div>';}).join('')+
+    (SV.some(x=>x.a==='s'&&x.t==='0')?'<div class="small" style="margin-top:4px">0 ℃ 的試管如果再放回 37 ℃（且尚未加本氏液加熱前），酵素活性會恢復，澱粉就會被分解。</div>':'');
 };
 $('svR').onchange=()=>{if(svDone){$('svGo').click();}else svRender();};
 $('svPre').onclick=()=>{SV=DEF.map(x=>Object.assign({},x));svDone=false;$('svOut').innerHTML='';svRender();svPairs();};
 function svPairs(){
   const ps=[];for(let i=0;i<4;i++)for(let j=i+1;j<4;j++)ps.push([i,j]);
-  $('svPair').innerHTML=ps.map(([i,j])=>'<button class="chip" data-i="'+i+'" data-j="'+j+'">'+TN[i]+' 和 '+TN[j]+'</button>').join('');
+  $('svPair').innerHTML=ps.map(([i,j])=>'<button type="button" class="chip" data-i="'+i+'" data-j="'+j+'">'+TN[i]+' 和 '+TN[j]+'</button>').join('');
   $('svPairOut').innerHTML='';
   $('svPair').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{
     $('svPair').querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===b));
@@ -419,7 +493,8 @@ function svPairs(){
       if(x.t!=='37')t+='不過在 '+x.t+' ℃ 唾液本來就幾乎不能作用，兩支結果一樣，看不出差別。';
       else if(s==='sw')t+='結論：<b>唾液能分解澱粉</b>（清水那支是對照組）。';
       else if(s==='bs')t+='結論：<b>唾液煮沸後失去分解澱粉的能力</b>（高溫破壞酵素）。';
-      else t+='清水和煮沸的唾液都不能分解澱粉，兩支結果一樣。';}
+      else if(s==='as')t+='結論：<b>酸鹼性會影響唾液酵素的活性</b>（強酸會使唾液澱粉酶失活）。';
+      else t+='這兩支都沒有能作用的酵素，結果一樣，看不出差別。';}
     else{t='只有「溫度」不同（都是澱粉液＋'+ADD[x.a]+'）→ 操縱變因是<b>溫度</b>。';
       t+=x.a==='s'?'結論：<b>溫度會影響唾液（酵素）分解澱粉的效果</b>。':'這兩支都沒有能作用的酵素，結果一樣，看不出溫度的影響。';}
     $('svPairOut').innerHTML='<b>'+ni+' vs '+nj+'</b>：'+t;
@@ -427,7 +502,27 @@ function svPairs(){
 }
 svRender();svPairs();
 
-/* ---------- 小測驗 ---------- */
+/* ---------- 小測驗（25 題，含 5 題原生向量 SVG 圖表判讀題） ---------- */
+const QF_LABEL='<svg viewBox="0 0 460 198" width="460" height="198" role="img" aria-label="飲料包裝營養標示圖：每份150毫升、本包裝含2份，每份含蛋白質4公克、脂肪2公克、碳水化合物15公克（其中糖10公克）、鈉60毫克"><rect width="460" height="198" fill="#fbfaf6"/><rect x="76" y="10" width="308" height="178" rx="8" fill="#fff" stroke="#1f2a24" stroke-width="2"/><rect x="76" y="10" width="308" height="30" rx="6" fill="#1f2a24"/><text x="230" y="30" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">營 養 標 示</text><text x="90" y="57" font-size="12" font-weight="700" fill="#1f2a24">每一份量 150 毫升　　本包裝含 2 份</text><line x1="86" y1="64" x2="374" y2="64" stroke="#1f2a24" stroke-width="1.6"/><text x="368" y="80" text-anchor="end" font-size="11.5" font-weight="800" fill="#4d5a52">每份</text><line x1="86" y1="86" x2="374" y2="86" stroke="#cbd5e1"/><g font-size="12.5" fill="#1f2a24"><text x="90" y="104" font-weight="700">蛋白質</text><text x="368" y="104" text-anchor="end" font-weight="700">4 公克</text><text x="90" y="124" font-weight="700">脂肪</text><text x="368" y="124" text-anchor="end" font-weight="700">2 公克</text><text x="90" y="144" font-weight="700">碳水化合物</text><text x="368" y="144" text-anchor="end" font-weight="700">15 公克</text><text x="110" y="162" font-size="11.5" fill="#b45309" font-weight="700">糖（已包含於碳水化合物）</text><text x="368" y="162" text-anchor="end" font-size="11.5" fill="#b45309" font-weight="700">10 公克</text><text x="90" y="180" font-weight="700">鈉</text><text x="368" y="180" text-anchor="end" font-weight="700">60 毫克</text></g></svg>';
+
+const QF_TEST_TUBES=(()=>{
+  const items=[{n:'甲液',x:24,i:'#1d2347',it:'藍黑',b:'#4f8fd6',bt:'藍色'},{n:'乙液',x:132,i:'#c98a2b',it:'黃褐',b:'#b8352a',bt:'磚紅'},{n:'丙液',x:240,i:'#1d2347',it:'藍黑',b:'#e07b28',bt:'橙色'},{n:'丁液',x:348,i:'#c98a2b',it:'黃褐',b:'#4f8fd6',bt:'藍色'}];
+  let s='<svg viewBox="0 0 460 190" width="460" height="190" role="img" aria-label="甲乙丙丁四種未知液體分別以碘液及本氏液隔水加熱之呈色結果圖"><rect width="460" height="190" fill="#fbfaf6"/><text x="230" y="20" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1f2a24">四種未知液體分別進行「碘液」與「本氏液隔水加熱」結果</text>';
+  items.forEach(d=>{s+='<rect x="'+d.x+'" y="32" width="90" height="146" rx="8" fill="#fff" stroke="#dcd8cc"/><text x="'+(d.x+45)+'" y="50" text-anchor="middle" font-size="13" font-weight="800" fill="#1f2a24">'+d.n+'</text><rect x="'+(d.x+16)+'" y="62" width="22" height="58" rx="10" fill="#fff" stroke="#8d8877" stroke-width="1.6"/><rect x="'+(d.x+17.5)+'" y="86" width="19" height="32" rx="8" fill="'+d.i+'"/><text x="'+(d.x+27)+'" y="135" text-anchor="middle" font-size="10.5" font-weight="700" fill="#4d5a52">碘液</text><text x="'+(d.x+27)+'" y="150" text-anchor="middle" font-size="10.5" font-weight="800" fill="#1f2a24">'+d.it+'</text><rect x="'+(d.x+52)+'" y="62" width="22" height="58" rx="10" fill="#fff" stroke="#8d8877" stroke-width="1.6"/><rect x="'+(d.x+53.5)+'" y="86" width="19" height="32" rx="8" fill="'+d.b+'"/><text x="'+(d.x+63)+'" y="135" text-anchor="middle" font-size="10.5" font-weight="700" fill="#4d5a52">本氏</text><text x="'+(d.x+63)+'" y="150" text-anchor="middle" font-size="10.5" font-weight="800" fill="#1f2a24">'+d.bt+'</text>';});
+  return s+'</svg>';
+})();
+
+const QF_ENZYME_RATE='<svg viewBox="0 0 460 190" width="460" height="190" role="img" aria-label="相同受質總量下，甲（有加酵素）與乙（未加酵素）之反應時間對產物累積總量曲線圖"><rect width="460" height="190" fill="#fbfaf6"/><line x1="50" y1="22" x2="50" y2="156" stroke="#3a453e" stroke-width="1.6"/><line x1="50" y1="156" x2="436" y2="156" stroke="#3a453e" stroke-width="1.6"/><line x1="50" y1="44" x2="436" y2="44" stroke="#9ca3af" stroke-dasharray="5 4"/><text x="16" y="90" text-anchor="middle" font-size="11" font-weight="700" fill="#3a453e" transform="rotate(-90 16 90)">產物累積總量</text><text x="434" y="176" text-anchor="end" font-size="11" font-weight="700" fill="#3a453e">反應時間 →</text><path d="M50,156 C76,84 114,48 184,44 L426,44" fill="none" stroke="#6a4c93" stroke-width="3"/><path d="M50,156 C126,136 226,64 366,46 L426,44" fill="none" stroke="#64748b" stroke-width="2.6" stroke-dasharray="6 3.5"/><text x="148" y="36" font-size="12.5" font-weight="800" fill="#6a4c93">甲曲線（較早變平）</text><text x="278" y="102" font-size="12.5" font-weight="800" fill="#475569">乙曲線（較慢上升）</text></svg>';
+
+const QF_TEMP_RECOVER='<svg viewBox="0 0 460 190" width="460" height="190" role="img" aria-label="酵素活性與溫度關係曲線圖，標示甲0℃、乙37℃、丙80℃三點"><rect width="460" height="190" fill="#fbfaf6"/><line x1="50" y1="20" x2="50" y2="154" stroke="#3a453e" stroke-width="1.6"/><line x1="50" y1="154" x2="436" y2="154" stroke="#3a453e" stroke-width="1.6"/><text x="16" y="88" text-anchor="middle" font-size="11" font-weight="700" fill="#3a453e" transform="rotate(-90 16 88)">酵素活性</text><text x="434" y="178" text-anchor="end" font-size="11" font-weight="700" fill="#3a453e">溫度（℃）→</text><path d="M50,148 C114,136 174,36 208,36 C244,36 276,120 306,154 L424,154" fill="none" stroke="#6a4c93" stroke-width="3"/><circle cx="54" cy="147" r="5" fill="#2563eb"/><text x="64" y="142" font-size="12" font-weight="800" fill="#1d4ed8">甲（0℃）</text><circle cx="208" cy="36" r="5" fill="#16a34a"/><text x="208" y="25" text-anchor="middle" font-size="12" font-weight="800" fill="#15803d">乙（37℃）</text><circle cx="386" cy="154" r="5" fill="#dc2626"/><text x="386" y="142" text-anchor="middle" font-size="12" font-weight="800" fill="#b91c1c">丙（80℃）</text></svg>';
+
+const QF_SALIVA_TUBES=(()=>{
+  const items=[{n:'甲',a:'唾液',t:'37℃',c:'#e0f2fe'},{n:'乙',a:'清水',t:'37℃',c:'#f1f5f9'},{n:'丙',a:'煮沸唾液',t:'37℃',c:'#fee2e2'},{n:'丁',a:'唾液',t:'0℃',c:'#dbeafe'},{n:'戊',a:'唾液+鹽酸',t:'37℃',c:'#fef3c7'}];
+  let s='<svg viewBox="0 0 460 184" width="460" height="184" role="img" aria-label="五支唾液分解澱粉實驗試管配置圖：甲37℃唾液、乙37℃清水、丙37℃煮沸唾液、丁0℃唾液、戊37℃唾液加鹽酸"><rect width="460" height="184" fill="#fbfaf6"/><text x="230" y="18" text-anchor="middle" font-size="11.5" font-weight="800" fill="#1f2a24">五支試管皆裝等量澱粉液（每 2 分鐘取樣滴碘液觀察顏色）</text>';
+  items.forEach((d,i)=>{const x=16+i*88;s+='<rect x="'+x+'" y="28" width="78" height="146" rx="8" fill="#fff" stroke="#dcd8cc"/><text x="'+(x+39)+'" y="46" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1f2a24">'+d.n+'</text><rect x="'+(x+25)+'" y="54" width="28" height="62" rx="12" fill="#fff" stroke="#8d8877" stroke-width="1.6"/><rect x="'+(x+27)+'" y="80" width="24" height="34" rx="10" fill="'+d.c+'"/><text x="'+(x+39)+'" y="136" text-anchor="middle" font-size="11" font-weight="700" fill="#3a453e">'+d.a+'</text><text x="'+(x+39)+'" y="156" text-anchor="middle" font-size="11.5" font-weight="800" fill="#6a4c93">'+d.t+'</text>';});
+  return s+'</svg>';
+})();
+
 const QZ=[
  {u:1,s:'下列哪一組養分都能提供人體能量？',o:['醣類、維生素','蛋白質、礦物質','脂質、醣類','水、脂質'],a:2,
   e:'能提供能量的只有醣類、蛋白質、脂質。維生素、礦物質、水不提供能量。'},
@@ -436,9 +531,14 @@ const QZ=[
  {u:1,s:'下列哪一項在人體內可以提供的熱量最多？',o:['醣類 5 公克','蛋白質 6 公克','脂質 3 公克','維生素 C 10 公克'],a:2,
   e:'醣類 5×4＝20 大卡；蛋白質 6×4＝24 大卡；脂質 3×9＝27 大卡；維生素不提供能量。脂質公克數最少，熱量卻最多。'},
  {u:1,s:'關於養分的敘述，下列何者正確？',o:['缺乏鈣容易造成貧血','纖維素是醣類，但人體不能消化','維生素能提供大量能量','脂質是人體含量最多的物質'],a:1,
-  e:'(A) 貧血是缺鐵。(C) 維生素不提供能量。(D) 人體含量最多的是水。纖維素是醣類，但人體沒有分解它的酵素，不能消化吸收，可以促進腸道蠕動。'},
+  e:'(A) 貧血是缺鐵。(C) 維生素不提供能量。(D) 人體含量最多的是水（約 70%）。纖維素是醣類，但人體沒有分解它的酵素，不能消化吸收，可以促進腸道蠕動。'},
  {u:1,s:'登山客體溫過低又沒力氣，想讓他「最快」得到能量，下列哪一種最適合？',o:['葡萄糖水','橄欖油','白煮蛋','生菜沙拉'],a:0,
   e:'葡萄糖是小分子，不用消化就能直接吸收，最快提供能量。油（脂質）、蛋（蛋白質）都要先消化；生菜主要是纖維素和水。'},
+ {u:1,s:'做「燃燒花生測食物熱量」實驗時，點燃一顆花生加熱裝有 100 公克清水的試管，水溫由 25 ℃ 升至 45 ℃。關於此次實驗的敘述，何者正確？',o:['水吸收的熱量為 2000 大卡','水吸收的熱量為 2000 卡（＝ 2 大卡），且此實測值通常小於花生實際含有的熱量','水吸收的熱量會大於花生實際釋放的熱量','1 大卡代表讓 1 公克水上升 1 ℃ 所需的熱量'],a:1,
+  e:'水吸收熱量＝100 g × (45－25)℃＝<b>2000 卡＝2 大卡</b>（1 大卡＝1000 卡）。因部分熱量散失到空氣與試管中，水測得的熱量必定<b>小於</b>花生實際熱量！'},
+ {u:1,s:'<b>【圖表判讀】</b>附圖為某飲料包裝的營養標示。請問喝完整瓶飲料約可獲得多少熱量？',fig:QF_LABEL,
+  o:['94 大卡','188 大卡','268 大卡','134 大卡'],a:1,
+  e:'<b>「糖」已包含在「碳水化合物」裡，絕不可重複加！</b>且鈉（礦物質）不產熱。每份＝蛋白質 4×4＋脂肪 2×9＋碳水化合物 15×4＝16＋18＋60＝94 大卡；整瓶 2 份＝94×2＝<b>188 大卡</b>！((A) 忘記乘 2 份；(C) 把糖 10g 又重複乘 4 再乘 2)。'},
  {u:2,s:'下表是養分檢測的整理，哪一列完全正確？（檢測物質／試劑／是否加熱／顏色變化）',o:['澱粉／本氏液／需要／藍 → 紅','澱粉／碘液／不需要／黃褐 → 藍黑','葡萄糖／碘液／不需要／黃褐 → 藍黑','葡萄糖／本氏液／不需要／藍 → 紅'],a:1,
   e:'碘液檢驗澱粉，不加熱，黃褐色變藍黑色。本氏液檢驗葡萄糖，要隔水加熱，(D) 錯在「不需要」。'},
  {u:2,s:'小妮用本氏液檢驗四杯飲料，隔水加熱後：甲 黃色、乙 藍色、丙 紅色、丁 綠色。含糖量由多到少是？',o:['丙＞甲＞丁＞乙','乙＞丁＞甲＞丙','丙＞丁＞甲＞乙','甲＞丙＞丁＞乙'],a:0,
@@ -447,6 +547,11 @@ const QZ=[
   e:'碘液遇到澱粉變藍黑色。'},
  {u:2,s:'在試管中加入某溶液和本氏液，還沒加熱時是藍色。下列推論何者正確？',o:['溶液中一定沒有葡萄糖','溶液中一定有澱粉','還不能判斷，要隔水加熱後再看','溶液中一定有蔗糖'],a:2,
   e:'本氏液沒有加熱時，不管有沒有糖都是藍色，所以還不能判斷。'},
+ {u:2,s:'關於「養分檢測」實驗的操作與結果判讀，下列敘述何者正確？',o:['本氏液隔水加熱的目的是為了破壞溶液中的酵素','使用白色梅花盤進行碘液檢測，是為了白色背景方便觀察顏色變化，且不需加熱','將本氏液加入濃蔗糖（砂糖）水中隔水加熱，溶液會立刻變成磚紅色','只要滴碘液沒有變藍黑色，就能證明該溶液完全不含任何養分'],a:1,
+  e:'(A) 本氏液隔水加熱是為了促成本氏液與還原糖的化學呈色反應（非破壞酵素）。(B) 正確！(C) 蔗糖不會讓本氏液變色，仍維持藍色。(D) 滴碘液不變色只代表沒有澱粉，可能仍含葡萄糖、蛋白質或脂質。'},
+ {u:2,s:'<b>【圖表判讀】</b>附圖為甲、乙、丙、丁四種未知液體分別以「碘液」及「本氏液隔水加熱」的檢測結果。下列推論何者正確？',fig:QF_TEST_TUBES,
+  o:['甲液只含葡萄糖，不含澱粉','乙液含有澱粉，不含葡萄糖','丙液同時含有澱粉與葡萄糖（或麥芽糖）','丁液兩者皆未變色，因此一定只是純水，絕不可能是蔗糖水'],a:2,
+  e:'甲（碘藍黑、本氏藍）→ 含澱粉；乙（碘黃褐、本氏磚紅）→ 含大量葡萄糖／麥芽糖；<b>丙（碘藍黑、本氏橙色）→ 同時含澱粉與還原糖</b>，正確！丁（雙陰性）可能是清水、蛋白液，也可能是<b>蔗糖水</b>（蔗糖不讓本氏液變色）。'},
  {u:3,s:'關於酵素的敘述，下列何者錯誤？',o:['主要成分是蛋白質','能加快化學反應的速率','反應完以後就被用掉，不能再用','一種酵素只能催化特定的反應'],a:2,
   e:'酵素在反應前後不會改變，可以重複使用。被改變的是受質。'},
  {u:3,s:'唾液中的澱粉酶不能分解蛋白質。這說明酵素具有哪一種特性？',o:['可重複使用','專一性','只能在細胞內作用','耐高溫'],a:1,
@@ -455,6 +560,11 @@ const QZ=[
   e:'小分子 → 大分子是合成作用（葡萄糖 → 澱粉）；大分子 → 小分子是分解作用（澱粉 → 葡萄糖）。兩者都屬於代謝。'},
  {u:3,s:'食物放在冰箱比較不容易腐壞，主要原因是什麼？',o:['低溫把細菌都殺死了','低溫讓細菌的酵素活性降低','低溫讓食物中的養分變成大分子','冰箱裡沒有氧氣'],a:1,
   e:'低溫讓細菌的酵素作用變慢，分解食物的速度變慢。細菌沒有死光，拿出來回溫後又會繼續作用。'},
+ {u:3,s:'將雙氧水（過氧化氫）分別滴在「新鮮生馬鈴薯塊」與「沸水煮熟的馬鈴薯塊」上，發現只有生馬鈴薯塊冒出大量能使線香復燃的氣泡。下列推論何者正確？',o:['冒出的氣泡是二氧化碳，且屬於合成作用','馬鈴薯內的酵素必須在活體細胞內才能作用，切開就失效','生馬鈴薯含過氧化氫酶可催化分解雙氧水產生氧氣；煮熟後因高溫破壞酵素而無氣泡','吃下大量生馬鈴薯就能把過氧化氫酶直接吸進血液使用'],a:2,
+  e:'馬鈴薯、豬肝含過氧化氫酶，屬於<b>分解作用</b>（雙氧水 → 水＋氧氣），且酵素離開完整活體仍可作用；煮熟後高溫使蛋白質酵素永久變性，故不冒氣泡。另外口服酵素會在胃被消化分解，故 (C) 正確！'},
+ {u:3,s:'<b>【圖表判讀】</b>在兩支裝有「等量受質」的試管中，一支加入酵素、一支不加酵素，測得產物累積總量隨時間變化如附圖。下列敘述何者正確？',fig:QF_ENZYME_RATE,
+  o:['甲為有加酵素，不但反應較快，最終產物總量也比乙多一倍','甲為有加酵素，反應速率較快且較早達終點，但最終產物總量與乙相同','乙為有加酵素，因為反應持續時間比較長','曲線變平代表酵素已經全部被用完消耗掉了'],a:1,
+  e:'<b>酵素只加快反應速率、不改變最終產物總量</b>！受質總量相同時，加酵素的<b>甲</b>較早上升並較早變平（受質已全部轉成產物），但最後與未加酵素的乙停在<b>相同高度</b>。'},
  {u:4,s:'把唾液和澱粉液混合，分別放在 0 ℃、37 ℃、100 ℃ 水浴 10 分鐘，再加本氏液隔水加熱。哪一支最可能變成橙紅色？',o:['0 ℃','37 ℃','100 ℃','三支都一樣'],a:1,
   e:'唾液澱粉酶在接近體溫的 37 ℃ 活性最好，把澱粉分解成麥芽糖，本氏液加熱後變色。0 ℃ 活性很低，100 ℃ 酵素被破壞。'},
  {u:4,s:'承上題，如果在加本氏液<b>之前</b>，先把原本放在 0 ℃ 和 100 ℃ 的兩支試管都移到 37 ℃ 再放 10 分鐘，然後才加本氏液隔水加熱檢測。結果會怎樣？',o:['兩支都會分解澱粉','只有原本 0 ℃ 的那支會分解澱粉','只有原本 100 ℃ 的那支會分解澱粉','兩支都不會'],a:1,
@@ -462,7 +572,13 @@ const QZ=[
  {u:4,s:'甲：澱粉液＋唾液，37 ℃。乙：澱粉液＋清水，37 ℃。丙：澱粉液＋煮沸過的唾液，37 ℃。丁：澱粉液＋清水，0 ℃。想知道「唾液能不能分解澱粉」，應該比較哪兩支？',o:['甲和乙','甲和丁','乙和丙','丙和丁'],a:0,
   e:'甲和乙只有「加唾液或清水」不同，溫度都是 37 ℃，所以可以比較。甲和丁同時有兩個條件不同，不能下結論。'},
  {u:4,s:'胃裡分解蛋白質的酵素，在哪一種環境下活性最好？',o:['強酸性','中性','弱鹼性','強鹼性'],a:0,
-  e:'胃液含鹽酸，是強酸性，胃裡的酵素在酸性下活性最好。唾液澱粉酶適合接近中性，小腸的酵素適合弱鹼性。'}
+  e:'胃液含鹽酸，是強酸性，胃裡的酵素在酸性下活性最好。唾液澱粉酶適合接近中性，小腸的酵素適合弱鹼性。'},
+ {u:4,s:'<b>【圖表判讀】</b>附圖為某人體酵素活性與溫度的關係曲線（標示甲、乙、丙三點）。若先將兩份酵素分別置於甲（0 ℃）與丙（80 ℃）處理 10 分鐘，再同時移至乙（37 ℃）環境中，結果最可能為何？',fig:QF_TEMP_RECOVER,
+  o:['甲、丙兩份酵素的活性都完全恢復到最高點','只有原本在甲（0 ℃）的酵素能恢復高活性，丙（80 ℃）已永久變性無法恢復','只有原本在丙（80 ℃）的酵素能恢復高活性','甲、丙兩份酵素都永久失去活性'],a:1,
+  e:'低溫（甲 0 ℃）只是暫時抑制酵素活性，蛋白質構造未破壞，回溫到乙（37 ℃）即可恢復；高溫（丙 80 ℃）已永久破壞蛋白質構造，降回 37 ℃ 仍無活性！'},
+ {u:4,s:'<b>【圖表判讀】</b>附圖五支試管均裝等量澱粉液，反應開始後每 2 分鐘各取一滴於白色梅花盤滴碘液觀察。下列敘述何者正確？',fig:QF_SALIVA_TUBES,
+  o:['甲試管會最早不再呈現藍黑色；若想驗證「酸鹼性」對唾液的影響，應比較甲與戊','丁試管會最早不再呈現藍黑色，因為低溫可保護澱粉不被分解','丙與戊皆呈藍黑色，因此比較丙與戊可證明酸鹼性會影響酵素','若想驗證「溫度」對唾液的影響，應比較甲與丙'],a:0,
+  e:'(A) <b>甲（37 ℃ 唾液）</b>活性最高、最快分解完澱粉，故<b>最早不再變藍黑</b>；甲與戊僅差「有無加鹽酸（酸鹼性）」，符合單一操作變因，正確！(D) 甲與丙差在「唾液有無預先煮沸」，測水浴溫度應比甲與丁。'}
 ];
 B.quiz({box:'qz',score:'qzScore',done:'qzDone',reset:'qzReset',filter:'qzFlt',data:QZ,names:{1:'重點一',2:'重點二',3:'重點三',4:'重點四'}});
 window.__QZ=QZ;

@@ -12,7 +12,7 @@
 <script src="lib/common.js?v=13"></script>
 <style>
 /* 標籤底框預設隱藏 */
-#lfSvg .lblbg{display:none}
+#lfSvg .lblbg{display:none;pointer-events:all;cursor:pointer}
 /* 標出有葉綠體的細胞：三個綠色藥丸標籤 */
 #lfSvg.chl-on .lblbg.chl{display:inline;fill:#dcefd6;stroke:#3f7a4f;stroke-width:1.5}
 #lfSvg.chl-on .lbls text.lbl,#lfSvg.chl-on .lbls line{opacity:.35}
@@ -24,6 +24,15 @@
 #lfSvg.dim:not(.chl-on) .lblbg.sel{display:inline;fill:#fef3c7;stroke:#d97706;stroke-width:1.8}
 #lfSvg.dim:not(.chl-on) .lbls text.lbl.sel{opacity:1;fill:#92400e;font-weight:700}
 #lfSvg.dim:not(.chl-on) .lbls line.sel{opacity:1;stroke:#d97706;stroke-width:2.5}
+/* 水蘊草指標小卡與小測驗插圖響應式 */
+.wp-opts{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:6px 0 10px;font-size:14px}
+.wp-opts label{display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-weight:600;color:var(--ink)}
+.wp-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:8px 0 10px}
+@media (max-width:540px){.wp-metrics{grid-template-columns:minmax(0,1fr)}}
+.wp-m{background:#fbfaf6;border:1px solid var(--line);border-radius:9px;padding:7px 10px;font-size:13.5px;line-height:1.45}
+.wp-m .k{display:block;font-size:12px;color:var(--ink-2)}
+.wp-m b{font-size:14.5px}
+.q figure svg{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fbfaf6}
 </style>
 </head>
 <body>
@@ -44,14 +53,14 @@
   <h2>一、光合作用與呼吸作用<span class="star">★★★ 必考</span></h2>
   <div class="key">
     <ul>
-      <li>光合作用：綠色植物利用<b>光能</b>，在<b>葉綠體</b>中把<b>二氧化碳和水</b>合成<b>葡萄糖</b>，並放出<b>氧氣</b>。</li>
+      <li>光合作用：綠色植物利用<b>光能</b>，在<b>葉綠體</b>中把<b>二氧化碳和水</b>合成<b>葡萄糖</b>，並放出<b>氧氣</b>（較完整反應中也會產生<b>水</b>，因此<b>水既是原料也是產物</b>）。</li>
       <li>原料從哪裡來：二氧化碳從<b>氣孔</b>進入；水由<b>根</b>吸收，經<b>木質部</b>運到葉。</li>
-      <li>光合作用最主要的目的是<b>製造養分</b>。能量轉換：<b>光能 → 化學能</b>，儲存在葡萄糖裡。</li>
-      <li>葡萄糖的去向：供呼吸作用、轉成<b>澱粉</b>儲存（根、莖、果實、種子）、合成纖維素等。</li>
-      <li>呼吸作用：<b>所有活細胞</b>都要做，<b>白天晚上都做</b>：葡萄糖＋氧氣 → 二氧化碳＋水，<b>釋放能量</b>。</li>
+      <li>光合作用最主要的目的是<b>製造養分（葡萄糖）供自身使用</b>，不是為了製造氧氣給動物。能量轉換：<b>光能 → 化學能</b>（轉換並儲存於葡萄糖裡）。</li>
+      <li>葡萄糖的去向與增重來源：供呼吸作用、轉成<b>澱粉</b>儲存（根、莖、果實、種子）、合成脂質、蛋白質或纖維素等。小樹長大增重與地瓜／馬鈴薯中的澱粉，最初皆來自葉片光合作用吸收的<b>二氧化碳與水</b>。</li>
+      <li>呼吸作用：<b>所有活細胞</b>都要做，<b>白天晚上都做</b>：葡萄糖＋氧氣 → 二氧化碳＋水，<b>釋放能量</b>供生命活動使用。</li>
       <li>影響光合作用速率：光照強弱、二氧化碳濃度、水分、溫度（溫度影響葉綠體中酵素的活性）。</li>
     </ul>
-    <p class="mnemo">二氧化碳＋水 ──（光、葉綠體）──→ 葡萄糖＋氧氣</p>
+    <p class="mnemo">二氧化碳＋水 ──（光能、葉綠體）──→ 葡萄糖＋氧氣（＋水）</p>
   </div>
   <div class="tscroll">
   <table class="t">
@@ -59,8 +68,17 @@
     <tr><th>哪些細胞</th><td>含葉綠體的細胞（葉肉細胞、保衛細胞）</td><td>所有活細胞（植物、動物都有）</td></tr>
     <tr><th>什麼時候</th><td>有光的時候</td><td>白天、晚上都進行</td></tr>
     <tr><th>原料</th><td>二氧化碳、水</td><td>葡萄糖、氧氣</td></tr>
-    <tr><th>產物</th><td>葡萄糖、氧氣</td><td>二氧化碳、水</td></tr>
-    <tr><th>能量</th><td>光能 → 化學能（儲存）</td><td>釋放能量，供生物使用</td></tr>
+    <tr><th>產物</th><td>葡萄糖、氧氣（與水）</td><td>二氧化碳、水</td></tr>
+    <tr><th>能量</th><td>光能 → 化學能（轉換並儲存）</td><td>釋放能量，供生物使用</td></tr>
+  </table>
+  </div>
+
+  <div class="tscroll" style="margin-top:10px">
+  <table class="t">
+    <tr><th>補充比較</th><th>光反應（第一階段）</th><th>碳反應／暗反應（第二階段）</th></tr>
+    <tr><th>是否直接需光</th><td><b>需要光</b>（由葉綠素吸收光能）</td><td><b>不直接吸光</b>，但高度依賴光反應提供的能量與物質</td></tr>
+    <tr><th>原料與產物</th><td>分解<b>水</b> → 放出<b>氧氣</b>，並產生能量與物質供碳反應使用</td><td>利用光反應提供的能量與物質，將<b>二氧化碳</b>合成<b>葡萄糖</b>（並產生水）</td></tr>
+    <tr><th>段考關鍵推論</th><td colspan="2">若把植物移入<b>完全黑暗</b>中，光反應立刻停止，<b>碳反應也會在耗盡殘餘能量後隨之停止，無法無限制持續製造葡萄糖</b>！</td></tr>
   </table>
   </div>
 
@@ -73,14 +91,32 @@
   </div>
 
   <div class="tool">
-    <h3>水蘊草實驗：燈越近，氣泡越多？</h3>
+    <h3>光照強度與海洋深度：陽性植物 vs 耐陰植物曲線</h3>
+    <p class="note">點選情境或拖動光照強度，比較<b>陽性植物／淺海藻類（甲）</b>與<b>耐陰植物／深水藻類（乙）</b>的淨氧氣釋放變化。零線以上表示光合＞呼吸（累積養分），零線以下表示呼吸＞光合（消耗養分）。</p>
+    <div class="bar" id="lcBar">
+      <button type="button" class="btn" data-env="0">黑暗（0%）</button>
+      <button type="button" class="btn" data-env="18">樹蔭／深水（18%）</button>
+      <button type="button" class="btn on" data-env="34">甲補償點（34%）</button>
+      <button type="button" class="btn" data-env="82">晴朗強光（82%）</button>
+    </div>
+    <svg id="lcSvg" viewBox="0 0 600 226" role="img" aria-label="光照強度對陽性植物甲與耐陰植物乙淨氧氣釋放速率的影響曲線圖" style="width:100%;max-width:640px;height:auto;display:block;border:1px solid var(--line);border-radius:10px;background:#fbfaf6"></svg>
+    <div class="range"><span>光照強度</span><input type="range" id="lcX" min="0" max="100" step="2" value="34"><b id="lcVal">34%</b></div>
+    <div class="out" id="lcOut"></div>
+  </div>
+
+  <div class="tool">
+    <h3>水蘊草實驗：燈越近氣泡越多？水體 pH 也會變！</h3>
+    <div class="wp-opts">
+      <label><input type="checkbox" id="wpSoda" checked> 加入少量小蘇打（碳酸氫鈉，補充 CO₂）</label>
+      <label><input type="checkbox" id="wpDark"> 關燈（完全黑暗對照）</label>
+    </div>
     <div class="figwrap">
-      <svg id="wpSvg" viewBox="0 0 360 240" role="img" aria-label="檯燈照射水蘊草冒出氣泡的示意圖"></svg>
+      <svg id="wpSvg" viewBox="0 0 360 240" role="img" aria-label="檯燈照射水蘊草冒出氣泡與水體 pH 變化示意圖"></svg>
       <div>
         <div class="range"><span>燈和水蘊草的距離</span><input type="range" id="wpX" min="10" max="60" step="5" value="20"><b id="wpVal"></b></div>
-        <div class="meter"><div>每分鐘氣泡（示意）<b id="wpN"></b></div></div>
+        <div class="wp-metrics" id="wpMetrics"></div>
         <div class="out" id="wpOut"></div>
-        <div class="inrow"><button class="btn" id="wpTest">收集氣體，用快熄滅的線香檢驗</button></div>
+        <div class="inrow" style="margin-top:8px"><button type="button" class="btn" id="wpTest">收集氣體，用快熄滅的線香檢驗</button></div>
         <div class="out" id="wpTestOut"></div>
       </div>
     </div>
@@ -88,14 +124,15 @@
   <div class="warn">
     <b>易錯陷阱</b>
     <ul>
-      <li>葡萄糖是光合作用<b>製造</b>的，不是根從土壤吸收的。根吸收的是<b>水和礦物質</b>。</li>
-      <li>水蘊草實驗加小蘇打：水中的二氧化碳用完時氣泡會變少，實驗中常在水中加入少量的<b>碳酸氫鈉（小蘇打）</b>，用來提供光合作用所需的<b>二氧化碳</b>。</li>
+      <li>葡萄糖是光合作用<b>製造</b>的，不是根從土壤吸收的；且葡萄糖可轉成澱粉、脂質、蛋白質，但<b>絕不能轉變成礦物質</b>（礦物質是根吸收的無機物）。</li>
+      <li>水蘊草實驗三大進階考點：① 加少量<b>碳酸氫鈉（小蘇打）</b>是為提供<b>二氧化碳</b>；② 大量行光合作用消耗水中 CO₂（碳酸減少），會使水中溶氧上升、<b>水體 pH 上升（偏鹼性）</b>（反之，移入黑暗只行呼吸作用釋出 CO₂，pH 會下降偏酸）；③ 澱粉儲存在細胞內且不溶於水，<b>不會溶出使水中澱粉增加</b>。</li>
       <li>植物<b>白天晚上都進行呼吸作用</b>。「清晨空氣新鮮，是因為植物整晚放出氧氣」是錯的：晚上只有呼吸作用，植物放出的是二氧化碳。</li>
-      <li>「葉綠體會產生能量」是錯的：葉綠體把光能轉換成化學能存在葡萄糖裡；把能量<b>釋放</b>出來的是呼吸作用。</li>
-      <li>讀「溫度和光合作用速率」的圖：比較同一個溫度下兩種植物的數值，不要只看線的形狀。</li>
+      <li>「葉綠體會產生能量」是錯的：葉綠體把光能<b>轉換並儲存</b>成化學能；把能量<b>釋放</b>出來的是粒線體的呼吸作用。</li>
+      <li>碳反應（暗反應）雖然「不直接需要光」，但必須依賴光反應提供的能量與物質，故移入黑暗後<b>不能無限持續合成葡萄糖</b>。</li>
+      <li>讀「溫度／光照與光合作用速率」曲線圖：務必比較同一橫軸數值下兩植物的縱軸高低，並注意達飽和後曲線平緩（受 CO₂、溫度或酵素等其他條件限制）。</li>
     </ul>
   </div>
-  <p class="small">補充：① 有些考卷會考光合作用分成「光反應」（需要光、分解水放出氧）和「碳反應」（把二氧化碳合成葡萄糖），這是課本以外的補充，以老師上課的說法為準。② 在較完整的化學反應中，光合作用的產物也包含<b>水</b>（二氧化碳＋水 ──→ 葡萄糖＋氧氣＋水）；國中段考通常簡化為「葡萄糖與氧氣」，但若考題選項出現產物有水，也是正確的。</p>
+  <p class="small">補充：部分版本或考卷簡化光合作用反應式為「二氧化碳＋水 → 葡萄糖＋氧氣」，南一版及進階題會列出「二氧化碳＋水 → 葡萄糖＋氧氣＋水」；兩者皆正確，若選項出現「水同時是原料也是產物」務必選為正確。</p>
   </section>
 
   <!-- ================= 二 ================= -->
@@ -128,9 +165,10 @@
   <div class="warn">
     <b>易錯陷阱</b>
     <ul>
-      <li>水是由<b>根吸收</b>的，不是從氣孔吸收；氣孔是<b>水蒸氣散失</b>的地方。</li>
-      <li>能進行光合作用的是<b>葉肉細胞和保衛細胞</b>；一般表皮細胞不行，葉脈也不行。</li>
-      <li>角質層是<b>表皮細胞分泌</b>的，不是葉肉。</li>
+      <li><b>洋蔥與紫背鴨跖草文字陷阱（超高頻！）</b>：看到洋蔥或紫背鴨跖草不要反射選「無葉綠體」！真正沒有葉綠體的是<b>表皮細胞</b>（如洋蔥鱗葉表皮、紫背鴨跖草下表皮）；它們的<b>葉肉細胞</b>仍然含有葉綠體、能進行光合作用！</li>
+      <li>能進行光合作用的是<b>葉肉細胞（柵狀＋海綿）和保衛細胞</b>；上／下表皮的一般細胞、葉脈（維管束）與根毛細胞都沒有葉綠體。</li>
+      <li><b>保衛細胞功能與主客顛倒陷阱</b>：負責「保護葉片」的是表皮細胞與角質層（角質層由<b>表皮細胞</b>分泌，不是葉肉）；保衛細胞負責控制氣孔開閉。而且是由<b>兩個</b>半月形保衛細胞吸水膨脹／失水萎縮來控制氣孔開關（不是「氣孔控制保衛細胞」，也不是「介於一個保衛細胞間」）。</li>
+      <li>水是由<b>根吸收</b>、經木質部與葉脈進入的，絕不是從氣孔吸收；氣孔是<b>二氧化碳、氧氣、水蒸氣</b>進出的地方。想在顯微鏡下拍到氣孔張開，最佳時機是<b>大雨過後（水分充足）的中午（有光）</b>。</li>
     </ul>
   </div>
   </section>
@@ -153,14 +191,15 @@
   <div class="tool">
     <h3>一步一步做實驗</h3>
     <div class="bar" id="exKind">
-      <button class="btn on" data-k="foil">一般葉片＋鋁箔遮一半</button>
-      <button class="btn" data-k="var">斑葉植物（不遮光）</button>
+      <button type="button" class="btn on" data-k="foil">一般葉片＋鋁箔遮一半</button>
+      <button type="button" class="btn" data-k="var">斑葉植物（不遮光）</button>
+      <button type="button" class="btn" data-k="var4">斑葉＋黑紙遮一半（四區變因）</button>
     </div>
     <div class="figwrap">
       <svg id="exSvg" viewBox="0 0 420 260" role="img" aria-label="葉片遮光實驗的葉片與酒精示意圖"></svg>
       <div>
         <div class="oans" id="exSteps"></div>
-        <div class="inrow"><button class="btn cool" id="exNext">下一步</button><button class="btn" id="exReset">重來</button></div>
+        <div class="inrow"><button type="button" class="btn cool" id="exNext">下一步</button><button type="button" class="btn" id="exReset">重來</button></div>
       </div>
     </div>
     <div class="out" id="exOut"></div>
@@ -170,14 +209,17 @@
     <h3>練習：把檢驗步驟排好順序</h3>
     <div class="opool" id="odPool"></div>
     <div class="oans" id="odAns"></div>
-    <div class="inrow"><button class="btn" id="odReset">重來</button></div>
+    <div class="inrow"><button type="button" class="btn" id="odReset">重來</button></div>
     <div class="out" id="odOut"></div>
   </div>
   <div class="warn">
     <b>易錯陷阱</b>
     <ul>
-      <li>檢驗澱粉用<b>碘液</b>（遇到澱粉變藍黑色，不用加熱），不是本氏液。<b>本氏液</b>是用來檢驗<b>葡萄糖這類的糖</b>，而且要隔水加熱才會變色（實驗 2-1）。泡酒精是為了<b>去除葉綠素</b>，不是去除澱粉。</li>
-      <li>酒精要<b>隔水加熱</b>：小燒杯（或試管）裝酒精，放在裝熱水的大燒杯裡。原因是<b>酒精很容易著火</b>，加熱時冒出的酒精蒸氣碰到火焰就會燒起來，直接用火加熱很危險。隔水加熱時酒精不會直接接觸火焰，受熱也比較均勻；熱水的溫度就足夠讓酒精溶出葉綠素。</li>
+      <li><b>沸水煮 vs 酒精隔水目的切勿顛倒</b>：沸水煮＝破壞細胞、<b>軟化角質層</b>（不是溶出葉綠素）；泡酒精＝<b>溶出葉綠素</b>（不是去除澱粉或軟化葉片）。</li>
+      <li><b>酒精隔水加熱裝置圖必認「內酒精、外水」</b>：<b>內層小燒杯（或試管）裝酒精</b>並放入葉片，<b>外層大燒杯裝水</b>再加熱。原因是<b>酒精易燃</b>，蒸氣碰到火焰會著火，不可直接用火加熱，也不可把內外液體裝反！</li>
+      <li>檢驗澱粉用<b>碘液</b>（遇澱粉變藍黑色，不用加熱），不是本氏液。<b>本氏液</b>是用來檢驗<b>葡萄糖這類的糖</b>，而且要隔水加熱才會變色（實驗 2-1）。</li>
+      <li><b>愛心貼紙遮光題不要死背「愛心變藍黑」</b>：務必看清圖中是<b>鏤空愛心黑紙</b>（只有愛心照到光 → 愛心變藍黑、周圍黃褐）還是<b>貼上實心愛心黑紙</b>（愛心被遮光 → 愛心黃褐、周圍藍黑）。</li>
+      <li><b>CO₂ 變因延伸與單一操作變因</b>：在葉片塗凡士林堵氣孔，或在密閉罩內放鹼液（CO₂ 吸收劑），是用來驗證光合作用需要 <b>CO₂</b>。斑葉＋遮光四區題（甲綠照光、乙綠遮光、丙白照光、丁白遮光）中，比較兩區時<b>只能有一個變因不同</b>（比甲乙測光、比甲丙測葉綠素，不能比乙丙）。</li>
       <li>遮光的部分算實驗組還是對照組，各校答案不完全一致。遇到這類題目，<b>以老師上課的說法為準</b>。</li>
     </ul>
   </div>
@@ -241,37 +283,122 @@ function dnDraw(){
 }
 $('dnX').addEventListener('input',dnDraw);dnDraw();
 
-/* 水蘊草 */
+/* 光照強度與海洋深度曲線（陽性 vs 耐陰） */
+function lcSun(x){return -1.4+4.4*(1-Math.exp(-x/34));}
+function lcShade(x){return -0.6+2.2*(1-Math.exp(-x/16));}
+function lcDraw(){
+  const x=+$('lcX').value;
+  $('lcVal').textContent=x+'%';
+  const W=600,H=226,L=56,R=24,T=20,Bt=38,pw=W-L-R,ph=H-T-Bt;
+  const X=v=>L+v/100*pw,Y=r=>T+ph-(r+2)/5.5*ph,y0=Y(0);
+  let g='';
+  g+='<rect x="'+L+'" y="'+T+'" width="'+pw+'" height="'+(y0-T).toFixed(1)+'" fill="#edf7ef" opacity=".72"/>';
+  g+='<rect x="'+L+'" y="'+y0.toFixed(1)+'" width="'+pw+'" height="'+(T+ph-y0).toFixed(1)+'" fill="#f6effa" opacity=".72"/>';
+  g+='<line x1="'+L+'" y1="'+y0.toFixed(1)+'" x2="'+(W-R)+'" y2="'+y0.toFixed(1)+'" stroke="#6b7280" stroke-width="1.3" stroke-dasharray="5 4"/>';
+  g+='<text x="'+(W-R-4)+'" y="'+(y0-6).toFixed(1)+'" text-anchor="end" font-size="11" font-weight="700" fill="#2d7d46">零線以上：光合 ＞ 呼吸（淨放出 O₂、累積養分）</text>';
+  g+='<text x="'+(W-R-4)+'" y="'+(y0+14).toFixed(1)+'" text-anchor="end" font-size="11" font-weight="700" fill="#6a4c93">零線以下：呼吸 ＞ 光合（淨吸收 O₂、消耗養分）</text>';
+  g+='<line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(T+ph)+'" stroke="#3a453e" stroke-width="1.6"/>';
+  g+='<line x1="'+L+'" y1="'+(T+ph)+'" x2="'+(W-R)+'" y2="'+(T+ph)+'" stroke="#3a453e" stroke-width="1.6"/>';
+  g+='<text x="16" y="'+(T+ph/2)+'" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3a453e" transform="rotate(-90 16 '+(T+ph/2)+')">淨 O₂ 釋放速率</text>';
+  g+='<text x="'+(L+pw/2)+'" y="'+(H-10)+'" text-anchor="middle" font-size="12" font-weight="700" fill="#3a453e">光照強度（弱／樹蔭／深水 ──────────→ 強／向陽／淺海）</text>';
+  g+='<text x="'+(L-6)+'" y="'+(y0+4).toFixed(1)+'" text-anchor="end" font-size="11.5" font-weight="700" fill="#3a453e">0</text>';
+  const mk=fn=>{let d='';for(let i=0;i<=100;i+=2)d+=(i?'L':'M')+X(i).toFixed(1)+' '+Y(fn(i)).toFixed(1);return d;};
+  g+='<path d="'+mk(lcShade)+'" fill="none" stroke="#2d6f9e" stroke-width="2.8" stroke-dasharray="6 3.5"/>';
+  g+='<path d="'+mk(lcSun)+'" fill="none" stroke="#2d7d46" stroke-width="3.2"/>';
+  g+='<text x="'+X(82)+'" y="'+(Y(lcSun(82))-9).toFixed(1)+'" font-size="12" font-weight="700" fill="#1f6b30">甲：陽性植物／淺海藻類</text>';
+  g+='<text x="'+X(74)+'" y="'+(Y(lcShade(74))+17).toFixed(1)+'" font-size="12" font-weight="700" fill="#1e5680">乙：耐陰植物／深水藻類</text>';
+  const rS=lcSun(x),rSh=lcShade(x);
+  g+='<line x1="'+X(x).toFixed(1)+'" y1="'+T+'" x2="'+X(x).toFixed(1)+'" y2="'+(T+ph)+'" stroke="#d97706" stroke-width="1.6" stroke-dasharray="4 3"/>';
+  g+='<circle cx="'+X(x).toFixed(1)+'" cy="'+Y(rS).toFixed(1)+'" r="5.2" fill="#2d7d46" stroke="#fff" stroke-width="1.8"/>';
+  g+='<circle cx="'+X(x).toFixed(1)+'" cy="'+Y(rSh).toFixed(1)+'" r="5.2" fill="#2d6f9e" stroke="#fff" stroke-width="1.8"/>';
+  $('lcSvg').innerHTML=g;
+  let txt='';
+  if(x===0)txt='<b>黑暗中（光照 0%）：</b>兩者皆停止光合作用，只進行<b>呼吸作用</b>（淨值為負，吸收 O₂、放出 CO₂）。乙的呼吸耗氧量較少。';
+  else if(rSh>0.08&&rS<-0.08)txt='<b>弱光區（樹蔭下或較深水域）：</b>耐陰植物<b>乙</b>已跨過零線（光合 ＞ 呼吸，可累積養分），陽性植物<b>甲</b>卻仍在零線以下（消耗大於製造），因此弱光或深水環境較適合<b>乙</b>生長！';
+  else if(Math.abs(rS)<=0.15)txt='<b>甲的光補償點附近：</b>甲的光合速率 <b>＝</b> 呼吸速率，淨氣體交換為 0；在同一光照下，乙已經遠高於零線並持續累積養分。';
+  else if(x>=75)txt='<b>強光區（光飽和）：</b>光照再增強，曲線趨於平緩（因受<b>二氧化碳濃度、溫度與葉綠體酵素</b>等其他因素限制）；甲的最大光合產能明顯高於乙，適合開闊向陽處或淺海表層。';
+  else txt='<b>中強光區：</b>甲、乙都在零線以上（光合 ＞ 呼吸，皆淨放出 O₂），隨光照增強兩者速率上升，甲的上升潛力更大。';
+  $('lcOut').innerHTML=txt;
+}
+$('lcX').addEventListener('input',()=>{$('lcBar').querySelectorAll('.btn').forEach(b=>b.classList.remove('on'));lcDraw();});
+$('lcBar').querySelectorAll('.btn').forEach(b=>b.onclick=()=>{
+  $('lcBar').querySelectorAll('.btn').forEach(x=>x.classList.toggle('on',x===b));
+  $('lcX').value=b.dataset.env;lcDraw();
+});
+lcDraw();
+
+/* 水蘊草（含小蘇打 CO₂、黑暗對照與水體 pH 變化） */
 let wpBubbles=[],wpTimer=null;
-function wpRate(d){return Math.round(36*Math.pow(10/d,1.15));}
+function wpState(){
+  const d=+$('wpX').value,soda=$('wpSoda').checked,dark=$('wpDark').checked;
+  const rate=dark?0:Math.round((soda?40:18)*Math.pow(10/d,1.15));
+  const ph=dark?6.4:+(7.0+Math.min(1.6,rate*0.038)).toFixed(1);
+  return {d,soda,dark,rate,ph};
+}
 function wpDraw(){
-  const d=+$('wpX').value,bx=196-(12+(d-10)/50*130),by=110;/* bx：燈泡的 x，距離越遠離水族箱（x=200）越遠 */
-  let g='<rect width="360" height="240" fill="#fbfaf6"/>';
+  const {d,soda,dark,rate,ph}=wpState();
+  const bx=196-(12+(d-10)/50*130),by=110;/* bx：燈泡的 x，距離越遠離水族箱（x=200）越遠 */
+  const bg=dark?'#26304a':'#fbfaf6';
+  const water=dark?'#e8e0cc':(rate>=18?'#cde3f9':'#dcebf5');
+  const phCol=dark?'#b45309':(rate>=18?'#1e40af':'#0f766e');
+  let g='<rect width="360" height="240" fill="'+bg+'"/>';
   g+='<g><rect x="'+(bx-48)+'" y="206" width="36" height="8" rx="3" fill="#4d5a52"/><rect x="'+(bx-34)+'" y="'+(by+6)+'" width="8" height="'+(206-by-6)+'" fill="#7a857e"/>';
-  g+='<path d="M'+(bx-38)+' '+(by-12)+' L'+(bx-2)+' '+(by-24)+' L'+(bx-2)+' '+(by+24)+' L'+(bx-38)+' '+(by+12)+'Z" fill="#4d5a52"/><circle cx="'+bx+'" cy="'+by+'" r="7" fill="#f5c84c"/>';
-  g+='<path d="M'+bx+' '+by+' L200 80 M'+bx+' '+by+' L200 190" stroke="#f5c84c" stroke-width="2" opacity="'+(0.25+0.7*10/d)+'"/></g>';
-  g+='<rect x="200" y="60" width="120" height="160" rx="6" fill="#dcebf5" stroke="#8d8877" stroke-width="2"/>';
+  g+='<path d="M'+(bx-38)+' '+(by-12)+' L'+(bx-2)+' '+(by-24)+' L'+(bx-2)+' '+(by+24)+' L'+(bx-38)+' '+(by+12)+'Z" fill="#4d5a52"/><circle cx="'+bx+'" cy="'+by+'" r="7" fill="'+(dark?'#94a3b8':'#f5c84c')+'"/>';
+  if(!dark)g+='<path d="M'+bx+' '+by+' L200 80 M'+bx+' '+by+' L200 190" stroke="#f5c84c" stroke-width="2" opacity="'+(0.25+0.7*10/d)+'"/>';
+  g+='</g>';
+  g+='<rect x="200" y="60" width="120" height="160" rx="6" fill="'+water+'" stroke="#8d8877" stroke-width="2"/>';
   g+='<path d="M260 215 C250 180 270 150 255 110 M262 215 C275 185 258 160 275 125" stroke="#3f7a4f" stroke-width="4" fill="none"/>';
   for(let i=0;i<7;i++)g+='<ellipse cx="'+(255+(i%2?12:-8))+'" cy="'+(200-i*14)+'" rx="9" ry="3.5" fill="#5aa86a" transform="rotate('+(i%2?25:-25)+' '+(255+(i%2?12:-8))+' '+(200-i*14)+')"/>';
-  g+='<g id="wpB">'+wpBubbles.map(b=>'<circle cx="'+b.x+'" cy="'+b.y+'" r="3" fill="#fff" stroke="#6aa3c9"/>').join('')+'</g>';
-  /* 距離標示：燈泡到水族箱 */
-  g+='<path d="M'+bx+' 30 V44 M200 30 V44 M'+bx+' 37 H200" stroke="#a8572f" stroke-width="1.5" fill="none"/><path d="M'+(bx+6)+' 33 L'+bx+' 37 L'+(bx+6)+' 41 M194 33 L200 37 L194 41" stroke="#a8572f" stroke-width="1.5" fill="none"/>';
-  g+='<text x="'+((bx+200)/2)+'" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#a8572f">'+d+' 公分</text>';
+  g+='<g id="wpB">'+(dark?'':wpBubbles.map(b=>'<circle cx="'+b.x+'" cy="'+b.y+'" r="3" fill="#fff" stroke="#6aa3c9"/>').join(''))+'</g>';
+  /* pH 顯示牌 */
+  g+='<rect x="268" y="20" width="84" height="28" rx="7" fill="#fff" stroke="'+phCol+'" stroke-width="1.8"/><text x="310" y="39" text-anchor="middle" font-size="13" font-weight="700" fill="'+phCol+'">pH '+ph.toFixed(1)+'</text>';
+  /* 距離標示或黑暗提示 */
+  if(dark){
+    g+='<text x="108" y="42" text-anchor="middle" font-size="13" font-weight="700" fill="#f3efe3">關燈中（無光合作用）</text>';
+  }else{
+    g+='<path d="M'+bx+' 30 V44 M200 30 V44 M'+bx+' 37 H200" stroke="#a8572f" stroke-width="1.5" fill="none"/><path d="M'+(bx+6)+' 33 L'+bx+' 37 L'+(bx+6)+' 41 M194 33 L200 37 L194 41" stroke="#a8572f" stroke-width="1.5" fill="none"/>';
+    g+='<text x="'+((bx+200)/2)+'" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#a8572f">'+d+' 公分</text>';
+  }
+  if(soda&&!dark)g+='<text x="260" y="234" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2d6f9e">含小蘇打（提供 CO₂）</text>';
   $('wpSvg').innerHTML=g;
 }
 function wpInfo(){
-  const d=+$('wpX').value;$('wpVal').textContent=d+' 公分';$('wpN').textContent='約 '+wpRate(d)+' 個';
-  $('wpOut').innerHTML=d<=20?'燈很近，光線強，光合作用快，氣泡多。':d>=45?'燈很遠，光線弱，光合作用慢，氣泡很少。':'距離中等，氣泡數量中等。';
-  $('wpOut').innerHTML+='<div class="small">在一定範圍內，光越強，光合作用越快，冒出的氣泡越多。</div>';
+  const {d,soda,dark,rate,ph}=wpState();
+  $('wpX').disabled=dark;
+  $('wpVal').textContent=dark?'已關燈':(d+' 公分');
+  const phCol=dark?'#b45309':(rate>=18?'#1e40af':'#0f766e');
+  const o2Txt=dark?'下降（呼吸耗氧）':(rate>=20?'大幅上升':'微幅上升');
+  const co2Txt=dark?'上升（呼吸釋 CO₂）':(rate>=20?'明顯減少（被消耗）':'微幅減少');
+  $('wpMetrics').innerHTML=
+    '<div class="wp-m"><span class="k">每分鐘氧氣氣泡（示意）</span><b>約 '+rate+' 個</b></div>'+
+    '<div class="wp-m"><span class="k">水體酸鹼性（初始 pH 7.0）</span><b style="color:'+phCol+'">pH '+ph.toFixed(1)+'（'+(dark?'偏酸':'偏鹼')+'）</b></div>'+
+    '<div class="wp-m"><span class="k">水中溶氧 ／ CO₂</span><b>O₂ '+o2Txt+'；CO₂ '+co2Txt+'</b></div>'+
+    '<div class="wp-m"><span class="k">水中澱粉濃度</span><b>維持 0（不溶出水中）</b></div>';
+  if(dark){
+    $('wpOut').innerHTML='<b>黑暗對照：</b>停止光合作用，只進行呼吸作用放出 CO₂ 溶於水形成碳酸 → <b>pH 下降（偏酸）</b>、不會冒出氧氣泡。';
+  }else{
+    const base=d<=20?'燈很近，光線強，光合作用快，氣泡多。':d>=45?'燈很遠，光線弱，光合作用慢，氣泡很少。':'距離中等，氣泡數量中等。';
+    const sodaTxt=soda?'已加入小蘇打補充 CO₂，光合作用更旺盛。':'未加小蘇打，水中 CO₂ 有限，氣泡會明顯較少。';
+    $('wpOut').innerHTML=base+sodaTxt+'<div class="small">大量行光合作用消耗水中 CO₂ 會使<b>水體 pH 上升（偏鹼）</b>；澱粉儲存在細胞內，不會使水中澱粉增加。</div>';
+  }
+  $('wpTestOut').innerHTML='';
 }
 function wpTick(){
-  const d=+$('wpX').value,p=wpRate(d)/60*0.12;
+  const {dark,rate}=wpState();
+  if(dark){wpBubbles=[];return;}
+  const p=rate/60*0.12;
   wpBubbles.forEach(b=>b.y-=2.2);wpBubbles=wpBubbles.filter(b=>b.y>66);
   if(Math.random()<p*3)wpBubbles.push({x:250+Math.random()*28,y:190-Math.random()*70});
   const gb=$('wpSvg').querySelector('#wpB');if(gb)gb.innerHTML=wpBubbles.map(b=>'<circle cx="'+b.x.toFixed(1)+'" cy="'+b.y.toFixed(1)+'" r="3" fill="#fff" stroke="#6aa3c9"/>').join('');
 }
-$('wpX').addEventListener('input',()=>{wpDraw();wpInfo();});
-$('wpTest').onclick=()=>{$('wpTestOut').innerHTML='快熄滅的線香<b>重新燃燒起來</b> → 收集到的氣體是<b>氧氣</b>，是光合作用的產物。';};
+['wpX','wpSoda','wpDark'].forEach(id=>$(id).addEventListener('input',()=>{wpDraw();wpInfo();}));
+$('wpTest').onclick=()=>{
+  if($('wpDark').checked){
+    $('wpTestOut').innerHTML='黑暗中沒有進行光合作用、<b>沒有收集到氧氣</b>（反而呼吸釋出 CO₂），快熄滅的線香<b>不會復燃</b>。';
+  }else{
+    $('wpTestOut').innerHTML='快熄滅的線香<b>重新燃燒起來</b> → 收集到的氣體是<b>氧氣</b>，是光合作用的產物。';
+  }
+};
 wpDraw();wpInfo();
 if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)wpTimer=setInterval(wpTick,60);
 
@@ -335,37 +462,69 @@ $('lfChl').onclick=()=>{
 
 /* ---------- 三、遮光實驗 ---------- */
 const STEPS=[
-  {t:'照光幾天後，摘下葉片',why:'照光的部分進行光合作用，產生的葡萄糖轉成澱粉存在葉中；遮光的部分沒有。'},
-  {t:'放進熱水中煮幾分鐘',why:'破壞細胞、讓葉片變軟。'},
-  {t:'放進酒精中<b>隔水加熱</b>',why:'溶出葉綠素：酒精變綠色，葉片變黃白色。酒精易燃，不能直接用火加熱。'},
-  {t:'用熱水漂洗',why:'洗掉酒精，讓葉片變軟。'},
+  {t:'照光幾天後，摘下葉片',why:'（實驗前先暗室處理 1～2 天消耗原存澱粉）照光且有葉綠素的部分行光合作用，產生澱粉存在葉中。'},
+  {t:'放進熱水中煮幾分鐘',why:'破壞細胞、軟化角質層，讓葉片變軟。'},
+  {t:'放進酒精中<b>隔水加熱</b>',why:'溶出葉綠素：酒精變綠色，葉片變黃白色。裝置必為「內小杯酒精、外大杯水」，防酒精起火。'},
+  {t:'用熱水漂洗',why:'洗掉殘留酒精，讓葉片恢復柔軟。'},
   {t:'滴<b>碘液</b>',why:'有澱粉的地方變藍黑色，沒有澱粉的地方是碘液的黃褐色。'}
 ];
 let exK='foil',exI=0;
 function leafPath(){return 'M60 130 C60 60 150 30 230 40 C300 50 340 100 345 130 C340 160 300 210 230 220 C150 230 60 200 60 130Z';}
 function exDraw(){
   const done=exI;/* 已完成的步驟數 */
-  let leaf='#4f9a5e',alc='#f3f6f8',stage='';
+  let leaf='#4f9a5e',alc='#f3f6f8';
   if(done>=3)leaf='#efe7c4';
   if(done>=3)alc='#7cb36d';
   let g='<defs><clipPath id="lc"><path d="'+leafPath()+'"/></clipPath></defs><rect width="420" height="260" fill="#fbfaf6"/>';
-  g+='<path d="'+leafPath()+'" fill="'+leaf+'" stroke="#3f6b45" stroke-width="2"/>';
-  if(exK==='var'&&done<3){g+='<path d="'+leafPath()+'" fill="none" stroke="#f3f1e4" stroke-width="26" clip-path="url(#lc)"/>';}
-  if(done>=5){
-    if(exK==='foil'){g+='<g clip-path="url(#lc)"><rect x="40" y="20" width="160" height="220" fill="#1d2347" opacity=".9"/><rect x="200" y="20" width="160" height="220" fill="#c98a2b" opacity=".85"/></g>';}
-    else{g+='<g clip-path="url(#lc)"><path d="'+leafPath()+'" fill="#1d2347" opacity=".9"/></g><path d="'+leafPath()+'" fill="none" stroke="#c98a2b" stroke-width="26" clip-path="url(#lc)"/>';}
+  if(exK==='var4'){
+    g+='<path d="'+leafPath()+'" fill="'+(done>=5?'#c98a2b':(done>=3?'#efe7c4':'#f3f1e4'))+'" stroke="#3f6b45" stroke-width="2"/>';
+    if(done<3){
+      g+='<ellipse cx="198" cy="130" rx="98" ry="52" fill="#4f9a5e"/>';
+    }else if(done<5){
+      g+='<ellipse cx="198" cy="130" rx="98" ry="52" fill="none" stroke="#b5aa88" stroke-dasharray="4 3"/>';
+    }else{
+      g+='<g clip-path="url(#lc)"><path d="M200 78 A98 52 0 0 0 200 182 Z" fill="#1d2347" opacity=".92"/></g>';
+      g+='<ellipse cx="198" cy="130" rx="98" ry="52" fill="none" stroke="#f5deb3" stroke-dasharray="4 3"/>';
+    }
+    g+='<path d="M60 130 H345" stroke="#3f6b45" stroke-width="1.8" opacity=".45"/>';
+    if(done<1){
+      g+='<rect x="200" y="30" width="152" height="200" fill="#374151" opacity=".82" stroke="#111827"/><text x="276" y="135" text-anchor="middle" font-size="14" font-weight="700" fill="#f9fafb">不透光黑紙</text>';
+      g+='<text x="148" y="135" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">甲(綠+光)</text>';
+      g+='<text x="112" y="66" text-anchor="middle" font-size="12" font-weight="700" fill="#4d5a52">丙(白+光)</text>';
+      g+='<text x="242" y="102" text-anchor="middle" font-size="12" font-weight="700" fill="#e5e7eb">乙(綠+遮)</text>';
+      g+='<text x="276" y="198" text-anchor="middle" font-size="12" font-weight="700" fill="#e5e7eb">丁(白+遮)</text>';
+    }else{
+      g+='<line x1="200" y1="30" x2="200" y2="230" stroke="'+(done>=5?'#f5deb3':'#8d949b')+'" stroke-dasharray="5 4"/>';
+      g+='<text x="148" y="135" text-anchor="middle" font-size="13" font-weight="700" fill="'+(done>=5?'#fff':'#1f2a24')+'">甲'+(done>=5?'(藍黑)':'')+'</text>';
+      g+='<text x="244" y="135" text-anchor="middle" font-size="13" font-weight="700" fill="'+(done>=5?'#fff':'#1f2a24')+'">乙'+(done>=5?'(黃褐)':'')+'</text>';
+      g+='<text x="114" y="68" text-anchor="middle" font-size="12.5" font-weight="700" fill="'+(done>=5?'#fff':'#4d5a52')+'">丙'+(done>=5?'(黃褐)':'')+'</text>';
+      g+='<text x="274" y="196" text-anchor="middle" font-size="12.5" font-weight="700" fill="'+(done>=5?'#fff':'#4d5a52')+'">丁'+(done>=5?'(黃褐)':'')+'</text>';
+      g+='<text x="130" y="250" text-anchor="middle" font-size="13" fill="#4d5a52">照光側</text><text x="278" y="250" text-anchor="middle" font-size="13" fill="#4d5a52">遮光側</text>';
+    }
+  }else{
+    g+='<path d="'+leafPath()+'" fill="'+leaf+'" stroke="#3f6b45" stroke-width="2"/>';
+    if(exK==='var'&&done<3){g+='<path d="'+leafPath()+'" fill="none" stroke="#f3f1e4" stroke-width="26" clip-path="url(#lc)"/>';}
+    if(done>=5){
+      if(exK==='foil'){g+='<g clip-path="url(#lc)"><rect x="40" y="20" width="160" height="220" fill="#1d2347" opacity=".9"/><rect x="200" y="20" width="160" height="220" fill="#c98a2b" opacity=".85"/></g>';}
+      else{g+='<g clip-path="url(#lc)"><path d="'+leafPath()+'" fill="#1d2347" opacity=".9"/></g><path d="'+leafPath()+'" fill="none" stroke="#c98a2b" stroke-width="26" clip-path="url(#lc)"/>';}
+    }
+    g+='<path d="M200 130 H345" stroke="#3f6b45" stroke-width="2" opacity=".5"/><path d="M60 130 H200" stroke="#3f6b45" stroke-width="2" opacity=".5"/>';
+    if(exK==='foil'&&done<1){g+='<rect x="200" y="30" width="155" height="200" fill="#c9ced3" stroke="#8d949b" opacity=".93"/><text x="278" y="135" text-anchor="middle" font-size="14" fill="#4d5a52">鋁箔紙</text>';}
+    if(exK==='foil'&&done>=1)g+='<line x1="200" y1="30" x2="200" y2="230" stroke="#8d949b" stroke-dasharray="5 4"/><text x="130" y="250" text-anchor="middle" font-size="13" fill="#4d5a52">照光</text><text x="278" y="250" text-anchor="middle" font-size="13" fill="#4d5a52">遮光</text>';
+    if(exK==='var'&&done>=5)g+='<text x="200" y="250" text-anchor="middle" font-size="13" fill="#4d5a52">中間綠色部分 ／ 外圈白色部分</text>';
   }
-  g+='<path d="M200 130 H345" stroke="#3f6b45" stroke-width="2" opacity=".5"/><path d="M60 130 H200" stroke="#3f6b45" stroke-width="2" opacity=".5"/>';
-  if(exK==='foil'&&done<1){g+='<rect x="200" y="30" width="155" height="200" fill="#c9ced3" stroke="#8d949b" opacity=".93"/><text x="278" y="135" text-anchor="middle" font-size="14" fill="#4d5a52">鋁箔紙</text>';}
-  if(exK==='foil'&&done>=1)g+='<line x1="200" y1="30" x2="200" y2="230" stroke="#8d949b" stroke-dasharray="5 4"/><text x="130" y="250" text-anchor="middle" font-size="13" fill="#4d5a52">照光</text><text x="278" y="250" text-anchor="middle" font-size="13" fill="#4d5a52">遮光</text>';
-  if(exK==='var'&&done>=5)g+='<text x="200" y="250" text-anchor="middle" font-size="13" fill="#4d5a52">中間綠色部分 ／ 外圈白色部分</text>';
   /* 酒精小燒杯 */
   g+='<g transform="translate(355,170)"><rect x="0" y="0" width="56" height="70" rx="4" fill="#fff" stroke="#8d8877" stroke-width="2"/><rect x="2" y="26" width="52" height="42" fill="'+alc+'"/><text x="28" y="-6" text-anchor="middle" font-size="12" fill="#4d5a52">酒精</text></g>';
   $('exSvg').innerHTML=g;
   $('exSteps').innerHTML=STEPS.map((s,i)=>'<div class="ostep'+(i<done?' good':'')+'"><b>'+(i+1)+'</b><span>'+s.t+(i<done?'<br><span class="small">'+s.why+'</span>':'')+'</span></div>').join('');
   $('exNext').disabled=done>=STEPS.length;
-  if(done>=5){$('exOut').innerHTML=exK==='foil'?'<b>結果</b>：照光的部分變<b>藍黑色</b>（有澱粉），遮光的部分是<b>黃褐色</b>（沒有澱粉）。<br><b>結論</b>：光合作用<b>需要光</b>，並且會產生澱粉。':'<b>結果</b>：原本綠色的部分變<b>藍黑色</b>，白色的部分是<b>黃褐色</b>。<br><b>結論</b>：白色部分沒有葉綠素，不能進行光合作用 → 光合作用<b>需要葉綠體（葉綠素）</b>。';}
-  else $('exOut').innerHTML=done===0?(exK==='foil'?'葉片的一半用鋁箔紙遮住，照光幾天。按「下一步」開始。':'斑葉植物的葉子外圈是白色（沒有葉綠素），整片照光幾天。按「下一步」開始。'):'';
+  if(done>=5){
+    if(exK==='foil')$('exOut').innerHTML='<b>結果</b>：照光的部分變<b>藍黑色</b>（有澱粉），遮光的部分是<b>黃褐色</b>（沒有澱粉）。<br><b>結論</b>：光合作用<b>需要光</b>，並且會產生澱粉。';
+    else if(exK==='var')$('exOut').innerHTML='<b>結果</b>：原本綠色的部分變<b>藍黑色</b>，白色的部分是<b>黃褐色</b>。<br><b>結論</b>：白色部分沒有葉綠素，不能進行光合作用 → 光合作用<b>需要葉綠體（葉綠素）</b>。';
+    else $('exOut').innerHTML='<b>結果</b>：四區中<b>只有甲（綠＋照光）變藍黑色</b>，乙、丙、丁均呈黃褐色。<br><b>單一變因結論</b>：比較<b>甲 vs 乙</b>（只差光照）→ 證明需要光；比較<b>甲 vs 丙</b>（只差葉綠素）→ 證明需要葉綠素；<b>乙 vs 丙</b>有兩個變因不同，不能拿來比較！';
+  }else if(done===0){
+    $('exOut').innerHTML=exK==='foil'?'葉片的一半用鋁箔紙遮住，照光幾天。按「下一步」開始。':exK==='var'?'斑葉植物的葉子外圈是白色（沒有葉綠素），整片照光幾天。按「下一步」開始。':'斑葉植物（中間綠、外圈白）右半部貼黑紙遮光，分成甲、乙、丙、丁四區。按「下一步」開始。';
+  }else $('exOut').innerHTML='';
 }
 $('exNext').onclick=()=>{if(exI<STEPS.length){exI++;exDraw();}};
 $('exReset').onclick=()=>{exI=0;exDraw();};
@@ -376,7 +535,46 @@ B.order({pool:'odPool',ans:'odAns',out:'odOut',reset:'odReset',items:[
   {t:'葉片放進熱水中煮'},{t:'葉片放進酒精隔水加熱'},{t:'用熱水漂洗葉片'},{t:'在葉片上滴碘液'},{t:'觀察顏色變化'}],
   done:'口訣「煮 → 脫 → 洗 → 滴」。'});
 
-/* ---------- 小測驗 ---------- */
+/* ---------- 小測驗（25 題，含 5 題原生向量 SVG 圖表判讀題） ---------- */
+const QF_LIGHT_CURVE='<svg viewBox="0 0 460 198" width="460" height="198" role="img" aria-label="甲乙兩種植物在不同光照強度下的淨氧氣釋放速率曲線圖"><rect width="460" height="198" fill="#fbfaf6"/><line x1="52" y1="122" x2="438" y2="122" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="5 4"/><text x="44" y="126" text-anchor="end" font-size="11.5" font-weight="700" fill="#3a453e">0</text><text x="436" y="116" text-anchor="end" font-size="10" fill="#2d7d46">淨釋放 O₂（＋）</text><text x="436" y="135" text-anchor="end" font-size="10" fill="#6a4c93">淨吸收 O₂（－）</text><line x1="52" y1="18" x2="52" y2="168" stroke="#3a453e" stroke-width="1.6"/><line x1="52" y1="168" x2="438" y2="168" stroke="#3a453e" stroke-width="1.6"/><text x="16" y="92" text-anchor="middle" font-size="11" font-weight="700" fill="#3a453e" transform="rotate(-90 16 92)">淨 O₂ 釋放速率</text><text x="436" y="188" text-anchor="end" font-size="11" font-weight="700" fill="#3a453e">光照強度 →</text><path d="M52,138 C76,122 104,98 158,88 C220,79 310,77 424,77" fill="none" stroke="#2d6f9e" stroke-width="2.6" stroke-dasharray="6 3.5"/><path d="M52,158 C102,148 140,124 184,96 C236,64 294,42 424,38" fill="none" stroke="#2d7d46" stroke-width="3"/><circle cx="52" cy="158" r="4" fill="#6a4c93"/><text x="60" y="162" font-size="11.5" font-weight="800" fill="#6a4c93">a（黑暗）</text><circle cx="144" cy="122" r="4.5" fill="#d97706"/><text x="148" y="140" font-size="12" font-weight="800" fill="#b45309">b 點</text><circle cx="332" cy="43" r="4.5" fill="#1f6b30"/><text x="332" y="32" text-anchor="middle" font-size="11.5" font-weight="800" fill="#1f6b30">c 點（趨於平緩）</text><text x="404" y="54" text-anchor="end" font-size="12" font-weight="800" fill="#1f6b30">甲植物</text><text x="404" y="94" text-anchor="end" font-size="12" font-weight="800" fill="#1e5680">乙植物</text></svg>';
+
+const QF_ECO_PH='<svg viewBox="0 0 460 192" width="460" height="192" role="img" aria-label="水蘊草生態瓶強光照射前後的氣泡與水體 pH 變化圖"><rect width="460" height="192" fill="#fbfaf6"/><rect x="30" y="34" width="126" height="122" rx="10" fill="#dff0f5" stroke="#7f8c8d" stroke-width="2"/><rect x="66" y="20" width="54" height="16" rx="4" fill="#d1c7b7" stroke="#7f8c8d" stroke-width="1.6"/><path d="M93 150 C85 124 100 104 90 74 M95 150 C105 126 94 110 106 86" stroke="#3f7a4f" stroke-width="3.2" fill="none"/><rect x="44" y="44" width="76" height="22" rx="6" fill="#fff" stroke="#0f766e" stroke-width="1.4"/><text x="82" y="59" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0f766e">pH = 7.0</text><text x="93" y="176" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2a24">照光前（中性清水）</text><path d="M174 96 H244" stroke="#d97706" stroke-width="2.6"/><polygon points="246,96 236,90 236,102" fill="#d97706"/><circle cx="208" cy="64" r="14" fill="#f5c84c"/><text x="208" y="116" text-anchor="middle" font-size="11" font-weight="800" fill="#b45309">強光照射 4 小時</text><rect x="270" y="34" width="126" height="122" rx="10" fill="#cbe2f9" stroke="#5b7fa6" stroke-width="2"/><rect x="306" y="20" width="54" height="16" rx="4" fill="#d1c7b7" stroke="#7f8c8d" stroke-width="1.6"/><path d="M333 150 C325 124 340 104 330 74 M335 150 C345 126 334 110 346 86" stroke="#2f7d3c" stroke-width="3.2" fill="none"/><g fill="#fff" stroke="#2563eb" stroke-width="1.2"><circle cx="324" cy="96" r="3.2"/><circle cx="342" cy="84" r="3"/><circle cx="332" cy="68" r="3.4"/><circle cx="352" cy="108" r="2.8"/><circle cx="318" cy="78" r="2.6"/><circle cx="344" cy="58" r="3.2"/></g><rect x="284" y="44" width="94" height="22" rx="6" fill="#fff" stroke="#1e40af" stroke-width="1.6"/><text x="331" y="59" text-anchor="middle" font-size="11.5" font-weight="800" fill="#1e40af">pH = 8.3（偏鹼）</text><text x="333" y="176" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">照光後（冒出大量氣泡）</text></svg>';
+
+const QF_LEAF=(()=>{
+  let s='<svg viewBox="0 0 460 198" width="460" height="198" role="img" aria-label="葉片橫切面構造判讀圖，標示甲乙丙丁戊"><rect width="460" height="198" fill="#fbfaf6"/><rect x="20" y="16" width="290" height="7" rx="2" fill="#f0dc8c"/><g fill="#eef4f6" stroke="#9aa8a6" stroke-width="1">';
+  for(let i=0;i<7;i++)s+='<rect x="'+(20+i*41.4).toFixed(1)+'" y="23" width="41.4" height="19"/>';
+  s+='</g><g fill="#bfe0b0" stroke="#5f8f55">';
+  for(let i=0;i<12;i++){const x=(22+i*23.8).toFixed(1);s+='<rect x="'+x+'" y="44" width="21" height="44" rx="5"/><circle cx="'+(29+i*23.8).toFixed(1)+'" cy="56" r="2.3" fill="#2f7d3c"/><circle cx="'+(36+i*23.8).toFixed(1)+'" cy="74" r="2.3" fill="#2f7d3c"/>';}
+  s+='</g><g fill="#d3eac6" stroke="#5f8f55">';
+  [[42,110],[82,126],[56,144],[108,104],[122,140],[246,106],[282,124],[252,142],[290,148]].forEach(([x,y])=>{s+='<ellipse cx="'+x+'" cy="'+y+'" rx="15" ry="10"/><circle cx="'+(x-4)+'" cy="'+y+'" r="2.2" fill="#2f7d3c"/>';});
+  s+='</g><ellipse cx="176" cy="126" rx="44" ry="30" fill="#f1ead8" stroke="#a89a73" stroke-width="1.6"/><path d="M138 124 A38 25 0 0 1 214 124 Z" fill="#f6d9c4" stroke="#b5643a"/><circle cx="162" cy="114" r="4" fill="#fff" stroke="#b5643a"/><circle cx="176" cy="110" r="4" fill="#fff" stroke="#b5643a"/><circle cx="190" cy="114" r="4" fill="#fff" stroke="#b5643a"/><path d="M138 128 A38 25 0 0 0 214 128 Z" fill="#dfe6f6" stroke="#4a6fb0"/><circle cx="164" cy="138" r="2.8" fill="#fff" stroke="#4a6fb0"/><circle cx="176" cy="141" r="2.8" fill="#fff" stroke="#4a6fb0"/><circle cx="188" cy="138" r="2.8" fill="#fff" stroke="#4a6fb0"/><g fill="#eef4f6" stroke="#9aa8a6">';
+  [0,1,2,3,5,6].forEach(i=>{s+='<rect x="'+(20+i*41.4).toFixed(1)+'" y="160" width="41.4" height="19"/>';});
+  s+='</g><path d="M192 160 q8 9.5 0 19 q8 0 10 -9.5 q-2 -9.5 -10 -9.5Z" fill="#a8d69a" stroke="#3f7a4f" stroke-width="1.4"/><path d="M220 160 q-8 9.5 0 19 q-8 0 -10 -9.5 q2 -9.5 10 -9.5Z" fill="#a8d69a" stroke="#3f7a4f" stroke-width="1.4"/><circle cx="198" cy="169" r="2" fill="#2f7d3c"/><circle cx="214" cy="169" r="2" fill="#2f7d3c"/><rect x="20" y="179" width="290" height="5" rx="2" fill="#f0dc8c"/>';
+  s+='<g font-size="12.5" font-weight="800" fill="#1f2a24" stroke-width="1.4"><line x1="304" y1="19" x2="346" y2="19" stroke="#8d6e4a"/><rect x="348" y="8" width="98" height="22" rx="6" fill="#fff" stroke="#8d6e4a"/><text x="397" y="23.5" text-anchor="middle">甲（最表薄層）</text><line x1="304" y1="33" x2="346" y2="48" stroke="#5d6961"/><rect x="348" y="37" width="98" height="22" rx="6" fill="#fff" stroke="#5d6961"/><text x="397" y="52.5" text-anchor="middle">乙（上表層細胞）</text><line x1="304" y1="68" x2="346" y2="82" stroke="#2f7d3c"/><rect x="348" y="71" width="98" height="22" rx="6" fill="#fff" stroke="#2f7d3c"/><text x="397" y="86.5" text-anchor="middle" fill="#1f6b30">丙（柵狀／海綿）</text><line x1="208" y1="114" x2="346" y2="118" stroke="#b5643a"/><rect x="348" y="107" width="98" height="22" rx="6" fill="#fff" stroke="#b5643a"/><text x="397" y="122.5" text-anchor="middle" fill="#9a441e">丁（葉脈上方）</text><line x1="218" y1="170" x2="346" y2="162" stroke="#2f7d3c"/><rect x="348" y="151" width="98" height="22" rx="6" fill="#fff" stroke="#2f7d3c"/><text x="397" y="166.5" text-anchor="middle" fill="#1f6b30">戊（圍繞氣孔）</text></g></svg>';
+  return s;
+})();
+
+const QF_ALCOHOL=(()=>{
+  const items=[{n:'甲',x:12,mode:'ok'},{n:'乙',x:124,mode:'rev'},{n:'丙',x:236,mode:'dirA'},{n:'丁',x:348,mode:'dirW'}];
+  let s='<svg viewBox="0 0 460 184" width="460" height="184" role="img" aria-label="四組葉片加熱脫色裝置對照圖：甲內酒精外水、乙內水外酒精、丙酒精直火、丁清水直火"><rect width="460" height="184" fill="#fbfaf6"/>';
+  items.forEach(it=>{
+    const cx=it.x+48;
+    s+='<rect x="'+it.x+'" y="10" width="96" height="164" rx="8" fill="#fff" stroke="#dcd8cc"/><text x="'+cx+'" y="27" text-anchor="middle" font-size="13" font-weight="800" fill="#1f2a24">'+it.n+'</text>';
+    s+='<line x1="'+(cx-32)+'" y1="126" x2="'+(cx+32)+'" y2="126" stroke="#6b7280" stroke-width="2"/><path d="M'+cx+' 130 C'+(cx-6)+' 140 '+(cx-5)+' 148 '+cx+' 150 C'+(cx+5)+' 148 '+(cx+6)+' 140 '+cx+' 130Z" fill="#ef6c2f"/><rect x="'+(cx-12)+'" y="150" width="24" height="12" rx="2" fill="#cbd5e1" stroke="#64748b"/>';
+    if(it.mode==='ok'||it.mode==='rev'){
+      const outC=it.mode==='ok'?'#cfe8f9':'#f8e4c4',inC=it.mode==='ok'?'#f8e4c4':'#cfe8f9';
+      const outT=it.mode==='ok'?'水':'酒精',inT=it.mode==='ok'?'酒精':'水';
+      s+='<rect x="'+(cx-30)+'" y="62" width="60" height="62" rx="3" fill="'+outC+'" stroke="#64748b" stroke-width="1.6"/><rect x="'+(cx-16)+'" y="44" width="32" height="68" rx="3" fill="'+inC+'" stroke="#475569" stroke-width="1.5"/><ellipse cx="'+cx+'" cy="92" rx="10" ry="5" fill="#4f9a5e" transform="rotate(-18 '+cx+' 92)"/><text x="'+cx+'" y="60" text-anchor="middle" font-size="10" font-weight="800" fill="#7c2d12">'+inT+'</text><text x="'+(cx-23)+'" y="118" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1e3a8a">'+outT+'</text>';
+    }else{
+      const c=it.mode==='dirA'?'#f8e4c4':'#cfe8f9',t=it.mode==='dirA'?'酒精':'清水';
+      s+='<rect x="'+(cx-26)+'" y="58" width="52" height="66" rx="3" fill="'+c+'" stroke="#64748b" stroke-width="1.6"/><ellipse cx="'+cx+'" cy="100" rx="13" ry="6" fill="#4f9a5e" transform="rotate(-15 '+cx+' 100)"/><text x="'+cx+'" y="78" text-anchor="middle" font-size="11" font-weight="800" fill="'+(it.mode==='dirA'?'#9a3412':'#1e40af')+'">'+t+'</text>';
+    }
+  });
+  return s+'</svg>';
+})();
+
+const QF_VAR4='<svg viewBox="0 0 460 192" width="460" height="192" role="img" aria-label="斑葉植物右半部貼黑紙遮光分成甲乙丙丁四區示意圖"><rect width="460" height="192" fill="#fbfaf6"/><path d="M52 96 C52 38 134 14 216 22 C292 30 330 72 336 96 C330 120 292 162 216 170 C134 178 52 154 52 96Z" fill="#f5f2e6" stroke="#4d7a4f" stroke-width="2"/><ellipse cx="192" cy="96" rx="94" ry="44" fill="#529e61"/><rect x="194" y="14" width="150" height="164" fill="#334155" opacity=".78" stroke="#0f172a" stroke-width="1.5"/><text x="270" y="34" text-anchor="middle" font-size="11.5" font-weight="800" fill="#f8fafc">黑紙遮光區</text><text x="122" y="34" text-anchor="middle" font-size="11.5" font-weight="800" fill="#1f6b30">照光區</text><circle cx="144" cy="96" r="14" fill="#fff" stroke="#1f6b30" stroke-width="1.8"/><text x="144" y="101" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1f6b30">甲</text><circle cx="240" cy="96" r="14" fill="#fff" stroke="#1e293b" stroke-width="1.8"/><text x="240" y="101" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1e293b">乙</text><circle cx="104" cy="54" r="13" fill="#fff" stroke="#8d6e4a" stroke-width="1.6"/><text x="104" y="59" text-anchor="middle" font-size="13" font-weight="800" fill="#6b4b2a">丙</text><circle cx="282" cy="142" r="13" fill="#fff" stroke="#64748b" stroke-width="1.6"/><text x="282" y="147" text-anchor="middle" font-size="13" font-weight="800" fill="#334155">丁</text><g font-size="11.5" font-weight="700" fill="#3a453e"><text x="358" y="64">甲：綠＋照光</text><text x="358" y="88">乙：綠＋遮光</text><text x="358" y="112">丙：白＋照光</text><text x="358" y="136">丁：白＋遮光</text></g></svg>';
+
 const QZ=[
  {u:1,s:'光合作用最主要的目的是什麼？',o:['放出氧氣，讓動物呼吸','製造養分','吸收二氧化碳，淨化空氣','釋放能量'],a:1,
   e:'光合作用最主要的目的是製造養分（葡萄糖）。放出氧氣是附帶的結果；釋放能量是呼吸作用。'},
@@ -392,6 +590,14 @@ const QZ=[
   e:'碳酸氫鈉（小蘇打）溶於水會釋出二氧化碳，能為水蘊草提供光合作用所需的原料。'},
  {u:1,s:'「清晨在樹林裡空氣特別新鮮，因為植物整晚都在放出氧氣。」這句話錯在哪裡？',o:['植物晚上不進行任何作用','植物晚上只進行呼吸作用，放出的是二氧化碳','植物晚上的光合作用比白天快','植物只在清晨放出氧氣'],a:1,
   e:'晚上沒有光，不能進行光合作用，只進行呼吸作用：吸收氧氣、放出二氧化碳。'},
+ {u:1,s:'關於光合作用的光反應、碳反應（暗反應）與產物去向，下列敘述何者正確？',o:['碳反應不需要直接吸光，故把植物放進完全黑暗中仍可無限制持續製造葡萄糖','葉綠體可把葡萄糖轉變成礦物質供植物生長','「水」同時是光合作用的原料，也是較完整反應中的產物之一','小樹長大增加的重量主要來自土壤中的礦物質，與二氧化碳無關'],a:2,
+  e:'(A) 碳反應高度依賴光反應提供的能量與物質，移入黑暗後很快就會停止。(B) 礦物質是根吸收的無機物，葡萄糖不能轉成礦物質。(C) 正確！南一版重點：水同時是原料與產物。(D) 植物增重主要來自葉片光合作用吸收的 CO₂ 與水。'},
+ {u:1,s:'<b>【圖表判讀】</b>附圖為甲、乙兩種植物在不同光照強度下的淨氧氣釋放速率曲線（零線以上為淨釋放氧氣，以下為淨吸收氧氣）。下列推論何者正確？',fig:QF_LIGHT_CURVE,
+  o:['在黑暗中（a 點），甲、乙皆停止呼吸作用','在 b 點的光照強度下，甲植物的光合作用速率等於呼吸作用速率','比較兩曲線可知，甲植物比乙植物更適合生長在光線微弱的樹蔭或深水中','當光照超過 c 點後，只要把燈光調更亮，甲的光合速率就會無限制直線上升'],a:1,
+  e:'(A) a 點在零線以下，代表黑暗中只進行呼吸作用並吸收氧氣。(B) b 點淨氧氣釋放為 0，代表光合速率＝呼吸速率（光補償點），正確！(C) 弱光區乙已率先大於零線，故乙較耐陰／適合深水。(D) 超過 c 點達光飽和，受 CO₂ 或酵素等限制不再上升。'},
+ {u:1,s:'<b>【圖表判讀】</b>如附圖，將健康的水蘊草放入中性清水的玻璃瓶並強光照射 4 小時，葉面冒出大量氣泡且水體 pH 值由 7.0 升至 8.3（偏鹼性）。下列推論何者正確？',fig:QF_ECO_PH,
+  o:['氣泡是二氧化碳，溶於水使水體偏鹼性','水蘊草大量進行光合作用消耗水中二氧化碳，使水體 pH 上升、溶氧增加','水蘊草製造的大量澱粉溶解到水中，使水體呈現鹼性','若改移到完全黑暗處放置 4 小時，水體 pH 值會繼續大幅上升'],a:1,
+  e:'(A) 氣泡是氧氣；CO₂ 溶於水呈弱酸性。(B) 大量光合作用消耗水中 CO₂（碳酸減少）→ pH 上升偏鹼、溶氧增加，正確！(C) 澱粉儲存在葉細胞內且不溶於水，水中澱粉不會增加。(D) 黑暗中只行呼吸放出 CO₂，pH 會下降偏酸。'},
  {u:2,s:'葉片中，哪些細胞含有葉綠體、能進行光合作用？',o:['上表皮細胞和下表皮細胞','葉肉細胞和保衛細胞','葉脈的細胞','角質層'],a:1,
   e:'葉肉（柵狀組織、海綿組織）和保衛細胞有葉綠體。一般表皮細胞、葉脈都沒有；角質層不是細胞。'},
  {u:2,s:'控制氣孔打開或關閉的構造是什麼？',o:['角質層','保衛細胞','韌皮部','柵狀組織'],a:1,
@@ -402,6 +608,11 @@ const QZ=[
   e:'氣孔是水蒸氣散失的地方，缺水時關閉可以減少水分散失。代價是二氧化碳進不來，光合作用會變慢。'},
  {u:2,s:'表皮細胞外面的角質層，主要功能是什麼？',o:['進行光合作用','減少水分散失','吸收水分','運送養分'],a:1,
   e:'角質層由表皮細胞分泌，能減少水分散失。'},
+ {u:2,s:'關於植物葉片細胞與氣孔的敘述，下列何者正確？',o:['洋蔥與紫背鴨跖草的「葉肉細胞」都沒有葉綠體','保衛細胞的主要功能是保護葉片避免受傷，因此不具葉綠體','氣孔由兩個半月形保衛細胞圍成，藉由保衛細胞吸水膨脹或失水萎縮來控制開閉','氣孔會自行脹縮，進而控制保衛細胞的大小'],a:2,
+  e:'(A) 經典文字陷阱！沒有葉綠體的是「表皮細胞」，洋蔥和紫背鴨跖草的「葉肉細胞」都有葉綠體！(B) 保護是表皮與角質層，保衛細胞含葉綠體且控制氣孔開閉。(C) 正確！(D) 主客顛倒，是保衛細胞控制氣孔。'},
+ {u:2,s:'<b>【圖表判讀】</b>附圖為陸生植物葉片橫切面示意圖。關於圖中甲～戊的敘述，下列何者正確？',fig:QF_LEAF,
+  o:['僅丙含有葉綠體，戊沒有葉綠體','甲是由丙分泌的蠟質薄層，可減少水分散失','光合作用所需的水分由丁運入，且丙、戊皆能進行光合作用','乙與丁皆含有大量葉綠體，是光合作用的主要場所'],a:2,
+  e:'甲＝角質層（由表皮乙分泌）、乙＝上表皮（無葉綠體）、丙＝葉肉細胞（有葉綠體）、丁＝葉脈木質部（運水進葉、無葉綠體）、戊＝保衛細胞（有葉綠體）。故 (C) 完全正確！'},
  {u:3,s:'葉片遮光實驗中，把葉片放進酒精隔水加熱，目的是什麼？',o:['殺死細菌','去除葉片中的澱粉','溶出葉綠素，方便觀察顏色','讓葉片產生澱粉'],a:2,
   e:'酒精溶出葉綠素，葉片變黃白色，滴碘液時才看得清楚顏色變化。'},
  {u:3,s:'為什麼酒精要「隔水加熱」，而不直接用火加熱？',o:['酒精容易著火','隔水加熱比較快','直接加熱會破壞澱粉','直接加熱碘液會變色'],a:0,
@@ -411,7 +622,15 @@ const QZ=[
  {u:3,s:'用斑葉植物（葉子邊緣是白色）做實驗，整片照光後檢驗，白色部分不變藍黑色。這說明什麼？',o:['光合作用需要光','光合作用需要葉綠體（葉綠素）','光合作用需要二氧化碳','光合作用會產生氧氣'],a:1,
   e:'白色部分有照到光，但沒有葉綠素，所以不能進行光合作用，證明光合作用需要葉綠體（葉綠素）。'},
  {u:3,s:'葉片遮光實驗的檢驗步驟，正確順序是？',o:['滴碘液 → 熱水煮 → 酒精隔水加熱 → 熱水漂洗','熱水煮 → 酒精隔水加熱 → 熱水漂洗 → 滴碘液','酒精隔水加熱 → 熱水煮 → 滴碘液 → 熱水漂洗','熱水煮 → 滴碘液 → 酒精隔水加熱 → 熱水漂洗'],a:1,
-  e:'口訣「煮 → 脫 → 洗 → 滴」：熱水煮、酒精脫色、熱水洗、滴碘液。'}
+  e:'口訣「煮 → 脫 → 洗 → 滴」：熱水煮、酒精脫色、熱水洗、滴碘液。'},
+ {u:3,s:'小美把一盆綠色植物先放進暗室 2 天，再將一張「中間剪出鏤空愛心」的不透光黑紙套在葉片上照光數日，最後依序煮、脫、洗、滴碘液。下列敘述何者正確？',o:['放進暗室 2 天是為了讓葉片先儲存大量澱粉','滴碘液後，愛心形狀區域會呈藍黑色，周圍被黑紙遮住處呈黃褐色','滴碘液後，愛心形狀區域會呈黃褐色，周圍呈藍黑色','沸水煮葉片是為了溶出葉綠素，泡酒精是為了軟化角質層'],a:1,
+  e:'(A) 暗室處理是為了「消耗葉片原本儲存的澱粉」，避免干擾。(B) 因為是「鏤空愛心」，只有愛心處照到光能製造澱粉 → 愛心變藍黑、周圍遮光呈黃褐，正確！(D) 兩者目的顛倒：沸水煮軟化角質層、酒精溶出葉綠素。'},
+ {u:3,s:'<b>【圖表判讀】</b>在「葉片澱粉檢驗」實驗中，為了安全且有效溶出葉片中的葉綠素，應選用附圖哪一組加熱裝置？',fig:QF_ALCOHOL,
+  o:['甲（內小杯裝酒精、外大杯裝水）','乙（內小杯裝水、外大杯裝酒精）','丙（酒精直接用酒精燈加熱）','丁（只用清水直接加熱即可）'],a:0,
+  e:'正確的「酒精隔水加熱」必為<b>內小杯裝酒精（放葉片）、外大杯裝水</b>（甲）。乙內外顛倒會使酒精近火起火且葉片泡水無法脫色；丙直火加熱酒精極危險；丁清水無法溶出葉綠素。'},
+ {u:3,s:'<b>【圖表判讀】</b>附圖為斑葉植物（中間綠色、外緣白色）經暗室處理後，右半部貼黑紙遮光再照光數日，依「煮→脫→洗→滴碘液」檢驗。下列敘述何者正確？',fig:QF_VAR4,
+  o:['滴碘液後，甲、丙兩區皆呈藍黑色，乙、丁呈黃褐色','若要驗證「光合作用需要光」，應比較甲與乙；若要驗證「需要葉綠素」，應比較甲與丙','若要驗證「光合作用需要光」，應比較乙與丙','滴碘液後，四區中只有丁區呈黃褐色'],a:1,
+  e:'四區中只有「綠色＋照光」的<b>甲</b>能製造澱粉變藍黑色，乙、丙、丁皆呈黃褐色。依單一操作變因原則：比<b>甲 vs 乙</b>（皆有葉綠素，只差光）證實需光；比<b>甲 vs 丙</b>（皆照光，只差葉綠素）證實需葉綠素；乙 vs 丙有兩個變因不同不可比較。'}
 ];
 B.quiz({box:'qz',score:'qzScore',done:'qzDone',reset:'qzReset',filter:'qzFlt',data:QZ,names:{1:'重點一',2:'重點二',3:'重點三'}});
 window.__QZ=QZ;
