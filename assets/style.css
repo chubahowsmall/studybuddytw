@@ -135,3 +135,28 @@ a.subject:hover{border-color:var(--moss);transform:translateY(-2px);box-shadow:0
 .ver .vgrp{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 .ver .vtag{font-weight:700;color:var(--moss);background:var(--moss-bg);border-radius:999px;padding:1px 9px}
 .ver .vcommit{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;background:#eeebe2;border-radius:4px;padding:1px 6px;color:var(--ink-2);text-decoration:none}
+
+/* 右側垂直置中「回到最上方」浮動按鈕（僅單元內頁顯示） */
+.back-top{
+  position:fixed;right:16px;top:50%;z-index:40;
+  display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  width:46px;height:48px;padding:0;border-radius:14px;
+  border:1px solid var(--line-2);background:rgba(255,255,255,.94);color:#22352b;
+  box-shadow:0 4px 14px rgba(34,53,43,.16);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  cursor:pointer;font:inherit;font-size:11px;font-weight:700;line-height:1;
+  opacity:0;pointer-events:none;transform:translateY(-50%) translateX(12px);
+  transition:opacity .2s,transform .2s,background-color .15s,color .15s,border-color .15s;
+}
+.back-top.show{opacity:1;pointer-events:auto;transform:translateY(-50%) translateX(0)}
+.back-top:hover{background:#22352b;color:#f3efe3;border-color:#22352b}
+.back-top.bio:hover{background:var(--bio,#6a4c93);border-color:var(--bio,#6a4c93);color:#fff}
+.back-top.sea:hover{background:var(--sea,#2d6f9e);border-color:var(--sea,#2d6f9e);color:#fff}
+.back-top:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+.back-top.bio:focus-visible{outline-color:var(--bio,#6a4c93)}
+.back-top svg{display:block}
+@media (max-width:600px){
+  .back-top{right:8px;width:40px;height:42px;border-radius:12px;font-size:10.5px}
+}
+html.embed .back-top{display:none}
+@media print{.back-top{display:none}}
+@media (prefers-reduced-motion:reduce){.back-top{transition:none}}

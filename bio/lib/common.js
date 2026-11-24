@@ -55,6 +55,17 @@ document.addEventListener('DOMContentLoaded',()=>{
     pg.innerHTML=(prev?'<a href="'+prev[0]+'">← '+prev[1]+'</a>':'<span></span>')+(next?'<a href="'+next[0]+'">'+next[1]+' →</a>':'');
   }
   if(EMBED)document.querySelectorAll('a[href]').forEach(a=>a.setAttribute('href',withEmbed(a.getAttribute('href'))));
+  /* 單元內頁右側垂直置中「回到最上方」浮動按鈕（不含首頁） */
+  if(here!=='index.html'&&!EMBED){
+    const bt=document.createElement('button');
+    bt.type='button';bt.className='back-top bio';bt.setAttribute('aria-label','回到頁面最上方');bt.title='回到最上方';
+    bt.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg><span>頂端</span>';
+    const sync=()=>bt.classList.toggle('show',(window.scrollY||document.documentElement.scrollTop)>260);
+    bt.onclick=()=>window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+    document.body.appendChild(bt);
+    window.addEventListener('scroll',sync,{passive:true});
+    sync();
+  }
   /* 被 iframe 嵌入時，把頁面高度告訴外層網頁 */
   if(window.parent!==window){
     let last=0;const send=()=>{const h=Math.ceil(document.documentElement.scrollHeight);if(Math.abs(h-last)>4){last=h;try{window.parent.postMessage({type:'g3-height',h:h,page:here},'*');}catch(e){}}};
