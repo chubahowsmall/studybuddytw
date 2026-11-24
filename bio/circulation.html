@@ -85,11 +85,14 @@
 #hsSvg.st-2 .ch-vent{filter:brightness(1.07) saturate(1.18)}
 #hsSvg .stage-layer{display:none}
 #hsSvg.st-0 .layer-0,#hsSvg.st-1 .layer-1,#hsSvg.st-2 .layer-2,#hsSvg.st-3 .layer-3{display:inline}
-@media (prefers-reduced-motion:reduce){#hsSvg .wave-ring,#hsSvg .wave-ring-2,#hsSvg .flow-fast,#hsSvg .flow-slow,#oxSvg .blood-flow{animation:none}}
+@media (prefers-reduced-motion:reduce){#hsSvg .wave-ring,#hsSvg .wave-ring-2,#hsSvg .flow-fast,#hsSvg .flow-slow,#oxSvg .blood-flow,#lyGv .flow{animation:none}}
 .oxstage{overflow-x:auto;margin:6px 0 8px}
 .oxstage svg{display:block;width:100%;min-width:540px;height:auto;border:1px solid var(--line);border-radius:var(--r);background:#fbfaf6}
 @keyframes oxFlow{to{stroke-dashoffset:-36}}
 #oxSvg .blood-flow{stroke-dasharray:12 6;animation:oxFlow .9s linear infinite}
+@keyframes lyFlow{to{stroke-dashoffset:-28}}
+#lyGv .flow{stroke-dasharray:8 6;animation:lyFlow 1s linear infinite}
+#lyGv .lbl{font-size:13px;font-weight:800}
 .q figure svg{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fbfaf6}
 </style>
 <script src="lib/common.js?v=13"></script>
@@ -851,8 +854,18 @@
       <button class="btn warm" data-m="test">測驗：找出指定構造</button>
     </div>
     <div class="figwrap">
-      <svg id="lyGv" viewBox="0 0 460 270" role="img" aria-label="微血管、組織液、組織細胞、盲端淋巴管、淋巴結與靜脈的關係示意圖"></svg>
-      <div class="figout" id="lyOut"></div>
+      <svg id="lyGv" viewBox="0 0 600 356" role="img" aria-label="寫實水彩風微血管、組織液、立體組織細胞、盲端淋巴管、剖面淋巴結與匯入靜脈示意圖"></svg>
+      <div>
+        <div class="figout" id="lyOut"></div>
+        <div class="card tight" style="margin-top:10px;padding:10px 12px;font-size:13.5px">
+          <b>看圖秒懂 3 件事：</b>
+          <ul style="margin:4px 0 0;padding-left:18px">
+            <li>紅血球都<b>留在微血管裡</b>，但白血球可變形穿出微血管壁。</li>
+            <li>血漿滲出成為<b>組織液</b>泡著細胞；多數回流微血管、少數進入<b>盲端淋巴管</b>。</li>
+            <li>淋巴經<b>淋巴結</b>過濾，最後匯入右側<b>靜脈</b>回到心臟（右心房）。</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1266,44 +1279,62 @@ $('hcZoom').onclick=()=>{
   drawOx('lung');
 })();
 
-/* ---------- 四、淋巴 ---------- */
+/* ---------- 四、淋巴（寫實手繪水彩風多圖層 SVG） ---------- */
 (function(){
-  let g='<defs><marker id="lyArrB" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#5e92b8"/></marker><marker id="lyArrG" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#5f7d2a"/></marker><marker id="lyArrR" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#a33a4a"/></marker></defs><rect width="460" height="270" fill="#fbfaf6"/>';
-  /* 組織液區 */
-  g+='<rect data-part="tf" x="14" y="64" width="334" height="122" rx="10" fill="#e3f0f7" stroke="#c3dceb"/>';
-  /* 微血管 */
-  g+='<g data-part="cap"><path d="M16 42 H346" stroke="#d9534f" stroke-width="22" stroke-linecap="round"/><path d="M36 42 H98" stroke="#fff" stroke-width="2.2" stroke-dasharray="4 3" marker-end="url(#lyArrR)"/><path d="M236 42 H298" stroke="#fff" stroke-width="2.2" stroke-dasharray="4 3" marker-end="url(#lyArrR)"/></g>';
-  /* 滲出與回收箭頭 */
-  g+='<g pointer-events="none"><path d="M74 56 v18" stroke="#5e92b8" stroke-width="2" stroke-dasharray="3 2" marker-end="url(#lyArrB)"/><path d="M148 56 v18" stroke="#5e92b8" stroke-width="2" stroke-dasharray="3 2" marker-end="url(#lyArrB)"/><path d="M262 74 v-18" stroke="#5e92b8" stroke-width="2" stroke-dasharray="3 2" marker-end="url(#lyArrB)"/><text x="112" y="76" text-anchor="middle" font-size="10.5" fill="#3a6b8e">血漿滲出</text><text x="262" y="84" text-anchor="middle" font-size="10.5" fill="#3a6b8e">多數回流</text></g>';
-  /* 組織細胞 */
-  g+='<g data-part="cell">'+[[64,122],[136,144],[204,112],[276,148],[102,168]].map(([x,y])=>'<circle cx="'+x+'" cy="'+y+'" r="19" fill="#f3e3c8" stroke="#b9a37c" stroke-width="1.6"/><circle cx="'+x+'" cy="'+y+'" r="5.5" fill="#b9a37c"/>').join('')+'</g>';
-  /* 盲端淋巴管（左端封閉圓帽＋瓣膜小折線） */
-  g+='<g data-part="lv"><path d="M52 214 H304" stroke="#b6cf7a" stroke-width="18" fill="none" stroke-linecap="round"/><path d="M52 205 A9 9 0 0 0 52 223 L304 223 M52 205 L304 205" stroke="#6f8d35" stroke-width="2" fill="none"/><path d="M138 208 l7 6 l-7 6 M226 208 l7 6 l-7 6" fill="none" stroke="#5f7d2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M44 214 H304" stroke="transparent" stroke-width="30" fill="none" pointer-events="stroke"/></g>';
+  let g='<defs>';
+  g+='<linearGradient id="lyCapG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#df5d56"/><stop offset="52%" stop-color="#e57a72"/><stop offset="82%" stop-color="#9e7ca8"/><stop offset="100%" stop-color="#6588be"/></linearGradient>';
+  g+='<linearGradient id="lyVeinG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#587bb0"/><stop offset="50%" stop-color="#7fa2d6"/><stop offset="100%" stop-color="#4e70a3"/></linearGradient>';
+  g+='<radialGradient id="lyCellG" cx="38%" cy="34%" r="65%"><stop offset="0%" stop-color="#fdf1dc"/><stop offset="68%" stop-color="#f0d5b0"/><stop offset="100%" stop-color="#d8b282"/></radialGradient>';
+  g+='<radialGradient id="lyNucG" cx="35%" cy="35%" r="65%"><stop offset="0%" stop-color="#b7885a"/><stop offset="100%" stop-color="#7e5634"/></radialGradient>';
+  g+='<linearGradient id="lyLymphG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3f0be"/><stop offset="55%" stop-color="#bfd782"/><stop offset="100%" stop-color="#99b656"/></linearGradient>';
+  g+='<radialGradient id="lyNodeG" cx="42%" cy="36%" r="65%"><stop offset="0%" stop-color="#c3db85"/><stop offset="68%" stop-color="#94b54d"/><stop offset="100%" stop-color="#6c8c30"/></radialGradient>';
+  g+='<radialGradient id="lyTfG" cx="50%" cy="45%" r="60%"><stop offset="0%" stop-color="#e8f6fd"/><stop offset="80%" stop-color="#cde9f8"/><stop offset="100%" stop-color="#b4ddf3"/></radialGradient>';
+  g+='<marker id="lyArrB" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#2d6f9e"/></marker>';
+  g+='<marker id="lyArrG" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#4f7420"/></marker>';
+  g+='<marker id="lyArrW" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1,1 L9,5 L1,9Z" fill="#ffffff"/></marker>';
+  g+='</defs><rect width="600" height="356" fill="#f7f1e5"/>';
+  /* 組織液 */
+  g+='<g data-part="tf"><path d="M36,118 C30,96 76,84 152,86 C230,88 332,82 404,92 C448,98 462,134 456,178 C450,218 424,234 366,236 C284,238 142,240 68,228 C34,222 24,186 30,152 Z" fill="url(#lyTfG)" stroke="#8fc4e2" stroke-width="2"/><ellipse cx="92" cy="112" rx="18" ry="6" fill="#fff" opacity=".45"/><ellipse cx="378" cy="126" rx="14" ry="5" fill="#fff" opacity=".4"/></g>';
+  /* 右側靜脈 */
+  g+='<g data-part="vein"><path d="M472,72 C504,72 522,86 522,120 V318 H558 V34 H522 V68 C516,50 496,42 472,42 Z" fill="url(#lyVeinG)" stroke="#3d2f28" stroke-width="2.2" stroke-linejoin="round"/><path d="M524,220 Q536,204 540,192 Q544,204 556,220" fill="none" stroke="#dbeafe" stroke-width="2.4" stroke-linecap="round"/><path class="flow" d="M540,296 V64" fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="2.6" marker-end="url(#lyArrW)"/></g>';
+  /* 微血管（單層管壁＋單列立體紅血球＋穿出微血管的白血球） */
+  g+='<g data-part="cap"><path d="M20,42 H476 V72 H20 Z" fill="url(#lyCapG)" stroke="#3d2f28" stroke-width="2.2"/><g stroke="#7a2c2c" stroke-width="1.1" opacity=".55"><line x1="88" y1="42" x2="88" y2="48"/><line x1="168" y1="42" x2="168" y2="48"/><line x1="252" y1="42" x2="252" y2="48"/><line x1="336" y1="42" x2="336" y2="48"/><line x1="418" y1="42" x2="418" y2="48"/><line x1="112" y1="66" x2="112" y2="72"/><line x1="196" y1="66" x2="196" y2="72"/><line x1="286" y1="66" x2="286" y2="72"/><line x1="368" y1="66" x2="368" y2="72"/></g><line x1="26" y1="47" x2="466" y2="47" stroke="#fff" stroke-width="2.2" opacity=".38" stroke-linecap="round"/>';
+  g+='<g stroke="#7c1d1d" stroke-width="1.2">';
+  [[64,'#d93832','#f28c87'],[132,'#d93832','#f28c87'],[206,'#d43c3c','#f28c87'],[278,'#c74352','#eb949b'],[348,'#b34966','#e09bb0'],[420,'#8f4d78','#cfa0c2']].forEach(([x,c1,c2])=>{g+='<g transform="translate('+x+',57)"><ellipse rx="11" ry="7.5" fill="'+c1+'"/><ellipse rx="5" ry="3" fill="'+c2+'" stroke="none"/></g>';});
+  g+='</g><g transform="translate(242,74)"><path d="M-9,-10 C-12,-2 -14,6 -8,12 C-2,17 9,15 12,8 C14,2 9,-4 7,-10 C4,-14 -6,-14 -9,-10 Z" fill="#f3eef9" stroke="#6a4c93" stroke-width="1.6"/><path d="M-4,-4 C-6,2 -2,7 3,6 C7,5 6,-1 3,-3 C1,-5 -2,-6 -4,-4 Z" fill="#7c56b0"/></g></g>';
+  /* 血漿滲出與回流箭頭 */
+  g+='<g pointer-events="none"><path class="flow" d="M112,74 V106" fill="none" stroke="#2d6f9e" stroke-width="2.4" marker-end="url(#lyArrB)"/><path class="flow" d="M188,74 V106" fill="none" stroke="#2d6f9e" stroke-width="2.4" marker-end="url(#lyArrB)"/><path class="flow" d="M368,108 V76" fill="none" stroke="#2d6f9e" stroke-width="2.4" marker-end="url(#lyArrB)"/><text x="150" y="96" text-anchor="middle" font-size="11" font-weight="800" fill="#1d5680">血漿滲出</text><text x="368" y="122" text-anchor="middle" font-size="11" font-weight="800" fill="#1d5680">多數回流微血管</text></g>';
+  /* 立體有機組織細胞 */
+  g+='<g data-part="cell">';
+  [[88,162,-2,1,9,7.5,1],[166,144,1,0,8.5,7.5,1],[148,202,0,1,8.5,7,0],[242,170,2,1,9.5,8,1],[324,154,-1,0,8.5,7.5,0],[310,206,1,1,8,6.5,0]].forEach(([x,y,nx,ny,rx,ry,hi])=>{
+    g+='<g transform="translate('+x+','+y+')"><path d="M-25,-16 C-32,2 -22,23 -2,25 C18,27 31,12 27,-8 C23,-25 2,-28 -15,-22 Z" fill="url(#lyCellG)" stroke="#6b5038" stroke-width="1.8"/><ellipse cx="'+nx+'" cy="'+ny+'" rx="'+rx+'" ry="'+ry+'" fill="url(#lyNucG)"/>'+(hi?'<circle cx="'+(nx-2)+'" cy="'+(ny-2)+'" r="2" fill="#f7e2c8" opacity=".55"/>':'')+'</g>';
+  });
+  g+='</g>';
   /* 組織液進淋巴管箭頭 */
-  g+='<g pointer-events="none"><path d="M116 184 v18" stroke="#5f7d2a" stroke-width="2" stroke-dasharray="3 2" marker-end="url(#lyArrG)"/><path d="M196 184 v18" stroke="#5f7d2a" stroke-width="2" stroke-dasharray="3 2" marker-end="url(#lyArrG)"/></g>';
-  /* 淋巴結 */
-  g+='<ellipse data-part="node" cx="322" cy="214" rx="24" ry="15" fill="#8fb04a" stroke="#5f7d2a" stroke-width="2.2"/>';
-  /* 靜脈（匯回心臟右心房） */
-  g+='<g data-part="vein"><path d="M346 214 H404 V24" stroke="#5b7fc4" stroke-width="18" fill="none" stroke-linejoin="round"/><path d="M346 214 H404 V24" stroke="transparent" stroke-width="30" fill="none" pointer-events="stroke"/><path d="M404 166 V98" stroke="#fff" stroke-width="2.2" stroke-dasharray="4 3" marker-end="url(#lyArrB)"/></g>';
+  g+='<g pointer-events="none"><path class="flow" d="M126,232 V268" fill="none" stroke="#4f7420" stroke-width="2.4" marker-end="url(#lyArrG)"/><path class="flow" d="M242,232 V268" fill="none" stroke="#4f7420" stroke-width="2.4" marker-end="url(#lyArrG)"/><text x="184" y="255" text-anchor="middle" font-size="11" font-weight="800" fill="#3f6212">部分滲入成為淋巴</text></g>';
+  /* 盲端淋巴管與單向瓣膜 */
+  g+='<g data-part="lv"><path d="M84,274 H368 V302 H84 A14,14 0 0,1 84,274 Z" fill="url(#lyLymphG)" stroke="#445c20" stroke-width="2.2"/><path d="M446,278 H522 V298 H446 Z" fill="url(#lyLymphG)" stroke="#445c20" stroke-width="2.2"/><line x1="88" y1="279" x2="362" y2="279" stroke="#fff" stroke-width="2" opacity=".45" stroke-linecap="round"/><path d="M174,275 L192,288 L174,301 M286,275 L304,288 L286,301" fill="none" stroke="#3f5c16" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="142" cy="288" r="6" fill="#f3eef9" stroke="#6a4c93" stroke-width="1.3"/><circle cx="142" cy="288" r="3" fill="#7c56b0"/><circle cx="238" cy="288" r="6" fill="#f3eef9" stroke="#6a4c93" stroke-width="1.3"/><circle cx="238" cy="288" r="3" fill="#7c56b0"/><circle cx="484" cy="288" r="5.5" fill="#f3eef9" stroke="#6a4c93" stroke-width="1.3"/><circle cx="484" cy="288" r="2.8" fill="#7c56b0"/><path class="flow" d="M312,288 H356 M454,288 H514" fill="none" stroke="#3f6212" stroke-width="2.2" marker-end="url(#lyArrG)"/></g>';
+  /* 剖面豆狀淋巴結 */
+  g+='<g data-part="node"><path d="M366,288 C366,262 390,254 414,258 C438,262 452,272 452,288 C452,306 436,318 412,318 C388,318 366,312 366,288 Z" fill="url(#lyNodeG)" stroke="#3d521b" stroke-width="2.3"/><ellipse cx="394" cy="282" rx="13" ry="10" fill="#e5f0c8" stroke="#6f8e36" stroke-width="1.2"/><ellipse cx="424" cy="280" rx="13" ry="10" fill="#e5f0c8" stroke="#6f8e36" stroke-width="1.2"/><ellipse cx="410" cy="302" rx="14" ry="9" fill="#e5f0c8" stroke="#6f8e36" stroke-width="1.2"/><g fill="#7c56b0"><circle cx="390" cy="280" r="2.6"/><circle cx="398" cy="284" r="2.6"/><circle cx="394" cy="276" r="2.2"/><circle cx="420" cy="278" r="2.6"/><circle cx="428" cy="282" r="2.6"/><circle cx="424" cy="274" r="2.2"/><circle cx="405" cy="301" r="2.6"/><circle cx="414" cy="303" r="2.6"/><circle cx="410" cy="297" r="2.2"/></g></g>';
   /* 標籤 */
-  g+='<text class="lbl s" data-lbl="cap" x="180" y="21" text-anchor="middle">微血管（血液）</text>';
-  g+='<text class="lbl s" data-lbl="tf" x="310" y="102" text-anchor="middle">組織液</text>';
-  g+='<text class="lbl s" data-lbl="cell" x="204" y="160" text-anchor="middle">組織細胞</text>';
-  g+='<text class="lbl s" data-lbl="lv" x="150" y="248" text-anchor="middle">淋巴管（左端封閉・有瓣膜）</text>';
-  g+='<text class="lbl s" data-lbl="node" x="322" y="248" text-anchor="middle">淋巴結</text>';
-  g+='<text class="lbl s" data-lbl="vein" x="436" y="128" text-anchor="middle">靜脈</text>';
-  g+='<text x="404" y="16" text-anchor="middle" font-size="10.5" fill="#4a6fb0">往右心房</text>';
+  g+='<text class="lbl" data-lbl="cap" x="236" y="28" text-anchor="middle">微血管（單層細胞・紅血球單列）</text>';
+  g+='<text class="lbl" data-lbl="tf" x="412" y="176" text-anchor="middle">組織液</text>';
+  g+='<text class="lbl" data-lbl="cell" x="242" y="218" text-anchor="middle">組織細胞</text>';
+  g+='<text class="lbl" data-lbl="lv" x="216" y="334" text-anchor="middle">淋巴管（左端封閉盲端・內有瓣膜）</text>';
+  g+='<text class="lbl" data-lbl="node" x="410" y="340" text-anchor="middle">淋巴結</text>';
+  g+='<text class="lbl" data-lbl="vein" x="542" y="24" text-anchor="middle">靜脈（往右心房）</text>';
+  g+='<text x="580" y="172" text-anchor="middle" font-size="11" font-weight="700" fill="#365c96" transform="rotate(90 580 172)">淋巴匯入靜脈</text>';
   const svg=$('lyGv');
   svg.innerHTML=g;
   addLblBg(svg);
 })();
 B.figure({svg:'lyGv',out:'lyOut',modeBar:'lyMode',parts:{
-  cap:{n:'微血管',d:'血液流經這裡時，一部分<b>血漿滲出</b>到細胞之間成為組織液；大部分組織液稍後再回到微血管。紅血球留在血管裡。'},
+  cap:{n:'微血管（單層細胞）',d:'連接動脈與靜脈，管壁僅一層細胞。圖中可見<b>紅血球單列通過且留在血管內</b>，部分<b>血漿滲出</b>成組織液，白血球可變形穿出微血管壁。'},
   tf:{n:'組織液',d:'包圍在細胞周圍的液體，由血漿滲出形成（跌倒擦傷滲出的透明液體即組織液）。細胞靠它交換養分、氧氣與廢物。'},
-  cell:{n:'組織細胞',d:'身體各處的細胞，透過周圍的組織液與微血管內的血液交換物質。'},
-  lv:{n:'淋巴管',d:'<b>一端封閉（盲端）</b>，收集多餘的組織液成為<b>淋巴</b>。管內有<b>瓣膜</b>，靠肌肉收縮單向推送；淋巴裡<b>沒有紅血球</b>。'},
-  node:{n:'淋巴結',d:'淋巴管上膨大的構造，內有大量<b>白血球</b>，能<b>過濾病原體</b>。感染發炎時可能腫大（頸部、腋下、鼠蹊部）。'},
-  vein:{n:'靜脈',d:'淋巴最後匯入<b>靠近心臟的靜脈</b>，回到血液循環並最先進入<b>右心房</b>（不是流入動脈）。'}
+  cell:{n:'組織細胞',d:'身體各處的細胞，浸泡在組織液中，透過周圍的組織液與微血管內的血液交換物質。'},
+  lv:{n:'淋巴管（盲端＋瓣膜）',d:'<b>左端封閉（盲端）</b>，收集多餘的組織液成為<b>淋巴</b>。管內有<b>單向瓣膜</b>，靠肌肉收縮單向推送；淋巴裡含白血球，<b>沒有紅血球</b>。'},
+  node:{n:'淋巴結',d:'淋巴管上膨大的豆狀構造，內部聚集大量<b>白血球</b>，能<b>過濾病原體</b>。感染發炎時可能腫大（頸部、腋下、鼠蹊部）。'},
+  vein:{n:'靜脈（往右心房）',d:'微血管匯合處，也是淋巴的最終去處！淋巴最後匯入<b>靠近心臟的靜脈</b>，回到血液循環並最先進入<b>右心房</b>（不是流入動脈）。'}
 },hint:'滑鼠移上或點擊圖中構造（或標籤）看說明；也可切換「測驗」自我檢測！'});
 
 /* ---------- 小測驗（含 5 題考古題圖表／實驗插圖） ---------- */
