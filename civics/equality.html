@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>3-2 平權家庭與親子權益｜公民生活館</title>
-<meta name="description" content="國七上公民（翰林版第一冊）3-2 平權家庭與親子權益互動複習：家務勞動與性別平權數據圖、民法親屬編平權修法時光機、親權界線與扶養義務減輕免除、四部性別與家庭法律速辨挑戰，附 25 題圖解小測驗。">
+<meta name="description" content="國七上公民（翰林版第一冊）3-2 平權家庭與親子權益互動複習：家務勞動與女性未就業原因數據圖、民法親屬編平權修法時光機、親權界線與扶養義務減輕免除、性平三法與四法速辨挑戰，附 30 題圖解小測驗。">
 <link rel="icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="../assets/style.css?v=4">
@@ -27,7 +27,7 @@
     <a href="#s2">二、《民法》平權修法對照</a>
     <a href="#s3">三、親權界線與扶養義務</a>
     <a href="#s4">四、四部相關法律速辨</a>
-    <a href="#s5">小測驗（25 題）</a>
+    <a href="#s5">小測驗（30 題）</a>
   </nav>
 
   <!-- ================= 一 ================= -->
@@ -44,11 +44,12 @@
 
   <div class="tool">
     <h3>段考高頻圖表互動看板：從統計數據看家庭平權</h3>
-    <p class="note">這三組統計圖表在 112～114 學年度段考中一再出現！點選按鈕切換圖表，看看怎麼解讀出題老師要的正確推論。</p>
+    <p class="note">這四組統計圖表在 112～114 學年度段考中一再出現！點選按鈕切換圖表，看看怎麼解讀出題老師要的正確推論。</p>
     <div class="bar" id="statBar">
       <button type="button" class="btn on" data-k="chore">① 已婚男女每週家務時數</button>
       <button type="button" class="btn" data-k="inherit">② 財產贈與與拋棄繼承</button>
       <button type="button" class="btn" data-k="work">③ 女性生育後重返職場</button>
+      <button type="button" class="btn" data-k="unemp">④ 女性未就業原因年齡表</button>
     </div>
     <div class="chart-stage" id="statSvgBox"></div>
     <div class="out" id="statOut"></div>
@@ -94,22 +95,26 @@
     <div class="card tight" style="border-top:4px solid var(--moss)">
       <h3>父母的「親權」（《民法》保護及教養未成年子女）</h3>
       <ul>
+        <li><b>對象僅限未成年子女</b>：親權只適用於<b>未滿 18 歲</b>之未成年子女；子女成年後父母便不再對其行使親權，也無權替成年子女決定一切事務！</li>
         <li><b>子女是獨立個體</b>：孩子不是父母的財產或附屬品，父母應傾聽子女想法、培養獨立思考能力。</li>
-        <li><b>合理管教範圍</b>：口頭告誡禮節與課業、合理約定手機使用時間、帶孩子當志工、因打架暫停校外活動等。</li>
-        <li><b>逾越親權（不當管教）</b>：棍棒或「愛的小手」體罰、言語羞辱辱罵、罰站半蹲高舉椅子、<b>關在門外不准回家、不給吃晚餐</b>、唆使子女乞討。</li>
-        <li><b>養父母同樣享有親權</b>：經法院收養後，養父母對未成年養子女一樣行使親權。</li>
-        <li><b>停止或限制親權</b>：若父母濫用親權或嚴重疏於照顧，可向<b>地方法院</b>（非警察局、非社會局！）聲請宣告停止或限制親權。</li>
+        <li><b>合理管教 vs 逾越親權</b>：口頭告誡禮節與課業、合理約定手機使用時間、帶孩子當志工皆屬合理管教；棍棒／愛的小手體罰、言語羞辱、半蹲高舉椅子、<b>關在門外、不給吃晚餐</b>、唆使乞討皆逾越親權（不當管教）。</li>
+        <li><b>限制或停止親權的要件</b>：僅限父母<b>疏於照顧</b>或<b>不當管教造成傷害</b>時，可向<b>地方法院</b>（非警察局、非社會局！）聲請宣告限制或停止親權。<b>陷阱</b>：單純「父母協議離婚」或「親子意見衝突」<b>不會</b>讓法院限制親權！</li>
+        <li><b>共同／單獨監護與探視權</b>：離婚後可協議由雙方共同監護或單方監護；<b>未任監護人的一方仍享有「會面交往權（探視權）」</b>，且仍須依法分擔子女扶養費！養父母同樣享有親權。</li>
       </ul>
     </div>
     <div class="card tight" style="border-top:4px solid var(--civ)">
-      <h3>子女的義務與「扶養義務減輕或免除」</h3>
+      <h3>子女的義務、免除扶養與繼承權</h3>
       <ul>
-        <li><b>一般原則</b>：子女應孝敬父母，成年有能力時依法對父母負有扶養義務。</li>
-        <li><b>重要例外（《民法》規定！）</b>：若父母在子女年幼時曾有<b>虐待、重大侮辱、家暴</b>，或<b>惡意遺棄、無正當理由未盡扶養義務</b>，成年子女可向<b>地方法院</b>請求<b>減輕或免除扶養義務</b>！</li>
-        <li><b>離婚不影響繼承權</b>：父母離婚後，即使法院判由母親單獨監護，子女與父親的<b>自然血親與遺產繼承權依然存在</b>，不會消失！</li>
-        <li><b>停止親權 ≠ 斷絕血緣</b>：法院宣告停止父母親權，只是剝奪其管教監護權限，自然血緣事實並不會消失。</li>
+        <li><b>一般原則</b>：子女應孝敬父母，成年有能力時依法對父母負有扶養義務（不論性別，非僅由兒子負責）。</li>
+        <li><b>重要例外（《民法》規定！）</b>：若父母在子女年幼時曾有<b>虐待、重大侮辱、家暴</b>，或<b>惡意遺棄、無正當理由未盡扶養義務</b>，成年子女可向<b>地方法院</b>請求<b>減輕或免除扶養義務</b>（須經法院裁定，不可口頭直接免除）。</li>
+        <li><b>反面條款（喪失繼承權）</b>：若子女對父母有重大虐待、侮辱或惡意不扶養情事，經父母表示其不得繼承者，該子女依法<b>喪失遺產繼承權</b>！</li>
+        <li><b>離婚／改姓／停親權皆不斷絕血緣</b>：無論父母離婚由誰監護、子女從父姓或從母姓、或法院宣告停止父母親權，自然血親與子女對雙親的<b>法定繼承權皆依然存在</b>！</li>
       </ul>
     </div>
+  </div>
+  <div class="key">
+    <b>面對家庭衝突（家務、教養、3C 或婆媳意見不合）的正確解方：</b>
+    避免冷戰、互罵、暗自委屈或動用體罰；應先<b>冷靜情緒 → 傾聽同理對方立場 → 理性溝通或召開家庭會議</b>共同協商共識，必要時尋求學校輔導或社福專業協助。
   </div>
   <div class="warn">
     <b>超高頻法源陷阱：</b>
@@ -119,14 +124,15 @@
 
   <!-- ================= 四 ================= -->
   <section class="sec" id="s4">
-  <h2>四、四部關鍵法律速辨＆公民小法官挑戰<span class="star">★★★ 必考</span></h2>
+  <h2>四、關鍵法律速辨（含性平三法）＆公民小法官挑戰<span class="star">★★★ 必考</span></h2>
   <div class="tscroll">
   <table class="t">
     <tr><th>法律名稱</th><th>適用場域</th><th>核心規範與段考關鍵字</th></tr>
-    <tr><th>《民法》</th><td>家庭與私人關係</td><td>結婚登記、收養認可、親屬分類、夫妻姓氏／住所／財產、子女姓氏、<b>親權行使與停止親權</b>、<b>減輕或免除扶養義務</b>、遺產繼承平等</td></tr>
-    <tr><th>《性別平等工作法》<br><span class="small">（原性別工作平等法）</span></th><td><b>職場・雇主與受僱者</b></td><td><b>育嬰留職停薪（育嬰假）</b>（任職滿 6 個月、子女未滿 3 歲，不分男女、不限人數、養子女亦適用，雇主不得拒絕）、<b>家庭照顧假</b>、產檢假、陪產檢及陪產假、職場性騷擾與同工同酬</td></tr>
-    <tr><th>《性別平等教育法》</th><td><b>校園・學校與師生</b></td><td>校園性騷擾／性霸凌交由<b>性別平等教育委員會</b>調查、學校社團／校隊／教育資源不得因性別差別待遇</td></tr>
-    <tr><th>《家庭暴力防治法》</th><td><b>家庭與親密關係暴力</b></td><td>身體／精神／經濟侵害、責任通報、113 專線、向<b>地方法院</b>聲請<b>保護令</b>（含同住家人、前配偶、未同居親密伴侶）</td></tr>
+    <tr><th>《民法》</th><td>家庭與私人關係</td><td>結婚登記、收養認可、親屬分類、夫妻姓氏／住所／財產、<b>日常家務互為代理人、自由處分金</b>、子女姓氏、<b>親權行使與停止親權</b>、<b>減輕或免除扶養義務</b>、男女平等繼承權與惡意虐待父母喪失繼承權</td></tr>
+    <tr><th>《性別平等工作法》<br><span class="small">（原性別工作平等法・性平三法之一）</span></th><td><b>職場・雇主與受僱者</b></td><td><b>育嬰留職停薪（育嬰假）</b>（<b>任職滿 6 個月、子女未滿 3 歲</b>、不分男女與公司人數、養子女／非婚生皆可、<b>雙親可同時申請</b>、津貼最高領 <b>8 成薪</b>，雇主不得拒絕）、<b>家庭照顧假</b>、生理假、產檢假、陪產檢及陪產假、<b>不得因懷孕解僱或面試追問生育計畫</b>、職場性騷擾與同工同酬</td></tr>
+    <tr><th>《性別平等教育法》<br><span class="small">（性平三法之一）</span></th><td><b>校園・學校與師生</b></td><td>校園性騷擾／性侵害／性霸凌交由學校<b>性別平等教育委員會</b>調查（非輔導室私了、亦非《性騷擾防治法》）、學校社團／校隊／招生不得因性別差別待遇</td></tr>
+    <tr><th>《性騷擾防治法》<br><span class="small">（性平三法之一）</span></th><td><b>一般公共場所／陌生人</b></td><td>不屬職場亦不屬校園之一般性騷擾事件（如公車、捷運、餐廳遭陌生人騷擾），常作為校園／職場題的干擾選項！</td></tr>
+    <tr><th>《家庭暴力防治法》</th><td><b>家庭與親密關係暴力</b></td><td>身體／精神／經濟侵害、責任通報、113 專線、向<b>地方法院</b>聲請<b>保護令</b>（含同住家人、前配偶、未同居親密伴侶、目睹家暴兒少）</td></tr>
   </table>
   </div>
 
@@ -142,14 +148,14 @@
 
   <!-- ================= 五：小測驗 ================= -->
   <section class="sec" id="s5">
-  <h2>五、3-2 小測驗（25 題，含 5 題向量圖表判讀）</h2>
+  <h2>五、3-2 小測驗（30 題，含 7 題向量圖表判讀）</h2>
   <div class="score">
-    <span class="big" id="qzScore">0 / 25</span>
+    <span class="big" id="qzScore">0 / 30</span>
     <span class="small" id="qzDone"></span>
     <button type="button" class="btn" id="qzReset" style="margin-left:auto">重新測驗</button>
   </div>
   <div class="chips" id="qzFilter">
-    <button type="button" class="chip on" data-u="all">全部（25 題）</button>
+    <button type="button" class="chip on" data-u="all">全部（30 題）</button>
     <button type="button" class="chip" data-u="u1">家務與性別平權</button>
     <button type="button" class="chip" data-u="u2">民法修法與親權</button>
     <button type="button" class="chip" data-u="u3">四法速辨與扶養</button>
@@ -223,6 +229,23 @@ const STATS={
         '<rect x="295" y="164" width="16" height="16" rx="3" fill="#a33a4a"/><text x="318" y="177"><tspan font-weight="700">被迫轉職 10%</tspan>（原職場不夠友善）</text>'+
       '</g></svg>',
     desc:'<b>考點解讀：</b>高達 <b>50% 女性暫離職場</b>、17% 未回職場，顯示女性職涯常受家庭<b>保護與照顧功能</b>牽動！因此需要配偶共同分擔育兒與家務，並透過《性別平等工作法》的<b>育嬰留職停薪</b>與公共托育來支持女性重返職場。'
+  },
+  unemp:{
+    svg:'<svg viewBox="0 0 580 225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="各年齡層女性未就業主要原因比例表圖">'+
+      '<rect width="580" height="225" fill="#fbf8f1"/>'+
+      '<text x="290" y="23" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2a24">樂樂鎮女性未就業主要原因（依年齡層，單位：%）</text>'+
+      '<rect x="16" y="36" width="548" height="28" fill="#e5e1d5"/>'+
+      '<g font-size="12" font-weight="700" fill="#1f2a24" text-anchor="middle">'+
+        '<text x="64" y="55">年齡(歲)</text><text x="172" y="55">照顧未滿12歲子女</text><text x="288" y="55">照顧65歲以上家屬</text><text x="404" y="55">負責打理家務</text><text x="510" y="55">健康／其他</text>'+
+      '</g>'+
+      '<g font-size="12" fill="#1f2a24" text-anchor="middle" stroke="#d4cec0" stroke-width="1">'+
+        '<rect x="16" y="64" width="548" height="28" fill="#fff"/><text x="64" y="83" stroke="none" font-weight="700">30–34</text><rect x="118" y="68" width="108" height="20" rx="4" fill="#faece3" stroke="none"/><text x="172" y="83" stroke="none" font-weight="700" fill="#a8572f">65.37%</text><text x="288" y="83" stroke="none">0.89%</text><text x="404" y="83" stroke="none">11.43%</text><text x="510" y="83" stroke="none">22.31%</text>'+
+        '<rect x="16" y="92" width="548" height="28" fill="#fff"/><text x="64" y="111" stroke="none" font-weight="700">35–39</text><rect x="118" y="96" width="108" height="20" rx="4" fill="#faece3" stroke="none"/><text x="172" y="111" stroke="none" font-weight="700" fill="#a8572f">55.35%</text><text x="288" y="111" stroke="none">2.60%</text><text x="404" y="111" stroke="none">21.39%</text><text x="510" y="111" stroke="none">20.66%</text>'+
+        '<rect x="16" y="120" width="548" height="28" fill="#fff"/><text x="64" y="139" stroke="none" font-weight="700">40–44</text><text x="172" y="139" stroke="none">35.36%</text><text x="288" y="139" stroke="none">5.16%</text><text x="404" y="139" stroke="none" font-weight="700" fill="#86411f">39.70%</text><text x="510" y="139" stroke="none">19.78%</text>'+
+        '<rect x="16" y="148" width="548" height="28" fill="#fff"/><text x="64" y="167" stroke="none" font-weight="700">45–49</text><text x="172" y="167" stroke="none">7.05%</text><text x="288" y="167" stroke="none">8.10%</text><rect x="350" y="152" width="108" height="20" rx="4" fill="#f7e3e6" stroke="none"/><text x="404" y="167" stroke="none" font-weight="700" fill="#a33a4a">58.04%</text><text x="510" y="167" stroke="none">26.81%</text>'+
+        '<rect x="16" y="176" width="548" height="28" fill="#fff"/><text x="64" y="195" stroke="none" font-weight="700">50–54</text><text x="172" y="195" stroke="none">0.53%</text><text x="288" y="195" stroke="none">7.58%</text><rect x="350" y="180" width="108" height="20" rx="4" fill="#f7e3e6" stroke="none"/><text x="404" y="195" stroke="none" font-weight="700" fill="#a33a4a">56.69%</text><text x="510" y="195" stroke="none">35.20%</text>'+
+      '</g></svg>',
+    desc:'<b>113～114 跨校大熱門考點：</b>30～39 歲女性未就業主因是「<b>照顧未滿 12 歲子女（55%～65%）</b>」，45～54 歲則轉為「<b>負責打理家務（56%～58%）</b>」！兩大主因全是家務與育兒負擔，最直接的正確解讀是<b>「需加強家庭中性別平權的觀念」</b>（別誤選高齡化或少子化！）。'
   }
 };
 const statBar=C.$('statBar'),statSvgBox=C.$('statSvgBox'),statOut=C.$('statOut');
@@ -361,6 +384,35 @@ const QF_COURT='<svg viewBox="0 0 500 155" xmlns="http://www.w3.org/2000/svg" ro
   '<text x="430" y="104" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1e4f73">機關聲請</text>'+
 '</svg>';
 
+const QF_UNEMP='<svg viewBox="0 0 510 175" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="甲國各年齡層女性未就業主要原因簡表圖">'+
+  '<rect width="510" height="175" fill="#fbf8f1"/>'+
+  '<text x="255" y="20" text-anchor="middle" font-size="13" font-weight="700">甲國女性未就業主要原因統計（%）</text>'+
+  '<rect x="14" y="30" width="482" height="26" fill="#e5e1d5"/>'+
+  '<g font-size="11.5" font-weight="700" text-anchor="middle"><text x="58" y="47">年齡</text><text x="158" y="47">照顧12歲以下子女</text><text x="274" y="47">照顧65歲以上長輩</text><text x="382" y="47">負責打理家務</text><text x="462" y="47">其他</text></g>'+
+  '<g font-size="11.5" text-anchor="middle" stroke="#d4cec0" stroke-width="1">'+
+    '<rect x="14" y="56" width="482" height="27" fill="#fff"/><text x="58" y="74" stroke="none" font-weight="700">30–34</text><text x="158" y="74" stroke="none" font-weight="700" fill="#a8572f">65.4%</text><text x="274" y="74" stroke="none">0.9%</text><text x="382" y="74" stroke="none">11.4%</text><text x="462" y="74" stroke="none">22.3%</text>'+
+    '<rect x="14" y="83" width="482" height="27" fill="#fff"/><text x="58" y="101" stroke="none" font-weight="700">35–39</text><text x="158" y="101" stroke="none" font-weight="700" fill="#a8572f">55.4%</text><text x="274" y="101" stroke="none">2.6%</text><text x="382" y="101" stroke="none">21.4%</text><text x="462" y="101" stroke="none">20.6%</text>'+
+    '<rect x="14" y="110" width="482" height="27" fill="#fff"/><text x="58" y="128" stroke="none" font-weight="700">45–49</text><text x="158" y="128" stroke="none">7.1%</text><text x="274" y="128" stroke="none">8.1%</text><text x="382" y="128" stroke="none" font-weight="700" fill="#a33a4a">58.0%</text><text x="462" y="128" stroke="none">26.8%</text>'+
+    '<rect x="14" y="137" width="482" height="27" fill="#fff"/><text x="58" y="155" stroke="none" font-weight="700">50–54</text><text x="158" y="155" stroke="none">0.5%</text><text x="274" y="155" stroke="none">7.6%</text><text x="382" y="155" stroke="none" font-weight="700" fill="#a33a4a">56.7%</text><text x="462" y="155" stroke="none">35.2%</text>'+
+  '</g></svg>';
+
+const QF_MARRIED='<svg viewBox="0 0 490 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="某國15至64歲已婚女性就業率上升折線圖">'+
+  '<rect width="490" height="170" fill="#fbf8f1"/>'+
+  '<text x="245" y="20" text-anchor="middle" font-size="13.5" font-weight="700">某國 15～64 歲已婚女性就業率變化趨勢（%）</text>'+
+  '<line x1="56" y1="138" x2="448" y2="138" stroke="#7a857e" stroke-width="1.5"/>'+
+  '<line x1="56" y1="36" x2="56" y2="138" stroke="#7a857e" stroke-width="1.5"/>'+
+  '<g font-size="10.5" fill="#4d5a52" text-anchor="end"><text x="48" y="142">0%</text><text x="48" y="92">35%</text><text x="48" y="42">70%</text></g>'+
+  '<polyline points="86,96 172,78 258,68 344,61 426,52" fill="none" stroke="#a8572f" stroke-width="3"/>'+
+  '<g fill="#a8572f" font-size="11" font-weight="700" text-anchor="middle">'+
+    '<circle cx="86" cy="96" r="4.5"/><text x="86" y="87">32%</text>'+
+    '<circle cx="172" cy="78" r="4.5"/><text x="172" y="69">44%</text>'+
+    '<circle cx="258" cy="68" r="4.5"/><text x="258" y="59">51%</text>'+
+    '<circle cx="344" cy="61" r="4.5"/><text x="344" y="52">56%</text>'+
+    '<circle cx="426" cy="52" r="4.5"/><text x="426" y="43">62%</text>'+
+  '</g>'+
+  '<g font-size="10.5" fill="#4d5a52" text-anchor="middle"><text x="86" y="155">1985</text><text x="172" y="155">1995</text><text x="258" y="155">2005</text><text x="344" y="155">2015</text><text x="426" y="155">2025</text></g>'+
+'</svg>';
+
 const QUIZ=[
   {u:'u1',s:'觀察附圖中已婚男女平均每週花在家務的時間統計，下列哪一項解讀<b>最貼切</b>？',
    fig:QF_CHORE,
@@ -441,7 +493,24 @@ const QUIZ=[
    a:1,e:'25% 雖創新高但仍未超過女性（75%），加上職場質疑，顯示性別平權正逐步進步，但<b>實踐上仍有加強空間</b>。'},
   {u:'u3',s:'某對夫妻在《民法》修法後辦理結婚，下列哪一組對於夫妻權利義務的看法<b>最正確</b>？',
    o:['甲夫妻：結婚後太太一定要改以先生的家為唯一住所','乙夫妻：先生的薪水一定要比太太高才能養家','丙夫妻：子女的姓氏由夫妻共同書面約定，可從父姓或母姓','丁夫妻：離婚後子女親權依法一定歸父親所有'],
-   a:2,e:'現行《民法》保障住所共同協議、財產各自自主、子女姓氏由父母共同約定、親權依子女最佳利益酌定，故 (C) 正確！'}
+   a:2,e:'現行《民法》保障住所共同協議、財產各自自主、子女姓氏由父母共同約定、親權依子女最佳利益酌定，故 (C) 正確！'},
+  {u:'u1',s:'甲國女性就業率長期低於全國平均，政府調查未就業女性原因如附表。關於此資料的解讀，下列何者<b>最適當</b>？',
+   fig:QF_UNEMP,
+   o:['甲國人口高齡化比例大幅飆升','需加強家庭中性別平權與家務共同分擔的觀念','雙薪家庭的比例已完全消失','該表證明女性體力不足無法勝任工作'],
+   a:1,e:'113～114 跨校大熱門題！30～39 歲未就業主因是「照顧子女」，45～54 歲則是「負責打理家務」，凸顯女性仍承擔絕大部分家務照顧，亟須加強<b>家庭性別平權觀念</b>！'},
+  {u:'u1',s:'附圖為某國 15～64 歲已婚女性就業率變化曲線。若該國男性參與家務比例仍偏低，導致職業婦女蠟燭兩頭燒，下列哪一項解讀與對策<b>最恰當</b>？',
+   fig:QF_MARRIED,
+   o:['已婚女性就業趨於普遍，應提升性別平權觀念使男性共同參與家務勞動','應從「男主外、女主內」全面改為「女主外、男主內」','已婚女性應為職場將全部家務都改交給男性負責','女性選擇不婚不生屬個人意願，社會無須任何配套'],
+   a:0,e:'已婚女性就業率由 32% 升至 62%，顯示女性不再受限於傳統家庭角色束縛；最健康的平權解方不是顛倒成「全部交給男性」，而是夫妻<b>共同參與與分擔家務</b>！'},
+  {u:'u2',s:'從法律角度來看，在下列哪些情況下，地方法院可以宣告<b>限制或停止</b>父母行使親權？(甲)父母疏於照顧子女 (乙)父母不合協議離婚 (丙)父母不當管教造成子女傷害 (丁)親子發生意見衝突',
+   o:['甲乙','甲丙','乙丙','丙丁'],
+   a:1,e:'只有父母<b>疏於照顧</b>或<b>不當管教造成傷害</b>（濫用親權）時，法院才可限制或停止親權！單純「協議離婚」或「親子意見衝突」並不會剝奪父母親權，故選<b>甲丙</b>！'},
+  {u:'u3',s:'依《性別平等工作法》，符合資格的受僱者申請育嬰留職停薪期間，可依法請領相當於 <b>8 成薪</b>的育嬰留職停薪津貼。下列哪一位受僱者最符合申請資格？',
+   o:['任職滿 2 年、太太剛生下雙胞胎的大誠','剛到職 2 個月、女兒剛滿月的大榮','任職滿 5 年、兒子剛滿 4 歲的大華','任職滿 3 年、表妹剛生下寶寶的大興'],
+   a:0,e:'育嬰假條件：<b>任職滿 6 個月、子女未滿 3 歲、本人之子女（含養子女），不分男女皆可請</b>！大榮任職未滿 6 月、大華子女已滿 3 歲、大興非親生／養父母，唯有<b>大誠</b>完全符合！'},
+  {u:'u3',s:'紐西蘭前總理阿爾登在任期內懷孕產女並休產假，隨後由伴侶全職育兒。若在我國有雇主以「女性懷孕影響工作表現」為由將懷孕員工解僱，雇主違反下列哪一部法律？',
+   o:['《性別平等教育法》','《性騷擾防治法》','《性別平等工作法》','《家庭暴力防治法》'],
+   a:2,e:'職場懷孕歧視、解僱懷孕員工、育嬰假與產假保障皆規定於<b>《性別平等工作法》</b>；《性別平等教育法》管校園、《性騷擾防治法》管一般公共場所（三者合稱性平三法）！'}
 ];
 
 C.quiz({
