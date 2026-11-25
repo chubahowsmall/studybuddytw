@@ -27,7 +27,7 @@
 .fam-box .ftitle{font-size:18px;font-weight:700;color:var(--civ-deep);margin-bottom:4px}
 .fam-scene{background:#fff;border-left:4px solid var(--civ);padding:8px 12px;border-radius:0 8px 8px 0;margin:8px 0;font-size:14.5px}
 </style>
-<script src="lib/common.js?v=4"></script></script>
+<script src="lib/common.js?v=4"></script>
 </head>
 <body>
 <header id="site-head"></header>
@@ -128,40 +128,46 @@
       <button class="btn" type="button" id="kNone">只看無親屬關係</button>
     </div>
     <div class="figwrap">
-      <svg id="kinSvg" viewBox="0 0 680 390" role="img" aria-label="以小瓔為中心的三代家族親屬關係互動樹狀圖" xmlns="http://www.w3.org/2000/svg">
-        <!-- 連線：婚姻（雙線或紅線）、親子（實線） -->
+      <svg id="kinSvg" viewBox="0 0 770 398" role="img" aria-label="以小瓔為中心的三代家族親屬關係互動樹狀圖" xmlns="http://www.w3.org/2000/svg">
+        <!-- 連線：婚姻（紅線）、親子（實線）、收養（紫虛線） -->
         <g stroke="#7a857e" stroke-width="2" fill="none">
-          <!-- 祖父母結婚線與往下一代 -->
-          <line x1="175" y1="54" x2="215" y2="54" stroke="#a8572f" stroke-width="2.5"/>
-          <line x1="195" y1="54" x2="195" y2="108"/>
-          <line x1="95" y1="108" x2="295" y2="108"/>
-          <line x1="95" y1="108" x2="95" y2="140"/>
-          <line x1="295" y1="108" x2="295" y2="140"/>
-          <!-- 外祖父母結婚線與往下一代 -->
-          <line x1="470" y1="54" x2="510" y2="54" stroke="#a8572f" stroke-width="2.5"/>
-          <line x1="490" y1="54" x2="490" y2="108"/>
-          <line x1="395" y1="108" x2="565" y2="108"/>
-          <line x1="395" y1="108" x2="395" y2="140"/>
-          <line x1="565" y1="108" x2="565" y2="140"/>
+          <!-- 祖父母結婚線與往下一代（伯父、叔叔、姑姑、爸爸） -->
+          <line x1="180" y1="54" x2="216" y2="54" stroke="#a8572f" stroke-width="2.5"/>
+          <line x1="198" y1="54" x2="198" y2="108"/>
+          <line x1="46" y1="108" x2="350" y2="108"/>
+          <line x1="46" y1="108" x2="46" y2="140"/>
+          <line x1="203" y1="108" x2="203" y2="140"/>
+          <line x1="273" y1="108" x2="273" y2="140"/>
+          <line x1="350" y1="108" x2="350" y2="140"/>
+          <!-- 外祖父母結婚線與往下一代（媽媽、舅舅、阿姨） -->
+          <line x1="525" y1="54" x2="561" y2="54" stroke="#a8572f" stroke-width="2.5"/>
+          <line x1="543" y1="54" x2="543" y2="108"/>
+          <line x1="442" y1="108" x2="644" y2="108"/>
+          <line x1="442" y1="108" x2="442" y2="140"/>
+          <line x1="521" y1="108" x2="521" y2="140"/>
+          <line x1="644" y1="108" x2="644" y2="140"/>
           <!-- 伯父伯母婚線與堂哥 -->
-          <line x1="130" y1="166" x2="160" y2="166" stroke="#a8572f" stroke-width="2.5"/>
-          <line x1="145" y1="166" x2="145" y2="270"/>
-          <!-- 爸媽婚線與小瓔、弟弟（養弟以紫色虛線標示收養） -->
-          <line x1="330" y1="166" x2="360" y2="166" stroke="#a8572f" stroke-width="2.5"/>
-          <line x1="345" y1="166" x2="345" y2="232"/>
-          <line x1="255" y1="232" x2="435" y2="232"/>
-          <line x1="255" y1="232" x2="255" y2="270" stroke="#6a4c93" stroke-dasharray="4 3"/>
-          <line x1="345" y1="232" x2="345" y2="270"/>
-          <line x1="435" y1="232" x2="435" y2="270"/>
+          <line x1="78" y1="166" x2="96" y2="166" stroke="#a8572f" stroke-width="2.5"/>
+          <line x1="87" y1="166" x2="87" y2="270"/>
+          <!-- 爸媽婚線與第三代（養弟、哥哥、姊姊、小瓔、妹妹、弟弟） -->
+          <line x1="384" y1="166" x2="408" y2="166" stroke="#a8572f" stroke-width="2.5"/>
+          <line x1="396" y1="166" x2="396" y2="232"/>
+          <line x1="166" y1="232" x2="518" y2="232"/>
+          <line x1="166" y1="232" x2="166" y2="270" stroke="#6a4c93" stroke-dasharray="4 3"/>
+          <line x1="236" y1="232" x2="236" y2="270"/>
+          <line x1="304" y1="232" x2="304" y2="270"/>
+          <line x1="377" y1="232" x2="377" y2="270"/>
+          <line x1="450" y1="232" x2="450" y2="270"/>
+          <line x1="518" y1="232" x2="518" y2="270"/>
           <!-- 阿姨姨丈婚線與表妹 -->
-          <line x1="600" y1="166" x2="618" y2="166" stroke="#a8572f" stroke-width="2.5"/>
-          <line x1="609" y1="166" x2="609" y2="270"/>
+          <line x1="676" y1="166" x2="696" y2="166" stroke="#a8572f" stroke-width="2.5"/>
+          <line x1="686" y1="166" x2="686" y2="270"/>
           <!-- 弟與弟媳婚線、弟媳娘家（親家母） -->
-          <line x1="470" y1="296" x2="498" y2="296" stroke="#a8572f" stroke-width="2.5"/>
-          <line x1="533" y1="322" x2="533" y2="345" stroke-dasharray="4 3"/>
+          <line x1="548" y1="296" x2="568" y2="296" stroke="#a8572f" stroke-width="2.5"/>
+          <line x1="600" y1="322" x2="600" y2="348" stroke-dasharray="4 3"/>
         </g>
-        <text x="262" y="254" font-size="10" fill="#6a4c93" class="test-hide">收養</text>
-        <text x="540" y="338" font-size="10" fill="#7a857e">↑ 弟媳的母親</text>
+        <text x="172" y="254" font-size="10" fill="#6a4c93" class="test-hide">收養</text>
+        <text x="606" y="340" font-size="10" fill="#7a857e">↑ 弟媳的母親</text>
 
         <!-- 圖例（測驗模式隱藏以免透題） -->
         <g font-size="11" fill="#4d5a52" class="test-hide">
@@ -181,78 +187,102 @@
 
         <!-- 第一代：祖父母、外祖父母 -->
         <g data-part="grandpa">
-          <rect class="node-box n-dir" x="105" y="32" width="70" height="44"/>
-          <text class="nt" x="140" y="51">祖父</text><text class="ns" x="140" y="66">爺爺</text>
+          <rect class="node-box n-dir" x="110" y="32" width="70" height="44"/>
+          <text class="nt" x="145" y="51">祖父</text><text class="ns" x="145" y="66">爺爺</text>
         </g>
         <g data-part="grandma">
-          <rect class="node-box n-dir" x="215" y="32" width="70" height="44"/>
-          <text class="nt" x="250" y="51">祖母</text><text class="ns" x="250" y="66">奶奶</text>
+          <rect class="node-box n-dir" x="216" y="32" width="70" height="44"/>
+          <text class="nt" x="251" y="51">祖母</text><text class="ns" x="251" y="66">奶奶</text>
         </g>
         <g data-part="mgrandpa">
-          <rect class="node-box n-dir" x="400" y="32" width="70" height="44"/>
-          <text class="nt" x="435" y="51">外祖父</text><text class="ns" x="435" y="66">外公</text>
+          <rect class="node-box n-dir" x="455" y="32" width="70" height="44"/>
+          <text class="nt" x="490" y="51">外祖父</text><text class="ns" x="490" y="66">外公</text>
         </g>
         <g data-part="mgrandma">
-          <rect class="node-box n-dir" x="510" y="32" width="70" height="44"/>
-          <text class="nt" x="545" y="51">外祖母</text><text class="ns" x="545" y="66">外婆</text>
+          <rect class="node-box n-dir" x="561" y="32" width="70" height="44"/>
+          <text class="nt" x="596" y="51">外祖母</text><text class="ns" x="596" y="66">外婆</text>
         </g>
 
-        <!-- 第二代：伯父、伯母、爸爸、媽媽、阿姨、姨丈 -->
+        <!-- 第二代：伯父、伯母、叔叔、姑姑、爸爸、媽媽、舅舅、阿姨、姨丈 -->
         <g data-part="uncle">
-          <rect class="node-box n-col" x="60" y="140" width="70" height="52"/>
-          <text class="nt" x="95" y="162">伯父</text><text class="ns" x="95" y="179">爸的哥哥</text>
+          <rect class="node-box n-col" x="14" y="140" width="64" height="52"/>
+          <text class="nt" x="46" y="162">伯父</text><text class="ns" x="46" y="179">爸的哥哥</text>
         </g>
         <g data-part="aunt_inlaw">
-          <rect class="node-box n-law" x="160" y="140" width="70" height="52"/>
-          <text class="nt" x="195" y="162">伯母</text><text class="ns" x="195" y="179">與媽妯娌</text>
+          <rect class="node-box n-law" x="96" y="140" width="64" height="52"/>
+          <text class="nt" x="128" y="162">伯母</text><text class="ns" x="128" y="179">與媽妯娌</text>
+        </g>
+        <g data-part="uncle_y">
+          <rect class="node-box n-col" x="172" y="140" width="62" height="52"/>
+          <text class="nt" x="203" y="162">叔叔</text><text class="ns" x="203" y="179">爸的弟弟</text>
+        </g>
+        <g data-part="aunt_p">
+          <rect class="node-box n-col" x="242" y="140" width="62" height="52"/>
+          <text class="nt" x="273" y="162">姑姑</text><text class="ns" x="273" y="179">爸的姊妹</text>
         </g>
         <g data-part="dad">
-          <rect class="node-box n-dir" x="260" y="140" width="70" height="52"/>
-          <text class="nt" x="295" y="162">爸爸</text><text class="ns" x="295" y="179">與姨丈連襟</text>
+          <rect class="node-box n-dir" x="316" y="140" width="68" height="52"/>
+          <text class="nt" x="350" y="162">爸爸</text><text class="ns" x="350" y="179">與姨丈連襟</text>
         </g>
         <g data-part="mom">
-          <rect class="node-box n-dir" x="360" y="140" width="70" height="52"/>
-          <text class="nt" x="395" y="162">媽媽</text><text class="ns" x="395" y="179">爸的配偶</text>
+          <rect class="node-box n-dir" x="408" y="140" width="68" height="52"/>
+          <text class="nt" x="442" y="162">媽媽</text><text class="ns" x="442" y="179">爸的配偶</text>
+        </g>
+        <g data-part="m_uncle">
+          <rect class="node-box n-col" x="490" y="140" width="62" height="52"/>
+          <text class="nt" x="521" y="162">舅舅</text><text class="ns" x="521" y="179">媽的兄弟</text>
         </g>
         <g data-part="aunt">
-          <rect class="node-box n-col" x="530" y="140" width="70" height="52"/>
-          <text class="nt" x="565" y="162">阿姨</text><text class="ns" x="565" y="179">媽的妹妹</text>
+          <rect class="node-box n-col" x="612" y="140" width="64" height="52"/>
+          <text class="nt" x="644" y="162">阿姨</text><text class="ns" x="644" y="179">媽的妹妹</text>
         </g>
         <g data-part="uncle_inlaw">
-          <rect class="node-box n-law" x="618" y="140" width="54" height="52"/>
-          <text class="nt" x="645" y="162">姨丈</text><text class="ns" x="645" y="179">姻親</text>
+          <rect class="node-box n-law" x="696" y="140" width="58" height="52"/>
+          <text class="nt" x="725" y="162">姨丈</text><text class="ns" x="725" y="179">姻親</text>
         </g>
 
-        <!-- 第三代：堂哥、小瓔(我)、養弟、親弟、弟媳、表妹 -->
+        <!-- 第三代：堂哥、養弟、哥哥、姊姊、小瓔(我)、妹妹、弟弟、弟媳、表妹 -->
         <g data-part="cousin_p">
-          <rect class="node-box n-col" x="110" y="270" width="70" height="52"/>
-          <text class="nt" x="145" y="292">堂哥</text><text class="ns" x="145" y="309">伯父之子</text>
+          <rect class="node-box n-col" x="55" y="270" width="64" height="52"/>
+          <text class="nt" x="87" y="292">堂哥</text><text class="ns" x="87" y="309">伯父之子</text>
         </g>
         <g data-part="adopt_bro">
-          <rect class="node-box n-adopt" x="218" y="270" width="74" height="52"/>
-          <text class="nt" x="255" y="292">養弟</text><text class="ns" x="255" y="309">法院收養</text>
+          <rect class="node-box n-adopt" x="134" y="270" width="64" height="52"/>
+          <text class="nt" x="166" y="292">養弟</text><text class="ns" x="166" y="309">法院收養</text>
+        </g>
+        <g data-part="elder_bro">
+          <rect class="node-box n-col" x="206" y="270" width="60" height="52"/>
+          <text class="nt" x="236" y="292">哥哥</text><text class="ns" x="236" y="309">親哥哥</text>
+        </g>
+        <g data-part="elder_sis">
+          <rect class="node-box n-col" x="274" y="270" width="60" height="52"/>
+          <text class="nt" x="304" y="292">姊姊</text><text class="ns" x="304" y="309">親姊姊</text>
         </g>
         <g data-part="me">
-          <rect class="node-box n-me" x="310" y="270" width="70" height="52"/>
-          <text class="nt" x="345" y="292">小瓔(我)</text><text class="ns" x="345" y="309">主角基準</text>
+          <rect class="node-box n-me" x="342" y="270" width="70" height="52"/>
+          <text class="nt" x="377" y="292">小瓔(我)</text><text class="ns" x="377" y="309">主角基準</text>
+        </g>
+        <g data-part="younger_sis">
+          <rect class="node-box n-col" x="420" y="270" width="60" height="52"/>
+          <text class="nt" x="450" y="292">妹妹</text><text class="ns" x="450" y="309">親妹妹</text>
         </g>
         <g data-part="bro">
-          <rect class="node-box n-col" x="400" y="270" width="70" height="52"/>
-          <text class="nt" x="435" y="292">弟弟</text><text class="ns" x="435" y="309">親弟弟</text>
+          <rect class="node-box n-col" x="488" y="270" width="60" height="52"/>
+          <text class="nt" x="518" y="292">弟弟</text><text class="ns" x="518" y="309">親弟弟</text>
         </g>
         <g data-part="sis_inlaw">
-          <rect class="node-box n-law" x="498" y="270" width="70" height="52"/>
-          <text class="nt" x="533" y="292">弟媳</text><text class="ns" x="533" y="309">弟的配偶</text>
+          <rect class="node-box n-law" x="568" y="270" width="64" height="52"/>
+          <text class="nt" x="600" y="292">弟媳</text><text class="ns" x="600" y="309">弟的配偶</text>
         </g>
         <g data-part="cousin_m">
-          <rect class="node-box n-col" x="580" y="270" width="70" height="52"/>
-          <text class="nt" x="615" y="292">表妹</text><text class="ns" x="615" y="309">阿姨之女</text>
+          <rect class="node-box n-col" x="654" y="270" width="64" height="52"/>
+          <text class="nt" x="686" y="292">表妹</text><text class="ns" x="686" y="309">阿姨之女</text>
         </g>
 
         <!-- 親家母（弟媳的媽媽）：無親屬關係 -->
         <g data-part="qinjia">
-          <rect class="node-box n-none" x="458" y="345" width="150" height="36"/>
-          <text class="nt" x="533" y="368">弟媳的媽媽（親家）</text>
+          <rect class="node-box n-none" x="525" y="348" width="150" height="36"/>
+          <text class="nt" x="600" y="371">弟媳的媽媽（親家）</text>
         </g>
       </svg>
       <div class="figout" id="kinOut"></div>
@@ -345,10 +375,16 @@ const KIN_PARTS={
   mom:{n:'媽媽',q:'小瓔的直系血親，且與伯母互為「妯娌」',d:'<span class="badge-c moss">自然血親・直系血親</span>與伯母互為<b>妯娌</b>（配偶的血親的配偶＝姻親）；與祖父母是「配偶的血親（姻親）」。'},
   uncle:{n:'伯父',q:'小瓔的旁系血親：爸爸的哥哥',d:'<span class="badge-c sea">自然血親・旁系血親</span>與爸爸同源於祖父母，但不是小瓔的直系祖先，屬於旁系血親。'},
   aunt_inlaw:{n:'伯母',q:'小瓔的姻親（血親的配偶），且與媽媽互為「妯娌」',d:'<span class="badge-c warm">姻親（血親的配偶）</span>伯父是小瓔的旁系血親，伯母是伯父的配偶，因此屬於「血親的配偶」。與小瓔沒有血緣關係！'},
+  uncle_y:{n:'叔叔',q:'小瓔的旁系血親：爸爸的弟弟',d:'<span class="badge-c sea">自然血親・旁系血親</span>與爸爸同源於祖父母，屬於三親等旁系血親。其配偶「<b>嬸嬸</b>」是血親的配偶（姻親），且嬸嬸與媽媽互為<b>妯娌</b>！'},
+  aunt_p:{n:'姑姑',q:'小瓔的旁系血親：爸爸的姊姊或妹妹',d:'<span class="badge-c sea">自然血親・旁系血親</span>與爸爸同源於祖父母，屬於旁系血親。其丈夫「<b>姑丈</b>」是血親的配偶（姻親）；<b>陷阱</b>：若姑姑向法院收養姪子，兩人會由旁系血親轉為<b>法定血親</b>！'},
+  m_uncle:{n:'舅舅',q:'小瓔的旁系血親：媽媽的哥哥或弟弟',d:'<span class="badge-c sea">自然血親・旁系血親</span>與媽媽同源於外祖父母，屬於三親等旁系血親。其配偶「<b>舅媽</b>」是血親的配偶（姻親），與小瓔沒有血緣關係！'},
   aunt:{n:'阿姨',q:'小瓔的旁系血親：媽媽的妹妹',d:'<span class="badge-c sea">自然血親・旁系血親</span>與媽媽同源於外祖父母，是小瓔的自然血親（旁系）。'},
   uncle_inlaw:{n:'姨丈',q:'小瓔的姻親（血親的配偶），且與爸爸互為「連襟」',d:'<span class="badge-c warm">姻親（血親的配偶）</span>阿姨是小瓔的旁系血親，姨丈是其配偶，故為小瓔的姻親。姨丈與爸爸互為<b>連襟</b>（亦為姻親）。'},
   cousin_p:{n:'堂哥',q:'小瓔的旁系血親：伯父的兒子',d:'<span class="badge-c sea">自然血親・旁系血親</span>與小瓔同源於祖父母，是四親等旁系血親，依法不得結婚。'},
   adopt_bro:{n:'養弟（法院認可收養）',q:'小瓔的「法定血親」（經法院認可收養）',d:'<span class="badge-c warm" style="background:#efe9f6;color:#4c2c7a;border-color:#c6b2e3">法定血親（擬制血親）</span>經<b>地方法院認可</b>收養後，養弟與父母成立法定直系血親，與小瓔為法定旁系血親，享有與親生子女相同的繼承權與親權保障。'},
+  elder_bro:{n:'哥哥',q:'小瓔的旁系血親：同父同母的親哥哥',d:'<span class="badge-c sea">自然血親・旁系血親</span>手足同源於父母但非上下生出，屬於二親等<b>旁系血親</b>（別誤判成直系！）。哥哥的妻子「<b>大嫂</b>」是血親的配偶（姻親），但「大嫂的妹妹」是血配血＝<b>無親屬關係</b>！'},
+  elder_sis:{n:'姊姊',q:'小瓔的旁系血親：同父同母的親姊姊',d:'<span class="badge-c sea">自然血親・旁系血親</span>與小瓔同源於父母，屬於二親等<b>旁系血親</b>。姊姊的丈夫「<b>姊夫</b>」是血親的配偶（姻親），但「姊夫的弟弟」是血配血＝<b>無親屬關係</b>（可以合法結婚）！'},
+  younger_sis:{n:'妹妹',q:'小瓔的旁系血親：同父同母的親妹妹',d:'<span class="badge-c sea">自然血親・旁系血親</span>兄弟姊妹皆為<b>旁系血親</b>（不是直系血親！）。妹妹的丈夫「<b>妹夫</b>」屬於血親的配偶（姻親）。'},
   bro:{n:'弟弟',q:'小瓔的旁系血親：同父同母的親弟弟',d:'<span class="badge-c sea">自然血親・旁系血親</span>兄弟姊妹同源於父母，但彼此不是上下生出關係，所以手足一定是<b>旁系血親</b>（別誤判成直系！）。'},
   sis_inlaw:{n:'弟媳',q:'小瓔的姻親：親弟弟的配偶',d:'<span class="badge-c warm">姻親（血親的配偶）</span>弟弟是小瓔的旁系血親，弟媳是弟弟的配偶，屬於「血親的配偶」之姻親。'},
   cousin_m:{n:'表妹',q:'小瓔的旁系血親（對爸爸則是姻親）：阿姨的女兒',d:'<span class="badge-c sea">自然血親・旁系血親</span>與小瓔同源於外祖父母。注意：對<b>爸爸</b>而言，表妹是「配偶的血親」＝姻親（不是自然血親！）。'},
@@ -361,8 +397,8 @@ const kinFig=C.figure({
 });
 C.$('kDir').onclick=()=>kinFig.markGroup('kDir',['grandpa','grandma','mgrandpa','mgrandma','dad','mom'],
   '<div class="pname">直系血親（共 6 位）</div><div>祖父、祖母、外祖父、外祖母、爸爸、媽媽都是小瓔的<b>直系血親</b>（己身所從出）。<br><b>小提醒：</b>兄弟姊妹不是直系，是旁系！</div>');
-C.$('kCol').onclick=()=>kinFig.markGroup('kCol',['uncle','aunt','cousin_p','bro','cousin_m','adopt_bro'],
-  '<div class="pname">旁系血親（自然＋法定）</div><div>伯父、阿姨、堂哥、親弟弟、表妹都是自然旁系血親；養弟經法院認可收養後，與小瓔為<b>法定旁系血親</b>。</div>');
+C.$('kCol').onclick=()=>kinFig.markGroup('kCol',['uncle','uncle_y','aunt_p','m_uncle','aunt','cousin_p','adopt_bro','elder_bro','elder_sis','younger_sis','bro','cousin_m'],
+  '<div class="pname">旁系血親（共 12 位：自然＋法定）</div><div>伯父、叔叔、姑姑、舅舅、阿姨、堂哥、表妹，以及親哥哥、親姊姊、親妹妹、親弟弟都是<b>自然旁系血親</b>；養弟經法院認可收養後，與小瓔為<b>法定旁系血親</b>。</div>');
 C.$('kLaw').onclick=()=>kinFig.markGroup('kLaw',['aunt_inlaw','uncle_inlaw','sis_inlaw'],
   '<div class="pname">姻親（對小瓔而言）</div><div>伯母、姨丈、弟媳都是「<b>血親的配偶</b>」，與小瓔沒有血緣關係。若換成媽媽看伯母，則是「配偶的血親的配偶（妯娌）」。</div>');
 C.$('kNone').onclick=()=>kinFig.markGroup('kNone',['qinjia'],
