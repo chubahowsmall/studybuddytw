@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3-1 家庭與親屬關係｜公民生活館</title>
+<meta name="description" content="國七上公民（翰林版第一冊）3-1 家庭的組成、親屬關係與家庭型態互動複習：結婚與收養要件、三代家族親屬樹互動圖、姻親三大類型與親家陷阱、親屬消滅與禁婚親、16 題親屬解密挑戰、11 種多元家庭型態情境卡，附 30 題圖解小測驗。">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/style.css?v=4">
+<link rel="stylesheet" href="lib/civics.css?v=4">
+<style>
+#kinSvg .node-box{rx:10;stroke-width:1.8}
+#kinSvg .n-me{fill:#fff3cd;stroke:#b98516}
+#kinSvg .n-dir{fill:#e5f0e2;stroke:#3f7a4f}
+#kinSvg .n-col{fill:#e2eef7;stroke:#2d6f9e}
+#kinSvg .n-law{fill:#f8eae1;stroke:#a8572f}
+#kinSvg .n-none{fill:#f1eee7;stroke:#8b8476;stroke-dasharray:4 3}
+#kinSvg .n-adopt{fill:#efe9f6;stroke:#6a4c93}
+#kinSvg.testing .node-box:not(.n-me){fill:#fffdf7;stroke:#8b8476;stroke-dasharray:none}
+#kinSvg.testing .ns{display:none}
+#kinSvg.testing [data-part]:not([data-part="qinjia"]) text.nt{transform:translateY(6px)}
+#kinSvg text.nt{font-size:13px;font-weight:700;fill:#1f2a24;text-anchor:middle;pointer-events:none}
+#kinSvg text.ns{font-size:10.5px;fill:#4d5a52;text-anchor:middle;pointer-events:none}
+.fam-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.fam-box{background:#fbfaf6;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:15px}
+.fam-box .ftitle{font-size:18px;font-weight:700;color:var(--civ-deep);margin-bottom:4px}
+.fam-scene{background:#fff;border-left:4px solid var(--civ);padding:8px 12px;border-radius:0 8px 8px 0;margin:8px 0;font-size:14.5px}
+</style>
+<script src="lib/common.js?v=4"></script>
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap">
+  <span class="kicker c">3-1・翰林版第一冊・第 3 章 家庭生活</span>
+  <h1>家庭的組成、親屬關係與家庭型態</h1>
+  <p class="lead">家庭是社會最基本的單位，由具備<b>婚姻、血緣或收養</b>關係的人以「永久共同生活」為目的組成。這節段考最愛考<b>親屬關係樹與座位推理</b>（特別是配偶、自然／法定血親、三類姻親與「親家無親屬關係」），以及<b>傳統與現代多元家庭型態</b>的辨識。</p>
+  <nav class="toc" aria-label="本頁重點">
+    <a href="#s1">一、家庭組成與結婚／收養要件</a>
+    <a href="#s2">二、親屬關係三大分類與互動樹</a>
+    <a href="#s3">三、家庭型態的傳統與現代面貌</a>
+    <a href="#s4">小測驗（30 題）</a>
+  </nav>
+
+  <!-- ================= 一 ================= -->
+  <section class="sec" id="s1">
+  <h2>一、家庭組成、結婚與收養的法定要件<span class="star">★★ 常考</span></h2>
+  <div class="grid2">
+    <div class="card tight" style="border-top:4px solid var(--civ)">
+      <h3>結婚的法定要件（《民法》現行登記婚）</h3>
+      <ul>
+        <li><b>法定年齡</b>：男女雙方皆須年滿 <b>18 歲</b>（自 2023 年成年年齡下修為 18 歲，結婚年齡一致為 18 歲）。</li>
+        <li><b>書面契約</b>：須有書面結婚書約（不能只靠口頭約定）。</li>
+        <li><b>證人簽名</b>：須有 <b>2 人以上</b>證人簽名（只找 1 位好友不行）。</li>
+        <li><b>辦理登記</b>：由雙方當事人親自向<b>戶政事務所</b>辦理結婚登記才生效。</li>
+      </ul>
+      <p class="small"><b>同性婚姻（七四八施行法）</b>：我國依《司法院釋字第 748 號解釋施行法》保障同性伴侶辦理結婚登記（權利義務比照配偶）；2023 年修法後已開放<b>共同收養無血緣子女</b>（不再僅限繼親收養）。進階提醒：同性伴侶與對方父母<b>不會自動建立</b>《民法》姻親關係，但 2023 年底《家暴防治法》已修法將<b>同性配偶的四親等以內親屬</b>納入家暴保護範圍！</p>
+    </div>
+    <div class="card tight" style="border-top:4px solid #6a4c93">
+      <h3>收養的法定程序（《民法》）</h3>
+      <ul>
+        <li><b>辦理機關</b>：須訂立書面收養契約，並向<b>地方法院</b>聲請認可（<b>不是</b>戶政事務所，也<b>不是</b>社會局！）。</li>
+        <li><b>法律效力</b>：法院認可後，養父母與養子女成立<b>法定血親（擬制血親）</b>，權利義務與親生子女<b>完全相同</b>（皆享有親權保護與遺產繼承權）。</li>
+        <li><b>與生父母關係</b>：收養成立後，與親生父母的「自然血緣」事實不會消失，但法律上之權利義務暫時停止（禁婚規定仍適用）。</li>
+      </ul>
+      <p class="small"><b>重要陷阱</b>：口頭認「乾爸、乾媽、乾兒子、結拜兄弟」未經法院收養程序，法律上<b>沒有任何親屬關係</b>！</p>
+    </div>
+  </div>
+  <div class="warn">
+    <b>易錯陷阱（機關別搞混！）：</b>
+    結婚登記找<b>戶政事務所</b>（不須公開宴客、不須去法院）；收養認可找<b>地方法院</b>（不是戶政事務所、也不是社會局）。另外，聘請「外籍看護」照顧長輩，即使情同家人，在法律上也<b>沒有親屬關係</b>，且該家庭<b>不是</b>新住民家庭。
+  </div>
+  </section>
+
+  <!-- ================= 二 ================= -->
+  <section class="sec" id="s2">
+  <div class="mm-head">
+    <h2>二、親屬關係三大分類（配偶・血親・姻親）<span class="star">★★★ 必考</span></h2>
+    <a class="mm-link" href="mindmap.html#sec-kin">看親屬關係互動心智圖 →</a>
+  </div>
+  <div class="key">
+    <p>依我國《民法》親屬編規定，親屬分為<b>配偶</b>、<b>血親</b>、<b>姻親</b>三大類。判題時請先鎖定「<b>主角是誰</b>」，再套用以下規則：</p>
+    <p class="mnemo">口訣：配偶不是血親也不是姻親；姻親只有 3 類；「血親的配偶的血親（如親家）」＝沒有親屬關係！</p>
+    <p class="mnemo" style="margin-top:6px">兩步 vs 三步秒判：走兩步「<b>血親 → 配偶</b>」（大嫂、弟妹、姊夫、妹夫）＝<b>是姻親</b>；走到三步「<b>血親 → 配偶 → 血親</b>」（大嫂的妹妹、姊夫的弟弟、弟媳的媽媽、親家）＝<b>才沒有親屬關係</b>！</p>
+  </div>
+
+  <div class="tscroll">
+  <table class="t">
+    <tr><th>類別</th><th>細項</th><th>定義與判斷方式</th><th>常見稱謂舉例（以「自己」為基準）</th></tr>
+    <tr><th>配偶</th><td>夫妻</td><td>因合法結婚登記而成立，<b>不屬於血親，也不屬於姻親</b></td><td>丈夫、妻子（同性婚姻配偶亦同）</td></tr>
+    <tr><th rowspan="3">血親</th><td><b>自然血親—直系</b></td><td>己身所從出，或從己身所出（上下一條線；<b>DNA 比對</b>即用以確認自然血親）</td><td>祖父母、外祖父母、父母、子女、孫子女</td></tr>
+    <tr><td><b>自然血親—旁系</b></td><td>非直系，但出於同源祖先（手足與其後代、父母的手足與其後代）</td><td>兄弟姊妹、伯父、叔叔、姑姑、舅舅、阿姨、堂兄弟姊妹、表兄弟姊妹、姪子、外甥</td></tr>
+    <tr><td><b>法定血親（擬制血親）</b></td><td>本無血緣，經<b>法院認可收養</b>而依法視為血親</td><td>養父、養母、養子、養女（收養後之繼父／繼母；如動畫《間諜家家酒》黃昏收養安妮亞）</td></tr>
+    <tr><th rowspan="3">姻親</th><td><b>① 血親的配偶</b></td><td>自己血親的結婚對象</td><td>伯母、嬸嬸、姑丈、舅媽、姨丈、嫂嫂、弟媳、姊夫、妹夫、女婿、媳婦、<b>未收養的繼父／繼母</b></td></tr>
+    <tr><td><b>② 配偶的血親</b></td><td>自己另一半的血親（如唐詩「先遣小姑嘗」新嫁娘與小姑）</td><td>公婆、岳父母、大伯、小叔、大姑、小姑、大舅子、小姨子、<b>爸爸與小瓔的表妹（阿姨之女）</b></td></tr>
+    <tr><td><b>③ 配偶的血親的配偶</b></td><td>另一半血親的結婚對象</td><td><b>妯娌</b>（兄弟的妻子互稱）、<b>連襟</b>（姊妹的丈夫互稱）</td></tr>
+    <tr><th>無親屬關係</th><td><b>血親的配偶的血親</b></td><td>法律未納入姻親範圍，彼此<b>沒有親屬關係</b>（故可合法結婚）</td><td><b>親家公、親家母</b>、大嫂的妹妹、妹夫的哥哥、<b>姊夫的弟弟、姑丈的弟弟、叔叔老婆的妹妹</b>、<b>未收養繼母的兒子</b></td></tr>
+  </table>
+  </div>
+
+  <div class="grid2" style="margin-top:12px">
+    <div class="card tight" style="border-top:4px solid var(--sea)">
+      <h3>親屬關係「會不會消滅？」速查（114 年高頻！）</h3>
+      <ul>
+        <li><b>父母離婚</b>：夫妻的<b>配偶關係</b>與雙方原本的<b>姻親關係會消滅</b>；但父母與子女間的<b>自然血親永遠不會消滅</b>，對未成年子女的親權與遺產繼承權也不會因此消失！</li>
+        <li><b>配偶死亡</b>：依《民法》規定，姻親因離婚或結婚撤銷而消滅，<b>配偶死亡時姻親不會自動消滅</b>。</li>
+        <li><b>收養關係</b>：與自然血親不同，收養（法定血親）可依法合意或由法院裁判終止。</li>
+        <li><b>親戚收養轉變</b>：若<b>姑姑依法收養姪子</b>，兩人關係會從「旁系血親」轉變為「<b>法定血親（擬制血親）</b>」！</li>
+      </ul>
+    </div>
+    <div class="card tight" style="border-top:4px solid var(--rose)">
+      <h3>《民法》禁婚親與「有效婚姻」必考口訣</h3>
+      <ul>
+        <li><b>禁止結婚（無效）</b>：① 直系血親及直系姻親；② <b>旁系血親六親等以內</b>（含堂兄妹、表姊妹、叔伯姑舅姨，以及<b>哥哥的養子、姊姊的養女</b>等法定旁系血親）；③ 旁系姻親五親等內輩分不相同者；④ 養子女與生父母的原生血緣仍適用禁婚。</li>
+        <li><b>可以結婚（婚姻有效！）</b>：法律上「<b>無親屬關係</b>」的「血親的配偶的血親」——考卷最愛出：<b>大仁與大嫂的妹妹</b>、<b>小花與姊夫的弟弟</b>、<b>小瑛與未收養繼母的兒子</b>、<b>與叔叔老婆的妹妹</b>！</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tool">
+    <h3>互動家族親屬樹：以「小瓔（我）」為中心找關係</h3>
+    <p class="note">滑鼠移上或點擊任一位家人，會自動聚光並顯示他與<b>小瓔（我）</b>的親屬分類與理由；也可以按上方按鈕切換「只看某類親屬」或進入「回合測驗」找人！</p>
+    <div class="bar" id="kinMode">
+      <button class="btn on" type="button" data-m="learn">學習：點了看關係</button>
+      <button class="btn warm" type="button" data-m="test">測驗：找出指定親屬</button>
+      <button class="btn" type="button" id="kDir">只看直系血親</button>
+      <button class="btn" type="button" id="kCol">只看旁系血親</button>
+      <button class="btn" type="button" id="kLaw">只看姻親</button>
+      <button class="btn" type="button" id="kNone">只看無親屬關係</button>
+    </div>
+    <div class="figwrap">
+      <svg id="kinSvg" viewBox="0 0 770 398" role="img" aria-label="以小瓔為中心的三代家族親屬關係互動樹狀圖" xmlns="http://www.w3.org/2000/svg">
+        <!-- 連線：婚姻（紅線）、親子（實線）、收養（紫虛線） -->
+        <g stroke="#7a857e" stroke-width="2" fill="none">
+          <!-- 祖父母結婚線與往下一代（伯父、叔叔、姑姑、爸爸） -->
+          <line x1="180" y1="54" x2="216" y2="54" stroke="#a8572f" stroke-width="2.5"/>
+          <line x1="198" y1="54" x2="198" y2="108"/>
+          <line x1="46" y1="108" x2="350" y2="108"/>
+          <line x1="46" y1="108" x2="46" y2="140"/>
+          <line x1="203" y1="108" x2="203" y2="140"/>
+          <line x1="273" y1="108" x2="273" y2="140"/>
+          <line x1="350" y1="108" x2="350" y2="140"/>
+          <!-- 外祖父母結婚線與往下一代（媽媽、舅舅、阿姨） -->
+          <line x1="525" y1="54" x2="561" y2="54" stroke="#a8572f" stroke-width="2.5"/>
+          <line x1="543" y1="54" x2="543" y2="108"/>
+          <line x1="442" y1="108" x2="644" y2="108"/>
+          <line x1="442" y1="108" x2="442" y2="140"/>
+          <line x1="521" y1="108" x2="521" y2="140"/>
+          <line x1="644" y1="108" x2="644" y2="140"/>
+          <!-- 伯父伯母婚線與堂哥 -->
+          <line x1="78" y1="166" x2="96" y2="166" stroke="#a8572f" stroke-width="2.5"/>
+          <line x1="87" y1="166" x2="87" y2="270"/>
+          <!-- 爸媽婚線與第三代（養弟、哥哥、姊姊、小瓔、妹妹、弟弟） -->
+          <line x1="384" y1="166" x2="408" y2="166" stroke="#a8572f" stroke-width="2.5"/>
+          <line x1="396" y1="166" x2="396" y2="232"/>
+          <line x1="166" y1="232" x2="518" y2="232"/>
+          <line x1="166" y1="232" x2="166" y2="270" stroke="#6a4c93" stroke-dasharray="4 3"/>
+          <line x1="236" y1="232" x2="236" y2="270"/>
+          <line x1="304" y1="232" x2="304" y2="270"/>
+          <line x1="377" y1="232" x2="377" y2="270"/>
+          <line x1="450" y1="232" x2="450" y2="270"/>
+          <line x1="518" y1="232" x2="518" y2="270"/>
+          <!-- 阿姨姨丈婚線與表妹 -->
+          <line x1="676" y1="166" x2="696" y2="166" stroke="#a8572f" stroke-width="2.5"/>
+          <line x1="686" y1="166" x2="686" y2="270"/>
+          <!-- 弟與弟媳婚線、弟媳娘家（親家母） -->
+          <line x1="548" y1="296" x2="568" y2="296" stroke="#a8572f" stroke-width="2.5"/>
+          <line x1="600" y1="322" x2="600" y2="348" stroke-dasharray="4 3"/>
+        </g>
+        <text x="172" y="254" font-size="10" fill="#6a4c93" class="test-hide">收養</text>
+        <text x="606" y="340" font-size="10" fill="#7a857e">↑ 弟媳的母親</text>
+
+        <!-- 圖例（測驗模式隱藏以免透題） -->
+        <g font-size="11" fill="#4d5a52" class="test-hide">
+          <rect x="14" y="10" width="12" height="12" rx="3" fill="#e5f0e2" stroke="#3f7a4f"/>
+          <text x="30" y="20">直系血親</text>
+          <rect x="86" y="10" width="12" height="12" rx="3" fill="#e2eef7" stroke="#2d6f9e"/>
+          <text x="102" y="20">旁系血親</text>
+          <rect x="158" y="10" width="12" height="12" rx="3" fill="#efe9f6" stroke="#6a4c93"/>
+          <text x="174" y="20">法定血親</text>
+          <rect x="230" y="10" width="12" height="12" rx="3" fill="#f8eae1" stroke="#a8572f"/>
+          <text x="246" y="20">姻親</text>
+          <rect x="280" y="10" width="12" height="12" rx="3" fill="#f1eee7" stroke="#8b8476" stroke-dasharray="3 2"/>
+          <text x="296" y="20">無親屬關係</text>
+          <line x1="368" y1="16" x2="388" y2="16" stroke="#a8572f" stroke-width="2.5"/>
+          <text x="394" y="20">婚姻關係</text>
+        </g>
+
+        <!-- 第一代：祖父母、外祖父母 -->
+        <g data-part="grandpa">
+          <rect class="node-box n-dir" x="110" y="32" width="70" height="44"/>
+          <text class="nt" x="145" y="51">祖父</text><text class="ns" x="145" y="66">爺爺</text>
+        </g>
+        <g data-part="grandma">
+          <rect class="node-box n-dir" x="216" y="32" width="70" height="44"/>
+          <text class="nt" x="251" y="51">祖母</text><text class="ns" x="251" y="66">奶奶</text>
+        </g>
+        <g data-part="mgrandpa">
+          <rect class="node-box n-dir" x="455" y="32" width="70" height="44"/>
+          <text class="nt" x="490" y="51">外祖父</text><text class="ns" x="490" y="66">外公</text>
+        </g>
+        <g data-part="mgrandma">
+          <rect class="node-box n-dir" x="561" y="32" width="70" height="44"/>
+          <text class="nt" x="596" y="51">外祖母</text><text class="ns" x="596" y="66">外婆</text>
+        </g>
+
+        <!-- 第二代：伯父、伯母、叔叔、姑姑、爸爸、媽媽、舅舅、阿姨、姨丈 -->
+        <g data-part="uncle">
+          <rect class="node-box n-col" x="14" y="140" width="64" height="52"/>
+          <text class="nt" x="46" y="162">伯父</text><text class="ns" x="46" y="179">爸的哥哥</text>
+        </g>
+        <g data-part="aunt_inlaw">
+          <rect class="node-box n-law" x="96" y="140" width="64" height="52"/>
+          <text class="nt" x="128" y="162">伯母</text><text class="ns" x="128" y="179">與媽妯娌</text>
+        </g>
+        <g data-part="uncle_y">
+          <rect class="node-box n-col" x="172" y="140" width="62" height="52"/>
+          <text class="nt" x="203" y="162">叔叔</text><text class="ns" x="203" y="179">爸的弟弟</text>
+        </g>
+        <g data-part="aunt_p">
+          <rect class="node-box n-col" x="242" y="140" width="62" height="52"/>
+          <text class="nt" x="273" y="162">姑姑</text><text class="ns" x="273" y="179">爸的姊妹</text>
+        </g>
+        <g data-part="dad">
+          <rect class="node-box n-dir" x="316" y="140" width="68" height="52"/>
+          <text class="nt" x="350" y="162">爸爸</text><text class="ns" x="350" y="179">與姨丈連襟</text>
+        </g>
+        <g data-part="mom">
+          <rect class="node-box n-dir" x="408" y="140" width="68" height="52"/>
+          <text class="nt" x="442" y="162">媽媽</text><text class="ns" x="442" y="179">爸的配偶</text>
+        </g>
+        <g data-part="m_uncle">
+          <rect class="node-box n-col" x="490" y="140" width="62" height="52"/>
+          <text class="nt" x="521" y="162">舅舅</text><text class="ns" x="521" y="179">媽的兄弟</text>
+        </g>
+        <g data-part="aunt">
+          <rect class="node-box n-col" x="612" y="140" width="64" height="52"/>
+          <text class="nt" x="644" y="162">阿姨</text><text class="ns" x="644" y="179">媽的妹妹</text>
+        </g>
+        <g data-part="uncle_inlaw">
+          <rect class="node-box n-law" x="696" y="140" width="58" height="52"/>
+          <text class="nt" x="725" y="162">姨丈</text><text class="ns" x="725" y="179">姻親</text>
+        </g>
+
+        <!-- 第三代：堂哥、養弟、哥哥、姊姊、小瓔(我)、妹妹、弟弟、弟媳、表妹 -->
+        <g data-part="cousin_p">
+          <rect class="node-box n-col" x="55" y="270" width="64" height="52"/>
+          <text class="nt" x="87" y="292">堂哥</text><text class="ns" x="87" y="309">伯父之子</text>
+        </g>
+        <g data-part="adopt_bro">
+          <rect class="node-box n-adopt" x="134" y="270" width="64" height="52"/>
+          <text class="nt" x="166" y="292">養弟</text><text class="ns" x="166" y="309">法院收養</text>
+        </g>
+        <g data-part="elder_bro">
+          <rect class="node-box n-col" x="206" y="270" width="60" height="52"/>
+          <text class="nt" x="236" y="292">哥哥</text><text class="ns" x="236" y="309">親哥哥</text>
+        </g>
+        <g data-part="elder_sis">
+          <rect class="node-box n-col" x="274" y="270" width="60" height="52"/>
+          <text class="nt" x="304" y="292">姊姊</text><text class="ns" x="304" y="309">親姊姊</text>
+        </g>
+        <g data-part="me">
+          <rect class="node-box n-me" x="342" y="270" width="70" height="52"/>
+          <text class="nt" x="377" y="292">小瓔(我)</text><text class="ns" x="377" y="309">主角基準</text>
+        </g>
+        <g data-part="younger_sis">
+          <rect class="node-box n-col" x="420" y="270" width="60" height="52"/>
+          <text class="nt" x="450" y="292">妹妹</text><text class="ns" x="450" y="309">親妹妹</text>
+        </g>
+        <g data-part="bro">
+          <rect class="node-box n-col" x="488" y="270" width="60" height="52"/>
+          <text class="nt" x="518" y="292">弟弟</text><text class="ns" x="518" y="309">親弟弟</text>
+        </g>
+        <g data-part="sis_inlaw">
+          <rect class="node-box n-law" x="568" y="270" width="64" height="52"/>
+          <text class="nt" x="600" y="292">弟媳</text><text class="ns" x="600" y="309">弟的配偶</text>
+        </g>
+        <g data-part="cousin_m">
+          <rect class="node-box n-col" x="654" y="270" width="64" height="52"/>
+          <text class="nt" x="686" y="292">表妹</text><text class="ns" x="686" y="309">阿姨之女</text>
+        </g>
+
+        <!-- 親家母（弟媳的媽媽）：無親屬關係 -->
+        <g data-part="qinjia">
+          <rect class="node-box n-none" x="525" y="348" width="150" height="36"/>
+          <text class="nt" x="600" y="371">弟媳的媽媽（親家）</text>
+        </g>
+      </svg>
+      <div class="figout" id="kinOut"></div>
+    </div>
+    <p class="exam"><b>考古題高頻視角轉換：</b>① <b>媽媽與伯母</b>互為<b>妯娌</b>（配偶的血親的配偶＝姻親）；② <b>爸爸與姨丈</b>互為<b>連襟</b>（配偶的血親的配偶＝姻親）；③ <b>祖父母與外祖父母</b>互為<b>親家</b>（血親的配偶的血親＝<b>無親屬關係</b>）；④ <b>爸爸與表妹</b>也是「配偶的血親」嗎？是！但<b>爸爸與弟媳的媽媽</b>、<b>小瓔與弟媳的妹妹</b>都是「血親的配偶的血親」＝<b>無親屬關係</b>！</p>
+  </div>
+
+  <div class="tool">
+    <h3>親屬關係＆禁婚親解密挑戰（16 題回合制）</h3>
+    <p class="note">把 112～114 學年度段考最愛出的親屬陷阱一次練熟！每回合 16 題不重複，結束會統計錯題清單。</p>
+    <div class="cl-meta" id="kinClMeta"></div>
+    <div class="cl-qbox" id="kinClQ"></div>
+    <div class="cl-bar" id="kinClBar"></div>
+    <div class="out" id="kinClOut"></div>
+  </div>
+  </section>
+
+  <!-- ================= 三 ================= -->
+  <section class="sec" id="s3">
+  <h2>三、家庭型態的傳統與現代多元面貌<span class="star">★★★ 必考</span></h2>
+  <div class="key">
+    <ul>
+      <li><b>傳統三大結構型態</b>：依同住的「世代數」與「核心家庭數」區分——<b>核心家庭（小家庭）</b>、<b>折衷家庭（主幹家庭）</b>、<b>擴展家庭（大家庭）</b>。</li>
+      <li><b>現代多元生活模式</b>：因晚婚、不婚、離婚、工作外派、跨國婚姻與高齡化，衍生出<b>單親、隔代教養、頂客、重組（繼親）、新住民（跨國婚姻）、兩地（通勤）</b>等型態。</li>
+      <li><b>人口數趨勢</b>：我國平均每戶人口數由 1990 年約 4 人一路降到近年約 <b>2.5～2.9 人</b>，與<b>核心家庭、單人家戶、頂客家庭</b>增加及少子化密切相關。</li>
+    </ul>
+  </div>
+
+  <div class="tscroll" style="margin:10px 0 12px">
+  <table class="t">
+    <tr><th>家庭型態變遷的四大主因</th><th>對應的現代家庭現象與段考關鍵字</th></tr>
+    <tr><th>① 婚姻觀念的轉變</th><td>晚婚、不婚、離婚率上升與再婚普及 → <b>單身（單人家戶）、單親家庭、重組（繼親）家庭</b>增加</td></tr>
+    <tr><th>② 生育觀念的變化</th><td>不再堅持「傳宗接代」、養育成本高、改養毛小孩 → <b>頂客家庭</b>增加、少子女化、寵物商機超越嬰兒車</td></tr>
+    <tr><th>③ 女性就業的普遍</th><td>女性教育與經濟獨立（不須依賴男性即可生活）→ <b>雙薪核心家庭</b>成主流、女性自主選擇單身或不婚</td></tr>
+    <tr><th>④ 居住與就業地點變遷</th><td>都市化高房價小宅盛行、外派或跨國工作求學 → <b>小家庭／單人戶、兩地（通勤／韓國大雁）家庭、新住民（跨國婚姻）家庭</b>增加</td></tr>
+  </table>
+  </div>
+
+  <div class="tool">
+    <h3>家庭型態情境百科（11 種）：點選切換，看考卷怎麼出！</h3>
+    <div class="fam-tabs" id="famTabs"></div>
+    <div class="fam-box" id="famBox"></div>
+  </div>
+
+  <div class="warn">
+    <b>段考最愛挖的 4 組「長得很像」陷阱對照：</b>
+    <ul>
+      <li><b>折衷家庭（主幹） vs 擴展家庭（大家庭）</b>：兩者都有三代同堂，但<b>折衷家庭同輩只有 1 對夫妻</b>（祖父母＋爸媽＋我）；若多了<b>伯父一家、叔叔一家、或已婚姑姑</b>同住（出現嬸嬸／伯母吵煮飯、小姑姑小叔叔吵架），就是<b>擴展家庭（大家庭）</b>！</li>
+      <li><b>折衷家庭 vs 隔代教養家庭</b>：有爸媽一起住才是折衷家庭；若<b>爸媽離婚、過世或在外地工作，只剩祖父母（外公外婆）與孫子女同住</b>，就是<b>隔代教養家庭</b>！</li>
+      <li><b>單親家庭 vs 重組家庭（繼親家庭）</b>：父母離婚後只跟媽媽住＝<b>單親家庭</b>；之後媽媽<b>再婚</b>，多了繼父（或繼父也帶孩子一起住）＝<b>重組家庭（繼親家庭）</b>！</li>
+      <li><b>兩地家庭 vs 新住民家庭</b>：臺灣爸爸去中國／國外工作、定期視訊回家＝<b>兩地家庭</b>；夫或妻一方是外國籍人士（如爸爸是日本人或英國人、媽媽來自印尼或越南）＝<b>新住民家庭（跨國婚姻家庭）</b>！</li>
+    </ul>
+  </div>
+  </section>
+
+  <!-- ================= 四：小測驗 ================= -->
+  <section class="sec" id="s4">
+  <h2>四、3-1 小測驗（30 題，含 7 題向量圖表判讀）</h2>
+  <p class="note">改編自 112～114 學年度翰林版段考高頻題型。選完立刻顯示解析，答錯的題目回到上面的互動圖再操作一次！</p>
+  <div class="score">
+    <span class="big" id="qzScore">0 / 30</span>
+    <span class="small" id="qzDone"></span>
+    <button type="button" class="btn" id="qzReset" style="margin-left:auto">重新測驗</button>
+  </div>
+  <div class="chips" id="qzFilter">
+    <button type="button" class="chip on" data-u="all">全部（30 題）</button>
+    <button type="button" class="chip" data-u="u1">結婚與收養</button>
+    <button type="button" class="chip" data-u="u2">親屬與座位推理</button>
+    <button type="button" class="chip" data-u="u3">家庭型態</button>
+  </div>
+  <div id="qzBox"></div>
+  </section>
+
+  <div id="pager"></div>
+</main>
+<footer id="site-foot"></footer>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- 1. 互動親屬樹 ---------- */
+const KIN_PARTS={
+  me:{n:'小瓔（我・主角基準）',skip:true,d:'所有親屬分類都必須先確定「<b>以誰為中心</b>」。在本圖中，所有說明都以<b>小瓔</b>為基準！'},
+  grandpa:{n:'祖父（爺爺）',q:'小瓔的直系血親：爸爸的父親（爺爺）',d:'<span class="badge-c moss">自然血親・直系血親</span>己身所從出的尊親屬。注意：祖父與外祖父互稱「親家」，彼此<b>無親屬關係</b>。'},
+  grandma:{n:'祖母（奶奶）',q:'小瓔的直系血親：爸爸的母親（奶奶）',d:'<span class="badge-c moss">自然血親・直系血親</span>己身所從出的尊親屬。'},
+  mgrandpa:{n:'外祖父（外公）',q:'小瓔的直系血親：媽媽的父親（外公）',d:'<span class="badge-c moss">自然血親・直系血親</span>媽媽的父親仍是「己身所從出」，所以外公、外婆都是小瓔的<b>直系血親</b>（別誤以為外公是旁系！）。'},
+  mgrandma:{n:'外祖母（外婆）',q:'小瓔的直系血親：媽媽的母親（外婆）',d:'<span class="badge-c moss">自然血親・直系血親</span>己身所從出，與外公同為直系血親。'},
+  dad:{n:'爸爸',q:'小瓔的直系血親，且與姨丈互為「連襟」',d:'<span class="badge-c moss">自然血親・直系血親</span>與媽媽互為<b>配偶</b>（不是血親也不是姻親）；與姨丈互為<b>連襟</b>（配偶的血親的配偶＝姻親）。'},
+  mom:{n:'媽媽',q:'小瓔的直系血親，且與伯母互為「妯娌」',d:'<span class="badge-c moss">自然血親・直系血親</span>與伯母互為<b>妯娌</b>（配偶的血親的配偶＝姻親）；與祖父母是「配偶的血親（姻親）」。'},
+  uncle:{n:'伯父',q:'小瓔的旁系血親：爸爸的哥哥',d:'<span class="badge-c sea">自然血親・旁系血親</span>與爸爸同源於祖父母，但不是小瓔的直系祖先，屬於旁系血親。'},
+  aunt_inlaw:{n:'伯母',q:'小瓔的姻親（血親的配偶），且與媽媽互為「妯娌」',d:'<span class="badge-c warm">姻親（血親的配偶）</span>伯父是小瓔的旁系血親，伯母是伯父的配偶，因此屬於「血親的配偶」。與小瓔沒有血緣關係！'},
+  uncle_y:{n:'叔叔',q:'小瓔的旁系血親：爸爸的弟弟',d:'<span class="badge-c sea">自然血親・旁系血親</span>與爸爸同源於祖父母，屬於三親等旁系血親。其配偶「<b>嬸嬸</b>」是血親的配偶（姻親），且嬸嬸與媽媽互為<b>妯娌</b>！'},
+  aunt_p:{n:'姑姑',q:'小瓔的旁系血親：爸爸的姊姊或妹妹',d:'<span class="badge-c sea">自然血親・旁系血親</span>與爸爸同源於祖父母，屬於旁系血親。其丈夫「<b>姑丈</b>」是血親的配偶（姻親）；<b>陷阱</b>：若姑姑向法院收養姪子，兩人會由旁系血親轉為<b>法定血親</b>！'},
+  m_uncle:{n:'舅舅',q:'小瓔的旁系血親：媽媽的哥哥或弟弟',d:'<span class="badge-c sea">自然血親・旁系血親</span>與媽媽同源於外祖父母，屬於三親等旁系血親。其配偶「<b>舅媽</b>」是血親的配偶（姻親），與小瓔沒有血緣關係！'},
+  aunt:{n:'阿姨',q:'小瓔的旁系血親：媽媽的妹妹',d:'<span class="badge-c sea">自然血親・旁系血親</span>與媽媽同源於外祖父母，是小瓔的自然血親（旁系）。'},
+  uncle_inlaw:{n:'姨丈',q:'小瓔的姻親（血親的配偶），且與爸爸互為「連襟」',d:'<span class="badge-c warm">姻親（血親的配偶）</span>阿姨是小瓔的旁系血親，姨丈是其配偶，故為小瓔的姻親。姨丈與爸爸互為<b>連襟</b>（亦為姻親）。'},
+  cousin_p:{n:'堂哥',q:'小瓔的旁系血親：伯父的兒子',d:'<span class="badge-c sea">自然血親・旁系血親</span>與小瓔同源於祖父母，是四親等旁系血親，依法不得結婚。'},
+  adopt_bro:{n:'養弟（法院認可收養）',q:'小瓔的「法定血親」（經法院認可收養）',d:'<span class="badge-c warm" style="background:#efe9f6;color:#4c2c7a;border-color:#c6b2e3">法定血親（擬制血親）</span>經<b>地方法院認可</b>收養後，養弟與父母成立法定直系血親，與小瓔為法定旁系血親，享有與親生子女相同的繼承權與親權保障。'},
+  elder_bro:{n:'哥哥',q:'小瓔的旁系血親：同父同母的親哥哥',d:'<span class="badge-c sea">自然血親・旁系血親</span>手足同源於父母但非上下生出，屬於二親等<b>旁系血親</b>（別誤判成直系！）。哥哥的妻子「<b>大嫂</b>」是血親的配偶（姻親），但「大嫂的妹妹」是血配血＝<b>無親屬關係</b>！'},
+  elder_sis:{n:'姊姊',q:'小瓔的旁系血親：同父同母的親姊姊',d:'<span class="badge-c sea">自然血親・旁系血親</span>與小瓔同源於父母，屬於二親等<b>旁系血親</b>。姊姊的丈夫「<b>姊夫</b>」是血親的配偶（姻親），但「姊夫的弟弟」是血配血＝<b>無親屬關係</b>（可以合法結婚）！'},
+  younger_sis:{n:'妹妹',q:'小瓔的旁系血親：同父同母的親妹妹',d:'<span class="badge-c sea">自然血親・旁系血親</span>兄弟姊妹皆為<b>旁系血親</b>（不是直系血親！）。妹妹的丈夫「<b>妹夫</b>」屬於血親的配偶（姻親）。'},
+  bro:{n:'弟弟',q:'小瓔的旁系血親：同父同母的親弟弟',d:'<span class="badge-c sea">自然血親・旁系血親</span>兄弟姊妹同源於父母，但彼此不是上下生出關係，所以手足一定是<b>旁系血親</b>（別誤判成直系！）。'},
+  sis_inlaw:{n:'弟媳',q:'小瓔的姻親：親弟弟的配偶',d:'<span class="badge-c warm">姻親（血親的配偶）</span>弟弟是小瓔的旁系血親，弟媳是弟弟的配偶，屬於「血親的配偶」之姻親。'},
+  cousin_m:{n:'表妹',q:'小瓔的旁系血親（對爸爸則是姻親）：阿姨的女兒',d:'<span class="badge-c sea">自然血親・旁系血親</span>與小瓔同源於外祖父母。注意：對<b>爸爸</b>而言，表妹是「配偶的血親」＝姻親（不是自然血親！）。'},
+  qinjia:{n:'弟媳的媽媽（親家）',q:'與小瓔「沒有親屬關係」的人（血親的配偶的血親）',d:'<span class="badge-c rose">無親屬關係（血親的配偶的血親）</span>弟弟（血親）→ 弟媳（配偶）→ 弟媳的媽媽（血親）。我國《民法》不承認「血親的配偶的血親」為姻親，所以「親家」或「弟媳的妹妹」在法律上與小瓔<b>沒有親屬關係</b>！'}
+};
+const kinFig=C.figure({
+  svg:'kinSvg',out:'kinOut',modeBar:'kinMode',parts:KIN_PARTS,
+  markBtns:['kDir','kCol','kLaw','kNone'],lockMark:true,
+  hint:'滑鼠移上或點擊任一位家人，即可看到他與<b>小瓔（我）</b>的親屬分類與段考重點。'
+});
+C.$('kDir').onclick=()=>kinFig.markGroup('kDir',['grandpa','grandma','mgrandpa','mgrandma','dad','mom'],
+  '<div class="pname">直系血親（共 6 位）</div><div>祖父、祖母、外祖父、外祖母、爸爸、媽媽都是小瓔的<b>直系血親</b>（己身所從出）。<br><b>小提醒：</b>兄弟姊妹不是直系，是旁系！</div>');
+C.$('kCol').onclick=()=>kinFig.markGroup('kCol',['uncle','uncle_y','aunt_p','m_uncle','aunt','cousin_p','adopt_bro','elder_bro','elder_sis','younger_sis','bro','cousin_m'],
+  '<div class="pname">旁系血親（共 12 位：自然＋法定）</div><div>伯父、叔叔、姑姑、舅舅、阿姨、堂哥、表妹，以及親哥哥、親姊姊、親妹妹、親弟弟都是<b>自然旁系血親</b>；養弟經法院認可收養後，與小瓔為<b>法定旁系血親</b>。</div>');
+C.$('kLaw').onclick=()=>kinFig.markGroup('kLaw',['aunt_inlaw','uncle_inlaw','sis_inlaw'],
+  '<div class="pname">姻親（對小瓔而言）</div><div>伯母、姨丈、弟媳都是「<b>血親的配偶</b>」，與小瓔沒有血緣關係。若換成媽媽看伯母，則是「配偶的血親的配偶（妯娌）」。</div>');
+C.$('kNone').onclick=()=>kinFig.markGroup('kNone',['qinjia'],
+  '<div class="pname">無親屬關係（超大陷阱！）</div><div>弟媳的媽媽（親家）是「<b>血親的配偶的血親</b>」，我國《民法》<b>不列為親屬</b>！同理，大嫂的妹妹、祖父母與外祖父母（親家）彼此也都沒有親屬關係。</div>');
+
+/* ---------- 2. 16 題親屬解密分類挑戰 ---------- */
+C.classify({
+  meta:'kinClMeta',qbox:'kinClQ',bar:'kinClBar',out:'kinClOut',
+  choices:[
+    {k:'sp',t:'配偶'},
+    {k:'dir',t:'直系血親'},
+    {k:'col',t:'旁系血親'},
+    {k:'adopt',t:'法定血親'},
+    {k:'law',t:'姻親'},
+    {k:'none',t:'無親屬關係'}
+  ],
+  items:[
+    {tag:'爸爸與媽媽',q:'阿仁與小美依法至戶政事務所完成結婚登記，兩人互為何種關係？',a:'sp',e:'夫妻之間互為<b>配偶</b>，在《民法》上既不是血親，也不是姻親！'},
+    {tag:'小新與外公外婆',q:'小新假日陪外公、外婆去公園散步，外公、外婆與小新是何種關係？',a:'dir',e:'外祖父母是「己身所從出」的長輩，屬於<b>自然直系血親</b>。'},
+    {tag:'親哥哥與親妹妹',q:'大明與妹妹是同父同母的手足，兩人在《民法》上是何種關係？',a:'col',e:'兄弟姊妹同源於父母，並非上下直接生出，因此是<b>旁系血親</b>。'},
+    {tag:'法院認可收養',q:'吳氏夫妻向地方法院聲請認可，正式收養了一名男童，夫妻與男童屬於何種關係？',a:'adopt',e:'經法院認可收養後成立<b>法定血親（擬制血親）</b>，權利義務與親生子女相同。'},
+    {tag:'口頭認乾兒子',q:'小建的媽媽很喜歡阿軒，口頭認阿軒當「乾兒子」，小建與阿軒在法律上是何種關係？',a:'none',e:'乾媽、乾兒子、結拜兄弟皆未經法院收養認可，法律上<b>無親屬關係</b>。'},
+    {tag:'媽媽與嬸嬸（妯娌）',q:'爸爸的弟弟娶了嬸嬸，媽媽與嬸嬸互稱「妯娌」，屬於何種關係？',a:'law',e:'妯娌是「<b>配偶的血親的配偶</b>」，屬於《民法》三種姻親之一。'},
+    {tag:'爸爸與姨丈（連襟）',q:'媽媽的妹妹嫁給了姨丈，爸爸與姨丈互稱「連襟」，屬於何種關係？',a:'law',e:'連襟是「<b>配偶的血親的配偶</b>」，屬於合法的<b>姻親</b>關係。'},
+    {tag:'祖父母與外祖父母（親家）',q:'婚禮上男方父母與女方父母互稱「親家公、親家母」，兩家父母之間在《民法》上是何種關係？',a:'none',e:'親家是「<b>血親的配偶的血親</b>」，《民法》未納入親屬範圍，故<b>無親屬關係</b>！'},
+    {tag:'大仁與大嫂的妹妹',q:'大仁與哥哥的妻子（大嫂）的親妹妹日久生情想結婚，兩人在法律上是何種關係？',a:'none',e:'大嫂的妹妹是「血親（哥）的配偶（大嫂）的血親（妹妹）」，<b>無親屬關係</b>，可以合法結婚！'},
+    {tag:'繼母尚未收養繼女',q:'小雅的爸爸再婚娶了欣欣，但欣欣<b>尚未收養</b>小雅，此時小雅與繼母欣欣是何種關係？',a:'law',e:'未收養前，繼母是「直系血親（爸爸）的配偶」，屬於<b>姻親</b>；若經法院收養，才會轉為法定血親。'},
+    {tag:'繼母依法收養繼女後',q:'承上題，後來繼母欣欣向法院聲請並完成收養小雅的程序，兩人關係轉變為何？',a:'adopt',e:'完成法定收養程序後，兩人從姻親轉變為<b>法定血親（擬制血親）</b>。'},
+    {tag:'小瑛與未收養繼母的兒子',q:'阿仁娶了單親媽媽欣欣（帶兒子向榮），兩人各自未收養對方子女，阿仁的女兒小瑛與向榮是何種關係？',a:'none',e:'向榮是小瑛「血親（父）的配偶（繼母）的血親（向榮）」，<b>無親屬關係</b>；但若欣欣收養小瑛，兩人就會變成法定旁系血親（不得結婚）！'},
+    {tag:'自己與舅媽',q:'過年時小靜陪舅媽一起包水餃，舅媽是小靜的何種親屬？',a:'law',e:'舅舅是旁系血親，舅媽是「血親的配偶」，屬於<b>姻親</b>（無血緣，做骨髓移植不屬於自然血親）。'},
+    {tag:'妻子與公婆',q:'新婚的 LuLu 婚後與先生典典的父母同住，LuLu 與公婆屬於何種關係？',a:'law',e:'公婆是「配偶的血親」，屬於<b>姻親</b>。'},
+    {tag:'爸爸與小瓔的表妹',q:'小瓔的爸爸開車載著小瓔的表妹（媽媽妹妹的女兒），爸爸與表妹之間是何種關係？',a:'law',e:'表妹是媽媽（爸爸的配偶）的旁系血親，所以對爸爸來說表妹是「配偶的血親」＝<b>姻親</b>（不是自然血親！）。'},
+    {tag:'同住的外籍看護',q:'陳家聘請外籍看護瑪莉在家照顧臥床的阿公長達 5 年，瑪莉與阿公在法律上是何種關係？',a:'none',e:'外籍看護屬於僱傭關係，即使朝夕相處情同家人，法律上仍<b>無親屬關係</b>。'}
+  ]
+});
+
+/* ---------- 3. 家庭型態情境百科 ---------- */
+const FAMS=[
+  {k:'core',t:'核心家庭（小家庭）',alias:'現今臺灣主流型態',
+   def:'由<b>父母（夫妻）與未婚子女</b>組成（有時單純夫妻兩人亦廣義歸入小家庭）。',
+   scene:'「怡安和阿拓結婚後，兩人與 1 歲的女兒在外租房子居住。」「工廠大火臨時停課，父母都在上班沒人接小孩，只好拜託鄰居幫忙。」',
+   trap:'特色是成員少、關係單純、自主性高，但<b>人力不足</b>，遇到突發狀況（如孩子生病、臨時停課）照顧壓力大！'},
+  {k:'stem',t:'折衷家庭（主幹家庭）',alias:'三代同堂・同輩僅一對夫妻',
+   def:'由<b>祖父母＋父母＋未婚子女</b>組成（直系三代同堂，但每一代最多只有一對已婚夫妻）。',
+   scene:'「子民家有爸媽、爺爺與哥哥。」「彩蕎全家搬回鄉下和外婆同住，方便就近照顧摔傷的外婆。」「俗女養成記中阿公阿嬤、爸媽和姊弟同住。」',
+   trap:'考卷常考「七人座汽車廣告：全家三代同堂出遊沒煩惱」或「買房減輕長輩照護」，就是指<b>折衷（主幹）家庭</b>！'},
+  {k:'ext',t:'擴展家庭（大家庭）',alias:'兩個以上核心家庭同住',
+   def:'由<b>兩個以上有血緣關係的核心家庭</b>同住（例如祖父母＋伯父一家＋爸媽一家＋未婚姑叔）。',
+   scene:'「傳統三合院裡，阿會和祖父母、父母、叔叔、嬸嬸、堂弟同住。」「媽媽跟嬸嬸、伯母為了輪流煮飯互相指責。」',
+   trap:'只要看到同住成員出現<b>伯父／叔叔／嬸嬸／伯母／堂兄弟姊妹</b>，或同輩有兩對以上夫妻，就一定是<b>擴展家庭（大家庭）</b>，不要選折衷家庭！'},
+  {k:'single',t:'單親家庭',alias:'僅父親或母親一方＋未婚子女',
+   def:'因父母離婚、喪偶或未婚生子，由<b>父或母單獨一方</b>與未婚子女共同生活。',
+   scene:'「小靜爸爸最怕弟弟請病假，因為他是家裡唯一的大人，請假全勤獎金就泡湯了。」「小英父母離異後與媽媽、弟弟相依為命。」',
+   trap:'單親家庭往往同時面臨<b>經濟負擔＋照顧人力不足</b>雙重壓力；一旦單親父／母再婚，就會轉變為「重組家庭」！'},
+  {k:'skip',t:'隔代教養家庭',alias:'祖孫家庭（無父母同住）',
+   def:'因父母工作外派、離婚或逝世等原因，由<b>祖父母（或外祖父母）直接教養孫子女</b>，父母未同住。',
+   scene:'「阿茂爸媽離婚後，阿茂搬去跟爺爺奶奶同住。」「爸媽在外地工作，平常都是外公外婆照顧小隆。」',
+   trap:'與折衷家庭最大差別：<b>父母有沒有住在一起</b>！隔代教養容易出現世代觀念落差與長輩體力負荷問題。'},
+  {k:'dink',t:'頂客家庭（DINK）',alias:'雙薪無子女',
+   def:'夫妻兩人都有工作收入，但選擇<b>不生育子女</b>（Double Income, No Kids）。',
+   scene:'「小琳與吉剛決定婚後繼續衝刺事業、享受兩人世界，不打算生小孩，養了一隻柴犬陪伴。」',
+   trap:'與「生育觀念變化、少子化、寵物商機（狗推車銷量超車嬰兒車）」考題高度連動！'},
+  {k:'step',t:'重組家庭（繼親家庭）',alias:'再婚組成新家庭',
+   def:'夫妻一方或雙方<b>再婚</b>，並帶著前段婚姻的子女共同組成的家庭。',
+   scene:'「爸爸再婚後我有了新媽媽，現在我們三人同住。」「賈靜雯帶著女兒與修杰楷再婚。」「雙方都再婚並各帶一個女兒。」',
+   trap:'未收養前，孩子與繼父／繼母是<b>姻親</b>；完成法院收養後才成為<b>法定血親</b>！'},
+  {k:'newim',t:'新住民家庭（跨國婚姻家庭）',alias:'夫或妻為外籍人士',
+   def:'由本國籍國民與<b>外國籍人士</b>結婚組成的家庭（又稱跨國婚姻家庭）。',
+   scene:'「小美爸爸是英國人、媽媽是臺灣人。」「春節除了拜訪臺灣舅舅，還要出國回爸爸老家過節。」「從從常要幫不會中文的爸爸翻譯。」',
+   trap:'常面臨<b>語言、生活習慣與文化適應</b>問題。超大陷阱：家裡聘請「外籍看護」<b>不是</b>新住民家庭！'},
+  {k:'commute',t:'兩地家庭（通勤家庭）',alias:'因工作／求學分居兩地',
+   def:'家庭成員（多為夫妻）因<b>工作或求學地點不同</b>而分隔兩地居住，利用假日或視訊維繫感情（又稱「<b>候鳥家庭</b>」；韓國則稱媽媽陪孩子出國念書、爸爸留國內賺錢為「<b>大雁家庭</b>」）。',
+   scene:'「我爸爸在中國工作，兩個月回來臺灣一次，我和媽媽每天透過視訊和爸爸聯絡。」「澳洲姨丈因工作往返臺澳，阿姨與表姊弟住臺灣（同時具備核心＋兩地＋新住民多重型態！）。」',
+   trap:'不要看到「爸爸在中國工作」就誤選新住民家庭！雙方都是本國籍、只是因工作分隔兩地，屬於<b>兩地家庭</b>；但若夫妻一方為外籍又跨國通勤，則可<b>同時並存</b>多種型態！'},
+  {k:'solo',t:'單人家戶（單身／獨居）',alias:'占比逾 35% 快速攀升',
+   def:'由<b>單獨 1 人</b>組成一戶居住，包含未婚單身青年、離異獨居者與高齡獨居長輩。',
+   scene:'「小娟說：新時代女性不必依賴男性也能養活自己，我喜歡一個人生活，所以選擇單身。」「2025 上半年全臺單人家戶占比超過 35%，平均每戶人口降至 2.5～2.9 人。」',
+   trap:'成因常考「<b>婚姻觀念轉變＋女性就業普遍</b>」或「高齡化／重視個人隱私」；獨居長者容易面臨孤獨死與照護風險！'},
+  {k:'foster',t:'寄養家庭（非收養！）',alias:'暫時性專業替代照顧',
+   def:'由政府社福單位（如家扶中心）培訓並核發執照的家庭，<b>暫時性</b>照顧原生家庭遭逢變故、受虐或無力撫養的兒少。',
+   scene:'「4 歲小豪遭生母遺棄，社會局安排住進寄養家庭，寄養爸媽細心烹煮營養餐點呵護他，發揮保護與照顧功能。」',
+   trap:'<b>超級大陷阱！</b>寄養家庭是「<b>暫時替代照顧</b>」，寄養父母與寄養兒少之間<b>不是法定血親</b>、沒有繼承權；只有向地方法院聲請認可的「<b>收養</b>」才會成立法定血親！'}
+];
+const famTabs=C.$('famTabs'),famBox=C.$('famBox');
+function showFam(k){
+  const f=FAMS.find(x=>x.k===k)||FAMS[0];
+  famTabs.querySelectorAll('.chip').forEach(b=>b.classList.toggle('on',b.dataset.k===f.k));
+  famBox.innerHTML='<div class="ftitle">'+f.t+' <span class="badge-c warm">'+f.alias+'</span></div>'+
+    '<p><b>定義：</b>'+f.def+'</p>'+
+    '<div class="fam-scene"><b>段考常見情境：</b>'+f.scene+'</div>'+
+    '<p class="small" style="margin-bottom:0"><b>必考提醒：</b>'+f.trap+'</p>';
+}
+famTabs.innerHTML=FAMS.map(f=>'<button type="button" class="chip" data-k="'+f.k+'">'+f.t.split('（')[0]+'</button>').join('');
+famTabs.querySelectorAll('.chip').forEach(b=>b.onclick=()=>showFam(b.dataset.k));
+showFam('core');
+
+/* ---------- 4. 25 題小測驗（含 5 題向量 SVG 圖表題） ---------- */
+const QF_TREE='<svg viewBox="0 0 500 175" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="甲乙二家親屬關係示意圖">'+
+  '<rect width="500" height="175" fill="#fbf8f1"/>'+
+  '<g stroke="#4d5a52" stroke-width="2" fill="none">'+
+    '<line x1="205" y1="36" x2="295" y2="36" stroke="#a8572f" stroke-width="2.6"/>'+
+    '<line x1="250" y1="36" x2="250" y2="80"/>'+
+    '<line x1="170" y1="80" x2="330" y2="80"/>'+
+    '<line x1="170" y1="80" x2="170" y2="108"/>'+
+    '<line x1="330" y1="80" x2="330" y2="108"/>'+
+    '<line x1="108" y1="126" x2="152" y2="126" stroke="#a8572f" stroke-width="2.6"/>'+
+    '<line x1="348" y1="126" x2="392" y2="126" stroke="#a8572f" stroke-width="2.6"/>'+
+  '</g>'+
+  '<rect x="170" y="18" width="36" height="36" rx="4" fill="#e2eef7" stroke="#2d6f9e" stroke-width="1.8"/><text x="188" y="42" text-anchor="middle" font-size="15" font-weight="700">甲</text>'+
+  '<circle cx="313" cy="36" r="18" fill="#f8eae1" stroke="#a8572f" stroke-width="1.8"/><text x="313" y="42" text-anchor="middle" font-size="15" font-weight="700">乙</text>'+
+  '<circle cx="90" cy="126" r="18" fill="#f8eae1" stroke="#a8572f" stroke-width="1.8"/><text x="90" y="132" text-anchor="middle" font-size="15" font-weight="700">庚</text>'+
+  '<rect x="152" y="108" width="36" height="36" rx="4" fill="#e2eef7" stroke="#2d6f9e" stroke-width="1.8"/><text x="170" y="132" text-anchor="middle" font-size="15" font-weight="700">己</text>'+
+  '<rect x="312" y="108" width="36" height="36" rx="4" fill="#e2eef7" stroke="#2d6f9e" stroke-width="1.8"/><text x="330" y="132" text-anchor="middle" font-size="15" font-weight="700">戊</text>'+
+  '<circle cx="410" cy="126" r="18" fill="#f8eae1" stroke="#a8572f" stroke-width="1.8"/><text x="410" y="132" text-anchor="middle" font-size="15" font-weight="700">丙</text>'+
+  '<g font-size="11.5" fill="#4d5a52"><text x="20" y="26">□ 男性　○ 女性</text><text x="20" y="44">紅線＝婚姻　灰線＝親子血親</text><text x="250" y="166" text-anchor="middle">註：己與戊為甲、乙所生之兩名兒子</text></g>'+
+'</svg>';
+
+const QF_SEAT='<svg viewBox="0 0 520 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="小楊家族旅遊民宿房間配置圖">'+
+  '<rect width="520" height="190" fill="#fbf8f1"/>'+
+  '<text x="260" y="22" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2a24">有間民宿房間分配圖（小楊為主角）</text>'+
+  '<text x="22" y="72" font-size="12.5" font-weight="700" fill="#4d5a52">二樓</text>'+
+  '<text x="22" y="142" font-size="12.5" font-weight="700" fill="#4d5a52">一樓</text>'+
+  '<g stroke="#7a857e" stroke-width="1.6" font-size="13" text-anchor="middle">'+
+    '<rect x="65" y="38" width="84" height="56" rx="6" fill="#fff"/><text x="107" y="71" font-weight="700">伯母</text>'+
+    '<rect x="155" y="38" width="84" height="56" rx="6" fill="#fef3c7" stroke="#d97706"/><text x="197" y="71" font-weight="700" fill="#92400e">甲房</text>'+
+    '<rect x="245" y="38" width="84" height="56" rx="6" fill="#fff"/><text x="287" y="63">舅舅</text><text x="287" y="81">舅媽</text>'+
+    '<rect x="335" y="38" width="84" height="56" rx="6" fill="#fef3c7" stroke="#d97706"/><text x="377" y="71" font-weight="700" fill="#92400e">乙房</text>'+
+    '<rect x="425" y="38" width="84" height="56" rx="6" fill="#fff"/><text x="467" y="63">阿姨</text><text x="467" y="81">表妹</text>'+
+    '<rect x="65" y="108" width="84" height="56" rx="6" fill="#e5f0e2"/><text x="107" y="133">爸爸</text><text x="107" y="151">媽媽</text>'+
+    '<rect x="155" y="108" width="84" height="56" rx="6" fill="#fef3c7" stroke="#d97706"/><text x="197" y="141" font-weight="700" fill="#92400e">丙房</text>'+
+    '<rect x="245" y="108" width="84" height="56" rx="6" fill="#fff"/><text x="287" y="141" font-weight="700">岳父母</text>'+
+    '<rect x="335" y="108" width="84" height="56" rx="6" fill="#fef3c7" stroke="#d97706"/><text x="377" y="141" font-weight="700" fill="#92400e">丁房</text>'+
+    '<rect x="425" y="108" width="84" height="56" rx="6" fill="#e2eef7"/><text x="467" y="141" font-weight="700">哥哥</text>'+
+  '</g>'+
+'</svg>';
+
+const QF_CARDS='<svg viewBox="0 0 540 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="卉美寄給四個親戚家的賀年卡內容">'+
+  '<rect width="540" height="160" fill="#fbf8f1"/>'+
+  '<g font-size="12" fill="#1f2a24">'+
+    '<rect x="12" y="16" width="122" height="128" rx="8" fill="#fff" stroke="#d49a6a" stroke-width="1.6"/>'+
+    '<rect x="12" y="16" width="122" height="24" rx="8" fill="#f8eae1"/><text x="73" y="33" text-anchor="middle" font-weight="700" fill="#86411f">(A) 賀卡甲</text>'+
+    '<text x="22" y="60">恭賀新禧！</text><text x="22" y="80">期待大姨丈、</text><text x="22" y="98">小表弟再陪我</text><text x="22" y="116">玩桌遊喔！</text><text x="122" y="135" text-anchor="end" font-size="11" fill="#7a857e">卉美</text>'+
+    '<rect x="144" y="16" width="122" height="128" rx="8" fill="#fff" stroke="#d49a6a" stroke-width="1.6"/>'+
+    '<rect x="144" y="16" width="122" height="24" rx="8" fill="#f8eae1"/><text x="205" y="33" text-anchor="middle" font-weight="700" fill="#86411f">(B) 賀卡乙</text>'+
+    '<text x="154" y="60">恭賀新禧！</text><text x="154" y="80">祝福爺爺、</text><text x="154" y="98">奶奶和小姑姑</text><text x="154" y="116">平安健康！</text><text x="254" y="135" text-anchor="end" font-size="11" fill="#7a857e">卉美</text>'+
+    '<rect x="276" y="16" width="122" height="128" rx="8" fill="#fff" stroke="#d49a6a" stroke-width="1.6"/>'+
+    '<rect x="276" y="16" width="122" height="24" rx="8" fill="#f8eae1"/><text x="337" y="33" text-anchor="middle" font-weight="700" fill="#86411f">(C) 賀卡丙</text>'+
+    '<text x="286" y="60">恭賀新禧！</text><text x="286" y="80">麻煩舅舅替我</text><text x="286" y="98">向舅媽、外婆</text><text x="286" y="116">與表弟問好。</text><text x="386" y="135" text-anchor="end" font-size="11" fill="#7a857e">卉美</text>'+
+    '<rect x="408" y="16" width="122" height="128" rx="8" fill="#fff" stroke="#d49a6a" stroke-width="1.6"/>'+
+    '<rect x="408" y="16" width="122" height="24" rx="8" fill="#f8eae1"/><text x="469" y="33" text-anchor="middle" font-weight="700" fill="#86411f">(D) 賀卡丁</text>'+
+    '<text x="418" y="60">恭賀新禧！</text><text x="418" y="80">歡迎大伯、伯</text><text x="418" y="98">母、堂哥和堂</text><text x="418" y="116">妹來看花燈。</text><text x="518" y="135" text-anchor="end" font-size="11" fill="#7a857e">卉美</text>'+
+  '</g>'+
+'</svg>';
+
+const QF_BAR='<svg viewBox="0 0 500 185" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="自己這代與祖父母輩家庭成員數比較長條圖">'+
+  '<rect width="500" height="185" fill="#fbf8f1"/>'+
+  '<text x="250" y="22" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2a24">兩代「家庭成員人數」比例比較（%）</text>'+
+  '<g font-size="11.5" fill="#4d5a52"><rect x="315" y="34" width="12" height="12" fill="#a8572f"/><text x="332" y="44">自己這代</text><rect x="395" y="34" width="12" height="12" fill="#2d6f9e"/><text x="412" y="44">祖父母輩</text></g>'+
+  '<line x1="60" y1="145" x2="465" y2="145" stroke="#7a857e" stroke-width="1.5"/>'+
+  '<line x1="60" y1="45" x2="60" y2="145" stroke="#7a857e" stroke-width="1.5"/>'+
+  '<text x="52" y="148" text-anchor="end" font-size="11" fill="#4d5a52">0%</text>'+
+  '<text x="52" y="98" text-anchor="end" font-size="11" fill="#4d5a52">50%</text>'+
+  '<text x="52" y="52" text-anchor="end" font-size="11" fill="#4d5a52">100%</text>'+
+  '<rect x="95" y="63" width="38" height="82" fill="#a8572f" rx="3"/><text x="114" y="58" text-anchor="middle" font-size="11.5" font-weight="700" fill="#86411f">82%</text>'+
+  '<rect x="137" y="141" width="38" height="4" fill="#2d6f9e" rx="1"/><text x="156" y="136" text-anchor="middle" font-size="11" fill="#1e4f73">4%</text>'+
+  '<text x="135" y="165" text-anchor="middle" font-size="12.5" font-weight="700">2～4 人</text>'+
+  '<rect x="230" y="132" width="38" height="13" fill="#a8572f" rx="2"/><text x="249" y="127" text-anchor="middle" font-size="11" fill="#86411f">13%</text>'+
+  '<rect x="272" y="120" width="38" height="25" fill="#2d6f9e" rx="2"/><text x="291" y="115" text-anchor="middle" font-size="11" fill="#1e4f73">25%</text>'+
+  '<text x="270" y="165" text-anchor="middle" font-size="12.5" font-weight="700">5～8 人</text>'+
+  '<rect x="365" y="140" width="38" height="5" fill="#a8572f" rx="1"/><text x="384" y="135" text-anchor="middle" font-size="11" fill="#86411f">5%</text>'+
+  '<rect x="407" y="74" width="38" height="71" fill="#2d6f9e" rx="3"/><text x="426" y="69" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1e4f73">71%</text>'+
+  '<text x="405" y="165" text-anchor="middle" font-size="12.5" font-weight="700">超過 8 人</text>'+
+'</svg>';
+
+const QF_TRAIN='<svg viewBox="0 0 500 165" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="火車座位與親屬分類對應示意圖">'+
+  '<rect width="500" height="165" fill="#fbf8f1"/>'+
+  '<text x="250" y="22" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2a24">小川安排家族旅遊火車座位（以小川為主角）</text>'+
+  '<rect x="24" y="38" width="452" height="110" rx="12" fill="#fff" stroke="#7a857e" stroke-width="2"/>'+
+  '<line x1="250" y1="38" x2="250" y2="148" stroke="#c6c1b2" stroke-dasharray="5 4" stroke-width="2"/>'+
+  '<text x="250" y="98" text-anchor="middle" font-size="12" fill="#7a857e">走道</text>'+
+  '<g text-anchor="middle" font-size="13">'+
+    '<rect x="46" y="54" width="84" height="78" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="1.6"/>'+
+    '<text x="88" y="82" font-weight="700">甲座</text><text x="88" y="106" fill="#86411f" font-weight="700">配偶</text>'+
+    '<rect x="142" y="54" width="84" height="78" rx="8" fill="#f8eae1" stroke="#a8572f" stroke-width="1.6"/>'+
+    '<text x="184" y="82" font-weight="700">乙座</text><text x="184" y="106" fill="#a8572f" font-weight="700">姻親</text>'+
+    '<rect x="274" y="54" width="84" height="78" rx="8" fill="#e5f0e2" stroke="#3f7a4f" stroke-width="1.6"/>'+
+    '<text x="316" y="82" font-weight="700">丙座</text><text x="316" y="106" fill="#24563a" font-weight="700">直系血親</text>'+
+    '<rect x="370" y="54" width="84" height="78" rx="8" fill="#e2eef7" stroke="#2d6f9e" stroke-width="1.6"/>'+
+    '<text x="412" y="82" font-weight="700">丁座</text><text x="412" y="106" fill="#1e4f73" font-weight="700">旁系血親</text>'+
+  '</g>'+
+'</svg>';
+
+const QF_JOG='<svg viewBox="0 0 510 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="小傑社區慢跑遇見親戚路線示意圖">'+
+  '<rect width="510" height="190" fill="#fbf8f1"/>'+
+  '<text x="255" y="22" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2a24">小傑社區慢跑地圖（以小傑為主角）</text>'+
+  '<g stroke="#c6c1b2" stroke-width="2" stroke-dasharray="5 4" fill="none">'+
+    '<line x1="92" y1="106" x2="200" y2="62"/>'+
+    '<line x1="92" y1="106" x2="200" y2="148"/>'+
+    '<line x1="200" y1="62" x2="340" y2="62"/>'+
+    '<line x1="200" y1="148" x2="340" y2="148"/>'+
+    '<line x1="200" y1="62" x2="340" y2="148"/>'+
+    '<line x1="200" y1="148" x2="340" y2="62"/>'+
+    '<line x1="340" y1="62" x2="442" y2="106"/>'+
+    '<line x1="340" y1="148" x2="442" y2="106"/>'+
+  '</g>'+
+  '<rect x="26" y="84" width="76" height="44" rx="8" fill="#fff3cd" stroke="#b98516" stroke-width="1.8"/>'+
+  '<text x="64" y="103" text-anchor="middle" font-size="12.5" font-weight="700">起點</text>'+
+  '<text x="64" y="120" text-anchor="middle" font-size="11.5">小傑家</text>'+
+  '<rect x="152" y="38" width="96" height="48" rx="8" fill="#fff" stroke="#7a857e" stroke-width="1.8"/>'+
+  '<text x="200" y="59" text-anchor="middle" font-size="12.5" font-weight="700" fill="#86411f">甲站：公園</text>'+
+  '<text x="200" y="77" text-anchor="middle" font-size="12">遇見「外公」</text>'+
+  '<rect x="152" y="124" width="96" height="48" rx="8" fill="#fff" stroke="#7a857e" stroke-width="1.8"/>'+
+  '<text x="200" y="145" text-anchor="middle" font-size="12.5" font-weight="700" fill="#86411f">乙站：超商</text>'+
+  '<text x="200" y="163" text-anchor="middle" font-size="12">遇見「堂姊」</text>'+
+  '<rect x="292" y="38" width="96" height="48" rx="8" fill="#fff" stroke="#7a857e" stroke-width="1.8"/>'+
+  '<text x="340" y="59" text-anchor="middle" font-size="12.5" font-weight="700" fill="#86411f">丙站：書局</text>'+
+  '<text x="340" y="77" text-anchor="middle" font-size="12">遇見「姑丈」</text>'+
+  '<rect x="292" y="124" width="96" height="48" rx="8" fill="#fff" stroke="#7a857e" stroke-width="1.8"/>'+
+  '<text x="340" y="145" text-anchor="middle" font-size="12.5" font-weight="700" fill="#86411f">丁站：市場</text>'+
+  '<text x="340" y="163" text-anchor="middle" font-size="12">遇見「舅舅」</text>'+
+  '<rect x="412" y="84" width="80" height="44" rx="8" fill="#f1eee7" stroke="#8b8476" stroke-dasharray="4 2" stroke-width="1.6"/>'+
+  '<text x="452" y="103" text-anchor="middle" font-size="12" font-weight="700">終點廣場</text>'+
+  '<text x="452" y="120" text-anchor="middle" font-size="11">遇見親家母</text>'+
+'</svg>';
+
+const QF_QUAD='<svg viewBox="0 0 490 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="家庭成員人數與親屬關係複雜度座標示意圖">'+
+  '<rect width="490" height="190" fill="#fbf8f1"/>'+
+  '<text x="245" y="20" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1f2a24">家庭成員人數 vs 親屬關係複雜度座標圖</text>'+
+  '<line x1="245" y1="34" x2="245" y2="162" stroke="#4d5a52" stroke-width="2"/>'+
+  '<line x1="95" y1="98" x2="395" y2="98" stroke="#4d5a52" stroke-width="2"/>'+
+  '<polygon points="245,30 240,40 250,40" fill="#4d5a52"/>'+
+  '<polygon points="399,98 389,93 389,103" fill="#4d5a52"/>'+
+  '<g font-size="11.5" fill="#4d5a52" font-weight="700">'+
+    '<text x="245" y="178" text-anchor="middle">人數少</text>'+
+    '<text x="280" y="42">人數多（縱軸）</text>'+
+    '<text x="88" y="102" text-anchor="end">關係單純</text>'+
+    '<text x="404" y="102">關係複雜（橫軸）</text>'+
+  '</g>'+
+  '<g text-anchor="middle" font-size="13.5" font-weight="700">'+
+    '<circle cx="170" cy="64" r="16" fill="#e2eef7" stroke="#2d6f9e" stroke-width="1.8"/><text x="170" y="69" fill="#1e4f73">甲</text>'+
+    '<circle cx="320" cy="64" r="16" fill="#f8eae1" stroke="#a8572f" stroke-width="1.8"/><text x="320" y="69" fill="#86411f">乙</text>'+
+    '<circle cx="170" cy="132" r="16" fill="#e5f0e2" stroke="#3f7a4f" stroke-width="1.8"/><text x="170" y="137" fill="#24563a">丙</text>'+
+    '<circle cx="320" cy="132" r="16" fill="#fef3c7" stroke="#d97706" stroke-width="1.8"/><text x="320" y="137" fill="#92400e">丁</text>'+
+  '</g>'+
+'</svg>';
+
+const QUIZ=[
+  {u:'u1',s:'小采與阿諾愛情長跑多年，決定依我國現行《民法》辦理結婚，下列哪一項程序<b>正確</b>？',
+   o:['雙方只需舉辦公開婚宴，不須登記即具效力','雙方皆須年滿 18 歲、立書面契約、找 2 位以上證人簽名，親自到戶政事務所登記','雙方應帶著 1 位證人前往地方法院辦理結婚登記','只要口頭約定並讓雙方父母同意即成立婚姻'],
+   a:1,e:'我國現行採「登記婚」：雙方滿 18 歲、書面契約、<b>2 人以上證人簽名</b>、雙方親自到<b>戶政事務所</b>登記才具法律效力，不須公開宴客，也不是去法院。'},
+  {u:'u1',s:'阿嘉與帶著女兒小雅的單親媽媽再婚後，決定依法收養小雅。阿嘉應依哪部法律、向哪個機關聲請，完成後與小雅成立何種親屬關係？',
+   o:['《民法》／戶政事務所／自然血親','《家庭暴力防治法》／社會局／姻親','《民法》／地方法院／法定血親（擬制血親）','《民法》／警察局／旁系血親'],
+   a:2,e:'收養須依《民法》訂立書面契約，並向<b>地方法院</b>聲請認可（非戶政事務所或社會局）；認可後成立<b>法定血親（擬制血親）</b>。'},
+  {u:'u1',s:'小丸子的爸媽在生下小丸子與姊姊後，依法收養了一名男童作為弟弟。關於收養後的法律關係，下列何者<b>正確</b>？',
+   o:['養弟與小丸子姊妹可依法共同繼承父母遺產','養弟與養父母成為自然血親','親生子女的權利義務大於養子女','收養只需雙方口頭同意即可生效'],
+   a:0,e:'法定血親（養子女）在法律上的權利義務與親生子女<b>完全相同</b>，同樣享有遺產繼承權與親權保護。'},
+  {u:'u1',s:'小建與阿軒從小情同手足，小建的媽媽便口頭認阿軒為「乾兒子」。在現行《民法》上，小建與阿軒屬於何種親屬關係？',
+   o:['法定血親','旁系血親','姻親','無親屬關係'],
+   a:3,e:'口頭認乾爸、乾媽、乾兒子未經法院收養認可程序，法律上<b>沒有親屬關係</b>。'},
+  {u:'u1',s:'2022 年法院依法裁准一對同性伴侶收養女嬰，關於此案例，下列敘述何者<b>正確</b>？',
+   o:['該對同性伴侶與女嬰為姻親關係','該對同性伴侶與女嬰為法定血親（擬制血親）','同性伴侶應向社會局聲請收養認可','該家庭必屬於重組家庭'],
+   a:1,e:'經法院裁准收養後，收養人與被收養人之間成立<b>法定血親（擬制血親）</b>；辦理收養認可的機關是地方法院。'},
+  {u:'u2',s:'附圖為甲、乙一家人的親屬關係圖，根據我國《民法》規定，下列哪一組的關係屬於<b>姻親</b>？',
+   fig:QF_TREE,
+   o:['甲與乙','甲與己','庚與丙','己與戊'],
+   a:2,e:'甲與乙是「配偶」（非姻親）；甲與己是「直系血親」；己與戊是兄弟為「旁系血親」；<b>庚與丙</b>分別是兩兄弟的妻子，互為<b>妯娌</b>（配偶的血親的配偶），屬於<b>姻親</b>！'},
+  {u:'u2',s:'小楊家族旅遊住在附圖民宿中。若小楊和<b>直系血親</b>住同一層樓，且房間兩旁分別住著自己的<b>旁系血親</b>與<b>姻親</b>，他最可能住在哪一間房？',
+   fig:QF_SEAT,
+   o:['甲房','乙房','丙房','丁房'],
+   a:3,e:'一樓有爸爸媽媽（直系血親），所以小楊住一樓（刪去甲、乙）。丙房兩旁是爸媽（直系）與岳父母（姻親）；<b>丁房</b>兩旁分別是岳父母（配偶的血親＝姻親）與哥哥（旁系血親），完全符合條件！'},
+  {u:'u2',s:'小川家族搭火車出遊，依附圖親屬關係安排座位（以小川為主角），則坐在<b>乙座</b>的人最可能是下列何者？',
+   fig:QF_TRAIN,
+   o:['外公','岳母','媽媽','表姊'],
+   a:1,e:'乙座為「姻親」。外公與媽媽是直系血親（丙座）；表姊是旁系血親（丁座）；<b>岳母</b>是「配偶的血親」，屬於姻親，應坐乙座。'},
+  {u:'u2',s:'奇奇生病需要骨髓移植，醫師表示與奇奇有「<b>自然血親</b>」關係的親屬配對成功機率較高。下列哪一位親人最符合醫師的條件？',
+   o:['奇奇的乾姊','奇奇的伯母','奇奇的姑丈','奇奇的姑姑'],
+   a:3,e:'乾姊無親屬關係；伯母與姑丈皆為「血親的配偶」（姻親），無血緣；<b>姑姑</b>是爸爸的姊妹，屬於奇奇的旁系自然血親。'},
+  {u:'u2',s:'粉粿媽媽與飯糰爸爸因為各自的孩子結婚，見面時互稱「親家母、親家公」。兩人在我國《民法》上屬於何種親屬關係？',
+   o:['配偶','血親','姻親','無親屬關係'],
+   a:3,e:'親家屬於「血親的配偶的血親」，我國《民法》<b>不列入親屬</b>，故彼此無親屬關係。'},
+  {u:'u2',s:'立民與毅民兩兄弟一同舉辦婚禮，婚禮過後，兄弟倆的新婚妻子彼此互稱什麼？又屬於哪一種姻親？',
+   o:['妯娌；配偶的血親的配偶','連襟；血親的配偶','姑嫂；配偶的血親','婆媳；血親的配偶的血親'],
+   a:0,e:'兄弟的妻子互稱<b>妯娌</b>；姊妹的丈夫互稱<b>連襟</b>，兩者皆屬於「<b>配偶的血親的配偶</b>」之姻親。'},
+  {u:'u2',s:'姊夫傳訊息問妹夫：「連假四天的行程訂了嗎？」這兩人的親屬關係（連襟），與下列哪一組的關係相同？',
+   o:['舅舅與爸爸','伯父與嬸嬸','大伯母與小嬸嬸','堂哥與姑丈'],
+   a:2,e:'姊夫與妹夫（連襟）為「配偶的血親的配偶」；<b>大伯母與小嬸嬸（妯娌）</b>也是「配偶的血親的配偶」！舅舅與爸爸是「配偶的血親」；伯父與嬸嬸是「血親的配偶」。'},
+  {u:'u2',s:'飯桌上，阿彼和祖父母、父母、姊姊、弟弟、姑姑、姑丈、叔叔共進晚餐。請問桌上有幾位是阿彼的<b>直系血親</b>？',
+   o:['2 位','3 位','4 位','5 位'],
+   a:2,e:'阿彼的直系血親有<b>祖父、祖母、父親、母親</b>共 4 位。姊姊、弟弟、姑姑、叔叔皆為旁系血親；姑丈為姻親。'},
+  {u:'u2',s:'小瓔的爸爸開禮車，車上載著小瓔的阿姨、姨丈與表妹（阿姨的女兒）。下列關於車上人物親屬關係的敘述，何者<b>正確</b>？',
+   o:['爸爸和姨丈沒有親屬關係','車上同時有小瓔的直系血親、旁系血親與姻親','姨丈是小瓔的自然血親','爸爸和表妹是自然血親'],
+   a:1,e:'對小瓔而言：爸爸＝直系血親、阿姨與表妹＝旁系血親、姨丈＝姻親，故 (B) 正確！爸爸和姨丈互為連襟（姻親）；爸爸與表妹是「配偶的血親」（姻親，非自然血親）。'},
+  {u:'u2',s:'基於家庭倫理與優生學，《民法》禁止近親結婚。若下列組合去登記結婚，哪一組的婚姻最可能是<b>有效</b>的？',
+   o:['小美與大伯的兒子','小明與姊姊的養女','大仁與大嫂的妹妹','俊男與姑姑的女兒'],
+   a:2,e:'大伯的兒子（堂兄）、姑姑的女兒（表姊妹）是四親等旁系血親；姊姊的養女是三親等法定旁系血親，皆禁婚。<b>大仁與大嫂的妹妹</b>是「血親的配偶的血親」，<b>無親屬關係</b>，可合法結婚！'},
+  {u:'u2',s:'小愛 22 歲，母親早逝由父扶養；後來父親再婚娶單親媽媽欣欣（育有 25 歲兒子向榮）。若欣欣<b>正式收養</b>小愛，關於親屬變化與婚嫁下列何者正確？',
+   o:['小愛與欣欣由「姻親」轉為「法定血親」；小愛與向榮變成法定兄妹，依法不得結婚','小愛與欣欣始終是姻親；小愛與向榮可結婚','小愛與欣欣由無關係轉為自然血親','小愛與向榮皆已成年，故不管收養與否都能結婚'],
+   a:0,e:'收養前繼母欣欣是小愛的姻親；收養後兩人轉為<b>法定直系血親</b>，而欣欣的親生子向榮便成為小愛的<b>法定旁系血親（兄妹）</b>，依《民法》近親禁婚規定不得結婚！'},
+  {u:'u2',s:'廣志與美亞依法結婚並生下兒子小新，下列親屬敘述何者<b>正確</b>？',
+   o:['廣志與美亞具有血親關係','廣志的父母是美亞的旁系血親','小新與廣志的父母是直系血親','廣志的父母與美亞的父母互為姻親'],
+   a:2,e:'小新與廣志的父母（祖父母）為直系血親，(C) 正確！夫妻是配偶（非血親）；公婆是美亞的姻親；雙方父母為親家（無親屬關係）。'},
+  {u:'u3',s:'卉美寄出四張拜年賀卡（見附圖），卡上問候該親戚家中的所有同住成員。哪一張賀卡的親戚家最可能屬於<b>單親家庭</b>？',
+   fig:QF_CARDS,
+   o:['賀卡甲','賀卡乙','賀卡丙','賀卡丁'],
+   a:0,e:'賀卡甲中只有「大姨丈＋小表弟」（未見大阿姨，僅一位家長＋未婚子女），最可能為單親家庭。賀卡乙（爺奶＋小姑姑）是核心家庭；賀卡丙（外婆＋舅舅舅媽＋表弟）是折衷家庭；賀卡丁（大伯＋伯母＋堂哥堂妹）是核心家庭。'},
+  {u:'u3',s:'老師請同學調查「自己這代」與「祖父母輩」的家庭成員人數比例，結果如附圖。下列分析何者<b>最正確</b>？',
+   fig:QF_BAR,
+   o:['現代家庭以隔代教養家庭為主','三代同堂成為社會最普遍現象','經濟改善使生育率大幅上升','現今多數家庭的成員數較過去明顯減少'],
+   a:3,e:'祖父母輩超過 8 人占 71%，自己這代 2～4 人高達 82%，清楚反映家庭規模縮小，核心（小）家庭成為主流。'},
+  {u:'u3',s:'四位同學分享家庭近況：小祥「我家小姑姑和小叔叔每天吵不停」、小俊「媽媽和奶奶冷戰，我和爸爸夾在中間」、小靜「爸爸是家裡唯一的大人」、小蓉「媽媽跟嬸嬸、伯母為了輪流煮飯吵架」。哪兩人的家庭型態最相似？',
+   o:['小祥與小蓉','小靜與小蓉','小俊與小蓉','小俊與小靜'],
+   a:0,e:'小祥家（父母＋未婚姑叔）與小蓉家（爸媽＋伯父伯母＋叔叔嬸嬸）皆屬<b>擴展家庭（大家庭）</b>；小俊家是折衷（主幹）家庭；小靜家是單親家庭！'},
+  {u:'u3',s:'下列關於現代多元家庭型態的配對，何者<b>正確</b>？',
+   o:['爸爸在中國工作，兩個月回來一次，每天視訊聯絡──新住民家庭','夫妻倆忙於事業決定不生小孩，只養兩隻貓──兩地家庭','爸爸再婚後我有了新媽媽，現在我們三人同住──重組家庭（繼親家庭）','媽媽來自印尼嫁給臺灣爸爸，共同經營餐廳──繼親家庭'],
+   a:2,e:'(A) 是兩地家庭；(B) 是頂客家庭；(D) 是新住民（跨國婚姻）家庭；只有 (C) 再婚組成家庭屬於<b>重組（繼親）家庭</b>！'},
+  {u:'u3',s:'彩蕎在社群貼文：「小時候爸媽忙，我和妹妹都住外婆家讓外婆照顧；最近外婆摔倒，全家搬回鄉下和外婆同住。」彩蕎家的型態依序為何種轉變？',
+   o:['單親家庭 → 擴展家庭','隔代教養家庭 → 折衷（主幹）家庭','核心家庭 → 兩地家庭','重組家庭 → 核心家庭'],
+   a:1,e:'幼年只有外婆與孫女同住＝<b>隔代教養家庭</b>；搬回家鄉後變成「外婆＋爸媽＋彩蕎姊妹」三代同堂（同輩僅一對夫妻）＝<b>折衷（主幹）家庭</b>！'},
+  {u:'u3',s:'樹林工廠大火導致附近國小臨時停課，許多家長都在上班，無人接送孩子，只好拜託鄰居或住附近的阿公阿嬤幫忙。這種狀況最常發生在哪一種家庭型態？',
+   o:['擴展家庭','主幹家庭','核心家庭','隔代教養家庭'],
+   a:2,e:'<b>核心家庭（小家庭）</b>因家中只有父母與未婚子女，一旦雙薪父母都在上班，缺乏其他同住長輩或親戚支援，臨時接送與照護人力最容易吃緊。'},
+  {u:'u3',s:'阿明家的阿公臥床多年，全家聘請來自印尼的外籍看護瑪莉住在家中協助照料。請問關於阿明家（阿公＋爸媽＋阿明＋看護），下列敘述何者<b>正確</b>？',
+   o:['屬於新住民家庭，因為有外籍人士同住','屬於折衷家庭，且外籍看護與阿明家沒有親屬關係','瑪莉長期照顧阿公，故依法成為阿明家的姻親','這是因高齡化所形成的新式擴展家庭'],
+   a:1,e:'新住民（跨國婚姻）家庭指「夫或妻」為外籍人士；聘請外籍看護屬僱傭關係，<b>不構成親屬，也不是新住民家庭</b>。阿公＋爸媽＋阿明屬於<b>折衷家庭</b>。'},
+  {u:'u3',s:'七人座休旅車廣告主打：「空間大滿配！全家三代同堂出遊沒煩惱。」請問這支廣告最主要是鎖定哪一種家庭型態？',
+   o:['頂客家庭','單親家庭','隔代教養家庭','折衷（主幹）家庭'],
+   a:3,e:'「三代同堂（祖父母＋父母＋子女）」約 5～7 人，正對應<b>折衷家庭（主幹家庭）</b>的結構特徵。'},
+  {u:'u2',s:'小傑假日沿社區慢跑，遇見三位親戚的地點如附圖。若小傑與這三位親戚相遇的先後順序為「<b>直系血親 → 姻親 → 旁系血親</b>」，他最可能走哪一條路線？',
+   fig:QF_JOG,
+   o:['甲站 → 丙站 → 丁站','乙站 → 甲站 → 丙站','丙站 → 甲站 → 丁站','丁站 → 乙站 → 終點廣場'],
+   a:0,e:'逐站判斷：甲站外公＝<b>直系血親</b>；丙站姑丈＝<b>姻親</b>（血親的配偶）；乙站堂姊、丁站舅舅＝<b>旁系血親</b>；終點親家母＝無親屬關係。故依序「直系 → 姻親 → 旁系」為<b>甲站 → 丙站 → 丁站</b>！'},
+  {u:'u3',s:'附圖橫軸代表家庭成員親屬關係複雜度（愈右愈複雜），縱軸代表家庭成員人數（愈上愈多）。現今臺灣最常見的「<b>核心家庭（小家庭）</b>」最可能落在哪一點？',
+   fig:QF_QUAD,
+   o:['甲點','乙點','丙點','丁點'],
+   a:2,e:'<b>核心家庭</b>僅由一對夫妻與未婚子女組成，特色是<b>人數少、親屬關係單純</b>，故落在左下角的<b>丙點</b>；右上角乙點（人數多、關係複雜）則是擴展家庭（大家庭）！'},
+  {u:'u2',s:'小奇的父母離婚後各自再婚，小奇與爸爸及繼母同住。請問父母「<b>離婚後</b>」，下列哪一項親屬關係敘述<b>正確</b>？',
+   o:['父母兩人之間仍互為配偶','媽媽與小奇之間不再具有血親關係','爸爸與小奇的自然直系血親關係不變，且父母對未成年小奇仍具親權基礎','爸爸與外公外婆（前岳父母）仍維持姻親關係'],
+   a:2,e:'離婚會使夫妻的「配偶關係」與雙方原本的「姻親關係」消滅，但<b>父母與子女的自然血親關係永遠不會消滅</b>！'},
+  {u:'u1',s:'10 歲的小偉因父母雙雙入獄服刑，小偉的<b>姑姑</b>與小偉感情深厚，經生父母同意並訂立書面契約，向地方法院聲請認可正式<b>收養</b>小偉。收養成立後，兩人的親屬關係如何轉變？',
+   o:['旁系血親 → 法定血親（擬制血親）','直系血親 → 姻親','姻親 → 自然血親','無親屬關係 → 寄養關係'],
+   a:0,e:'114 年多校高頻考題！收養前姑姑與姪子是自然<b>旁系血親</b>；經地方法院認可收養後，兩人成為養母與養子的<b>法定血親（擬制血親）</b>，權利義務與親生子女相同（注意：若只是暫時託給「寄養家庭」，則不會成立法定血親）。'},
+  {u:'u3',s:'莉莉的阿姨與來自澳洲的姨丈結婚，姨丈因工作長期往返臺灣與澳洲兩地，阿姨則帶著表姊、表弟住在臺灣。請問阿姨一家<b>同時符合</b>下列哪些家庭型態？(甲)核心家庭 (乙)兩地家庭 (丙)新住民家庭 (丁)單親家庭',
+   o:['甲乙丙','甲乙丁','甲丙丁','乙丙丁'],
+   a:0,e:'父母與未婚子女組成＝<b>核心家庭</b>；夫妻因工作分居兩地＝<b>兩地家庭</b>（未離婚／喪偶，故非單親！）；夫為外籍人士＝<b>新住民（跨國婚姻）家庭</b>，故選<b>甲乙丙</b>！'}
+];
+
+C.quiz({
+  box:'qzBox',score:'qzScore',done:'qzDone',reset:'qzReset',filter:'qzFilter',
+  data:QUIZ,names:{u1:'結婚與收養',u2:'親屬與座位推理',u3:'家庭型態'}
+});
+})();
+</script>
+</body>
+</html>
