@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>全章互動心智圖（3-1～4-2）｜公民生活館</title>
+<meta name="description" content="國七上公民（翰林版第一冊）第二次段考 3-1～4-2 全章考前互動心智圖總覽：四大單元完整架構、懸停聚光、點擊查看考點與陷阱詳解，並內建「隱藏細節自測」考前默背模式。">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48.png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="../assets/style.css?v=4">
+<link rel="stylesheet" href="lib/civics.css?v=4">
+<style>
+.mm-toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;margin:12px 0 18px}
+.mm-block{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin:0 0 18px}
+.mm-block.hide{display:none}
+.mm-hint{font-size:13px;color:var(--ink-3);margin:4px 0 8px}
+</style>
+<script src="lib/common.js?v=4"></script>
+</head>
+<body>
+<header id="site-head"></header>
+<main class="wrap">
+  <span class="kicker c">考前總複習・全章心智圖總覽（3-1～4-2）</span>
+  <h1>第二次段考：四小節互動心智圖總覽</h1>
+  <p class="lead">把翰林版 3-1～4-2 全部考點、現行修法與 190 份考古題高頻陷阱濃縮成 <b>4 張互動心智圖</b>。滑鼠移上或點擊任一節點即可聚光查看詳解，考前更可開啟「<b>隱藏細節自測</b>」逐格遮罩默背！</p>
+
+  <div class="mm-toolbar" role="region" aria-label="心智圖檢視與自測控制列">
+    <div class="chips" id="mmFilter" style="margin:0">
+      <button type="button" class="chip on" data-u="all">全部 4 小節</button>
+      <button type="button" class="chip" data-u="3-1">3-1 家庭與親屬</button>
+      <button type="button" class="chip" data-u="3-2">3-2 平權與親權</button>
+      <button type="button" class="chip" data-u="4-1">4-1 功能與變遷</button>
+      <button type="button" class="chip" data-u="4-2">4-2 政府與家暴防治</button>
+    </div>
+    <div class="bar" style="margin:0">
+      <button type="button" class="btn warm" id="mmRecallBtn">隱藏細節自測：關</button>
+      <button type="button" class="btn" id="mmResetBtn">全部還原</button>
+    </div>
+  </div>
+
+  <!-- 3-1 -->
+  <section class="mm-block" id="sec-3-1" data-u="3-1">
+    <div class="mm-head">
+      <h2>3-1 家庭的組成、親屬關係與家庭型態</h2>
+      <a class="mm-link" href="kinship.html">前往 3-1 互動親屬樹＆30 題測驗 →</a>
+    </div>
+    <p class="mm-hint">4 大主幹・12 個高頻考點分支（移上聚光、點擊釘選詳解，再點一次或點中心還原）</p>
+    <div class="mm-stage" id="stage-3-1"></div>
+    <div class="mm-detail" id="detail-3-1"></div>
+  </section>
+
+  <!-- 3-2 -->
+  <section class="mm-block" id="sec-3-2" data-u="3-2">
+    <div class="mm-head">
+      <h2>3-2 平權家庭與親子間的權利義務</h2>
+      <a class="mm-link" href="equality.html">前往 3-2 修法時光機＆30 題測驗 →</a>
+    </div>
+    <p class="mm-hint">4 大主幹・12 個高頻考點分支（涵蓋 4 組數據表、民法 6 大修法、親權扶養與性平三法）</p>
+    <div class="mm-stage" id="stage-3-2"></div>
+    <div class="mm-detail" id="detail-3-2"></div>
+  </section>
+
+  <!-- 4-1 -->
+  <section class="mm-block" id="sec-4-1" data-u="4-1">
+    <div class="mm-head">
+      <h2>4-1 家庭的功能、轉變與現代挑戰</h2>
+      <a class="mm-link" href="changes.html">前往 4-1 高齡模擬器＆30 題測驗 →</a>
+    </div>
+    <p class="mm-hint">3 大主幹・10 個高頻考點分支（四大功能古語、7%/14%/20% 標準、扶養比與獨居議題）</p>
+    <div class="mm-stage" id="stage-4-1"></div>
+    <div class="mm-detail" id="detail-4-1"></div>
+  </section>
+
+  <!-- 4-2 -->
+  <section class="mm-block" id="sec-4-2" data-u="4-2">
+    <div class="mm-head">
+      <h2>4-2 公權力協助家庭與家庭暴力防治</h2>
+      <a class="mm-link" href="support.html">前往 4-2 機關職權圖＆30 題測驗 →</a>
+    </div>
+    <p class="mm-hint">4 大主幹・12 個高頻考點分支（長照 3.0、三種保護令與 2023 修法、兒少權法與專線防錯）</p>
+    <div class="mm-stage" id="stage-4-2"></div>
+    <div class="mm-detail" id="detail-4-2"></div>
+  </section>
+
+  <div id="pager"></div>
+</main>
+<footer id="site-foot"></footer>
+
+<script>
+(function(){
+'use strict';
+
+const MAPS = {
+  '3-1': {
+    aria: '3-1 家庭的組成、親屬關係與家庭型態互動心智圖',
+    center: { title: '3-1 家庭與', sub: '親屬關係', desc: '本節三大主軸：<b>結婚與收養要件</b>、<b>民法三類親屬（含消滅與禁婚親）</b>，以及<b>11 種傳統與現代多元家庭型態</b>。' },
+    left: [
+      { id:'marry', color:'civ', title:'結婚與收養要件',
+        desc:'<b>結婚（戶政登記婚）</b>：雙方滿 18 歲、書面契約、2 人以上證人簽名、雙方親自至<b>戶政事務所</b>登記（不須公開宴客）。<br><b>收養（地方法院認可）</b>：訂書面契約向<b>地方法院</b>聲請認可 → 成立<b>法定血親（擬制血親）</b>，權利義務與親生子女相同（含繼承權）。同婚依《七四八施行法》2023 修法已開放共同收養無血緣子女。',
+        leaves:[
+          { id:'m1', title:'結婚：戶政事務所', sub:'滿18歲・書面・2證人', desc:'現行採「<b>登記婚</b>」，不須公開儀式也不去法院；同性伴侶亦依法辦理登記。' },
+          { id:'m2', title:'收養：地方法院', sub:'法定血親＝權利同親生', desc:'不是戶政也不是社會局！口頭認<b>乾媽／乾兒子／結拜</b>或<b>寄養家庭</b>皆無親屬關係。' },
+          { id:'m3', title:'同婚七四八施行法', sub:'2023開放共同收養', desc:'權利義務比照配偶，不自動建立民法姻親，但 2023 底《家暴法》已納入同婚配偶四親等親屬！' }
+        ]
+      },
+      { id:'kin', color:'sea', title:'三大親屬與陷阱',
+        desc:'《民法》親屬分為<b>配偶</b>（非血親非姻親）、<b>血親</b>（直系／旁系／法定）與<b>姻親</b>（血配／配血／配血配）。判題先鎖定「以誰為主角」！',
+        leaves:[
+          { id:'k1', title:'配偶・直系・旁系', sub:'DNA=自然・手足=旁系', desc:'<b>外公外婆＝直系血親</b>；<b>兄弟姊妹＝旁系血親</b>；<b>DNA 比對</b>確認自然血親；<b>姑姑收養姪子</b>＝旁系→法定血親。' },
+          { id:'k2', title:'三類姻親（必背！）', sub:'妯娌／連襟＝配血配', desc:'① 血親的配偶（大嫂／姑丈／未收養繼母）；② 配偶的血親（公婆／小姑／爸與表妹）；③ 配偶的血親的配偶（妯娌、連襟）。' },
+          { id:'k3', title:'無親屬＝血配血', sub:'親家・大嫂妹・看護', desc:'<b>親家、大嫂的妹妹、姊夫的弟弟、姑丈的弟弟、叔叔老婆的妹妹、未收養繼母之子、外籍看護</b>皆無親屬關係！' }
+        ]
+      }
+    ],
+    right: [
+      { id:'end', color:'rose', title:'消滅與禁婚親',
+        desc:'113～114 段考超高頻區辨：離婚／喪偶／收養後關係是否消滅？哪些組合登記結婚有效？',
+        leaves:[
+          { id:'e1', title:'親屬會不會消滅？', sub:'離婚消姻親・血親不滅', desc:'<b>離婚</b>：配偶與姻親消滅，但父母與子女<b>自然血親與繼承權永不消滅</b>！<b>配偶死亡</b>：姻親不自動消滅。<b>收養</b>可依法終止。' },
+          { id:'e2', title:'禁婚親（結婚無效）', sub:'直系・旁系6親等內', desc:'直系血親／直系姻親、旁系血親 6 親等內（堂表兄妹、哥哥的養子）、養子女與原生家庭皆禁婚。' },
+          { id:'e3', title:'合法有效婚姻組合', sub:'大嫂妹・姊夫弟可婚', desc:'血親的配偶的血親（無親屬關係）可以結婚！如大仁與大嫂的妹妹、小花與姊夫的弟弟、小瑛與未收養繼母之子。' }
+        ]
+      },
+      { id:'fam', color:'moss', title:'家庭型態與變遷',
+        desc:'傳統三大結構（核心／折衷／擴展）＋現代多元模式（單親／隔代／頂客／重組／新住民／兩地／單人戶／寄養陷阱），受<b>婚姻、生育、女性就業、居住就業地點</b>四大成因推動。',
+        leaves:[
+          { id:'f1', title:'核心・折衷・擴展', sub:'小家庭人少・擴展多對', desc:'<b>核心（小家庭）</b>人少關係單純但突發停課人力吃緊；<b>折衷（主幹）</b>三代同堂僅一對同輩夫妻；有伯叔嬸姑同住＝<b>擴展</b>。' },
+          { id:'f2', title:'單親・隔代・重組', sub:'無爸媽=隔代・再婚=重組', desc:'爸媽未同住由祖孫住＝<b>隔代教養</b>；單親再婚＝<b>重組（繼親）</b>；暫時替代照顧＝<b>寄養家庭（非收養）</b>。' },
+          { id:'f3', title:'頂客・兩地・新住民', sub:'候鳥大雁・可多重並存', desc:'雙薪無子＝<b>頂客</b>；工作分居＝<b>兩地（候鳥／大雁）</b>；外籍配偶＝<b>新住民</b>（外籍看護不算！）；跨國通勤可同時為核心＋兩地＋新住民。' }
+        ]
+      }
+    ]
+  },
+
+  '3-2': {
+    aria: '3-2 平權家庭與親子間的權利義務互動心智圖',
+    center: { title: '3-2 平權家庭', sub: '與親子權益', desc: '本節四大主軸：<b>家務有價與性別平權數據</b>、<b>《民法》6 大平權修法</b>、<b>親權界線與扶養繼承</b>，以及<b>性平三法與五部法律速辨</b>。' },
+    left: [
+      { id:'eq', color:'civ', title:'家務與性別平權',
+        desc:'打破「男主外、女主內」與「傳子不傳女」性別刻板印象，家務勞動是有價值的，應由全體家庭成員<b>共同分擔</b>（而非「幫忙」）。',
+        leaves:[
+          { id:'q1', title:'家務時數＆未就業表', sub:'女35.5h男5.6h・逾6倍', desc:'媽媽每週家務逾爸爸 6 倍（非 3 倍！）；女性 30–39 歲未就業主因「照顧子女」、45–54 歲「打理家務」→ 凸顯<b>家庭平權待加強</b>。' },
+          { id:'q2', title:'家務勞動有價值', sub:'有權使用家庭收入', desc:'全職家務者雖無領薪但貢獻龐大，依法有<b>自由處分金</b>與使用家庭收入權利；Goldin 諾貝爾獎研究亦凸顯首胎育兒分工影響女性薪資。' },
+          { id:'q3', title:'平等繼承權迷思', sub:'拋棄繼承女多於男', desc:'《民法》早已明定<b>男女、已婚未婚、從母姓、養子女皆享平等繼承權</b>，但實務女性拋棄繼承偏高，反映傳統觀念待改進。' }
+        ]
+      },
+      { id:'ref', color:'moss', title:'《民法》6大平權修法',
+        desc:'由傳統父權走向性別平權與兒童人權！注意哪一條同時納入「<b>兒童人權</b>」，且勿把《性別平等工作法》的育嬰假混入《民法》！',
+        leaves:[
+          { id:'r1', title:'姓氏・住所・財產', sub:'本姓・協議・各自管理', desc:'夫妻各保有本姓、婚後住所共同協議、法定財產各自管理處分、日常家務互為代理人、生活費依經濟與家事分擔。' },
+          { id:'r2', title:'子女姓氏協議', sub:'可從父或母・抽籤自改', desc:'由父母書面約定（不成於戶政抽籤），成年後子女可自行變更一次；改姓<b>不影響血緣與繼承權</b>。' },
+          { id:'r3', title:'親權（含兒童人權★）', sub:'共同行使・子女最佳利益', desc:'<b>唯一最明確納入兒童人權</b>！父母意見不合或離婚爭執時，由<b>地方法院依「子女最佳利益」</b>裁定（非單看收入、非一律聽小孩）。' }
+        ]
+      }
+    ],
+    right: [
+      { id:'par', color:'plum', title:'親權・扶養・衝突',
+        desc:'子女是獨立個體，親權有合理界線；權利與義務具互動性（惡意棄養可免除扶養或喪失繼承權）。',
+        leaves:[
+          { id:'p1', title:'親權界線與停止要件', sub:'限未滿18歲・法院裁定', desc:'僅限<b>未成年子女</b>！僅<b>疏於照顧、不當管教致傷</b>可由地方法院限制／停止親權（單純離婚或意見衝突不會！）；單獨監護方死亡由生存他方任唯一親權人。' },
+          { id:'p2', title:'免除扶養＆喪失繼承', sub:'皆依《民法》找法院', desc:'父母昔日家暴／遺棄 → 成年子女依<b>《民法》</b>（非家暴法！）請求法院減輕或免除扶養；反之子女重大虐待父母經表示 → <b>喪失繼承權</b>。' },
+          { id:'p3', title:'探視權與家庭衝突', sub:'未監護須付費・理性溝通', desc:'未任監護人仍有<b>探視權</b>且須分擔扶養費；面對家務／教養／3C 衝突應「冷靜 → 同理 → 理性溝通／家庭會議」。' }
+        ]
+      },
+      { id:'law', color:'sea', title:'五部法律＆性平三法',
+        desc:'依場域 3 秒判法源：家庭私人＝《民法》、職場＝《性平工作法》、校園＝《性平教育法》、公共場所＝《性騷擾防治法》、家庭暴力＝《家暴防治法》。',
+        leaves:[
+          { id:'l1', title:'性別平等工作法', sub:'育嬰假6月／3歲／8成薪', desc:'<b>職場適用</b>：任職滿 6 月、子女未滿 3 歲、不分男女與公司人數、養子女可、<b>雙親可同請</b>、8 成薪津貼；含家庭照顧假、陪產檢假、<b>不得因懷孕解僱</b>。' },
+          { id:'l2', title:'性別平等教育法', sub:'校園性平會・含外包廠商', desc:'<b>校園適用</b>：校隊性別歧視、師生／生生／<b>外包廠商對學生</b>性騷擾，一律交學校<b>性平會</b>調查（非輔導室私了）。' },
+          { id:'l3', title:'性騷擾防治法／家暴法', sub:'公共場所 vs 家庭暴力', desc:'公車／捷運陌生人性騷擾適用<b>《性騷擾防治法》</b>（性平三法之一）；家暴與恐怖情人適用<b>《家庭暴力防治法》</b>。' }
+        ]
+      }
+    ]
+  },
+
+  '4-1': {
+    aria: '4-1 家庭的功能、轉變與現代挑戰互動心智圖',
+    center: { title: '4-1 家庭功能', sub: '轉變與挑戰', desc: '本節三大主軸：<b>家庭四大功能古今轉變與古語</b>、<b>聯合國高齡三階段（7/14/20%）</b>，以及<b>扶養比公式與現代獨居少子挑戰</b>。' },
+    left: [
+      { id:'fn', color:'civ', title:'四大功能與古今轉變',
+        desc:'外部機構是「<b>分擔／部分取代</b>」而非完全取代；唯獨<b>生育功能無法被其他機構完全取代</b>！',
+        leaves:[
+          { id:'fn1', title:'生育（唯一不可取代★）', sub:'不孝有三無後為大', desc:'晚婚／頂客／狗推車超車嬰兒車衝擊生育功能，並造成<b>私校 117 退場大限</b>與減班。' },
+          { id:'fn2', title:'經濟（方向別寫反★）', sub:'生產兼消費 → 消費為主', desc:'「巧婦難為無米之炊」、<b>以房養老</b>、獨居老人租屋協助、私校停辦衝擊周邊店家生計皆屬經濟功能！' },
+          { id:'fn3', title:'教育（最早社會化）', sub:'身教・孟母三遷・狼童', desc:'「細漢偷挽瓠大漢偷牽牛」、家庭複製效應、印度狼童、《顏氏家訓》、幼兒園／安親班／3C 媒體分擔部分教育。' },
+          { id:'fn4', title:'保護與照顧（避風港）', sub:'生理照護＋心理陪伴', desc:'坐月子、挫折鼓勵、幼兒園幼幼班、<b>青銀共居</b>陪伴、日本社會 5.0 AI 長照與介護福祉士、手錶遠端監測。' }
+        ]
+      }
+    ],
+    right: [
+      { id:'age', color:'rose', title:'少子化與高齡標準',
+        desc:'對象皆為「<b>65 歲以上</b>」（不是 60 歲！）；臺灣從高齡化到超高齡僅 32 年，老化極快。',
+        leaves:[
+          { id:'a1', title:'7% → 14% → 20%', sub:'1993→2018→2025超高齡', desc:'<b>7%</b> 高齡化社會（1993）→ <b>14%</b> 高齡社會（2018）→ <b>20%</b> 超高齡社會（2025～2026，每 5 人有 1 位長者）。' },
+          { id:'a2', title:'少子女化連鎖衝擊', sub:'生不如死・減班・缺工', desc:'學校減班退場、勞動力萎縮（15–64 歲占比自 2012 高峰下滑）、超額儲蓄；但<b>不會</b>直接造成家暴增加。' },
+          { id:'a3', title:'過時政策反向陷阱', sub:'絕不宣導「節制生育」', desc:'面對少子與高齡化，政府<b>最不可能</b>推出早年「兩個孩子恰恰好」等<b>節制生育</b>政策！' }
+        ]
+      },
+      { id:'dep', color:'sun', title:'扶養比與現代新課題',
+        desc:'扶養比 ＝ 扶幼比 ＋ 扶老比 ＝〔(0–14＋65+) ÷ 15–64〕× 100%。',
+        leaves:[
+          { id:'d1', title:'扶養比升降解讀★', sub:'比值愈高＝青壯年愈重', desc:'總扶養比由 40 升至 100 → 扶養 1 位老人的青壯年人數<b>變少</b>（不是變多！），扶老比急升、扶幼比低檔。' },
+          { id:'d2', title:'獨居與一碗湯的距離', sub:'單人戶35.4%・三代同鄰', desc:'全國平均每戶 2.56 人、單人＋兩人戶逾 56%；「一碗湯的距離」＝<b>三代同鄰</b>（非三代同堂），須防孤獨死並推<b>青銀共居／合作住宅</b>。' },
+          { id:'d3', title:'銀髮商機＆跨國適應', sub:'大字手機・語言文化差', desc:'高齡化帶動大字體手機、營養品等銀髮商機；新住民家庭須克服<b>語言、生活習慣與文化差異</b>。' }
+        ]
+      }
+    ]
+  },
+
+  '4-2': {
+    aria: '4-2 公權力協助家庭與家庭暴力防治互動心智圖',
+    center: { title: '4-2 公權力協助', sub: '與家暴防治', desc: '本節四大主軸：<b>少子化／長照 3.0 政策與公私協力</b>、<b>家暴防治起源與保護令三種類</b>、<b>三大機關職權鐵律</b>，以及<b>《兒少權法》與求助專線防錯</b>。' },
+    left: [
+      { id:'pol', color:'moss', title:'社福政策與公私協力',
+        desc:'政府是「<b>協助與支持</b>」而非取代家庭負全責，更不可立法強制同住或住安養院！',
+        leaves:[
+          { id:'po1', title:'減緩老化 vs 因應老化★', sub:'育兒減緩・長照因應', desc:'想<b>減緩</b>人口老化 → 提高生育率（0–6 歲國家一起養、生育補助、公托、育嬰假）；<b>長照／喘息／日照／共餐</b>是<b>因應</b>高齡照顧（針對扶老比，非扶幼比！）。' },
+          { id:'po2', title:'長照 2.0 → 3.0 升級', sub:'健康老化・在地安老・善終', desc:'四大對象（65+ 失能、55+ 失能原住民、50+ 失智、各齡身障）；項目含喘息、到宅沐浴、輔具、交通接送、日照（不含青少職訓）；撥 <b>1966</b>。' },
+          { id:'po3', title:'公私協力＆脆弱家庭', sub:'兒福・家扶・弘道・食物銀行', desc:'失業／重病／喪偶／災變致脆弱家庭（分手不算！）；兒福聯盟、家扶寄養、弘道在地安老、食物銀行、書包夢想課輔與高齡新住民長照。' }
+        ]
+      },
+      { id:'dv', color:'rose', title:'家暴認定・起源・兒少',
+        desc:'1993 <b>鄧如雯殺夫案</b>催生 1998 亞洲首部《家庭暴力防治法》；破除「法不入家門」，注意男性受暴黑數與責任通報。',
+        leaves:[
+          { id:'dv1', title:'三大侵害與適用對象', sub:'含前配偶・恐怖情人・同婚', desc:'身體、精神（含監控行蹤與<b>目睹兒少</b>）、經濟控制皆屬家暴；適用含前配偶、未同居情侶、<b>同婚配偶四親等親屬</b>（不含大學室友／結拜兄弟）。' },
+          { id:'dv2', title:'《兒少權法》四大重點', sub:'保母證照・禁獨留6歲下', desc:'居家托育保母須證照登記；不得獨留 6 歲以下兒童；禁菸酒與 3C 過當；父母疏失可罰鍰、<b>強制親職教育</b>與緊急安置。' },
+          { id:'dv3', title:'求助專線防錯★', sub:'113家暴・110警・1966長照', desc:'24H 家暴兒少打 <b>113</b>、緊急危難打 <b>110</b>、長照打 <b>1966</b>；<b>119（救護火警）、165（反詐）、112（救難）、117（報時）</b>全不是家暴專線！' }
+        ]
+      }
+    ],
+    right: [
+      { id:'po', color:'civ', title:'三種保護令與新制',
+        desc:'保護令具法律強制力，違反觸犯刑事「違反保護令罪」；但實務仍有違令風險，須強化跨機關執行。',
+        leaves:[
+          { id:'o1', title:'緊急保護令（4小時★）', sub:'限警・檢・主管機關聲請', desc:'有急迫危險時由<b>警察、檢察官或地方主管機關</b>聲請（被害人不可自請），法院 <b>4 小時內</b>書面核發。' },
+          { id:'o2', title:'暫時＆通常保護令', sub:'未成年代請・延長無空窗', desc:'被害人本人或<b>未成年人之親屬／法定代理人</b>皆可聲請；2023 修法後<b>聲請延長通常保護令期間原令不失效</b>！' },
+          { id:'o3', title:'2023新制＆效力界線', sub:'禁性影像戶學籍・不禁全縣市', desc:'新增<b>禁散性影像</b>、禁加害人及特定親屬查閱<b>戶籍與學籍</b>；保護令<b>不能強制離婚、不能命公開道歉、不能禁入整個縣市</b>、違令不終止親屬關係。' }
+        ]
+      },
+      { id:'org', color:'sea', title:'三大機關職權鐵律★',
+        desc:'救援順序：保命遠離 → 110／113 求援 → 驗傷留證 → 向地方法院聲請保護令 → 警察執行與社工安置。',
+        leaves:[
+          { id:'g1', title:'地方法院（唯一核發★）', sub:'保護令・停親權・免扶養', desc:'我國<b>唯一有權核發保護令</b>、<b>宣告限制／停止親權</b>、認可收養與減輕免除扶養的機關！' },
+          { id:'g2', title:'110 警察機關', sub:'緊急制止・執行保護令', desc:'到場制止暴力、護送就醫、協助聲請緊急保護令並<b>負責執行保護令</b>（<b>不可</b>核發保護令、<b>不可</b>停親權！）。' },
+          { id:'g3', title:'社會局／家防中心', sub:'社工訪視・緊急庇護安置', desc:'派社工訪視評估、提供庇護安置與心理法律扶助，納入村里幹事與移民人員責任通報（<b>不可</b>核發保護令！）。' }
+        ]
+      }
+    ]
+  }
+};
+
+const ctrls = Object.keys(MAPS).map(k => C.mindmap({
+  stage: 'stage-' + k,
+  detail: 'detail-' + k,
+  data: MAPS[k]
+}));
+
+let recallOn = false;
+const recallBtn = C.$('mmRecallBtn');
+recallBtn.onclick = () => {
+  recallOn = !recallOn;
+  recallBtn.classList.toggle('on', recallOn);
+  recallBtn.textContent = recallOn ? '隱藏細節自測：開（點節點揭曉）' : '隱藏細節自測：關';
+  ctrls.forEach(c => c.setRecall(recallOn));
+};
+C.$('mmResetBtn').onclick = () => ctrls.forEach(c => c.reset());
+
+const flt = C.$('mmFilter');
+flt.querySelectorAll('.chip').forEach(b => b.onclick = () => {
+  const u = b.dataset.u;
+  flt.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x === b));
+  document.querySelectorAll('.mm-block').forEach(sec => {
+    sec.classList.toggle('hide', u !== 'all' && sec.dataset.u !== u);
+  });
+});
+})();
+</script>
+</body>
+</html>

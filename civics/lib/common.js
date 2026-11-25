@@ -6,7 +6,8 @@ const NAV=[
   ['kinship.html','3-1 家庭與親屬'],
   ['equality.html','3-2 平權與親權'],
   ['changes.html','4-1 功能與變遷'],
-  ['support.html','4-2 政府與家暴防治']
+  ['support.html','4-2 政府與家暴防治'],
+  ['mindmap.html','全章心智圖']
 ];
 const qs=new URLSearchParams(location.search);
 const EMBED=qs.has('embed');
@@ -253,6 +254,93 @@ C.order=function(cfg){
   }
   C.$(cfg.reset).onclick=()=>{picked=[];out.innerHTML='';render();};
   render();
+};
+
+/* 互動心智圖：C.mindmap({stage, detail, data}) */
+C.mindmap=function(cfg){
+  const stage=C.$(cfg.stage),detail=C.$(cfg.detail),m=cfg.data;
+  const PAL={
+    civ:{bg:'#faece3',bd:'#a8572f',tx:'#7a3717',sub:'#5d3c2b'},
+    moss:{bg:'#e5f0e2',bd:'#3f7a4f',tx:'#204e2d',sub:'#365440'},
+    sea:{bg:'#e2eef7',bd:'#2d6f9e',tx:'#1a496b',sub:'#2f526b'},
+    plum:{bg:'#efe9f6',bd:'#6a4c93',tx:'#462c6b',sub:'#4e3d66'},
+    sun:{bg:'#f8eed2',bd:'#b98516',tx:'#7a5406',sub:'#5e4718'},
+    rose:{bg:'#f7e3e6',bd:'#a33a4a',tx:'#7a1f2e',sub:'#612c36'}
+  };
+  const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const W=940,leafH=44,leafGap=10,groupGap=24;
+  function calcSide(groups){
+    let tot=0;groups.forEach(g=>tot+=g.leaves.length);
+    return tot*leafH+(tot-groups.length)*leafGap+(groups.length-1)*groupGap;
+  }
+  const lh=calcSide(m.left),rh=calcSide(m.right),H=Math.max(lh,rh)+52,cx=W/2,cy=H/2;
+  const nodesMap={center:{title:m.center.title+m.center.sub,desc:m.center.desc,group:null,color:'civ'}};
+  const paths=[],nodes=[];
+  function drawSide(groups,dir){
+    let y=(H-(dir<0?lh:rh))/2;
+    const gW=148,gH=42,lW=188,gx=dir<0?cx-182-gW/2:cx+182-gW/2,lx=dir<0?16:W-16-lW;
+    groups.forEach(g=>{
+      const pal=PAL[g.color]||PAL.civ,lcs=[];
+      g.leaves.forEach(()=>{lcs.push(y+leafH/2);y+=leafH+leafGap;});
+      const gCy=(lcs[0]+lcs[lcs.length-1])/2;
+      const gIn=dir<0?gx+gW:gx,gOut=dir<0?gx:gx+gW,cA=dir<0?cx-72:cx+72,m1=(cA+gIn)/2;
+      paths.push('<path class="mm-branch" data-grp="'+g.id+'" d="M'+cA+','+cy+' C'+m1+','+cy+' '+m1+','+gCy+' '+gIn+','+gCy+'" fill="none" stroke="'+pal.bd+'" stroke-width="2.4" stroke-opacity=".75"/>');
+      g.leaves.forEach((lf,idx)=>{
+        const lCy=lcs[idx],lA=dir<0?lx+lW:lx,m2=(gOut+lA)/2;
+        paths.push('<path class="mm-branch" data-grp="'+g.id+'" data-leaf="'+lf.id+'" d="M'+gOut+','+gCy+' C'+m2+','+gCy+' '+m2+','+lCy+' '+lA+','+lCy+'" fill="none" stroke="'+pal.bd+'" stroke-width="1.8" stroke-opacity=".6"/>');
+        nodesMap[lf.id]={title:lf.title,desc:lf.desc,group:g.id,color:g.color};
+        nodes.push('<g class="mm-node" data-id="'+lf.id+'" data-grp="'+g.id+'" tabindex="0" role="button" aria-label="'+esc(lf.title)+'">'+
+          '<rect x="'+lx+'" y="'+(lCy-leafH/2)+'" width="'+lW+'" height="'+leafH+'" rx="9" fill="#fffdf8" stroke="'+pal.bd+'" stroke-width="1.5"/>'+
+          '<text x="'+(lx+lW/2)+'" y="'+(lCy-3)+'" text-anchor="middle" font-size="12.5" font-weight="700" fill="'+pal.tx+'">'+esc(lf.title)+'</text>'+
+          '<text class="mm-leaf-sub" x="'+(lx+lW/2)+'" y="'+(lCy+14)+'" text-anchor="middle" font-size="10.8" fill="'+pal.sub+'">'+esc(lf.sub)+'</text>'+
+          '<text class="mm-leaf-mask" x="'+(lx+lW/2)+'" y="'+(lCy+14)+'" text-anchor="middle" font-size="10.5" font-weight="700" fill="'+pal.bd+'">點此揭曉重點？</text></g>');
+      });
+      nodesMap[g.id]={title:g.title,desc:g.desc,group:g.id,color:g.color};
+      nodes.push('<g class="mm-node" data-id="'+g.id+'" data-grp="'+g.id+'" tabindex="0" role="button" aria-label="'+esc(g.title)+'">'+
+        '<rect x="'+gx+'" y="'+(gCy-gH/2)+'" width="'+gW+'" height="'+gH+'" rx="11" fill="'+pal.bg+'" stroke="'+pal.bd+'" stroke-width="2"/>'+
+        '<text x="'+(gx+gW/2)+'" y="'+(gCy+5)+'" text-anchor="middle" font-size="13.5" font-weight="700" fill="'+pal.tx+'">'+esc(g.title)+'</text></g>');
+      y+=groupGap-leafGap;
+    });
+  }
+  drawSide(m.left,-1);drawSide(m.right,1);
+  const cNode='<g class="mm-node center-node" data-id="center" tabindex="0" role="button" aria-label="'+esc(m.center.title+m.center.sub)+'">'+
+    '<rect x="'+(cx-72)+'" y="'+(cy-32)+'" width="144" height="64" rx="16" fill="#a8572f" stroke="#7a3717" stroke-width="2.4"/>'+
+    '<text x="'+cx+'" y="'+(cy-5)+'" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">'+esc(m.center.title)+'</text>'+
+    '<text x="'+cx+'" y="'+(cy+16)+'" text-anchor="middle" font-size="14" font-weight="700" fill="#fde8d7">'+esc(m.center.sub)+'</text></g>';
+  stage.innerHTML='<svg class="mm-svg" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc(m.aria||m.center.title+m.center.sub+'互動心智圖')+'" xmlns="http://www.w3.org/2000/svg">'+paths.join('')+nodes.join('')+cNode+'</svg>';
+  const svg=stage.querySelector('svg');let pinned=null,recall=false;
+  function showDetail(id){
+    const info=nodesMap[id]||nodesMap.center,col=(PAL[info.color]||PAL.civ).bd;
+    detail.innerHTML='<div class="mm-dtitle"><span class="mm-dot" style="background:'+col+'"></span><span>'+info.title+'</span></div><div>'+info.desc+'</div>';
+  }
+  function hl(id){
+    svg.querySelectorAll('.mm-node,.mm-branch').forEach(e=>e.classList.remove('active'));
+    if(!id||id==='center'){svg.classList.remove('dim');showDetail('center');return;}
+    const info=nodesMap[id];if(!info)return;
+    svg.classList.add('dim');
+    const tn=svg.querySelector('.mm-node[data-id="'+id+'"]');if(tn)tn.classList.add('active');
+    if(info.group===id){
+      svg.querySelectorAll('.mm-node[data-grp="'+id+'"],.mm-branch[data-grp="'+id+'"]').forEach(e=>e.classList.add('active'));
+    }else if(info.group){
+      svg.querySelectorAll('.mm-node[data-id="'+info.group+'"],.mm-branch[data-grp="'+info.group+'"]:not([data-leaf]),.mm-branch[data-leaf="'+id+'"]').forEach(e=>e.classList.add('active'));
+    }
+    showDetail(id);
+  }
+  svg.addEventListener('pointerover',ev=>{if(pinned)return;const n=ev.target.closest('.mm-node');if(n)hl(n.dataset.id);});
+  svg.addEventListener('pointerleave',()=>{if(!pinned)hl('center');});
+  svg.addEventListener('click',ev=>{
+    const n=ev.target.closest('.mm-node');
+    if(!n||n.dataset.id==='center'){pinned=null;hl('center');return;}
+    if(recall)n.classList.add('revealed');
+    pinned=(pinned===n.dataset.id)?null:n.dataset.id;
+    hl(pinned||'center');
+  });
+  svg.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){const n=ev.target.closest('.mm-node');if(n){ev.preventDefault();n.dispatchEvent(new MouseEvent('click',{bubbles:true}));}}});
+  showDetail('center');
+  return {
+    setRecall(on){recall=!!on;svg.classList.toggle('recall',recall);if(!recall)svg.querySelectorAll('.revealed').forEach(e=>e.classList.remove('revealed'));},
+    reset(){pinned=null;hl('center');svg.querySelectorAll('.revealed').forEach(e=>e.classList.remove('revealed'));}
+  };
 };
 
 window.C=C;
