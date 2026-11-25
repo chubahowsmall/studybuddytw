@@ -1,0 +1,120 @@
+/* 公民生活館：公民頁專用樣式（全站共用樣式在 ../assets/style.css） */
+:root{
+  --civ:#a8572f;
+  --civ-deep:#86411f;
+  --civ-bg:#f8eae1;
+  --civ-bd:#e2c3b0;
+}
+.kicker.c{color:var(--civ);background:var(--civ-bg)}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}
+.toc a{font-size:14px;text-decoration:none;padding:4px 12px;border-radius:999px;border:1px solid var(--line-2);background:var(--card);color:var(--ink)}
+.toc a:hover{border-color:var(--civ);color:var(--civ)}
+.sec{scroll-margin-top:12px}
+.sec h2 .star{font-size:13px;font-weight:700;color:var(--sun);background:var(--sun-bg);border-radius:999px;padding:2px 9px;margin-left:8px;vertical-align:3px;white-space:nowrap}
+.sec h2 .unitno{font-size:13px;font-weight:700;color:var(--civ);background:var(--civ-bg);border-radius:999px;padding:2px 9px;margin-left:6px;vertical-align:3px;white-space:nowrap}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin:12px 0 14px}
+.tool h3{margin:0 0 8px;font-size:16.5px;color:var(--civ)}
+.hot{color:var(--rose);font-weight:700;background:var(--rose-bg);padding:1px 6px;border-radius:5px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.out{font-size:15.5px}
+.out p,.out li{overflow-wrap:anywhere}
+.exam{font-size:13.5px;color:var(--ink-2);border-top:1px dashed var(--line-2);margin-top:10px;padding-top:6px}
+.exam b{color:var(--civ)}
+.mnemo{display:inline-block;font-weight:700;color:var(--civ-deep);background:var(--civ-bg);border-radius:8px;padding:2px 10px;margin:2px 0}
+.link-note{background:var(--civ-bg);border:1px solid var(--civ-bd);border-radius:var(--r);padding:10px 14px;margin:10px 0 14px;font-size:14.5px;line-height:1.6}
+.link-note a{color:var(--civ-deep);font-weight:700}
+
+/* 右側浮動回到頂端按鈕：公民主題懸停色 */
+.back-top.civ:hover{background:var(--civ);border-color:var(--civ);color:#fff}
+.back-top.civ:focus-visible{outline-color:var(--civ)}
+
+/* 互動 SVG 圖解（對齊全站懸停聚光、標籤連動與鎖定標記規範） */
+.figwrap{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:820px){.figwrap{grid-template-columns:minmax(0,1fr)}}
+.figwrap svg{width:100%;height:auto;display:block;background:#fbfaf6;border:1px solid var(--line);border-radius:var(--r)}
+svg [data-part],svg [data-lbl]{cursor:pointer;transition:filter .15s,opacity .15s}
+svg [data-part]:hover{filter:brightness(1.06) drop-shadow(0 0 2px rgba(168,87,47,.55))}
+svg [data-part]:focus{outline:none;filter:drop-shadow(0 0 3px var(--civ))}
+svg [data-part].sel{filter:drop-shadow(0 0 3px #d97706) drop-shadow(0 0 6px #f59e0b) brightness(1.08)}
+svg [data-part].good{filter:drop-shadow(0 0 3px #16a34a) drop-shadow(0 0 6px #22c55e) brightness(1.06)}
+svg [data-part].bad{filter:drop-shadow(0 0 3px #dc2626) drop-shadow(0 0 6px #ef4444) brightness(1.06)}
+svg.dim [data-part]{opacity:.28;filter:brightness(.72) grayscale(65%);transition:opacity .15s,filter .15s}
+svg.dim [data-part].sel{opacity:1;filter:grayscale(0%) drop-shadow(0 0 4px #d97706) drop-shadow(0 0 9px #f59e0b) brightness(1.12)}
+svg.dim [data-part].good{opacity:1;filter:grayscale(0%) drop-shadow(0 0 4px #16a34a) drop-shadow(0 0 9px #22c55e) brightness(1.1)}
+svg.dim [data-part].bad{opacity:1;filter:grayscale(0%) drop-shadow(0 0 4px #dc2626) drop-shadow(0 0 9px #ef4444) brightness(1.08)}
+svg.dim [data-part].hl{opacity:1;filter:grayscale(0%) drop-shadow(0 0 3px #a8572f) drop-shadow(0 0 8px #d97706) brightness(1.1)}
+svg.mark-lock [data-part],svg.mark-lock [data-lbl]{cursor:default}
+svg.testing .lbl,svg.testing .lbls,svg.testing .lblbg,svg.testing .test-hide{display:none!important}
+svg.testing [data-part].good rect{fill:#dcfce7!important;stroke:#16a34a!important;stroke-width:2.4!important}
+svg.testing [data-part].bad rect{fill:#fee2e2!important;stroke:#dc2626!important;stroke-width:2.4!important}
+svg.testing [data-part].sel rect{fill:#fef3c7!important;stroke:#d97706!important;stroke-width:2.4!important}
+svg .lbl{font-size:13px;fill:var(--ink);cursor:pointer;pointer-events:all}
+svg .lblbg{fill:rgba(255,253,247,.94);stroke:rgba(120,96,80,.35);stroke-width:1;rx:6;pointer-events:all;cursor:pointer;transition:opacity .15s,fill .15s,stroke .15s}
+svg.dim .lblbg,svg.dim .lbl[data-lbl]{opacity:.28}
+svg.dim .lblbg.sel{opacity:1;fill:#fef3c7;stroke:#d97706;stroke-width:1.8}
+svg.dim .lblbg.good{opacity:1;fill:#dcfce7;stroke:#16a34a;stroke-width:1.8}
+svg.dim .lblbg.bad{opacity:1;fill:#fee2e2;stroke:#dc2626;stroke-width:1.8}
+svg.dim .lblbg.hl{opacity:1;fill:#faece3;stroke:#a8572f;stroke-width:1.8}
+svg.dim .lbl[data-lbl].sel{opacity:1;fill:#92400e!important;font-weight:700}
+svg.dim .lbl[data-lbl].good{opacity:1;fill:#166534!important;font-weight:700}
+svg.dim .lbl[data-lbl].bad{opacity:1;fill:#991b1b!important;font-weight:700}
+svg.dim .lbl[data-lbl].hl{opacity:1;fill:#86411f!important;font-weight:700}
+.figout{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;min-height:130px;font-size:15px;line-height:1.65}
+.figout .pname{font-size:17px;font-weight:700;margin-bottom:4px;color:var(--civ-deep)}
+
+/* 回合制分類挑戰 */
+.cl-meta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;font-size:13.5px;color:var(--ink-2);margin-bottom:6px}
+.cl-qbox{background:#fbf8f1;border:1px solid var(--line-2);border-radius:10px;padding:12px 14px;font-size:16px;font-weight:700;margin-bottom:10px;line-height:1.6}
+.cl-bar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.cl-bar .btn[disabled]{opacity:.55;cursor:default}
+.cl-bar .btn.right{opacity:1;background:var(--moss-bg);border-color:var(--moss);color:#24563a;font-weight:700}
+.cl-bar .btn.wrong{opacity:1;background:var(--rose-bg);border-color:var(--rose);color:var(--rose)}
+
+/* 排順序 */
+.opool{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.ocard{font:inherit;font-size:14.5px;padding:7px 12px;border-radius:9px;border:1px solid var(--line-2);background:#fbfaf6;cursor:pointer;text-align:left;line-height:1.45}
+.ocard:hover{border-color:var(--civ)}
+.oans{display:grid;gap:6px;margin:6px 0}
+.ostep{display:flex;gap:10px;align-items:flex-start;padding:7px 12px;border-radius:9px;border:1px solid var(--line);background:#fff;font-size:14.5px;line-height:1.55}
+.ostep>b.ono{flex:0 0 1.7em;height:1.7em;border-radius:50%;background:var(--civ-bg);color:var(--civ);display:grid;place-items:center;font-size:13px;margin-top:1px}
+.ostep .otxt{flex:1;min-width:0}
+.ostep.good{border-color:var(--moss);background:var(--moss-bg)}
+.ostep.bad{border-color:var(--rose);background:var(--rose-bg)}
+
+/* 標籤膠囊與公民專欄元件 */
+.badge-c{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:700;margin-right:4px;vertical-align:1px}
+.badge-c.warm{background:var(--civ-bg);color:var(--civ-deep);border:1px solid var(--civ-bd)}
+.badge-c.sea{background:var(--sea-bg);color:#1e4f73;border:1px solid #a9cbe4}
+.badge-c.moss{background:var(--moss-bg);color:#24563a;border:1px solid #a7cca9}
+.badge-c.rose{background:var(--rose-bg);color:var(--rose);border:1px solid #e0a7b0}
+.badge-c.sun{background:var(--sun-bg);color:#7c5709;border:1px solid #e0c47a}
+
+.diff-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:10px 0}
+@media (max-width:640px){.diff-grid{grid-template-columns:minmax(0,1fr)}}
+.diff-card{border-radius:10px;padding:12px 14px;border:1px solid var(--line)}
+.diff-card.old{background:#f5f2eb;border-color:#d4cec0}
+.diff-card.now{background:#eef6ec;border-color:#a5cca4}
+.diff-card .tag-lbl{display:inline-block;font-size:12px;font-weight:700;padding:1px 8px;border-radius:999px;margin-bottom:6px}
+.diff-card.old .tag-lbl{background:#e3ddd0;color:#5a5448}
+.diff-card.now .tag-lbl{background:#d4ebd2;color:#24563a}
+
+.chart-stage{overflow-x:auto;margin:6px 0 8px}
+.chart-stage svg{display:block;width:100%;min-width:520px;height:auto;border:1px solid var(--line);border-radius:var(--r);background:#fbf8f1}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px;margin:8px 0 10px}
+.metric{background:#fbfaf6;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:13.5px;line-height:1.45}
+.metric .k{display:block;font-size:12px;color:var(--ink-2)}
+.metric b{font-size:17px;color:var(--ink)}
+.metric.alert{background:var(--rose-bg);border-color:#e0a7b0}
+.metric.alert b{color:var(--rose)}
+.metric.ok{background:var(--moss-bg);border-color:#a7cca9}
+.metric.ok b{color:#24563a}
+.metric.warn-m{background:var(--sun-bg);border-color:#e0c47a}
+.metric.warn-m b{color:#8a5d07}
+
+/* 小測驗 */
+.score{position:sticky;top:0;z-index:5;background:var(--paper);padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.score .big{font-size:20px;font-weight:700}
+.q .no{font-size:13px;color:var(--ink-3);margin-right:6px}
+.q .u{font-size:12px;font-weight:700;color:var(--civ);background:var(--civ-bg);border-radius:999px;padding:1px 8px;margin-left:6px;white-space:nowrap}
+.q figure svg{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fbf8f1}
+.unit .no{color:var(--civ)}
+.unit:hover{border-color:var(--civ)}
